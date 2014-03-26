@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<XMLDefinition Generator="Iron Speed Designer" Version="7.0" Type="GENERIC">
+  <ColumnDefinition>
+    <Column InternalName="0" Priority="1" ColumnNum="0">
+      <columnName>tax_type</columnName>
+      <columnUIName Source="User">%ISD_DEFAULT%</columnUIName>
+      <columnType>String</columnType>
+      <columnDBType>nchar</columnDBType>
+      <columnLengthSet>20</columnLengthSet>
+      <columnDefault>
+      </columnDefault>
+      <columnDBDefault Source="User">
+      </columnDBDefault>
+      <columnIndex>Y</columnIndex>
+      <columnUnique>Y</columnUnique>
+      <columnFunction>notrim,upper</columnFunction>
+      <columnDBFormat>
+      </columnDBFormat>
+      <columnPK>Y</columnPK>
+      <columnPermanent>N</columnPermanent>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
+      <columnRequired>Y</columnRequired>
+      <columnNotNull>Y</columnNotNull>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
+      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
+      <columnTableAliasName>
+      </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>0</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
+    </Column>
+  </ColumnDefinition>
+  <TableName>tax_types</TableName>
+  <Version>
+  </Version>
+  <Owner>dbo</Owner>
+  <TableCodeName>Tax_types</TableCodeName>
+  <TableAliasName>Tax_types_</TableAliasName>
+  <ConnectionName>Databaseservel-bill1</ConnectionName>
+  <canCreateRecords Source="Database">Y</canCreateRecords>
+  <canEditRecords Source="Database">Y</canEditRecords>
+  <canDeleteRecords Source="Database">Y</canDeleteRecords>
+  <canViewRecords Source="Database">Y</canViewRecords>
+  <ConcurrencyMethod>BinaryChecksum</ConcurrencyMethod>
+  <AppShortName>ServelInvocing</AppShortName>
+</XMLDefinition>

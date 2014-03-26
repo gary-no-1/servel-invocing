@@ -1,0 +1,1802 @@
+/**********************************************************************
+ * BaseStyles.LeftToRight.css                                         *
+ *                                                                    *
+ * This file contains the styles for Left to Right languages.         *
+ * This file will be copied to BaseStyles.css if you select a LTR     *
+ * language as the primary language of your application.              *
+ *                                                                    *
+ * Do not modify this file.  To override any of the styles, please    *
+ * modify the Styles.css file.                                        *
+ *                                                                    *
+ **********************************************************************/
+
+HTML { /* language direction flow of content on page */
+	direction: ltr;
+	}
+
+
+/**********************************************************************
+ * Button Styles                                                      *
+ **********************************************************************/
+a.button_link, .thc a.button_link, .tic a.button_link, .ttc a.button_link { /* link text of buttons (including those within column headers and data grid) */ 
+	color: #666666;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	padding-left: 4px;
+	padding-right: 4px;
+	width: 100%;
+	}
+
+a.button_link:hover, .thc a.button_link:hover, .tic a.button_link:hover, .ttc a.button_link:hover { /* link text of buttons (including those within column headers and data grid) hover state */
+	color: #333333;
+	text-decoration: none;
+	}
+
+.button-TL-white, .bTL { /* theme button top left edge */
+	background-image:url(../../Images/buttonTL.gif); 
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	width: 2px;
+	height: 2px;
+	}
+.button-T-white, .bT { /* theme button top center edge */
+	background-image:url(../../Images/buttonT.gif);
+	background-repeat: repeat-x;
+	background-position: bottom center;
+	height: 2px;
+	}
+.button-TR-white, .bTR { /* theme button top right edge */
+	background-image:url(../../Images/buttonTR.gif);
+	background-repeat: no-repeat;
+	background-position: bottom left;
+	width: 3px;
+	height: 2px;
+	}
+.button-L-white, .bL { /* theme button left middle edge */
+	background-image:url(../../Images/buttonL.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	width: 2px;
+	height: 15px;
+	}
+.button-white, .bC { /* theme button center */
+	background-image:url(../../Images/buttonC.gif); 
+	height: 15px; 
+	white-space: nowrap;
+	}
+.button-R-white, .bR { /* theme button right middle edge */
+	background-image:url(../../Images/buttonR.gif);
+	background-repeat: no-repeat;
+	background-position: center left;
+	width: 3px;
+	height: 15px;
+	}
+.button-BL-white, .bBL { /* theme button bottom left edge */
+	background-image:url(../../Images/buttonBL.gif);
+	background-repeat: no-repeat;
+	background-position: top right;
+	width: 2px;
+	height: 4px;
+	}
+.button-B-white, .bB { /* theme button bottom center edge */
+	background-image:url(../../Images/buttonB.gif); 
+	background-repeat: repeat-x;
+	background-position: top center;
+	height: 4px;
+	}
+.button-BR-white, .bBR { /* theme button bottom right edge */
+	background-image:url(../../Images/buttonBR.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 3px;
+	height: 4px;
+	} 
+
+
+/**********************************************************************
+ * Multi-level Menu Styles                                            *
+ **********************************************************************/
+.MLMmenuAlign { /* horizontal menu container alignment */
+	padding-bottom: 6px;
+	padding-top: 6px;
+	}
+
+.MLMmenu { /* horizontal menu container */
+	}
+
+.MLMmenusub { /* horizontal submenu container (menu leaves) */
+	border: 1px solid #80b3fb;
+	z-index: 100;
+	}
+
+.MLMmC { /* horizontal menu item link text */
+	background-color: #3588f3;
+	background-image: url(../../Images/menuC.gif);
+	background-position: top center;
+	background-repeat: repeat-x;
+	color: #eeeeee;
+	cursor: pointer !important;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: bold;
+	padding-bottom: 4px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 4px;
+	}
+
+.MLMmC:hover, .MLMmC:hover a, .MLMmoC { /* menu item hover */
+	background-color: #0268f7;
+	background-image: url(../../Images/menuOverC.gif);
+	background-position: top center;
+	background-repeat: repeat-x;
+	color: #ffffff;
+	}
+
+.MLMsubmC { /* horizontal submenu item link text */
+	background-color: #b8cbf5;
+	color: #444444;
+	cursor: pointer !important;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 10px;
+	padding-bottom: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 2px;
+	}
+
+.MLMsubmoC { /* horizontal submenu item link text hover state */
+	background-color: #0268f7;
+	color: #ffffff;
+	}
+
+.MLMmbbg { /* horizontal menu bottom trim */
+	}
+
+.MLMmenuVAlign { /* vertical menu container alignment */
+	padding-left: 6px;
+	padding-right: 6px;
+	}
+
+.MLMmenuV { /* vertical menu container */
+	position: relative;
+	}
+
+.MLMmenuVsub { /* vertical submenu container */
+	border: 1px solid #80b3fb;
+	z-index: 100;
+	}
+
+.MLMmvC { /* vertical menu item link text */
+	background-color: #3588f3;
+	background-image: url(../../Images/menuC.gif);
+	background-position: top center;
+	background-repeat: repeat-x;
+	color: #eeeeee;
+	cursor: pointer !important;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: bold;
+	padding-bottom: 4px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 4px;
+	}
+
+.MLMmvC:hover, .MLMmvC:hover a, .MLMmvoC { /* vertical menu item link text hover state */
+	background-color: #0268f7;
+	background-image: url(../../Images/menuOverC.gif);
+	background-position: top center;
+	background-repeat: repeat-x;
+	color: #ffffff;
+	}
+
+.MLMsubmvC { /* vertical submenu item link text */
+	background-color: #b8cbf5;
+	color: #444444;
+	cursor: pointer !important;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 10px;
+	padding-bottom: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 2px;
+	}
+
+.MLMsubmvoC { /* vertical submenu item link text hover state */
+	background-color: #0268f7;
+	color: #ffffff;
+	}
+
+.MLMmveTL { /* vertical menu top left edge */
+	}
+
+.MLMmveT { /* vertical menu top center edge */
+	}
+
+.MLMmveTR { /* vertical menu top right edge */
+	}
+
+.MLMmveBL { /* vertical menu bottom left edge */
+	}
+
+.MLMmveB { /* vertical menu bottom center edge */
+	}
+
+.MLMmveBR { /* vertical menu bottom right edge */
+	}
+
+
+/**********************************************************************
+ * Classic Menu Styles                                                *
+ **********************************************************************/
+.menus { /* horizontal menu container */
+	padding-top: 4px;
+	padding-bottom: 4px;
+	}
+
+.menusV { /* vertical menu container */
+	padding-left: 5px;
+	padding-right: 5px;
+	}
+
+.menu { /* horizontal/vertical menu item text */
+	color: #ffffff;
+	font-family: Arial, Geneva, ms sans serif;
+	}
+	
+a.menu { /* horizontal/vertical menu item link text */
+	color: #eeeeee; 
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: left;
+	width: 100%;
+	}
+
+a.menu:hover { /* horizontal/vertical menu item link text hover state */
+	color: #ffffff;
+}
+
+.menu_on-TL, .moTL, .mvoTL { /* horizontal/vertical menu highlighted item top right edge */
+	background-image: url(../../Images/menuOverTL.gif);
+	background-repeat: no-repeat;
+	background-position: top right;
+	width: 5px;
+	height: 5px;
+	}
+.menu_on-T, .moT, .mvoT { /* horizontal/vertical menu highlighted item top center edge */
+	background-image: url(../../Images/menuOverT.gif);
+	background-repeat: repeat-x;
+	height: 5px;
+	}
+.menu_on-TR, .moTR, .mvoTR { /* horizontal/vertical menu highlighted item top right edge */
+	background-image: url(../../Images/menuOverTR.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 5px;
+	height: 5px;
+	}
+.menu_on-L, .moL, .mvoL { /* horizontal/vertical menu highlighted item left middle edge */
+	background-image: url(../../Images/menuOverL.gif);
+	background-repeat: repeat-y;
+	background-position: center right;
+	width: 5px;
+	height: 18px;
+	}
+.menu_on, .moC, .mvoC { /* horizontal/vertical menu highlighted item center */
+	background-image: url(../../Images/menuOverC.gif);
+	white-space: nowrap;
+	height: 18px;
+	width: 100%;
+	}
+.menu_on-R, .moR, .mvoR { /* horizontal/vertical menu highlighted item right middle edge */
+	background-image: url(../../Images/menuOverR.gif);
+	background-repeat: repeat-y;
+	background-position: center left;
+	width: 5px;
+	height: 18px;
+	}
+.menu_on-BL, .moBL, .mvoBL { /* horizontal/vertical menu highlighted item bottom left edge */
+	background-image: url(../../Images/menuOverBL.gif);
+	background-repeat: no-repeat;
+	background-position: top right;
+	width: 5px;
+	height: 5px;
+	}
+.menu_on-B, .moB, .mvoB { /* horizontal/vertical menu highlighted item bottom center edge */
+	background-image: url(../../Images/menuOverB.gif);
+	background-repeat: repeat-x;
+	height: 5px;
+	}
+.menu_on-BR, .moBR, .mvoBR { /* horizontal/vertical menu highlighted item bottom right edge */
+	background-image: url(../../Images/menuOverBR.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 5px;
+	height: 5px;
+	}
+
+.menu_on a, .moC a, .mvoC a { /* horizontal/vertical menu highlighted item link text */
+	color: #ffffff;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 12px;
+	}
+
+.menu_off-TL, .mTL, .mvTL { /* horizontal/vertical menu item top right edge */ 
+	background-image: url(../../Images/menuTL.gif);
+	background-repeat: no-repeat;
+	background-position: top right;
+	width: 5px;
+	height: 5px;
+	}
+.menu_off-T, .mT, .mvT { /* horizontal/vertical menu item top center edge */
+	background-image: url(../../Images/menuT.gif);
+	background-repeat: repeat-x;
+	height: 5px;
+	}
+.menu_off-TR, .mTR, .mvTR { /* horizontal/vertical menu item top right edge */
+	background-image: url(../../Images/menuTR.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 5px;
+	height: 5px;
+	}
+.menu_off-L, .mL, .mvL { /* horizontal/vertical menu item left middle edge */
+	background-image: url(../../Images/menuL.gif);
+	background-repeat: repeat-y;
+	background-position: center right; 
+	width: 5px;
+	height: 18px;
+	}
+.menu_off, .mC, .mvC { /* horizontal/vertical menu item center */
+	background-image: url(../../Images/menuC.gif);
+	white-space: nowrap;	
+	height: 18px;
+	width: 100%;
+	}
+.menu_off-R, .mR, .mvR { /* horizontal/vertical menu item right middle edge */
+	background-image: url(../../Images/menuR.gif);
+	background-repeat: repeat-y;
+	background-position: center left;
+	width: 5px;
+	height: 18px;
+	}
+.menu_off-BL, .mBL, .mvBL { /* horizontal/vertical menu item bottom left edge */
+	background-image: url(../../Images/menuBL.gif);
+	background-repeat: no-repeat;
+	background-position: top right;
+	width: 5px;
+	height: 5px;
+	}
+.menu_off-B, .mB, .mvB { /* horizontal/vertical menu item bottom center edge */
+	background-image: url(../../Images/menuB.gif);
+	background-repeat: repeat-x;
+	height: 5px;
+	}
+.menu_off-BR, .mBR, .mvBR { /* horizontal/vertical menu item bottom right edge */
+	background-image: url(../../Images/menuBR.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 5px;
+	height: 5px;
+	}
+
+.menuEdgeL, .mel { /* horizontal menu container left edge */
+	}
+
+.menuEdgeR, .mer { /* horizontal menu container right edge */
+	}
+
+.menu_bot_bg, .mbbg { /* horizontal menu bottom trim */  
+	} 
+
+
+/**********************************************************************
+ * Tab Control Styles                                                 *
+ **********************************************************************/
+.ajax__tab_xp { /* tab container alignment */
+	margin-bottom: 20px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	padding: 0px;
+	text-align: left;
+	}
+
+.pContent .ajax__tab_xp .ajax__tab_body { /* tab container */
+	margin: 0px;
+	padding: 0px;
+	}
+
+.ajax__tab_xp .dialog_view, .ajax__tab_xp .dv { /* panel container within tab container */
+	margin: 0px;
+	margin-bottom: 20px;
+	padding: 0px;
+	}
+
+.ajax__tab_xp .dBody { /* panel content container (excludes panel header) within tab container */ 
+	border: 0px;
+	}
+
+.ajax__tab_xp .tre { /* data grid container within tab container */
+	border-top: 1px #cccccc solid;
+	}
+
+
+/**********************************************************************
+ * Page Background Styles                                             *
+ **********************************************************************/
+.pageBackground, .pBack { /* page content container */
+	background-color: #ffffff;
+	margin: 0px;
+	}
+
+
+/**********************************************************************
+ * AJAX Smooth Panel Update Styles                                    *
+ **********************************************************************/
+.ajaxUpdatePanel { /* AJAX smooth panel update screen overlay */
+	background-color: #aaaaaa;
+	/* filter: alpha(opacity=10); */
+	height: 1000px;
+	opacity: 0.20;
+	padding: 20px;
+	position: absolute;
+	width: 100%;
+	}
+
+
+/**********************************************************************
+ * AJAX Modal Popup Control Styles                                    *
+ **********************************************************************/
+.modalPopup {
+	background-color:#eeeeee;
+	border: 1px solid #000000;
+	font-family: Verdana, Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	height: 35px;
+	padding: 10px; 
+	position:absolute;
+	text-align: center;
+	top:-1000px;
+	vertical-align: center;
+	width: 200px;
+	}
+
+
+/**********************************************************************
+ * Sign In Bar Styles                                                 *
+ **********************************************************************/
+.signInBar { /* sign in bar */
+	background-image:url(../../Images/SignInBarBackground.gif);
+	background-position: center center;
+	background-repeat: repeat-x;
+	color: #666666;
+	font-family: Verdana, Geneva, ms sans serif;
+	font-size: 10px;
+	padding-bottom: 2px;
+	white-space: nowrap;
+	}
+
+.signInBarL { /* sign in bar left edge */
+	background-image:url(../../Images/SignInBarL.gif);
+	background-repeat: no-repeat;
+	}
+
+.signInBar a, .signInBar input { /* sign in bar link text */
+	color: #666666;
+	font-family: Verdana, Geneva, ms sans serif;
+	font-size: 10px;
+	font-weight: bold;
+	white-space: nowrap;
+	}
+
+.signInBarStatus { /* sign in bar status message text */
+	color: #666666;
+	font-family: Verdana, Geneva, ms sans serif;
+	font-size: 10px;
+	padding-right: 36px;
+	text-align: right;
+	white-space: nowrap;
+	}
+
+
+/**********************************************************************
+ * Panel Body Styles                                                  *
+ **********************************************************************/
+.dialog_body, .dBody { /* panel content container (excludes panel header) */ 
+	background-color: #ffffff;
+	color: #666666;
+	border-bottom: 1px #aaaaaa solid;
+	border-left: 1px #aaaaaa solid;
+	border-right: 1px #aaaaaa solid;
+	border-top: 1px #aaaaaa solid;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	text-align: left;
+	}
+
+.dBody2 { /* alternate panel content container (excludes panel header) */
+	color: #666666;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	text-align: left;
+	}
+
+.dBodyShowSelectRecordDivider { /* deprecated */
+	background-color: #fefbf2;
+	border-top: 1px solid #aaaaaa;
+	}
+
+.dialog_field_value, .dfv { /* panel field value text */
+	color: #666666;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	padding: 1px 4px 1px 4px;
+	}
+
+.dialog_header, .dh { /* panel header container */
+	border-bottom: 1px #dcbb4a solid;
+	}
+
+.dialogHeaderBackground, .dhb { /* panel header */
+	background-image:url(../../Images/dialogHeaderT.gif);
+	}
+
+.dialog_header a, .dh a {
+	color: #ffffff;
+	font-size: 11px;
+	}
+
+.dialog_header_text, .dht { /* panel header title text */
+	color: #ffffff;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 13px;
+	font-weight: bold;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	text-align: left;
+	vertical-align: middle;
+	}
+
+.dialogHeaderEdgeL, .dhel { /* panel header left edge */
+	background-image:url(../../Images/dialogHeaderEdgeL.gif);
+	background-repeat: repeat-y;
+	background-position: top left;
+	width: 20px;
+	height: 30px;
+	}
+
+.dialogHeaderEdgeR, .dher { /* panel header right edge */
+	background-image:url(../../Images/dialogHeaderEdgeR.gif);
+	background-repeat: repeat-y;
+	background-position: top right;
+	width: 20px;
+	height: 30px;
+	}
+
+.dialogHeaderIcon, .dhi { /* panel header add/edit/show icon container */
+	background-image:url(../../Images/dialogHeaderT.gif);
+	vertical-align: middle;
+	width: 0px;
+	}
+
+.dialogHeaderIconRecord, .dhir { /* record panel header add/edit/show icon container */
+	padding-left: 10px;
+	padding-right: 10px;
+	}
+
+.dialogHeaderExpandCollapseIcon, .dheci { /* panel header expand/collapse icon container */
+	background-image:url(../../Images/dialogHeaderT.gif);
+	width:20px;
+	height:14px;
+	vertical-align: middle;
+	}
+
+.dialogHeaderPrintEmailIcon, .dhpei { /* panel header print/email icon container */
+	padding-right: 10px;
+	text-align: right;
+	vertical-align: middle;
+	width: 100%;
+	}
+  
+.dialogHeaderTotalRecordCount, .dhtrc { /* panel header total record count container */
+	background-image: url(../../Images/dialogHeaderT.gif);
+	text-align: right;
+	vertical-align: middle;
+	padding-top: 4px;
+	padding-left: 20px;
+	}
+  
+.dialogHeaderTotalRecordCountText, .dhtrct { /* panel header total record count text */
+	color: #ffffff;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	}
+
+.dialog_view, .dv { /* panel container (includes panel header) */
+	margin-bottom: 20px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	padding: 0px;
+	text-align: left;
+	}
+
+.dv2 { /* nested panel container (includes panel header) */
+	margin-bottom: 20px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	padding: 0px;
+	text-align: left;
+	width: 300px;
+	}
+
+.category, .c { /* category filter container */
+	color: #000000;
+	padding: 5px;
+	}
+
+.category_area, .ca { /* category filter */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	vertical-align: middle;
+	white-space: nowrap;	
+	padding-bottom: 3px;
+	}
+
+.category_area A, .ca A { /* category filter link text */
+	color: #000000;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	text-decoration: underline;
+	}
+
+.category_area A:hover, .ca A:hover { /* category filter link text hover state */
+	color: #000000;
+	text-decoration: underline;
+	}
+
+.subcategory_label, .scl { /* category filter label */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #333333;
+	padding-left: 4px;
+	white-space: nowrap;	
+	vertical-align: middle;
+	}
+
+.subcategory SELECT, .sc SELECT { /* category filter drop-down list */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	border-top: 1px #555555 solid;
+	border-left: 1px #555555 solid;
+	border-right: 1px #eeeeee solid;
+	border-bottom: 1px #eeeeee solid;
+	}
+
+.recordPanelButtonsAlignment, .rpbAlign { /* page buttons alignment */
+	padding-bottom: 5px;
+	}
+    
+.buttonPadding { /* page buttons padding */
+	margin-right: 6px;
+	}
+
+.field_label, .fl { /* field label (on top) */
+	color: #859999;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 5px 4px 5px 4px;
+	text-align: left;
+	vertical-align: middle;
+	white-space: nowrap;	
+	}
+
+.field_label_on_side, .fls { /* field lable on side */
+	color: #859999;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 5px 4px 5px 4px;
+	text-align: right;
+	vertical-align: middle;
+	white-space: nowrap;	
+	}
+
+.field_value, .fv { /* field value */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	padding: 0px;
+	}
+
+.field_input, .fi { /* input textbox */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	background-color: #ffffff;
+	border-top: 1px #555555 solid;
+	border-left: 1px #555555 solid;
+	border-right: 1px #eeeeee solid;
+	border-bottom: 1px #eeeeee solid;
+	}
+
+.filter_value, .filv { /* filter value */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 2px;
+	}
+
+.filter_button_cell, .filbc { /* filter button container */
+	padding-left: 9px;
+	vertical-align: bottom;
+	}
+
+.Filter_Input, .fili { /* filter drop-down list */
+	border-bottom: 1px #eeeeee solid;
+	border-left: 1px #555555 solid;
+	border-right: 1px #eeeeee solid;
+	border-top: 1px #555555 solid;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	margin: 3px;
+	}
+
+.filter_area, .fila { /* filter label */
+	color: #333333;
+	font-family: Arial, Geneva, ms sans serif;
+	text-align: right;
+	font-size: 11px;
+	padding: 4px 7px 4px 7px;
+	vertical-align: middle;
+	white-space: nowrap;	
+	}
+	
+.search_area, .sa { /* search area container */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	padding-top: 5px;
+	padding-bottom: 2px;
+	}
+
+.search_label, .sl { /* search label */
+	color: #003366;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: normal;
+	vertical-align: middle;
+	white-space: nowrap;	
+	padding: 5px;
+	}
+
+.Search_Input, .si { /* search textbox */
+	background-color: #ffffff;
+	border-bottom: 1px #eeeeee solid;
+	border-left: 1px #555555 solid;
+	border-right: 1px #eeeeee solid;
+	border-top: 1px #555555 solid;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	margin: 3px;
+	} 
+
+.rangeFilterText, .rft { /* range filter label */
+	color: #666666;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 10px;
+	font-weight: normal;
+	padding-left: 6px;
+	padding-right: 6px;
+	text-decoration: none;
+	text-transform: none;
+	}
+
+
+/**********************************************************************
+ * Pagination Styles                                                  *
+ **********************************************************************/
+.button_bar_cell, .prbbc { /* button bar button container */
+	background-image:url(../../Images/paginationRowT.gif);
+	background-color: #ffffff;
+	padding-bottom: 3px;
+	vertical-align: bottom;
+	}
+	
+.prbg { /* pagination row button container */
+	background-image:url(../../Images/ButtonBarBackground.gif); 
+	background-repeat: repeat-x;
+	color: #666666;
+	font-family: Verdana, Geneva, ms sans serif;
+	font-size: 10px;
+	font-weight: normal;
+	padding-left: 3px;
+	padding-right: 3px;
+	white-space: nowrap;
+	}
+
+.pagination_area, .pra { /* pagination row container */
+	background-image:url(../../Images/paginationRowT.gif);
+	color: #003366;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	padding-bottom: 3px;
+	vertical-align: bottom;
+	white-space: nowrap;	
+	}
+
+.pagination_label, .prl { /* pagination row label */
+	color: #003366;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: normal;
+	vertical-align: middle;
+	white-space: nowrap;	
+	padding: 2px;
+	}
+
+.pagination_value, .prv { /* pagination row value */
+	color: #003366;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: bold;
+	vertical-align: middle;
+	white-space: nowrap;	
+	padding: 2px;
+	padding-right: 5px;
+	padding-left: 5px;
+	}
+
+.Pagination_Input, .pri { /* pagination row input textbox */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	background-color: #ffffff;
+	border-bottom: 1px #eeeeee solid;
+	border-left: 1px #555555 solid;
+	border-right: 1px #eeeeee solid;
+	border-top: 1px #555555 solid;
+	}
+
+.pagination_row, .pr { /* button bar/pagination row container */
+	border-bottom: 1px solid #a9a69c;
+	font-weight: bold;
+	vertical-align: middle;
+	}
+
+.paginationRowEdgeL, .prel { /* button bar/pagination row left edge */
+	background-image:url(../../Images/paginationRowEdgeL.gif); 
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 35px;
+	}
+
+.paginationRowEdgeR, .prer { /* button bar/pagination row right edge */
+	background-image:url(../../Images/paginationRowEdgeR.gif);
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 35px;
+	}
+
+.paginationButtonFirst, .prbf { /* pagination row first page button */
+	background-image:url(../../Images/arrow_beg.gif);
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 18px;
+	}
+	
+.paginationButtonPrevious, .prbp { /* pagination row previous page button */
+	background-image:url(../../Images/arrow_left.gif);
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 18px;
+	}
+
+.paginationButtonNext, .prbn { /* pagination row next page button */
+	background-image:url(../../Images/arrow_right.gif);
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 18px;
+	}
+
+.paginationButtonLast, .prbl { /* pagination row last page button */
+	background-image:url(../../Images/arrow_end.gif);
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 18px;
+	} 
+
+
+/**********************************************************************
+ * Table Rows Styles                                                  *
+ **********************************************************************/
+.header_cell, .header_cell_scrolling, .thc, .thcs {
+	background-color: #efebde;
+	border-bottom: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	color: #000000;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	padding: 5px;
+	vertical-align: top;
+	}
+
+.thcnb { /* column header container (above row buttons) */
+	background-color: #efebde;
+	border-bottom: 1px #cccccc solid;
+	color: #000000;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	padding: 5px;
+	vertical-align: top;
+	}
+
+.thcwb { /* column header container (above select checkbox) */
+	background-color: #efebde;
+	border-bottom: 1px #cccccc solid;
+	border-left: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	color: #000000;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	padding: 5px;
+	vertical-align: top;
+	}
+
+.header_cell_empty, .thce { /* column header container (when no column header text is present) */
+	background-color: #efebde;
+	border-bottom: 1px #cccccc solid;
+	}
+
+.column_header, .tch { /* column header text */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	}
+
+.column_header A, .column_header_scrolling A, .tch A, .tchs A { /* column header link text */
+	color: #000000;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	text-decoration: none;
+	} 
+	
+.column_header A:hover, .column_header_scrolling A:hover, .tch A,:hover .tchs A:hover {
+	color: #000000;
+	}
+
+.columnHeaderFilterPadding, .tchfilp { /* above column filter container */
+	padding-top: 4px;
+	text-align: center;
+	}
+
+.columnHeaderFilterPadding A, .tchfilp A { /* above column filter link text */
+	text-decoration: none;
+	}
+
+.columnHeaderFilterPadding A:hover, .tchfilp A:hover { /* above column filter link text hover state */
+	text-decoration: none;
+	}
+		
+.icon_cell, .alt_icon_cell, .tic, .taic { /* deprecated: data grid row button container */
+	background-color: #ffffff;
+	border-bottom: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	color: #444444;
+	padding-top: 3px;
+	vertical-align: top;
+	width: 16px;
+	}
+
+.icon_cell_highlighted, .alt_icon_cell_highlighted, .tich, .taich { /* deprecated: data grid row button container highlighted state */
+	background-color: #b8cbf5;
+	border-bottom: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	color: #444444;
+	padding-top: 3px;
+	vertical-align: top;
+	width: 16px;
+	}
+
+.icon_cell_selected, .tics { /* deprecated: data grid row button container selected state */
+	background-color: #fffbed;
+	border-bottom: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	color: #444444;
+	padding-top: 3px;
+	vertical-align: top;
+	width: 16px;
+	}
+
+.ticnb { /* data grid row button container */
+	background-color: #ffffff;
+	border-bottom: 1px #cccccc solid;
+	color: #444444;
+	padding-left: 1px;
+	padding-top: 5px;
+	vertical-align: top;
+	width: 16px;
+	}
+
+.tichnb { /* data grid row button container highlighted state */
+	background-color: #b8cbf5;
+	border-bottom: 1px #cccccc solid;
+	color: #444444;
+	padding-left: 1px;
+	padding-top: 5px;
+	vertical-align: top;
+	width: 16px;
+	}
+
+.ticsnb { /* data grid row button container selected state */
+	background-color: #fffbed;
+	border-bottom: 1px #cccccc solid;
+	color: #444444;
+	padding-left: 1px;
+	padding-top: 5px;
+	vertical-align: top;
+	width: 16px;
+	}
+
+.ticwb { /* data grid select checkbox container */
+	background-color: #ffffff;
+	border-bottom: 1px #cccccc solid;
+	border-left: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	color: #444444;
+	padding-top: 3px;
+	vertical-align: top;
+	width: 16px;
+	}
+
+.tichwb { /* data grid select checkbox container highlighted state */
+	background-color: #b8cbf5;
+	border-bottom: 1px #cccccc solid;
+	border-left: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	color: #444444;
+	padding-top: 3px;
+	vertical-align: top;
+	width: 16px;
+	}
+
+.ticswb { /* data grid select checkbox container selected state */
+	background-color: #fffbed;
+	border-bottom: 1px #cccccc solid;
+	border-left: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	color: #444444;
+	padding-top: 3px;
+	vertical-align: top;
+	width: 16px;
+	}
+
+.tichb { /* data grid right-most row button container (when no select checkbox is present) */
+	background-color: #ffffff;
+	border-bottom: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	color: #444444;
+	padding-top: 3px;
+	vertical-align: top;
+	width: 16px;
+	}
+
+.tichhb { /* data grid right-most row button container (when no select checkbox is present) highlighted state */
+	background-color: #b8cbf5;
+	border-bottom: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	color: #444444;
+	padding-top: 3px;
+	vertical-align: top;
+	width: 16px;
+	}
+
+.ticshb { /* data grid right-most row button container (when no select checkbox is present) selected state */
+	background-color: #fffbed;
+	border-bottom: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	color: #444444;
+	padding-top: 3px;
+	vertical-align: top;
+	width: 16px;
+	}
+
+.icon_cell_empty, .tice { /* data grid row button container (when no row button is present) */
+	background-color: #ffffff;
+	border-bottom: 1px #cccccc solid;
+	width: 0px;
+	}
+
+.icon_cell_highlighted_empty, .tiche { /* data grid row button container (when no row button is present) highlighted state */
+	background-color: #b8cbf5;
+	border-bottom: 1px #cccccc solid;
+	width: 0px;
+	}
+
+.icon_cell_selected_empty, .ticse { /* data grid row button container (when no row button is present) selected state */
+	background-color: #fffbed;
+	border-bottom: 1px #cccccc solid;
+	width: 0px;
+	}
+	
+.table_cell, .alt_table_cell, .ttc, .tatc { /* data grid data container */
+	padding: 5px;
+	color: #666666;
+	vertical-align: top;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	text-align: left;
+	border-right: 1px #cccccc solid;
+	border-bottom: 1px #cccccc solid;
+	background-color: #ffffff;
+	}
+
+.table_cell_highlighted, .alt_table_cell_highlighted, .ttch, .tatch { /* data grid data container highlighted state */
+	padding: 5px;
+	color: #666666;
+	vertical-align: top;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	text-align: left;
+	border-right: 1px #cccccc solid;
+	border-bottom: 1px #cccccc solid;
+	background-color: #b8cbf5;
+	}
+
+.table_cell_selected, .ttcs { /* data grid data container selected state */
+	padding: 5px;
+	color: #666666;
+	vertical-align: top;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	text-align: left;
+	border-right: 1px #cccccc solid;
+	border-bottom: 1px #cccccc solid;
+	background-color: #fffbed;
+	}
+
+.ttc a, .tatc a, .ttch a, .tatch a, .ttcs a, .dfv a, .dialog_field_value a { /* data grid data link text */
+	color: #444444; 
+	}
+
+.ttc a:hover, .tatc a:hover, .ttch a:hover, .tatch a:hover, .ttcs a:hover, .dfv a:hover, .dialog_field_value a:hover { /* data grid data link text hover state */
+	color: #000000;
+	}
+
+.ttc .dv, .ttch .dv, .ttcs .dv { /* panel container nested within data grid */
+	margin: 0px;
+	padding: 0px;
+	}
+
+.ttc .ajax__tab_xp, .ttch .ajax__tab_xp, .ttcs .ajax__tab_xp { /* tab container nested within data grid */
+	margin: 0px;
+	padding: 0px;
+	}
+
+.totals_cell, .tpttc { /* data grid totals container */
+	padding: 5px;
+	color: #666666;
+	vertical-align: top;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	text-align: left;
+	border-right: 1px #cccccc solid;
+	border-bottom: 1px #cccccc solid;
+	background-color: #ffffff;
+	width: 48px;
+	}
+
+.totals_cell_value, .tpttcv { /* data grid totals text */
+	padding: 5px;
+	color: #666666;
+	vertical-align: top;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	text-align: right;
+	background-color: #ffffff;
+	}
+
+.page_total_label, .tptl { /* data grid page totals label */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #666666;
+	padding-left: 20px;
+	white-space: nowrap;	
+	vertical-align: middle;
+	}
+
+.page_total_value, .tptv { /* data grid page totals text */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: normal;
+	padding: 3px;
+	}
+
+.grand_total_label, .tgtl { /* data grid grand total label */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #666666;
+	padding-left: 20px;
+	white-space: nowrap;	
+	vertical-align: middle;
+	}
+
+.grand_total_value, .tgtv { /* data grid grand total text */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	font-weight: normal;
+	padding: 3px;
+	}
+
+.tableRowsEdge, .tre { /* data grid container */
+	border-left: 1px #cccccc solid;
+	background-color: #cccccc;
+	} 
+
+
+/**********************************************************************
+ * Scrolling Table Styles                                             *
+ **********************************************************************/
+div.tableContainer { /* scrolling table container */
+	clear: both;
+	height: 285px;  /* defines scrolling region height */
+	overflow: auto; /* enables scroll bar */
+	}
+
+div.tableContainer table { /* data grid container of scrolling table */
+	width: 97%; /* defines data region width (provide room for scroll bar) */
+	}
+
+thead.fixedHeader tr { /* fixed column header of data grid */
+	background-color: #efebde; /* obscures data behind headers */
+	position: relative; 	   /* fixes headers in place */
+	}
+
+.scrollContent { /* data grid (excludes fixed column header) within scrolling table */
+	display: block;
+	}
+
+thead.fixedHeader td.button-white { /* theme button container within scrolling table column header */
+	white-space: nowrap;
+	width: 0%;
+	}
+
+thead.fixedHeader table { /* deprecated */
+	width: 0%;
+	}
+
+
+/**********************************************************************
+ * Auto Type Ahead (Interactive Search) Styles                        * 
+ **********************************************************************/
+.autotypeahead_completionListElement { /* textbox value */   
+	background-color: #ffffff;
+	border-bottom: 1px #555555 solid;
+	border-left: 1px #555555 solid;
+	border-right: 1px #555555 solid;
+	border-top: 1px #555555 solid;
+	height: 90px;
+	list-style-type: none;
+	margin: 0px;
+	overflow: auto;
+	padding: 0px;
+	visibility: hidden;
+	}
+
+.autotypeahead_highlightedListItem { /* highlighted list item */
+	background-color: #b8cbf5;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	padding-bottom: 1px; 
+	}
+
+.autotypeahead_listItem { /* list item */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	padding-bottom: 1px; 
+	}
+
+
+/**********************************************************************
+ * AJAX Calendar Styles                                               *
+ **********************************************************************/
+.MyCalendar .ajax__calendar_container { /* AJAX calendar container */
+	background-color: #ffffff;
+	border: 1px solid #636563;
+	color: #000000;
+	z-index: 20;
+	}
+
+.MyCalendar .ajax__calendar_day { /* AJAX calendar non-current day container */ 
+	border: 1px solid #ffffff;
+	}
+
+.MyCalendar .ajax__calendar_other .ajax__calendar_day,
+.MyCalendar .ajax__calendar_other .ajax__calendar_year { /* AJAX calendar non-current month day/year container */
+	border: 1px solid #ffffff;
+	color: #636563;
+	}
+
+.MyCalendar .ajax__calendar_hover .ajax__calendar_day,
+.MyCalendar .ajax__calendar_hover .ajax__calendar_month,
+.MyCalendar .ajax__calendar_hover .ajax__calendar_year { /* AJAX calendar day/month/year hover state */
+	background-color: #effbff;
+	border: 1px solid #def3ff;
+	color: #0065ce;
+	}
+
+.MyCalendar .ajax__calendar_active .ajax__calendar_day,
+.MyCalendar .ajax__calendar_active .ajax__calendar_month,
+.MyCalendar .ajax__calendar_active .ajax__calendar_year { /* AJAX calendar current day/month/year container */
+	background-color: #effbff;
+	border: 1px solid #0065ce;
+	color: #0065ce;
+	}
+
+
+/**********************************************************************
+ * Info Panel Styles                                                  *
+ **********************************************************************/
+.panelInformationDisplayWithImage { /* information panel (with image) container */
+	border-top: 1px #cccccc solid;
+	border-left: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	border-bottom: 1px #cccccc solid;
+	}
+
+.panelInformationDisplayWithImage_ImageArea { /* information panel (with image) image container */
+	padding: 10px 10px 10px 16px;
+	}
+
+.panelInformationDisplayWithImage_InfoArea { /* information panel (with image) info container */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	vertical-align: middle;
+	}
+
+.panelInformationDisplayWithImage_InfoTitle { /* information panel (with image) info title text */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #777777;
+	white-space: nowrap;	
+	}
+
+.panelInformationDisplayWithImage_InfoDetails { /* information panel (with image) info details text */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	padding-right: 16px;
+	white-space: nowrap;
+	}
+
+.panelInformationDisplay { /* information panel container */
+	border-top: 1px #cccccc solid;
+	border-left: 1px #cccccc solid;
+	border-right: 1px #cccccc solid;
+	border-bottom: 1px #cccccc solid;
+	}
+
+.panelInformationDisplay_InfoArea { /* information panel info container */
+	padding: 10px;
+	}
+
+.panelInformationDisplay_InfoTitle { /* information panel info title text */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #777777;
+	white-space: nowrap;	
+	text-align: center;
+	}
+
+.panelInformationDisplay_InfoDetails { /* information panel info details text */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	white-space: nowrap;
+	text-align: center;
+	} 
+
+
+/**********************************************************************
+ * Configuration/Error Page Styles                                    *
+ **********************************************************************/
+.configureErrorPagesText { /* configure/error page body text */
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	color: #666666;
+	}
+	
+
+/**********************************************************************
+ * Section 508 Compliance Styles                                      *
+ **********************************************************************/
+.skipNavigationLinks { /* skip navigation links container*/
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	color: #666666;
+	}
+
+
+/**********************************************************************
+ * Detail Rollover Popup Styles                                       *
+ **********************************************************************/
+.detailRolloverPopup { /* detail rollover popup container */
+	position: absolute;
+	visibility: visible;
+	z-index: 2;
+	}
+
+.detailRolloverTitle { /* detail rollover popup title */
+	color: #ffffff;
+	font-family: Arial, Geneva, ms sans serif;
+	font-weight: bold;
+	font-size: 13px;
+	padding-left: 4px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	vertical-align: middle;
+	width: 100%;
+	}
+
+.detailRolloverPopupCloseButtonAlignment { /* detail rollover popup close button container */
+	padding-top: 27px;
+	}
+
+.detailRolloverTL { /* detail rollover popup top left edge */
+	background-image:url(../../Images/detailRolloverTL.png);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	height: 57px;
+	width: 65px;
+	}
+
+.detailRolloverT { /* detail rollover popup top center edge */
+	background-image:url(../../Images/detailRolloverT.png);
+	background-position: bottom center;
+	background-repeat: repeat-x;
+	height: 57px;
+	}
+
+.detailRolloverTR { /* detail rollover popup top right edge */
+	background-image:url(../../Images/detailRolloverTR.png);
+	background-position: bottom left;
+	background-repeat: no-repeat;
+	height: 57px;
+	width: 65px;
+	}
+
+.detailRolloverL { /* detail rollover popup left middle edge */
+	background-image:url(../../Images/detailRolloverL.png);
+	background-position: center right;
+	background-repeat: repeat-y;
+	width: 65px;
+	}
+
+.detailRolloverC { /* detail rollover popup center */
+	background-image:url(../../Images/detailRolloverC.png);
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	}
+
+.detailRolloverR { /* detail rollover popup right middle edge */
+	background-image:url(../../Images/detailRolloverR.png);
+	background-position: center left;
+	background-repeat: repeat-y;
+	width: 65px;
+	}
+
+.detailRolloverBL { /* detail rollover popup bottom left edge */
+	background-image:url(../../Images/detailRolloverBL.png);
+	background-position: top right;
+	background-repeat: no-repeat;
+	height: 29px;
+	width: 65px;
+	}
+
+.detailRolloverB { /* detail rollover popup bottom center edge */
+	background-image:url(../../Images/detailRolloverB.png);
+	background-position: top center;
+	background-repeat: repeat-x;
+	height: 29px;
+	}
+
+.detailRolloverBR { /* detail rollover popup bottom right edge */
+	background-image:url(../../Images/detailRolloverBR.png);
+	background-position: top left;
+	background-repeat: no-repeat;
+	height: 29px;
+	width: 65px;
+	}
+
+
+/**********************************************************************
+ **********************************************************************
+ * Migration-Only Styles                                              *
+ *                                                                    *
+ * The following styles have been deprecated in the latest release,   *
+ * but may still be needed in migrated applications.                  *
+ **********************************************************************
+ **********************************************************************/
+
+/**********************************************************************
+ * Page Center Styles                                                 *
+ **********************************************************************/
+.pcTable { /* contents of page container */
+	}
+.pcTL { /* page container top left edge */
+	}
+.pcT { /* page container top center edge (header container) */
+	}
+.pcTR { /* page container top right edge */
+	}
+.pcL { /* page container left middle edge (vertical menu container) */
+	padding-left: 1px;
+	padding-top: 0px;
+	vertical-align: top;
+	width: 1px;
+	}
+.pcC { /* page container center (contents of page container) */
+	vertical-align: top;
+	width: 100%;
+	}
+.pcR { /* page container right middle edge */
+	}
+.pcBL { /* page container bottom left edge */
+	}
+.pcB { /* page container bottom center edge (footer container) */
+	width: 1000px;
+	}
+.pcBR { /* page container bottom right edge */
+	}
+
+
+/**********************************************************************
+ * Page Background Styles                                             *
+ **********************************************************************/
+.pageBorderTL, .pbTL { /* page border top left edge */
+	background-color: #ffffff;
+	}
+.pageBorderT, .pbT { /* page border top center edge */
+	background-color: #ffffff;
+	}
+.pageBorderTR, .pbTR { /* page border top right edge */
+	background-color: #ffffff;
+	}
+.pageBorderL, .pbL { /* page border left middle edge */
+	background-color: #ffffff;
+	}
+.pageBorderC, .pbC { /* page border center */
+	background-color: #ffffff;
+	vertical-align: top;
+	}
+.pageBorderR, .pbR { /* page border right middle edge */
+	background-color: #ffffff;
+	}
+.pageBorderBL, .pbBL { /* page border bottom left edge */
+	background-color: #ffffff;
+	}
+.pageBorderB, .pbB { /* page border bottom center edge */
+	background-color: #ffffff;
+	}
+.pageBorderBR, .pbBR { /* page border bottom right edge */
+	background-color: #ffffff;
+	}
+
+.page_yellow, .pContent { /* page content container */
+	color: #003366; 
+	height: 30px;
+	text-align: left;
+	}
+
+.pageAlignment, .pAlign { /* page content container alignment */
+	vertical-align: top;
+	}
+
+.borderTable, .pbTable { /* page content container */
+	}
+
+.divider { /* deprecated */ 
+	}
+
+.footer { /* footer content container */
+	color: #444444;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	padding-top: 6px;
+	}
+
+.logoBG { /* logo image container */
+	} 
+
+
+/**********************************************************************
+ * Panel Body Styles                                                  *
+ **********************************************************************/
+.dialogHeaderTextRecord, .dhtr { /* record panel header title text */
+	color: #ffffff;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 13px;
+	font-weight: bold;
+	padding-bottom: 4px;
+	padding-left: 4px;
+	padding-top: 4px;
+	}
+
+
+/**********************************************************************
+ * Date Selector Styles                                               *
+ **********************************************************************/
+.dsTodayDay { /* current day container */
+	background-color: #7e9ee2;
+	}
+
+.dsDayHeader { /* day of week header container */
+	color: #ffffff;
+	background-color: #0261e7; 
+	font-size: 11px;
+	padding: 6px;
+	}
+
+.dsSelectedDay { /* selected day container */
+	padding: 6px;
+	}
+
+.dsTitle { /* title */
+	color: #666666;
+	background-color: #ffffff;
+	font-weight: bold;
+	}
+
+.dsWeekendDay { /* weekend day container */
+	background-color: #efebde;
+	padding: 6px;
+	}
+
+.dsOtherMonthDay { /* non-current month/day container */
+	background-color: #efebde;
+	padding: 6px;
+	}
+
+.dsDay a, .dsTodayDay a, .dsSelectedDay a, .dsWeekendDay a, .dsOtherMonthDay a { /* day link text */
+	color: #666666;
+	font-family: Arial, Geneva, ms sans serif;
+	font-size: 11px;
+	}
+
+
+/**********************************************************************
+ * JavaScript Date Selector Styles                                    *
+ **********************************************************************/
+.dpTable { /* date selector container */
+	background-color: #ffffff;
+	border: 1px solid #aaaaaa;
+	color: #333333;
+	}
+
+.dpTD { /* date selector non-current-month day container */
+	border: 1px #eeeeee solid;
+	padding-top: 5px;
+	padding-right: 8px;
+	padding-bottom: 5px;
+	padding-left: 8px;
+	text-align: center;
+	vertical-align: middle;
+	}
+
+.dpDayHighlightTD { /* date selector current day container */
+	background-color: #005de7; 
+	border: 1px #cccccc solid;
+	color: #ffffff;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-right: 8px;
+	padding-bottom: 5px;
+	padding-left: 8px;
+	text-align: center;
+	vertical-align: middle;
+	}
+
+.dpTDHover { /* date selector day container hover state */
+	background-color: #005de7; 
+	border: 1px #eeeeee solid;
+	color: #ffffff;
+	cursor: pointer;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-right: 8px;
+	padding-bottom: 5px;
+	padding-left: 8px;
+	text-align: center;
+	vertical-align: middle;
+	}
+
+.dpDayTD { /* date selector day container */
+	background-color: #7e9ee2;
+	border: 1px #cccccc solid;
+	color: #ffffff;
+	padding-top: 2px;
+	padding-right: 8px;
+	padding-bottom: 2px;
+	padding-left: 8px;
+	text-align: center;
+	vertical-align: middle;
+	}
+
+.dpTitleText { /* date selector title text */
+	color: #333333;
+	font-size: 13px;
+	font-weight: bold;
+	padding-top: 3px;
+	text-align: center;
+	vertical-align: middle;
+	}
+
+.dpDiv { /* deprecated */
+	}
+
+.dpTR { /* date selector week container */
+	}
+
+.dpTitleTR { /* date selector title text container */
+	}
+
+.dpDayTR { /* date selector day container */
+	}
+
+
+/**********************************************************************
+ * Detail Rollover Popup Styles (for non-PNG-supporting IE6)          *
+ **********************************************************************/
+/*
+.detailRolloverTL_noPNG {
+	height: 57px;
+	width: 65px;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='../../Images/detailRolloverTL.png');
+	}
+
+.detailRolloverT_noPNG {
+	height: 57px;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='../../Images/detailRolloverT.png');
+	}
+
+.detailRolloverTR_noPNG {
+	height: 57px;
+	width: 65px;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='../../Images/detailRolloverTR.png');
+	}
+
+.detailRolloverL_noPNG {
+	width: 65px;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='../../Images/detailRolloverL.png');
+	}
+
+.detailRolloverR_noPNG {
+	width: 65px;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='../../Images/detailRolloverR.png');
+	}
+
+.detailRolloverBL_noPNG {
+	height: 29px;
+	width: 65px;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='../../Images/detailRolloverBL.png');
+	}
+
+.detailRolloverB_noPNG {
+	height: 29px;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='../../Images/detailRolloverB.png');
+	}
+
+.detailRolloverBR_noPNG {
+	height: 29px;
+	width: 65px;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='../../Images/detailRolloverBR.png');
+	}
+*/
+

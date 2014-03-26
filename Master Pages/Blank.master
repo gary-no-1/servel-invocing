@@ -1,0 +1,22 @@
+﻿<%@ Master Language="vb" %>
+<%@ Register Tagprefix="Selectors" Namespace="ServelInvocing" Assembly="ServelInvocing" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<%@ Register Tagprefix="BaseClasses" Namespace="BaseClasses.Web.UI.WebControls" Assembly="BaseClasses" %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head id="Head1" runat="server">
+    <meta name="keywords" content="ServelInvocing" />
+    <title></title>
+    </head>
+    <body id="Body1" runat="server" class="pBack">
+        <form id="Form1" method="post" runat="server">
+            <BaseClasses:ScrollCoordinates id="ScrollCoordinates1" runat="server"></BaseClasses:ScrollCoordinates>
+            <BaseClasses:BasePageSettings id="PageSettings" runat="server"></BaseClasses:BasePageSettings>
+            <script language="JavaScript" type="text/javascript">clearRTL()</script>
+            <asp:ScriptManager ID="scriptManager1" runat="server" EnablePartialRendering="True" EnablePageMethods="True" EnableScriptGlobalization="True" EnableScriptLocalization="True">
+			<Scripts> <asp:ScriptReference Path="~/SetFocus.js" /> </Scripts>  </asp:ScriptManager>
+          <table><tr><td class="pcC"><asp:ContentPlaceHolder id="PageContent" Runat="server" /></td></tr></table>
+        </form>
+    </body>
+</html>
+          

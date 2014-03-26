@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6601EBCD-EE5A-4C36-95EB-BE18CAA73CF2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>ServelInvocing.Business</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BaseClasses">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bin\BaseClasses.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="ItemsTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ItemsRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Item_groupsTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Item_groupsRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Item_typesTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Item_typesRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PartyTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PartyRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RolesTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RolesRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SalepersonTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SalepersonRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SitesTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SitesRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TaxesTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TaxesRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tax_groupsTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tax_groupsRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tax_typesTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tax_typesRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnitsofmeasureTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnitsofmeasureRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UsersTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UsersRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseItemsTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseItemsRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseItem_groupsTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseItem_groupsRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseItem_typesTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseItem_typesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePartyTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePartyRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseRolesTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseRolesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSalepersonTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSalepersonRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSitesTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSitesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTaxesTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTaxesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTax_groupsTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTax_groupsRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTax_typesTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTax_typesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TermsTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTermsTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TermsRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTermsRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseUnitsofmeasureTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseUnitsofmeasureRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseUsersTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseUsersRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data Access Layer\ServelInvocing.Data.vbproj">
+      <Project>{4717B61F-3F50-4D2A-95F8-EA0DAE1FD65B}</Project>
+      <Name>ServelInvocing.Data</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

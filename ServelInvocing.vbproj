@@ -1,0 +1,1077 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BEAF30EB-89B6-4DF2-B377-A327BAA06576}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>My Project</AppDesignerFolder>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>ServelInvocing</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.0.30930.28736, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BaseClasses, Version=7.0.0.1000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CarlosAg.ExcelXmlWriter, Version=1.0.0.6, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FredCK.FCKeditorV2, Version=2.5.2912.21007, Culture=neutral, PublicKeyToken=4f86767c9b519a06, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=5.2.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Report, Version=3.1.8.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Ciloci.Flee, Version=0.9.26.0, Culture=neutral, PublicKeyToken=c8526a021ef298ed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\System.Web.Extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.HtmlControls" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="Shared\AccessParser.vb" />
+    <Compile Include="Shared\BaseApplicationMenuControl.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\BaseApplicationPage.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\BaseApplicationRecordControl.vb" />
+    <Compile Include="Shared\BaseApplicationTableControl.vb" />
+    <Compile Include="Shared\BaseApplicationUserControl.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\CalendarExtendarClass.vb" />
+    <Compile Include="Shared\FormulaEvaluator.vb" />
+    <Compile Include="Shared\FormulaUtils.vb" />
+    <Compile Include="Shared\CsvParser.vb" />
+    <Compile Include="Shared\Data.vb" />
+    <Compile Include="Shared\ExcelParser.vb" />
+    <Compile Include="Shared\ExportData.vb" />
+    <Compile Include="Shared\ExportFieldValue.aspx.vb">
+      <DependentUpon>ExportFieldValue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\Forbidden.aspx.vb">
+      <DependentUpon>Forbidden.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\FvLlsHyperLink.vb" />
+    <Compile Include="Shared\ImportData.aspx.vb">
+      <DependentUpon>ImportData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\ImportDataItems.vb" />
+    <Compile Include="Shared\LargeListSelector.aspx.vb">
+      <DependentUpon>LargeListSelector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\LargeListSelector.Controls.vb" />
+    <Compile Include="Shared\MenuXmlSiteMapProvider.vb" />
+    <Compile Include="Shared\Parser.vb" />
+    <Compile Include="Shared\SelectFileToImport.aspx.vb">
+      <DependentUpon>SelectFileToImport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\Show_Error.aspx.vb">
+      <DependentUpon>Show_Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\SignInState.vb" />
+    <Compile Include="Header and Footer\EmailHeader.ascx.vb" >
+      <DependentUpon>EmailHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\IEmailHeader.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\Footer.ascx.vb" >
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\IFooter.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\Header.ascx.vb" >
+      <DependentUpon>Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\IHeader.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\PrintHeader.ascx.vb" >
+      <DependentUpon>PrintHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\IPrintHeader.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="items\AddItems.aspx.vb" >
+      <DependentUpon>AddItems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="items\AddItems.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="items\EditItems.aspx.vb" >
+      <DependentUpon>EditItems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="items\EditItems.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="items\ShowItems.aspx.vb" >
+      <DependentUpon>ShowItems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="items\ShowItems.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="items\ShowItemsTable.aspx.vb" >
+      <DependentUpon>ShowItemsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="items\ShowItemsTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_groups\AddItem_groups.aspx.vb" >
+      <DependentUpon>AddItem_groups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_groups\AddItem_groups.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_groups\EditItem_groups.aspx.vb" >
+      <DependentUpon>EditItem_groups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_groups\EditItem_groups.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_groups\EditItem_groupsTable.aspx.vb" >
+      <DependentUpon>EditItem_groupsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_groups\EditItem_groupsTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_groups\ShowItem_groups.aspx.vb" >
+      <DependentUpon>ShowItem_groups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_groups\ShowItem_groups.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_groups\ShowItem_groupsTable.aspx.vb" >
+      <DependentUpon>ShowItem_groupsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_groups\ShowItem_groupsTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_types\EditItem_typesTable.aspx.vb" >
+      <DependentUpon>EditItem_typesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_types\EditItem_typesTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_types\ShowItem_typesTable.aspx.vb" >
+      <DependentUpon>ShowItem_typesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_types\ShowItem_typesTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Menu Panels\Menu.ascx.vb" >
+      <DependentUpon>Menu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu Panels\IMenu.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="party\AddParty.aspx.vb" >
+      <DependentUpon>AddParty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="party\AddParty.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="party\EditParty.aspx.vb" >
+      <DependentUpon>EditParty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="party\EditParty.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="party\ShowParty.aspx.vb" >
+      <DependentUpon>ShowParty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="party\ShowParty.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="party\ShowPartyTable.aspx.vb" >
+      <DependentUpon>ShowPartyTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="party\ShowPartyTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="roles\AddRoles.aspx.vb" >
+      <DependentUpon>AddRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="roles\AddRoles.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="roles\EditRoles.aspx.vb" >
+      <DependentUpon>EditRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="roles\EditRoles.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="roles\EditRolesTable.aspx.vb" >
+      <DependentUpon>EditRolesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="roles\EditRolesTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="roles\ShowRoles.aspx.vb" >
+      <DependentUpon>ShowRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="roles\ShowRoles.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="roles\ShowRolesTable.aspx.vb" >
+      <DependentUpon>ShowRolesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="roles\ShowRolesTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="saleperson\AddSaleperson.aspx.vb" >
+      <DependentUpon>AddSaleperson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="saleperson\AddSaleperson.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="saleperson\EditSaleperson.aspx.vb" >
+      <DependentUpon>EditSaleperson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="saleperson\EditSaleperson.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="saleperson\EditSalepersonTable.aspx.vb" >
+      <DependentUpon>EditSalepersonTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="saleperson\EditSalepersonTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="saleperson\ShowSaleperson.aspx.vb" >
+      <DependentUpon>ShowSaleperson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="saleperson\ShowSaleperson.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="saleperson\ShowSalepersonTable.aspx.vb" >
+      <DependentUpon>ShowSalepersonTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="saleperson\ShowSalepersonTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\IncludeComponent.ascx.vb" >
+      <DependentUpon>IncludeComponent.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IIncludeComponent.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Menu_Item.ascx.vb" >
+      <DependentUpon>Menu_Item.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IMenu_Item.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Menu_ItemVertical.ascx.vb" >
+      <DependentUpon>Menu_ItemVertical.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IMenu_ItemVertical.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Menu_Item_Highlighted.ascx.vb" >
+      <DependentUpon>Menu_Item_Highlighted.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IMenu_Item_Highlighted.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Menu_Item_HighlightedVertical.ascx.vb" >
+      <DependentUpon>Menu_Item_HighlightedVertical.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IMenu_Item_HighlightedVertical.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Pagination.ascx.vb" >
+      <DependentUpon>Pagination.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IPagination.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\PaginationShort.ascx.vb" >
+      <DependentUpon>PaginationShort.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IPaginationShort.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\ThemeButton.ascx.vb" >
+      <DependentUpon>ThemeButton.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IThemeButton.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sites\AddSites.aspx.vb" >
+      <DependentUpon>AddSites.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sites\AddSites.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sites\EditSites.aspx.vb" >
+      <DependentUpon>EditSites.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sites\EditSites.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sites\ShowSites.aspx.vb" >
+      <DependentUpon>ShowSites.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sites\ShowSites.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sites\ShowSitesTable.aspx.vb" >
+      <DependentUpon>ShowSitesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sites\ShowSitesTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="taxes\AddTaxes.aspx.vb" >
+      <DependentUpon>AddTaxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxes\AddTaxes.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="taxes\EditTaxes.aspx.vb" >
+      <DependentUpon>EditTaxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxes\EditTaxes.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="taxes\ShowTaxes.aspx.vb" >
+      <DependentUpon>ShowTaxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxes\ShowTaxes.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="taxes\ShowTaxesTable.aspx.vb" >
+      <DependentUpon>ShowTaxesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxes\ShowTaxesTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_groups\AddTax_groups.aspx.vb" >
+      <DependentUpon>AddTax_groups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_groups\AddTax_groups.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_groups\EditTax_groups.aspx.vb" >
+      <DependentUpon>EditTax_groups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_groups\EditTax_groups.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_groups\ShowTax_groups.aspx.vb" >
+      <DependentUpon>ShowTax_groups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_groups\ShowTax_groups.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_groups\ShowTax_groupsTable.aspx.vb" >
+      <DependentUpon>ShowTax_groupsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_groups\ShowTax_groupsTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_types\AddTax_types.aspx.vb" >
+      <DependentUpon>AddTax_types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_types\AddTax_types.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_types\EditTax_types.aspx.vb" >
+      <DependentUpon>EditTax_types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_types\EditTax_types.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_types\ShowTax_types.aspx.vb" >
+      <DependentUpon>ShowTax_types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_types\ShowTax_types.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_types\ShowTax_typesTable.aspx.vb" >
+      <DependentUpon>ShowTax_typesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_types\ShowTax_typesTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="terms\AddTerms.aspx.vb" >
+      <DependentUpon>AddTerms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="terms\AddTerms.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="terms\EditTerms.aspx.vb" >
+      <DependentUpon>EditTerms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="terms\EditTerms.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="terms\ShowTerms.aspx.vb" >
+      <DependentUpon>ShowTerms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="terms\ShowTerms.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="terms\ShowTermsTable.aspx.vb" >
+      <DependentUpon>ShowTermsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="terms\ShowTermsTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\AddUnitsofmeasure.aspx.vb" >
+      <DependentUpon>AddUnitsofmeasure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\AddUnitsofmeasure.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\EditUnitsofmeasure.aspx.vb" >
+      <DependentUpon>EditUnitsofmeasure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\EditUnitsofmeasure.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\EditUnitsofmeasureTable.aspx.vb" >
+      <DependentUpon>EditUnitsofmeasureTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\EditUnitsofmeasureTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\ShowUnitsofmeasure.aspx.vb" >
+      <DependentUpon>ShowUnitsofmeasure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\ShowUnitsofmeasure.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\ShowUnitsofmeasureTable.aspx.vb" >
+      <DependentUpon>ShowUnitsofmeasureTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\ShowUnitsofmeasureTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\AddUsers.aspx.vb" >
+      <DependentUpon>AddUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\AddUsers.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\EditUsers.aspx.vb" >
+      <DependentUpon>EditUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\EditUsers.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\EditUsersTable.aspx.vb" >
+      <DependentUpon>EditUsersTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\EditUsersTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\ShowUsers.aspx.vb" >
+      <DependentUpon>ShowUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\ShowUsers.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\ShowUsersTable.aspx.vb" >
+      <DependentUpon>ShowUsersTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\ShowUsersTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BaseClasses\Readme.txt" />
+    <Content Include="Default.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="Images\arrow_beg.gif" />
+    <Content Include="Images\arrow_beg.rtl.gif" />
+    <Content Include="Images\arrow_end.gif" />
+    <Content Include="Images\arrow_end.rtl.gif" />
+    <Content Include="Images\arrow_left.gif" />
+    <Content Include="Images\arrow_left.rtl.gif" />
+    <Content Include="Images\arrow_right.gif" />
+    <Content Include="Images\arrow_right.rtl.gif" />
+    <Content Include="Images\ASCXControlPlaceholder.gif" />
+    <Content Include="Images\Batwing.gif" />
+    <Content Include="Images\bg_dots.gif" />
+    <Content Include="Images\bg_page.gif" />
+    <Content Include="Images\bg_page_yellow.gif" />
+    <Content Include="Images\blur_left.gif" />
+    <Content Include="Images\blur_right.gif" />
+    <Content Include="Images\ButtonBarAdd.gif" />
+    <Content Include="Images\ButtonBarAddOver.gif" />
+    <Content Include="Images\ButtonBarBackground.gif" />
+    <Content Include="Images\ButtonBarCopy.gif" />
+    <Content Include="Images\ButtonBarCopyOver.gif" />
+    <Content Include="Images\ButtonBarCSVExport.gif" />
+    <Content Include="Images\ButtonBarCSVExportOver.gif" />
+    <Content Include="Images\ButtonBarDecrement.gif" />
+    <Content Include="Images\ButtonBarDecrementOver.gif" />
+    <Content Include="Images\ButtonBarDelete.gif" />
+    <Content Include="Images\ButtonBarDeleteOver.gif" />
+    <Content Include="Images\ButtonBarDivider.gif" />
+    <Content Include="Images\ButtonBarDividerL.gif" />
+    <Content Include="Images\ButtonBarDividerR.gif" />
+    <Content Include="Images\ButtonBarEdgeL.gif" />
+    <Content Include="Images\ButtonBarEdgeL.ltr.gif" />
+    <Content Include="Images\ButtonBarEdgeL.rtl.gif" />
+    <Content Include="Images\ButtonBarEdgeR.gif" />
+    <Content Include="Images\ButtonBarEdgeR.ltr.gif" />
+    <Content Include="Images\ButtonBarEdgeR.rtl.gif" />
+    <Content Include="Images\ButtonBarEdit.gif" />
+    <Content Include="Images\ButtonBarEditOver.gif" />
+    <Content Include="Images\ButtonBarExcelExport.gif" />
+    <Content Include="Images\ButtonBarExcelExportOver.gif" />
+    <Content Include="Images\ButtonBarFirst.gif" />
+    <Content Include="Images\ButtonBarFirst.ltr.gif" />
+    <Content Include="Images\ButtonBarFirst.rtl.gif" />
+    <Content Include="Images\ButtonBarFirstOver.gif" />
+    <Content Include="Images\ButtonBarFirstOver.ltr.gif" />
+    <Content Include="Images\ButtonBarFirstOver.rtl.gif" />
+    <Content Include="Images\ButtonBarImport.gif" />
+    <Content Include="Images\ButtonBarImportOver.gif" />
+    <Content Include="Images\ButtonBarIncrement.gif" />
+    <Content Include="Images\ButtonBarIncrementOver.gif" />
+    <Content Include="Images\ButtonBarLast.gif" />
+    <Content Include="Images\ButtonBarLast.ltr.gif" />
+    <Content Include="Images\ButtonBarLast.rtl.gif" />
+    <Content Include="Images\ButtonBarLastOver.gif" />
+    <Content Include="Images\ButtonBarLastOver.ltr.gif" />
+    <Content Include="Images\ButtonBarLastOver.rtl.gif" />
+    <Content Include="Images\ButtonBarNew.gif" />
+    <Content Include="Images\ButtonBarNewOver.gif" />
+    <Content Include="Images\ButtonBarNext.gif" />
+    <Content Include="Images\ButtonBarNext.ltr.gif" />
+    <Content Include="Images\ButtonBarNext.rtl.gif" />
+    <Content Include="Images\ButtonBarNextOver.gif" />
+    <Content Include="Images\ButtonBarNextOver.ltr.gif" />
+    <Content Include="Images\ButtonBarNextOver.rtl.gif" />
+    <Content Include="Images\ButtonBarPageItemDivider.gif" />
+    <Content Include="Images\ButtonBarPDFExport.gif" />
+    <Content Include="Images\ButtonBarPDFExportOver.gif" />
+    <Content Include="Images\ButtonBarPrevious.gif" />
+    <Content Include="Images\ButtonBarPrevious.ltr.gif" />
+    <Content Include="Images\ButtonBarPrevious.rtl.gif" />
+    <Content Include="Images\ButtonBarPreviousOver.gif" />
+    <Content Include="Images\ButtonBarPreviousOver.ltr.gif" />
+    <Content Include="Images\ButtonBarPreviousOver.rtl.gif" />
+    <Content Include="Images\ButtonBarRefresh.gif" />
+    <Content Include="Images\ButtonBarRefreshOver.gif" />
+    <Content Include="Images\ButtonBarReset.gif" />
+    <Content Include="Images\ButtonBarResetOver.gif" />
+    <Content Include="Images\ButtonBarSave.gif" />
+    <Content Include="Images\ButtonBarSaveOver.gif" />
+    <Content Include="Images\ButtonBarView.gif" />
+    <Content Include="Images\ButtonBarViewOver.gif" />
+    <Content Include="Images\ButtonBarWordExport.gif" />
+    <Content Include="Images\ButtonBarWordExportOver.gif" />
+    <Content Include="Images\ButtonDecrement.gif" />
+    <Content Include="Images\ButtonDecrementOver.gif" />
+    <Content Include="Images\ButtonEmail.gif" />
+    <Content Include="Images\ButtonIncrement.gif" />
+    <Content Include="Images\ButtonIncrementOver.gif" />
+    <Content Include="Images\ButtonPrint.gif" />
+    <Content Include="Images\closeButton.gif" />
+    <Content Include="Images\DateSelector.gif" />
+    <Content Include="Images\detailRolloverB.gif" />
+    <Content Include="Images\detailRolloverB.png" />
+    <Content Include="Images\detailRolloverB.rtl.gif" />
+    <Content Include="Images\detailRolloverB.rtl.png" />
+    <Content Include="Images\detailRolloverBL.gif" />
+    <Content Include="Images\detailRolloverBL.png" />
+    <Content Include="Images\detailRolloverBL.rtl.gif" />
+    <Content Include="Images\detailRolloverBL.rtl.png" />
+    <Content Include="Images\detailRolloverBR.gif" />
+    <Content Include="Images\detailRolloverBR.png" />
+    <Content Include="Images\detailRolloverBR.rtl.gif" />
+    <Content Include="Images\detailRolloverBR.rtl.png" />
+    <Content Include="Images\detailRolloverC.gif" />
+    <Content Include="Images\detailRolloverC.png" />
+    <Content Include="Images\detailRolloverC.rtl.gif" />
+    <Content Include="Images\detailRolloverC.rtl.png" />
+    <Content Include="Images\detailRolloverL.gif" />
+    <Content Include="Images\detailRolloverL.png" />
+    <Content Include="Images\detailRolloverL.rtl.gif" />
+    <Content Include="Images\detailRolloverL.rtl.png" />
+    <Content Include="Images\detailRolloverPoint.btt.gif" />
+    <Content Include="Images\detailRolloverPoint.btt.png" />
+    <Content Include="Images\detailRolloverPoint.btt.rtl.png" />
+    <Content Include="Images\detailRolloverPoint.gif" />
+    <Content Include="Images\detailRolloverPoint.png" />
+    <Content Include="Images\detailRolloverPoint.rtl.btt.gif" />
+    <Content Include="Images\detailRolloverPoint.rtl.gif" />
+    <Content Include="Images\detailRolloverPoint.rtl.png" />
+    <Content Include="Images\detailRolloverR.gif" />
+    <Content Include="Images\detailRolloverR.png" />
+    <Content Include="Images\detailRolloverR.rtl.gif" />
+    <Content Include="Images\detailRolloverR.rtl.png" />
+    <Content Include="Images\detailRolloverT.gif" />
+    <Content Include="Images\detailRolloverT.png" />
+    <Content Include="Images\detailRolloverT.rtl.gif" />
+    <Content Include="Images\detailRolloverT.rtl.png" />
+    <Content Include="Images\detailRolloverTL.gif" />
+    <Content Include="Images\detailRolloverTL.png" />
+    <Content Include="Images\detailRolloverTL.rtl.gif" />
+    <Content Include="Images\detailRolloverTL.rtl.png" />
+    <Content Include="Images\detailRolloverTR.gif" />
+    <Content Include="Images\detailRolloverTR.png" />
+    <Content Include="Images\detailRolloverTR.rtl.gif" />
+    <Content Include="Images\detailRolloverTR.rtl.png" />
+    <Content Include="Images\dialogHeaderEdgeL.gif" />
+    <Content Include="Images\dialogHeaderEdgeL.rtl.gif" />
+    <Content Include="Images\dialogHeaderEdgeR.gif" />
+    <Content Include="Images\dialogHeaderEdgeR.rtl.gif" />
+    <Content Include="Images\DialogHeaderIconCollapse.gif" />
+    <Content Include="Images\DialogHeaderIconExpand.gif" />
+    <Content Include="Images\dialogHeaderT.gif" />
+    <Content Include="Images\function_bg.gif" />
+    <Content Include="Images\function_bg_off.gif" />
+    <Content Include="Images\function_bg_on.gif" />
+    <Content Include="Images\iconEdit.gif" />
+    <Content Include="Images\iconNewFlat.gif" />
+    <Content Include="Images\icon_collapserow.gif" />
+    <Content Include="Images\icon_copy.gif" />
+    <Content Include="Images\icon_delete.gif" />
+    <Content Include="Images\icon_edit.gif" />
+    <Content Include="Images\icon_expandcollapserow.gif" />
+    <Content Include="Images\icon_expandcollapserow2.gif" />
+    <Content Include="Images\icon_panelcollapse.gif" />
+    <Content Include="Images\icon_panelexpand.gif" />
+    <Content Include="Images\icon_updatepanels.gif" />
+    <Content Include="Images\icon_updatepanels2.gif" />
+    <Content Include="Images\icon_view.gif" />
+    <Content Include="Images\InfragisticsButtonB.gif" />
+    <Content Include="Images\InfragisticsButtonB.rtl.gif" />
+    <Content Include="Images\InfragisticsButtonBL.gif" />
+    <Content Include="Images\InfragisticsButtonBL.rtl.gif" />
+    <Content Include="Images\InfragisticsButtonBR.gif" />
+    <Content Include="Images\InfragisticsButtonBR.rtl.gif" />
+    <Content Include="Images\InfragisticsButtonC.gif" />
+    <Content Include="Images\InfragisticsButtonC.rtl.gif" />
+    <Content Include="Images\InfragisticsButtonL.gif" />
+    <Content Include="Images\InfragisticsButtonL.rtl.gif" />
+    <Content Include="Images\InfragisticsButtonR.gif" />
+    <Content Include="Images\InfragisticsButtonR.rtl.gif" />
+    <Content Include="Images\InfragisticsButtonT.gif" />
+    <Content Include="Images\InfragisticsButtonT.rtl.gif" />
+    <Content Include="Images\InfragisticsButtonTL.gif" />
+    <Content Include="Images\InfragisticsButtonTL.rtl.gif" />
+    <Content Include="Images\InfragisticsButtonTR.gif" />
+    <Content Include="Images\InfragisticsButtonTR.rtl.gif" />
+    <Content Include="Images\LargeListSelector.gif" />
+    <Content Include="Images\left_col_dot.gif" />
+    <Content Include="Images\logo.gif" />
+    <Content Include="Images\logoEmail.gif" />
+    <Content Include="Images\logoPrint.gif" />
+    <Content Include="Images\menuEdgeL.gif" />
+    <Content Include="Images\menuEdgeL.ltr.gif" />
+    <Content Include="Images\menuEdgeL.rtl.gif" />
+    <Content Include="Images\menuEdgeR.gif" />
+    <Content Include="Images\menuEdgeR.ltr.gif" />
+    <Content Include="Images\menuEdgeR.rtl.gif" />
+    <Content Include="Images\menu_bg.gif" />
+    <Content Include="Images\menu_bg.rtl.gif" />
+    <Content Include="Images\MLMBullet1.gif" />
+    <Content Include="Images\MLMBullet1.ltr.gif" />
+    <Content Include="Images\MLMBullet1.rtl.gif" />
+    <Content Include="Images\MLMBullet2.gif" />
+    <Content Include="Images\MLMBullet2.ltr.gif" />
+    <Content Include="Images\MLMBullet2.rtl.gif" />
+    <Content Include="Images\MLMmenuEdgeL.gif" />
+    <Content Include="Images\MLMmenuEdgeR.gif" />
+    <Content Include="Images\MLMParentMenuEdge.gif" />
+    <Content Include="Images\pageBorderB.gif" />
+    <Content Include="Images\pageBorderBL.gif" />
+    <Content Include="Images\pageBorderBL.rtl.gif" />
+    <Content Include="Images\pageBorderBR.gif" />
+    <Content Include="Images\pageBorderBR.rtl.gif" />
+    <Content Include="Images\pageBorderC.gif" />
+    <Content Include="Images\pageBorderL.gif" />
+    <Content Include="Images\pageBorderL.rtl.gif" />
+    <Content Include="Images\pageBorderR.gif" />
+    <Content Include="Images\pageBorderR.rtl.gif" />
+    <Content Include="Images\pageBorderT.gif" />
+    <Content Include="Images\pageBorderTL.gif" />
+    <Content Include="Images\pageBorderTL.rtl.gif" />
+    <Content Include="Images\pageBorderTR.gif" />
+    <Content Include="Images\pageBorderTR.rtl.gif" />
+    <Content Include="Images\paginationRowEdgeL.gif" />
+    <Content Include="Images\paginationRowEdgeL.ltr.gif" />
+    <Content Include="Images\paginationRowEdgeL.rtl.gif" />
+    <Content Include="Images\paginationRowEdgeR.gif" />
+    <Content Include="Images\paginationRowEdgeR.ltr.gif" />
+    <Content Include="Images\paginationRowEdgeR.rtl.gif" />
+    <Content Include="Images\paginationRowT.gif" />
+    <Content Include="Images\PDFReportButton.gif" />
+    <Content Include="Images\SignInBarBackground.gif" />
+    <Content Include="Images\SignInBarBackgroundOver.gif" />
+    <Content Include="Images\SignInBarDivider.gif" />
+    <Content Include="Images\SignInBarL.gif" />
+    <Content Include="Images\SignInBarL.ltr.gif" />
+    <Content Include="Images\SignInBarL.rtl.gif" />
+    <Content Include="Images\SignInBarR.gif" />
+    <Content Include="Images\SignInBarR.ltr.gif" />
+    <Content Include="Images\SignInBarR.rtl.gif" />
+    <Content Include="Images\SignInBarPrint.gif" />
+    <Content Include="Images\SignInBarPrintOver.gif" />
+    <Content Include="Images\SignInBarSetLanguage.gif" />
+    <Content Include="Images\SignInBarSetLanguageOver.gif" />
+    <Content Include="Images\SignInBarSignIn.gif" />
+    <Content Include="Images\SignInBarSignIn.ltr.gif" />
+    <Content Include="Images\SignInBarSignIn.rtl.gif" />
+    <Content Include="Images\SignInBarSignInOver.gif" />
+    <Content Include="Images\SignInBarSignInOver.ltr.gif" />
+    <Content Include="Images\SignInBarSignInOver.rtl.gif" />
+    <Content Include="Images\SignInBarSignOut.gif" />
+    <Content Include="Images\SignInBarSignOut.ltr.gif" />
+    <Content Include="Images\SignInBarSignOut.rtl.gif" />
+    <Content Include="Images\SignInBarSignOutOver.gif" />
+    <Content Include="Images\SignInBarSignOutOver.ltr.gif" />
+    <Content Include="Images\SignInBarSignOutOver.rtl.gif" />
+    <Content Include="Images\space.gif" />
+    <Content Include="Images\text.gif" />
+    <Content Include="Images\text.rtl.gif" />
+    <Content Include="Images\text_beg.gif" />
+    <Content Include="Images\text_first.gif" />
+    <Content Include="Images\text_first.rtl.gif" />
+    <Content Include="Images\text_first_over.gif" />
+    <Content Include="Images\text_go.gif" />
+    <Content Include="Images\text_go.rtl.gif" />
+    <Content Include="Images\text_go_over.gif" />
+    <Content Include="Images\text_go_over.rtl.gif" />
+    <Content Include="Images\text_last.gif" />
+    <Content Include="Images\text_last.rtl.gif" />
+    <Content Include="Images\text_last_over.gif" />
+    <Content Include="Images\text_next.gif" />
+    <Content Include="Images\text_next.rtl.gif" />
+    <Content Include="Images\text_next_over.gif" />
+    <Content Include="Images\text_over.gif" />
+    <Content Include="Images\text_over.rtl.gif" />
+    <Content Include="Images\text_prev.gif" />
+    <Content Include="Images\text_prev.rtl.gif" />
+    <Content Include="Images\text_prev_over.gif" />
+    <Content Include="Images\ToggleHideAll.gif" />
+    <Content Include="Images\ToggleHideFilters.gif" />
+    <Content Include="Images\ToggleHidePagination.gif" />
+    <Content Include="Images\ToggleShowAll.gif" />
+    <Content Include="Images\Updating.gif" />
+    <Content Include="AppInfo.xml" />
+    <Content Include="ApplicationWebForm.js" />
+    <Content Include="ApplicationWebUIValidation.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Menu Panels\Menu.sitemap" />
+    <Content Include="SetFocus.js" />
+    <Content Include="Shared\ConfigureAddRecord.aspx" />
+    <Content Include="Shared\ConfigureCollapseExpandRowBtn.aspx" />
+    <Content Include="Shared\ConfigureEditRecord.aspx" />
+    <Content Include="Shared\ConfigureSpecialEditRecord.aspx" />
+    <Content Include="Shared\ConfigureSpecialViewRecord.aspx" />
+    <Content Include="Shared\ConfigureViewRecord.aspx" />
+    <Content Include="Shared\Default.aspx" />
+    <Content Include="Shared\ExportFieldValue.aspx" />
+    <Content Include="Shared\Forbidden.aspx" />
+    <Content Include="Shared\ImportData.aspx" />
+    <Content Include="Shared\Internal_Server_Error.html" />
+    <Content Include="Shared\LargeListSelector.aspx" />
+    <Content Include="Shared\Menu_Item_HighlightedVertical.xml" />
+    <Content Include="Shared\PreviewPage.html" />
+    <Content Include="Shared\SelectFileToImport.aspx" />
+    <Content Include="Shared\Show_Error.aspx" />
+    <Content Include="Troubleshooting\default.aspx" />
+    <Content Include="Troubleshooting\default.htm" />
+    <Content Include="Troubleshooting\default.html" />
+    <Content Include="Troubleshooting\OnlineHelp.js" />
+    <Content Include="Troubleshooting\Readme.txt" />
+    <Content Include="Troubleshooting\Test0.html" />
+    <Content Include="Troubleshooting\Test0Do.aspx" />
+    <Content Include="Troubleshooting\Test1.html" />
+    <Content Include="Troubleshooting\Test1Do.aspx" />
+    <Content Include="Troubleshooting\Test2.html" />
+    <Content Include="Troubleshooting\Test2Do.aspx" />
+    <Content Include="Troubleshooting\Test3.aspx" />
+    <Content Include="Troubleshooting\Test3Do.aspx" />
+    <Content Include="Troubleshooting\Test4.aspx" />
+    <Content Include="Troubleshooting\Test4Do.aspx" />
+    <Content Include="Troubleshooting\Test5.aspx" />
+    <Content Include="Troubleshooting\Test5Do.aspx" />
+    <Content Include="Troubleshooting\TestConfiguration.css" />
+    <Content Include="Troubleshooting\TestConfiguration.mdb">
+    </Content>
+    <Content Include="Header and Footer\EmailHeader.ascx"  />
+    <Content Include="Header and Footer\Footer.ascx"  />
+    <Content Include="Header and Footer\Header.ascx"  />
+    <Content Include="Header and Footer\PrintHeader.ascx"  />
+    <Content Include="items\AddItems.aspx"  />
+    <Content Include="items\EditItems.aspx"  />
+    <Content Include="items\ShowItems.aspx"  />
+    <Content Include="items\ShowItemsTable.aspx"  />
+    <Content Include="item_groups\AddItem_groups.aspx"  />
+    <Content Include="item_groups\EditItem_groups.aspx"  />
+    <Content Include="item_groups\EditItem_groupsTable.aspx"  />
+    <Content Include="item_groups\ShowItem_groups.aspx"  />
+    <Content Include="item_groups\ShowItem_groupsTable.aspx"  />
+    <Content Include="item_types\EditItem_typesTable.aspx"  />
+    <Content Include="item_types\ShowItem_typesTable.aspx"  />
+    <Content Include="Master Pages\Blank.master"  />
+    <Content Include="Master Pages\Email.master"  />
+    <Content Include="Master Pages\HorizontalMenu.master"  />
+    <Content Include="Master Pages\Print.master"  />
+    <Content Include="Master Pages\VerticalMenu.master"  />
+    <Content Include="Menu Panels\Menu.ascx"  />
+    <Content Include="party\AddParty.aspx"  />
+    <Content Include="party\EditParty.aspx"  />
+    <Content Include="party\ShowParty.aspx"  />
+    <Content Include="party\ShowPartyTable.aspx"  />
+    <Content Include="roles\AddRoles.aspx"  />
+    <Content Include="roles\EditRoles.aspx"  />
+    <Content Include="roles\EditRolesTable.aspx"  />
+    <Content Include="roles\ShowRoles.aspx"  />
+    <Content Include="roles\ShowRolesTable.aspx"  />
+    <Content Include="saleperson\AddSaleperson.aspx"  />
+    <Content Include="saleperson\EditSaleperson.aspx"  />
+    <Content Include="saleperson\EditSalepersonTable.aspx"  />
+    <Content Include="saleperson\ShowSaleperson.aspx"  />
+    <Content Include="saleperson\ShowSalepersonTable.aspx"  />
+    <Content Include="Shared\IncludeComponent.ascx"  />
+    <Content Include="Shared\Menu_Item.ascx"  />
+    <Content Include="Shared\Menu_ItemVertical.ascx"  />
+    <Content Include="Shared\Menu_Item_Highlighted.ascx"  />
+    <Content Include="Shared\Menu_Item_HighlightedVertical.ascx"  />
+    <Content Include="Shared\Pagination.ascx"  />
+    <Content Include="Shared\PaginationShort.ascx"  />
+    <Content Include="Shared\ThemeButton.ascx"  />
+    <Content Include="sites\AddSites.aspx"  />
+    <Content Include="sites\EditSites.aspx"  />
+    <Content Include="sites\ShowSites.aspx"  />
+    <Content Include="sites\ShowSitesTable.aspx"  />
+    <Content Include="taxes\AddTaxes.aspx"  />
+    <Content Include="taxes\EditTaxes.aspx"  />
+    <Content Include="taxes\ShowTaxes.aspx"  />
+    <Content Include="taxes\ShowTaxesTable.aspx"  />
+    <Content Include="tax_groups\AddTax_groups.aspx"  />
+    <Content Include="tax_groups\EditTax_groups.aspx"  />
+    <Content Include="tax_groups\ShowTax_groups.aspx"  />
+    <Content Include="tax_groups\ShowTax_groupsTable.aspx"  />
+    <Content Include="tax_types\AddTax_types.aspx"  />
+    <Content Include="tax_types\EditTax_types.aspx"  />
+    <Content Include="tax_types\ShowTax_types.aspx"  />
+    <Content Include="tax_types\ShowTax_typesTable.aspx"  />
+    <Content Include="terms\AddTerms.aspx"  />
+    <Content Include="terms\EditTerms.aspx"  />
+    <Content Include="terms\ShowTerms.aspx"  />
+    <Content Include="terms\ShowTermsTable.aspx"  />
+    <Content Include="unitsofmeasure\AddUnitsofmeasure.aspx"  />
+    <Content Include="unitsofmeasure\EditUnitsofmeasure.aspx"  />
+    <Content Include="unitsofmeasure\EditUnitsofmeasureTable.aspx"  />
+    <Content Include="unitsofmeasure\ShowUnitsofmeasure.aspx"  />
+    <Content Include="unitsofmeasure\ShowUnitsofmeasureTable.aspx"  />
+    <Content Include="users\AddUsers.aspx"  />
+    <Content Include="users\EditUsers.aspx"  />
+    <Content Include="users\EditUsersTable.aspx"  />
+    <Content Include="users\ShowUsers.aspx"  />
+    <Content Include="users\ShowUsersTable.aspx"  />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Global.asax.resx">
+      <DependentUpon>Global.asax.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Reports\PDF.en-US.report" />
+    <None Include="Reports\PDF.en.report" />
+    <None Include="Reports\PDF.report" />
+    <None Include="Reports\WordReport.en-US.word" />
+    <None Include="Reports\WordReport.en.word" />
+    <None Include="Reports\WordReport.word" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Business Layer\ServelInvocing.Business.vbproj">
+      <Project>{6601EBCD-EE5A-4C36-95EB-BE18CAA73CF2}</Project>
+      <Name>ServelInvocing.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="Data Access Layer\ServelInvocing.Data.vbproj">
+      <Project>{4717B61F-3F50-4D2A-95F8-EA0DAE1FD65B}</Project>
+      <Name>ServelInvocing.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Temp\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49646</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

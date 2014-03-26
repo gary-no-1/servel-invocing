@@ -1,0 +1,23 @@
+﻿
+Imports Microsoft.VisualBasic
+Imports BaseClasses.Utils.DbUtils
+  
+Namespace ServelInvocing.UI
+
+  
+
+    Public Interface IPrintHeader
+
+#Region "Interface Properties"
+        
+        ReadOnly Property Logo() As System.Web.UI.WebControls.Image
+      Property Visible() as Boolean
+         
+
+#End Region
+
+    End Interface
+
+  
+End Namespace
+  

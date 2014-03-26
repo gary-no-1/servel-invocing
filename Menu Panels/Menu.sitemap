@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+Each siteMapNode tag represents a menu item in the menu control. 
+The tags are case-sensitive and should contain the following case-sensitive attributes:
+  title: Text to be displayed for the menu item. Surround any part of the title to be retrieved from a RESX file with {}.
+  eg. title="{Menu:Add} Categories".
+	
+  desciption: Tool tip for the menu item. Surround any part of the title to be retrieved from a RESX file with {}.
+  eg. description="{Menu:Add} Categories".
+
+  url: The url value may be an empty string or may contain a unique value. The value should be one of the following types:
+      Absolute url: a complete path of the web page you want to display. 
+      eg: http://www.ironspeed.com
+      Relative url: url relative to application root. 
+      eg: ~/Categories/ShowCategoriesTablePage.aspx.
+      
+  imageUrl: The URL of the image to be displayed for each menu item.
+  eg. imageUrl="~/Images/MenuTopLevel.gif"
+
+  roles: A list of comma separated role ids defined as part of application's security (use role names as role ids
+  for Microsoft Active Directory and Microsoft AzMan Role management). To specify standard Iron Speed Designer roles, use:
+        Everyone: For all users.
+        NOT_ANONYMOUS: For signed in users only.
+        ANONYMOUS: For users who are not signed in.
+        NO_ACCESS: For none of the users.
+  The user should belong to one of the listed roles in order for the menu item to be displayed.
+	
+  order: (Please do not modify this attribute.) Specifies the order in which the elements are displayed. Changing the value 
+  of this attribute will not affect the order of the menu items on the display. They are used whenever a new menu item is 
+  inserted into the sitemap file to locate the position where the new menu item should be added.
+  -->
+<siteMap>
+  <siteMapNode>
+    <siteMapNode title="Masters" description="Masters" url="" imageUrl="../Images/MLMBullet2.gif" roles="" order="0">
+      <siteMapNode title="Item Types" description="Item Types" url="~/item_types/ShowItem_typesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+        <siteMapNode title="{Menu:Show} Item Types" description="{Menu:Show} Item Types" url="~/item_types/ShowItem_typesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Edit} Item Types" description="{Menu:Edit} Item Types" url="~/item_types/EditItem_typesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      </siteMapNode>
+      <siteMapNode title="Item Groups" description="Item Groups" url="~/item_groups/ShowItem_groupsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+        <siteMapNode title="{Menu:Show} Item Groups" description="{Menu:Show} Item Groups" url="~/item_groups/ShowItem_groupsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Edit} Item Groups" description="{Menu:Edit} Item Groups" url="~/item_groups/EditItem_groupsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Add} Item Groups" description="{Menu:Add} Item Groups" url="~/item_groups/AddItem_groups.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      </siteMapNode>
+      <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
+      <siteMapNode title="Units Of Measure" description="Units Of Measure" url="~/unitsofmeasure/ShowUnitsofmeasureTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+        <siteMapNode title="{Menu:Show} Units Ofmeasure" description="{Menu:Show} Units Ofmeasure" url="~/unitsofmeasure/ShowUnitsofmeasureTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Edit} Units Ofmeasure" description="{Menu:Edit} Units Ofmeasure" url="~/unitsofmeasure/EditUnitsofmeasureTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Add} Units Ofmeasure" description="{Menu:Add} Units Ofmeasure" url="~/unitsofmeasure/AddUnitsofmeasure.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      </siteMapNode>
+      <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
+      <siteMapNode title="Sale Person" description="Sale Person" url="~/saleperson/ShowSalepersonTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+        <siteMapNode title="{Menu:Show} Sale Person" description="{Menu:Show} Sale Person" url="~/saleperson/ShowSalepersonTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Edit} Sale Person" description="{Menu:Edit} Sale Person" url="~/saleperson/EditSalepersonTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Add} Sale Person" description="{Menu:Add} Sale Person" url="~/saleperson/AddSaleperson.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      </siteMapNode>
+      <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
+      <siteMapNode title="Tax Types" description="Tax Types" url="~/tax_types/ShowTax_typesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+        <siteMapNode title="{Menu:Show} Tax Types" description="{Menu:Show} Tax Types" url="~/tax_types/ShowTax_typesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Edit} Tax Types" description="{Menu:Edit} Tax Types" url="~/tax_types/EditTax_typesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Add} Tax Types" description="{Menu:Add} Tax Types" url="~/tax_types/AddTax_types.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      </siteMapNode>
+      <siteMapNode title="Taxes" description="Taxes" url="~/taxes/ShowTaxesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+        <siteMapNode title="{Menu:Show} Taxes" description="{Menu:Show} Taxes" url="~/taxes/ShowTaxesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Add} Taxes" description="{Menu:Add} Taxes" url="~/taxes/AddTaxes.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      </siteMapNode>
+      <siteMapNode title="Tax Groups" description="Tax Groups" url="~/tax_groups/ShowTax_groupsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+        <siteMapNode title="{Menu:Show} Tax Groups" description="{Menu:Show} Tax Groups" url="~/tax_groups/ShowTax_groupsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Add} Tax Groups" description="{Menu:Add} Tax Groups" url="~/tax_groups/AddTax_groups.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      </siteMapNode>
+      <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
+      <siteMapNode title="Roles" description="Roles" url="~/roles/ShowRolesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+        <siteMapNode title="{Menu:Show} Roles" description="{Menu:Show} Roles" url="~/roles/ShowRolesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Edit} Roles" description="{Menu:Edit} Roles" url="~/roles/EditRolesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Add} Roles" description="{Menu:Add} Roles" url="~/roles/AddRoles.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      </siteMapNode>
+      <siteMapNode title="Users" description="Users" url="~/users/ShowUsersTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+        <siteMapNode title="{Menu:Show} Users" description="{Menu:Show} Users" url="~/users/ShowUsersTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Edit} Users" description="{Menu:Edit} Users" url="~/users/EditUsersTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Add} Users" description="{Menu:Add} Users" url="~/users/AddUsers.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      </siteMapNode>
+    </siteMapNode>
+    <siteMapNode title="Items" description="Items" url="~/items/ShowItemsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+      <siteMapNode title="{Menu:Show} Items" description="{Menu:Show} Items" url="~/items/ShowItemsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      <siteMapNode title="{Menu:Edit} Items" description="{Menu:Edit} Items" url="~/items/EditItemsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      <siteMapNode title="{Menu:Add} Items" description="{Menu:Add} Items" url="~/items/AddItems.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+    </siteMapNode>
+    <siteMapNode title="Party" description="Party" url="~/party/ShowPartyTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+      <siteMapNode title="{Menu:Add} Party" description="{Menu:Add} Party" url="~/party/AddParty.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+    </siteMapNode>
+    <siteMapNode title="Sites" description="Sites" url="~/sites/ShowSitesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+      <siteMapNode title="{Menu:Show} Sites" description="{Menu:Show} Sites" url="~/sites/ShowSitesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      <siteMapNode title="{Menu:Add} Sites" description="{Menu:Add} Sites" url="~/sites/AddSites.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+    </siteMapNode>
+    <siteMapNode title="Terms" description="Terms" url="~/terms/ShowTermsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+      <siteMapNode title="{Menu:Show} Terms" description="{Menu:Show} Terms" url="~/terms/ShowTermsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="1" />
+      <siteMapNode title="{Menu:Add} Terms" description="{Menu:Add} Terms" url="~/terms/AddTerms.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="10" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>
