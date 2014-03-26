@@ -32,6 +32,11 @@ The tags are case-sensitive and should contain the following case-sensitive attr
 <siteMap>
   <siteMapNode>
     <siteMapNode title="Masters" description="Masters" url="" imageUrl="../Images/MLMBullet2.gif" roles="" order="0">
+      <siteMapNode title="Company" description="Company" url="~/company/ShowCompanyTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+        <siteMapNode title="{Menu:Show} Company" description="{Menu:Show} Company" url="~/company/ShowCompanyTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Add} Company" description="{Menu:Add} Company" url="~/company/AddCompany.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      </siteMapNode>
+      <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
       <siteMapNode title="Item Types" description="Item Types" url="~/item_types/ShowItem_typesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
         <siteMapNode title="{Menu:Show} Item Types" description="{Menu:Show} Item Types" url="~/item_types/ShowItem_typesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
         <siteMapNode title="{Menu:Edit} Item Types" description="{Menu:Edit} Item Types" url="~/item_types/EditItem_typesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
@@ -52,6 +57,10 @@ The tags are case-sensitive and should contain the following case-sensitive attr
         <siteMapNode title="{Menu:Show} Sale Person" description="{Menu:Show} Sale Person" url="~/saleperson/ShowSalepersonTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
         <siteMapNode title="{Menu:Edit} Sale Person" description="{Menu:Edit} Sale Person" url="~/saleperson/EditSalepersonTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
         <siteMapNode title="{Menu:Add} Sale Person" description="{Menu:Add} Sale Person" url="~/saleperson/AddSaleperson.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      </siteMapNode>
+      <siteMapNode title="Terms" description="Terms" url="~/terms/ShowTermsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+        <siteMapNode title="{Menu:Show} Terms" description="{Menu:Show} Terms" url="~/terms/ShowTermsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+        <siteMapNode title="{Menu:Add} Terms" description="{Menu:Add} Terms" url="~/terms/AddTerms.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       </siteMapNode>
       <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
       <siteMapNode title="Tax Types" description="Tax Types" url="~/tax_types/ShowTax_typesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
@@ -91,9 +100,21 @@ The tags are case-sensitive and should contain the following case-sensitive attr
       <siteMapNode title="{Menu:Show} Sites" description="{Menu:Show} Sites" url="~/sites/ShowSitesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="{Menu:Add} Sites" description="{Menu:Add} Sites" url="~/sites/AddSites.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
     </siteMapNode>
-    <siteMapNode title="Terms" description="Terms" url="~/terms/ShowTermsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
-      <siteMapNode title="{Menu:Show} Terms" description="{Menu:Show} Terms" url="~/terms/ShowTermsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="1" />
-      <siteMapNode title="{Menu:Add} Terms" description="{Menu:Add} Terms" url="~/terms/AddTerms.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="10" />
+    <siteMapNode title="Pro Inv HDR" description="Pro Inv HDR" url="~/pro_inv_hdr/ShowPro_inv_hdrTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+      <siteMapNode title="{Menu:Show} Pro Inv HDR" description="{Menu:Show} Pro Inv HDR" url="~/pro_inv_hdr/ShowPro_inv_hdrTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="1" />
+      <siteMapNode title="{Menu:Add} Pro Inv HDR" description="{Menu:Add} Pro Inv HDR" url="~/pro_inv_hdr/AddPro_inv_hdr.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="10" />
+    </siteMapNode>
+    <siteMapNode title="Pro Inv Items" description="Pro Inv Items" url="~/pro_inv_items/ShowPro_inv_itemsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+      <siteMapNode title="{Menu:Show} Pro Inv Items" description="{Menu:Show} Pro Inv Items" url="~/pro_inv_items/ShowPro_inv_itemsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="1" />
+      <siteMapNode title="{Menu:Add} Pro Inv Items" description="{Menu:Add} Pro Inv Items" url="~/pro_inv_items/AddPro_inv_items.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="10" />
+    </siteMapNode>
+    <siteMapNode title="Pro Inv Taxes" description="Pro Inv Taxes" url="~/pro_inv_taxes/ShowPro_inv_taxesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+      <siteMapNode title="{Menu:Show} Pro Inv Taxes" description="{Menu:Show} Pro Inv Taxes" url="~/pro_inv_taxes/ShowPro_inv_taxesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="1" />
+      <siteMapNode title="{Menu:Add} Pro Inv Taxes" description="{Menu:Add} Pro Inv Taxes" url="~/pro_inv_taxes/AddPro_inv_taxes.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="10" />
+    </siteMapNode>
+    <siteMapNode title="Pro Inv Terms" description="Pro Inv Terms" url="~/pro_inv_terms/ShowPro_inv_termsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+      <siteMapNode title="{Menu:Show} Pro Inv Terms" description="{Menu:Show} Pro Inv Terms" url="~/pro_inv_terms/ShowPro_inv_termsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="1" />
+      <siteMapNode title="{Menu:Add} Pro Inv Terms" description="{Menu:Add} Pro Inv Terms" url="~/pro_inv_terms/AddPro_inv_terms.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="10" />
     </siteMapNode>
   </siteMapNode>
 </siteMap>

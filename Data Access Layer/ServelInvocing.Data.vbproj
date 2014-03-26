@@ -73,6 +73,9 @@
     <Compile Include="Shared\BaseFormulaUtils.vb" />
     <Compile Include="Shared\DatabaseObjects.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="CompanySqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ItemsSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -83,6 +86,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PartySqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_hdrSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_itemsSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_taxesSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_termsSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RolesSqlTable.vb">
@@ -103,10 +118,19 @@
     <Compile Include="Tax_typesSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TermsSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UnitsofmeasureSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UsersSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CompanyDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseCompanySqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ItemsDefinition.vb" >
@@ -131,6 +155,30 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BasePartySqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_hdrDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_hdrSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_itemsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_itemsSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_taxesDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_taxesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_termsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_termsSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RolesDefinition.vb" >
@@ -170,9 +218,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TermsDefinition.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TermsSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseTermsSqlTable.vb" >

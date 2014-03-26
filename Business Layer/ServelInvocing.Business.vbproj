@@ -63,6 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="CompanyTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CompanyRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ItemsTable.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -85,6 +91,30 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PartyRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_hdrTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_hdrRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_itemsTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_itemsRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_taxesTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_taxesRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_termsTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_termsRecord.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RolesTable.vb">
@@ -123,6 +153,12 @@
     <Compile Include="Tax_typesRecord.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TermsTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TermsRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UnitsofmeasureTable.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -133,6 +169,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UsersRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseCompanyTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseCompanyRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseItemsTable.vb" >
@@ -157,6 +199,30 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BasePartyRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_hdrTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_hdrRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_itemsTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_itemsRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_taxesTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_taxesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_termsTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_termsRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseRolesTable.vb" >
@@ -195,13 +261,7 @@
     <Compile Include="BaseTax_typesRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TermsTable.vb" >
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="BaseTermsTable.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TermsRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseTermsRecord.vb" >

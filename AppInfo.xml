@@ -17855,7 +17855,7 @@
     <converter />
   </option>
   <option name="RegenerateFilesOlderThan" readonly="False" feature="" displayorder="-1">
-    <value>-8588057630794408347</value>
+    <value>-8588057506734112504</value>
     <datatype>System.String</datatype>
     <defaultvalue />
     <displayname />
@@ -17931,7 +17931,7 @@
     <datatype>System.String</datatype>
   </option>
   <option name="RegenerateAll" readonly="False" displayorder="-1">
-    <value>Yes</value>
+    <value>No</value>
     <datatype>System.String</datatype>
   </option>
   <optiongroup name="NewAppOptions" displayorder="1">
