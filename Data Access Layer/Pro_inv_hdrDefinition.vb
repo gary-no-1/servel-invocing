@@ -9,7 +9,7 @@
 Public Class Pro_inv_hdrDefinition
 
 #Region "Definition (XML) for Pro_inv_hdrDefinition table"
-	'Next 357 lines contain Table Definition (XML) for table "Pro_inv_hdrDefinition"
+	'Next 372 lines contain Table Definition (XML) for table "Pro_inv_hdrDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -61,27 +61,30 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
     "<Column InternalName=""2"" Priority=""3"" ColumnNum=""2"">"& _
       "<columnName>pro_inv_dt</columnName>"& _
-      "<columnUIName>Pro Inv DT</columnUIName>"& _
+      "<columnUIName Source=""User"">Pro Inv Date</columnUIName>"& _
       "<columnType>Date</columnType>"& _
       "<columnDBType>date</columnDBType>"& _
       "<columnLengthSet></columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User"">getdate()</columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
-      "<columnFormat>d</columnFormat>"& _
+      "<columnFormat Source=""User"">d</columnFormat>"& _
       "<columnDBFormat>d</columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">Y</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">Y</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>2</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""3"" Priority=""4"" ColumnNum=""3"">"& _
       "<columnName>sale_ord_no</columnName>"& _
@@ -108,31 +111,34 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
     "<Column InternalName=""4"" Priority=""5"" ColumnNum=""4"">"& _
       "<columnName>sale_ord_dt</columnName>"& _
-      "<columnUIName>Sale Order DT</columnUIName>"& _
+      "<columnUIName Source=""User"">Sale Order Date</columnUIName>"& _
       "<columnType>Date</columnType>"& _
       "<columnDBType>date</columnDBType>"& _
       "<columnLengthSet></columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
-      "<columnFormat>d</columnFormat>"& _
+      "<columnFormat Source=""User"">d</columnFormat>"& _
       "<columnDBFormat>d</columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">Y</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">Y</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>4</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""5"" Priority=""6"" ColumnNum=""5"">"& _
       "<columnName>id_party</columnName>"& _
-      "<columnUIName>ID Party</columnUIName>"& _
+      "<columnUIName>Party</columnUIName>"& _
       "<columnType>Number</columnType>"& _
       "<columnDBType>int</columnDBType>"& _
       "<columnLengthSet>10.0</columnLengthSet>"& _
@@ -278,71 +284,77 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
     "<Column InternalName=""11"" Priority=""12"" ColumnNum=""11"">"& _
       "<columnName>po_no</columnName>"& _
-      "<columnUIName>Po Number</columnUIName>"& _
+      "<columnUIName Source=""User"">P.O. Number</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>11</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""12"" Priority=""13"" ColumnNum=""12"">"& _
       "<columnName>po_dt</columnName>"& _
-      "<columnUIName>Po DT</columnUIName>"& _
+      "<columnUIName Source=""User"">P.O. Date</columnUIName>"& _
       "<columnType>Date</columnType>"& _
       "<columnDBType>date</columnDBType>"& _
       "<columnLengthSet></columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
-      "<columnFormat>d</columnFormat>"& _
+      "<columnFormat Source=""User"">d</columnFormat>"& _
       "<columnDBFormat>d</columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">Y</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">Y</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>12</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""13"" Priority=""14"" ColumnNum=""13"">"& _
       "<columnName>id_tax_group</columnName>"& _
-      "<columnUIName>ID Tax Group</columnUIName>"& _
+      "<columnUIName Source=""User"">Tax Code</columnUIName>"& _
       "<columnType>Number</columnType>"& _
       "<columnDBType>int</columnDBType>"& _
       "<columnLengthSet>10.0</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
       "<foreignKey>"& _
@@ -353,10 +365,13 @@ Public Class Pro_inv_hdrDefinition
         "<columnFKColumnDisplay>tax_group_code</columnFKColumnDisplay>"& _
         "<foreignKeyType>Explicit</foreignKeyType>"& _
       "</foreignKey>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>13</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>pro_inv_hdr</TableName>"& _
-  "<Version>1</Version>"& _
+  "<Version>2</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Pro_inv_hdr</TableCodeName>"& _
   "<TableAliasName>Pro_inv_hdr_</TableAliasName>"& _

@@ -125,8 +125,119 @@ Public Class Pro_inv_hdrRecordControl
 
         ' This is the ideal place to add your code customizations. For example, you can override the LoadData, 
         ' CreateWhereClause, DataBind, SaveData, GetUIData, and Validate methods.
+		Public Overrides Sub DataBind()
+			MyBase.DataBind()
+			If Not (Me.Page.IsPostBack) Then
+				' This code executes when the page is first loaded.
+				Dim tempToday , tempTime as string
+				tempToday = Today().tostring()
+				tempToday = mid(tempToday,9,2)+ mid(tempToday,4,2) + left(tempToday,2)
+				tempTime = Now.ToShortTimeString()
+				tempTime = left(right(tempTime,8),5)
+				Dim strProInvNo as string 
+				strProInvNo = tempToday + "/" + tempTime
+				Dim random As New Random()
+				Dim ch As Char
+				ch = Convert.ToChar(Convert.ToInt32((25 * random.NextDouble() + 65)))
+				strProInvNo = strProInvNo + "/" + ch
+				me.pro_inv_no.text = strProInvNo				
+			Else
+				' This code executes during a button click or other postback.
+			End If		
+		End Sub
         
 
+
+		Protected Overrides Sub id_party_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.id_party.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_party)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_party, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_party, selectedValue)Then
+
+                ' construct a whereclause to query a record with party.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(PartyTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As PartyRecord = PartyTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Pro_inv_hdrTable.id_party.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_party.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+            End If
+		
+			Dim selectedText As String = id_party.SelectedItem.Text
+	    	If not (BaseClasses.Utils.StringUtils.InvariantUCase(selectedText).Equals(BaseClasses.Utils.StringUtils.InvariantUCase(Page.GetResourceValue("Txt:PleaseSelect", "ServelInvocing"))))
+    	    	' if "Please Select" string is selected for first dropdown list,
+	        	' then do not continue populating the second dropdown list.
+				Dim thisParty_id As String
+				thisParty_id = me.id_party.text
+				Dim srchHdrStr As String
+				srchHdrStr = "id = '" + thisParty_Id + "'"
+				Dim ProInvPartyRec As partyRecord = PartyTable.GetRecord(srchHdrStr, False)
+				me.tin_no.text = ProInvPartyRec.tin_no
+				me.bill_name.text = ProInvPartyRec.name
+				me.bill_address.text = ProInvPartyRec.address
+				me.ship_name.text = ProInvPartyRec.name
+				me.ship_address.text = ProInvPartyRec.address
+				
+			Try
+				DbUtils.StartTransaction()
+				Dim srchTermsStr As String
+				srchHdrStr = "id <> '0'"
+				Dim TermsRec As TermsRecord
+				Dim TermsManyRec As TermsRecord()
+				TermsManyRec = TermsTable.GetRecords(srchTermsStr)
+				For Each TermsRec In TermsManyRec
+					Dim pro_inv_terms_rec As New pro_inv_termsRecord
+					'quote_terms_rec.quote_hdr_id = convert.toint32(QuoteId)
+					pro_inv_terms_rec.narration = TermsRec.narration
+					pro_inv_terms_rec.sort_order = TermsRec.sort_order
+					pro_inv_terms_rec.save()
+				Next
+				DbUtils.CommitTransaction()
+
+				'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Quote has been created")
+				'Me.GenerateQuote.Button.Enabled = False
+
+			Catch ex As Exception
+				DbUtils.RollBackTransaction()
+				'Report the error message to the user
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "UNIQUE_SCRIPTKEY", ex.Message)
+			Finally
+				DbUtils.EndTransaction()
+			End Try
+			
+    	    	Return    
+    		End If
+               
+        End Sub
 End Class
 
   
@@ -7256,12 +7367,6 @@ Public Class BasePro_inv_hdrRecordControl
          
               ' Register the event handlers.
           
-              Me.id_partyAddRecordLink.PostBackUrl = "../party/AddParty.aspx" & "?Target=" & Me.id_party.ClientID & "&DFKA=name"
-              Me.id_partyAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_partyAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
-              
-              Me.id_tax_groupAddRecordLink.PostBackUrl = "../tax_groups/AddTax_groups.aspx" & "?Target=" & Me.id_tax_group.ClientID & "&DFKA=tax_group_code"
-              Me.id_tax_groupAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_tax_groupAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
-              
               AddHandler Me.id_party.SelectedIndexChanged, AddressOf id_party_SelectedIndexChanged
             
               AddHandler Me.id_tax_group.SelectedIndexChanged, AddressOf id_tax_group_SelectedIndexChanged
@@ -7577,7 +7682,7 @@ Public Class BasePro_inv_hdrRecordControl
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.po_dtSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
                 				
                 ' If the po_dt is non-NULL, then format the value.
 
@@ -7591,8 +7696,7 @@ Public Class BasePro_inv_hdrRecordControl
                 ' po_dt is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.po_dt.Text = Pro_inv_hdrTable.po_dt.Format(Pro_inv_hdrTable.po_dt.DefaultValue, "d")
-                        		
+                Me.po_dt.Text = EvaluateFormula("Today()", Me.DataSource, "d")		
                 End If
                  
         End Sub
@@ -7647,7 +7751,7 @@ Public Class BasePro_inv_hdrRecordControl
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.pro_inv_dtSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
                 				
                 ' If the pro_inv_dt is non-NULL, then format the value.
 
@@ -7661,8 +7765,7 @@ Public Class BasePro_inv_hdrRecordControl
                 ' pro_inv_dt is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.pro_inv_dt.Text = Pro_inv_hdrTable.pro_inv_dt.Format(Pro_inv_hdrTable.pro_inv_dt.DefaultValue, "d")
-                        		
+                Me.pro_inv_dt.Text = EvaluateFormula("Today()", Me.DataSource, "d")		
                 End If
                  
         End Sub
@@ -7717,7 +7820,7 @@ Public Class BasePro_inv_hdrRecordControl
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.sale_ord_dtSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
                 				
                 ' If the sale_ord_dt is non-NULL, then format the value.
 
@@ -7731,8 +7834,7 @@ Public Class BasePro_inv_hdrRecordControl
                 ' sale_ord_dt is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.sale_ord_dt.Text = Pro_inv_hdrTable.sale_ord_dt.Format(Pro_inv_hdrTable.sale_ord_dt.DefaultValue, "d")
-                        		
+                Me.sale_ord_dt.Text = EvaluateFormula("Today()", Me.DataSource, "d")		
                 End If
                  
         End Sub
@@ -9049,12 +9151,6 @@ Public Class BasePro_inv_hdrRecordControl
             End Get
         End Property
             
-        Public ReadOnly Property id_partyAddRecordLink() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_partyAddRecordLink"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property id_partyLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_partyLabel"), System.Web.UI.WebControls.Literal)
@@ -9067,12 +9163,6 @@ Public Class BasePro_inv_hdrRecordControl
             End Get
         End Property
             
-        Public ReadOnly Property id_tax_groupAddRecordLink() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_groupAddRecordLink"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property id_tax_groupLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_groupLabel"), System.Web.UI.WebControls.Literal)

@@ -154,11 +154,585 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Shared\SignInState.vb" />
-    <Compile Include="company\AddCompany.aspx.vb" >
+    <Compile Include="company\AddCompany.aspx.vb">
       <DependentUpon>AddCompany.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="company\AddCompany.Controls.vb" >
+    <Compile Include="company\AddCompany.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="company\ShowCompany.aspx.vb">
+      <DependentUpon>ShowCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="company\ShowCompany.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="company\ShowCompanyTable.aspx.vb">
+      <DependentUpon>ShowCompanyTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="company\ShowCompanyTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\EmailHeader.ascx.vb">
+      <DependentUpon>EmailHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\IEmailHeader.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\Header.ascx.vb">
+      <DependentUpon>Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\IHeader.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\PrintHeader.ascx.vb">
+      <DependentUpon>PrintHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\IPrintHeader.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="items\AddItems.aspx.vb">
+      <DependentUpon>AddItems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="items\AddItems.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="items\EditItems.aspx.vb">
+      <DependentUpon>EditItems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="items\EditItems.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="items\ShowItems.aspx.vb">
+      <DependentUpon>ShowItems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="items\ShowItems.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="items\ShowItemsTable.aspx.vb">
+      <DependentUpon>ShowItemsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="items\ShowItemsTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_groups\AddItem_groups.aspx.vb">
+      <DependentUpon>AddItem_groups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_groups\AddItem_groups.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_groups\EditItem_groups.aspx.vb">
+      <DependentUpon>EditItem_groups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_groups\EditItem_groups.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_groups\EditItem_groupsTable.aspx.vb">
+      <DependentUpon>EditItem_groupsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_groups\EditItem_groupsTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_groups\ShowItem_groups.aspx.vb">
+      <DependentUpon>ShowItem_groups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_groups\ShowItem_groups.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_groups\ShowItem_groupsTable.aspx.vb">
+      <DependentUpon>ShowItem_groupsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_groups\ShowItem_groupsTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_types\EditItem_typesTable.aspx.vb">
+      <DependentUpon>EditItem_typesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_types\EditItem_typesTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_types\ShowItem_typesTable.aspx.vb">
+      <DependentUpon>ShowItem_typesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_types\ShowItem_typesTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="party\AddParty.aspx.vb">
+      <DependentUpon>AddParty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="party\AddParty.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="party\EditParty.aspx.vb">
+      <DependentUpon>EditParty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="party\EditParty.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="party\ShowParty.aspx.vb">
+      <DependentUpon>ShowParty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="party\ShowParty.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="party\ShowPartyTable.aspx.vb">
+      <DependentUpon>ShowPartyTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="party\ShowPartyTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\EditPro_inv_hdr.aspx.vb">
+      <DependentUpon>EditPro_inv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\EditPro_inv_hdr.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.aspx.vb">
+      <DependentUpon>ShowPro_inv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_items\AddPro_inv_items.aspx.vb">
+      <DependentUpon>AddPro_inv_items.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_items\AddPro_inv_items.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_items\EditPro_inv_items.aspx.vb">
+      <DependentUpon>EditPro_inv_items.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_items\EditPro_inv_items.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_items\ShowPro_inv_items.aspx.vb">
+      <DependentUpon>ShowPro_inv_items.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_items\ShowPro_inv_items.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_items\ShowPro_inv_itemsTable.aspx.vb">
+      <DependentUpon>ShowPro_inv_itemsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_items\ShowPro_inv_itemsTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_taxes\AddPro_inv_taxes.aspx.vb">
+      <DependentUpon>AddPro_inv_taxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_taxes\AddPro_inv_taxes.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_taxes\EditPro_inv_taxes.aspx.vb">
+      <DependentUpon>EditPro_inv_taxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_taxes\EditPro_inv_taxes.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_taxes\ShowPro_inv_taxes.aspx.vb">
+      <DependentUpon>ShowPro_inv_taxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_taxes\ShowPro_inv_taxes.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_taxes\ShowPro_inv_taxesTable.aspx.vb">
+      <DependentUpon>ShowPro_inv_taxesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_taxes\ShowPro_inv_taxesTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_terms\AddPro_inv_terms.aspx.vb">
+      <DependentUpon>AddPro_inv_terms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_terms\AddPro_inv_terms.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_terms\EditPro_inv_terms.aspx.vb">
+      <DependentUpon>EditPro_inv_terms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_terms\EditPro_inv_terms.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_terms\ShowPro_inv_terms.aspx.vb">
+      <DependentUpon>ShowPro_inv_terms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_terms\ShowPro_inv_terms.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_terms\ShowPro_inv_termsTable.aspx.vb">
+      <DependentUpon>ShowPro_inv_termsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_terms\ShowPro_inv_termsTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="roles\AddRoles.aspx.vb">
+      <DependentUpon>AddRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="roles\AddRoles.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="roles\EditRoles.aspx.vb">
+      <DependentUpon>EditRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="roles\EditRoles.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="roles\EditRolesTable.aspx.vb">
+      <DependentUpon>EditRolesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="roles\EditRolesTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="roles\ShowRoles.aspx.vb">
+      <DependentUpon>ShowRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="roles\ShowRoles.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="roles\ShowRolesTable.aspx.vb">
+      <DependentUpon>ShowRolesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="roles\ShowRolesTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="saleperson\AddSaleperson.aspx.vb">
+      <DependentUpon>AddSaleperson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="saleperson\AddSaleperson.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="saleperson\EditSaleperson.aspx.vb">
+      <DependentUpon>EditSaleperson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="saleperson\EditSaleperson.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="saleperson\EditSalepersonTable.aspx.vb">
+      <DependentUpon>EditSalepersonTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="saleperson\EditSalepersonTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="saleperson\ShowSaleperson.aspx.vb">
+      <DependentUpon>ShowSaleperson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="saleperson\ShowSaleperson.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="saleperson\ShowSalepersonTable.aspx.vb">
+      <DependentUpon>ShowSalepersonTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="saleperson\ShowSalepersonTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\IncludeComponent.ascx.vb">
+      <DependentUpon>IncludeComponent.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IIncludeComponent.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Menu_Item.ascx.vb">
+      <DependentUpon>Menu_Item.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IMenu_Item.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Menu_ItemVertical.ascx.vb">
+      <DependentUpon>Menu_ItemVertical.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IMenu_ItemVertical.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Menu_Item_Highlighted.ascx.vb">
+      <DependentUpon>Menu_Item_Highlighted.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IMenu_Item_Highlighted.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Menu_Item_HighlightedVertical.ascx.vb">
+      <DependentUpon>Menu_Item_HighlightedVertical.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IMenu_Item_HighlightedVertical.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Pagination.ascx.vb">
+      <DependentUpon>Pagination.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IPagination.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\PaginationShort.ascx.vb">
+      <DependentUpon>PaginationShort.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IPaginationShort.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\ThemeButton.ascx.vb">
+      <DependentUpon>ThemeButton.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IThemeButton.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sites\AddSites.aspx.vb">
+      <DependentUpon>AddSites.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sites\AddSites.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sites\EditSites.aspx.vb">
+      <DependentUpon>EditSites.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sites\EditSites.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sites\ShowSites.aspx.vb">
+      <DependentUpon>ShowSites.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sites\ShowSites.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sites\ShowSitesTable.aspx.vb">
+      <DependentUpon>ShowSitesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sites\ShowSitesTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="taxes\AddTaxes.aspx.vb">
+      <DependentUpon>AddTaxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxes\AddTaxes.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="taxes\EditTaxes.aspx.vb">
+      <DependentUpon>EditTaxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxes\EditTaxes.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="taxes\ShowTaxes.aspx.vb">
+      <DependentUpon>ShowTaxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxes\ShowTaxes.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="taxes\ShowTaxesTable.aspx.vb">
+      <DependentUpon>ShowTaxesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxes\ShowTaxesTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_groups\AddTax_groups.aspx.vb">
+      <DependentUpon>AddTax_groups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_groups\AddTax_groups.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_groups\EditTax_groups.aspx.vb">
+      <DependentUpon>EditTax_groups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_groups\EditTax_groups.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_types\AddTax_types.aspx.vb">
+      <DependentUpon>AddTax_types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_types\AddTax_types.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_types\EditTax_types.aspx.vb">
+      <DependentUpon>EditTax_types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_types\EditTax_types.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_types\ShowTax_types.aspx.vb">
+      <DependentUpon>ShowTax_types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_types\ShowTax_types.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_types\ShowTax_typesTable.aspx.vb">
+      <DependentUpon>ShowTax_typesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_types\ShowTax_typesTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="terms\AddTerms.aspx.vb">
+      <DependentUpon>AddTerms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="terms\AddTerms.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="terms\EditTerms.aspx.vb">
+      <DependentUpon>EditTerms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="terms\EditTerms.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="terms\ShowTerms.aspx.vb">
+      <DependentUpon>ShowTerms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="terms\ShowTerms.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="terms\ShowTermsTable.aspx.vb">
+      <DependentUpon>ShowTermsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="terms\ShowTermsTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\AddUnitsofmeasure.aspx.vb">
+      <DependentUpon>AddUnitsofmeasure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\AddUnitsofmeasure.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\EditUnitsofmeasure.aspx.vb">
+      <DependentUpon>EditUnitsofmeasure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\EditUnitsofmeasure.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\EditUnitsofmeasureTable.aspx.vb">
+      <DependentUpon>EditUnitsofmeasureTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\EditUnitsofmeasureTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\ShowUnitsofmeasure.aspx.vb">
+      <DependentUpon>ShowUnitsofmeasure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\ShowUnitsofmeasure.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\ShowUnitsofmeasureTable.aspx.vb">
+      <DependentUpon>ShowUnitsofmeasureTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unitsofmeasure\ShowUnitsofmeasureTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\AddUsers.aspx.vb">
+      <DependentUpon>AddUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\AddUsers.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\EditUsers.aspx.vb">
+      <DependentUpon>EditUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\EditUsers.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\EditUsersTable.aspx.vb">
+      <DependentUpon>EditUsersTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\EditUsersTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\ShowUsers.aspx.vb">
+      <DependentUpon>ShowUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\ShowUsers.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\ShowUsersTable.aspx.vb">
+      <DependentUpon>ShowUsersTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\ShowUsersTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx.vb">
+      <DependentUpon>ShowPro_inv_hdrTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tax_groups\ShowTax_groupsTable.aspx.vb">
+      <DependentUpon>ShowTax_groupsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_groups\ShowTax_groupsTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="company\EditCompany.aspx.vb" >
@@ -168,123 +742,11 @@
     <Compile Include="company\EditCompany.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="company\ShowCompany.aspx.vb" >
-      <DependentUpon>ShowCompany.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="company\ShowCompany.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="company\ShowCompanyTable.aspx.vb" >
-      <DependentUpon>ShowCompanyTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="company\ShowCompanyTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Header and Footer\EmailHeader.ascx.vb" >
-      <DependentUpon>EmailHeader.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Header and Footer\IEmailHeader.vb" >
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Header and Footer\Footer.ascx.vb" >
       <DependentUpon>Footer.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Header and Footer\IFooter.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Header and Footer\Header.ascx.vb" >
-      <DependentUpon>Header.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Header and Footer\IHeader.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Header and Footer\PrintHeader.ascx.vb" >
-      <DependentUpon>PrintHeader.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Header and Footer\IPrintHeader.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="items\AddItems.aspx.vb" >
-      <DependentUpon>AddItems.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="items\AddItems.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="items\EditItems.aspx.vb" >
-      <DependentUpon>EditItems.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="items\EditItems.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="items\ShowItems.aspx.vb" >
-      <DependentUpon>ShowItems.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="items\ShowItems.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="items\ShowItemsTable.aspx.vb" >
-      <DependentUpon>ShowItemsTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="items\ShowItemsTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="item_groups\AddItem_groups.aspx.vb" >
-      <DependentUpon>AddItem_groups.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="item_groups\AddItem_groups.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="item_groups\EditItem_groups.aspx.vb" >
-      <DependentUpon>EditItem_groups.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="item_groups\EditItem_groups.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="item_groups\EditItem_groupsTable.aspx.vb" >
-      <DependentUpon>EditItem_groupsTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="item_groups\EditItem_groupsTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="item_groups\ShowItem_groups.aspx.vb" >
-      <DependentUpon>ShowItem_groups.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="item_groups\ShowItem_groups.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="item_groups\ShowItem_groupsTable.aspx.vb" >
-      <DependentUpon>ShowItem_groupsTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="item_groups\ShowItem_groupsTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="item_types\EditItem_typesTable.aspx.vb" >
-      <DependentUpon>EditItem_typesTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="item_types\EditItem_typesTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="item_types\ShowItem_typesTable.aspx.vb" >
-      <DependentUpon>ShowItem_typesTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="item_types\ShowItem_typesTable.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Menu Panels\Menu.ascx.vb" >
@@ -294,34 +756,6 @@
     <Compile Include="Menu Panels\IMenu.vb" >
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="party\AddParty.aspx.vb" >
-      <DependentUpon>AddParty.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="party\AddParty.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="party\EditParty.aspx.vb" >
-      <DependentUpon>EditParty.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="party\EditParty.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="party\ShowParty.aspx.vb" >
-      <DependentUpon>ShowParty.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="party\ShowParty.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="party\ShowPartyTable.aspx.vb" >
-      <DependentUpon>ShowPartyTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="party\ShowPartyTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="pro_inv_hdr\AddPro_inv_hdr.aspx.vb" >
       <DependentUpon>AddPro_inv_hdr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -329,445 +763,11 @@
     <Compile Include="pro_inv_hdr\AddPro_inv_hdr.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="pro_inv_hdr\EditPro_inv_hdr.aspx.vb" >
-      <DependentUpon>EditPro_inv_hdr.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\EditPro_inv_hdr.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.aspx.vb" >
-      <DependentUpon>ShowPro_inv_hdr.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx.vb" >
-      <DependentUpon>ShowPro_inv_hdrTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_items\AddPro_inv_items.aspx.vb" >
-      <DependentUpon>AddPro_inv_items.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_items\AddPro_inv_items.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_items\EditPro_inv_items.aspx.vb" >
-      <DependentUpon>EditPro_inv_items.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_items\EditPro_inv_items.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_items\ShowPro_inv_items.aspx.vb" >
-      <DependentUpon>ShowPro_inv_items.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_items\ShowPro_inv_items.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_items\ShowPro_inv_itemsTable.aspx.vb" >
-      <DependentUpon>ShowPro_inv_itemsTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_items\ShowPro_inv_itemsTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_taxes\AddPro_inv_taxes.aspx.vb" >
-      <DependentUpon>AddPro_inv_taxes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_taxes\AddPro_inv_taxes.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_taxes\EditPro_inv_taxes.aspx.vb" >
-      <DependentUpon>EditPro_inv_taxes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_taxes\EditPro_inv_taxes.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_taxes\ShowPro_inv_taxes.aspx.vb" >
-      <DependentUpon>ShowPro_inv_taxes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_taxes\ShowPro_inv_taxes.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_taxes\ShowPro_inv_taxesTable.aspx.vb" >
-      <DependentUpon>ShowPro_inv_taxesTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_taxes\ShowPro_inv_taxesTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_terms\AddPro_inv_terms.aspx.vb" >
-      <DependentUpon>AddPro_inv_terms.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_terms\AddPro_inv_terms.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_terms\EditPro_inv_terms.aspx.vb" >
-      <DependentUpon>EditPro_inv_terms.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_terms\EditPro_inv_terms.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_terms\ShowPro_inv_terms.aspx.vb" >
-      <DependentUpon>ShowPro_inv_terms.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_terms\ShowPro_inv_terms.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_terms\ShowPro_inv_termsTable.aspx.vb" >
-      <DependentUpon>ShowPro_inv_termsTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_terms\ShowPro_inv_termsTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="roles\AddRoles.aspx.vb" >
-      <DependentUpon>AddRoles.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="roles\AddRoles.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="roles\EditRoles.aspx.vb" >
-      <DependentUpon>EditRoles.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="roles\EditRoles.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="roles\EditRolesTable.aspx.vb" >
-      <DependentUpon>EditRolesTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="roles\EditRolesTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="roles\ShowRoles.aspx.vb" >
-      <DependentUpon>ShowRoles.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="roles\ShowRoles.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="roles\ShowRolesTable.aspx.vb" >
-      <DependentUpon>ShowRolesTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="roles\ShowRolesTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="saleperson\AddSaleperson.aspx.vb" >
-      <DependentUpon>AddSaleperson.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="saleperson\AddSaleperson.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="saleperson\EditSaleperson.aspx.vb" >
-      <DependentUpon>EditSaleperson.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="saleperson\EditSaleperson.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="saleperson\EditSalepersonTable.aspx.vb" >
-      <DependentUpon>EditSalepersonTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="saleperson\EditSalepersonTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="saleperson\ShowSaleperson.aspx.vb" >
-      <DependentUpon>ShowSaleperson.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="saleperson\ShowSaleperson.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="saleperson\ShowSalepersonTable.aspx.vb" >
-      <DependentUpon>ShowSalepersonTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="saleperson\ShowSalepersonTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\IncludeComponent.ascx.vb" >
-      <DependentUpon>IncludeComponent.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IIncludeComponent.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\Menu_Item.ascx.vb" >
-      <DependentUpon>Menu_Item.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IMenu_Item.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\Menu_ItemVertical.ascx.vb" >
-      <DependentUpon>Menu_ItemVertical.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IMenu_ItemVertical.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\Menu_Item_Highlighted.ascx.vb" >
-      <DependentUpon>Menu_Item_Highlighted.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IMenu_Item_Highlighted.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\Menu_Item_HighlightedVertical.ascx.vb" >
-      <DependentUpon>Menu_Item_HighlightedVertical.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IMenu_Item_HighlightedVertical.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\Pagination.ascx.vb" >
-      <DependentUpon>Pagination.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IPagination.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\PaginationShort.ascx.vb" >
-      <DependentUpon>PaginationShort.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IPaginationShort.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\ThemeButton.ascx.vb" >
-      <DependentUpon>ThemeButton.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IThemeButton.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="sites\AddSites.aspx.vb" >
-      <DependentUpon>AddSites.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="sites\AddSites.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="sites\EditSites.aspx.vb" >
-      <DependentUpon>EditSites.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="sites\EditSites.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="sites\ShowSites.aspx.vb" >
-      <DependentUpon>ShowSites.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="sites\ShowSites.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="sites\ShowSitesTable.aspx.vb" >
-      <DependentUpon>ShowSitesTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="sites\ShowSitesTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="taxes\AddTaxes.aspx.vb" >
-      <DependentUpon>AddTaxes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="taxes\AddTaxes.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="taxes\EditTaxes.aspx.vb" >
-      <DependentUpon>EditTaxes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="taxes\EditTaxes.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="taxes\ShowTaxes.aspx.vb" >
-      <DependentUpon>ShowTaxes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="taxes\ShowTaxes.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="taxes\ShowTaxesTable.aspx.vb" >
-      <DependentUpon>ShowTaxesTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="taxes\ShowTaxesTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tax_groups\AddTax_groups.aspx.vb" >
-      <DependentUpon>AddTax_groups.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tax_groups\AddTax_groups.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tax_groups\EditTax_groups.aspx.vb" >
-      <DependentUpon>EditTax_groups.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tax_groups\EditTax_groups.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="tax_groups\ShowTax_groups.aspx.vb" >
       <DependentUpon>ShowTax_groups.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="tax_groups\ShowTax_groups.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tax_groups\ShowTax_groupsTable.aspx.vb" >
-      <DependentUpon>ShowTax_groupsTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tax_groups\ShowTax_groupsTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tax_types\AddTax_types.aspx.vb" >
-      <DependentUpon>AddTax_types.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tax_types\AddTax_types.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tax_types\EditTax_types.aspx.vb" >
-      <DependentUpon>EditTax_types.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tax_types\EditTax_types.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tax_types\ShowTax_types.aspx.vb" >
-      <DependentUpon>ShowTax_types.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tax_types\ShowTax_types.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tax_types\ShowTax_typesTable.aspx.vb" >
-      <DependentUpon>ShowTax_typesTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tax_types\ShowTax_typesTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="terms\AddTerms.aspx.vb" >
-      <DependentUpon>AddTerms.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="terms\AddTerms.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="terms\EditTerms.aspx.vb" >
-      <DependentUpon>EditTerms.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="terms\EditTerms.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="terms\ShowTerms.aspx.vb" >
-      <DependentUpon>ShowTerms.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="terms\ShowTerms.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="terms\ShowTermsTable.aspx.vb" >
-      <DependentUpon>ShowTermsTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="terms\ShowTermsTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="unitsofmeasure\AddUnitsofmeasure.aspx.vb" >
-      <DependentUpon>AddUnitsofmeasure.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="unitsofmeasure\AddUnitsofmeasure.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="unitsofmeasure\EditUnitsofmeasure.aspx.vb" >
-      <DependentUpon>EditUnitsofmeasure.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="unitsofmeasure\EditUnitsofmeasure.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="unitsofmeasure\EditUnitsofmeasureTable.aspx.vb" >
-      <DependentUpon>EditUnitsofmeasureTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="unitsofmeasure\EditUnitsofmeasureTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="unitsofmeasure\ShowUnitsofmeasure.aspx.vb" >
-      <DependentUpon>ShowUnitsofmeasure.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="unitsofmeasure\ShowUnitsofmeasure.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="unitsofmeasure\ShowUnitsofmeasureTable.aspx.vb" >
-      <DependentUpon>ShowUnitsofmeasureTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="unitsofmeasure\ShowUnitsofmeasureTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="users\AddUsers.aspx.vb" >
-      <DependentUpon>AddUsers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="users\AddUsers.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="users\EditUsers.aspx.vb" >
-      <DependentUpon>EditUsers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="users\EditUsers.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="users\EditUsersTable.aspx.vb" >
-      <DependentUpon>EditUsersTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="users\EditUsersTable.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="users\ShowUsers.aspx.vb" >
-      <DependentUpon>ShowUsers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="users\ShowUsers.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="users\ShowUsersTable.aspx.vb" >
-      <DependentUpon>ShowUsersTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="users\ShowUsersTable.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -1089,99 +1089,99 @@
     <Content Include="Troubleshooting\TestConfiguration.css" />
     <Content Include="Troubleshooting\TestConfiguration.mdb">
     </Content>
-    <Content Include="company\AddCompany.aspx"  />
+    <Content Include="company\AddCompany.aspx" />
+    <Content Include="company\ShowCompany.aspx" />
+    <Content Include="company\ShowCompanyTable.aspx" />
+    <Content Include="Header and Footer\EmailHeader.ascx" />
+    <Content Include="Header and Footer\Header.ascx" />
+    <Content Include="Header and Footer\PrintHeader.ascx" />
+    <Content Include="items\AddItems.aspx" />
+    <Content Include="items\EditItems.aspx" />
+    <Content Include="items\ShowItems.aspx" />
+    <Content Include="items\ShowItemsTable.aspx" />
+    <Content Include="item_groups\AddItem_groups.aspx" />
+    <Content Include="item_groups\EditItem_groups.aspx" />
+    <Content Include="item_groups\EditItem_groupsTable.aspx" />
+    <Content Include="item_groups\ShowItem_groups.aspx" />
+    <Content Include="item_groups\ShowItem_groupsTable.aspx" />
+    <Content Include="item_types\EditItem_typesTable.aspx" />
+    <Content Include="item_types\ShowItem_typesTable.aspx" />
+    <Content Include="party\AddParty.aspx" />
+    <Content Include="party\EditParty.aspx" />
+    <Content Include="party\ShowParty.aspx" />
+    <Content Include="party\ShowPartyTable.aspx" />
+    <Content Include="pro_inv_hdr\EditPro_inv_hdr.aspx" />
+    <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx" />
+    <Content Include="pro_inv_items\AddPro_inv_items.aspx" />
+    <Content Include="pro_inv_items\EditPro_inv_items.aspx" />
+    <Content Include="pro_inv_items\ShowPro_inv_items.aspx" />
+    <Content Include="pro_inv_items\ShowPro_inv_itemsTable.aspx" />
+    <Content Include="pro_inv_taxes\AddPro_inv_taxes.aspx" />
+    <Content Include="pro_inv_taxes\EditPro_inv_taxes.aspx" />
+    <Content Include="pro_inv_taxes\ShowPro_inv_taxes.aspx" />
+    <Content Include="pro_inv_taxes\ShowPro_inv_taxesTable.aspx" />
+    <Content Include="pro_inv_terms\AddPro_inv_terms.aspx" />
+    <Content Include="pro_inv_terms\EditPro_inv_terms.aspx" />
+    <Content Include="pro_inv_terms\ShowPro_inv_terms.aspx" />
+    <Content Include="pro_inv_terms\ShowPro_inv_termsTable.aspx" />
+    <Content Include="roles\AddRoles.aspx" />
+    <Content Include="roles\EditRoles.aspx" />
+    <Content Include="roles\EditRolesTable.aspx" />
+    <Content Include="roles\ShowRoles.aspx" />
+    <Content Include="roles\ShowRolesTable.aspx" />
+    <Content Include="saleperson\AddSaleperson.aspx" />
+    <Content Include="saleperson\EditSaleperson.aspx" />
+    <Content Include="saleperson\EditSalepersonTable.aspx" />
+    <Content Include="saleperson\ShowSaleperson.aspx" />
+    <Content Include="saleperson\ShowSalepersonTable.aspx" />
+    <Content Include="Shared\IncludeComponent.ascx" />
+    <Content Include="Shared\Menu_Item.ascx" />
+    <Content Include="Shared\Menu_ItemVertical.ascx" />
+    <Content Include="Shared\Menu_Item_Highlighted.ascx" />
+    <Content Include="Shared\Menu_Item_HighlightedVertical.ascx" />
+    <Content Include="Shared\Pagination.ascx" />
+    <Content Include="Shared\PaginationShort.ascx" />
+    <Content Include="Shared\ThemeButton.ascx" />
+    <Content Include="sites\AddSites.aspx" />
+    <Content Include="sites\EditSites.aspx" />
+    <Content Include="sites\ShowSites.aspx" />
+    <Content Include="sites\ShowSitesTable.aspx" />
+    <Content Include="taxes\AddTaxes.aspx" />
+    <Content Include="taxes\EditTaxes.aspx" />
+    <Content Include="taxes\ShowTaxes.aspx" />
+    <Content Include="taxes\ShowTaxesTable.aspx" />
+    <Content Include="tax_groups\AddTax_groups.aspx" />
+    <Content Include="tax_groups\EditTax_groups.aspx" />
+    <Content Include="tax_types\AddTax_types.aspx" />
+    <Content Include="tax_types\EditTax_types.aspx" />
+    <Content Include="tax_types\ShowTax_types.aspx" />
+    <Content Include="tax_types\ShowTax_typesTable.aspx" />
+    <Content Include="terms\AddTerms.aspx" />
+    <Content Include="terms\EditTerms.aspx" />
+    <Content Include="terms\ShowTerms.aspx" />
+    <Content Include="terms\ShowTermsTable.aspx" />
+    <Content Include="unitsofmeasure\AddUnitsofmeasure.aspx" />
+    <Content Include="unitsofmeasure\EditUnitsofmeasure.aspx" />
+    <Content Include="unitsofmeasure\EditUnitsofmeasureTable.aspx" />
+    <Content Include="unitsofmeasure\ShowUnitsofmeasure.aspx" />
+    <Content Include="unitsofmeasure\ShowUnitsofmeasureTable.aspx" />
+    <Content Include="users\AddUsers.aspx" />
+    <Content Include="users\EditUsers.aspx" />
+    <Content Include="users\EditUsersTable.aspx" />
+    <Content Include="users\ShowUsers.aspx" />
+    <Content Include="users\ShowUsersTable.aspx" />
+    <Content Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx" />
+    <Content Include="tax_groups\ShowTax_groupsTable.aspx" />
     <Content Include="company\EditCompany.aspx"  />
-    <Content Include="company\ShowCompany.aspx"  />
-    <Content Include="company\ShowCompanyTable.aspx"  />
-    <Content Include="Header and Footer\EmailHeader.ascx"  />
     <Content Include="Header and Footer\Footer.ascx"  />
-    <Content Include="Header and Footer\Header.ascx"  />
-    <Content Include="Header and Footer\PrintHeader.ascx"  />
-    <Content Include="items\AddItems.aspx"  />
-    <Content Include="items\EditItems.aspx"  />
-    <Content Include="items\ShowItems.aspx"  />
-    <Content Include="items\ShowItemsTable.aspx"  />
-    <Content Include="item_groups\AddItem_groups.aspx"  />
-    <Content Include="item_groups\EditItem_groups.aspx"  />
-    <Content Include="item_groups\EditItem_groupsTable.aspx"  />
-    <Content Include="item_groups\ShowItem_groups.aspx"  />
-    <Content Include="item_groups\ShowItem_groupsTable.aspx"  />
-    <Content Include="item_types\EditItem_typesTable.aspx"  />
-    <Content Include="item_types\ShowItem_typesTable.aspx"  />
     <Content Include="Master Pages\Blank.master"  />
     <Content Include="Master Pages\Email.master"  />
     <Content Include="Master Pages\HorizontalMenu.master"  />
     <Content Include="Master Pages\Print.master"  />
     <Content Include="Master Pages\VerticalMenu.master"  />
     <Content Include="Menu Panels\Menu.ascx"  />
-    <Content Include="party\AddParty.aspx"  />
-    <Content Include="party\EditParty.aspx"  />
-    <Content Include="party\ShowParty.aspx"  />
-    <Content Include="party\ShowPartyTable.aspx"  />
     <Content Include="pro_inv_hdr\AddPro_inv_hdr.aspx"  />
-    <Content Include="pro_inv_hdr\EditPro_inv_hdr.aspx"  />
-    <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx"  />
-    <Content Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx"  />
-    <Content Include="pro_inv_items\AddPro_inv_items.aspx"  />
-    <Content Include="pro_inv_items\EditPro_inv_items.aspx"  />
-    <Content Include="pro_inv_items\ShowPro_inv_items.aspx"  />
-    <Content Include="pro_inv_items\ShowPro_inv_itemsTable.aspx"  />
-    <Content Include="pro_inv_taxes\AddPro_inv_taxes.aspx"  />
-    <Content Include="pro_inv_taxes\EditPro_inv_taxes.aspx"  />
-    <Content Include="pro_inv_taxes\ShowPro_inv_taxes.aspx"  />
-    <Content Include="pro_inv_taxes\ShowPro_inv_taxesTable.aspx"  />
-    <Content Include="pro_inv_terms\AddPro_inv_terms.aspx"  />
-    <Content Include="pro_inv_terms\EditPro_inv_terms.aspx"  />
-    <Content Include="pro_inv_terms\ShowPro_inv_terms.aspx"  />
-    <Content Include="pro_inv_terms\ShowPro_inv_termsTable.aspx"  />
-    <Content Include="roles\AddRoles.aspx"  />
-    <Content Include="roles\EditRoles.aspx"  />
-    <Content Include="roles\EditRolesTable.aspx"  />
-    <Content Include="roles\ShowRoles.aspx"  />
-    <Content Include="roles\ShowRolesTable.aspx"  />
-    <Content Include="saleperson\AddSaleperson.aspx"  />
-    <Content Include="saleperson\EditSaleperson.aspx"  />
-    <Content Include="saleperson\EditSalepersonTable.aspx"  />
-    <Content Include="saleperson\ShowSaleperson.aspx"  />
-    <Content Include="saleperson\ShowSalepersonTable.aspx"  />
-    <Content Include="Shared\IncludeComponent.ascx"  />
-    <Content Include="Shared\Menu_Item.ascx"  />
-    <Content Include="Shared\Menu_ItemVertical.ascx"  />
-    <Content Include="Shared\Menu_Item_Highlighted.ascx"  />
-    <Content Include="Shared\Menu_Item_HighlightedVertical.ascx"  />
-    <Content Include="Shared\Pagination.ascx"  />
-    <Content Include="Shared\PaginationShort.ascx"  />
-    <Content Include="Shared\ThemeButton.ascx"  />
-    <Content Include="sites\AddSites.aspx"  />
-    <Content Include="sites\EditSites.aspx"  />
-    <Content Include="sites\ShowSites.aspx"  />
-    <Content Include="sites\ShowSitesTable.aspx"  />
-    <Content Include="taxes\AddTaxes.aspx"  />
-    <Content Include="taxes\EditTaxes.aspx"  />
-    <Content Include="taxes\ShowTaxes.aspx"  />
-    <Content Include="taxes\ShowTaxesTable.aspx"  />
-    <Content Include="tax_groups\AddTax_groups.aspx"  />
-    <Content Include="tax_groups\EditTax_groups.aspx"  />
     <Content Include="tax_groups\ShowTax_groups.aspx"  />
-    <Content Include="tax_groups\ShowTax_groupsTable.aspx"  />
-    <Content Include="tax_types\AddTax_types.aspx"  />
-    <Content Include="tax_types\EditTax_types.aspx"  />
-    <Content Include="tax_types\ShowTax_types.aspx"  />
-    <Content Include="tax_types\ShowTax_typesTable.aspx"  />
-    <Content Include="terms\AddTerms.aspx"  />
-    <Content Include="terms\EditTerms.aspx"  />
-    <Content Include="terms\ShowTerms.aspx"  />
-    <Content Include="terms\ShowTermsTable.aspx"  />
-    <Content Include="unitsofmeasure\AddUnitsofmeasure.aspx"  />
-    <Content Include="unitsofmeasure\EditUnitsofmeasure.aspx"  />
-    <Content Include="unitsofmeasure\EditUnitsofmeasureTable.aspx"  />
-    <Content Include="unitsofmeasure\ShowUnitsofmeasure.aspx"  />
-    <Content Include="unitsofmeasure\ShowUnitsofmeasureTable.aspx"  />
-    <Content Include="users\AddUsers.aspx"  />
-    <Content Include="users\EditUsers.aspx"  />
-    <Content Include="users\EditUsersTable.aspx"  />
-    <Content Include="users\ShowUsers.aspx"  />
-    <Content Include="users\ShowUsersTable.aspx"  />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Global.asax.resx">

@@ -1694,38 +1694,6 @@ Public Class BaseTax_groupsTableControl
       
            ' Setup the filter and search events.
         
-            AddHandler Me.id_taxes_1Filter.SelectedIndexChanged, AddressOf id_taxes_1Filter_SelectedIndexChanged
-            AddHandler Me.id_taxes_2Filter.SelectedIndexChanged, AddressOf id_taxes_2Filter_SelectedIndexChanged
-            If Not Me.Page.IsPostBack Then
-                Dim initialVal As String = ""
-                If  Me.InSession(Me.id_taxes_1Filter) 				
-                    initialVal = Me.GetFromSession(Me.id_taxes_1Filter)
-                
-                End If
-                If initialVal <> ""				
-                        
-                        Me.id_taxes_1Filter.Items.Add(New ListItem(initialVal, initialVal))
-                            
-                        Me.id_taxes_1Filter.SelectedValue = initialVal
-                            
-                    End If
-                
-            End If
-            If Not Me.Page.IsPostBack Then
-                Dim initialVal As String = ""
-                If  Me.InSession(Me.id_taxes_2Filter) 				
-                    initialVal = Me.GetFromSession(Me.id_taxes_2Filter)
-                
-                End If
-                If initialVal <> ""				
-                        
-                        Me.id_taxes_2Filter.Items.Add(New ListItem(initialVal, initialVal))
-                            
-                        Me.id_taxes_2Filter.SelectedValue = initialVal
-                            
-                    End If
-                
-            End If
             If Not Me.Page.IsPostBack Then
                 Dim initialVal As String = ""
                 If  Me.InSession(Me.Tax_groupsSearch) 				
@@ -1933,13 +1901,7 @@ Public Class BaseTax_groupsTableControl
 
             ' Call the Set methods for each controls on the panel
         
-            Setid_taxes_1Filter()
-            
-            Setid_taxes_1Label()
             Setid_taxes_1Label1()
-            Setid_taxes_2Filter()
-            
-            Setid_taxes_2Label()
             Setid_taxes_2Label1()
             Setid_taxes_3Label()
             Setid_taxes_4Label()
@@ -1985,9 +1947,7 @@ Public Class BaseTax_groupsTableControl
 
             ' Initialize other asp controls
             
-            Setid_taxes_1Label()
             Setid_taxes_1Label1()
-            Setid_taxes_2Label()
             Setid_taxes_2Label1()
             Setid_taxes_3Label()
             Setid_taxes_4Label()
@@ -2066,10 +2026,6 @@ Public Class BaseTax_groupsTableControl
 
         Public Overridable Sub ResetControl()
                     
-            Me.id_taxes_1Filter.ClearSelection()
-            
-            Me.id_taxes_2Filter.ClearSelection()
-            
             Me.Tax_groupsSearch.Text = ""
             
             Me.CurrentSortOrder.Reset()
@@ -2169,20 +2125,6 @@ Public Class BaseTax_groupsTableControl
             ' 3. User selected filter criteria.
 
               
-            If IsValueSelected(Me.id_taxes_1Filter) Then
-                
-                wc.iAND(Tax_groupsTable.id_taxes_1, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.id_taxes_1Filter, Me.GetFromSession(Me.id_taxes_1Filter)), False, False)
-            
-                
-            End If
-                       
-            If IsValueSelected(Me.id_taxes_2Filter) Then
-                
-                wc.iAND(Tax_groupsTable.id_taxes_2, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.id_taxes_2Filter, Me.GetFromSession(Me.id_taxes_2Filter)), False, False)
-            
-                
-            End If
-                       
             If IsValueSelected(Me.Tax_groupsSearch) Then
                 ' Strip "..." from begin and ending of the search text, otherwise the search will return 0 values as in database "..." is not stored.
                 If Me.Tax_groupsSearch.Text.StartsWith("...") Then
@@ -2243,20 +2185,6 @@ Public Class BaseTax_groupsTableControl
             
             ' Adds clauses if values are selected in Filter controls which are configured in the page.
           
-            Dim id_taxes_1FilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "id_taxes_1Filter_Ajax"), String)
-            If IsValueSelected(id_taxes_1FilterSelectedValue) Then
-              
-                 wc.iAND(Tax_groupsTable.id_taxes_1, BaseFilter.ComparisonOperator.EqualsTo, id_taxes_1FilterSelectedValue, false, False)
-             
-             End If
-                      
-            Dim id_taxes_2FilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "id_taxes_2Filter_Ajax"), String)
-            If IsValueSelected(id_taxes_2FilterSelectedValue) Then
-              
-                 wc.iAND(Tax_groupsTable.id_taxes_2, BaseFilter.ComparisonOperator.EqualsTo, id_taxes_2FilterSelectedValue, false, False)
-             
-             End If
-                      
             If IsValueSelected(searchText) and fromSearchControl = "Tax_groupsSearch" Then
                 Dim formatedSearchText as String = searchText
                 ' strip "..." from begin and ending of the search text, otherwise the search will return 0 values as in database "..." is not stored.
@@ -2729,17 +2657,7 @@ Public Class BaseTax_groupsTableControl
       
         ' Create Set, WhereClause, and Populate Methods
         
-        Public Overridable Sub Setid_taxes_1Label()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Setid_taxes_1Label1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setid_taxes_2Label()
             
                     
         End Sub
@@ -2794,177 +2712,9 @@ Public Class BaseTax_groupsTableControl
                     
         End Sub
                 
-        Public Overridable Sub Setid_taxes_1Filter()
-            
-            If (Me.InSession(Me.id_taxes_1Filter))
-                Me.Populateid_taxes_1Filter(GetSelectedValue(Me.id_taxes_1Filter, Me.GetFromSession(Me.id_taxes_1Filter)), 500)
-            Else
-                
-                Me.Populateid_taxes_1Filter(GetSelectedValue(Me.id_taxes_1Filter,  Nothing), 500)					
-                
-            End If
-                    
-        End Sub	
-            
-        Public Overridable Sub Setid_taxes_2Filter()
-            
-            If (Me.InSession(Me.id_taxes_2Filter))
-                Me.Populateid_taxes_2Filter(GetSelectedValue(Me.id_taxes_2Filter, Me.GetFromSession(Me.id_taxes_2Filter)), 500)
-            Else
-                
-                Me.Populateid_taxes_2Filter(GetSelectedValue(Me.id_taxes_2Filter,  Nothing), 500)					
-                
-            End If
-                    
-        End Sub	
-            
         Public Overridable Sub SetTax_groupsSearch()
             
         End Sub	
-            
-        ' Get the filters' data for id_taxes_1Filter
-        Protected Overridable Sub Populateid_taxes_1Filter(ByVal selectedValue As String, ByVal maxItems As Integer)
-                    
-                
-            Me.id_taxes_1Filter.Items.Clear()
-            
-            
-            'Setup the WHERE clause.
-            Dim wc As WhereClause = Me.CreateWhereClause_id_taxes_1Filter()
-            
-      
-      
-            Dim orderBy As OrderBy = New OrderBy(false, true)			
-        
-            orderBy.Add(TaxesTable.tax_name, OrderByItem.OrderDir.Asc)				
-            
-            ' Add the All item.
-            Me.id_taxes_1Filter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
-                            	
-
-            Dim noValueFormat As String = Page.GetResourceValue("Txt:Other", "ServelInvocing")
-            
-
-            Dim itemValues() As TaxesRecord = Nothing
-            If wc.RunQuery
-                Dim counter As Integer = 0
-                Dim pageNum As Integer = 0
-                Do
-                    itemValues = TaxesTable.GetRecords(wc, orderBy, pageNum, 500)
-                    For each itemValue As TaxesRecord In itemValues
-                        ' Create the item and add to the list.
-                        Dim cvalue As String = Nothing
-                        Dim fvalue As String = Nothing
-                        If itemValue.id0Specified Then
-                            cvalue = itemValue.id0.ToString()
-                                
-                            fvalue = itemValue.Format(TaxesTable.tax_name)
-                                    
-                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
-                            Dim newItem As New ListItem(fvalue, cvalue)
-                            If counter < maxItems AndAlso Not Me.id_taxes_1Filter.Items.Contains(newItem) Then Me.id_taxes_1Filter.Items.Add(newItem)
-                            counter += 1
-                        End If
-                    Next
-                    pageNum += 1
-                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
-            End If			
-            
-            
-
-                
-            ' Set the selected value.
-            SetSelectedValue(Me.id_taxes_1Filter, selectedValue)
-
-                
-        End Sub
-            
-        ' Get the filters' data for id_taxes_2Filter
-        Protected Overridable Sub Populateid_taxes_2Filter(ByVal selectedValue As String, ByVal maxItems As Integer)
-                    
-                
-            Me.id_taxes_2Filter.Items.Clear()
-            
-            
-            'Setup the WHERE clause.
-            Dim wc As WhereClause = Me.CreateWhereClause_id_taxes_2Filter()
-            
-      
-      
-            Dim orderBy As OrderBy = New OrderBy(false, true)			
-        
-            orderBy.Add(TaxesTable.tax_name, OrderByItem.OrderDir.Asc)				
-            
-            ' Add the All item.
-            Me.id_taxes_2Filter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
-                            	
-
-            Dim noValueFormat As String = Page.GetResourceValue("Txt:Other", "ServelInvocing")
-            
-
-            Dim itemValues() As TaxesRecord = Nothing
-            If wc.RunQuery
-                Dim counter As Integer = 0
-                Dim pageNum As Integer = 0
-                Do
-                    itemValues = TaxesTable.GetRecords(wc, orderBy, pageNum, 500)
-                    For each itemValue As TaxesRecord In itemValues
-                        ' Create the item and add to the list.
-                        Dim cvalue As String = Nothing
-                        Dim fvalue As String = Nothing
-                        If itemValue.id0Specified Then
-                            cvalue = itemValue.id0.ToString()
-                                
-                            fvalue = itemValue.Format(TaxesTable.tax_name)
-                                    
-                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
-                            Dim newItem As New ListItem(fvalue, cvalue)
-                            If counter < maxItems AndAlso Not Me.id_taxes_2Filter.Items.Contains(newItem) Then Me.id_taxes_2Filter.Items.Add(newItem)
-                            counter += 1
-                        End If
-                    Next
-                    pageNum += 1
-                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
-            End If			
-            
-            
-
-                
-            ' Set the selected value.
-            SetSelectedValue(Me.id_taxes_2Filter, selectedValue)
-
-                
-        End Sub
-            
-        Public Overridable Function CreateWhereClause_id_taxes_1Filter() As WhereClause
-        
-            ' Create a where clause for the filter id_taxes_1Filter.
-            ' This function is called by the Populate method to load the items 
-            ' in the id_taxes_1FilterDropDownList
-                   
-            Dim wc As WhereClause = new WhereClause()
-            ' Add additional where clauses to restrict the items shown in the control.
-            ' Examples:
-            ' wc.iAND(TaxesTable.tax_name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
-            ' wc.iAND(TaxesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
-            Return wc
-        
-        End Function			
-            
-        Public Overridable Function CreateWhereClause_id_taxes_2Filter() As WhereClause
-        
-            ' Create a where clause for the filter id_taxes_2Filter.
-            ' This function is called by the Populate method to load the items 
-            ' in the id_taxes_2FilterDropDownList
-                   
-            Dim wc As WhereClause = new WhereClause()
-            ' Add additional where clauses to restrict the items shown in the control.
-            ' Examples:
-            ' wc.iAND(TaxesTable.tax_name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
-            ' wc.iAND(TaxesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
-            Return wc
-        
-        End Function			
             
         Protected Overridable Sub Control_PreRender(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.PreRender
             ' PreRender event is raised just before page is being displayed.
@@ -2995,10 +2745,6 @@ Public Class BaseTax_groupsTableControl
 
             ' Save filter controls to values to session.
         
-            Me.SaveToSession(Me.id_taxes_1Filter, Me.id_taxes_1Filter.SelectedValue)
-                  
-            Me.SaveToSession(Me.id_taxes_2Filter, Me.id_taxes_2Filter.SelectedValue)
-                  
             Me.SaveToSession(Me.Tax_groupsSearch, Me.Tax_groupsSearch.Text)
                   
             
@@ -3016,10 +2762,6 @@ Public Class BaseTax_groupsTableControl
         Protected  Sub SaveControlsToSession_Ajax()
             ' Save filter controls to values to session.
           
-      Me.SaveToSession("id_taxes_1Filter_Ajax", Me.id_taxes_1Filter.SelectedValue)
-              
-      Me.SaveToSession("id_taxes_2Filter_Ajax", Me.id_taxes_2Filter.SelectedValue)
-              
       Me.SaveToSession("Tax_groupsSearch_Ajax", Me.Tax_groupsSearch.Text)
               
             HttpContext.Current.Session("AppRelativeVirtualPath") = Me.Page.AppRelativeVirtualPath
@@ -3031,8 +2773,6 @@ Public Class BaseTax_groupsTableControl
 
             ' Clear filter controls values from the session.
         
-            Me.RemoveFromSession(Me.id_taxes_1Filter)
-            Me.RemoveFromSession(Me.id_taxes_2Filter)
             Me.RemoveFromSession(Me.Tax_groupsSearch)
             
             ' Clear table properties from the session.
@@ -3840,8 +3580,6 @@ Public Class BaseTax_groupsTableControl
         
             Try
                 
-              Me.id_taxes_1Filter.ClearSelection()
-              Me.id_taxes_2Filter.ClearSelection()
               Me.Tax_groupsSearch.Text = ""
               Me.CurrentSortOrder.Reset()
               If Me.InSession(Me, "Order_By") Then
@@ -3979,26 +3717,6 @@ Public Class BaseTax_groupsTableControl
 
         ' Generate the event handling functions for filter and search events.
         
-        ' event handler for FieldFilter
-        Protected Overridable Sub id_taxes_1Filter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
-           ' Setting the DataChanged to True results in the page being refreshed with
-           ' the most recent data from the database.  This happens in PreRender event
-           ' based on the current sort, search and filter criteria.
-           Me.DataChanged = True
-           
-          	   
-        End Sub
-            
-        ' event handler for FieldFilter
-        Protected Overridable Sub id_taxes_2Filter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
-           ' Setting the DataChanged to True results in the page being refreshed with
-           ' the most recent data from the database.  This happens in PreRender event
-           ' based on the current sort, search and filter criteria.
-           Me.DataChanged = True
-           
-          	   
-        End Sub
-            
       
         ' Generate the event handling functions for others
         
@@ -4121,33 +3839,9 @@ Public Class BaseTax_groupsTableControl
        
 #Region "Helper Properties"
         
-        Public ReadOnly Property id_taxes_1Filter() As System.Web.UI.WebControls.DropDownList
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_taxes_1Filter"), System.Web.UI.WebControls.DropDownList)
-            End Get
-        End Property
-        
-        Public ReadOnly Property id_taxes_1Label() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_taxes_1Label"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property id_taxes_1Label1() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_taxes_1Label1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property id_taxes_2Filter() As System.Web.UI.WebControls.DropDownList
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_taxes_2Filter"), System.Web.UI.WebControls.DropDownList)
-            End Get
-        End Property
-        
-        Public ReadOnly Property id_taxes_2Label() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_taxes_2Label"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

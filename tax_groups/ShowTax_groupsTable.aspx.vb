@@ -154,9 +154,7 @@ Partial Public Class ShowTax_groupsTable
 
 #Region "Section 2: Do not modify this section."
 
-        Public WithEvents id_taxes_1Label As System.Web.UI.WebControls.Literal
         Public WithEvents id_taxes_1Label1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents id_taxes_2Label As System.Web.UI.WebControls.Literal
         Public WithEvents id_taxes_2Label1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_taxes_3Label As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_taxes_4Label As System.Web.UI.WebControls.LinkButton

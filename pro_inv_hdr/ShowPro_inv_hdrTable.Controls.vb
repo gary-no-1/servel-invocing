@@ -1581,7 +1581,6 @@ Public Class BasePro_inv_hdrTableControl
            ' Setup the filter and search events.
         
             AddHandler Me.id_partyFilter.SelectedIndexChanged, AddressOf id_partyFilter_SelectedIndexChanged
-            AddHandler Me.id_tax_groupFilter.SelectedIndexChanged, AddressOf id_tax_groupFilter_SelectedIndexChanged
             If Not Me.Page.IsPostBack Then
                 Dim initialVal As String = ""
                 If  Me.InSession(Me.id_partyFilter) 				
@@ -1593,21 +1592,6 @@ Public Class BasePro_inv_hdrTableControl
                         Me.id_partyFilter.Items.Add(New ListItem(initialVal, initialVal))
                             
                         Me.id_partyFilter.SelectedValue = initialVal
-                            
-                    End If
-                
-            End If
-            If Not Me.Page.IsPostBack Then
-                Dim initialVal As String = ""
-                If  Me.InSession(Me.id_tax_groupFilter) 				
-                    initialVal = Me.GetFromSession(Me.id_tax_groupFilter)
-                
-                End If
-                If initialVal <> ""				
-                        
-                        Me.id_tax_groupFilter.Items.Add(New ListItem(initialVal, initialVal))
-                            
-                        Me.id_tax_groupFilter.SelectedValue = initialVal
                             
                     End If
                 
@@ -1635,6 +1619,8 @@ Public Class BasePro_inv_hdrTableControl
             Else
                 Me.CurrentSortOrder = New OrderBy(True, True)
             
+                Me.CurrentSortOrder.Add(Pro_inv_hdrTable.pro_inv_no, OrderByItem.OrderDir.Desc)
+              
             End If
 
             ' Setup default pagination settings.
@@ -1829,9 +1815,6 @@ Public Class BasePro_inv_hdrTableControl
             
             Setid_partyLabel()
             Setid_partyLabel1()
-            Setid_tax_groupFilter()
-            
-            Setid_tax_groupLabel()
             Setid_tax_groupLabel1()
             Setpo_dtLabel()
             Setpo_noLabel()
@@ -1881,7 +1864,6 @@ Public Class BasePro_inv_hdrTableControl
             Setbill_nameLabel()
             Setid_partyLabel()
             Setid_partyLabel1()
-            Setid_tax_groupLabel()
             Setid_tax_groupLabel1()
             Setpo_dtLabel()
             Setpo_noLabel()
@@ -1948,8 +1930,6 @@ Public Class BasePro_inv_hdrTableControl
                     
             Me.id_partyFilter.ClearSelection()
             
-            Me.id_tax_groupFilter.ClearSelection()
-            
             Me.Pro_inv_hdrSearch.Text = ""
             
             Me.CurrentSortOrder.Reset()
@@ -1958,6 +1938,8 @@ Public Class BasePro_inv_hdrTableControl
             Else
                 Me.CurrentSortOrder = New OrderBy(true, true)
             
+                Me.CurrentSortOrder.Add(Pro_inv_hdrTable.pro_inv_no, OrderByItem.OrderDir.Desc)
+              
             End If
                 
             Me.PageIndex = 0
@@ -2056,13 +2038,6 @@ Public Class BasePro_inv_hdrTableControl
                 
             End If
                        
-            If IsValueSelected(Me.id_tax_groupFilter) Then
-                
-                wc.iAND(Pro_inv_hdrTable.id_tax_group, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.id_tax_groupFilter, Me.GetFromSession(Me.id_tax_groupFilter)), False, False)
-            
-                
-            End If
-                       
             If IsValueSelected(Me.Pro_inv_hdrSearch) Then
                 ' Strip "..." from begin and ending of the search text, otherwise the search will return 0 values as in database "..." is not stored.
                 If Me.Pro_inv_hdrSearch.Text.StartsWith("...") Then
@@ -2111,13 +2086,6 @@ Public Class BasePro_inv_hdrTableControl
             If IsValueSelected(id_partyFilterSelectedValue) Then
               
                  wc.iAND(Pro_inv_hdrTable.id_party, BaseFilter.ComparisonOperator.EqualsTo, id_partyFilterSelectedValue, false, False)
-             
-             End If
-                      
-            Dim id_tax_groupFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "id_tax_groupFilter_Ajax"), String)
-            If IsValueSelected(id_tax_groupFilterSelectedValue) Then
-              
-                 wc.iAND(Pro_inv_hdrTable.id_tax_group, BaseFilter.ComparisonOperator.EqualsTo, id_tax_groupFilterSelectedValue, false, False)
              
              End If
                       
@@ -2515,11 +2483,6 @@ Public Class BasePro_inv_hdrTableControl
                     
         End Sub
                 
-        Public Overridable Sub Setid_tax_groupLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Setid_tax_groupLabel1()
             
                     
@@ -2577,18 +2540,6 @@ Public Class BasePro_inv_hdrTableControl
             Else
                 
                 Me.Populateid_partyFilter(GetSelectedValue(Me.id_partyFilter,  Nothing), 500)					
-                
-            End If
-                    
-        End Sub	
-            
-        Public Overridable Sub Setid_tax_groupFilter()
-            
-            If (Me.InSession(Me.id_tax_groupFilter))
-                Me.Populateid_tax_groupFilter(GetSelectedValue(Me.id_tax_groupFilter, Me.GetFromSession(Me.id_tax_groupFilter)), 500)
-            Else
-                
-                Me.Populateid_tax_groupFilter(GetSelectedValue(Me.id_tax_groupFilter,  Nothing), 500)					
                 
             End If
                     
@@ -2655,63 +2606,6 @@ Public Class BasePro_inv_hdrTableControl
                 
         End Sub
             
-        ' Get the filters' data for id_tax_groupFilter
-        Protected Overridable Sub Populateid_tax_groupFilter(ByVal selectedValue As String, ByVal maxItems As Integer)
-                    
-                
-            Me.id_tax_groupFilter.Items.Clear()
-            
-            
-            'Setup the WHERE clause.
-            Dim wc As WhereClause = Me.CreateWhereClause_id_tax_groupFilter()
-            
-      
-      
-            Dim orderBy As OrderBy = New OrderBy(false, true)			
-        
-            orderBy.Add(Tax_groupsTable.tax_group_code, OrderByItem.OrderDir.Asc)				
-            
-            ' Add the All item.
-            Me.id_tax_groupFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
-                            	
-
-            Dim noValueFormat As String = Page.GetResourceValue("Txt:Other", "ServelInvocing")
-            
-
-            Dim itemValues() As Tax_groupsRecord = Nothing
-            If wc.RunQuery
-                Dim counter As Integer = 0
-                Dim pageNum As Integer = 0
-                Do
-                    itemValues = Tax_groupsTable.GetRecords(wc, orderBy, pageNum, 500)
-                    For each itemValue As Tax_groupsRecord In itemValues
-                        ' Create the item and add to the list.
-                        Dim cvalue As String = Nothing
-                        Dim fvalue As String = Nothing
-                        If itemValue.id0Specified Then
-                            cvalue = itemValue.id0.ToString()
-                                
-                            fvalue = itemValue.Format(Tax_groupsTable.tax_group_code)
-                                    
-                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
-                            Dim newItem As New ListItem(fvalue, cvalue)
-                            If counter < maxItems AndAlso Not Me.id_tax_groupFilter.Items.Contains(newItem) Then Me.id_tax_groupFilter.Items.Add(newItem)
-                            counter += 1
-                        End If
-                    Next
-                    pageNum += 1
-                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
-            End If			
-            
-            
-
-                
-            ' Set the selected value.
-            SetSelectedValue(Me.id_tax_groupFilter, selectedValue)
-
-                
-        End Sub
-            
         Public Overridable Function CreateWhereClause_id_partyFilter() As WhereClause
         
             ' Create a where clause for the filter id_partyFilter.
@@ -2723,21 +2617,6 @@ Public Class BasePro_inv_hdrTableControl
             ' Examples:
             ' wc.iAND(PartyTable.name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
             ' wc.iAND(PartyTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
-            Return wc
-        
-        End Function			
-            
-        Public Overridable Function CreateWhereClause_id_tax_groupFilter() As WhereClause
-        
-            ' Create a where clause for the filter id_tax_groupFilter.
-            ' This function is called by the Populate method to load the items 
-            ' in the id_tax_groupFilterDropDownList
-                   
-            Dim wc As WhereClause = new WhereClause()
-            ' Add additional where clauses to restrict the items shown in the control.
-            ' Examples:
-            ' wc.iAND(Tax_groupsTable.tax_group_code, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
-            ' wc.iAND(Tax_groupsTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
             Return wc
         
         End Function			
@@ -2773,8 +2652,6 @@ Public Class BasePro_inv_hdrTableControl
         
             Me.SaveToSession(Me.id_partyFilter, Me.id_partyFilter.SelectedValue)
                   
-            Me.SaveToSession(Me.id_tax_groupFilter, Me.id_tax_groupFilter.SelectedValue)
-                  
             Me.SaveToSession(Me.Pro_inv_hdrSearch, Me.Pro_inv_hdrSearch.Text)
                   
             
@@ -2794,8 +2671,6 @@ Public Class BasePro_inv_hdrTableControl
           
       Me.SaveToSession("id_partyFilter_Ajax", Me.id_partyFilter.SelectedValue)
               
-      Me.SaveToSession("id_tax_groupFilter_Ajax", Me.id_tax_groupFilter.SelectedValue)
-              
       Me.SaveToSession("Pro_inv_hdrSearch_Ajax", Me.Pro_inv_hdrSearch.Text)
               
             HttpContext.Current.Session("AppRelativeVirtualPath") = Me.Page.AppRelativeVirtualPath
@@ -2808,7 +2683,6 @@ Public Class BasePro_inv_hdrTableControl
             ' Clear filter controls values from the session.
         
             Me.RemoveFromSession(Me.id_partyFilter)
-            Me.RemoveFromSession(Me.id_tax_groupFilter)
             Me.RemoveFromSession(Me.Pro_inv_hdrSearch)
             
             ' Clear table properties from the session.
@@ -3669,7 +3543,6 @@ Public Class BasePro_inv_hdrTableControl
             Try
                 
               Me.id_partyFilter.ClearSelection()
-              Me.id_tax_groupFilter.ClearSelection()
               Me.Pro_inv_hdrSearch.Text = ""
               Me.CurrentSortOrder.Reset()
               If Me.InSession(Me, "Order_By") Then
@@ -3677,6 +3550,8 @@ Public Class BasePro_inv_hdrTableControl
               Else
                   Me.CurrentSortOrder = New OrderBy(True, True)
               
+                Me.CurrentSortOrder.Add(Pro_inv_hdrTable.pro_inv_no, OrderByItem.OrderDir.Desc)
+                
               End If
               
 
@@ -3813,16 +3688,6 @@ Public Class BasePro_inv_hdrTableControl
         
         ' event handler for FieldFilter
         Protected Overridable Sub id_partyFilter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
-           ' Setting the DataChanged to True results in the page being refreshed with
-           ' the most recent data from the database.  This happens in PreRender event
-           ' based on the current sort, search and filter criteria.
-           Me.DataChanged = True
-           
-          	   
-        End Sub
-            
-        ' event handler for FieldFilter
-        Protected Overridable Sub id_tax_groupFilter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
            ' Setting the DataChanged to True results in the page being refreshed with
            ' the most recent data from the database.  This happens in PreRender event
            ' based on the current sort, search and filter criteria.
@@ -3980,18 +3845,6 @@ Public Class BasePro_inv_hdrTableControl
         Public ReadOnly Property id_partyLabel1() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_partyLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property id_tax_groupFilter() As System.Web.UI.WebControls.DropDownList
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_groupFilter"), System.Web.UI.WebControls.DropDownList)
-            End Get
-        End Property
-        
-        Public ReadOnly Property id_tax_groupLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_groupLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

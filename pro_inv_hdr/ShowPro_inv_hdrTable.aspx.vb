@@ -158,7 +158,6 @@ Partial Public Class ShowPro_inv_hdrTable
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_partyLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents id_tax_groupLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_tax_groupLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents po_dtLabel As System.Web.UI.WebControls.LinkButton

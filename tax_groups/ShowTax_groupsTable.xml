@@ -50,69 +50,6 @@
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>id_taxes_1Filter</Name>
-      <Type>FieldFilter</Type>
-      <FieldValueStyle>DropDownList</FieldValueStyle>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>AutoPostBack</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Tax_groupsTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CssClass</Name>
-          <Value>Filter_Input</Value>
-        </Attribute>
-        <Attribute>
-          <Name>EnterKeyCaptureToButton</Name>
-          <Value>Tax_groupsFilterButton</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Field</Name>
-          <Value>id_taxes_1</Value>
-        </Attribute>
-        <Attribute>
-          <Name>FilterOperator</Name>
-          <Value>=</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>tax_groups</Value>
-        </Attribute>
-        <Attribute>
-          <Name>MaxGeneratedItems</Name>
-          <Value>500</Value>
-        </Attribute>
-        <Attribute>
-          <Name>onkeypress</Name>
-          <Value>dropDownListTypeAhead(this,false)</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Tax_groupsTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>id_taxes_1Label</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>id_taxes_1</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>tax_groups</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%tax_groups%id_taxes_1</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Tax_groupsTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>id_taxes_1Label1</Name>
       <Type>FieldSort</Type>
       <PassthroughAttributes>
@@ -169,69 +106,6 @@
       </PassthroughAttributes>
       <InsideControl>Tax_groupsTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>id_taxes_2Filter</Name>
-      <Type>FieldFilter</Type>
-      <FieldValueStyle>DropDownList</FieldValueStyle>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>AutoPostBack</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Tax_groupsTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CssClass</Name>
-          <Value>Filter_Input</Value>
-        </Attribute>
-        <Attribute>
-          <Name>EnterKeyCaptureToButton</Name>
-          <Value>Tax_groupsFilterButton</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Field</Name>
-          <Value>id_taxes_2</Value>
-        </Attribute>
-        <Attribute>
-          <Name>FilterOperator</Name>
-          <Value>=</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>tax_groups</Value>
-        </Attribute>
-        <Attribute>
-          <Name>MaxGeneratedItems</Name>
-          <Value>500</Value>
-        </Attribute>
-        <Attribute>
-          <Name>onkeypress</Name>
-          <Value>dropDownListTypeAhead(this,false)</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Tax_groupsTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>id_taxes_2Label</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>id_taxes_2</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>tax_groups</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%tax_groups%id_taxes_2</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Tax_groupsTableControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
       <Name>id_taxes_2Label1</Name>
@@ -1700,7 +1574,9 @@
         &lt;Value&gt;
                         &amp;lt;GEN:TABLE NAME="Tax_groupsTableControl"&amp;gt;&amp;lt;/GEN:TABLE&amp;gt;
             &lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Epilog&gt;
       &lt;Value&gt;
@@ -1726,6 +1602,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Tax_groupsTableControl" Type="TablePanel" PanelControlName="Tax_groupsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Tax_groupsPanelHeader"/&amp;gt;&lt;/Value&gt;
@@ -1736,12 +1613,16 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;asp:panel id="Tax_groupsTableControlCollapsibleRegion" runat="server"&amp;gt;&amp;lt;GEN:PANEL NAME="Tax_groupsPanel"/&amp;gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -1762,6 +1643,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Tax_groupsPanelHeader" Type="PanelHeader" PanelControlName="Tax_groupsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/space.gif" alt=""/&amp;gt;&lt;/Value&gt;
@@ -1804,7 +1686,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -1825,6 +1709,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Tax_groupsTableControlTitleRegion" PanelControlName="Tax_groupsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:HTML NAME="Tax_groupsTitle"/&amp;gt;&lt;/Value&gt;
@@ -1839,7 +1724,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -1856,10 +1743,13 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Tax_groupsPanel" PanelControlName="Tax_groupsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Tax_groupsFilters"/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -1871,6 +1761,7 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -1882,7 +1773,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -1907,6 +1800,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Tax_groupsFilters" Type="SearchAndFilter" PanelControlName="Tax_groupsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:TEXT NAME="Tax_groupsSearchLabel"/&amp;gt;&lt;/Value&gt;
@@ -1919,6 +1813,7 @@
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:SEARCHFILTER NAME="Tax_groupsSearch"/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:BUTTON NAME="Tax_groupsSearchButton"/&amp;gt;&lt;/Value&gt;
@@ -1929,47 +1824,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_taxes_2Label"/&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fila&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDFILTER NAME="id_taxes_2Filter"/&amp;gt;&lt;/Value&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;filbc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;rowspan&lt;/Name&gt;
-            &lt;AttributeValue&gt;2&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-    &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_taxes_1Label"/&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fila&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDFILTER NAME="id_taxes_1Filter"/&amp;gt;&lt;/Value&gt;
-      &lt;/Cell&gt;
-    &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -1986,9 +1843,11 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Tax_groupsButtons" Type="PanelButton" PanelControlName="Tax_groupsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/paginationRowEdgeL.gif" alt=""/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/ButtonBarEdgeL.gif" alt="" /&amp;gt;&lt;/Value&gt;
@@ -2136,6 +1995,7 @@
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/paginationRowEdgeR.gif" alt=""/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;amp;nbsp;&lt;/Value&gt;
@@ -2146,7 +2006,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -2163,6 +2025,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Tax_groupsFields" Type="TableGridRegular" PanelControlName="Tax_groupsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row Type="Header"&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/space.gif" height="1" width="1" alt=""/&amp;gt;&lt;/Value&gt;
@@ -2512,7 +2375,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;

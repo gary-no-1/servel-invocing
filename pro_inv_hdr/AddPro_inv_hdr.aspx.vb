@@ -175,10 +175,8 @@ Partial Public Class AddPro_inv_hdr
         Public WithEvents CancelButton As ThemeButton
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_party As System.Web.UI.WebControls.DropDownList
-        Public WithEvents id_partyAddRecordLink As System.Web.UI.WebControls.ImageButton
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_tax_group As System.Web.UI.WebControls.DropDownList
-        Public WithEvents id_tax_groupAddRecordLink As System.Web.UI.WebControls.ImageButton
         Public WithEvents id_tax_groupLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_taxesLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents item_codeLabel1 As System.Web.UI.WebControls.LinkButton
