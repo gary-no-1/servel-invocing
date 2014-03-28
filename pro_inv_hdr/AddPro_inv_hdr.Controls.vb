@@ -88,6 +88,40 @@ Public Class Pro_inv_taxesTableControl
     ' The Pro_inv_taxesTableControlRow class offers another place where you can customize
     ' the DataBind, GetUIData, SaveData and Validate methods specific to each row displayed on the table.
 
+
+#Region "Code Customization"
+
+''' <summary>
+''' This method will add three records on the page.
+''' </summary>
+Public Overrides Sub LoadData()
+
+    ' Call MyBase.LoadData()
+    MyBase.LoadData()
+
+    If Not Me.Page.IsPostBack() Then
+        Dim list As ArrayList
+        If (IsNothing(DataSource)) Then
+            list = New ArrayList()
+        Else
+            list = New ArrayList(Me.DataSource)
+        End If             
+        Dim i As Integer
+        
+        'This will insert rows at the end of the table control
+        For i = 0 To 2
+            list.Add(New Pro_inv_taxesRecord)
+        Next i
+        
+        'Add the code to insert rows at top of the table control
+        ' For i = 0 To 2
+            ' list.Insert(i, New Pro_inv_taxesRecord)
+        ' Next i
+        Me.DataSource = DirectCast(list.ToArray(GetType(Pro_inv_taxesRecord)), Pro_inv_taxesRecord())
+    End If
+End Sub
+    
+#End Region
 End Class
 
   
@@ -115,6 +149,124 @@ Public Class Pro_inv_termsTableControl
     ' The Pro_inv_termsTableControlRow class offers another place where you can customize
     ' the DataBind, GetUIData, SaveData and Validate methods specific to each row displayed on the table.
 
+
+#Region "Code Customization"
+
+''' <summary>
+''' This method will add three records on the page.
+''' </summary>
+		Public Overrides Sub LoadData()
+
+    ' Call MyBase.LoadData()
+    MyBase.LoadData()
+
+    If Not Me.Page.IsPostBack() Then
+		Dim srchTermsStr As String
+		srchTermsStr = "id <> '0'"
+		Dim TermsRec As TermsRecord
+		Dim TermsManyRec As TermsRecord()
+		TermsManyRec = TermsTable.GetRecords(srchTermsStr)
+		Dim j as Integer
+		j = TermsManyRec.count()
+		
+        Dim list As ArrayList
+        If (IsNothing(DataSource)) Then
+            list = New ArrayList()
+        Else
+            list = New ArrayList(Me.DataSource)
+        End If             
+        Dim i As Integer
+		
+        'This will insert rows at the end of the table control
+        For i = 0 To j - 1
+            list.Add(New Pro_inv_termsRecord)
+        Next i
+        
+        'Add the code to insert rows at top of the table control
+        ' For i = 0 To 2
+            ' list.Insert(i, New Pro_inv_termsRecord)
+        ' Next i
+        Me.DataSource = DirectCast(list.ToArray(GetType(Pro_inv_termsRecord)), Pro_inv_termsRecord())
+		
+        'Dim recControls As pro_inv_termsTableControlRow() = Me.GetRecordControls()
+        'Dim recControls As pro_inv_termsTableRow() = Me.GetRecord()
+		'For Each rec As pro_inv_termsTableControlRow In recControls
+  		'	rec.narration.text = "this is a test"
+		'Next
+
+    End If
+End Sub
+    
+#End Region
+
+		
+		Public Overrides Sub DataBind()
+            ' The DataBind method binds the user interface controls to the values
+            ' from the database record for each row in the table.  To do this, it calls the
+            ' DataBind for each of the rows.
+            ' DataBind also populates any filters above the table, and sets the pagination
+            ' control to the correct number of records and the current page number.
+            
+            MyBase.DataBind()
+
+            ' Make sure that the DataSource is initialized.
+            If Me.DataSource Is Nothing Then
+                Return
+            End If
+			'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "1")
+           
+            ' Setup the pagination controls.
+            BindPaginationControls()
+
+            ' Call the Set methods for each controls on the panel
+        
+            SetnarrationLabel1()
+            Setsort_orderLabel1()
+      
+			Dim TermsRec As TermsRecord
+			Dim TermsManyRec As TermsRecord()
+			TermsManyRec = TermsTable.GetRecords("id <> '0'")
+			'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "2")
+
+
+            ' Bind the repeater with the list of records to expand the UI.
+            Dim rep As System.Web.UI.WebControls.Repeater = CType(Me.FindControl("Pro_inv_termsTableControlRepeater"), System.Web.UI.WebControls.Repeater)
+            If rep Is Nothing Then Return
+            rep.DataSource = DataSource()
+            rep.DataBind()
+
+            Dim index As Integer = 0
+			Dim termctr As Integer = 0
+            For Each repItem As System.Web.UI.WebControls.RepeaterItem In rep.Items
+                ' Loop through all rows in the table, set its DataSource and call DataBind().
+                Dim recControl As Pro_inv_termsTableControlRow = DirectCast(repItem.FindControl("Pro_inv_termsTableControlRow"), Pro_inv_termsTableControlRow) 
+                recControl.DataSource = Me.DataSource(index)
+                If Me.UIData.Count > index Then
+                    recControl.PreviousUIData = Me.UIData(index)
+                End If				
+                recControl.DataBind()
+                recControl.Visible = Not Me.InDeletedRecordIds(recControl)
+				TermsRec = TermsManyRec(termctr)
+				recControl.narration.text = TermsRec.narration
+				recControl.sort_order.text = TermsRec.sort_order.tostring()
+                index += 1
+				termctr +=1
+            Next
+
+        
+            ' setting the state of expand or collapse alternative rows
+      
+    
+            ' Load data for each record and table UI control.
+            ' Ordering is important because child controls get 
+            ' their parent ids from their parent UI controls.
+                
+
+            ' Initialize other asp controls
+            
+            SetnarrationLabel1()
+            Setsort_orderLabel1()
+      End Sub
 End Class
 
   
@@ -206,33 +358,52 @@ Public Class Pro_inv_hdrRecordControl
 				me.bill_address.text = ProInvPartyRec.address
 				me.ship_name.text = ProInvPartyRec.name
 				me.ship_address.text = ProInvPartyRec.address
-				
-			Try
-				DbUtils.StartTransaction()
-				Dim srchTermsStr As String
-				srchHdrStr = "id <> '0'"
-				Dim TermsRec As TermsRecord
-				Dim TermsManyRec As TermsRecord()
-				TermsManyRec = TermsTable.GetRecords(srchTermsStr)
-				For Each TermsRec In TermsManyRec
-					Dim pro_inv_terms_rec As New pro_inv_termsRecord
-					'quote_terms_rec.quote_hdr_id = convert.toint32(QuoteId)
-					pro_inv_terms_rec.narration = TermsRec.narration
-					pro_inv_terms_rec.sort_order = TermsRec.sort_order
-					pro_inv_terms_rec.save()
-				Next
-				DbUtils.CommitTransaction()
+
+		'Dim list As ArrayList
+        'list = New ArrayList()
+		
+        'If (IsNothing(DataSource)) Then
+        '    list = New ArrayList()
+        'Else
+        '    list = New ArrayList(Me.DataSource)
+        'End If             
+        'Dim i As Integer
+        
+        'This will insert rows at the end of the table control
+        'For i = 0 To 2
+        '    list.Add(New Pro_inv_taxesRecord)
+        'Next i
+
+		'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Quote has been created")
+
+	'me.Pro_inv_taxesTableControl.DataSource = DirectCast(list.ToArray(GetType(Pro_inv_taxesRecord)), Pro_inv_taxesRecord())
+
+			'Try
+			'	DbUtils.StartTransaction()
+			'	Dim srchTermsStr As String
+			'	srchHdrStr = "id <> '0'"
+			'	Dim TermsRec As TermsRecord
+			'	Dim TermsManyRec As TermsRecord()
+			'	TermsManyRec = TermsTable.GetRecords(srchTermsStr)
+			'	For Each TermsRec In TermsManyRec
+			'		Dim pro_inv_terms_rec As New pro_inv_termsRecord
+			'		'quote_terms_rec.quote_hdr_id = convert.toint32(QuoteId)
+			'		pro_inv_terms_rec.narration = TermsRec.narration
+			'		pro_inv_terms_rec.sort_order = TermsRec.sort_order
+			'		pro_inv_terms_rec.save()
+			'	Next
+			'	DbUtils.CommitTransaction()
 
 				'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Quote has been created")
 				'Me.GenerateQuote.Button.Enabled = False
 
-			Catch ex As Exception
-				DbUtils.RollBackTransaction()
-				'Report the error message to the user
-				Utils.MiscUtils.RegisterJScriptAlert(Me, "UNIQUE_SCRIPTKEY", ex.Message)
-			Finally
-				DbUtils.EndTransaction()
-			End Try
+			'Catch ex As Exception
+			'	DbUtils.RollBackTransaction()
+			'	'Report the error message to the user
+			'	Utils.MiscUtils.RegisterJScriptAlert(Me, "UNIQUE_SCRIPTKEY", ex.Message)
+			'Finally
+			'	DbUtils.EndTransaction()
+			'End Try
 			
     	    	Return    
     		End If
