@@ -94,32 +94,6 @@ Public Class Pro_inv_taxesTableControl
 ''' <summary>
 ''' This method will add three records on the page.
 ''' </summary>
-Public Overrides Sub LoadData()
-
-    ' Call MyBase.LoadData()
-    MyBase.LoadData()
-
-    If Not Me.Page.IsPostBack() Then
-        Dim list As ArrayList
-        If (IsNothing(DataSource)) Then
-            list = New ArrayList()
-        Else
-            list = New ArrayList(Me.DataSource)
-        End If             
-        Dim i As Integer
-        
-        'This will insert rows at the end of the table control
-        For i = 0 To 2
-            list.Add(New Pro_inv_taxesRecord)
-        Next i
-        
-        'Add the code to insert rows at top of the table control
-        ' For i = 0 To 2
-            ' list.Insert(i, New Pro_inv_taxesRecord)
-        ' Next i
-        Me.DataSource = DirectCast(list.ToArray(GetType(Pro_inv_taxesRecord)), Pro_inv_taxesRecord())
-    End If
-End Sub
     
 #End Region
 End Class
@@ -163,7 +137,7 @@ Public Class Pro_inv_termsTableControl
     If Not Me.Page.IsPostBack() Then
 		Dim srchTermsStr As String
 		srchTermsStr = "id <> '0'"
-		Dim TermsRec As TermsRecord
+		'Dim TermsRec As TermsRecord
 		Dim TermsManyRec As TermsRecord()
 		TermsManyRec = TermsTable.GetRecords(srchTermsStr)
 		Dim j as Integer
@@ -358,56 +332,92 @@ Public Class Pro_inv_hdrRecordControl
 				me.bill_address.text = ProInvPartyRec.address
 				me.ship_name.text = ProInvPartyRec.name
 				me.ship_address.text = ProInvPartyRec.address
+    	    	Return    
+    		End If
+               
+        End Sub
 
-		'Dim list As ArrayList
-        'list = New ArrayList()
+		Protected Overrides Sub id_tax_group_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.id_tax_group.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_tax_group)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_tax_group, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_tax_group, selectedValue)Then
+
+                ' construct a whereclause to query a record with tax_groups.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(Tax_groupsTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As Tax_groupsRecord = Tax_groupsTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Pro_inv_hdrTable.id_tax_group.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_tax_group.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+            End If
 		
+			Dim selectedText As String = id_tax_group.SelectedItem.Text
+	    	If not (BaseClasses.Utils.StringUtils.InvariantUCase(selectedText).Equals(BaseClasses.Utils.StringUtils.InvariantUCase(Page.GetResourceValue("Txt:PleaseSelect", "ServelInvocing"))))
+    	    	' if "Please Select" string is selected for first dropdown list,
+	        	' then do not continue populating the second dropdown list.
+				Dim thisTax_group_id As String
+				thisTax_group_id = me.id_tax_group.text
+				Dim srchStr As String
+				srchStr = "id_tax_group = '" + thisTax_group_Id + "'"
+
+				'Dim TermsRec As TermsRecord
+				Dim TaxesManyRec As Tax_group_dtlsRecord()
+				TaxesManyRec = Tax_group_dtlsTable.GetRecords(srchStr)
+				Dim j as Integer
+				j = TaxesManyRec.count()
+				
+		        Dim list As ArrayList
+        		list = New ArrayList()
+		        Dim i As Integer
+		        For i = 0 To j - 1
+		            list.Add(New Pro_inv_taxesRecord)
+        		Next i
+				Dim pro_inv_taxesObj As pro_inv_taxesTableControl = DirectCast(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_taxesTableControl"), Pro_inv_taxesTableControl)
+        		pro_inv_taxesObj.DataSource = DirectCast(list.ToArray(GetType(Pro_inv_taxesRecord)), Pro_inv_taxesRecord())
+				'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "8")
+				pro_inv_taxesObj.databind()
+				
+            End If
+
+    'If Not Me.Page.IsPostBack() Then
         'If (IsNothing(DataSource)) Then
         '    list = New ArrayList()
         'Else
         '    list = New ArrayList(Me.DataSource)
         'End If             
-        'Dim i As Integer
-        
-        'This will insert rows at the end of the table control
-        'For i = 0 To 2
-        '    list.Add(New Pro_inv_taxesRecord)
-        'Next i
-
-		'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Quote has been created")
-
-	'me.Pro_inv_taxesTableControl.DataSource = DirectCast(list.ToArray(GetType(Pro_inv_taxesRecord)), Pro_inv_taxesRecord())
-
-			'Try
-			'	DbUtils.StartTransaction()
-			'	Dim srchTermsStr As String
-			'	srchHdrStr = "id <> '0'"
-			'	Dim TermsRec As TermsRecord
-			'	Dim TermsManyRec As TermsRecord()
-			'	TermsManyRec = TermsTable.GetRecords(srchTermsStr)
-			'	For Each TermsRec In TermsManyRec
-			'		Dim pro_inv_terms_rec As New pro_inv_termsRecord
-			'		'quote_terms_rec.quote_hdr_id = convert.toint32(QuoteId)
-			'		pro_inv_terms_rec.narration = TermsRec.narration
-			'		pro_inv_terms_rec.sort_order = TermsRec.sort_order
-			'		pro_inv_terms_rec.save()
-			'	Next
-			'	DbUtils.CommitTransaction()
-
-				'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Quote has been created")
-				'Me.GenerateQuote.Button.Enabled = False
-
-			'Catch ex As Exception
-			'	DbUtils.RollBackTransaction()
-			'	'Report the error message to the user
-			'	Utils.MiscUtils.RegisterJScriptAlert(Me, "UNIQUE_SCRIPTKEY", ex.Message)
-			'Finally
-			'	DbUtils.EndTransaction()
-			'End Try
-			
-    	    	Return    
-    		End If
-               
+    'End If
+                
+                
         End Sub
 End Class
 

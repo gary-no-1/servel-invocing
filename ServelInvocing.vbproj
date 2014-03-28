@@ -315,6 +315,13 @@
     <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx.vb">
+      <DependentUpon>ShowPro_inv_hdrTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="pro_inv_items\AddPro_inv_items.aspx.vb">
       <DependentUpon>AddPro_inv_items.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -595,6 +602,13 @@
     <Compile Include="tax_groups\EditTax_groups.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="tax_groups\ShowTax_groupsTable.aspx.vb">
+      <DependentUpon>ShowTax_groupsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tax_groups\ShowTax_groupsTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tax_types\AddTax_types.aspx.vb">
       <DependentUpon>AddTax_types.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -719,20 +733,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="users\ShowUsersTable.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx.vb">
-      <DependentUpon>ShowPro_inv_hdrTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tax_groups\ShowTax_groupsTable.aspx.vb">
-      <DependentUpon>ShowTax_groupsTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tax_groups\ShowTax_groupsTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="company\EditCompany.aspx.vb" >
@@ -1112,6 +1112,7 @@
     <Content Include="party\ShowPartyTable.aspx" />
     <Content Include="pro_inv_hdr\EditPro_inv_hdr.aspx" />
     <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx" />
+    <Content Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx" />
     <Content Include="pro_inv_items\AddPro_inv_items.aspx" />
     <Content Include="pro_inv_items\EditPro_inv_items.aspx" />
     <Content Include="pro_inv_items\ShowPro_inv_items.aspx" />
@@ -1152,6 +1153,7 @@
     <Content Include="taxes\ShowTaxesTable.aspx" />
     <Content Include="tax_groups\AddTax_groups.aspx" />
     <Content Include="tax_groups\EditTax_groups.aspx" />
+    <Content Include="tax_groups\ShowTax_groupsTable.aspx" />
     <Content Include="tax_types\AddTax_types.aspx" />
     <Content Include="tax_types\EditTax_types.aspx" />
     <Content Include="tax_types\ShowTax_types.aspx" />
@@ -1170,8 +1172,6 @@
     <Content Include="users\EditUsersTable.aspx" />
     <Content Include="users\ShowUsers.aspx" />
     <Content Include="users\ShowUsersTable.aspx" />
-    <Content Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx" />
-    <Content Include="tax_groups\ShowTax_groupsTable.aspx" />
     <Content Include="company\EditCompany.aspx"  />
     <Content Include="Header and Footer\Footer.ascx"  />
     <Content Include="Master Pages\Blank.master"  />
