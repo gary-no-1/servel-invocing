@@ -2127,7 +2127,7 @@ Public Class BasePro_inv_taxesTableControl
       
             Dim orderBy As OrderBy = New OrderBy(false, true)			
         
-            orderBy.Add(TaxesTable.tax_name, OrderByItem.OrderDir.Asc)				
+            orderBy.Add(TaxesTable.tax_code, OrderByItem.OrderDir.Asc)				
             
             ' Add the All item.
             Me.id_taxesFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
@@ -2149,7 +2149,7 @@ Public Class BasePro_inv_taxesTableControl
                         If itemValue.id0Specified Then
                             cvalue = itemValue.id0.ToString()
                                 
-                            fvalue = itemValue.Format(TaxesTable.tax_name)
+                            fvalue = itemValue.Format(TaxesTable.tax_code)
                                     
                             If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
                             Dim newItem As New ListItem(fvalue, cvalue)
@@ -2194,7 +2194,7 @@ Public Class BasePro_inv_taxesTableControl
             Dim wc As WhereClause = new WhereClause()
             ' Add additional where clauses to restrict the items shown in the control.
             ' Examples:
-            ' wc.iAND(TaxesTable.tax_name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(TaxesTable.tax_code, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
             ' wc.iAND(TaxesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
             Return wc
         
@@ -2854,7 +2854,7 @@ Public Class BasePro_inv_taxesTableControl
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
                  report.AddColumn(Pro_inv_taxesTable.id_pro_inv_hdr.Name, ReportEnum.Align.Left, "${id_pro_inv_hdr}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(Pro_inv_taxesTable.id_taxes.Name, ReportEnum.Align.Left, "${id_taxes}", ReportEnum.Align.Left, 24)
+                 report.AddColumn(Pro_inv_taxesTable.id_taxes.Name, ReportEnum.Align.Left, "${id_taxes}", ReportEnum.Align.Left, 15)
                  report.AddColumn(Pro_inv_taxesTable.tax_code.Name, ReportEnum.Align.Left, "${tax_code}", ReportEnum.Align.Left, 15)
                  report.AddColumn(Pro_inv_taxesTable.tax_name.Name, ReportEnum.Align.Left, "${tax_name}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_taxesTable.tax_print.Name, ReportEnum.Align.Left, "${tax_print}", ReportEnum.Align.Left, 30)
@@ -2992,7 +2992,7 @@ Public Class BasePro_inv_taxesTableControl
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
                  report.AddColumn(Pro_inv_taxesTable.id_pro_inv_hdr.Name, ReportEnum.Align.Left, "${id_pro_inv_hdr}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(Pro_inv_taxesTable.id_taxes.Name, ReportEnum.Align.Left, "${id_taxes}", ReportEnum.Align.Left, 24)
+                 report.AddColumn(Pro_inv_taxesTable.id_taxes.Name, ReportEnum.Align.Left, "${id_taxes}", ReportEnum.Align.Left, 15)
                  report.AddColumn(Pro_inv_taxesTable.tax_code.Name, ReportEnum.Align.Left, "${tax_code}", ReportEnum.Align.Left, 15)
                  report.AddColumn(Pro_inv_taxesTable.tax_name.Name, ReportEnum.Align.Left, "${tax_name}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_taxesTable.tax_print.Name, ReportEnum.Align.Left, "${tax_print}", ReportEnum.Align.Left, 30)

@@ -59,6 +59,7 @@ Namespace ServelInvocing.Business
         tax_codeColumn.CodeName = "tax_code"
         tax_nameColumn.CodeName = "tax_name"
         tax_printColumn.CodeName = "tax_print"
+        tax_rateColumn.CodeName = "tax_rate"
         tax_amountColumn.CodeName = "tax_amount"
         
     End Sub
@@ -180,11 +181,30 @@ Namespace ServelInvocing.Business
         End Get
     End Property
     ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.tax_rate column object.
+    ''' </summary>
+    Public ReadOnly Property tax_rateColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(6), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.tax_rate column object.
+    ''' </summary>
+    Public Shared ReadOnly Property tax_rate() As BaseClasses.Data.NumberColumn
+        Get
+            Return Pro_inv_taxesTable.Instance.tax_rateColumn
+        End Get
+    End Property
+    ''' <summary>
     ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.tax_amount column object.
     ''' </summary>
     Public ReadOnly Property tax_amountColumn() As BaseClasses.Data.NumberColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(6), BaseClasses.Data.NumberColumn)
+            Return CType(Me.TableDefinition.ColumnList(7), BaseClasses.Data.NumberColumn)
         End Get
     End Property
 
@@ -477,6 +497,7 @@ Namespace ServelInvocing.Business
         ByVal tax_codeValue As String, _
         ByVal tax_nameValue As String, _
         ByVal tax_printValue As String, _
+        ByVal tax_rateValue As String, _
         ByVal tax_amountValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
@@ -485,6 +506,7 @@ Namespace ServelInvocing.Business
         rec.SetString(tax_codeValue, tax_codeColumn)
         rec.SetString(tax_nameValue, tax_nameColumn)
         rec.SetString(tax_printValue, tax_printColumn)
+        rec.SetString(tax_rateValue, tax_rateColumn)
         rec.SetString(tax_amountValue, tax_amountColumn)
 
 

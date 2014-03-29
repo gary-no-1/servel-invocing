@@ -76,7 +76,7 @@ Public Class BasePro_inv_itemsRecordControl
          
               ' Register the event handlers.
           
-              Me.id_itemAddRecordLink.PostBackUrl = "../items/AddItems.aspx" & "?Target=" & Me.id_item.ClientID & "&DFKA=item_description"
+              Me.id_itemAddRecordLink.PostBackUrl = "../items/AddItems.aspx" & "?Target=" & Me.id_item.ClientID & "&DFKA=item_code"
               Me.id_itemAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_itemAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
               
               Me.id_pro_inv_hdrAddRecordLink.PostBackUrl = "../pro_inv_hdr/AddPro_inv_hdr.aspx" & "?Target=" & Me.id_pro_inv_hdr.ClientID & "&DFKA=bill_name"
@@ -1089,7 +1089,7 @@ Public Class BasePro_inv_itemsRecordControl
             						
             ' This WhereClause is for the items table.
             ' Examples:
-            ' wc.iAND(ItemsTable.item_description, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(ItemsTable.item_code, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
             ' wc.iAND(ItemsTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
             
             Dim wc As WhereClause = New WhereClause()
@@ -1141,7 +1141,7 @@ Public Class BasePro_inv_itemsRecordControl
       
             Dim orderBy As OrderBy = New OrderBy(false, true)			
         
-            orderBy.Add(ItemsTable.item_description, OrderByItem.OrderDir.Asc)				
+            orderBy.Add(ItemsTable.item_code, OrderByItem.OrderDir.Asc)				
             
             ' 3. Read a total of maxItems from the database and insert them		
             Dim itemValues() As ItemsRecord = Nothing
@@ -1156,7 +1156,7 @@ Public Class BasePro_inv_itemsRecordControl
                         Dim fvalue As String = Nothing
                         If itemValue.id0Specified Then
                             cvalue = itemValue.id0.ToString()
-                            fvalue = itemValue.Format(ItemsTable.item_description)
+                            fvalue = itemValue.Format(ItemsTable.item_code)
                                     
                             If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
                             Dim newItem As New ListItem(fvalue, cvalue)

@@ -169,7 +169,6 @@ Partial Public Class AddPro_inv_hdr
 #Region "Section 2: Do not modify this section."
 
         Public WithEvents amountLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents ass_valueLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents CancelButton As ThemeButton
@@ -220,6 +219,7 @@ Partial Public Class AddPro_inv_hdr
         Public WithEvents tax_codeLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents tax_nameLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents tax_printLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents tax_rateLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents uomLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents ValidationSummary1 As ValidationSummary

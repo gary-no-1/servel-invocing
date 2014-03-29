@@ -35,11 +35,15 @@
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
           <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:NewRecordFormula</Name>
+          <Value>round(qty*rate,0)</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_itemsTableControl</InsideControl>
@@ -64,60 +68,6 @@
         <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%pro_inv_items%amount</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Pro_inv_itemsTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>ass_value</Name>
-      <Type>FieldValue</Type>
-      <Field>ass_value</Field>
-      <FieldValueStyle>TextBox</FieldValueStyle>
-      <Table>pro_inv_items</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>ass_valueRequiredFieldValidator:Enabled</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ass_valueRequiredFieldValidator:Text</Name>
-          <Value>*</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CssClass</Name>
-          <Value>field_input</Value>
-        </Attribute>
-        <Attribute>
-          <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Pro_inv_itemsTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>ass_valueLabel</Name>
-      <Type>FieldSort</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Pro_inv_itemsTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Field</Name>
-          <Value>ass_value</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Table</Name>
-          <Value>pro_inv_items</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%pro_inv_items%ass_value</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_itemsTableControl</InsideControl>
@@ -283,6 +233,10 @@
       <FieldValueStyle>DropDownList</FieldValueStyle>
       <Table>pro_inv_items</Table>
       <PassthroughAttributes>
+        <Attribute>
+          <Name>AutoPostBack</Name>
+          <Value>True</Value>
+        </Attribute>
         <Attribute>
           <Name>CssClass</Name>
           <Value>field_input</Value>
@@ -601,6 +555,10 @@
           <Value>Btn:Add</Value>
           <Type>ResourceReference</Type>
         </Attribute>
+        <Attribute>
+          <Name>Visible</Name>
+          <Value>False</Value>
+        </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_taxesTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
@@ -655,6 +613,10 @@
           <Name>item_codeRequiredFieldValidator:Text</Name>
           <Value>*</Value>
         </Attribute>
+        <Attribute>
+          <Name>Visible</Name>
+          <Value>False</Value>
+        </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_itemsTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
@@ -678,6 +640,10 @@
         <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%pro_inv_items%item_code</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Visible</Name>
+          <Value>False</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_itemsTableControl</InsideControl>
@@ -778,6 +744,10 @@
         <Attribute>
           <Name>TextMode</Name>
           <Value>MultiLine</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>600px</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_termsTableControl</InsideControl>
@@ -2011,7 +1981,7 @@
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
@@ -2065,7 +2035,7 @@
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
@@ -2415,7 +2385,7 @@
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
@@ -2469,7 +2439,7 @@
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
@@ -2537,6 +2507,10 @@
           <Name>tax_codeRequiredFieldValidator:Text</Name>
           <Value>*</Value>
         </Attribute>
+        <Attribute>
+          <Name>Visible</Name>
+          <Value>False</Value>
+        </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_taxesTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
@@ -2560,6 +2534,10 @@
         <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%pro_inv_taxes%tax_code</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Visible</Name>
+          <Value>False</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_taxesTableControl</InsideControl>
@@ -2668,6 +2646,60 @@
         <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%pro_inv_taxes%tax_print</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_taxesTableControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>tax_rate</Name>
+      <Type>FieldValue</Type>
+      <Field>tax_rate</Field>
+      <FieldValueStyle>TextBox</FieldValueStyle>
+      <Table>pro_inv_taxes</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>CssClass</Name>
+          <Value>field_input</Value>
+        </Attribute>
+        <Attribute>
+          <Name>EnableIncrementDecrementButtons</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>tax_rateRequiredFieldValidator:Enabled</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>tax_rateRequiredFieldValidator:Text</Name>
+          <Value>*</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_taxesTableControl</InsideControl>
+      <InsideItemTemplate>true</InsideItemTemplate>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>tax_rateLabel</Name>
+      <Type>FieldSort</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>Pro_inv_taxesTableControl</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Field</Name>
+          <Value>tax_rate</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Table</Name>
+          <Value>pro_inv_taxes</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>%ISD_DEFAULT%pro_inv_taxes%tax_rate</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_taxesTableControl</InsideControl>
@@ -3644,20 +3676,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="ass_valueLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="amountLabel"/&amp;gt;
                         &lt;/Value&gt;
         &lt;CellAttributes&gt;
@@ -3769,19 +3787,6 @@
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="rate"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue /&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="ass_value"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4107,6 +4112,19 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_rateLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;scope&lt;/Name&gt;
+            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_amountLabel"/&amp;gt;
                         &lt;/Value&gt;
         &lt;CellAttributes&gt;
@@ -4192,6 +4210,19 @@
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_print"/&amp;gt; &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;style&lt;/Name&gt;
+            &lt;AttributeValue /&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_rate" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;

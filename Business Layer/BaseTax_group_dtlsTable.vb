@@ -57,6 +57,10 @@ Namespace ServelInvocing.Business
         id_tax_groupColumn.CodeName = "id_tax_group"
         id_taxesColumn.CodeName = "id_taxes"
         sort_orderColumn.CodeName = "sort_order"
+        tax_codeColumn.CodeName = "tax_code"
+        tax_nameColumn.CodeName = "tax_name"
+        tax_printColumn.CodeName = "tax_print"
+        tax_rateColumn.CodeName = "tax_rate"
         
     End Sub
 
@@ -136,6 +140,82 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property sort_order() As BaseClasses.Data.NumberColumn
         Get
             Return Tax_group_dtlsTable.Instance.sort_orderColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Tax_group_dtls_.tax_code column object.
+    ''' </summary>
+    Public ReadOnly Property tax_codeColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(4), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Tax_group_dtls_.tax_code column object.
+    ''' </summary>
+    Public Shared ReadOnly Property tax_code() As BaseClasses.Data.StringColumn
+        Get
+            Return Tax_group_dtlsTable.Instance.tax_codeColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Tax_group_dtls_.tax_name column object.
+    ''' </summary>
+    Public ReadOnly Property tax_nameColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(5), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Tax_group_dtls_.tax_name column object.
+    ''' </summary>
+    Public Shared ReadOnly Property tax_name() As BaseClasses.Data.StringColumn
+        Get
+            Return Tax_group_dtlsTable.Instance.tax_nameColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Tax_group_dtls_.tax_print column object.
+    ''' </summary>
+    Public ReadOnly Property tax_printColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(6), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Tax_group_dtls_.tax_print column object.
+    ''' </summary>
+    Public Shared ReadOnly Property tax_print() As BaseClasses.Data.StringColumn
+        Get
+            Return Tax_group_dtlsTable.Instance.tax_printColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Tax_group_dtls_.tax_rate column object.
+    ''' </summary>
+    Public ReadOnly Property tax_rateColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(7), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Tax_group_dtls_.tax_rate column object.
+    ''' </summary>
+    Public Shared ReadOnly Property tax_rate() As BaseClasses.Data.NumberColumn
+        Get
+            Return Tax_group_dtlsTable.Instance.tax_rateColumn
         End Get
     End Property
 
@@ -414,12 +494,20 @@ Namespace ServelInvocing.Business
     Public Overloads Function NewRecord( _
         ByVal id_tax_groupValue As String, _
         ByVal id_taxesValue As String, _
-        ByVal sort_orderValue As String _
+        ByVal sort_orderValue As String, _
+        ByVal tax_codeValue As String, _
+        ByVal tax_nameValue As String, _
+        ByVal tax_printValue As String, _
+        ByVal tax_rateValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(id_tax_groupValue, id_tax_groupColumn)
         rec.SetString(id_taxesValue, id_taxesColumn)
         rec.SetString(sort_orderValue, sort_orderColumn)
+        rec.SetString(tax_codeValue, tax_codeColumn)
+        rec.SetString(tax_nameValue, tax_nameColumn)
+        rec.SetString(tax_printValue, tax_printColumn)
+        rec.SetString(tax_rateValue, tax_rateColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

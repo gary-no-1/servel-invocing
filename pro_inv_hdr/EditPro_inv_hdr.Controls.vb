@@ -158,7 +158,7 @@ Public Class BasePro_inv_itemsTableControlRow
               Me.Pro_inv_itemsRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              Me.id_itemAddRecordLink.PostBackUrl = "../items/AddItems.aspx" & "?Target=" & Me.id_item.ClientID & "&DFKA=item_description"
+              Me.id_itemAddRecordLink.PostBackUrl = "../items/AddItems.aspx" & "?Target=" & Me.id_item.ClientID & "&DFKA=item_code"
               Me.id_itemAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_itemAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
               
               AddHandler Me.Pro_inv_itemsRowDeleteButton.Click, AddressOf Pro_inv_itemsRowDeleteButton_Click
@@ -911,7 +911,7 @@ Public Class BasePro_inv_itemsTableControlRow
             						
             ' This WhereClause is for the items table.
             ' Examples:
-            ' wc.iAND(ItemsTable.item_description, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(ItemsTable.item_code, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
             ' wc.iAND(ItemsTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
             
             Dim wc As WhereClause = New WhereClause()
@@ -947,7 +947,7 @@ Public Class BasePro_inv_itemsTableControlRow
       
             Dim orderBy As OrderBy = New OrderBy(false, true)			
         
-            orderBy.Add(ItemsTable.item_description, OrderByItem.OrderDir.Asc)				
+            orderBy.Add(ItemsTable.item_code, OrderByItem.OrderDir.Asc)				
             
             ' 3. Read a total of maxItems from the database and insert them		
             Dim itemValues() As ItemsRecord = Nothing
@@ -962,7 +962,7 @@ Public Class BasePro_inv_itemsTableControlRow
                         Dim fvalue As String = Nothing
                         If itemValue.id0Specified Then
                             cvalue = itemValue.id0.ToString()
-                            fvalue = itemValue.Format(ItemsTable.item_description)
+                            fvalue = itemValue.Format(ItemsTable.item_code)
                                     
                             If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
                             Dim newItem As New ListItem(fvalue, cvalue)
@@ -3067,7 +3067,7 @@ Public Class BasePro_inv_taxesTableControlRow
               Me.Pro_inv_taxesRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              Me.id_taxesAddRecordLink.PostBackUrl = "../taxes/AddTaxes.aspx" & "?Target=" & Me.id_taxes.ClientID & "&DFKA=tax_name"
+              Me.id_taxesAddRecordLink.PostBackUrl = "../taxes/AddTaxes.aspx" & "?Target=" & Me.id_taxes.ClientID & "&DFKA=tax_code"
               Me.id_taxesAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_taxesAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
               
               AddHandler Me.Pro_inv_taxesRowDeleteButton.Click, AddressOf Pro_inv_taxesRowDeleteButton_Click
@@ -3640,7 +3640,7 @@ Public Class BasePro_inv_taxesTableControlRow
             						
             ' This WhereClause is for the taxes table.
             ' Examples:
-            ' wc.iAND(TaxesTable.tax_name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(TaxesTable.tax_code, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
             ' wc.iAND(TaxesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
             
             Dim wc As WhereClause = New WhereClause()
@@ -3676,7 +3676,7 @@ Public Class BasePro_inv_taxesTableControlRow
       
             Dim orderBy As OrderBy = New OrderBy(false, true)			
         
-            orderBy.Add(TaxesTable.tax_name, OrderByItem.OrderDir.Asc)				
+            orderBy.Add(TaxesTable.tax_code, OrderByItem.OrderDir.Asc)				
             
             ' 3. Read a total of maxItems from the database and insert them		
             Dim itemValues() As TaxesRecord = Nothing
@@ -3691,7 +3691,7 @@ Public Class BasePro_inv_taxesTableControlRow
                         Dim fvalue As String = Nothing
                         If itemValue.id0Specified Then
                             cvalue = itemValue.id0.ToString()
-                            fvalue = itemValue.Format(TaxesTable.tax_name)
+                            fvalue = itemValue.Format(TaxesTable.tax_code)
                                     
                             If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
                             Dim newItem As New ListItem(fvalue, cvalue)

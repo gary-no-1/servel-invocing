@@ -2702,7 +2702,7 @@ Public Class BasePro_inv_itemsTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
-                 report.AddColumn(Pro_inv_itemsTable.id_item.Name, ReportEnum.Align.Left, "${id_item}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(Pro_inv_itemsTable.id_item.Name, ReportEnum.Align.Left, "${id_item}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_itemsTable.item_code.Name, ReportEnum.Align.Left, "${item_code}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_itemsTable.item_description.Name, ReportEnum.Align.Left, "${item_description}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Pro_inv_itemsTable.uom.Name, ReportEnum.Align.Left, "${uom}", ReportEnum.Align.Left, 15)
@@ -2857,7 +2857,7 @@ Public Class BasePro_inv_itemsTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
-                 report.AddColumn(Pro_inv_itemsTable.id_item.Name, ReportEnum.Align.Left, "${id_item}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(Pro_inv_itemsTable.id_item.Name, ReportEnum.Align.Left, "${id_item}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_itemsTable.item_code.Name, ReportEnum.Align.Left, "${item_code}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_itemsTable.item_description.Name, ReportEnum.Align.Left, "${item_description}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Pro_inv_itemsTable.uom.Name, ReportEnum.Align.Left, "${uom}", ReportEnum.Align.Left, 15)
@@ -5580,7 +5580,7 @@ Public Class BasePro_inv_taxesTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
-                 report.AddColumn(Pro_inv_taxesTable.id_taxes.Name, ReportEnum.Align.Left, "${id_taxes}", ReportEnum.Align.Left, 24)
+                 report.AddColumn(Pro_inv_taxesTable.id_taxes.Name, ReportEnum.Align.Left, "${id_taxes}", ReportEnum.Align.Left, 15)
                  report.AddColumn(Pro_inv_taxesTable.tax_code.Name, ReportEnum.Align.Left, "${tax_code}", ReportEnum.Align.Left, 15)
                  report.AddColumn(Pro_inv_taxesTable.tax_name.Name, ReportEnum.Align.Left, "${tax_name}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_taxesTable.tax_print.Name, ReportEnum.Align.Left, "${tax_print}", ReportEnum.Align.Left, 30)
@@ -5729,7 +5729,7 @@ Public Class BasePro_inv_taxesTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
-                 report.AddColumn(Pro_inv_taxesTable.id_taxes.Name, ReportEnum.Align.Left, "${id_taxes}", ReportEnum.Align.Left, 24)
+                 report.AddColumn(Pro_inv_taxesTable.id_taxes.Name, ReportEnum.Align.Left, "${id_taxes}", ReportEnum.Align.Left, 15)
                  report.AddColumn(Pro_inv_taxesTable.tax_code.Name, ReportEnum.Align.Left, "${tax_code}", ReportEnum.Align.Left, 15)
                  report.AddColumn(Pro_inv_taxesTable.tax_name.Name, ReportEnum.Align.Left, "${tax_name}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_taxesTable.tax_print.Name, ReportEnum.Align.Left, "${tax_print}", ReportEnum.Align.Left, 30)

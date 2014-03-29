@@ -2274,7 +2274,7 @@ Public Class BasePro_inv_itemsTableControl
       
             Dim orderBy As OrderBy = New OrderBy(false, true)			
         
-            orderBy.Add(ItemsTable.item_description, OrderByItem.OrderDir.Asc)				
+            orderBy.Add(ItemsTable.item_code, OrderByItem.OrderDir.Asc)				
             
             ' Add the All item.
             Me.id_itemFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
@@ -2296,7 +2296,7 @@ Public Class BasePro_inv_itemsTableControl
                         If itemValue.id0Specified Then
                             cvalue = itemValue.id0.ToString()
                                 
-                            fvalue = itemValue.Format(ItemsTable.item_description)
+                            fvalue = itemValue.Format(ItemsTable.item_code)
                                     
                             If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
                             Dim newItem As New ListItem(fvalue, cvalue)
@@ -2383,7 +2383,7 @@ Public Class BasePro_inv_itemsTableControl
             Dim wc As WhereClause = new WhereClause()
             ' Add additional where clauses to restrict the items shown in the control.
             ' Examples:
-            ' wc.iAND(ItemsTable.item_description, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(ItemsTable.item_code, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
             ' wc.iAND(ItemsTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
             Return wc
         
@@ -3130,7 +3130,7 @@ Public Class BasePro_inv_itemsTableControl
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
                  report.AddColumn(Pro_inv_itemsTable.id_pro_inv_hdr.Name, ReportEnum.Align.Left, "${id_pro_inv_hdr}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(Pro_inv_itemsTable.id_item.Name, ReportEnum.Align.Left, "${id_item}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(Pro_inv_itemsTable.id_item.Name, ReportEnum.Align.Left, "${id_item}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_itemsTable.item_code.Name, ReportEnum.Align.Left, "${item_code}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_itemsTable.item_description.Name, ReportEnum.Align.Left, "${item_description}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Pro_inv_itemsTable.uom.Name, ReportEnum.Align.Left, "${uom}", ReportEnum.Align.Left, 15)
@@ -3274,7 +3274,7 @@ Public Class BasePro_inv_itemsTableControl
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
                  report.AddColumn(Pro_inv_itemsTable.id_pro_inv_hdr.Name, ReportEnum.Align.Left, "${id_pro_inv_hdr}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(Pro_inv_itemsTable.id_item.Name, ReportEnum.Align.Left, "${id_item}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(Pro_inv_itemsTable.id_item.Name, ReportEnum.Align.Left, "${id_item}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_itemsTable.item_code.Name, ReportEnum.Align.Left, "${item_code}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_itemsTable.item_description.Name, ReportEnum.Align.Left, "${item_description}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Pro_inv_itemsTable.uom.Name, ReportEnum.Align.Left, "${uom}", ReportEnum.Align.Left, 15)

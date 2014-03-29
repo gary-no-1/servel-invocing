@@ -9,7 +9,7 @@
 Public Class Pro_inv_taxesDefinition
 
 #Region "Definition (XML) for Pro_inv_taxesDefinition table"
-	'Next 193 lines contain Table Definition (XML) for table "Pro_inv_taxesDefinition"
+	'Next 219 lines contain Table Definition (XML) for table "Pro_inv_taxesDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -69,24 +69,24 @@ Public Class Pro_inv_taxesDefinition
     "</Column>"& _
     "<Column InternalName=""2"" Priority=""3"" ColumnNum=""2"">"& _
       "<columnName>id_taxes</columnName>"& _
-      "<columnUIName>ID Taxes</columnUIName>"& _
+      "<columnUIName Source=""User"">Tax Code</columnUIName>"& _
       "<columnType>Number</columnType>"& _
       "<columnDBType>int</columnDBType>"& _
       "<columnLengthSet>10.0</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
       "<foreignKey>"& _
@@ -94,9 +94,12 @@ Public Class Pro_inv_taxesDefinition
         "<columnFKTable>ServelInvocing.Business.TaxesTable, ServelInvocing.Business</columnFKTable>"& _
         "<columnFKOwner>dbo</columnFKOwner>"& _
         "<columnFKColumn>id</columnFKColumn>"& _
-        "<columnFKColumnDisplay>tax_name</columnFKColumnDisplay>"& _
+        "<columnFKColumnDisplay>tax_code</columnFKColumnDisplay>"& _
         "<foreignKeyType>Explicit</foreignKeyType>"& _
       "</foreignKey>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>2</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""3"" Priority=""4"" ColumnNum=""3"">"& _
       "<columnName>tax_code</columnName>"& _
@@ -168,6 +171,29 @@ Public Class Pro_inv_taxesDefinition
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
     "<Column InternalName=""6"" Priority=""7"" ColumnNum=""6"">"& _
+      "<columnName>tax_rate</columnName>"& _
+      "<columnUIName>Tax Rate</columnUIName>"& _
+      "<columnType>Number</columnType>"& _
+      "<columnDBType>decimal</columnDBType>"& _
+      "<columnLengthSet>10.3</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""7"" Priority=""8"" ColumnNum=""7"">"& _
       "<columnName>tax_amount</columnName>"& _
       "<columnUIName>Tax Amount</columnUIName>"& _
       "<columnType>Number</columnType>"& _
@@ -192,7 +218,7 @@ Public Class Pro_inv_taxesDefinition
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>pro_inv_taxes</TableName>"& _
-  "<Version>3</Version>"& _
+  "<Version>4</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Pro_inv_taxes</TableCodeName>"& _
   "<TableAliasName>Pro_inv_taxes_</TableAliasName>"& _

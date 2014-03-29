@@ -209,6 +209,144 @@ Namespace ServelInvocing.Business
 		Dim colValue As ColumnValue = New ColumnValue(val)
 		Me.SetValue(colValue, TableUtils.sort_orderColumn)
 	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Tax_group_dtls_.tax_code field.
+	''' </summary>
+	Public Function Gettax_codeValue() As ColumnValue
+		Return Me.GetValue(TableUtils.tax_codeColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Tax_group_dtls_.tax_code field.
+	''' </summary>
+	Public Function Gettax_codeFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.tax_codeColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_code field.
+	''' </summary>
+	Public Sub Settax_codeFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.tax_codeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_code field.
+	''' </summary>
+	Public Sub Settax_codeFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tax_codeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Tax_group_dtls_.tax_name field.
+	''' </summary>
+	Public Function Gettax_nameValue() As ColumnValue
+		Return Me.GetValue(TableUtils.tax_nameColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Tax_group_dtls_.tax_name field.
+	''' </summary>
+	Public Function Gettax_nameFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.tax_nameColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_name field.
+	''' </summary>
+	Public Sub Settax_nameFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.tax_nameColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_name field.
+	''' </summary>
+	Public Sub Settax_nameFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tax_nameColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Tax_group_dtls_.tax_print field.
+	''' </summary>
+	Public Function Gettax_printValue() As ColumnValue
+		Return Me.GetValue(TableUtils.tax_printColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Tax_group_dtls_.tax_print field.
+	''' </summary>
+	Public Function Gettax_printFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.tax_printColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_print field.
+	''' </summary>
+	Public Sub Settax_printFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.tax_printColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_print field.
+	''' </summary>
+	Public Sub Settax_printFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tax_printColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Tax_group_dtls_.tax_rate field.
+	''' </summary>
+	Public Function Gettax_rateValue() As ColumnValue
+		Return Me.GetValue(TableUtils.tax_rateColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Tax_group_dtls_.tax_rate field.
+	''' </summary>
+	Public Function Gettax_rateFieldValue() As Decimal
+		Return CType(Me.GetValue(TableUtils.tax_rateColumn).ToDecimal(), Decimal)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_rate field.
+	''' </summary>
+	Public Sub Settax_rateFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.tax_rateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_rate field.
+	''' </summary>
+	Public Sub Settax_rateFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.tax_rateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_rate field.
+	''' </summary>
+	Public Sub Settax_rateFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tax_rateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_rate field.
+	''' </summary>
+	Public Sub Settax_rateFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tax_rateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_rate field.
+	''' </summary>
+	Public Sub Settax_rateFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tax_rateColumn)
+	End Sub
 
 
 #End Region
@@ -356,6 +494,147 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property sort_orderDefault() As String
         Get
             Return TableUtils.sort_orderColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Tax_group_dtls_.tax_code field.
+	''' </summary>
+	Public Property tax_code() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.tax_codeColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.tax_codeColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property tax_codeSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.tax_codeColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property tax_codeDefault() As String
+        Get
+            Return TableUtils.tax_codeColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Tax_group_dtls_.tax_name field.
+	''' </summary>
+	Public Property tax_name() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.tax_nameColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.tax_nameColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property tax_nameSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.tax_nameColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property tax_nameDefault() As String
+        Get
+            Return TableUtils.tax_nameColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Tax_group_dtls_.tax_print field.
+	''' </summary>
+	Public Property tax_print() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.tax_printColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.tax_printColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property tax_printSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.tax_printColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property tax_printDefault() As String
+        Get
+            Return TableUtils.tax_printColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Tax_group_dtls_.tax_rate field.
+	''' </summary>
+	Public Property tax_rate() As Decimal
+		Get 
+			Return CType(Me.GetValue(TableUtils.tax_rateColumn).ToDecimal(), Decimal)
+		End Get
+		Set (ByVal val As Decimal) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.tax_rateColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property tax_rateSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.tax_rateColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property tax_rateDefault() As String
+        Get
+            Return TableUtils.tax_rateColumn.DefaultValue
         End Get
     End Property
 

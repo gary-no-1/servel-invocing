@@ -246,6 +246,57 @@ Namespace ServelInvocing.Business
 	End Sub
 
 	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.tax_rate field.
+	''' </summary>
+	Public Function Gettax_rateValue() As ColumnValue
+		Return Me.GetValue(TableUtils.tax_rateColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.tax_rate field.
+	''' </summary>
+	Public Function Gettax_rateFieldValue() As Decimal
+		Return CType(Me.GetValue(TableUtils.tax_rateColumn).ToDecimal(), Decimal)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.tax_rate field.
+	''' </summary>
+	Public Sub Settax_rateFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.tax_rateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.tax_rate field.
+	''' </summary>
+	Public Sub Settax_rateFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.tax_rateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.tax_rate field.
+	''' </summary>
+	Public Sub Settax_rateFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tax_rateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.tax_rate field.
+	''' </summary>
+	Public Sub Settax_rateFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tax_rateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.tax_rate field.
+	''' </summary>
+	Public Sub Settax_rateFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tax_rateColumn)
+	End Sub
+	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.tax_amount field.
 	''' </summary>
 	Public Function Gettax_amountValue() As ColumnValue
@@ -512,6 +563,42 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property tax_printDefault() As String
         Get
             Return TableUtils.tax_printColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Pro_inv_taxes_.tax_rate field.
+	''' </summary>
+	Public Property tax_rate() As Decimal
+		Get 
+			Return CType(Me.GetValue(TableUtils.tax_rateColumn).ToDecimal(), Decimal)
+		End Get
+		Set (ByVal val As Decimal) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.tax_rateColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property tax_rateSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.tax_rateColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property tax_rateDefault() As String
+        Get
+            Return TableUtils.tax_rateColumn.DefaultValue
         End Get
     End Property
 
