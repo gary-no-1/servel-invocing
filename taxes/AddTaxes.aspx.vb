@@ -168,6 +168,8 @@ Partial Public Class AddTaxes
 
 #Region "Section 2: Do not modify this section."
 
+        Public WithEvents calc_type As System.Web.UI.WebControls.DropDownList
+        Public WithEvents calc_typeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents CancelButton As ThemeButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents SaveAndNewButton As ThemeButton
@@ -177,7 +179,6 @@ Partial Public Class AddTaxes
         Public WithEvents tax_printLabel As System.Web.UI.WebControls.Literal
         Public WithEvents tax_rateLabel As System.Web.UI.WebControls.Literal
         Public WithEvents tax_type As System.Web.UI.WebControls.DropDownList
-        Public WithEvents tax_typeAddRecordLink As System.Web.UI.WebControls.ImageButton
         Public WithEvents tax_typeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents TaxesRecordControl As ServelInvocing.UI.Controls.AddTaxes.TaxesRecordControl
         Public WithEvents TaxesTitle As System.Web.UI.WebControls.Literal

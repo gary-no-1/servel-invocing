@@ -158,6 +158,8 @@ Public Class BaseTaxesRecordControl
       
             ' Call the Set methods for each controls on the panel
         
+            Setcalc_type()
+            Setcalc_typeLabel()
             Settax_code()
             Settax_codeLabel()
             Settax_name()
@@ -186,6 +188,50 @@ Public Class BaseTaxesRecordControl
         End Sub
         
         
+        Public Overridable Sub Setcalc_type()
+            
+        
+            ' Set the calc_type Literal on the webpage with value from the
+            ' taxes database record.
+
+            ' Me.DataSource is the taxes record retrieved from the database.
+            ' Me.calc_type is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setcalc_type()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.calc_typeSpecified Then
+                				
+                ' If the calc_type is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(TaxesTable.calc_type)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.calc_type.Text = formattedValue
+              
+            Else 
+            
+                ' calc_type is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.calc_type.Text = TaxesTable.calc_type.Format(TaxesTable.calc_type.DefaultValue)
+                        		
+                End If
+                 
+            ' If the calc_type is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.calc_type.Text Is Nothing _
+                OrElse Me.calc_type.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.calc_type.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Settax_code()
             
         
@@ -397,6 +443,11 @@ Public Class BaseTaxesRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Setcalc_typeLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Settax_codeLabel()
             
                     
@@ -526,6 +577,7 @@ Public Class BaseTaxesRecordControl
       
             ' Call the Get methods for each of the user interface controls.
         
+            Getcalc_type()
             Gettax_code()
             Gettax_name()
             Gettax_print()
@@ -534,6 +586,10 @@ Public Class BaseTaxesRecordControl
         End Sub
         
         
+        Public Overridable Sub Getcalc_type()
+            
+        End Sub
+                
         Public Overridable Sub Gettax_code()
             
         End Sub
@@ -1055,6 +1111,18 @@ Public Class BaseTaxesRecordControl
         
 
 #Region "Helper Properties"
+        
+        Public ReadOnly Property calc_type() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "calc_type"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property calc_typeLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "calc_typeLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
         
         Public ReadOnly Property tax_code() As System.Web.UI.WebControls.Literal
             Get

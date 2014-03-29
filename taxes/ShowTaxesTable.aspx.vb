@@ -154,6 +154,7 @@ Partial Public Class ShowTaxesTable
 
 #Region "Section 2: Do not modify this section."
 
+        Public WithEvents calc_typeLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents tax_codeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents tax_codeLabel1 As System.Web.UI.WebControls.LinkButton

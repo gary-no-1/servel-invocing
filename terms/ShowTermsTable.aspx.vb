@@ -122,15 +122,15 @@ Partial Public Class ShowTermsTable
             Return GetImage_Base(tableName, recordID, columnName, title, persist, popupWindowHeight, popupWindowWidth, popupWindowScrollBar)
         End Function
     
-      <Services.WebMethod()> _
-      Public Shared Function GetAutoCompletionList_TermsSearch(ByVal prefixText As String, ByVal count As Integer) As String()
-      ' GetTermsSearchCompletionList gets the list of suggestions from the database.
-      ' prefixText is the search text typed by the user .
-      ' count specifies the number of suggestions to be returned.
-      ' Customize by adding code before or after the call to  GetAutoCompletionList_TermsSearch()
-      ' or replace the call to GetAutoCompletionList_TermsSearch().
-      Return GetAutoCompletionList_TermsSearch_Base(prefixText, count)
-      End Function
+'      <Services.WebMethod()> _
+'      Public Shared Function GetAutoCompletionList_TermsSearch(ByVal prefixText As String, ByVal count As Integer) As String()
+'      ' GetTermsSearchCompletionList gets the list of suggestions from the database.
+'      ' prefixText is the search text typed by the user .
+'      ' count specifies the number of suggestions to be returned.
+'      ' Customize by adding code before or after the call to  GetAutoCompletionList_TermsSearch()
+'      ' or replace the call to GetAutoCompletionList_TermsSearch().
+'      Return GetAutoCompletionList_TermsSearch_Base(prefixText, count)
+'      End Function
     
       Protected Overloads Overrides Sub BasePage_PreRender(ByVal sender As Object, ByVal e As EventArgs)
           MyBase.BasePage_PreRender(sender, e)
@@ -154,25 +154,20 @@ Partial Public Class ShowTermsTable
 
 #Region "Section 2: Do not modify this section."
 
-        Public WithEvents narrationLabel As System.Web.UI.WebControls.Literal
         Public WithEvents narrationLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents sort_orderLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sort_orderLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents TermsCopyButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents TermsDeleteButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents TermsEditButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents TermsExportCSVButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents TermsExportExcelButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents TermsFilterButton As ThemeButton
         Public WithEvents TermsImportButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents TermsNewButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents TermsPagination As Pagination
         Public WithEvents TermsPDFButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents TermsRefreshButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents TermsResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents TermsSearch As System.Web.UI.WebControls.TextBox
-        Public WithEvents TermsSearchButton As ThemeButton
         Public WithEvents TermsTableControl As ServelInvocing.UI.Controls.ShowTermsTable.TermsTableControl
         Public WithEvents TermsTitle As System.Web.UI.WebControls.Literal
         Public WithEvents TermsToggleAll As System.Web.UI.WebControls.CheckBox
@@ -319,17 +314,6 @@ Partial Public Class ShowTermsTable
       
       End Sub
       
-        Public Shared Function GetAutoCompletionList_TermsSearch_Base(ByVal prefixText As String, ByVal count As Integer) As String()
-            ' Since this method is a shared/static method it does not maintain information about page or controls within the page.
-            ' Hence we can not invoke any method associated with any controls.
-            ' So, if we need to use any control in the page we need to instantiate it.
-            Dim control as ServelInvocing.UI.Controls.ShowTermsTable.TermsTableControl 
-            control = new ServelInvocing.UI.Controls.ShowTermsTable.TermsTableControl()
-            
-            Return control.GetAutoCompletionList_TermsSearch(prefixText, count)
-              
-        End Function
-          
         ' Load data from database into UI controls.
         ' Modify LoadData in Section 1 above to customize.  Or override DataBind() in
         ' the individual table and record controls to customize.

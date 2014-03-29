@@ -248,6 +248,17 @@ Partial Public Class Footer
             End Get
         End Property
                 
+        <Bindable(True), _
+        Category("Behavior"), _
+        DefaultValue(""), _
+        NotifyParentProperty(True), _
+        DesignerSerializationVisibility(DesignerSerializationVisibility.Content)> _
+        Public ReadOnly Property Literal() As System.Web.UI.WebControls.Literal Implements IFooter.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "_Literal"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+                
       Public Overrides Property Visible() As Boolean Implements IFooter.Visible
   
           Get

@@ -857,61 +857,6 @@ Public Class BaseTermsTableControl
       
            ' Setup the filter and search events.
         
-            AddHandler Me.narrationFilter.SelectedIndexChanged, AddressOf narrationFilter_SelectedIndexChanged
-            If Not Me.Page.IsPostBack Then
-                Dim initialVal As String = ""
-                If  Me.InSession(Me.narrationFilter) 				
-                    initialVal = Me.GetFromSession(Me.narrationFilter)
-                
-                End If
-                If initialVal <> ""				
-                        
-                        Me.narrationFilter.Items.Add(New ListItem(initialVal, initialVal))
-                            
-                        Me.narrationFilter.SelectedValue = initialVal
-                            
-                    End If
-                
-            End If
-            If Not Me.Page.IsPostBack Then
-                Dim initialVal As String = ""
-                If  Me.InSession(Me.sort_orderFromFilter) 				
-                    initialVal = Me.GetFromSession(Me.sort_orderFromFilter)
-                
-                End If
-                If initialVal <> ""				
-                        
-                        Me.sort_orderFromFilter.Text = initialVal
-                            
-                    End If
-                
-            End If
-            If Not Me.Page.IsPostBack Then
-                Dim initialVal As String = ""
-                If  Me.InSession(Me.sort_orderToFilter) 				
-                    initialVal = Me.GetFromSession(Me.sort_orderToFilter)
-                
-                End If
-                If initialVal <> ""				
-                        
-                        Me.sort_orderToFilter.Text = initialVal
-                            
-                    End If
-                
-            End If
-            If Not Me.Page.IsPostBack Then
-                Dim initialVal As String = ""
-                If  Me.InSession(Me.TermsSearch) 				
-                    initialVal = Me.GetFromSession(Me.TermsSearch)
-                
-                End If
-                If initialVal <> ""				
-                        
-                        Me.TermsSearch.Text = initialVal
-                            
-                    End If
-                
-            End If
       
       
             ' Control Initializations.
@@ -922,6 +867,8 @@ Public Class BaseTermsTableControl
             Else
                 Me.CurrentSortOrder = New OrderBy(True, True)
             
+                Me.CurrentSortOrder.Add(TermsTable.sort_order, OrderByItem.OrderDir.Asc)
+              
             End If
 
             ' Setup default pagination settings.
@@ -979,10 +926,6 @@ Public Class BaseTermsTableControl
               
               AddHandler Me.TermsWordButton.Click, AddressOf TermsWordButton_Click
               
-            AddHandler Me.TermsFilterButton.Button.Click, AddressOf TermsFilterButton_Click
-        
-            AddHandler Me.TermsSearchButton.Button.Click, AddressOf TermsSearchButton_Click
-        
           ' Setup events for others
             
         End Sub
@@ -1087,14 +1030,8 @@ Public Class BaseTermsTableControl
 
             ' Call the Set methods for each controls on the panel
         
-            SetnarrationFilter()
-            
-            SetnarrationLabel()
             SetnarrationLabel1()
-            Setsort_orderLabel()
             Setsort_orderLabel1()
-            SetTermsSearch()
-            
       
   
 
@@ -1128,9 +1065,7 @@ Public Class BaseTermsTableControl
 
             ' Initialize other asp controls
             
-            SetnarrationLabel()
             SetnarrationLabel1()
-            Setsort_orderLabel()
             Setsort_orderLabel1()
       End Sub
 
@@ -1175,20 +1110,14 @@ Public Class BaseTermsTableControl
 
         Public Overridable Sub ResetControl()
                     
-            Me.narrationFilter.ClearSelection()
-            
-            Me.sort_orderFromFilter.Text = ""
-            
-            Me.sort_orderToFilter.Text = ""
-            
-            Me.TermsSearch.Text = ""
-            
             Me.CurrentSortOrder.Reset()
             If (Me.InSession(Me, "Order_By")) Then
                 Me.CurrentSortOrder = OrderBy.FromXmlString(Me.GetFromSession(Me, "Order_By", Nothing))
             Else
                 Me.CurrentSortOrder = New OrderBy(true, true)
             
+                Me.CurrentSortOrder.Add(TermsTable.sort_order, OrderByItem.OrderDir.Asc)
+              
             End If
                 
             Me.PageIndex = 0
@@ -1280,51 +1209,6 @@ Public Class BaseTermsTableControl
             ' 3. User selected filter criteria.
 
               
-            If IsValueSelected(Me.narrationFilter) Then
-                
-                wc.iAND(TermsTable.narration, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.narrationFilter, Me.GetFromSession(Me.narrationFilter)), False, False)
-            
-                
-            End If
-                       
-            If IsValueSelected(Me.sort_orderFromFilter) Then
-                
-                wc.iAND(TermsTable.sort_order, BaseFilter.ComparisonOperator.Greater_Than_Or_Equal, MiscUtils.GetSelectedValue(Me.sort_orderFromFilter, Me.GetFromSession(Me.sort_orderFromFilter)), False, False)
-            
-                
-            End If
-                       
-            If IsValueSelected(Me.sort_orderToFilter) Then
-                
-                wc.iAND(TermsTable.sort_order, BaseFilter.ComparisonOperator.Less_Than_Or_Equal, MiscUtils.GetSelectedValue(Me.sort_orderToFilter, Me.GetFromSession(Me.sort_orderToFilter)), False, False)
-            
-                
-            End If
-                       
-            If IsValueSelected(Me.TermsSearch) Then
-                ' Strip "..." from begin and ending of the search text, otherwise the search will return 0 values as in database "..." is not stored.
-                If Me.TermsSearch.Text.StartsWith("...") Then
-                    Me.TermsSearch.Text = Me.TermsSearch.Text.SubString(3,Me.TermsSearch.Text.Length-3)
-                End If
-                If Me.TermsSearch.Text.EndsWith("...") then
-                    Me.TermsSearch.Text = Me.TermsSearch.Text.SubString(0,Me.TermsSearch.Text.Length-3)
-                End If
-                
-                Dim formatedSearchText As String = MiscUtils.GetSelectedValue(Me.TermsSearch, Me.GetFromSession(Me.TermsSearch))
-                
-                ' After stripping "..." see if the search text is null or empty.
-                If IsValueSelected(Me.TermsSearch) Then 
-        ' These clauses are added depending on operator and fields selected in Control's property page, bindings tab.
-                    
-                    Dim search As WhereClause = New WhereClause()
-                    
-                    search.iOR(TermsTable.narration, BaseFilter.ComparisonOperator.Contains, MiscUtils.GetSelectedValue(Me.TermsSearch, Me.GetFromSession(Me.TermsSearch)), True, False)
-        
-                    wc.iAND(search)
-                  
-                End If
-            End If
-                  
             Return wc
         End Function
         
@@ -1343,103 +1227,7 @@ Public Class BaseTermsTableControl
             
             ' Adds clauses if values are selected in Filter controls which are configured in the page.
           
-            Dim narrationFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "narrationFilter_Ajax"), String)
-            If IsValueSelected(narrationFilterSelectedValue) Then
-              
-                 wc.iAND(TermsTable.narration, BaseFilter.ComparisonOperator.EqualsTo, narrationFilterSelectedValue, false, False)
-             
-             End If
-                      
-            Dim sort_orderFromFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "sort_orderFromFilter_Ajax"), String)
-            If IsValueSelected(sort_orderFromFilterSelectedValue) Then
-              
-                 wc.iAND(TermsTable.sort_order, BaseFilter.ComparisonOperator.Greater_Than_Or_Equal, sort_orderFromFilterSelectedValue, false, False)
-             
-             End If
-                      
-            Dim sort_orderToFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "sort_orderToFilter_Ajax"), String)
-            If IsValueSelected(sort_orderToFilterSelectedValue) Then
-              
-                 wc.iAND(TermsTable.sort_order, BaseFilter.ComparisonOperator.Less_Than_Or_Equal, sort_orderToFilterSelectedValue, false, False)
-             
-             End If
-                      
-            If IsValueSelected(searchText) and fromSearchControl = "TermsSearch" Then
-                Dim formatedSearchText as String = searchText
-                ' strip "..." from begin and ending of the search text, otherwise the search will return 0 values as in database "..." is not stored.
-                If searchText.StartsWith("...") Then
-                    formatedSearchText = searchText.SubString(3,searchText.Length-3)
-                End If
-                If searchText.EndsWith("...") Then
-                    formatedSearchText = searchText.SubString(0,searchText.Length-3)
-                End If
-                'After stripping "...", trim any leading and trailing whitespaces 
-                formatedSearchText = formatedSearchText.Trim()
-                ' After stripping "..." see if the search text is null or empty.
-                If IsValueSelected(formatedSearchText) Then
-                      ' These clauses are added depending on operator and fields selected in Control's property page, bindings tab.
-                    
-                    Dim search As WhereClause = New WhereClause()
-                    
-                    If InvariantLCase(AutoTypeAheadSearch).equals("wordsstartingwithsearchstring") Then
-                
-                        search.iOR(TermsTable.narration, BaseFilter.ComparisonOperator.Starts_With, formatedSearchText, True, False)
-                        search.iOR(TermsTable.narration, BaseFilter.ComparisonOperator.Contains, AutoTypeAheadWordSeparators & formatedSearchText, True, False)
-                
-                    Else
-                        
-                        search.iOR(TermsTable.narration, BaseFilter.ComparisonOperator.Contains, formatedSearchText, True, False)
-                    End If
-                    wc.iAND(search)
-                  
-                End If
-            End If
-                  
             Return wc
-        End Function
-          
-        Public Overridable Function GetAutoCompletionList_TermsSearch(ByVal prefixText As String, ByVal count As Integer) As String()
-            Dim resultList As ArrayList = New ArrayList
-            Dim wordList As ArrayList = New ArrayList
-            Dim iteration As Integer = 0
-            
-            Dim wc As WhereClause = CreateWhereClause(prefixText,"TermsSearch", "WordsStartingWithSearchString", "[^a-zA-Z0-9]")
-            While (resultList.Count < count AndAlso iteration < 5)
-                ' Fetch 100 records in each iteration
-                Dim recordList () As ServelInvocing.Business.TermsRecord = TermsTable.GetRecords(wc, Nothing, iteration, 100)
-                Dim rec As TermsRecord = Nothing
-                Dim resultItem As String = ""
-                For Each rec In recordList 
-                    ' Exit the loop if recordList count has reached AutoTypeAheadListSize.
-                    If resultList.Count >= count then
-                        Exit For
-                    End If
-                    ' If the field is configured to Display as Foreign key, Format() method returns the 
-                    ' Display as Forien Key value instead of original field value.
-                    ' Since search had to be done in multiple fields (selected in Control's page property, binding tab) in a record,
-                    ' We need to find relevent field to display which matches the prefixText and is not already present in the result list.
-                
-                    resultItem = rec.Format(TermsTable.narration)
-                    If resultItem IsNot Nothing AndAlso resultItem.ToUpper(System.Threading.Thread.CurrentThread.CurrentCulture).Contains(prefixText.ToUpper(System.Threading.Thread.CurrentThread.CurrentCulture))  Then
-      
-                        Dim isAdded As Boolean = FormatSuggestions(prefixText, resultItem, 50, "AtBeginningOfMatchedString", "WordsStartingWithSearchString", "[^a-zA-Z0-9]", resultList)
-                        If isAdded Then
-                            Continue For
-                        End If
-                    End If
-      
-                Next
-                ' Exit the loop if number of records found is less as further iteration will not return any more records
-                If recordList .Length < 100 Then
-                    Exit While
-                End If
-                iteration += 1
-            End While
-             
-            resultList.Sort()
-            Dim result() As String = New String(resultList.Count - 1) {}
-            Array.Copy(resultList.ToArray, result, resultList.Count)
-            Return result
         End Function
           
           
@@ -1692,17 +1480,7 @@ Public Class BaseTermsTableControl
       
         ' Create Set, WhereClause, and Populate Methods
         
-        Public Overridable Sub SetnarrationLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub SetnarrationLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setsort_orderLabel()
             
                     
         End Sub
@@ -1712,83 +1490,6 @@ Public Class BaseTermsTableControl
                     
         End Sub
                 
-        Public Overridable Sub SetnarrationFilter()
-            
-            If (Me.InSession(Me.narrationFilter))
-                Me.PopulatenarrationFilter(GetSelectedValue(Me.narrationFilter, Me.GetFromSession(Me.narrationFilter)), 500)
-            Else
-                
-                Me.PopulatenarrationFilter(GetSelectedValue(Me.narrationFilter,  Nothing), 500)					
-                
-            End If
-                    
-        End Sub	
-            
-        Public Overridable Sub SetTermsSearch()
-            
-        End Sub	
-            
-        ' Get the filters' data for narrationFilter
-        Protected Overridable Sub PopulatenarrationFilter(ByVal selectedValue As String, ByVal maxItems As Integer)
-                    
-                
-            Me.narrationFilter.Items.Clear()
-            
-            
-            ' Setup the WHERE clause, including the base table if needed.
-                
-            Dim wc As WhereClause = Me.CreateWhereClause_narrationFilter()
-                  
-            Dim orderBy As OrderBy = New OrderBy(False, True)
-            orderBy.Add(TermsTable.narration, OrderByItem.OrderDir.Asc)
-
-            
-            ' Add the All item.
-            Me.narrationFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
-                            	
-
-
-            Dim values() As String = TermsTable.GetValues(TermsTable.narration, wc, orderBy, maxItems)
-            
-            Dim itemValue As String
-            
-            For Each itemValue In values
-                ' Create the item and add to the list.
-                Dim fvalue As String
-          
-                If ( TermsTable.narration.IsColumnValueTypeBoolean()) Then
-                    fvalue = itemValue
-                Else
-                    fvalue = TermsTable.narration.Format(itemValue)
-                End If
-                Dim item As ListItem = New ListItem(fvalue, itemValue)
-          
-                Me.narrationFilter.Items.Add(item)
-            Next
-                    
-
-                
-            ' Set the selected value.
-            SetSelectedValue(Me.narrationFilter, selectedValue)
-
-                
-        End Sub
-            
-        Public Overridable Function CreateWhereClause_narrationFilter() As WhereClause
-        
-            ' Create a where clause for the filter narrationFilter.
-            ' This function is called by the Populate method to load the items 
-            ' in the narrationFilterDropDownList
-                   
-            Dim wc As WhereClause = new WhereClause()
-            ' Add additional where clauses to restrict the items shown in the control.
-            ' Examples:
-            ' wc.iAND(., BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
-            ' wc.iAND(.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
-            Return wc
-        
-        End Function			
-            
         Protected Overridable Sub Control_PreRender(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.PreRender
             ' PreRender event is raised just before page is being displayed.
             Try
@@ -1818,14 +1519,6 @@ Public Class BaseTermsTableControl
 
             ' Save filter controls to values to session.
         
-            Me.SaveToSession(Me.narrationFilter, Me.narrationFilter.SelectedValue)
-                  
-            Me.SaveToSession(Me.sort_orderFromFilter, Me.sort_orderFromFilter.Text)
-                  
-            Me.SaveToSession(Me.sort_orderToFilter, Me.sort_orderToFilter.Text)
-                  
-            Me.SaveToSession(Me.TermsSearch, Me.TermsSearch.Text)
-                  
             
             ' Save table control properties to the session.
             If Not Me.CurrentSortOrder Is Nothing Then
@@ -1841,14 +1534,6 @@ Public Class BaseTermsTableControl
         Protected  Sub SaveControlsToSession_Ajax()
             ' Save filter controls to values to session.
           
-      Me.SaveToSession("narrationFilter_Ajax", Me.narrationFilter.SelectedValue)
-              
-      Me.SaveToSession("sort_orderFromFilter_Ajax", Me.sort_orderFromFilter.Text)
-              
-      Me.SaveToSession("sort_orderToFilter_Ajax", Me.sort_orderToFilter.Text)
-              
-      Me.SaveToSession("TermsSearch_Ajax", Me.TermsSearch.Text)
-              
             HttpContext.Current.Session("AppRelativeVirtualPath") = Me.Page.AppRelativeVirtualPath
          
         End Sub
@@ -1858,10 +1543,6 @@ Public Class BaseTermsTableControl
 
             ' Clear filter controls values from the session.
         
-            Me.RemoveFromSession(Me.narrationFilter)
-            Me.RemoveFromSession(Me.sort_orderFromFilter)
-            Me.RemoveFromSession(Me.sort_orderToFilter)
-            Me.RemoveFromSession(Me.TermsSearch)
             
             ' Clear table properties from the session.
             Me.RemoveFromSession(Me, "Order_By")
@@ -2434,16 +2115,14 @@ Public Class BaseTermsTableControl
         
             Try
                 
-              Me.narrationFilter.ClearSelection()
-              Me.sort_orderFromFilter.Text = ""
-              Me.sort_orderToFilter.Text = ""
-              Me.TermsSearch.Text = ""
               Me.CurrentSortOrder.Reset()
               If Me.InSession(Me, "Order_By") Then
                   Me.CurrentSortOrder = OrderBy.FromXmlString(Me.GetFromSession(Me, "Order_By", Nothing))
               Else
                   Me.CurrentSortOrder = New OrderBy(True, True)
               
+                Me.CurrentSortOrder.Add(TermsTable.sort_order, OrderByItem.OrderDir.Asc)
+                
               End If
               
 
@@ -2534,56 +2213,10 @@ Public Class BaseTermsTableControl
                   
         End Sub
         
-        ' event handler for Button with Layout
-        Public Overridable Sub TermsFilterButton_Click(ByVal sender As Object, ByVal args As EventArgs)
-              
-            Try
-                
-          Me.DataChanged = True
-      
-            Catch ex As Exception
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-    
-            End Try
-    
-        End Sub
-            
-        ' event handler for Button with Layout
-        Public Overridable Sub TermsSearchButton_Click(ByVal sender As Object, ByVal args As EventArgs)
-              
-            Try
-                
-          Me.DataChanged = True
-      
-            Catch ex As Exception
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-    
-            End Try
-    
-        End Sub
-            
       
 
         ' Generate the event handling functions for filter and search events.
         
-        ' event handler for FieldFilter
-        Protected Overridable Sub narrationFilter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
-           ' Setting the DataChanged to True results in the page being refreshed with
-           ' the most recent data from the database.  This happens in PreRender event
-           ' based on the current sort, search and filter criteria.
-           Me.DataChanged = True
-           
-          	   
-        End Sub
-            
       
         ' Generate the event handling functions for others
         
@@ -2706,45 +2339,15 @@ Public Class BaseTermsTableControl
        
 #Region "Helper Properties"
         
-        Public ReadOnly Property narrationFilter() As System.Web.UI.WebControls.DropDownList
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "narrationFilter"), System.Web.UI.WebControls.DropDownList)
-            End Get
-        End Property
-        
-        Public ReadOnly Property narrationLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "narrationLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property narrationLabel1() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "narrationLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
-        Public ReadOnly Property sort_orderFromFilter() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_orderFromFilter"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-        
-        Public ReadOnly Property sort_orderLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_orderLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property sort_orderLabel1() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_orderLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property sort_orderToFilter() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_orderToFilter"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
         
@@ -2777,12 +2380,6 @@ Public Class BaseTermsTableControl
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "TermsExportExcelButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
-        
-        Public ReadOnly Property TermsFilterButton() As ServelInvocing.UI.IThemeButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "TermsFilterButton"), ServelInvocing.UI.IThemeButton)
-          End Get
-          End Property
         
         Public ReadOnly Property TermsImportButton() As System.Web.UI.WebControls.ImageButton
             Get
@@ -2819,18 +2416,6 @@ Public Class BaseTermsTableControl
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "TermsResetButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
-        
-        Public ReadOnly Property TermsSearch() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "TermsSearch"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-        
-        Public ReadOnly Property TermsSearchButton() As ServelInvocing.UI.IThemeButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "TermsSearchButton"), ServelInvocing.UI.IThemeButton)
-          End Get
-          End Property
         
         Public ReadOnly Property TermsTitle() As System.Web.UI.WebControls.Literal
             Get

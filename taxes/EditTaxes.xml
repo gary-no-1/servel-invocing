@@ -15,6 +15,93 @@
   </Self>
   <ComposedOf>
     <ContainedComponent>
+      <Name>calc_type</Name>
+      <Type>FieldValue</Type>
+      <Field>calc_type</Field>
+      <FieldValueStyle>DropDownList</FieldValueStyle>
+      <Table>taxes</Table>
+      <SpecifiedItems>
+        <Item>
+          <Name>--PLEASE_SELECT--</Name>
+          <Value>{Txt:PleaseSelect}</Value>
+        </Item>
+        <Item>
+          <Name>ACTUAL</Name>
+          <Value>Actual</Value>
+        </Item>
+        <Item>
+          <Name>ON NET TOTAL</Name>
+          <Value>On Net Total</Value>
+        </Item>
+        <Item>
+          <Name>PREVIOUS AMOUNT</Name>
+          <Value>On Previous Row Amount</Value>
+        </Item>
+        <Item>
+          <Name>PREVIOUS TOTAL</Name>
+          <Value>On Previous Row Total</Value>
+        </Item>
+      </SpecifiedItems>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>calc_typeRequiredFieldValidator:Enabled</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>calc_typeRequiredFieldValidator:Text</Name>
+          <Value>*</Value>
+        </Attribute>
+        <Attribute>
+          <Name>CssClass</Name>
+          <Value>field_input</Value>
+        </Attribute>
+        <Attribute>
+          <Name>EnableIncrementDecrementButtons</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:ApplyQuery</Name>
+          <Value>false</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:GenerateSpecificItems</Name>
+          <Value>True</Value>
+        </Attribute>
+        <Attribute>
+          <Name>onkeypress</Name>
+          <Value>dropDownListTypeAhead(this,false)</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>TaxesRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>calc_typeLabel</Name>
+      <Type>Literal</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>TaxesRecordControl</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Field</Name>
+          <Value>calc_type</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Table</Name>
+          <Value>taxes</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>%ISD_DEFAULT%taxes%calc_type</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>TaxesRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>CancelButton</Name>
       <Type>Button</Type>
       <Layout>..\Shared\ThemeButton.ascx</Layout>
@@ -343,46 +430,6 @@
       <InsideControl>TaxesRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>tax_typeAddRecordLink</Name>
-      <Type>ImageButton</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>CausesValidation</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CommandName</Name>
-          <Value>Redirect</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>TaxesRecordControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ControlToUpdate</Name>
-          <Value>tax_type</Value>
-        </Attribute>
-        <Attribute>
-          <Name>FieldValue</Name>
-          <Value>tax_type</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ImageURL</Name>
-          <Value>../Images/iconNewFlat.gif</Value>
-        </Attribute>
-        <Attribute>
-          <Name>RedirectURL</Name>
-          <Value>../tax_types/AddTax_types.aspx</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ToolTip</Name>
-          <Value>Btn:Add</Value>
-          <Type>ResourceReference</Type>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>TaxesRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>tax_typeLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
@@ -473,7 +520,9 @@
         &lt;Value&gt;
                         &amp;lt;GEN:RECORD NAME="TaxesRecordControl"&amp;gt;&amp;lt;/GEN:RECORD&amp;gt;
             &lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -485,6 +534,7 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Epilog&gt;
       &lt;Value&gt;
@@ -510,6 +560,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="TaxesRecordControl" Type="RecordPanel" PanelControlName="TaxesRecordControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="TaxesPanelHeader"/&amp;gt;&lt;/Value&gt;
@@ -520,12 +571,16 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;asp:panel id="TaxesRecordControlCollapsibleRegion" runat="server"&amp;gt;&amp;lt;GEN:PANEL NAME="TaxesPanel"/&amp;gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -546,6 +601,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="TaxesPanelHeader" Type="PanelHeader" PanelControlName="TaxesRecordControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/space.gif" alt=""/&amp;gt;&lt;/Value&gt;
@@ -588,7 +644,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -609,6 +667,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="TaxesRecordControlTitleRegion" PanelControlName="TaxesRecordControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:HTML NAME="TaxesTitle"/&amp;gt;&lt;/Value&gt;
@@ -623,7 +682,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -640,12 +701,15 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="TaxesPanel" PanelControlName="TaxesRecordControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="TaxesFields"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -693,7 +757,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_nameLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -702,7 +765,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_name"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -710,6 +772,44 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_nameLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_name" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -731,7 +831,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_rateLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -740,7 +839,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_rate"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -748,10 +846,11 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_typeLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_rateLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -760,8 +859,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_type"/&amp;gt; 
-&amp;lt;GEN:IMAGEBUTTON NAME="tax_typeAddRecordLink"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_rate" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -789,6 +887,51 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_typeLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_type" /&amp;gt; 
+&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;style&lt;/Name&gt;
+            &lt;AttributeValue&gt;white-space:nowrap;&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="calc_typeLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="calc_type" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Epilog&gt;
       &lt;Value&gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
@@ -809,14 +952,19 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="PageButtons" Type="PageButton"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:BUTTON NAME="SaveButton"/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:BUTTON NAME="CancelButton"/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;

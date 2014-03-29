@@ -182,11 +182,11 @@
     <Compile Include="Header and Footer\IEmailHeader.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Header and Footer\Header.ascx.vb">
-      <DependentUpon>Header.ascx</DependentUpon>
+    <Compile Include="Header and Footer\Footer.ascx.vb">
+      <DependentUpon>Footer.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Header and Footer\IHeader.vb">
+    <Compile Include="Header and Footer\IFooter.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Header and Footer\PrintHeader.ascx.vb">
@@ -313,13 +313,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx.vb">
-      <DependentUpon>ShowPro_inv_hdrTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="pro_inv_items\AddPro_inv_items.aspx.vb">
@@ -658,13 +651,6 @@
     <Compile Include="terms\ShowTerms.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="terms\ShowTermsTable.aspx.vb">
-      <DependentUpon>ShowTermsTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="terms\ShowTermsTable.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="unitsofmeasure\AddUnitsofmeasure.aspx.vb">
       <DependentUpon>AddUnitsofmeasure.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -742,11 +728,11 @@
     <Compile Include="company\EditCompany.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Header and Footer\Footer.ascx.vb" >
-      <DependentUpon>Footer.ascx</DependentUpon>
+    <Compile Include="Header and Footer\Header.ascx.vb" >
+      <DependentUpon>Header.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Header and Footer\IFooter.vb" >
+    <Compile Include="Header and Footer\IHeader.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Menu Panels\Menu.ascx.vb" >
@@ -763,11 +749,25 @@
     <Compile Include="pro_inv_hdr\AddPro_inv_hdr.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx.vb" >
+      <DependentUpon>ShowPro_inv_hdrTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tax_groups\ShowTax_groups.aspx.vb" >
       <DependentUpon>ShowTax_groups.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="tax_groups\ShowTax_groups.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="terms\ShowTermsTable.aspx.vb" >
+      <DependentUpon>ShowTermsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="terms\ShowTermsTable.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -1093,7 +1093,7 @@
     <Content Include="company\ShowCompany.aspx" />
     <Content Include="company\ShowCompanyTable.aspx" />
     <Content Include="Header and Footer\EmailHeader.ascx" />
-    <Content Include="Header and Footer\Header.ascx" />
+    <Content Include="Header and Footer\Footer.ascx" />
     <Content Include="Header and Footer\PrintHeader.ascx" />
     <Content Include="items\AddItems.aspx" />
     <Content Include="items\EditItems.aspx" />
@@ -1112,7 +1112,6 @@
     <Content Include="party\ShowPartyTable.aspx" />
     <Content Include="pro_inv_hdr\EditPro_inv_hdr.aspx" />
     <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx" />
-    <Content Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx" />
     <Content Include="pro_inv_items\AddPro_inv_items.aspx" />
     <Content Include="pro_inv_items\EditPro_inv_items.aspx" />
     <Content Include="pro_inv_items\ShowPro_inv_items.aspx" />
@@ -1161,7 +1160,6 @@
     <Content Include="terms\AddTerms.aspx" />
     <Content Include="terms\EditTerms.aspx" />
     <Content Include="terms\ShowTerms.aspx" />
-    <Content Include="terms\ShowTermsTable.aspx" />
     <Content Include="unitsofmeasure\AddUnitsofmeasure.aspx" />
     <Content Include="unitsofmeasure\EditUnitsofmeasure.aspx" />
     <Content Include="unitsofmeasure\EditUnitsofmeasureTable.aspx" />
@@ -1173,7 +1171,7 @@
     <Content Include="users\ShowUsers.aspx" />
     <Content Include="users\ShowUsersTable.aspx" />
     <Content Include="company\EditCompany.aspx"  />
-    <Content Include="Header and Footer\Footer.ascx"  />
+    <Content Include="Header and Footer\Header.ascx"  />
     <Content Include="Master Pages\Blank.master"  />
     <Content Include="Master Pages\Email.master"  />
     <Content Include="Master Pages\HorizontalMenu.master"  />
@@ -1181,7 +1179,9 @@
     <Content Include="Master Pages\VerticalMenu.master"  />
     <Content Include="Menu Panels\Menu.ascx"  />
     <Content Include="pro_inv_hdr\AddPro_inv_hdr.aspx"  />
+    <Content Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx"  />
     <Content Include="tax_groups\ShowTax_groups.aspx"  />
+    <Content Include="terms\ShowTermsTable.aspx"  />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Global.asax.resx">

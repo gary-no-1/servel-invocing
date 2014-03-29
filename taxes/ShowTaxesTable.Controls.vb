@@ -145,6 +145,7 @@ Public Class BaseTaxesTableControlRow
       
             ' Call the Set methods for each controls on the panel
         
+            Setcalc_type()
             Settax_code()
             Settax_name()
             Settax_print()
@@ -168,6 +169,50 @@ Public Class BaseTaxesTableControlRow
         End Sub
         
         
+        Public Overridable Sub Setcalc_type()
+            
+        
+            ' Set the calc_type Literal on the webpage with value from the
+            ' taxes database record.
+
+            ' Me.DataSource is the taxes record retrieved from the database.
+            ' Me.calc_type is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setcalc_type()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.calc_typeSpecified Then
+                				
+                ' If the calc_type is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(TaxesTable.calc_type)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.calc_type.Text = formattedValue
+              
+            Else 
+            
+                ' calc_type is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.calc_type.Text = TaxesTable.calc_type.Format(TaxesTable.calc_type.DefaultValue)
+                        		
+                End If
+                 
+            ' If the calc_type is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.calc_type.Text Is Nothing _
+                OrElse Me.calc_type.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.calc_type.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Settax_code()
             
         
@@ -475,6 +520,7 @@ Public Class BaseTaxesTableControlRow
       
             ' Call the Get methods for each of the user interface controls.
         
+            Getcalc_type()
             Gettax_code()
             Gettax_name()
             Gettax_print()
@@ -483,6 +529,10 @@ Public Class BaseTaxesTableControlRow
         End Sub
         
         
+        Public Overridable Sub Getcalc_type()
+            
+        End Sub
+                
         Public Overridable Sub Gettax_code()
             
         End Sub
@@ -898,6 +948,12 @@ Public Class BaseTaxesTableControlRow
 
 #Region "Helper Properties"
         
+        Public ReadOnly Property calc_type() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "calc_type"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property tax_code() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_code"), System.Web.UI.WebControls.Literal)
@@ -1113,6 +1169,8 @@ Public Class BaseTaxesTableControl
               
             ' Setup the sorting events.
           
+              AddHandler Me.calc_typeLabel.Click, AddressOf calc_typeLabel_Click
+            
               AddHandler Me.tax_codeLabel1.Click, AddressOf tax_codeLabel1_Click
             
               AddHandler Me.tax_nameLabel.Click, AddressOf tax_nameLabel_Click
@@ -1256,6 +1314,7 @@ Public Class BaseTaxesTableControl
 
             ' Call the Set methods for each controls on the panel
         
+            Setcalc_typeLabel()
             Settax_codeFilter()
             
             Settax_codeLabel()
@@ -1302,6 +1361,7 @@ Public Class BaseTaxesTableControl
 
             ' Initialize other asp controls
             
+            Setcalc_typeLabel()
             Settax_codeLabel()
             Settax_codeLabel1()
             Settax_nameLabel()
@@ -1804,6 +1864,9 @@ Public Class BaseTaxesTableControl
                     
                         Dim rec As TaxesRecord = New TaxesRecord()
         
+                        If recControl.calc_type.Text <> "" Then
+                            rec.Parse(recControl.calc_type.Text, TaxesTable.calc_type)
+                        End If
                         If recControl.tax_code.Text <> "" Then
                             rec.Parse(recControl.tax_code.Text, TaxesTable.tax_code)
                         End If
@@ -1886,6 +1949,11 @@ Public Class BaseTaxesTableControl
       
         ' Create Set, WhereClause, and Populate Methods
         
+        Public Overridable Sub Setcalc_typeLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Settax_codeLabel()
             
                     
@@ -2304,6 +2372,28 @@ Public Class BaseTaxesTableControl
 
         ' Generate the event handling functions for sorting events.
         
+        Public Overridable Sub calc_typeLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by calc_type when clicked.
+              
+            ' Get previous sorting state for calc_type.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(TaxesTable.calc_type)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for calc_type.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(TaxesTable.calc_type, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by calc_type, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub tax_codeLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by tax_code when clicked.
               
@@ -2554,6 +2644,7 @@ Public Class BaseTaxesTableControl
              TaxesTable.tax_print, _ 
              TaxesTable.tax_rate, _ 
              TaxesTable.tax_type, _ 
+             TaxesTable.calc_type, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(TaxesTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -2599,6 +2690,7 @@ Public Class BaseTaxesTableControl
              excelReport.AddColumn(New ExcelColumn(TaxesTable.tax_print, "Default"))
              excelReport.AddColumn(New ExcelColumn(TaxesTable.tax_rate, "Standard"))
              excelReport.AddColumn(New ExcelColumn(TaxesTable.tax_type, "Default"))
+             excelReport.AddColumn(New ExcelColumn(TaxesTable.calc_type, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2716,6 +2808,7 @@ Public Class BaseTaxesTableControl
                  report.AddColumn(TaxesTable.tax_print.Name, ReportEnum.Align.Left, "${tax_print}", ReportEnum.Align.Left, 30)
                  report.AddColumn(TaxesTable.tax_rate.Name, ReportEnum.Align.Right, "${tax_rate}", ReportEnum.Align.Right, 16)
                  report.AddColumn(TaxesTable.tax_type.Name, ReportEnum.Align.Left, "${tax_type}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(TaxesTable.calc_type.Name, ReportEnum.Align.Left, "${calc_type}", ReportEnum.Align.Left, 20)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2748,6 +2841,7 @@ Public Class BaseTaxesTableControl
                              report.AddData("${tax_print}", record.Format(TaxesTable.tax_print), ReportEnum.Align.Left, 100)
                              report.AddData("${tax_rate}", record.Format(TaxesTable.tax_rate), ReportEnum.Align.Right, 100)
                              report.AddData("${tax_type}", record.Format(TaxesTable.tax_type), ReportEnum.Align.Left)
+                             report.AddData("${calc_type}", record.Format(TaxesTable.calc_type), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -2852,6 +2946,7 @@ Public Class BaseTaxesTableControl
                  report.AddColumn(TaxesTable.tax_print.Name, ReportEnum.Align.Left, "${tax_print}", ReportEnum.Align.Left, 30)
                  report.AddColumn(TaxesTable.tax_rate.Name, ReportEnum.Align.Right, "${tax_rate}", ReportEnum.Align.Right, 16)
                  report.AddColumn(TaxesTable.tax_type.Name, ReportEnum.Align.Left, "${tax_type}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(TaxesTable.calc_type.Name, ReportEnum.Align.Left, "${calc_type}", ReportEnum.Align.Left, 20)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -2881,6 +2976,7 @@ Public Class BaseTaxesTableControl
                              report.AddData("${tax_print}", record.Format(TaxesTable.tax_print), ReportEnum.Align.Left, 100)
                              report.AddData("${tax_rate}", record.Format(TaxesTable.tax_rate), ReportEnum.Align.Right, 100)
                              report.AddData("${tax_type}", record.Format(TaxesTable.tax_type), ReportEnum.Align.Left)
+                             report.AddData("${calc_type}", record.Format(TaxesTable.calc_type), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -3068,6 +3164,12 @@ Public Class BaseTaxesTableControl
         End Property
        
 #Region "Helper Properties"
+        
+        Public ReadOnly Property calc_typeLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "calc_typeLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
         
         Public ReadOnly Property tax_codeFilter() As System.Web.UI.WebControls.DropDownList
             Get

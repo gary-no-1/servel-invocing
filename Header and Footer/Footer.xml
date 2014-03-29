@@ -22,49 +22,60 @@
         </Attribute>
       </PassthroughAttributes>
     </ContainedComponent>
+    <ContainedComponent>
+      <Name>Literal</Name>
+      <Type>Literal</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>v 2014.03.29.1</Value>
+        </Attribute>
+      </PassthroughAttributes>
+    </ContainedComponent>
   </ComposedOf>
   <LayoutDefinition>&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-16"?&gt;
-    &lt;LayoutDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-    
-      &lt;Layout Name="Footer" Type="RootLayout"&gt;
-	  
-		&lt;Prolog&gt;
-		  &lt;Value&gt;&lt;/Value&gt;
-	    &lt;/Prolog&gt;
-		   
-        &lt;Row&gt;
-          &lt;Cell&gt;
-            &lt;Value&gt;&amp;lt;GEN:HTML Name="Copyright"/&amp;gt;&lt;/Value&gt;
-            &lt;CellAttributes&gt;
-              &lt;Attribute&gt;
-                &lt;Name&gt;class&lt;/Name&gt;
-                &lt;AttributeValue&gt;footer&lt;/AttributeValue&gt;
-              &lt;/Attribute&gt;
-            &lt;/CellAttributes&gt;
-          &lt;/Cell&gt;
-        &lt;/Row&gt;
-		
-		&lt;Epilog&gt;
-		  &lt;Value&gt;&lt;/Value&gt;
-	    &lt;/Epilog&gt;
-		   
-	    &lt;TableAttributes&gt;
-		  &lt;Attribute&gt;
-			&lt;Name&gt;cellpadding&lt;/Name&gt;
-			&lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
-		  &lt;/Attribute&gt;
-		  &lt;Attribute&gt;
-			&lt;Name&gt;cellspacing&lt;/Name&gt;
-			&lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
-		  &lt;/Attribute&gt;
-		  &lt;Attribute&gt;
-		 	&lt;Name&gt;border&lt;/Name&gt;
-			&lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
-		  &lt;/Attribute&gt;
-		&lt;/TableAttributes&gt;
-
-      &lt;/Layout&gt;
-        
-    &lt;/LayoutDefinition&gt;]]&gt;
-  </LayoutDefinition>
+&lt;LayoutDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;Layout Name="Footer" Type="RootLayout"&gt;
+    &lt;Prolog /&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:HTML Name="Copyright"/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;footer&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:LITERAL Name="Literal" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;footer&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Epilog /&gt;
+    &lt;TableAttributes&gt;
+      &lt;Attribute&gt;
+        &lt;Name&gt;cellpadding&lt;/Name&gt;
+        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
+      &lt;/Attribute&gt;
+      &lt;Attribute&gt;
+        &lt;Name&gt;cellspacing&lt;/Name&gt;
+        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
+      &lt;/Attribute&gt;
+      &lt;Attribute&gt;
+        &lt;Name&gt;border&lt;/Name&gt;
+        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
+      &lt;/Attribute&gt;
+    &lt;/TableAttributes&gt;
+  &lt;/Layout&gt;
+&lt;/LayoutDefinition&gt;]]&gt;</LayoutDefinition>
 </ComponentDefinition>

@@ -76,9 +76,8 @@ Public Class BaseTaxesRecordControl
          
               ' Register the event handlers.
           
-              Me.tax_typeAddRecordLink.PostBackUrl = "../tax_types/AddTax_types.aspx" & "?Target=" & Me.tax_type.ClientID & "&DFKA=tax_type"
-              Me.tax_typeAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.tax_typeAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
-              
+              AddHandler Me.calc_type.SelectedIndexChanged, AddressOf calc_type_SelectedIndexChanged
+            
               AddHandler Me.tax_type.SelectedIndexChanged, AddressOf tax_type_SelectedIndexChanged
             
               AddHandler Me.tax_code.TextChanged, AddressOf tax_code_TextChanged
@@ -167,6 +166,8 @@ Public Class BaseTaxesRecordControl
       
             ' Call the Set methods for each controls on the panel
         
+            Setcalc_type()
+            Setcalc_typeLabel()
             Settax_code()
             Settax_codeLabel()
             Settax_name()
@@ -195,6 +196,40 @@ Public Class BaseTaxesRecordControl
         End Sub
         
         
+        Public Overridable Sub Setcalc_type()
+            
+        
+            ' Set the calc_type DropDownList on the webpage with value from the
+            ' taxes database record.
+            
+            ' Me.DataSource is the taxes record retrieved from the database.
+            ' Me.calc_type is the ASP:DropDownList on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setcalc_type()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.calc_typeSpecified Then
+                            
+                ' If the calc_type is non-NULL, then format the value.
+                ' The Format method will use the Display Format
+                Me.Populatecalc_typeDropDownList(Me.DataSource.calc_type, 100)
+                
+            Else
+                
+                ' calc_type is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+                If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
+                    Me.Populatecalc_typeDropDownList(Nothing, 100)
+                Else
+                    Me.Populatecalc_typeDropDownList(TaxesTable.calc_type.DefaultValue, 100)
+                End If
+                				
+            End If			
+                
+        End Sub
+                
         Public Overridable Sub Settax_code()
             
         
@@ -369,6 +404,11 @@ Public Class BaseTaxesRecordControl
                 
         End Sub
                 
+        Public Overridable Sub Setcalc_typeLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Settax_codeLabel()
             
                     
@@ -498,6 +538,7 @@ Public Class BaseTaxesRecordControl
       
             ' Call the Get methods for each of the user interface controls.
         
+            Getcalc_type()
             Gettax_code()
             Gettax_name()
             Gettax_print()
@@ -506,6 +547,17 @@ Public Class BaseTaxesRecordControl
         End Sub
         
         
+        Public Overridable Sub Getcalc_type()
+         
+            ' Retrieve the value entered by the user on the calc_type ASP:DropDownList, and
+            ' save it into the calc_type field in DataSource taxes record.
+                        
+            ' Custom validation should be performed in Validate, not here.
+            
+            Me.DataSource.Parse(GetValueSelectedPageRequest(Me.calc_type), TaxesTable.calc_type)				
+            
+        End Sub
+                
         Public Overridable Sub Gettax_code()
             
             ' Retrieve the value entered by the user on the tax_code ASP:TextBox, and
@@ -851,6 +903,17 @@ Public Class BaseTaxesRecordControl
         ' Generate the event handling functions for filter and search events.
             
 
+        Public Overridable Function CreateWhereClause_calc_typeDropDownList() As WhereClause
+            ' By default, we simply return a new WhereClause.
+            ' Add additional where clauses to restrict the items shown in the dropdown list.
+            
+            Dim wc As WhereClause = New WhereClause()
+            Return wc
+            				
+        End Function
+        
+                
+
         Public Overridable Function CreateWhereClause_tax_typeDropDownList() As WhereClause
             ' By default, we simply return a new WhereClause.
             ' Add additional where clauses to restrict the items shown in the dropdown list.
@@ -865,6 +928,50 @@ Public Class BaseTaxesRecordControl
             				
         End Function
         
+                
+        ' Fill the calc_type list.
+        Protected Overridable Sub Populatecalc_typeDropDownList( _
+                ByVal selectedValue As String, _
+                ByVal maxItems As Integer)
+            		  					                
+            Me.calc_type.Items.Clear()
+            
+            ' This is a four step process.
+            ' 1. Setup the static list items
+            ' 2. Set up the WHERE and the ORDER BY clause
+            ' 3. Read a total of maxItems from the database and insert them
+            ' 4. Set the selected value (insert if not already present).
+                    
+            ' 1. Setup the static list items
+            							
+            Me.calc_type.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))
+                          							
+            Me.calc_type.Items.Add(New ListItem(Me.Page.ExpandResourceValue("Actual"), "ACTUAL"))
+                          							
+            Me.calc_type.Items.Add(New ListItem(Me.Page.ExpandResourceValue("On Net Total"), "ON NET TOTAL"))
+                          							
+            Me.calc_type.Items.Add(New ListItem(Me.Page.ExpandResourceValue("On Previous Row Amount"), "PREVIOUS AMOUNT"))
+                          							
+            Me.calc_type.Items.Add(New ListItem(Me.Page.ExpandResourceValue("On Previous Row Total"), "PREVIOUS TOTAL"))
+                          		  
+            ' Skip step 2 and 3 because no need to load data from database and insert data
+                    
+                    
+            ' 4. Set the selected value (insert if not already present).
+              
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.calc_type, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.calc_type, selectedValue)Then
+                Dim fvalue As String = TaxesTable.calc_type.Format(selectedValue)
+                If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                item.Selected = True
+                Me.calc_type.Items.Add(item)
+            End If					
+            
+                
+        End Sub
                 
         ' Fill the tax_type list.
         Protected Overridable Sub Populatetax_typeDropDownList( _
@@ -956,6 +1063,35 @@ Public Class BaseTaxesRecordControl
                 
         End Sub
                 
+        Protected Overridable Sub calc_type_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.calc_type.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.calc_type)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.calc_type, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.calc_type, selectedValue)Then
+                Dim fvalue As String = TaxesTable.calc_type.Format(selectedValue)
+                If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                item.Selected = True
+                Me.calc_type.Items.Add(item)
+            End If					
+            
+            End If
+          									
+                
+                
+        End Sub
+            
         Protected Overridable Sub tax_type_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
             ' If a large list selector or a Quick Add link is used, the dropdown list
             ' will contain an item that was not in the original (smaller) list.  During postbacks,
@@ -1153,6 +1289,18 @@ Public Class BaseTaxesRecordControl
 
 #Region "Helper Properties"
         
+        Public ReadOnly Property calc_type() As System.Web.UI.WebControls.DropDownList
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "calc_type"), System.Web.UI.WebControls.DropDownList)
+            End Get
+        End Property
+            
+        Public ReadOnly Property calc_typeLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "calc_typeLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property tax_code() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_code"), System.Web.UI.WebControls.TextBox)
@@ -1207,12 +1355,6 @@ Public Class BaseTaxesRecordControl
             End Get
         End Property
             
-        Public ReadOnly Property tax_typeAddRecordLink() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_typeAddRecordLink"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property tax_typeLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_typeLabel"), System.Web.UI.WebControls.Literal)

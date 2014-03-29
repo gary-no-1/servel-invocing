@@ -11,6 +11,7 @@ Namespace ServelInvocing.UI
 #Region "Interface Properties"
         
         ReadOnly Property Copyright() As System.Web.UI.WebControls.Literal
+        ReadOnly Property Literal() As System.Web.UI.WebControls.Literal
       Property Visible() as Boolean
          
 

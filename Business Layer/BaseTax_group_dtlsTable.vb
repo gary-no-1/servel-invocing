@@ -61,6 +61,7 @@ Namespace ServelInvocing.Business
         tax_nameColumn.CodeName = "tax_name"
         tax_printColumn.CodeName = "tax_print"
         tax_rateColumn.CodeName = "tax_rate"
+        calc_typeColumn.CodeName = "calc_type"
         
     End Sub
 
@@ -216,6 +217,25 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property tax_rate() As BaseClasses.Data.NumberColumn
         Get
             Return Tax_group_dtlsTable.Instance.tax_rateColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Tax_group_dtls_.calc_type column object.
+    ''' </summary>
+    Public ReadOnly Property calc_typeColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(8), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Tax_group_dtls_.calc_type column object.
+    ''' </summary>
+    Public Shared ReadOnly Property calc_type() As BaseClasses.Data.StringColumn
+        Get
+            Return Tax_group_dtlsTable.Instance.calc_typeColumn
         End Get
     End Property
 
@@ -498,7 +518,8 @@ Namespace ServelInvocing.Business
         ByVal tax_codeValue As String, _
         ByVal tax_nameValue As String, _
         ByVal tax_printValue As String, _
-        ByVal tax_rateValue As String _
+        ByVal tax_rateValue As String, _
+        ByVal calc_typeValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(id_tax_groupValue, id_tax_groupColumn)
@@ -508,6 +529,7 @@ Namespace ServelInvocing.Business
         rec.SetString(tax_nameValue, tax_nameColumn)
         rec.SetString(tax_printValue, tax_printColumn)
         rec.SetString(tax_rateValue, tax_rateColumn)
+        rec.SetString(calc_typeValue, calc_typeColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

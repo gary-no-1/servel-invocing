@@ -176,6 +176,39 @@
       </foreignKey>
     </Column>
     <Column InternalName="6" Priority="7" ColumnNum="6">
+      <columnName>calc_type</columnName>
+      <columnUIName Source="User">Calculate Type</columnUIName>
+      <columnType>String</columnType>
+      <columnDBType>nchar</columnDBType>
+      <columnLengthSet>20</columnLengthSet>
+      <columnDefault>
+      </columnDefault>
+      <columnDBDefault Source="User">
+      </columnDBDefault>
+      <columnIndex>N</columnIndex>
+      <columnUnique>N</columnUnique>
+      <columnFunction>
+      </columnFunction>
+      <columnDBFormat>
+      </columnDBFormat>
+      <columnPK>N</columnPK>
+      <columnPermanent>N</columnPermanent>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
+      <columnRequired>N</columnRequired>
+      <columnNotNull>N</columnNotNull>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
+      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
+      <columnTableAliasName>
+      </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>6</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
+    </Column>
+    <Column InternalName="7" Priority="8" ColumnNum="7">
       <columnName>notes</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
@@ -205,7 +238,7 @@
     </Column>
   </ColumnDefinition>
   <TableName>taxes</TableName>
-  <Version>1</Version>
+  <Version>2</Version>
   <Owner>dbo</Owner>
   <TableCodeName>Taxes</TableCodeName>
   <TableAliasName>Taxes_</TableAliasName>

@@ -9,7 +9,7 @@
 Public Class Tax_group_dtlsDefinition
 
 #Region "Definition (XML) for Tax_group_dtlsDefinition table"
-	'Next 216 lines contain Table Definition (XML) for table "Tax_group_dtlsDefinition"
+	'Next 239 lines contain Table Definition (XML) for table "Tax_group_dtlsDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -213,9 +213,32 @@ Public Class Tax_group_dtlsDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
+    "<Column InternalName=""8"" Priority=""9"" ColumnNum=""8"">"& _
+      "<columnName>calc_type</columnName>"& _
+      "<columnUIName>Calc Type</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>20</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>tax_group_dtls</TableName>"& _
-  "<Version>1</Version>"& _
+  "<Version>2</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Tax_group_dtls</TableCodeName>"& _
   "<TableAliasName>Tax_group_dtls_</TableAliasName>"& _

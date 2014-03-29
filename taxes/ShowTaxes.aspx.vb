@@ -160,6 +160,8 @@ Partial Public Class ShowTaxes
 
 #Region "Section 2: Do not modify this section."
 
+        Public WithEvents calc_type As System.Web.UI.WebControls.Literal
+        Public WithEvents calc_typeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents EditButton As ThemeButton
         Public WithEvents OKButton As ThemeButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal

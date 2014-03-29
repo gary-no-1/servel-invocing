@@ -171,6 +171,7 @@ Partial Public Class AddPro_inv_hdr
         Public WithEvents amountLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents calc_typeLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents CancelButton As ThemeButton
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_party As System.Web.UI.WebControls.DropDownList
@@ -178,7 +179,6 @@ Partial Public Class AddPro_inv_hdr
         Public WithEvents id_tax_group As System.Web.UI.WebControls.DropDownList
         Public WithEvents id_tax_groupLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_taxesLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents item_codeLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents narrationLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
@@ -214,10 +214,10 @@ Partial Public Class AddPro_inv_hdr
         Public WithEvents SaveButton As ThemeButton
         Public WithEvents ship_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ship_nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents sort_orderLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents sort_orderLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents tax_amountLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tax_codeLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tax_nameLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents tax_onLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents tax_printLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents tax_rateLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal

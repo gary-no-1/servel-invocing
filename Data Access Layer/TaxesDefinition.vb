@@ -9,7 +9,7 @@
 Public Class TaxesDefinition
 
 #Region "Definition (XML) for TaxesDefinition table"
-	'Next 185 lines contain Table Definition (XML) for table "TaxesDefinition"
+	'Next 211 lines contain Table Definition (XML) for table "TaxesDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -160,6 +160,32 @@ Public Class TaxesDefinition
       "</foreignKey>"& _
     "</Column>"& _
     "<Column InternalName=""6"" Priority=""7"" ColumnNum=""6"">"& _
+      "<columnName>calc_type</columnName>"& _
+      "<columnUIName Source=""User"">Calculate Type</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>20</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>6</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
+    "<Column InternalName=""7"" Priority=""8"" ColumnNum=""7"">"& _
       "<columnName>notes</columnName>"& _
       "<columnUIName>Notes</columnUIName>"& _
       "<columnType>String</columnType>"& _
@@ -184,7 +210,7 @@ Public Class TaxesDefinition
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>taxes</TableName>"& _
-  "<Version>1</Version>"& _
+  "<Version>2</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Taxes</TableCodeName>"& _
   "<TableAliasName>Taxes_</TableAliasName>"& _

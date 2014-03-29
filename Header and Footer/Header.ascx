@@ -13,5 +13,5 @@
 	</asp:Image></td><td><asp:Image runat="server" id="_RightImage" height="23" imageurl="../Images/SignInBarR.gif" width="36">		
 	</asp:Image></td></tr></table>
 </td></tr><tr><td class="signInBarStatus"><asp:Label runat="server" id="_UserStatusLbl" width="300">	</asp:Label></td></tr></table>
-</td></tr><tr><td><asp:Image runat="server" id="_Logo" alternatetext="&lt;%# GetResourceValue(&quot;Txt:PageHeader&quot;, &quot;ServelInvocing&quot;) %>" imageurl="../Images/Logo.gif" style="border-width:0px;">		
+</td></tr><tr><td><asp:Image runat="server" id="_Logo" alternatetext="&lt;%# GetResourceValue(&quot;Txt:PageHeader&quot;, &quot;ServelInvocing&quot;) %>" imageurl="../Images/servel_india_Logo.gif" style="border-width:0px;">		
 	</asp:Image></td></tr></table>

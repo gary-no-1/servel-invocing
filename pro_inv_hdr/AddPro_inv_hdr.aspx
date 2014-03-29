@@ -94,7 +94,6 @@
 	</asp:ImageButton></td><td class="prbbc"><asp:ImageButton runat="server" id="Pro_inv_itemsResetButton" causesvalidation="False" commandname="ResetFilters" imageurl="../Images/ButtonBarReset.gif" onmouseout="this.src='../Images/ButtonBarReset.gif'" onmouseover="this.src='../Images/ButtonBarResetOver.gif'" tooltip="&lt;%# GetResourceValue(&quot;Btn:Reset&quot;, &quot;ServelInvocing&quot;) %>">		
 	</asp:ImageButton></td><td class="prbbc"><img src="../Images/ButtonBarDividerR.gif" alt="" /></td><td class="prbbc"><img src="../Images/ButtonBarEdgeR.gif" alt="" /></td><td class="pra"><ServelInvocing:Pagination runat="server" id="Pro_inv_itemsPagination"></ServelInvocing:Pagination></td><td><img src="../Images/paginationRowEdgeR.gif" alt="" /></td><td width="100%">&nbsp;</td></tr></table>
 </td></tr><tr><td class="tre"><table cellpadding="0" cellspacing="0" border="0" width="100%" onkeydown="captureUpDownKey(this, event)"><tr class="tch"><th class="thcnb" colspan="1"><img src="../Images/space.gif" height="1" width="1" alt="" /></th><th class="thcwb" style="padding:0px;vertical-align:middle;"><asp:CheckBox runat="server" id="Pro_inv_itemsToggleAll" onclick="toggleAllCheckboxes(this);">	</asp:CheckBox></th><th class="thc" scope="col"><asp:LinkButton runat="server" id="id_itemLabel1" Text="Item Code" CausesValidation="False">	</asp:LinkButton>
-                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="item_codeLabel1" visible="False" Text="Item Code" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="item_descriptionLabel" Text="Item Description" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="uomLabel" Text="Uom" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="qtyLabel" Text="Quantity" CausesValidation="False">	</asp:LinkButton>
@@ -104,34 +103,33 @@
 <tr><td class="ticnb" scope="row"><asp:ImageButton runat="server" id="Pro_inv_itemsRowDeleteButton" causesvalidation="False" commandargument="DeleteOnUpdate" commandname="DeleteRecord" cssclass="button_link" imageurl="../Images/icon_delete.gif" tooltip="&lt;%# GetResourceValue(&quot;Txt:DeleteRecord&quot;, &quot;ServelInvocing&quot;) %>">		
 	</asp:ImageButton></td><td class="ticwb"><asp:CheckBox runat="server" id="Pro_inv_itemsRecordRowSelection" onclick="moveToThisTableRow(this);">	</asp:CheckBox></td><td class="ttc" style="white-space:nowrap;"><asp:DropDownList runat="server" id="id_item" autopostback="True" cssclass="field_input" onkeypress="dropDownListTypeAhead(this,false)"></asp:DropDownList>
 <Selectors:FvLlsHyperLink runat="server" id="id_itemFvLlsHyperLink" ControlToUpdate="id_item" Text="&lt;%# GetResourceValue(&quot;LLS:Text&quot;, &quot;ServelInvocing&quot;) %>" MinListItems="100" Table="items" Field="Items_.id" DisplayField="Items_.item_code"></Selectors:FvLlsHyperLink> 
-<asp:ImageButton runat="server" id="id_itemAddRecordLink" causesvalidation="False" commandname="Redirect" imageurl="../Images/iconNewFlat.gif" tooltip="&lt;%# GetResourceValue(&quot;Btn:Add&quot;, &quot;ServelInvocing&quot;) %>">		
-	</asp:ImageButton> </td><td class="ttc" style=""><asp:TextBox runat="server" id="item_code" Columns="30" MaxLength="30" cssclass="field_input" visible="False"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="item_codeTextBoxMaxLengthValidator" ControlToValidate="item_code" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Item Code&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="ttc" style=""><asp:TextBox runat="server" id="item_description" Columns="50" MaxLength="50" cssclass="field_input"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="item_descriptionTextBoxMaxLengthValidator" ControlToValidate="item_description" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Item Description&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="ttc" style=""><asp:TextBox runat="server" id="uom" Columns="10" MaxLength="10" cssclass="field_input"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="uomTextBoxMaxLengthValidator" ControlToValidate="uom" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Uom&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
+<asp:TextBox runat="server" id="item_code" Columns="30" MaxLength="30" cssclass="field_input" visible="False"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="item_codeTextBoxMaxLengthValidator" ControlToValidate="item_code" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Item Code&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="ttc" style=""><asp:TextBox runat="server" id="item_description" Columns="50" MaxLength="50" cssclass="field_input" width="200px"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="item_descriptionTextBoxMaxLengthValidator" ControlToValidate="item_description" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Item Description&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="ttc" style=""><asp:TextBox runat="server" id="uom" Columns="10" MaxLength="10" cssclass="field_input" width="50px"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="uomTextBoxMaxLengthValidator" ControlToValidate="uom" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Uom&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="ttc" style="text-align:right;"><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
-<asp:TextBox runat="server" id="qty" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox></td>
+<asp:TextBox runat="server" id="qty" Columns="20" MaxLength="20" cssclass="field_input" width="70px"></asp:TextBox></td>
 </td>
 <td>
 &nbsp;
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="qtyTextBoxMaxLengthValidator" ControlToValidate="qty" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Quantity&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
 </tr>
 </table>
- </td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
+ </td><td class="ttc" style="text-align:right;"><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
-<asp:TextBox runat="server" id="rate" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox></td>
+<asp:TextBox runat="server" id="rate" Columns="20" MaxLength="20" cssclass="field_input" width="70px"></asp:TextBox></td>
 </td>
 <td>
 &nbsp;
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="rateTextBoxMaxLengthValidator" ControlToValidate="rate" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Rate&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
 </tr>
 </table>
- </td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
+ </td><td class="ttc" style="text-align:left;width:50px;"><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
-<asp:TextBox runat="server" id="amount" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox></td>
+<asp:TextBox runat="server" id="amount" Columns="20" MaxLength="20" cssclass="field_input" readonly="True"></asp:TextBox></td>
 </td>
 <td>
 &nbsp;
@@ -154,22 +152,20 @@
 	</asp:ImageButton></td><td class="prbbc"><asp:ImageButton runat="server" id="Pro_inv_taxesResetButton" causesvalidation="False" commandname="ResetFilters" imageurl="../Images/ButtonBarReset.gif" onmouseout="this.src='../Images/ButtonBarReset.gif'" onmouseover="this.src='../Images/ButtonBarResetOver.gif'" tooltip="&lt;%# GetResourceValue(&quot;Btn:Reset&quot;, &quot;ServelInvocing&quot;) %>">		
 	</asp:ImageButton></td><td class="prbbc"><img src="../Images/ButtonBarDividerR.gif" alt="" /></td><td class="prbbc"><img src="../Images/ButtonBarEdgeR.gif" alt="" /></td><td class="pra"><ServelInvocing:Pagination runat="server" id="Pro_inv_taxesPagination"></ServelInvocing:Pagination></td><td><img src="../Images/paginationRowEdgeR.gif" alt="" /></td><td width="100%">&nbsp;</td></tr></table>
 </td></tr><tr><td class="tre"><table cellpadding="0" cellspacing="0" border="0" width="100%" onkeydown="captureUpDownKey(this, event)"><tr class="tch"><th class="thcnb" colspan="1"><img src="../Images/space.gif" height="1" width="1" alt="" /></th><th class="thcwb" style="padding:0px;vertical-align:middle;"><asp:CheckBox runat="server" id="Pro_inv_taxesToggleAll" onclick="toggleAllCheckboxes(this);">	</asp:CheckBox></th><th class="thc" scope="col"><asp:LinkButton runat="server" id="id_taxesLabel1" Text="Tax Code" CausesValidation="False">	</asp:LinkButton>
-                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tax_codeLabel1" visible="False" Text="Tax Code" CausesValidation="False">	</asp:LinkButton>
-                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tax_nameLabel" Text="Tax Name" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tax_printLabel" Text="Tax Print" CausesValidation="False">	</asp:LinkButton>
-                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tax_rateLabel" Text="Tax Rate" CausesValidation="False">	</asp:LinkButton></th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tax_amountLabel" Text="Tax Amount" CausesValidation="False">	</asp:LinkButton>
-                        </th></tr><asp:Repeater runat="server" id="Pro_inv_taxesTableControlRepeater">		<ITEMTEMPLATE>		<ServelInvocing:Pro_inv_taxesTableControlRow runat="server" id="Pro_inv_taxesTableControlRow">
+                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tax_rateLabel" Text="Tax Rate" CausesValidation="False">	</asp:LinkButton></th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tax_onLabel" Text="Tax On" CausesValidation="False">	</asp:LinkButton></th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tax_amountLabel" Text="Tax Amount" CausesValidation="False">	</asp:LinkButton>
+                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="calc_typeLabel" Text="Calculation Type" CausesValidation="False">	</asp:LinkButton></th><th class="thc" scope="col"><asp:LinkButton runat="server" id="sort_orderLabel" Text="Sort Order" CausesValidation="False">	</asp:LinkButton></th></tr><asp:Repeater runat="server" id="Pro_inv_taxesTableControlRepeater">		<ITEMTEMPLATE>		<ServelInvocing:Pro_inv_taxesTableControlRow runat="server" id="Pro_inv_taxesTableControlRow">
 <tr><td class="ticnb" scope="row"><asp:ImageButton runat="server" id="Pro_inv_taxesRowDeleteButton" causesvalidation="False" commandargument="DeleteOnUpdate" commandname="DeleteRecord" cssclass="button_link" imageurl="../Images/icon_delete.gif" tooltip="&lt;%# GetResourceValue(&quot;Txt:DeleteRecord&quot;, &quot;ServelInvocing&quot;) %>">		
-	</asp:ImageButton></td><td class="ticwb"><asp:CheckBox runat="server" id="Pro_inv_taxesRecordRowSelection" onclick="moveToThisTableRow(this);">	</asp:CheckBox></td><td class="ttc" style="white-space:nowrap;"><asp:DropDownList runat="server" id="id_taxes" cssclass="field_input" onkeypress="dropDownListTypeAhead(this,false)"></asp:DropDownList>
+	</asp:ImageButton></td><td class="ticwb"><asp:CheckBox runat="server" id="Pro_inv_taxesRecordRowSelection" onclick="moveToThisTableRow(this);">	</asp:CheckBox></td><td class="ttc" style="white-space:nowrap;"><asp:DropDownList runat="server" id="id_taxes" cssclass="field_input" onkeypress="dropDownListTypeAhead(this,false)" width="70px"></asp:DropDownList>
 <Selectors:FvLlsHyperLink runat="server" id="id_taxesFvLlsHyperLink" ControlToUpdate="id_taxes" Text="&lt;%# GetResourceValue(&quot;LLS:Text&quot;, &quot;ServelInvocing&quot;) %>" MinListItems="100" Table="taxes" Field="Taxes_.id" DisplayField="Taxes_.tax_code"></Selectors:FvLlsHyperLink> 
-<asp:ImageButton runat="server" id="id_taxesAddRecordLink" causesvalidation="False" commandname="Redirect" imageurl="../Images/iconNewFlat.gif" tooltip="&lt;%# GetResourceValue(&quot;Btn:Add&quot;, &quot;ServelInvocing&quot;) %>" visible="False">		
-	</asp:ImageButton> </td><td class="ttc" style=""><asp:TextBox runat="server" id="tax_code" Columns="10" MaxLength="10" cssclass="field_input" visible="False"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_codeTextBoxMaxLengthValidator" ControlToValidate="tax_code" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax Code&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="ttc" style=""><asp:TextBox runat="server" id="tax_name" Columns="30" MaxLength="30" cssclass="field_input"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_nameTextBoxMaxLengthValidator" ControlToValidate="tax_name" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax Name&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="ttc" style=""><asp:TextBox runat="server" id="tax_print" Columns="50" MaxLength="50" cssclass="field_input"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_printTextBoxMaxLengthValidator" ControlToValidate="tax_print" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax Print&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
+<asp:TextBox runat="server" id="tax_code" Columns="10" MaxLength="10" cssclass="field_input" visible="False"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_codeTextBoxMaxLengthValidator" ControlToValidate="tax_code" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax Code&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="ttc" style=""><asp:TextBox runat="server" id="tax_print" Columns="50" MaxLength="50" cssclass="field_input"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_printTextBoxMaxLengthValidator" ControlToValidate="tax_print" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax Print&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator>  
+<asp:TextBox runat="server" id="tax_name" Columns="30" MaxLength="30" cssclass="field_input" visible="False"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_nameTextBoxMaxLengthValidator" ControlToValidate="tax_name" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax Name&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
-<asp:TextBox runat="server" id="tax_rate" Columns="16" MaxLength="16" cssclass="field_input"></asp:TextBox></td>
+<asp:TextBox runat="server" id="tax_rate" Columns="16" MaxLength="16" cssclass="field_input" width="50px"></asp:TextBox></td>
 </td>
 <td>
 &nbsp;
@@ -179,14 +175,35 @@
 </td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
-<asp:TextBox runat="server" id="tax_amount" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox></td>
+<asp:TextBox runat="server" id="tax_on" Columns="20" MaxLength="20" cssclass="field_input" width="100px"></asp:TextBox></td>
+</td>
+<td>
+&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_onTextBoxMaxLengthValidator" ControlToValidate="tax_on" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax On&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
+</tr>
+</table>
+</td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="padding-right: 5px; vertical-align:top">
+<asp:TextBox runat="server" id="tax_amount" Columns="20" MaxLength="20" cssclass="field_input" width="100px"></asp:TextBox></td>
 </td>
 <td>
 &nbsp;
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_amountTextBoxMaxLengthValidator" ControlToValidate="tax_amount" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax Amount&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
 </tr>
 </table>
- </td></tr></ServelInvocing:Pro_inv_taxesTableControlRow>
+ </td><td class="ttc" style=""><asp:TextBox runat="server" id="calc_type" Columns="20" MaxLength="20" cssclass="field_input" readonly="True"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="calc_typeTextBoxMaxLengthValidator" ControlToValidate="calc_type" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Calculation Type&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="padding-right: 5px; vertical-align:top">
+<asp:TextBox runat="server" id="sort_order1" Columns="14" MaxLength="14" cssclass="field_input" width="30px"></asp:TextBox></td>
+</td>
+<td>
+&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="sort_order1TextBoxMaxLengthValidator" ControlToValidate="sort_order1" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Sort Order&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
+</tr>
+</table>
+</td></tr></ServelInvocing:Pro_inv_taxesTableControlRow>
 </ITEMTEMPLATE>
 
 </asp:Repeater>

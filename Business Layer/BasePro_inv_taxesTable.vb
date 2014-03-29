@@ -60,7 +60,10 @@ Namespace ServelInvocing.Business
         tax_nameColumn.CodeName = "tax_name"
         tax_printColumn.CodeName = "tax_print"
         tax_rateColumn.CodeName = "tax_rate"
+        tax_onColumn.CodeName = "tax_on"
         tax_amountColumn.CodeName = "tax_amount"
+        calc_typeColumn.CodeName = "calc_type"
+        sort_orderColumn.CodeName = "sort_order"
         
     End Sub
 
@@ -200,11 +203,30 @@ Namespace ServelInvocing.Business
         End Get
     End Property
     ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.tax_on column object.
+    ''' </summary>
+    Public ReadOnly Property tax_onColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(7), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.tax_on column object.
+    ''' </summary>
+    Public Shared ReadOnly Property tax_on() As BaseClasses.Data.NumberColumn
+        Get
+            Return Pro_inv_taxesTable.Instance.tax_onColumn
+        End Get
+    End Property
+    ''' <summary>
     ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.tax_amount column object.
     ''' </summary>
     Public ReadOnly Property tax_amountColumn() As BaseClasses.Data.NumberColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(7), BaseClasses.Data.NumberColumn)
+            Return CType(Me.TableDefinition.ColumnList(8), BaseClasses.Data.NumberColumn)
         End Get
     End Property
 
@@ -216,6 +238,44 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property tax_amount() As BaseClasses.Data.NumberColumn
         Get
             Return Pro_inv_taxesTable.Instance.tax_amountColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.calc_type column object.
+    ''' </summary>
+    Public ReadOnly Property calc_typeColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(9), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.calc_type column object.
+    ''' </summary>
+    Public Shared ReadOnly Property calc_type() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_taxesTable.Instance.calc_typeColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.sort_order column object.
+    ''' </summary>
+    Public ReadOnly Property sort_orderColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(10), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.sort_order column object.
+    ''' </summary>
+    Public Shared ReadOnly Property sort_order() As BaseClasses.Data.NumberColumn
+        Get
+            Return Pro_inv_taxesTable.Instance.sort_orderColumn
         End Get
     End Property
 
@@ -498,7 +558,10 @@ Namespace ServelInvocing.Business
         ByVal tax_nameValue As String, _
         ByVal tax_printValue As String, _
         ByVal tax_rateValue As String, _
-        ByVal tax_amountValue As String _
+        ByVal tax_onValue As String, _
+        ByVal tax_amountValue As String, _
+        ByVal calc_typeValue As String, _
+        ByVal sort_orderValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(id_pro_inv_hdrValue, id_pro_inv_hdrColumn)
@@ -507,7 +570,10 @@ Namespace ServelInvocing.Business
         rec.SetString(tax_nameValue, tax_nameColumn)
         rec.SetString(tax_printValue, tax_printColumn)
         rec.SetString(tax_rateValue, tax_rateColumn)
+        rec.SetString(tax_onValue, tax_onColumn)
         rec.SetString(tax_amountValue, tax_amountColumn)
+        rec.SetString(calc_typeValue, calc_typeColumn)
+        rec.SetString(sort_orderValue, sort_orderColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized
