@@ -79,7 +79,7 @@ Public Class BasePro_inv_taxesRecordControl
               Me.id_pro_inv_hdrAddRecordLink.PostBackUrl = "../pro_inv_hdr/AddPro_inv_hdr.aspx" & "?Target=" & Me.id_pro_inv_hdr.ClientID & "&DFKA=bill_name"
               Me.id_pro_inv_hdrAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_pro_inv_hdrAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
               
-              Me.id_taxesAddRecordLink.PostBackUrl = "../taxes/AddTaxes.aspx" & "?Target=" & Me.id_taxes.ClientID & "&DFKA=tax_code"
+              Me.id_taxesAddRecordLink.PostBackUrl = "../taxes/AddTaxes.aspx" & "?Target=" & Me.id_taxes.ClientID & "&DFKA=tax_name"
               Me.id_taxesAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_taxesAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
               
               AddHandler Me.id_pro_inv_hdr.SelectedIndexChanged, AddressOf id_pro_inv_hdr_SelectedIndexChanged
@@ -926,7 +926,7 @@ Public Class BasePro_inv_taxesRecordControl
             						
             ' This WhereClause is for the taxes table.
             ' Examples:
-            ' wc.iAND(TaxesTable.tax_code, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(TaxesTable.tax_name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
             ' wc.iAND(TaxesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
             
             Dim wc As WhereClause = New WhereClause()
@@ -1052,7 +1052,7 @@ Public Class BasePro_inv_taxesRecordControl
       
             Dim orderBy As OrderBy = New OrderBy(false, true)			
         
-            orderBy.Add(TaxesTable.tax_code, OrderByItem.OrderDir.Asc)				
+            orderBy.Add(TaxesTable.tax_name, OrderByItem.OrderDir.Asc)				
             
             ' 3. Read a total of maxItems from the database and insert them		
             Dim itemValues() As TaxesRecord = Nothing
@@ -1067,7 +1067,7 @@ Public Class BasePro_inv_taxesRecordControl
                         Dim fvalue As String = Nothing
                         If itemValue.id0Specified Then
                             cvalue = itemValue.id0.ToString()
-                            fvalue = itemValue.Format(TaxesTable.tax_code)
+                            fvalue = itemValue.Format(TaxesTable.tax_name)
                                     
                             If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
                             Dim newItem As New ListItem(fvalue, cvalue)

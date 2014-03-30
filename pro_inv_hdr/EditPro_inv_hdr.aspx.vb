@@ -161,20 +161,20 @@ Partial Public Class EditPro_inv_hdr
 #Region "Section 2: Do not modify this section."
 
         Public WithEvents amountLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents ass_valueLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents calc_typeLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents CalculateButton As ThemeButton
         Public WithEvents CancelButton As ThemeButton
+        Public WithEvents grand_totalLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_party As System.Web.UI.WebControls.DropDownList
-        Public WithEvents id_partyAddRecordLink As System.Web.UI.WebControls.ImageButton
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_tax_group As System.Web.UI.WebControls.DropDownList
-        Public WithEvents id_tax_groupAddRecordLink As System.Web.UI.WebControls.ImageButton
         Public WithEvents id_tax_groupLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_taxesLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents item_codeLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents item_totalLabel As System.Web.UI.WebControls.Literal
         Public WithEvents narrationLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents po_dtLabel As System.Web.UI.WebControls.Literal
@@ -211,11 +211,12 @@ Partial Public Class EditPro_inv_hdr
         Public WithEvents SaveButton As ThemeButton
         Public WithEvents ship_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ship_nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents sort_orderLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents sort_orderLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents sort_orderLabel2 As System.Web.UI.WebControls.LinkButton
         Public WithEvents tax_amountLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tax_codeLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tax_nameLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tax_printLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents tax_lockLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents tax_onLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents tax_rateLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents uomLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents ValidationSummary1 As ValidationSummary

@@ -11,7 +11,7 @@
     <Layout>pro_inv_hdr\EditPro_inv_hdr.html</Layout>
     <DisplayName>EditPro_inv_hdr</DisplayName>
     <Description>Standard record panel.</Description>
-    <CheckSum>-1453111304-72447</CheckSum>
+    <CheckSum>-1126228134-81015</CheckSum>
   </Self>
   <ComposedOf>
     <ContainedComponent>
@@ -35,11 +35,25 @@
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
           <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:ExistingRecordFormula</Name>
+          <Value>FORMAT(Round(PARSEDECIMAL(Pro_inv_itemsTableControlRow.qty.Text) * 
+PARSEDECIMAL(Pro_inv_itemsTableControlRow.rate.Text) ,0) , "c")</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:NewRecordFormula</Name>
+          <Value>FORMAT(Round(PARSEDECIMAL(Pro_inv_itemsTableControlRow.qty.Text) * 
+PARSEDECIMAL(Pro_inv_itemsTableControlRow.rate.Text) ,0) , "c")</Value>
+        </Attribute>
+        <Attribute>
+          <Name>ReadOnly</Name>
+          <Value>True</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_itemsTableControl</InsideControl>
@@ -64,60 +78,6 @@
         <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%pro_inv_items%amount</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Pro_inv_itemsTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>ass_value</Name>
-      <Type>FieldValue</Type>
-      <Field>ass_value</Field>
-      <FieldValueStyle>TextBox</FieldValueStyle>
-      <Table>pro_inv_items</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>ass_valueRequiredFieldValidator:Enabled</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ass_valueRequiredFieldValidator:Text</Name>
-          <Value>*</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CssClass</Name>
-          <Value>field_input</Value>
-        </Attribute>
-        <Attribute>
-          <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Pro_inv_itemsTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>ass_valueLabel</Name>
-      <Type>FieldSort</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Pro_inv_itemsTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Field</Name>
-          <Value>ass_value</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Table</Name>
-          <Value>pro_inv_items</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%pro_inv_items%ass_value</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_itemsTableControl</InsideControl>
@@ -185,6 +145,10 @@
           <Value>pro_inv_hdr</Value>
         </Attribute>
         <Attribute>
+          <Name>InternalUse:TreatAs</Name>
+          <Value>FieldValue</Value>
+        </Attribute>
+        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%pro_inv_hdr%bill_address</Value>
         </Attribute>
@@ -245,6 +209,92 @@
       <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
+      <Name>calc_type</Name>
+      <Type>FieldValue</Type>
+      <Field>calc_type</Field>
+      <FieldValueStyle>TextBox</FieldValueStyle>
+      <Table>pro_inv_taxes</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>calc_typeRequiredFieldValidator:Enabled</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>calc_typeRequiredFieldValidator:Text</Name>
+          <Value>*</Value>
+        </Attribute>
+        <Attribute>
+          <Name>CssClass</Name>
+          <Value>field_input</Value>
+        </Attribute>
+        <Attribute>
+          <Name>EnableIncrementDecrementButtons</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>ReadOnly</Name>
+          <Value>True</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_taxesTableControl</InsideControl>
+      <InsideItemTemplate>true</InsideItemTemplate>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>calc_typeLabel</Name>
+      <Type>FieldSort</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>Pro_inv_taxesTableControl</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Field</Name>
+          <Value>calc_type</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Table</Name>
+          <Value>pro_inv_taxes</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>%ISD_DEFAULT%pro_inv_taxes%calc_type</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_taxesTableControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>CalculateButton</Name>
+      <Type>Button</Type>
+      <Layout>..\Shared\ThemeButton.html</Layout>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Button-CausesValidation</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Button-CommandName</Name>
+          <Value>Redirect</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Button-Consumers</Name>
+          <Value>page</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Button-Text</Name>
+          <Value>Calculate Invoice Totals</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PostBack</Name>
+          <Value>True</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>CancelButton</Name>
       <Type>Button</Type>
       <Layout>..\Shared\ThemeButton.ascx</Layout>
@@ -277,12 +327,77 @@
       </PassthroughAttributes>
     </ContainedComponent>
     <ContainedComponent>
+      <Name>grand_total</Name>
+      <Type>FieldValue</Type>
+      <Field>grand_total</Field>
+      <FieldValueStyle>TextBox</FieldValueStyle>
+      <Table>pro_inv_hdr</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>CssClass</Name>
+          <Value>field_input</Value>
+        </Attribute>
+        <Attribute>
+          <Name>DataFormat</Name>
+          <Value>c</Value>
+        </Attribute>
+        <Attribute>
+          <Name>EnableIncrementDecrementButtons</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>grand_totalRequiredFieldValidator:Enabled</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>grand_totalRequiredFieldValidator:Text</Name>
+          <Value>*</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>ReadOnly</Name>
+          <Value>True</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>grand_totalLabel</Name>
+      <Type>Literal</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>Pro_inv_hdrRecordControl</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Field</Name>
+          <Value>grand_total</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Table</Name>
+          <Value>pro_inv_hdr</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>%ISD_DEFAULT%pro_inv_hdr%grand_total</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>id_item</Name>
       <Type>FieldValue</Type>
       <Field>id_item</Field>
       <FieldValueStyle>DropDownList</FieldValueStyle>
       <Table>pro_inv_items</Table>
       <PassthroughAttributes>
+        <Attribute>
+          <Name>AutoPostBack</Name>
+          <Value>True</Value>
+        </Attribute>
         <Attribute>
           <Name>CssClass</Name>
           <Value>field_input</Value>
@@ -320,47 +435,6 @@
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>id_itemAddRecordLink</Name>
-      <Type>ImageButton</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>CausesValidation</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CommandName</Name>
-          <Value>Redirect</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Pro_inv_itemsTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ControlToUpdate</Name>
-          <Value>id_item</Value>
-        </Attribute>
-        <Attribute>
-          <Name>FieldValue</Name>
-          <Value>id_item</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ImageURL</Name>
-          <Value>../Images/iconNewFlat.gif</Value>
-        </Attribute>
-        <Attribute>
-          <Name>RedirectURL</Name>
-          <Value>../items/AddItems.aspx</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ToolTip</Name>
-          <Value>Btn:Add</Value>
-          <Type>ResourceReference</Type>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Pro_inv_itemsTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>id_itemLabel1</Name>
       <Type>FieldSort</Type>
       <PassthroughAttributes>
@@ -390,6 +464,10 @@
       <FieldValueStyle>DropDownList</FieldValueStyle>
       <Table>pro_inv_hdr</Table>
       <PassthroughAttributes>
+        <Attribute>
+          <Name>AutoPostBack</Name>
+          <Value>True</Value>
+        </Attribute>
         <Attribute>
           <Name>CssClass</Name>
           <Value>field_input</Value>
@@ -421,46 +499,6 @@
         <Attribute>
           <Name>onkeypress</Name>
           <Value>dropDownListTypeAhead(this,false)</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>id_partyAddRecordLink</Name>
-      <Type>ImageButton</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>CausesValidation</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CommandName</Name>
-          <Value>Redirect</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Pro_inv_hdrRecordControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ControlToUpdate</Name>
-          <Value>id_party</Value>
-        </Attribute>
-        <Attribute>
-          <Name>FieldValue</Name>
-          <Value>id_party</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ImageURL</Name>
-          <Value>../Images/iconNewFlat.gif</Value>
-        </Attribute>
-        <Attribute>
-          <Name>RedirectURL</Name>
-          <Value>../party/AddParty.aspx</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ToolTip</Name>
-          <Value>Btn:Add</Value>
-          <Type>ResourceReference</Type>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
@@ -500,6 +538,10 @@
           <Value>field_input</Value>
         </Attribute>
         <Attribute>
+          <Name>Enabled</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
           <Name>id_tax_groupRequiredFieldValidator:Enabled</Name>
           <Value>False</Value>
         </Attribute>
@@ -526,46 +568,6 @@
         <Attribute>
           <Name>onkeypress</Name>
           <Value>dropDownListTypeAhead(this,false)</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>id_tax_groupAddRecordLink</Name>
-      <Type>ImageButton</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>CausesValidation</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CommandName</Name>
-          <Value>Redirect</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Pro_inv_hdrRecordControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ControlToUpdate</Name>
-          <Value>id_tax_group</Value>
-        </Attribute>
-        <Attribute>
-          <Name>FieldValue</Name>
-          <Value>id_tax_group</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ImageURL</Name>
-          <Value>../Images/iconNewFlat.gif</Value>
-        </Attribute>
-        <Attribute>
-          <Name>RedirectURL</Name>
-          <Value>../tax_groups/AddTax_groups.aspx</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ToolTip</Name>
-          <Value>Btn:Add</Value>
-          <Type>ResourceReference</Type>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
@@ -637,47 +639,6 @@
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>id_taxesAddRecordLink</Name>
-      <Type>ImageButton</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>CausesValidation</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CommandName</Name>
-          <Value>Redirect</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Pro_inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ControlToUpdate</Name>
-          <Value>id_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>FieldValue</Name>
-          <Value>id_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ImageURL</Name>
-          <Value>../Images/iconNewFlat.gif</Value>
-        </Attribute>
-        <Attribute>
-          <Name>RedirectURL</Name>
-          <Value>../taxes/AddTaxes.aspx</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ToolTip</Name>
-          <Value>Btn:Add</Value>
-          <Type>ResourceReference</Type>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Pro_inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>id_taxesLabel1</Name>
       <Type>FieldSort</Type>
       <PassthroughAttributes>
@@ -727,32 +688,13 @@
           <Name>item_codeRequiredFieldValidator:Text</Name>
           <Value>*</Value>
         </Attribute>
+        <Attribute>
+          <Name>Visible</Name>
+          <Value>False</Value>
+        </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_itemsTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>item_codeLabel1</Name>
-      <Type>FieldSort</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Pro_inv_itemsTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Field</Name>
-          <Value>item_code</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Table</Name>
-          <Value>pro_inv_items</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%pro_inv_items%item_code</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Pro_inv_itemsTableControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
       <Name>item_description</Name>
@@ -781,6 +723,10 @@
           <Name>item_descriptionRequiredFieldValidator:Text</Name>
           <Value>*</Value>
         </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>200px</Value>
+        </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_itemsTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
@@ -807,6 +753,67 @@
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_itemsTableControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>item_total</Name>
+      <Type>FieldValue</Type>
+      <Field>item_total</Field>
+      <FieldValueStyle>TextBox</FieldValueStyle>
+      <Table>pro_inv_hdr</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>CssClass</Name>
+          <Value>field_input</Value>
+        </Attribute>
+        <Attribute>
+          <Name>DataFormat</Name>
+          <Value>c</Value>
+        </Attribute>
+        <Attribute>
+          <Name>EnableIncrementDecrementButtons</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>item_totalRequiredFieldValidator:Enabled</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>item_totalRequiredFieldValidator:Text</Name>
+          <Value>*</Value>
+        </Attribute>
+        <Attribute>
+          <Name>ReadOnly</Name>
+          <Value>True</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>item_totalLabel</Name>
+      <Type>Literal</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>Pro_inv_hdrRecordControl</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Field</Name>
+          <Value>item_total</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Table</Name>
+          <Value>pro_inv_hdr</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>%ISD_DEFAULT%pro_inv_hdr%item_total</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
       <Name>narration</Name>
@@ -850,6 +857,10 @@
         <Attribute>
           <Name>TextMode</Name>
           <Value>MultiLine</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>600px</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_termsTableControl</InsideControl>
@@ -905,7 +916,7 @@
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
@@ -1015,7 +1026,7 @@
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
@@ -2420,12 +2431,16 @@
       <Table>pro_inv_items</Table>
       <PassthroughAttributes>
         <Attribute>
+          <Name>AutoPostBack</Name>
+          <Value>True</Value>
+        </Attribute>
+        <Attribute>
           <Name>CssClass</Name>
           <Value>field_input</Value>
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
@@ -2438,6 +2453,10 @@
         <Attribute>
           <Name>qtyRequiredFieldValidator:Text</Name>
           <Value>*</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>70px</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_itemsTableControl</InsideControl>
@@ -2474,12 +2493,16 @@
       <Table>pro_inv_items</Table>
       <PassthroughAttributes>
         <Attribute>
+          <Name>AutoPostBack</Name>
+          <Value>True</Value>
+        </Attribute>
+        <Attribute>
           <Name>CssClass</Name>
           <Value>field_input</Value>
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
@@ -2492,6 +2515,10 @@
         <Attribute>
           <Name>rateRequiredFieldValidator:Text</Name>
           <Value>*</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>70px</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_itemsTableControl</InsideControl>
@@ -2537,7 +2564,7 @@
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
@@ -2789,7 +2816,7 @@
       <Type>FieldValue</Type>
       <Field>sort_order</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
-      <Table>pro_inv_terms</Table>
+      <Table>pro_inv_taxes</Table>
       <PassthroughAttributes>
         <Attribute>
           <Name>CssClass</Name>
@@ -2797,7 +2824,7 @@
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
@@ -2811,12 +2838,70 @@
           <Name>sort_orderRequiredFieldValidator:Text</Name>
           <Value>*</Value>
         </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>30px</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_taxesTableControl</InsideControl>
+      <InsideItemTemplate>true</InsideItemTemplate>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>sort_order1</Name>
+      <Type>FieldValue</Type>
+      <Field>sort_order</Field>
+      <FieldValueStyle>TextBox</FieldValueStyle>
+      <Table>pro_inv_terms</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>CssClass</Name>
+          <Value>field_input</Value>
+        </Attribute>
+        <Attribute>
+          <Name>EnableIncrementDecrementButtons</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>sort_order1RequiredFieldValidator:Enabled</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>sort_order1RequiredFieldValidator:Text</Name>
+          <Value>*</Value>
+        </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_termsTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>sort_orderLabel1</Name>
+      <Name>sort_orderLabel</Name>
+      <Type>FieldSort</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>Pro_inv_taxesTableControl</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Field</Name>
+          <Value>sort_order</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Table</Name>
+          <Value>pro_inv_taxes</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>%ISD_DEFAULT%pro_inv_taxes%sort_order</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_taxesTableControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>sort_orderLabel2</Name>
       <Type>FieldSort</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -2851,7 +2936,7 @@
         </Attribute>
         <Attribute>
           <Name>EnableIncrementDecrementButtons</Name>
-          <Value>Default</Value>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
@@ -2864,6 +2949,10 @@
         <Attribute>
           <Name>tax_amountRequiredFieldValidator:Text</Name>
           <Value>*</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>100px</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_taxesTableControl</InsideControl>
@@ -2919,12 +3008,43 @@
           <Name>tax_codeRequiredFieldValidator:Text</Name>
           <Value>*</Value>
         </Attribute>
+        <Attribute>
+          <Name>Visible</Name>
+          <Value>False</Value>
+        </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_taxesTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>tax_codeLabel1</Name>
+      <Name>tax_lock</Name>
+      <Type>FieldValue</Type>
+      <Field>tax_lock</Field>
+      <FieldValueStyle>CheckBox</FieldValueStyle>
+      <Table>pro_inv_taxes</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>CheckedValue</Name>
+          <Value>Yes</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>TreatOtherValuesAsChecked</Name>
+          <Value>True</Value>
+        </Attribute>
+        <Attribute>
+          <Name>UncheckedValue</Name>
+          <Value>No</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_taxesTableControl</InsideControl>
+      <InsideItemTemplate>true</InsideItemTemplate>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>tax_lockLabel</Name>
       <Type>FieldSort</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -2933,7 +3053,7 @@
         </Attribute>
         <Attribute>
           <Name>Field</Name>
-          <Value>tax_code</Value>
+          <Value>tax_lock</Value>
         </Attribute>
         <Attribute>
           <Name>Table</Name>
@@ -2941,7 +3061,7 @@
         </Attribute>
         <Attribute>
           <Name>Text</Name>
-          <Value>%ISD_DEFAULT%pro_inv_taxes%tax_code</Value>
+          <Value>%ISD_DEFAULT%pro_inv_taxes%tax_lock</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_taxesTableControl</InsideControl>
@@ -2973,12 +3093,51 @@
           <Name>tax_nameRequiredFieldValidator:Text</Name>
           <Value>*</Value>
         </Attribute>
+        <Attribute>
+          <Name>Visible</Name>
+          <Value>False</Value>
+        </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_taxesTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>tax_nameLabel</Name>
+      <Name>tax_on</Name>
+      <Type>FieldValue</Type>
+      <Field>tax_on</Field>
+      <FieldValueStyle>TextBox</FieldValueStyle>
+      <Table>pro_inv_taxes</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>CssClass</Name>
+          <Value>field_input</Value>
+        </Attribute>
+        <Attribute>
+          <Name>EnableIncrementDecrementButtons</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>tax_onRequiredFieldValidator:Enabled</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>tax_onRequiredFieldValidator:Text</Name>
+          <Value>*</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>100px</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_taxesTableControl</InsideControl>
+      <InsideItemTemplate>true</InsideItemTemplate>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>tax_onLabel</Name>
       <Type>FieldSort</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -2987,7 +3146,7 @@
         </Attribute>
         <Attribute>
           <Name>Field</Name>
-          <Value>tax_name</Value>
+          <Value>tax_on</Value>
         </Attribute>
         <Attribute>
           <Name>Table</Name>
@@ -2995,7 +3154,7 @@
         </Attribute>
         <Attribute>
           <Name>Text</Name>
-          <Value>%ISD_DEFAULT%pro_inv_taxes%tax_name</Value>
+          <Value>%ISD_DEFAULT%pro_inv_taxes%tax_on</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_taxesTableControl</InsideControl>
@@ -3027,12 +3186,51 @@
           <Name>tax_printRequiredFieldValidator:Text</Name>
           <Value>*</Value>
         </Attribute>
+        <Attribute>
+          <Name>Visible</Name>
+          <Value>False</Value>
+        </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_taxesTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>tax_printLabel</Name>
+      <Name>tax_rate</Name>
+      <Type>FieldValue</Type>
+      <Field>tax_rate</Field>
+      <FieldValueStyle>TextBox</FieldValueStyle>
+      <Table>pro_inv_taxes</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>CssClass</Name>
+          <Value>field_input</Value>
+        </Attribute>
+        <Attribute>
+          <Name>EnableIncrementDecrementButtons</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>tax_rateRequiredFieldValidator:Enabled</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>tax_rateRequiredFieldValidator:Text</Name>
+          <Value>*</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>50px</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_taxesTableControl</InsideControl>
+      <InsideItemTemplate>true</InsideItemTemplate>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>tax_rateLabel</Name>
       <Type>FieldSort</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -3041,7 +3239,7 @@
         </Attribute>
         <Attribute>
           <Name>Field</Name>
-          <Value>tax_print</Value>
+          <Value>tax_rate</Value>
         </Attribute>
         <Attribute>
           <Name>Table</Name>
@@ -3049,7 +3247,7 @@
         </Attribute>
         <Attribute>
           <Name>Text</Name>
-          <Value>%ISD_DEFAULT%pro_inv_taxes%tax_print</Value>
+          <Value>%ISD_DEFAULT%pro_inv_taxes%tax_rate</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_taxesTableControl</InsideControl>
@@ -3134,6 +3332,10 @@
           <Name>uomRequiredFieldValidator:Text</Name>
           <Value>*</Value>
         </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>50px</Value>
+        </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_itemsTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
@@ -3186,7 +3388,9 @@
         &lt;Value&gt;
                         &amp;lt;GEN:RECORD NAME="Pro_inv_hdrRecordControl"&amp;gt;&amp;lt;/GEN:RECORD&amp;gt;
             &lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -3201,7 +3405,9 @@
   &amp;lt;GEN:TABLE NAME="Pro_inv_termsTableControl"/&amp;gt;
  &amp;lt;/GEN:TABPANEL&amp;gt;
 &amp;lt;/GEN:TABCONTAINER&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -3213,6 +3419,7 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Epilog&gt;
       &lt;Value&gt;
@@ -3238,6 +3445,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_hdrRecordControl" Type="RecordPanel" PanelControlName="Pro_inv_hdrRecordControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Pro_inv_hdrPanelHeader"/&amp;gt;&lt;/Value&gt;
@@ -3248,12 +3456,16 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;asp:panel id="Pro_inv_hdrRecordControlCollapsibleRegion" runat="server"&amp;gt;&amp;lt;GEN:PANEL NAME="Pro_inv_hdrPanel"/&amp;gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -3274,6 +3486,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_hdrPanelHeader" Type="PanelHeader" PanelControlName="Pro_inv_hdrRecordControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/space.gif" alt=""/&amp;gt;&lt;/Value&gt;
@@ -3316,7 +3529,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -3337,6 +3552,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_hdrRecordControlTitleRegion" PanelControlName="Pro_inv_hdrRecordControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:HTML NAME="Pro_inv_hdrTitle"/&amp;gt;&lt;/Value&gt;
@@ -3351,7 +3567,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -3368,12 +3586,15 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_hdrPanel" PanelControlName="Pro_inv_hdrRecordControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Pro_inv_hdrFields"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -3438,6 +3659,7 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -3476,10 +3698,11 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_partyLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="po_noLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -3488,8 +3711,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_party"/&amp;gt; 
-&amp;lt;GEN:IMAGEBUTTON NAME="id_partyAddRecordLink"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="po_no" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -3502,83 +3724,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="bill_nameLabel"/&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="bill_name"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-    &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="ship_nameLabel"/&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="ship_name"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tin_noLabel"/&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tin_no"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-    &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="po_noLabel"/&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="po_no"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="po_dtLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="po_dtLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -3595,10 +3741,11 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_tax_groupLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_partyLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -3607,8 +3754,8 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_tax_group"/&amp;gt; 
-&amp;lt;GEN:IMAGEBUTTON NAME="id_tax_groupAddRecordLink"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_party" /&amp;gt; 
+&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -3621,25 +3768,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-    &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="bill_addressLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tin_noLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -3648,22 +3777,19 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="bill_address"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tin_no" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
             &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;colspan&lt;/Name&gt;
-            &lt;AttributeValue&gt;3&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="ship_addressLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="bill_nameLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -3672,18 +3798,170 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="ship_address"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="bill_name" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="ship_nameLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="ship_name" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="bill_addressLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="bill_address" /&amp;gt; &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="ship_addressLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="ship_address" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;hr&amp;gt;&amp;lt;/hr&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;colspan&lt;/Name&gt;
+            &lt;AttributeValue&gt;4&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_tax_groupLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_tax_group" /&amp;gt; 
+&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
             &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
           &lt;Attribute&gt;
-            &lt;Name&gt;colspan&lt;/Name&gt;
-            &lt;AttributeValue&gt;3&lt;/AttributeValue&gt;
+            &lt;Name&gt;style&lt;/Name&gt;
+            &lt;AttributeValue&gt;white-space:nowrap;&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="item_totalLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="item_total"/&amp;gt; &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:BUTTON NAME="CalculateButton" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="grand_totalLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="grand_total" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Epilog&gt;
       &lt;Value&gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
@@ -3704,11 +3982,15 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_itemsTableControl" Type="TablePanel" PanelControlName="Pro_inv_itemsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;asp:panel id="Pro_inv_itemsTableControlCollapsibleRegion" runat="server"&amp;gt;&amp;lt;GEN:PANEL NAME="Pro_inv_itemsPanel"/&amp;gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -3729,6 +4011,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_itemsPanel" PanelControlName="Pro_inv_itemsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Pro_inv_itemsButtons"/&amp;gt;&lt;/Value&gt;
@@ -3739,6 +4022,7 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -3750,7 +4034,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -3775,9 +4061,11 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_itemsButtons" Type="PanelButton" PanelControlName="Pro_inv_itemsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/paginationRowEdgeL.gif" alt=""/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/ButtonBarEdgeL.gif" alt="" /&amp;gt;&lt;/Value&gt;
@@ -3862,6 +4150,7 @@
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/paginationRowEdgeR.gif" alt=""/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;amp;nbsp;&lt;/Value&gt;
@@ -3872,7 +4161,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -3889,6 +4180,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_itemsFields" Type="TableGridRegular" PanelControlName="Pro_inv_itemsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row Type="Header"&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/space.gif" height="1" width="1" alt=""/&amp;gt;&lt;/Value&gt;
@@ -3931,20 +4223,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="item_codeLabel1"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="item_descriptionLabel"/&amp;gt;
                         &lt;/Value&gt;
         &lt;CellAttributes&gt;
@@ -3973,8 +4251,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="qtyLabel"/&amp;gt;
-                        &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="qtyLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -3987,8 +4264,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="rateLabel"/&amp;gt;
-                        &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="rateLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4001,22 +4277,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="ass_valueLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="amountLabel"/&amp;gt;
-                        &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="amountLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4085,8 +4346,8 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_item"/&amp;gt; 
-&amp;lt;GEN:IMAGEBUTTON NAME="id_itemAddRecordLink"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_item" /&amp;gt; 
+&amp;lt;GEN:FIELDVALUE NAME="item_code" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4095,19 +4356,6 @@
           &lt;Attribute&gt;
             &lt;Name&gt;style&lt;/Name&gt;
             &lt;AttributeValue&gt;white-space:nowrap;&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="item_code"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue /&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
@@ -4138,7 +4386,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="qty"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="qty" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4151,7 +4399,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="rate"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="rate" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4164,7 +4412,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="ass_value"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="amount" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4176,20 +4424,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="amount"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue /&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -4214,11 +4451,15 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_taxesTableControl" Type="TablePanel" PanelControlName="Pro_inv_taxesTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;asp:panel id="Pro_inv_taxesTableControlCollapsibleRegion" runat="server"&amp;gt;&amp;lt;GEN:PANEL NAME="Pro_inv_taxesPanel"/&amp;gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -4239,6 +4480,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_taxesPanel" PanelControlName="Pro_inv_taxesTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Pro_inv_taxesButtons"/&amp;gt;&lt;/Value&gt;
@@ -4249,6 +4491,7 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -4260,7 +4503,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -4285,9 +4530,11 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_taxesButtons" Type="PanelButton" PanelControlName="Pro_inv_taxesTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/paginationRowEdgeL.gif" alt=""/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/ButtonBarEdgeL.gif" alt="" /&amp;gt;&lt;/Value&gt;
@@ -4372,6 +4619,7 @@
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/paginationRowEdgeR.gif" alt=""/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;amp;nbsp;&lt;/Value&gt;
@@ -4382,7 +4630,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -4399,6 +4649,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_taxesFields" Type="TableGridRegular" PanelControlName="Pro_inv_taxesTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row Type="Header"&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/space.gif" height="1" width="1" alt=""/&amp;gt;&lt;/Value&gt;
@@ -4441,7 +4692,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_codeLabel1"/&amp;gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_rateLabel"/&amp;gt;
                         &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
@@ -4455,21 +4706,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_nameLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_printLabel"/&amp;gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_onLabel"/&amp;gt;
                         &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
@@ -4484,6 +4721,48 @@
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_amountLabel"/&amp;gt;
+                        &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;scope&lt;/Name&gt;
+            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_lockLabel"/&amp;gt;
+                        &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;scope&lt;/Name&gt;
+            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="calc_typeLabel"/&amp;gt;
+                        &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;scope&lt;/Name&gt;
+            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="sort_orderLabel"/&amp;gt;
                         &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
@@ -4553,8 +4832,8 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_taxes"/&amp;gt; 
-&amp;lt;GEN:IMAGEBUTTON NAME="id_taxesAddRecordLink"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_taxes" /&amp;gt; 
+&amp;lt;GEN:FIELDVALUE NAME="tax_code" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4567,7 +4846,9 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_code"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_rate"/&amp;gt;  
+&amp;lt;GEN:FIELDVALUE NAME="tax_name" /&amp;gt; 
+&amp;lt;GEN:FIELDVALUE NAME="tax_print" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4580,20 +4861,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_name"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue /&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_print"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_on"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4618,7 +4886,44 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_lock"/&amp;gt; &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="calc_type"/&amp;gt; &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;style&lt;/Name&gt;
+            &lt;AttributeValue /&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="sort_order"/&amp;gt; &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;style&lt;/Name&gt;
+            &lt;AttributeValue /&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -4643,11 +4948,15 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_termsTableControl" Type="TablePanel" PanelControlName="Pro_inv_termsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;asp:panel id="Pro_inv_termsTableControlCollapsibleRegion" runat="server"&amp;gt;&amp;lt;GEN:PANEL NAME="Pro_inv_termsPanel"/&amp;gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -4668,6 +4977,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_termsPanel" PanelControlName="Pro_inv_termsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Pro_inv_termsButtons"/&amp;gt;&lt;/Value&gt;
@@ -4678,6 +4988,7 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -4689,7 +5000,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -4714,9 +5027,11 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_termsButtons" Type="PanelButton" PanelControlName="Pro_inv_termsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/paginationRowEdgeL.gif" alt=""/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/ButtonBarEdgeL.gif" alt="" /&amp;gt;&lt;/Value&gt;
@@ -4801,6 +5116,7 @@
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/paginationRowEdgeR.gif" alt=""/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;amp;nbsp;&lt;/Value&gt;
@@ -4811,7 +5127,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -4828,6 +5146,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Pro_inv_termsFields" Type="TableGridRegular" PanelControlName="Pro_inv_termsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row Type="Header"&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/space.gif" height="1" width="1" alt=""/&amp;gt;&lt;/Value&gt;
@@ -4870,7 +5189,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="sort_orderLabel1"/&amp;gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="sort_orderLabel2"/&amp;gt;
                         &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
@@ -4953,7 +5272,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="sort_order"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="sort_order1"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4965,7 +5284,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -4990,14 +5311,19 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="PageButtons" Type="PageButton"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:BUTTON NAME="SaveButton"/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:BUTTON NAME="CancelButton"/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;

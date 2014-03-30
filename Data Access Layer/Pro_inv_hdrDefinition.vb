@@ -9,7 +9,7 @@
 Public Class Pro_inv_hdrDefinition
 
 #Region "Definition (XML) for Pro_inv_hdrDefinition table"
-	'Next 372 lines contain Table Definition (XML) for table "Pro_inv_hdrDefinition"
+	'Next 415 lines contain Table Definition (XML) for table "Pro_inv_hdrDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -337,24 +337,24 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
     "<Column InternalName=""13"" Priority=""14"" ColumnNum=""13"">"& _
       "<columnName>id_tax_group</columnName>"& _
-      "<columnUIName Source=""User"">Tax Code</columnUIName>"& _
+      "<columnUIName>Tax Code</columnUIName>"& _
       "<columnType>Number</columnType>"& _
       "<columnDBType>int</columnDBType>"& _
       "<columnLengthSet>10.0</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
       "<foreignKey>"& _
@@ -365,13 +365,56 @@ Public Class Pro_inv_hdrDefinition
         "<columnFKColumnDisplay>tax_group_code</columnFKColumnDisplay>"& _
         "<foreignKeyType>Explicit</foreignKeyType>"& _
       "</foreignKey>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>13</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
+    "<Column InternalName=""14"" Priority=""15"" ColumnNum=""14"">"& _
+      "<columnName>item_total</columnName>"& _
+      "<columnUIName>Item Total</columnUIName>"& _
+      "<columnType>Number</columnType>"& _
+      "<columnDBType>decimal</columnDBType>"& _
+      "<columnLengthSet>18.2</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""15"" Priority=""16"" ColumnNum=""15"">"& _
+      "<columnName>grand_total</columnName>"& _
+      "<columnUIName>Grand Total</columnUIName>"& _
+      "<columnType>Number</columnType>"& _
+      "<columnDBType>decimal</columnDBType>"& _
+      "<columnLengthSet>18.2</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>pro_inv_hdr</TableName>"& _
-  "<Version>2</Version>"& _
+  "<Version>4</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Pro_inv_hdr</TableCodeName>"& _
   "<TableAliasName>Pro_inv_hdr_</TableAliasName>"& _

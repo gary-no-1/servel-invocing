@@ -399,6 +399,41 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.tax_amountColumn)
 	End Sub
 	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.tax_lock field.
+	''' </summary>
+	Public Function Gettax_lockValue() As ColumnValue
+		Return Me.GetValue(TableUtils.tax_lockColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.tax_lock field.
+	''' </summary>
+	Public Function Gettax_lockFieldValue() As Boolean
+		Return CType(Me.GetValue(TableUtils.tax_lockColumn).ToBoolean(), Boolean)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.tax_lock field.
+	''' </summary>
+	Public Sub Settax_lockFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.tax_lockColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.tax_lock field.
+	''' </summary>
+	Public Sub Settax_lockFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.tax_lockColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.tax_lock field.
+	''' </summary>
+	Public Sub Settax_lockFieldValue(ByVal val As Boolean)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tax_lockColumn)
+	End Sub
+	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.calc_type field.
 	''' </summary>
 	Public Function Getcalc_typeValue() As ColumnValue
@@ -802,6 +837,42 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property tax_amountDefault() As String
         Get
             Return TableUtils.tax_amountColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Pro_inv_taxes_.tax_lock field.
+	''' </summary>
+	Public Property tax_lock() As Boolean
+		Get 
+			Return CType(Me.GetValue(TableUtils.tax_lockColumn).ToBoolean(), Boolean)
+		End Get
+		Set (ByVal val As Boolean) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.tax_lockColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property tax_lockSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.tax_lockColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property tax_lockDefault() As String
+        Get
+            Return TableUtils.tax_lockColumn.DefaultValue
         End Get
     End Property
 

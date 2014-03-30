@@ -154,18 +154,8 @@ Public Class BasePro_inv_itemsTableControlRow
 			'Call LoadFocusScripts from repeater so that onfocus attribute could be added to elements
 			Me.Page.LoadFocusScripts(Me)
 		
-              ' Show confirmation message on Click
-              Me.Pro_inv_itemsRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              AddHandler Me.Pro_inv_itemsRowCopyButton.Click, AddressOf Pro_inv_itemsRowCopyButton_Click
-              
-              AddHandler Me.Pro_inv_itemsRowDeleteButton.Click, AddressOf Pro_inv_itemsRowDeleteButton_Click
-              
-              AddHandler Me.Pro_inv_itemsRowEditButton.Click, AddressOf Pro_inv_itemsRowEditButton_Click
-              
-              AddHandler Me.Pro_inv_itemsRowViewButton.Click, AddressOf Pro_inv_itemsRowViewButton_Click
-              
               AddHandler Me.id_item.Click, AddressOf id_item_Click
             
         End Sub
@@ -212,9 +202,7 @@ Public Class BasePro_inv_itemsTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setamount()
-            Setass_value()
             Setid_item()
-            Setitem_code()
             Setitem_description()
             Setqty()
             Setrate()
@@ -257,7 +245,7 @@ Public Class BasePro_inv_itemsTableControlRow
                 ' If the amount is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_itemsTable.amount)
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_itemsTable.amount, "c")
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.amount.Text = formattedValue
@@ -267,7 +255,7 @@ Public Class BasePro_inv_itemsTableControlRow
                 ' amount is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.amount.Text = Pro_inv_itemsTable.amount.Format(Pro_inv_itemsTable.amount.DefaultValue)
+                Me.amount.Text = Pro_inv_itemsTable.amount.Format(Pro_inv_itemsTable.amount.DefaultValue, "c")
                         		
                 End If
                  
@@ -277,50 +265,6 @@ Public Class BasePro_inv_itemsTableControlRow
                 OrElse Me.amount.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.amount.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setass_value()
-            
-        
-            ' Set the ass_value Literal on the webpage with value from the
-            ' pro_inv_items database record.
-
-            ' Me.DataSource is the pro_inv_items record retrieved from the database.
-            ' Me.ass_value is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setass_value()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.ass_valueSpecified Then
-                				
-                ' If the ass_value is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_itemsTable.ass_value)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.ass_value.Text = formattedValue
-              
-            Else 
-            
-                ' ass_value is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.ass_value.Text = Pro_inv_itemsTable.ass_value.Format(Pro_inv_itemsTable.ass_value.DefaultValue)
-                        		
-                End If
-                 
-            ' If the ass_value is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.ass_value.Text Is Nothing _
-                OrElse Me.ass_value.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.ass_value.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -358,50 +302,6 @@ Public Class BasePro_inv_itemsTableControlRow
                         		
                 End If
                  
-        End Sub
-                
-        Public Overridable Sub Setitem_code()
-            
-        
-            ' Set the item_code Literal on the webpage with value from the
-            ' pro_inv_items database record.
-
-            ' Me.DataSource is the pro_inv_items record retrieved from the database.
-            ' Me.item_code is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setitem_code()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.item_codeSpecified Then
-                				
-                ' If the item_code is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_itemsTable.item_code)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.item_code.Text = formattedValue
-              
-            Else 
-            
-                ' item_code is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.item_code.Text = Pro_inv_itemsTable.item_code.Format(Pro_inv_itemsTable.item_code.DefaultValue)
-                        		
-                End If
-                 
-            ' If the item_code is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.item_code.Text Is Nothing _
-                OrElse Me.item_code.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.item_code.Text = "&nbsp;"
-            End If
-                  
         End Sub
                 
         Public Overridable Sub Setitem_description()
@@ -692,9 +592,7 @@ Public Class BasePro_inv_itemsTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getamount()
-            Getass_value()
             Getid_item()
-            Getitem_code()
             Getitem_description()
             Getqty()
             Getrate()
@@ -706,15 +604,7 @@ Public Class BasePro_inv_itemsTableControlRow
             
         End Sub
                 
-        Public Overridable Sub Getass_value()
-            
-        End Sub
-                
         Public Overridable Sub Getid_item()
-            
-        End Sub
-                
-        Public Overridable Sub Getitem_code()
             
         End Sub
                 
@@ -816,165 +706,6 @@ Public Class BasePro_inv_itemsTableControlRow
             Return MyBase.SaveViewState()
         End Function
         
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_itemsRowCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_items/AddPro_inv_items.aspx?Pro_inv_items={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_itemsRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                  Me.Delete()
-              
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_itemsRowEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_items/EditPro_inv_items.aspx?Pro_inv_items={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_itemsRowViewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_items/ShowPro_inv_items.aspx?Pro_inv_items={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
         
         ' event handler for LinkButton
         Public Overridable Sub id_item_Click(ByVal sender As Object, ByVal args As EventArgs)
@@ -1135,21 +866,9 @@ Public Class BasePro_inv_itemsTableControlRow
             End Get
         End Property
             
-        Public ReadOnly Property ass_value() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ass_value"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
         Public ReadOnly Property id_item() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_item"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-            
-        Public ReadOnly Property item_code() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_code"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -1162,30 +881,6 @@ Public Class BasePro_inv_itemsTableControlRow
         Public ReadOnly Property Pro_inv_itemsRecordRowSelection() As System.Web.UI.WebControls.CheckBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_itemsRecordRowSelection"), System.Web.UI.WebControls.CheckBox)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_itemsRowCopyButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_itemsRowCopyButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_itemsRowDeleteButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_itemsRowDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_itemsRowEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_itemsRowEditButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_itemsRowViewButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_itemsRowViewButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
@@ -1301,8 +996,6 @@ Public Class BasePro_inv_itemsTableControl
         
             SaveControlsToSession_Ajax()
         
-              ' Show confirmation message on Click
-              Me.Pro_inv_itemsDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteConfirm", "ServelInvocing") & "'));")
             ' Setup the pagination events.
             
               AddHandler Me.Pro_inv_itemsPagination.FirstPage.Click, AddressOf Pro_inv_itemsPagination_FirstPage_Click
@@ -1319,11 +1012,7 @@ Public Class BasePro_inv_itemsTableControl
           
               AddHandler Me.amountLabel.Click, AddressOf amountLabel_Click
             
-              AddHandler Me.ass_valueLabel.Click, AddressOf ass_valueLabel_Click
-            
               AddHandler Me.id_itemLabel1.Click, AddressOf id_itemLabel1_Click
-            
-              AddHandler Me.item_codeLabel1.Click, AddressOf item_codeLabel1_Click
             
               AddHandler Me.item_descriptionLabel.Click, AddressOf item_descriptionLabel_Click
             
@@ -1335,25 +1024,15 @@ Public Class BasePro_inv_itemsTableControl
             
             ' Setup the button events.
           
-              AddHandler Me.Pro_inv_itemsCopyButton.Click, AddressOf Pro_inv_itemsCopyButton_Click
-              
-              AddHandler Me.Pro_inv_itemsDeleteButton.Click, AddressOf Pro_inv_itemsDeleteButton_Click
-              
-              AddHandler Me.Pro_inv_itemsEditButton.Click, AddressOf Pro_inv_itemsEditButton_Click
-              
               AddHandler Me.Pro_inv_itemsExportCSVButton.Click, AddressOf Pro_inv_itemsExportCSVButton_Click
               
               AddHandler Me.Pro_inv_itemsExportExcelButton.Click, AddressOf Pro_inv_itemsExportExcelButton_Click
               
               AddHandler Me.Pro_inv_itemsImportButton.Click, AddressOf Pro_inv_itemsImportButton_Click
               
-              AddHandler Me.Pro_inv_itemsNewButton.Click, AddressOf Pro_inv_itemsNewButton_Click
-              
               AddHandler Me.Pro_inv_itemsPDFButton.Click, AddressOf Pro_inv_itemsPDFButton_Click
               
               AddHandler Me.Pro_inv_itemsRefreshButton.Click, AddressOf Pro_inv_itemsRefreshButton_Click
-              
-              AddHandler Me.Pro_inv_itemsResetButton.Click, AddressOf Pro_inv_itemsResetButton_Click
               
               AddHandler Me.Pro_inv_itemsWordButton.Click, AddressOf Pro_inv_itemsWordButton_Click
               
@@ -1465,9 +1144,7 @@ Public Class BasePro_inv_itemsTableControl
             ' Call the Set methods for each controls on the panel
         
             SetamountLabel()
-            Setass_valueLabel()
             Setid_itemLabel1()
-            Setitem_codeLabel1()
             Setitem_descriptionLabel()
             SetqtyLabel()
             SetrateLabel()
@@ -1506,9 +1183,7 @@ Public Class BasePro_inv_itemsTableControl
             ' Initialize other asp controls
             
             SetamountLabel()
-            Setass_valueLabel()
             Setid_itemLabel1()
-            Setitem_codeLabel1()
             Setitem_descriptionLabel()
             SetqtyLabel()
             SetrateLabel()
@@ -1888,14 +1563,8 @@ Public Class BasePro_inv_itemsTableControl
                         If recControl.amount.Text <> "" Then
                             rec.Parse(recControl.amount.Text, Pro_inv_itemsTable.amount)
                         End If
-                        If recControl.ass_value.Text <> "" Then
-                            rec.Parse(recControl.ass_value.Text, Pro_inv_itemsTable.ass_value)
-                        End If
                         If recControl.id_item.Text <> "" Then
                             rec.Parse(recControl.id_item.Text, Pro_inv_itemsTable.id_item)
-                        End If
-                        If recControl.item_code.Text <> "" Then
-                            rec.Parse(recControl.item_code.Text, Pro_inv_itemsTable.item_code)
                         End If
                         If recControl.item_description.Text <> "" Then
                             rec.Parse(recControl.item_description.Text, Pro_inv_itemsTable.item_description)
@@ -1981,17 +1650,7 @@ Public Class BasePro_inv_itemsTableControl
                     
         End Sub
                 
-        Public Overridable Sub Setass_valueLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Setid_itemLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setitem_codeLabel1()
             
                     
         End Sub
@@ -2245,28 +1904,6 @@ Public Class BasePro_inv_itemsTableControl
               
         End Sub
             
-        Public Overridable Sub ass_valueLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by ass_value when clicked.
-              
-            ' Get previous sorting state for ass_value.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_itemsTable.ass_value)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for ass_value.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Pro_inv_itemsTable.ass_value, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by ass_value, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
         Public Overridable Sub id_itemLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by id_item when clicked.
               
@@ -2279,28 +1916,6 @@ Public Class BasePro_inv_itemsTableControl
                 Me.CurrentSortOrder.Add(Pro_inv_itemsTable.id_item, OrderByItem.OrderDir.Asc)
             Else
                 ' Previously sorted by id_item, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub item_codeLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by item_code when clicked.
-              
-            ' Get previous sorting state for item_code.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_itemsTable.item_code)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for item_code.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Pro_inv_itemsTable.item_code, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by item_code, so just reverse.
                 sd.Reverse()
             End If
             
@@ -2403,121 +2018,6 @@ Public Class BasePro_inv_itemsTableControl
         ' Generate the event handling functions for button events.
         
         ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_itemsCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_items/AddPro_inv_items.aspx?Pro_inv_items={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_itemsDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                Me.DeleteSelectedRecords(False)
-          
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_itemsEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_items/EditPro_inv_items.aspx?Pro_inv_items={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
         Public Overridable Sub Pro_inv_itemsExportCSVButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
@@ -2535,12 +2035,10 @@ Public Class BasePro_inv_itemsTableControl
             ' Add each of the columns in order of export.
             Dim columns() as BaseColumn = New BaseColumn() { _
                        Pro_inv_itemsTable.id_item, _ 
-             Pro_inv_itemsTable.item_code, _ 
              Pro_inv_itemsTable.item_description, _ 
              Pro_inv_itemsTable.uom, _ 
              Pro_inv_itemsTable.qty, _ 
              Pro_inv_itemsTable.rate, _ 
-             Pro_inv_itemsTable.ass_value, _ 
              Pro_inv_itemsTable.amount, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(Pro_inv_itemsTable.Instance, wc, orderBy, columns)
@@ -2583,12 +2081,10 @@ Public Class BasePro_inv_itemsTableControl
             ' To customize the data type, change the second parameter of the new ExcelColumn to be
             ' a format string from Excel's Format Cell menu. For example "dddd, mmmm dd, yyyy h:mm AM/PM;@", "#,##0.00"
              excelReport.AddColumn(New ExcelColumn(Pro_inv_itemsTable.id_item, "Default"))
-             excelReport.AddColumn(New ExcelColumn(Pro_inv_itemsTable.item_code, "Default"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_itemsTable.item_description, "Default"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_itemsTable.uom, "Default"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_itemsTable.qty, "Standard"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_itemsTable.rate, "Standard"))
-             excelReport.AddColumn(New ExcelColumn(Pro_inv_itemsTable.ass_value, "Standard"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_itemsTable.amount, "Standard"))
 
             excelReport.Export(Me.Page.Response)
@@ -2640,50 +2136,6 @@ Public Class BasePro_inv_itemsTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_itemsNewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_items/AddPro_inv_items.aspx"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
         Public Overridable Sub Pro_inv_itemsPDFButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
@@ -2703,12 +2155,10 @@ Public Class BasePro_inv_itemsTableControl
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
                  report.AddColumn(Pro_inv_itemsTable.id_item.Name, ReportEnum.Align.Left, "${id_item}", ReportEnum.Align.Left, 24)
-                 report.AddColumn(Pro_inv_itemsTable.item_code.Name, ReportEnum.Align.Left, "${item_code}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_itemsTable.item_description.Name, ReportEnum.Align.Left, "${item_description}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Pro_inv_itemsTable.uom.Name, ReportEnum.Align.Left, "${uom}", ReportEnum.Align.Left, 15)
                  report.AddColumn(Pro_inv_itemsTable.qty.Name, ReportEnum.Align.Right, "${qty}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Pro_inv_itemsTable.rate.Name, ReportEnum.Align.Right, "${rate}", ReportEnum.Align.Right, 20)
-                 report.AddColumn(Pro_inv_itemsTable.ass_value.Name, ReportEnum.Align.Right, "${ass_value}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Pro_inv_itemsTable.amount.Name, ReportEnum.Align.Right, "${amount}", ReportEnum.Align.Right, 20)
 
           
@@ -2738,12 +2188,10 @@ Public Class BasePro_inv_itemsTableControl
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
                                                          report.AddData("${id_item}", record.Format(Pro_inv_itemsTable.id_item), ReportEnum.Align.Left)
-                             report.AddData("${item_code}", record.Format(Pro_inv_itemsTable.item_code), ReportEnum.Align.Left, 100)
                              report.AddData("${item_description}", record.Format(Pro_inv_itemsTable.item_description), ReportEnum.Align.Left, 100)
                              report.AddData("${uom}", record.Format(Pro_inv_itemsTable.uom), ReportEnum.Align.Left, 100)
                              report.AddData("${qty}", record.Format(Pro_inv_itemsTable.qty), ReportEnum.Align.Right, 100)
                              report.AddData("${rate}", record.Format(Pro_inv_itemsTable.rate), ReportEnum.Align.Right, 100)
-                             report.AddData("${ass_value}", record.Format(Pro_inv_itemsTable.ass_value), ReportEnum.Align.Right, 100)
                              report.AddData("${amount}", record.Format(Pro_inv_itemsTable.amount), ReportEnum.Align.Right, 100)
 
                             report.WriteRow 
@@ -2809,36 +2257,6 @@ Public Class BasePro_inv_itemsTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_itemsResetButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                
-              Me.CurrentSortOrder.Reset()
-              If Me.InSession(Me, "Order_By") Then
-                  Me.CurrentSortOrder = OrderBy.FromXmlString(Me.GetFromSession(Me, "Order_By", Nothing))
-              Else
-                  Me.CurrentSortOrder = New OrderBy(True, True)
-              
-              End If
-              
-
-        ' Setting the DataChanged to True results in the page being refreshed with
-        ' the most recent data from the database.  This happens in PreRender event
-        ' based on the current sort, search and filter criteria.
-        Me.DataChanged = True
-            
-            Catch ex As Exception
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-    
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
         Public Overridable Sub Pro_inv_itemsWordButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
@@ -2858,12 +2276,10 @@ Public Class BasePro_inv_itemsTableControl
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
                  report.AddColumn(Pro_inv_itemsTable.id_item.Name, ReportEnum.Align.Left, "${id_item}", ReportEnum.Align.Left, 24)
-                 report.AddColumn(Pro_inv_itemsTable.item_code.Name, ReportEnum.Align.Left, "${item_code}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_itemsTable.item_description.Name, ReportEnum.Align.Left, "${item_description}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Pro_inv_itemsTable.uom.Name, ReportEnum.Align.Left, "${uom}", ReportEnum.Align.Left, 15)
                  report.AddColumn(Pro_inv_itemsTable.qty.Name, ReportEnum.Align.Right, "${qty}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Pro_inv_itemsTable.rate.Name, ReportEnum.Align.Right, "${rate}", ReportEnum.Align.Right, 20)
-                 report.AddColumn(Pro_inv_itemsTable.ass_value.Name, ReportEnum.Align.Right, "${ass_value}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Pro_inv_itemsTable.amount.Name, ReportEnum.Align.Right, "${amount}", ReportEnum.Align.Right, 20)
 
               Dim whereClause As WhereClause = CreateWhereClause
@@ -2890,12 +2306,10 @@ Public Class BasePro_inv_itemsTableControl
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
                              report.AddData("${id_item}", record.Format(Pro_inv_itemsTable.id_item), ReportEnum.Align.Left)
-                             report.AddData("${item_code}", record.Format(Pro_inv_itemsTable.item_code), ReportEnum.Align.Left, 100)
                              report.AddData("${item_description}", record.Format(Pro_inv_itemsTable.item_description), ReportEnum.Align.Left, 100)
                              report.AddData("${uom}", record.Format(Pro_inv_itemsTable.uom), ReportEnum.Align.Left, 100)
                              report.AddData("${qty}", record.Format(Pro_inv_itemsTable.qty), ReportEnum.Align.Right, 100)
                              report.AddData("${rate}", record.Format(Pro_inv_itemsTable.rate), ReportEnum.Align.Right, 100)
-                             report.AddData("${ass_value}", record.Format(Pro_inv_itemsTable.ass_value), ReportEnum.Align.Right, 100)
                              report.AddData("${amount}", record.Format(Pro_inv_itemsTable.amount), ReportEnum.Align.Right, 100)
 
                             report.WriteRow
@@ -3053,45 +2467,15 @@ Public Class BasePro_inv_itemsTableControl
             End Get
         End Property
         
-        Public ReadOnly Property ass_valueLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ass_valueLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property id_itemLabel1() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_itemLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
-        Public ReadOnly Property item_codeLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_codeLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property item_descriptionLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_descriptionLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_itemsCopyButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_itemsCopyButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_itemsDeleteButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_itemsDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_itemsEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_itemsEditButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
@@ -3113,12 +2497,6 @@ Public Class BasePro_inv_itemsTableControl
             End Get
         End Property
         
-        Public ReadOnly Property Pro_inv_itemsNewButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_itemsNewButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property Pro_inv_itemsPagination() As ServelInvocing.UI.IPagination
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_itemsPagination"), ServelInvocing.UI.IPagination)
@@ -3134,12 +2512,6 @@ Public Class BasePro_inv_itemsTableControl
         Public ReadOnly Property Pro_inv_itemsRefreshButton() As System.Web.UI.WebControls.ImageButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_itemsRefreshButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_itemsResetButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_itemsResetButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
@@ -3308,18 +2680,8 @@ Public Class BasePro_inv_taxesTableControlRow
 			'Call LoadFocusScripts from repeater so that onfocus attribute could be added to elements
 			Me.Page.LoadFocusScripts(Me)
 		
-              ' Show confirmation message on Click
-              Me.Pro_inv_taxesRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              AddHandler Me.Pro_inv_taxesRowCopyButton.Click, AddressOf Pro_inv_taxesRowCopyButton_Click
-              
-              AddHandler Me.Pro_inv_taxesRowDeleteButton.Click, AddressOf Pro_inv_taxesRowDeleteButton_Click
-              
-              AddHandler Me.Pro_inv_taxesRowEditButton.Click, AddressOf Pro_inv_taxesRowEditButton_Click
-              
-              AddHandler Me.Pro_inv_taxesRowViewButton.Click, AddressOf Pro_inv_taxesRowViewButton_Click
-              
               AddHandler Me.id_taxes.Click, AddressOf id_taxes_Click
             
         End Sub
@@ -3367,9 +2729,9 @@ Public Class BasePro_inv_taxesTableControlRow
         
             Setid_taxes()
             Settax_amount()
-            Settax_code()
-            Settax_name()
+            Settax_on()
             Settax_print()
+            Settax_rate()
       
       
             Me.IsNewRecord = True
@@ -3443,7 +2805,7 @@ Public Class BasePro_inv_taxesTableControlRow
                 ' If the tax_amount is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_taxesTable.tax_amount)
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_taxesTable.tax_amount, "c")
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.tax_amount.Text = formattedValue
@@ -3453,7 +2815,7 @@ Public Class BasePro_inv_taxesTableControlRow
                 ' tax_amount is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.tax_amount.Text = Pro_inv_taxesTable.tax_amount.Format(Pro_inv_taxesTable.tax_amount.DefaultValue)
+                Me.tax_amount.Text = Pro_inv_taxesTable.tax_amount.Format(Pro_inv_taxesTable.tax_amount.DefaultValue, "c")
                         		
                 End If
                  
@@ -3467,90 +2829,46 @@ Public Class BasePro_inv_taxesTableControlRow
                   
         End Sub
                 
-        Public Overridable Sub Settax_code()
+        Public Overridable Sub Settax_on()
             
         
-            ' Set the tax_code Literal on the webpage with value from the
+            ' Set the tax_on Literal on the webpage with value from the
             ' pro_inv_taxes database record.
 
             ' Me.DataSource is the pro_inv_taxes record retrieved from the database.
-            ' Me.tax_code is the ASP:Literal on the webpage.
+            ' Me.tax_on is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_code()
+            '     MyBase.Settax_on()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_codeSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_onSpecified Then
                 				
-                ' If the tax_code is non-NULL, then format the value.
+                ' If the tax_on is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_taxesTable.tax_code)
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_taxesTable.tax_on)
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.tax_code.Text = formattedValue
+                Me.tax_on.Text = formattedValue
               
             Else 
             
-                ' tax_code is NULL in the database, so use the Default Value.  
+                ' tax_on is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.tax_code.Text = Pro_inv_taxesTable.tax_code.Format(Pro_inv_taxesTable.tax_code.DefaultValue)
+                Me.tax_on.Text = Pro_inv_taxesTable.tax_on.Format(Pro_inv_taxesTable.tax_on.DefaultValue)
                         		
                 End If
                  
-            ' If the tax_code is NULL or blank, then use the value specified  
+            ' If the tax_on is NULL or blank, then use the value specified  
             ' on Properties.
-            If Me.tax_code.Text Is Nothing _
-                OrElse Me.tax_code.Text.Trim() = "" Then
+            If Me.tax_on.Text Is Nothing _
+                OrElse Me.tax_on.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
-                Me.tax_code.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Settax_name()
-            
-        
-            ' Set the tax_name Literal on the webpage with value from the
-            ' pro_inv_taxes database record.
-
-            ' Me.DataSource is the pro_inv_taxes record retrieved from the database.
-            ' Me.tax_name is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_name()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_nameSpecified Then
-                				
-                ' If the tax_name is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_taxesTable.tax_name)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.tax_name.Text = formattedValue
-              
-            Else 
-            
-                ' tax_name is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tax_name.Text = Pro_inv_taxesTable.tax_name.Format(Pro_inv_taxesTable.tax_name.DefaultValue)
-                        		
-                End If
-                 
-            ' If the tax_name is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.tax_name.Text Is Nothing _
-                OrElse Me.tax_name.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.tax_name.Text = "&nbsp;"
+                Me.tax_on.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -3595,6 +2913,50 @@ Public Class BasePro_inv_taxesTableControlRow
                 OrElse Me.tax_print.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.tax_print.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Settax_rate()
+            
+        
+            ' Set the tax_rate Literal on the webpage with value from the
+            ' pro_inv_taxes database record.
+
+            ' Me.DataSource is the pro_inv_taxes record retrieved from the database.
+            ' Me.tax_rate is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Settax_rate()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_rateSpecified Then
+                				
+                ' If the tax_rate is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_taxesTable.tax_rate)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.tax_rate.Text = formattedValue
+              
+            Else 
+            
+                ' tax_rate is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.tax_rate.Text = Pro_inv_taxesTable.tax_rate.Format(Pro_inv_taxesTable.tax_rate.DefaultValue)
+                        		
+                End If
+                 
+            ' If the tax_rate is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.tax_rate.Text Is Nothing _
+                OrElse Me.tax_rate.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.tax_rate.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -3712,9 +3074,9 @@ Public Class BasePro_inv_taxesTableControlRow
         
             Getid_taxes()
             Gettax_amount()
-            Gettax_code()
-            Gettax_name()
+            Gettax_on()
             Gettax_print()
+            Gettax_rate()
         End Sub
         
         
@@ -3726,15 +3088,15 @@ Public Class BasePro_inv_taxesTableControlRow
             
         End Sub
                 
-        Public Overridable Sub Gettax_code()
-            
-        End Sub
-                
-        Public Overridable Sub Gettax_name()
+        Public Overridable Sub Gettax_on()
             
         End Sub
                 
         Public Overridable Sub Gettax_print()
+            
+        End Sub
+                
+        Public Overridable Sub Gettax_rate()
             
         End Sub
                 
@@ -3820,165 +3182,6 @@ Public Class BasePro_inv_taxesTableControlRow
             Return MyBase.SaveViewState()
         End Function
         
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_taxesRowCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_taxes/AddPro_inv_taxes.aspx?Pro_inv_taxes={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_taxesRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                  Me.Delete()
-              
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_taxesRowEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_taxes/EditPro_inv_taxes.aspx?Pro_inv_taxes={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_taxesRowViewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_taxes/ShowPro_inv_taxes.aspx?Pro_inv_taxes={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
         
         ' event handler for LinkButton
         Public Overridable Sub id_taxes_Click(ByVal sender As Object, ByVal args As EventArgs)
@@ -4145,51 +3348,27 @@ Public Class BasePro_inv_taxesTableControlRow
             End Get
         End Property
         
-        Public ReadOnly Property Pro_inv_taxesRowCopyButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_taxesRowCopyButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_taxesRowDeleteButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_taxesRowDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_taxesRowEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_taxesRowEditButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_taxesRowViewButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_taxesRowViewButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property tax_amount() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_amount"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property tax_code() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property tax_on() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_code"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_name() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_name"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_on"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
         Public ReadOnly Property tax_print() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_print"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property tax_rate() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_rate"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -4287,8 +3466,6 @@ Public Class BasePro_inv_taxesTableControl
         
             SaveControlsToSession_Ajax()
         
-              ' Show confirmation message on Click
-              Me.Pro_inv_taxesDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteConfirm", "ServelInvocing") & "'));")
             ' Setup the pagination events.
             
               AddHandler Me.Pro_inv_taxesPagination.FirstPage.Click, AddressOf Pro_inv_taxesPagination_FirstPage_Click
@@ -4307,33 +3484,23 @@ Public Class BasePro_inv_taxesTableControl
             
               AddHandler Me.tax_amountLabel.Click, AddressOf tax_amountLabel_Click
             
-              AddHandler Me.tax_codeLabel1.Click, AddressOf tax_codeLabel1_Click
-            
-              AddHandler Me.tax_nameLabel.Click, AddressOf tax_nameLabel_Click
+              AddHandler Me.tax_onLabel.Click, AddressOf tax_onLabel_Click
             
               AddHandler Me.tax_printLabel.Click, AddressOf tax_printLabel_Click
             
+              AddHandler Me.tax_rateLabel.Click, AddressOf tax_rateLabel_Click
+            
             ' Setup the button events.
           
-              AddHandler Me.Pro_inv_taxesCopyButton.Click, AddressOf Pro_inv_taxesCopyButton_Click
-              
-              AddHandler Me.Pro_inv_taxesDeleteButton.Click, AddressOf Pro_inv_taxesDeleteButton_Click
-              
-              AddHandler Me.Pro_inv_taxesEditButton.Click, AddressOf Pro_inv_taxesEditButton_Click
-              
               AddHandler Me.Pro_inv_taxesExportCSVButton.Click, AddressOf Pro_inv_taxesExportCSVButton_Click
               
               AddHandler Me.Pro_inv_taxesExportExcelButton.Click, AddressOf Pro_inv_taxesExportExcelButton_Click
               
               AddHandler Me.Pro_inv_taxesImportButton.Click, AddressOf Pro_inv_taxesImportButton_Click
               
-              AddHandler Me.Pro_inv_taxesNewButton.Click, AddressOf Pro_inv_taxesNewButton_Click
-              
               AddHandler Me.Pro_inv_taxesPDFButton.Click, AddressOf Pro_inv_taxesPDFButton_Click
               
               AddHandler Me.Pro_inv_taxesRefreshButton.Click, AddressOf Pro_inv_taxesRefreshButton_Click
-              
-              AddHandler Me.Pro_inv_taxesResetButton.Click, AddressOf Pro_inv_taxesResetButton_Click
               
               AddHandler Me.Pro_inv_taxesWordButton.Click, AddressOf Pro_inv_taxesWordButton_Click
               
@@ -4446,9 +3613,9 @@ Public Class BasePro_inv_taxesTableControl
         
             Setid_taxesLabel1()
             Settax_amountLabel()
-            Settax_codeLabel1()
-            Settax_nameLabel()
+            Settax_onLabel()
             Settax_printLabel()
+            Settax_rateLabel()
       
   
 
@@ -4484,9 +3651,9 @@ Public Class BasePro_inv_taxesTableControl
             
             Setid_taxesLabel1()
             Settax_amountLabel()
-            Settax_codeLabel1()
-            Settax_nameLabel()
+            Settax_onLabel()
             Settax_printLabel()
+            Settax_rateLabel()
       End Sub
 
       
@@ -4865,14 +4032,14 @@ Public Class BasePro_inv_taxesTableControl
                         If recControl.tax_amount.Text <> "" Then
                             rec.Parse(recControl.tax_amount.Text, Pro_inv_taxesTable.tax_amount)
                         End If
-                        If recControl.tax_code.Text <> "" Then
-                            rec.Parse(recControl.tax_code.Text, Pro_inv_taxesTable.tax_code)
-                        End If
-                        If recControl.tax_name.Text <> "" Then
-                            rec.Parse(recControl.tax_name.Text, Pro_inv_taxesTable.tax_name)
+                        If recControl.tax_on.Text <> "" Then
+                            rec.Parse(recControl.tax_on.Text, Pro_inv_taxesTable.tax_on)
                         End If
                         If recControl.tax_print.Text <> "" Then
                             rec.Parse(recControl.tax_print.Text, Pro_inv_taxesTable.tax_print)
+                        End If
+                        If recControl.tax_rate.Text <> "" Then
+                            rec.Parse(recControl.tax_rate.Text, Pro_inv_taxesTable.tax_rate)
                         End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
@@ -4951,17 +4118,17 @@ Public Class BasePro_inv_taxesTableControl
                     
         End Sub
                 
-        Public Overridable Sub Settax_codeLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settax_nameLabel()
+        Public Overridable Sub Settax_onLabel()
             
                     
         End Sub
                 
         Public Overridable Sub Settax_printLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Settax_rateLabel()
             
                     
         End Sub
@@ -5217,40 +4384,18 @@ Public Class BasePro_inv_taxesTableControl
               
         End Sub
             
-        Public Overridable Sub tax_codeLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by tax_code when clicked.
+        Public Overridable Sub tax_onLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by tax_on when clicked.
               
-            ' Get previous sorting state for tax_code.
+            ' Get previous sorting state for tax_on.
             
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_taxesTable.tax_code)
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_taxesTable.tax_on)
             If sd Is Nothing Then
-                ' First time sort, so add sort order for tax_code.
+                ' First time sort, so add sort order for tax_on.
                 Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Pro_inv_taxesTable.tax_code, OrderByItem.OrderDir.Asc)
+                Me.CurrentSortOrder.Add(Pro_inv_taxesTable.tax_on, OrderByItem.OrderDir.Asc)
             Else
-                ' Previously sorted by tax_code, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub tax_nameLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by tax_name when clicked.
-              
-            ' Get previous sorting state for tax_name.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_taxesTable.tax_name)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for tax_name.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Pro_inv_taxesTable.tax_name, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by tax_name, so just reverse.
+                ' Previously sorted by tax_on, so just reverse.
                 sd.Reverse()
             End If
             
@@ -5283,123 +4428,30 @@ Public Class BasePro_inv_taxesTableControl
               
         End Sub
             
+        Public Overridable Sub tax_rateLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by tax_rate when clicked.
+              
+            ' Get previous sorting state for tax_rate.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_taxesTable.tax_rate)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for tax_rate.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(Pro_inv_taxesTable.tax_rate, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by tax_rate, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
 
         ' Generate the event handling functions for button events.
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_taxesCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_taxes/AddPro_inv_taxes.aspx?Pro_inv_taxes={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_taxesDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                Me.DeleteSelectedRecords(False)
-          
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_taxesEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_taxes/EditPro_inv_taxes.aspx?Pro_inv_taxes={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
         
         ' event handler for ImageButton
         Public Overridable Sub Pro_inv_taxesExportCSVButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
@@ -5419,9 +4471,9 @@ Public Class BasePro_inv_taxesTableControl
             ' Add each of the columns in order of export.
             Dim columns() as BaseColumn = New BaseColumn() { _
                        Pro_inv_taxesTable.id_taxes, _ 
-             Pro_inv_taxesTable.tax_code, _ 
-             Pro_inv_taxesTable.tax_name, _ 
              Pro_inv_taxesTable.tax_print, _ 
+             Pro_inv_taxesTable.tax_rate, _ 
+             Pro_inv_taxesTable.tax_on, _ 
              Pro_inv_taxesTable.tax_amount, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(Pro_inv_taxesTable.Instance, wc, orderBy, columns)
@@ -5464,9 +4516,9 @@ Public Class BasePro_inv_taxesTableControl
             ' To customize the data type, change the second parameter of the new ExcelColumn to be
             ' a format string from Excel's Format Cell menu. For example "dddd, mmmm dd, yyyy h:mm AM/PM;@", "#,##0.00"
              excelReport.AddColumn(New ExcelColumn(Pro_inv_taxesTable.id_taxes, "Default"))
-             excelReport.AddColumn(New ExcelColumn(Pro_inv_taxesTable.tax_code, "Default"))
-             excelReport.AddColumn(New ExcelColumn(Pro_inv_taxesTable.tax_name, "Default"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_taxesTable.tax_print, "Default"))
+             excelReport.AddColumn(New ExcelColumn(Pro_inv_taxesTable.tax_rate, "Standard"))
+             excelReport.AddColumn(New ExcelColumn(Pro_inv_taxesTable.tax_on, "Standard"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_taxesTable.tax_amount, "Standard"))
 
             excelReport.Export(Me.Page.Response)
@@ -5518,50 +4570,6 @@ Public Class BasePro_inv_taxesTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_taxesNewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_taxes/AddPro_inv_taxes.aspx"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
         Public Overridable Sub Pro_inv_taxesPDFButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
@@ -5580,10 +4588,10 @@ Public Class BasePro_inv_taxesTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
-                 report.AddColumn(Pro_inv_taxesTable.id_taxes.Name, ReportEnum.Align.Left, "${id_taxes}", ReportEnum.Align.Left, 15)
-                 report.AddColumn(Pro_inv_taxesTable.tax_code.Name, ReportEnum.Align.Left, "${tax_code}", ReportEnum.Align.Left, 15)
-                 report.AddColumn(Pro_inv_taxesTable.tax_name.Name, ReportEnum.Align.Left, "${tax_name}", ReportEnum.Align.Left, 24)
+                 report.AddColumn(Pro_inv_taxesTable.id_taxes.Name, ReportEnum.Align.Left, "${id_taxes}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_taxesTable.tax_print.Name, ReportEnum.Align.Left, "${tax_print}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(Pro_inv_taxesTable.tax_rate.Name, ReportEnum.Align.Right, "${tax_rate}", ReportEnum.Align.Right, 16)
+                 report.AddColumn(Pro_inv_taxesTable.tax_on.Name, ReportEnum.Align.Right, "${tax_on}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Pro_inv_taxesTable.tax_amount.Name, ReportEnum.Align.Right, "${tax_amount}", ReportEnum.Align.Right, 20)
 
           
@@ -5613,9 +4621,9 @@ Public Class BasePro_inv_taxesTableControl
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
                                                          report.AddData("${id_taxes}", record.Format(Pro_inv_taxesTable.id_taxes), ReportEnum.Align.Left)
-                             report.AddData("${tax_code}", record.Format(Pro_inv_taxesTable.tax_code), ReportEnum.Align.Left, 100)
-                             report.AddData("${tax_name}", record.Format(Pro_inv_taxesTable.tax_name), ReportEnum.Align.Left, 100)
                              report.AddData("${tax_print}", record.Format(Pro_inv_taxesTable.tax_print), ReportEnum.Align.Left, 100)
+                             report.AddData("${tax_rate}", record.Format(Pro_inv_taxesTable.tax_rate), ReportEnum.Align.Right, 100)
+                             report.AddData("${tax_on}", record.Format(Pro_inv_taxesTable.tax_on), ReportEnum.Align.Right, 100)
                              report.AddData("${tax_amount}", record.Format(Pro_inv_taxesTable.tax_amount), ReportEnum.Align.Right, 100)
 
                             report.WriteRow 
@@ -5681,36 +4689,6 @@ Public Class BasePro_inv_taxesTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_taxesResetButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                
-              Me.CurrentSortOrder.Reset()
-              If Me.InSession(Me, "Order_By") Then
-                  Me.CurrentSortOrder = OrderBy.FromXmlString(Me.GetFromSession(Me, "Order_By", Nothing))
-              Else
-                  Me.CurrentSortOrder = New OrderBy(True, True)
-              
-              End If
-              
-
-        ' Setting the DataChanged to True results in the page being refreshed with
-        ' the most recent data from the database.  This happens in PreRender event
-        ' based on the current sort, search and filter criteria.
-        Me.DataChanged = True
-            
-            Catch ex As Exception
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-    
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
         Public Overridable Sub Pro_inv_taxesWordButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
@@ -5729,10 +4707,10 @@ Public Class BasePro_inv_taxesTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
-                 report.AddColumn(Pro_inv_taxesTable.id_taxes.Name, ReportEnum.Align.Left, "${id_taxes}", ReportEnum.Align.Left, 15)
-                 report.AddColumn(Pro_inv_taxesTable.tax_code.Name, ReportEnum.Align.Left, "${tax_code}", ReportEnum.Align.Left, 15)
-                 report.AddColumn(Pro_inv_taxesTable.tax_name.Name, ReportEnum.Align.Left, "${tax_name}", ReportEnum.Align.Left, 24)
+                 report.AddColumn(Pro_inv_taxesTable.id_taxes.Name, ReportEnum.Align.Left, "${id_taxes}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Pro_inv_taxesTable.tax_print.Name, ReportEnum.Align.Left, "${tax_print}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(Pro_inv_taxesTable.tax_rate.Name, ReportEnum.Align.Right, "${tax_rate}", ReportEnum.Align.Right, 16)
+                 report.AddColumn(Pro_inv_taxesTable.tax_on.Name, ReportEnum.Align.Right, "${tax_on}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Pro_inv_taxesTable.tax_amount.Name, ReportEnum.Align.Right, "${tax_amount}", ReportEnum.Align.Right, 20)
 
               Dim whereClause As WhereClause = CreateWhereClause
@@ -5759,9 +4737,9 @@ Public Class BasePro_inv_taxesTableControl
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
                              report.AddData("${id_taxes}", record.Format(Pro_inv_taxesTable.id_taxes), ReportEnum.Align.Left)
-                             report.AddData("${tax_code}", record.Format(Pro_inv_taxesTable.tax_code), ReportEnum.Align.Left, 100)
-                             report.AddData("${tax_name}", record.Format(Pro_inv_taxesTable.tax_name), ReportEnum.Align.Left, 100)
                              report.AddData("${tax_print}", record.Format(Pro_inv_taxesTable.tax_print), ReportEnum.Align.Left, 100)
+                             report.AddData("${tax_rate}", record.Format(Pro_inv_taxesTable.tax_rate), ReportEnum.Align.Right, 100)
+                             report.AddData("${tax_on}", record.Format(Pro_inv_taxesTable.tax_on), ReportEnum.Align.Right, 100)
                              report.AddData("${tax_amount}", record.Format(Pro_inv_taxesTable.tax_amount), ReportEnum.Align.Right, 100)
 
                             report.WriteRow
@@ -5919,24 +4897,6 @@ Public Class BasePro_inv_taxesTableControl
             End Get
         End Property
         
-        Public ReadOnly Property Pro_inv_taxesCopyButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_taxesCopyButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_taxesDeleteButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_taxesDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_taxesEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_taxesEditButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property Pro_inv_taxesExportCSVButton() As System.Web.UI.WebControls.ImageButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_taxesExportCSVButton"), System.Web.UI.WebControls.ImageButton)
@@ -5952,12 +4912,6 @@ Public Class BasePro_inv_taxesTableControl
         Public ReadOnly Property Pro_inv_taxesImportButton() As System.Web.UI.WebControls.ImageButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_taxesImportButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_taxesNewButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_taxesNewButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
@@ -5979,12 +4933,6 @@ Public Class BasePro_inv_taxesTableControl
             End Get
         End Property
         
-        Public ReadOnly Property Pro_inv_taxesResetButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_taxesResetButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property Pro_inv_taxesToggleAll() As System.Web.UI.WebControls.CheckBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_taxesToggleAll"), System.Web.UI.WebControls.CheckBox)
@@ -6003,21 +4951,21 @@ Public Class BasePro_inv_taxesTableControl
             End Get
         End Property
         
-        Public ReadOnly Property tax_codeLabel1() As System.Web.UI.WebControls.LinkButton
+        Public ReadOnly Property tax_onLabel() As System.Web.UI.WebControls.LinkButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_codeLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tax_nameLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_nameLabel"), System.Web.UI.WebControls.LinkButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_onLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
         Public ReadOnly Property tax_printLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_printLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property tax_rateLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_rateLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -6156,18 +5104,8 @@ Public Class BasePro_inv_termsTableControlRow
 			'Call LoadFocusScripts from repeater so that onfocus attribute could be added to elements
 			Me.Page.LoadFocusScripts(Me)
 		
-              ' Show confirmation message on Click
-              Me.Pro_inv_termsRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              AddHandler Me.Pro_inv_termsRowCopyButton.Click, AddressOf Pro_inv_termsRowCopyButton_Click
-              
-              AddHandler Me.Pro_inv_termsRowDeleteButton.Click, AddressOf Pro_inv_termsRowDeleteButton_Click
-              
-              AddHandler Me.Pro_inv_termsRowEditButton.Click, AddressOf Pro_inv_termsRowEditButton_Click
-              
-              AddHandler Me.Pro_inv_termsRowViewButton.Click, AddressOf Pro_inv_termsRowViewButton_Click
-              
         End Sub
 
         
@@ -6212,7 +5150,6 @@ Public Class BasePro_inv_termsTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setnarration()
-            Setsort_order()
       
       
             Me.IsNewRecord = True
@@ -6304,50 +5241,6 @@ Public Class BasePro_inv_termsTableControlRow
                 OrElse Me.narration.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.narration.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setsort_order()
-            
-        
-            ' Set the sort_order Literal on the webpage with value from the
-            ' pro_inv_terms database record.
-
-            ' Me.DataSource is the pro_inv_terms record retrieved from the database.
-            ' Me.sort_order is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setsort_order()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.sort_orderSpecified Then
-                				
-                ' If the sort_order is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_termsTable.sort_order)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.sort_order.Text = formattedValue
-              
-            Else 
-            
-                ' sort_order is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.sort_order.Text = Pro_inv_termsTable.sort_order.Format(Pro_inv_termsTable.sort_order.DefaultValue)
-                        		
-                End If
-                 
-            ' If the sort_order is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.sort_order.Text Is Nothing _
-                OrElse Me.sort_order.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.sort_order.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -6464,15 +5357,10 @@ Public Class BasePro_inv_termsTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getnarration()
-            Getsort_order()
         End Sub
         
         
         Public Overridable Sub Getnarration()
-            
-        End Sub
-                
-        Public Overridable Sub Getsort_order()
             
         End Sub
                 
@@ -6558,165 +5446,6 @@ Public Class BasePro_inv_termsTableControlRow
             Return MyBase.SaveViewState()
         End Function
         
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_termsRowCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_terms/AddPro_inv_terms.aspx?Pro_inv_terms={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_termsRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                  Me.Delete()
-              
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_termsRowEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_terms/EditPro_inv_terms.aspx?Pro_inv_terms={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_termsRowViewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_terms/ShowPro_inv_terms.aspx?Pro_inv_terms={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
         
    
         Private _PreviousUIData As New Hashtable
@@ -6839,36 +5568,6 @@ Public Class BasePro_inv_termsTableControlRow
             End Get
         End Property
         
-        Public ReadOnly Property Pro_inv_termsRowCopyButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsRowCopyButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_termsRowDeleteButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsRowDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_termsRowEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsRowEditButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_termsRowViewButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsRowViewButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property sort_order() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_order"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
 #End Region
 
 #Region "Helper Functions"
@@ -6963,8 +5662,6 @@ Public Class BasePro_inv_termsTableControl
         
             SaveControlsToSession_Ajax()
         
-              ' Show confirmation message on Click
-              Me.Pro_inv_termsDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteConfirm", "ServelInvocing") & "'));")
             ' Setup the pagination events.
             
               AddHandler Me.Pro_inv_termsPagination.FirstPage.Click, AddressOf Pro_inv_termsPagination_FirstPage_Click
@@ -6981,29 +5678,17 @@ Public Class BasePro_inv_termsTableControl
           
               AddHandler Me.narrationLabel1.Click, AddressOf narrationLabel1_Click
             
-              AddHandler Me.sort_orderLabel1.Click, AddressOf sort_orderLabel1_Click
-            
             ' Setup the button events.
           
-              AddHandler Me.Pro_inv_termsCopyButton.Click, AddressOf Pro_inv_termsCopyButton_Click
-              
-              AddHandler Me.Pro_inv_termsDeleteButton.Click, AddressOf Pro_inv_termsDeleteButton_Click
-              
-              AddHandler Me.Pro_inv_termsEditButton.Click, AddressOf Pro_inv_termsEditButton_Click
-              
               AddHandler Me.Pro_inv_termsExportCSVButton.Click, AddressOf Pro_inv_termsExportCSVButton_Click
               
               AddHandler Me.Pro_inv_termsExportExcelButton.Click, AddressOf Pro_inv_termsExportExcelButton_Click
               
               AddHandler Me.Pro_inv_termsImportButton.Click, AddressOf Pro_inv_termsImportButton_Click
               
-              AddHandler Me.Pro_inv_termsNewButton.Click, AddressOf Pro_inv_termsNewButton_Click
-              
               AddHandler Me.Pro_inv_termsPDFButton.Click, AddressOf Pro_inv_termsPDFButton_Click
               
               AddHandler Me.Pro_inv_termsRefreshButton.Click, AddressOf Pro_inv_termsRefreshButton_Click
-              
-              AddHandler Me.Pro_inv_termsResetButton.Click, AddressOf Pro_inv_termsResetButton_Click
               
               AddHandler Me.Pro_inv_termsWordButton.Click, AddressOf Pro_inv_termsWordButton_Click
               
@@ -7112,7 +5797,6 @@ Public Class BasePro_inv_termsTableControl
             ' Call the Set methods for each controls on the panel
         
             SetnarrationLabel1()
-            Setsort_orderLabel1()
       
   
 
@@ -7147,7 +5831,6 @@ Public Class BasePro_inv_termsTableControl
             ' Initialize other asp controls
             
             SetnarrationLabel1()
-            Setsort_orderLabel1()
       End Sub
 
       
@@ -7514,9 +6197,6 @@ Public Class BasePro_inv_termsTableControl
                         If recControl.narration.Text <> "" Then
                             rec.Parse(recControl.narration.Text, Pro_inv_termsTable.narration)
                         End If
-                        If recControl.sort_order.Text <> "" Then
-                            rec.Parse(recControl.sort_order.Text, Pro_inv_termsTable.sort_order)
-                        End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
                     End If
@@ -7585,11 +6265,6 @@ Public Class BasePro_inv_termsTableControl
         ' Create Set, WhereClause, and Populate Methods
         
         Public Overridable Sub SetnarrationLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setsort_orderLabel1()
             
                     
         End Sub
@@ -7823,145 +6498,8 @@ Public Class BasePro_inv_termsTableControl
               
         End Sub
             
-        Public Overridable Sub sort_orderLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by sort_order when clicked.
-              
-            ' Get previous sorting state for sort_order.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_termsTable.sort_order)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for sort_order.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Pro_inv_termsTable.sort_order, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by sort_order, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
 
         ' Generate the event handling functions for button events.
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_termsCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_terms/AddPro_inv_terms.aspx?Pro_inv_terms={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_termsDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                Me.DeleteSelectedRecords(False)
-          
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_termsEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_terms/EditPro_inv_terms.aspx?Pro_inv_terms={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
         
         ' event handler for ImageButton
         Public Overridable Sub Pro_inv_termsExportCSVButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
@@ -7981,7 +6519,6 @@ Public Class BasePro_inv_termsTableControl
             ' Add each of the columns in order of export.
             Dim columns() as BaseColumn = New BaseColumn() { _
                        Pro_inv_termsTable.narration, _ 
-             Pro_inv_termsTable.sort_order, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(Pro_inv_termsTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -8023,7 +6560,6 @@ Public Class BasePro_inv_termsTableControl
             ' To customize the data type, change the second parameter of the new ExcelColumn to be
             ' a format string from Excel's Format Cell menu. For example "dddd, mmmm dd, yyyy h:mm AM/PM;@", "#,##0.00"
              excelReport.AddColumn(New ExcelColumn(Pro_inv_termsTable.narration, "Default"))
-             excelReport.AddColumn(New ExcelColumn(Pro_inv_termsTable.sort_order, "0"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -8074,50 +6610,6 @@ Public Class BasePro_inv_termsTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_termsNewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_terms/AddPro_inv_terms.aspx"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
         Public Overridable Sub Pro_inv_termsPDFButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
@@ -8137,7 +6629,6 @@ Public Class BasePro_inv_termsTableControl
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
                  report.AddColumn(Pro_inv_termsTable.narration.Name, ReportEnum.Align.Left, "${narration}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(Pro_inv_termsTable.sort_order.Name, ReportEnum.Align.Right, "${sort_order}", ReportEnum.Align.Right, 15)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -8166,7 +6657,6 @@ Public Class BasePro_inv_termsTableControl
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
                                                          report.AddData("${narration}", record.Format(Pro_inv_termsTable.narration), ReportEnum.Align.Left, 100)
-                             report.AddData("${sort_order}", record.Format(Pro_inv_termsTable.sort_order), ReportEnum.Align.Right, 100)
 
                             report.WriteRow 
                         Next 
@@ -8231,36 +6721,6 @@ Public Class BasePro_inv_termsTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_termsResetButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                
-              Me.CurrentSortOrder.Reset()
-              If Me.InSession(Me, "Order_By") Then
-                  Me.CurrentSortOrder = OrderBy.FromXmlString(Me.GetFromSession(Me, "Order_By", Nothing))
-              Else
-                  Me.CurrentSortOrder = New OrderBy(True, True)
-              
-              End If
-              
-
-        ' Setting the DataChanged to True results in the page being refreshed with
-        ' the most recent data from the database.  This happens in PreRender event
-        ' based on the current sort, search and filter criteria.
-        Me.DataChanged = True
-            
-            Catch ex As Exception
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-    
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
         Public Overridable Sub Pro_inv_termsWordButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
@@ -8280,7 +6740,6 @@ Public Class BasePro_inv_termsTableControl
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
                  report.AddColumn(Pro_inv_termsTable.narration.Name, ReportEnum.Align.Left, "${narration}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(Pro_inv_termsTable.sort_order.Name, ReportEnum.Align.Right, "${sort_order}", ReportEnum.Align.Right, 15)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -8306,7 +6765,6 @@ Public Class BasePro_inv_termsTableControl
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
                              report.AddData("${narration}", record.Format(Pro_inv_termsTable.narration), ReportEnum.Align.Left, 100)
-                             report.AddData("${sort_order}", record.Format(Pro_inv_termsTable.sort_order), ReportEnum.Align.Right, 100)
 
                             report.WriteRow
                         Next
@@ -8463,24 +6921,6 @@ Public Class BasePro_inv_termsTableControl
             End Get
         End Property
         
-        Public ReadOnly Property Pro_inv_termsCopyButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsCopyButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_termsDeleteButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_termsEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsEditButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property Pro_inv_termsExportCSVButton() As System.Web.UI.WebControls.ImageButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsExportCSVButton"), System.Web.UI.WebControls.ImageButton)
@@ -8496,12 +6936,6 @@ Public Class BasePro_inv_termsTableControl
         Public ReadOnly Property Pro_inv_termsImportButton() As System.Web.UI.WebControls.ImageButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsImportButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_termsNewButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsNewButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
@@ -8523,12 +6957,6 @@ Public Class BasePro_inv_termsTableControl
             End Get
         End Property
         
-        Public ReadOnly Property Pro_inv_termsResetButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsResetButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property Pro_inv_termsToggleAll() As System.Web.UI.WebControls.CheckBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsToggleAll"), System.Web.UI.WebControls.CheckBox)
@@ -8538,12 +6966,6 @@ Public Class BasePro_inv_termsTableControl
         Public ReadOnly Property Pro_inv_termsWordButton() As System.Web.UI.WebControls.ImageButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_termsWordButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property sort_orderLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_orderLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -8773,10 +7195,14 @@ Public Class BasePro_inv_hdrRecordControl
             Setbill_addressLabel()
             Setbill_name()
             Setbill_nameLabel()
+            Setgrand_total()
+            Setgrand_totalLabel()
             Setid_party()
             Setid_partyLabel()
             Setid_tax_group()
             Setid_tax_groupLabel()
+            Setitem_total()
+            Setitem_totalLabel()
             Setpo_dt()
             Setpo_dtLabel()
             Setpo_no()
@@ -8961,6 +7387,50 @@ Public Class BasePro_inv_hdrRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setgrand_total()
+            
+        
+            ' Set the grand_total Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.grand_total is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgrand_total()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.grand_totalSpecified Then
+                				
+                ' If the grand_total is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.grand_total, "c")
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.grand_total.Text = formattedValue
+              
+            Else 
+            
+                ' grand_total is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.grand_total.Text = Pro_inv_hdrTable.grand_total.Format(Pro_inv_hdrTable.grand_total.DefaultValue, "c")
+                        		
+                End If
+                 
+            ' If the grand_total is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.grand_total.Text Is Nothing _
+                OrElse Me.grand_total.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.grand_total.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setid_party()
             
         
@@ -9029,6 +7499,50 @@ Public Class BasePro_inv_hdrRecordControl
                         		
                 End If
                  
+        End Sub
+                
+        Public Overridable Sub Setitem_total()
+            
+        
+            ' Set the item_total Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.item_total is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setitem_total()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.item_totalSpecified Then
+                				
+                ' If the item_total is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.item_total, "c")
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.item_total.Text = formattedValue
+              
+            Else 
+            
+                ' item_total is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.item_total.Text = Pro_inv_hdrTable.item_total.Format(Pro_inv_hdrTable.item_total.DefaultValue, "c")
+                        		
+                End If
+                 
+            ' If the item_total is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.item_total.Text Is Nothing _
+                OrElse Me.item_total.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.item_total.Text = "&nbsp;"
+            End If
+                  
         End Sub
                 
         Public Overridable Sub Setpo_dt()
@@ -9470,12 +7984,22 @@ Public Class BasePro_inv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setgrand_totalLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setid_partyLabel()
             
                     
         End Sub
                 
         Public Overridable Sub Setid_tax_groupLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setitem_totalLabel()
             
                     
         End Sub
@@ -9640,8 +8164,10 @@ Public Class BasePro_inv_hdrRecordControl
         
             Getbill_address()
             Getbill_name()
+            Getgrand_total()
             Getid_party()
             Getid_tax_group()
+            Getitem_total()
             Getpo_dt()
             Getpo_no()
             Getpro_inv_dt()
@@ -9662,11 +8188,19 @@ Public Class BasePro_inv_hdrRecordControl
             
         End Sub
                 
+        Public Overridable Sub Getgrand_total()
+            
+        End Sub
+                
         Public Overridable Sub Getid_party()
             
         End Sub
                 
         Public Overridable Sub Getid_tax_group()
+            
+        End Sub
+                
+        Public Overridable Sub Getitem_total()
             
         End Sub
                 
@@ -10276,6 +8810,18 @@ Public Class BasePro_inv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property grand_total() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_total"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property grand_totalLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_totalLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property id_party() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_party"), System.Web.UI.WebControls.LinkButton)
@@ -10297,6 +8843,18 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property id_tax_groupLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_groupLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property item_total() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_total"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property item_totalLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_totalLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

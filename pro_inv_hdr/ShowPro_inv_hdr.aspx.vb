@@ -161,20 +161,22 @@ Partial Public Class ShowPro_inv_hdr
 #Region "Section 2: Do not modify this section."
 
         Public WithEvents amountLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents ass_valueLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents bill_address As System.Web.UI.WebControls.Literal
         Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents bill_name As System.Web.UI.WebControls.Literal
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents EditButton As ThemeButton
+        Public WithEvents grand_total As System.Web.UI.WebControls.Literal
+        Public WithEvents grand_totalLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_party As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_tax_group As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_tax_groupLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_taxesLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents item_codeLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents item_total As System.Web.UI.WebControls.Literal
+        Public WithEvents item_totalLabel As System.Web.UI.WebControls.Literal
         Public WithEvents narrationLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents OKButton As ThemeButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
@@ -187,47 +189,32 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents Pro_inv_hdrDialogEditButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_hdrRecordControl As ServelInvocing.UI.Controls.ShowPro_inv_hdr.Pro_inv_hdrRecordControl
         Public WithEvents Pro_inv_hdrTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents Pro_inv_itemsCopyButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_itemsDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_itemsEditButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_itemsExportCSVButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_itemsExportExcelButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_itemsImportButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_itemsNewButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_itemsPagination As Pagination
         Public WithEvents Pro_inv_itemsPDFButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_itemsRefreshButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_itemsResetButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_itemsTableControl As ServelInvocing.UI.Controls.ShowPro_inv_hdr.Pro_inv_itemsTableControl
         Public WithEvents Pro_inv_itemsToggleAll As System.Web.UI.WebControls.CheckBox
         Public WithEvents Pro_inv_itemsWordButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents pro_inv_no As System.Web.UI.WebControls.Literal
         Public WithEvents pro_inv_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents Pro_inv_taxesCopyButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_taxesDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_taxesEditButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_taxesExportCSVButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_taxesExportExcelButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_taxesImportButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_taxesNewButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_taxesPagination As Pagination
         Public WithEvents Pro_inv_taxesPDFButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_taxesRefreshButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_taxesResetButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_taxesTableControl As ServelInvocing.UI.Controls.ShowPro_inv_hdr.Pro_inv_taxesTableControl
         Public WithEvents Pro_inv_taxesToggleAll As System.Web.UI.WebControls.CheckBox
         Public WithEvents Pro_inv_taxesWordButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_termsCopyButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_termsDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_termsEditButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_termsExportCSVButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_termsExportExcelButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_termsImportButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_termsNewButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_termsPagination As Pagination
         Public WithEvents Pro_inv_termsPDFButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_termsRefreshButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_termsResetButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Pro_inv_termsTableControl As ServelInvocing.UI.Controls.ShowPro_inv_hdr.Pro_inv_termsTableControl
         Public WithEvents Pro_inv_termsToggleAll As System.Web.UI.WebControls.CheckBox
         Public WithEvents Pro_inv_termsWordButton As System.Web.UI.WebControls.ImageButton
@@ -241,11 +228,10 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents ship_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ship_name As System.Web.UI.WebControls.Literal
         Public WithEvents ship_nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents sort_orderLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents tax_amountLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tax_codeLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tax_nameLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents tax_onLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents tax_printLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents tax_rateLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents tin_no As System.Web.UI.WebControls.Literal
         Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents uomLabel As System.Web.UI.WebControls.LinkButton

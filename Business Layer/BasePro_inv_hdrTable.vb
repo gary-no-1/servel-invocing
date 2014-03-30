@@ -67,6 +67,8 @@ Namespace ServelInvocing.Business
         po_noColumn.CodeName = "po_no"
         po_dtColumn.CodeName = "po_dt"
         id_tax_groupColumn.CodeName = "id_tax_group"
+        item_totalColumn.CodeName = "item_total"
+        grand_totalColumn.CodeName = "grand_total"
         
     End Sub
 
@@ -336,6 +338,44 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property id_tax_group() As BaseClasses.Data.NumberColumn
         Get
             Return Pro_inv_hdrTable.Instance.id_tax_groupColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.item_total column object.
+    ''' </summary>
+    Public ReadOnly Property item_totalColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(14), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.item_total column object.
+    ''' </summary>
+    Public Shared ReadOnly Property item_total() As BaseClasses.Data.NumberColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.item_totalColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.grand_total column object.
+    ''' </summary>
+    Public ReadOnly Property grand_totalColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(15), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.grand_total column object.
+    ''' </summary>
+    Public Shared ReadOnly Property grand_total() As BaseClasses.Data.NumberColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.grand_totalColumn
         End Get
     End Property
 
@@ -624,7 +664,9 @@ Namespace ServelInvocing.Business
         ByVal tin_noValue As String, _
         ByVal po_noValue As String, _
         ByVal po_dtValue As String, _
-        ByVal id_tax_groupValue As String _
+        ByVal id_tax_groupValue As String, _
+        ByVal item_totalValue As String, _
+        ByVal grand_totalValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(pro_inv_noValue, pro_inv_noColumn)
@@ -640,6 +682,8 @@ Namespace ServelInvocing.Business
         rec.SetString(po_noValue, po_noColumn)
         rec.SetString(po_dtValue, po_dtColumn)
         rec.SetString(id_tax_groupValue, id_tax_groupColumn)
+        rec.SetString(item_totalValue, item_totalColumn)
+        rec.SetString(grand_totalValue, grand_totalColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

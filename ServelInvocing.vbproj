@@ -301,20 +301,6 @@
     <Compile Include="party\ShowPartyTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="pro_inv_hdr\EditPro_inv_hdr.aspx.vb">
-      <DependentUpon>EditPro_inv_hdr.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\EditPro_inv_hdr.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.aspx.vb">
-      <DependentUpon>ShowPro_inv_hdr.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="pro_inv_items\AddPro_inv_items.aspx.vb">
       <DependentUpon>AddPro_inv_items.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -749,6 +735,20 @@
     <Compile Include="pro_inv_hdr\AddPro_inv_hdr.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="pro_inv_hdr\EditPro_inv_hdr.aspx.vb" >
+      <DependentUpon>EditPro_inv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\EditPro_inv_hdr.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.aspx.vb" >
+      <DependentUpon>ShowPro_inv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx.vb" >
       <DependentUpon>ShowPro_inv_hdrTable.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1110,8 +1110,6 @@
     <Content Include="party\EditParty.aspx" />
     <Content Include="party\ShowParty.aspx" />
     <Content Include="party\ShowPartyTable.aspx" />
-    <Content Include="pro_inv_hdr\EditPro_inv_hdr.aspx" />
-    <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx" />
     <Content Include="pro_inv_items\AddPro_inv_items.aspx" />
     <Content Include="pro_inv_items\EditPro_inv_items.aspx" />
     <Content Include="pro_inv_items\ShowPro_inv_items.aspx" />
@@ -1179,6 +1177,8 @@
     <Content Include="Master Pages\VerticalMenu.master"  />
     <Content Include="Menu Panels\Menu.ascx"  />
     <Content Include="pro_inv_hdr\AddPro_inv_hdr.aspx"  />
+    <Content Include="pro_inv_hdr\EditPro_inv_hdr.aspx"  />
+    <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx"  />
     <Content Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx"  />
     <Content Include="tax_groups\ShowTax_groups.aspx"  />
     <Content Include="terms\ShowTermsTable.aspx"  />

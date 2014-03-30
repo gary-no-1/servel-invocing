@@ -67,13 +67,13 @@
     </Column>
     <Column InternalName="2" Priority="3" ColumnNum="2">
       <columnName>id_taxes</columnName>
-      <columnUIName>Tax Code</columnUIName>
+      <columnUIName Source="User">Tax Code</columnUIName>
       <columnType>Number</columnType>
       <columnDBType>int</columnDBType>
       <columnLengthSet>10.0</columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault>
+      <columnDBDefault Source="User">
       </columnDBDefault>
       <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
@@ -83,12 +83,12 @@
       </columnDBFormat>
       <columnPK>N</columnPK>
       <columnPermanent>N</columnPermanent>
-      <columnComputed>N</columnComputed>
-      <columnIdentity>N</columnIdentity>
-      <columnReadOnly>N</columnReadOnly>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive>N</columnCaseSensitive>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
@@ -97,9 +97,14 @@
         <columnFKTable>taxes</columnFKTable>
         <columnFKOwner>dbo</columnFKOwner>
         <columnFKColumn>id</columnFKColumn>
-        <columnFKColumnDisplay>tax_code</columnFKColumnDisplay>
+        <columnFKColumnDisplay>tax_name</columnFKColumnDisplay>
         <foreignKeyType>Explicit</foreignKeyType>
       </foreignKey>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>2</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
     </Column>
     <Column InternalName="3" Priority="4" ColumnNum="3">
       <columnName>tax_code</columnName>
@@ -270,11 +275,12 @@
       </columnTableAliasName>
     </Column>
     <Column InternalName="9" Priority="10" ColumnNum="9">
-      <columnName>calc_type</columnName>
-      <columnUIName Source="Database">Calculation Type</columnUIName>
-      <columnType>String</columnType>
-      <columnDBType>nchar</columnDBType>
-      <columnLengthSet>20</columnLengthSet>
+      <columnName>tax_lock</columnName>
+      <columnUIName>%ISD_DEFAULT%</columnUIName>
+      <columnType>Boolean</columnType>
+      <columnDBType>bit</columnDBType>
+      <columnLengthSet>
+      </columnLengthSet>
       <columnDefault>
       </columnDefault>
       <columnDBDefault>
@@ -292,12 +298,45 @@
       <columnReadOnly>N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
+      <columnCaseSensitive>N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
     </Column>
     <Column InternalName="10" Priority="11" ColumnNum="10">
+      <columnName>calc_type</columnName>
+      <columnUIName Source="User">Calculation Type</columnUIName>
+      <columnType>String</columnType>
+      <columnDBType>nchar</columnDBType>
+      <columnLengthSet>20</columnLengthSet>
+      <columnDefault>
+      </columnDefault>
+      <columnDBDefault Source="User">
+      </columnDBDefault>
+      <columnIndex>N</columnIndex>
+      <columnUnique>N</columnUnique>
+      <columnFunction>
+      </columnFunction>
+      <columnDBFormat>
+      </columnDBFormat>
+      <columnPK>N</columnPK>
+      <columnPermanent>N</columnPermanent>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
+      <columnRequired>N</columnRequired>
+      <columnNotNull>N</columnNotNull>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
+      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
+      <columnTableAliasName>
+      </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>10</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
+    </Column>
+    <Column InternalName="11" Priority="12" ColumnNum="11">
       <columnName>sort_order</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>Number</columnType>
@@ -327,7 +366,7 @@
     </Column>
   </ColumnDefinition>
   <TableName>pro_inv_taxes</TableName>
-  <Version>6</Version>
+  <Version>7</Version>
   <Owner>dbo</Owner>
   <TableCodeName>Pro_inv_taxes</TableCodeName>
   <TableAliasName>Pro_inv_taxes_</TableAliasName>
