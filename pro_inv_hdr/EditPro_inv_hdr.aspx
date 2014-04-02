@@ -32,8 +32,8 @@
                         <ServelInvocing:Pro_inv_hdrRecordControl runat="server" id="Pro_inv_hdrRecordControl">	<table class="dv" cellpadding="0" cellspacing="0" border="0"><tr><td class="dh"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td class="dhel"><img src="../Images/space.gif" alt="" /></td><td class="dheci" valign="middle"><asp:CollapsiblePanelExtender id="Pro_inv_hdrRecordControlPanelExtender" runat="server" TargetControlid="Pro_inv_hdrRecordControlCollapsibleRegion" ExpandControlID="Pro_inv_hdrRecordControlIcon" CollapseControlID="Pro_inv_hdrRecordControlIcon" ImageControlID="Pro_inv_hdrRecordControlIcon" ExpandedImage="../images/icon_panelcollapse.gif" CollapsedImage="../images/icon_panelexpand.gif" SuppressPostBack="true" />
 <asp:ImageButton id="Pro_inv_hdrRecordControlIcon" runat="server" ToolTip="&lt;%# GetResourceValue(&quot;Btn:ExpandCollapse&quot;) %&gt;" causesvalidation="False" imageurl="../images/icon_panelcollapse.gif" /></td><td class="dhb"><table cellpadding="0" cellspacing="0" border="0"><tr><td class="dht" valign="middle"><asp:Literal runat="server" id="Pro_inv_hdrTitle" Text="&lt;%#String.Concat(GetResourceValue(&quot;Title:Edit&quot;),&quot; Pro Inv HDR&quot;) %>">	</asp:Literal></td></tr></table>
 </td><td class="dher"><img src="../Images/space.gif" alt="" /></td></tr></table>
-</td></tr><tr><td><asp:panel id="Pro_inv_hdrRecordControlCollapsibleRegion" runat="server"><table class="dBody" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><asp:panel id="Pro_inv_hdrRecordControlPanel" runat="server"><table cellpadding="0" cellspacing="0" border="0"><tr><td class="fls"><asp:Literal runat="server" id="pro_inv_noLabel" Text="Pro Inv Number">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="pro_inv_no" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="pro_inv_noTextBoxMaxLengthValidator" ControlToValidate="pro_inv_no" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Pro Inv Number&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="fls"><asp:Literal runat="server" id="pro_inv_dtLabel" Text="Pro Inv Date">	</asp:Literal></td><td class="dfv"><table border="0" cellpadding="0" cellspacing="0">
+</td></tr><tr><td><asp:panel id="Pro_inv_hdrRecordControlCollapsibleRegion" runat="server"><table class="dBody" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><asp:panel id="Pro_inv_hdrRecordControlPanel" runat="server"><table cellpadding="0" cellspacing="0" border="0"><tr><td class="fls"><asp:Literal runat="server" id="pro_inv_noLabel" Text="Pro Inv No.">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="pro_inv_no" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="pro_inv_noTextBoxMaxLengthValidator" ControlToValidate="pro_inv_no" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Pro Inv No.&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="fls"><asp:Literal runat="server" id="pro_inv_dtLabel" Text="Pro Inv Date">	</asp:Literal></td><td class="dfv"><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
 <asp:TextBox runat="server" id="pro_inv_dt" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox></td>
@@ -44,8 +44,8 @@
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="pro_inv_dtTextBoxMaxLengthValidator" ControlToValidate="pro_inv_dt" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Pro Inv Date&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
 </tr>
 </table>
- </td></tr><tr><td class="fls"><asp:Literal runat="server" id="sale_ord_noLabel" Text="Sale Order Number">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="sale_ord_no" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="sale_ord_noTextBoxMaxLengthValidator" ControlToValidate="sale_ord_no" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Sale Order Number&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="fls"><asp:Literal runat="server" id="sale_ord_dtLabel" Text="Sale Order Date">	</asp:Literal></td><td class="dfv"><table border="0" cellpadding="0" cellspacing="0">
+ </td></tr><tr><td class="fls"><asp:Literal runat="server" id="sale_ord_noLabel" Text="Sale Order No.">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="sale_ord_no" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="sale_ord_noTextBoxMaxLengthValidator" ControlToValidate="sale_ord_no" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Sale Order No.&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="fls"><asp:Literal runat="server" id="sale_ord_dtLabel" Text="Sale Order Date">	</asp:Literal></td><td class="dfv"><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
 <asp:TextBox runat="server" id="sale_ord_dt" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox></td>
@@ -56,8 +56,8 @@
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="sale_ord_dtTextBoxMaxLengthValidator" ControlToValidate="sale_ord_dt" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Sale Order Date&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
 </tr>
 </table>
- </td></tr><tr><td class="fls"><asp:Literal runat="server" id="po_noLabel" Text="P.O. Number">	</asp:Literal></td><td class="dfv" style="white-space:nowrap;"><asp:TextBox runat="server" id="po_no" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="po_noTextBoxMaxLengthValidator" ControlToValidate="po_no" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;P.O. Number&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="fls"><asp:Literal runat="server" id="po_dtLabel" Text="P.O. Date">	</asp:Literal></td><td class="dfv"><table border="0" cellpadding="0" cellspacing="0">
+ </td></tr><tr><td class="fls"><asp:Literal runat="server" id="po_noLabel" Text="P.O. No.">	</asp:Literal></td><td class="dfv" style="white-space:nowrap;"><asp:TextBox runat="server" id="po_no" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="po_noTextBoxMaxLengthValidator" ControlToValidate="po_no" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;P.O. No.&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="fls"><asp:Literal runat="server" id="po_dtLabel" Text="P.O. Date">	</asp:Literal></td><td class="dfv"><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
 <asp:TextBox runat="server" id="po_dt" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox></td>
@@ -70,11 +70,11 @@
 </table>
  </td></tr><tr><td class="fls"><asp:Literal runat="server" id="id_partyLabel" Text="Party">	</asp:Literal></td><td class="dfv" style="white-space:nowrap;"><asp:DropDownList runat="server" id="id_party" autopostback="True" cssclass="field_input" onkeypress="dropDownListTypeAhead(this,false)"></asp:DropDownList>
 <Selectors:FvLlsHyperLink runat="server" id="id_partyFvLlsHyperLink" ControlToUpdate="id_party" Text="&lt;%# GetResourceValue(&quot;LLS:Text&quot;, &quot;ServelInvocing&quot;) %>" MinListItems="100" Table="party" Field="Party_.id" DisplayField="Party_.name"></Selectors:FvLlsHyperLink> 
-</td><td class="fls"><asp:Literal runat="server" id="tin_noLabel" Text="Tin Number">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="tin_no" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="tin_noTextBoxMaxLengthValidator" ControlToValidate="tin_no" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tin Number&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td></tr><tr><td class="fls"><asp:Literal runat="server" id="bill_nameLabel" Text="Bill Name">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="bill_name" Columns="50" MaxLength="50" cssclass="field_input"></asp:TextBox>&nbsp;
+</td><td class="fls"><asp:Literal runat="server" id="tin_noLabel" Text="TIN">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="tin_no" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="tin_noTextBoxMaxLengthValidator" ControlToValidate="tin_no" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;TIN&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td></tr><tr><td class="fls"><asp:Literal runat="server" id="bill_nameLabel" Text="Bill Name">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="bill_name" Columns="50" MaxLength="50" cssclass="field_input"></asp:TextBox>&nbsp;
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="bill_nameTextBoxMaxLengthValidator" ControlToValidate="bill_name" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Bill Name&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="fls"><asp:Literal runat="server" id="ship_nameLabel" Text="Ship Name">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="ship_name" Columns="50" MaxLength="50" cssclass="field_input"></asp:TextBox>&nbsp;
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="ship_nameTextBoxMaxLengthValidator" ControlToValidate="ship_name" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Ship Name&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td></tr><tr><td class="fls"><asp:Literal runat="server" id="bill_addressLabel" Text="Bill Address">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="bill_address" MaxLength="50" columns="60" cssclass="field_input" rows="3" textmode="MultiLine"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="bill_addressTextBoxMaxLengthValidator" ControlToValidate="bill_address" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Bill Address&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="dfv"><asp:Literal runat="server" id="ship_addressLabel" Text="Ship Address">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="ship_address" MaxLength="50" columns="60" cssclass="field_input" rows="3" textmode="MultiLine"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="bill_addressTextBoxMaxLengthValidator" ControlToValidate="bill_address" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Bill Address&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="fls"><asp:Literal runat="server" id="ship_addressLabel" Text="Ship Address">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="ship_address" MaxLength="50" columns="60" cssclass="field_input" rows="3" textmode="MultiLine"></asp:TextBox>&nbsp;
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="ship_addressTextBoxMaxLengthValidator" ControlToValidate="ship_address" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Ship Address&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td></tr><tr><td class="fls" colspan="4"><hr></hr></td></tr><tr><td class="fls"><asp:Literal runat="server" id="id_tax_groupLabel" Text="Tax Code">	</asp:Literal></td><td class="dfv" style="white-space:nowrap;"><asp:DropDownList runat="server" id="id_tax_group" cssclass="field_input" enabled="False" onkeypress="dropDownListTypeAhead(this,false)"></asp:DropDownList>
 <Selectors:FvLlsHyperLink runat="server" id="id_tax_groupFvLlsHyperLink" ControlToUpdate="id_tax_group" Text="&lt;%# GetResourceValue(&quot;LLS:Text&quot;, &quot;ServelInvocing&quot;) %>" MinListItems="100" Table="tax_groups" Field="Tax_groups_.id" DisplayField="Tax_groups_.tax_group_code"></Selectors:FvLlsHyperLink> 
 </td><td class="fls"><asp:Literal runat="server" id="item_totalLabel" Text="Item Total">	</asp:Literal></td><td class="dfv"><table border="0" cellpadding="0" cellspacing="0">
@@ -87,7 +87,7 @@
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="item_totalTextBoxMaxLengthValidator" ControlToValidate="item_total" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Item Total&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
 </tr>
 </table>
- </td></tr><tr><td class="fls"></td><td class="dfv"><ServelInvocing:ThemeButton runat="server" id="CalculateButton" button-causesvalidation="False" button-commandname="Redirect" button-text="Calculate Invoice Totals" postback="True"></ServelInvocing:ThemeButton></td><td class="dfv"><asp:Literal runat="server" id="grand_totalLabel" Text="Grand Total">	</asp:Literal></td><td class="dfv"><table border="0" cellpadding="0" cellspacing="0">
+ </td></tr><tr><td class="fls"></td><td class="dfv"><ServelInvocing:ThemeButton runat="server" id="CalculateButton" button-causesvalidation="False" button-commandname="Redirect" button-text="Calculate Invoice Totals" postback="True"></ServelInvocing:ThemeButton></td><td class="fls"><asp:Literal runat="server" id="grand_totalLabel" Text="Grand Total">	</asp:Literal></td><td class="dfv"><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
 <asp:TextBox runat="server" id="grand_total" Columns="20" MaxLength="20" cssclass="field_input" dataformat="c" readonly="True"></asp:TextBox></td>
@@ -97,7 +97,25 @@
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="grand_totalTextBoxMaxLengthValidator" ControlToValidate="grand_total" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Grand Total&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
 </tr>
 </table>
-</td></tr></table></asp:panel>
+</td></tr><tr><td class="fls" colspan="4"><hr></hr></td></tr><tr><td class="fls"><asp:Literal runat="server" id="road_permit_noLabel" Text="Road Permit No.">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="road_permit_no" Columns="40" MaxLength="40" cssclass="field_input"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="road_permit_noTextBoxMaxLengthValidator" ControlToValidate="road_permit_no" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Road Permit No.&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="fls"><asp:Literal runat="server" id="packing_detailsLabel" Text="Packing Details">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="packing_details" Columns="30" MaxLength="30" cssclass="field_input"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="packing_detailsTextBoxMaxLengthValidator" ControlToValidate="packing_details" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Packing Details&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td></tr><tr><td class="fls"><asp:Literal runat="server" id="weightLabel" Text="Weight">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="weight" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="weightTextBoxMaxLengthValidator" ControlToValidate="weight" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Weight&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="fls"><asp:Literal runat="server" id="no_of_packagesLabel" Text="No Of Packages">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="no_of_packages" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="no_of_packagesTextBoxMaxLengthValidator" ControlToValidate="no_of_packages" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;No Of Packages&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td></tr><tr><td class="fls"><asp:Literal runat="server" id="gr_rr_noLabel" Text="GR / RR No.">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="gr_rr_no" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="gr_rr_noTextBoxMaxLengthValidator" ControlToValidate="gr_rr_no" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;GR / RR No.&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="fls"><asp:Literal runat="server" id="gr_rr_dtLabel" Text="GR / RR Date">	</asp:Literal></td><td class="dfv"><table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="padding-right: 5px; vertical-align:top">
+<asp:TextBox runat="server" id="gr_rr_dt" Columns="20" MaxLength="20" cssclass="field_input"></asp:TextBox></td>
+</td>
+<td>
+<Selectors:CalendarExtendarClass runat="server" ID="gr_rr_dtCalendarExtender" TargetControlID="gr_rr_dt" CssClass="MyCalendar" Format="d">
+</Selectors:CalendarExtendarClass>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="gr_rr_dtTextBoxMaxLengthValidator" ControlToValidate="gr_rr_dt" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;GR / RR Date&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
+</tr>
+</table>
+</td></tr><tr><td class="fls"><asp:Literal runat="server" id="id_transporterLabel" Text="Transporter">	</asp:Literal></td><td class="dfv"><asp:DropDownList runat="server" id="id_transporter" cssclass="field_input" onkeypress="dropDownListTypeAhead(this,false)"></asp:DropDownList>
+<Selectors:FvLlsHyperLink runat="server" id="id_transporterFvLlsHyperLink" ControlToUpdate="id_transporter" Text="&lt;%# GetResourceValue(&quot;LLS:Text&quot;, &quot;ServelInvocing&quot;) %>" MinListItems="100" Table="transporters" Field="Transporters_.id" DisplayField="Transporters_.name"></Selectors:FvLlsHyperLink></td><td class="fls"><asp:Literal runat="server" id="freight_to_payLabel" Text="Freight To Pay">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="freight_to_pay" Columns="10" MaxLength="10" cssclass="field_input"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="freight_to_payTextBoxMaxLengthValidator" ControlToValidate="freight_to_pay" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Freight To Pay&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td></tr></table></asp:panel>
 </td></tr></table>
 </asp:panel></td></tr></table>
 </ServelInvocing:Pro_inv_hdrRecordControl>
@@ -177,7 +195,7 @@
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tax_onLabel" Text="Tax On" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tax_amountLabel" Text="Tax Amount" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tax_lockLabel" Text="Tax Lock" CausesValidation="False">	</asp:LinkButton>
-                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="calc_typeLabel" Text="Calculation Type" CausesValidation="False">	</asp:LinkButton>
+                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="calc_typeLabel" Text="Calc Type" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="sort_orderLabel" Text="Sort Order" CausesValidation="False">	</asp:LinkButton>
                         </th></tr><asp:Repeater runat="server" id="Pro_inv_taxesTableControlRepeater">		<ITEMTEMPLATE>		<ServelInvocing:Pro_inv_taxesTableControlRow runat="server" id="Pro_inv_taxesTableControlRow">
 <tr><td class="ticnb" scope="row"><asp:ImageButton runat="server" id="Pro_inv_taxesRowViewButton" causesvalidation="False" commandname="Redirect" cssclass="button_link" imageurl="../Images/icon_view.gif" tooltip="&lt;%# GetResourceValue(&quot;Txt:ViewRecord&quot;, &quot;ServelInvocing&quot;) %>">		
@@ -199,8 +217,7 @@
   
 <asp:TextBox runat="server" id="tax_name" Columns="30" MaxLength="30" cssclass="field_input" visible="False"></asp:TextBox>&nbsp;
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_nameTextBoxMaxLengthValidator" ControlToValidate="tax_name" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax Name&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> 
-<asp:TextBox runat="server" id="tax_print" Columns="50" MaxLength="50" cssclass="field_input" visible="False"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_printTextBoxMaxLengthValidator" ControlToValidate="tax_print" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax Print&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
+</td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
 <asp:TextBox runat="server" id="tax_on" Columns="20" MaxLength="20" cssclass="field_input" width="100px"></asp:TextBox></td>
@@ -210,7 +227,9 @@
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_onTextBoxMaxLengthValidator" ControlToValidate="tax_on" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax On&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
 </tr>
 </table>
- </td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
+  
+<asp:TextBox runat="server" id="tax_print" Columns="50" MaxLength="50" cssclass="field_input" visible="False"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_printTextBoxMaxLengthValidator" ControlToValidate="tax_print" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax Print&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
 <asp:TextBox runat="server" id="tax_amount" Columns="20" MaxLength="20" cssclass="field_input" width="100px"></asp:TextBox></td>
@@ -220,8 +239,32 @@
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_amountTextBoxMaxLengthValidator" ControlToValidate="tax_amount" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax Amount&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
 </tr>
 </table>
- </td><td class="ttc"><asp:CheckBox runat="server" id="tax_lock"></asp:CheckBox> </td><td class="ttc" style=""><asp:TextBox runat="server" id="calc_type" Columns="20" MaxLength="20" cssclass="field_input" readonly="True"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="calc_typeTextBoxMaxLengthValidator" ControlToValidate="calc_type" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Calculation Type&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
+  
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="padding-right: 5px; vertical-align:top">
+<asp:TextBox runat="server" id="grand_total1" Columns="20" MaxLength="20" cssclass="field_input" visible="False"></asp:TextBox></td>
+</td>
+<td>
+&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="grand_total1TextBoxMaxLengthValidator" ControlToValidate="grand_total1" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Grand Total&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
+</tr>
+</table>
+</td><td class="ttc"><asp:CheckBox runat="server" id="tax_lock"></asp:CheckBox>  
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="padding-right: 5px; vertical-align:top">
+<asp:TextBox runat="server" id="excise_total" Columns="20" MaxLength="20" cssclass="field_input" visible="False"></asp:TextBox></td>
+</td>
+<td>
+&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="excise_totalTextBoxMaxLengthValidator" ControlToValidate="excise_total" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Excise Total&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
+</tr>
+</table>
+</td><td class="ttc" style=""><asp:TextBox runat="server" id="calc_type" Columns="20" MaxLength="20" cssclass="field_input" readonly="True"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="calc_typeTextBoxMaxLengthValidator" ControlToValidate="calc_type" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Calc Type&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator>  
+<asp:TextBox runat="server" id="tax_type" Columns="20" MaxLength="20" cssclass="field_input" visible="False"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="tax_typeTextBoxMaxLengthValidator" ControlToValidate="tax_type" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Tax Type&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
 <asp:TextBox runat="server" id="sort_order" Columns="14" MaxLength="14" cssclass="field_input" width="30px"></asp:TextBox></td>
@@ -231,7 +274,19 @@
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="sort_orderTextBoxMaxLengthValidator" ControlToValidate="sort_order" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Sort Order&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
 </tr>
 </table>
- </td></tr></ServelInvocing:Pro_inv_taxesTableControlRow>
+  
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="padding-right: 5px; vertical-align:top">
+<asp:TextBox runat="server" id="item_total1" Columns="20" MaxLength="20" cssclass="field_input" visible="False"></asp:TextBox></td>
+</td>
+<td>
+&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="item_total1TextBoxMaxLengthValidator" ControlToValidate="item_total1" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Item Total&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
+</tr>
+</table>
+ 
+</td></tr></ServelInvocing:Pro_inv_taxesTableControlRow>
 </ITEMTEMPLATE>
 
 </asp:Repeater>

@@ -65,6 +65,10 @@ Namespace ServelInvocing.Business
         tax_lockColumn.CodeName = "tax_lock"
         calc_typeColumn.CodeName = "calc_type"
         sort_orderColumn.CodeName = "sort_order"
+        tax_typeColumn.CodeName = "tax_type"
+        item_totalColumn.CodeName = "item_total"
+        excise_totalColumn.CodeName = "excise_total"
+        grand_totalColumn.CodeName = "grand_total"
         
     End Sub
 
@@ -296,6 +300,82 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property sort_order() As BaseClasses.Data.NumberColumn
         Get
             Return Pro_inv_taxesTable.Instance.sort_orderColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.tax_type column object.
+    ''' </summary>
+    Public ReadOnly Property tax_typeColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(12), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.tax_type column object.
+    ''' </summary>
+    Public Shared ReadOnly Property tax_type() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_taxesTable.Instance.tax_typeColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.item_total column object.
+    ''' </summary>
+    Public ReadOnly Property item_totalColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(13), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.item_total column object.
+    ''' </summary>
+    Public Shared ReadOnly Property item_total() As BaseClasses.Data.NumberColumn
+        Get
+            Return Pro_inv_taxesTable.Instance.item_totalColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.excise_total column object.
+    ''' </summary>
+    Public ReadOnly Property excise_totalColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(14), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.excise_total column object.
+    ''' </summary>
+    Public Shared ReadOnly Property excise_total() As BaseClasses.Data.NumberColumn
+        Get
+            Return Pro_inv_taxesTable.Instance.excise_totalColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.grand_total column object.
+    ''' </summary>
+    Public ReadOnly Property grand_totalColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(15), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_taxes_.grand_total column object.
+    ''' </summary>
+    Public Shared ReadOnly Property grand_total() As BaseClasses.Data.NumberColumn
+        Get
+            Return Pro_inv_taxesTable.Instance.grand_totalColumn
         End Get
     End Property
 
@@ -582,7 +662,11 @@ Namespace ServelInvocing.Business
         ByVal tax_amountValue As String, _
         ByVal tax_lockValue As String, _
         ByVal calc_typeValue As String, _
-        ByVal sort_orderValue As String _
+        ByVal sort_orderValue As String, _
+        ByVal tax_typeValue As String, _
+        ByVal item_totalValue As String, _
+        ByVal excise_totalValue As String, _
+        ByVal grand_totalValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(id_pro_inv_hdrValue, id_pro_inv_hdrColumn)
@@ -596,6 +680,10 @@ Namespace ServelInvocing.Business
         rec.SetString(tax_lockValue, tax_lockColumn)
         rec.SetString(calc_typeValue, calc_typeColumn)
         rec.SetString(sort_orderValue, sort_orderColumn)
+        rec.SetString(tax_typeValue, tax_typeColumn)
+        rec.SetString(item_totalValue, item_totalColumn)
+        rec.SetString(excise_totalValue, excise_totalColumn)
+        rec.SetString(grand_totalValue, grand_totalColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

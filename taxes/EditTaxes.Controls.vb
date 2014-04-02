@@ -953,6 +953,8 @@ Public Class BaseTaxesRecordControl
             Me.calc_type.Items.Add(New ListItem(Me.Page.ExpandResourceValue("On Previous Row Amount"), "PREVIOUS AMOUNT"))
                           							
             Me.calc_type.Items.Add(New ListItem(Me.Page.ExpandResourceValue("On Previous Row Total"), "PREVIOUS TOTAL"))
+                          							
+            Me.calc_type.Items.Add(New ListItem(Me.Page.ExpandResourceValue("Sub Total"), "SUB TOTAL"))
                           		  
             ' Skip step 2 and 3 because no need to load data from database and insert data
                     

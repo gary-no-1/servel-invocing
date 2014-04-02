@@ -3355,7 +3355,7 @@ Public Class BasePro_inv_hdrTableControl
                  report.AddColumn(Pro_inv_hdrTable.tin_no.Name, ReportEnum.Align.Left, "${tin_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.po_no.Name, ReportEnum.Align.Left, "${po_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.po_dt.Name, ReportEnum.Align.Left, "${po_dt}", ReportEnum.Align.Left, 20)
-                 report.AddColumn(Pro_inv_hdrTable.id_tax_group.Name, ReportEnum.Align.Left, "${id_tax_group}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(Pro_inv_hdrTable.id_tax_group.Name, ReportEnum.Align.Left, "${id_tax_group}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Pro_inv_hdrTable.grand_total.Name, ReportEnum.Align.Right, "${grand_total}", ReportEnum.Align.Right, 20)
 
           
@@ -3506,7 +3506,7 @@ Public Class BasePro_inv_hdrTableControl
                  report.AddColumn(Pro_inv_hdrTable.tin_no.Name, ReportEnum.Align.Left, "${tin_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.po_no.Name, ReportEnum.Align.Left, "${po_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.po_dt.Name, ReportEnum.Align.Left, "${po_dt}", ReportEnum.Align.Left, 20)
-                 report.AddColumn(Pro_inv_hdrTable.id_tax_group.Name, ReportEnum.Align.Left, "${id_tax_group}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(Pro_inv_hdrTable.id_tax_group.Name, ReportEnum.Align.Left, "${id_tax_group}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Pro_inv_hdrTable.grand_total.Name, ReportEnum.Align.Right, "${grand_total}", ReportEnum.Align.Right, 20)
 
               Dim whereClause As WhereClause = CreateWhereClause

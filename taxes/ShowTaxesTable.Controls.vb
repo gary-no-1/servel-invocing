@@ -1140,11 +1140,15 @@ Public Class BaseTaxesTableControl
             Else
                 Me.CurrentSortOrder = New OrderBy(True, True)
             
+                Me.CurrentSortOrder.Add(TaxesTable.tax_type, OrderByItem.OrderDir.Asc)
+              
+                Me.CurrentSortOrder.Add(TaxesTable.calc_type, OrderByItem.OrderDir.Asc)
+              
             End If
 
             ' Setup default pagination settings.
         
-            Me.PageSize = CInt(Me.GetFromSession(Me, "Page_Size", "10"))
+            Me.PageSize = CInt(Me.GetFromSession(Me, "Page_Size", "50"))
             Me.PageIndex = CInt(Me.GetFromSession(Me, "Page_Index", "0"))
             Me.ClearControlsFromSession()
         End Sub
@@ -1433,6 +1437,10 @@ Public Class BaseTaxesTableControl
             Else
                 Me.CurrentSortOrder = New OrderBy(true, true)
             
+                Me.CurrentSortOrder.Add(TaxesTable.tax_type, OrderByItem.OrderDir.Asc)
+              
+                Me.CurrentSortOrder.Add(TaxesTable.calc_type, OrderByItem.OrderDir.Asc)
+              
             End If
                 
             Me.PageIndex = 0
@@ -2903,6 +2911,10 @@ Public Class BaseTaxesTableControl
               Else
                   Me.CurrentSortOrder = New OrderBy(True, True)
               
+                Me.CurrentSortOrder.Add(TaxesTable.tax_type, OrderByItem.OrderDir.Asc)
+                
+                Me.CurrentSortOrder.Add(TaxesTable.calc_type, OrderByItem.OrderDir.Asc)
+                
               End If
               
 

@@ -513,6 +513,188 @@ Namespace ServelInvocing.Business
 		Dim colValue As ColumnValue = New ColumnValue(val)
 		Me.SetValue(colValue, TableUtils.sort_orderColumn)
 	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.tax_type field.
+	''' </summary>
+	Public Function Gettax_typeValue() As ColumnValue
+		Return Me.GetValue(TableUtils.tax_typeColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.tax_type field.
+	''' </summary>
+	Public Function Gettax_typeFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.tax_typeColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.tax_type field.
+	''' </summary>
+	Public Sub Settax_typeFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.tax_typeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.tax_type field.
+	''' </summary>
+	Public Sub Settax_typeFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tax_typeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.item_total field.
+	''' </summary>
+	Public Function Getitem_totalValue() As ColumnValue
+		Return Me.GetValue(TableUtils.item_totalColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.item_total field.
+	''' </summary>
+	Public Function Getitem_totalFieldValue() As Decimal
+		Return CType(Me.GetValue(TableUtils.item_totalColumn).ToDecimal(), Decimal)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.item_total field.
+	''' </summary>
+	Public Sub Setitem_totalFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.item_totalColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.item_total field.
+	''' </summary>
+	Public Sub Setitem_totalFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.item_totalColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.item_total field.
+	''' </summary>
+	Public Sub Setitem_totalFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.item_totalColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.item_total field.
+	''' </summary>
+	Public Sub Setitem_totalFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.item_totalColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.item_total field.
+	''' </summary>
+	Public Sub Setitem_totalFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.item_totalColumn)
+	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.excise_total field.
+	''' </summary>
+	Public Function Getexcise_totalValue() As ColumnValue
+		Return Me.GetValue(TableUtils.excise_totalColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.excise_total field.
+	''' </summary>
+	Public Function Getexcise_totalFieldValue() As Decimal
+		Return CType(Me.GetValue(TableUtils.excise_totalColumn).ToDecimal(), Decimal)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.excise_total field.
+	''' </summary>
+	Public Sub Setexcise_totalFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.excise_totalColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.excise_total field.
+	''' </summary>
+	Public Sub Setexcise_totalFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.excise_totalColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.excise_total field.
+	''' </summary>
+	Public Sub Setexcise_totalFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.excise_totalColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.excise_total field.
+	''' </summary>
+	Public Sub Setexcise_totalFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.excise_totalColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.excise_total field.
+	''' </summary>
+	Public Sub Setexcise_totalFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.excise_totalColumn)
+	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.grand_total field.
+	''' </summary>
+	Public Function Getgrand_totalValue() As ColumnValue
+		Return Me.GetValue(TableUtils.grand_totalColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_taxes_.grand_total field.
+	''' </summary>
+	Public Function Getgrand_totalFieldValue() As Decimal
+		Return CType(Me.GetValue(TableUtils.grand_totalColumn).ToDecimal(), Decimal)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.grand_total field.
+	''' </summary>
+	Public Sub Setgrand_totalFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.grand_totalColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.grand_total field.
+	''' </summary>
+	Public Sub Setgrand_totalFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.grand_totalColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.grand_total field.
+	''' </summary>
+	Public Sub Setgrand_totalFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.grand_totalColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.grand_total field.
+	''' </summary>
+	Public Sub Setgrand_totalFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.grand_totalColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_taxes_.grand_total field.
+	''' </summary>
+	Public Sub Setgrand_totalFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.grand_totalColumn)
+	End Sub
 
 
 #End Region
@@ -944,6 +1126,149 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property sort_orderDefault() As String
         Get
             Return TableUtils.sort_orderColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Pro_inv_taxes_.tax_type field.
+	''' </summary>
+	Public Property tax_type() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.tax_typeColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.tax_typeColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property tax_typeSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.tax_typeColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property tax_typeDefault() As String
+        Get
+            Return TableUtils.tax_typeColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Pro_inv_taxes_.item_total field.
+	''' </summary>
+	Public Property item_total() As Decimal
+		Get 
+			Return CType(Me.GetValue(TableUtils.item_totalColumn).ToDecimal(), Decimal)
+		End Get
+		Set (ByVal val As Decimal) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.item_totalColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property item_totalSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.item_totalColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property item_totalDefault() As String
+        Get
+            Return TableUtils.item_totalColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Pro_inv_taxes_.excise_total field.
+	''' </summary>
+	Public Property excise_total() As Decimal
+		Get 
+			Return CType(Me.GetValue(TableUtils.excise_totalColumn).ToDecimal(), Decimal)
+		End Get
+		Set (ByVal val As Decimal) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.excise_totalColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property excise_totalSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.excise_totalColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property excise_totalDefault() As String
+        Get
+            Return TableUtils.excise_totalColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Pro_inv_taxes_.grand_total field.
+	''' </summary>
+	Public Property grand_total() As Decimal
+		Get 
+			Return CType(Me.GetValue(TableUtils.grand_totalColumn).ToDecimal(), Decimal)
+		End Get
+		Set (ByVal val As Decimal) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.grand_totalColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property grand_totalSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.grand_totalColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property grand_totalDefault() As String
+        Get
+            Return TableUtils.grand_totalColumn.DefaultValue
         End Get
     End Property
 

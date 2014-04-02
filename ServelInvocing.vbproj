@@ -301,6 +301,13 @@
     <Compile Include="party\ShowPartyTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.aspx.vb">
+      <DependentUpon>ShowPro_inv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="pro_inv_items\AddPro_inv_items.aspx.vb">
       <DependentUpon>AddPro_inv_items.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -539,32 +546,11 @@
     <Compile Include="sites\ShowSitesTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="taxes\AddTaxes.aspx.vb">
-      <DependentUpon>AddTaxes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="taxes\AddTaxes.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="taxes\EditTaxes.aspx.vb">
-      <DependentUpon>EditTaxes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="taxes\EditTaxes.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="taxes\ShowTaxes.aspx.vb">
       <DependentUpon>ShowTaxes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="taxes\ShowTaxes.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="taxes\ShowTaxesTable.aspx.vb">
-      <DependentUpon>ShowTaxesTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="taxes\ShowTaxesTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tax_groups\AddTax_groups.aspx.vb">
@@ -707,6 +693,34 @@
     <Compile Include="users\ShowUsersTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="transporters\ShowTransportersTable.aspx.vb">
+      <DependentUpon>ShowTransportersTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transporters\ShowTransportersTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="transporters\AddTransporters.aspx.vb">
+      <DependentUpon>AddTransporters.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transporters\AddTransporters.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="transporters\ShowTransporters.aspx.vb">
+      <DependentUpon>ShowTransporters.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transporters\ShowTransporters.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="transporters\EditTransporters.aspx.vb">
+      <DependentUpon>EditTransporters.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transporters\EditTransporters.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="company\EditCompany.aspx.vb" >
       <DependentUpon>EditCompany.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -742,18 +756,32 @@
     <Compile Include="pro_inv_hdr\EditPro_inv_hdr.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.aspx.vb" >
-      <DependentUpon>ShowPro_inv_hdr.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx.vb" >
       <DependentUpon>ShowPro_inv_hdrTable.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="taxes\AddTaxes.aspx.vb" >
+      <DependentUpon>AddTaxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxes\AddTaxes.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="taxes\EditTaxes.aspx.vb" >
+      <DependentUpon>EditTaxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxes\EditTaxes.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="taxes\ShowTaxesTable.aspx.vb" >
+      <DependentUpon>ShowTaxesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxes\ShowTaxesTable.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tax_groups\ShowTax_groups.aspx.vb" >
@@ -1110,6 +1138,7 @@
     <Content Include="party\EditParty.aspx" />
     <Content Include="party\ShowParty.aspx" />
     <Content Include="party\ShowPartyTable.aspx" />
+    <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx" />
     <Content Include="pro_inv_items\AddPro_inv_items.aspx" />
     <Content Include="pro_inv_items\EditPro_inv_items.aspx" />
     <Content Include="pro_inv_items\ShowPro_inv_items.aspx" />
@@ -1144,10 +1173,7 @@
     <Content Include="sites\EditSites.aspx" />
     <Content Include="sites\ShowSites.aspx" />
     <Content Include="sites\ShowSitesTable.aspx" />
-    <Content Include="taxes\AddTaxes.aspx" />
-    <Content Include="taxes\EditTaxes.aspx" />
     <Content Include="taxes\ShowTaxes.aspx" />
-    <Content Include="taxes\ShowTaxesTable.aspx" />
     <Content Include="tax_groups\AddTax_groups.aspx" />
     <Content Include="tax_groups\EditTax_groups.aspx" />
     <Content Include="tax_groups\ShowTax_groupsTable.aspx" />
@@ -1168,6 +1194,10 @@
     <Content Include="users\EditUsersTable.aspx" />
     <Content Include="users\ShowUsers.aspx" />
     <Content Include="users\ShowUsersTable.aspx" />
+    <Content Include="transporters\ShowTransportersTable.aspx" />
+    <Content Include="transporters\AddTransporters.aspx" />
+    <Content Include="transporters\ShowTransporters.aspx" />
+    <Content Include="transporters\EditTransporters.aspx" />
     <Content Include="company\EditCompany.aspx"  />
     <Content Include="Header and Footer\Header.ascx"  />
     <Content Include="Master Pages\Blank.master"  />
@@ -1178,8 +1208,10 @@
     <Content Include="Menu Panels\Menu.ascx"  />
     <Content Include="pro_inv_hdr\AddPro_inv_hdr.aspx"  />
     <Content Include="pro_inv_hdr\EditPro_inv_hdr.aspx"  />
-    <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx"  />
     <Content Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx"  />
+    <Content Include="taxes\AddTaxes.aspx"  />
+    <Content Include="taxes\EditTaxes.aspx"  />
+    <Content Include="taxes\ShowTaxesTable.aspx"  />
     <Content Include="tax_groups\ShowTax_groups.aspx"  />
     <Content Include="terms\ShowTermsTable.aspx"  />
   </ItemGroup>

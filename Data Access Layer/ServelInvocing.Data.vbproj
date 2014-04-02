@@ -193,6 +193,15 @@
     <Compile Include="TermsSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TransportersDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TransportersSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTransportersSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UnitsofmeasureDefinition.vb">
       <SubType>Code</SubType>
     </Compile>

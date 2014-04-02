@@ -108,7 +108,13 @@
     <Compile Include="Pro_inv_hdrTable.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BasePro_inv_hdrTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Pro_inv_hdrRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_hdrRecord.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Pro_inv_itemsTable.vb">
@@ -195,6 +201,18 @@
     <Compile Include="TermsRecord.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TransportersTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTransportersTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TransportersRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTransportersRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UnitsofmeasureTable.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -229,12 +247,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BasePartyRecord.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BasePro_inv_hdrTable.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BasePro_inv_hdrRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BasePro_inv_itemsTable.vb" >

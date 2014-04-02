@@ -45,6 +45,8 @@ The tags are case-sensitive and should contain the following case-sensitive attr
       <siteMapNode title="Taxes" description="{Menu:Show} Taxes" url="~/taxes/ShowTaxesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="Tax Groups" description="{Menu:Show} Tax Groups" url="~/tax_groups/ShowTax_groupsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
+      <siteMapNode title="Transporters" description="{Menu:Show} Transporters" url="~/transporters/ShowTransportersTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
       <siteMapNode title="Roles" description="Roles" url="~/roles/ShowRolesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
         <siteMapNode title="{Menu:Show} Roles" description="{Menu:Show} Roles" url="~/roles/ShowRolesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
         <siteMapNode title="{Menu:Edit} Roles" description="{Menu:Edit} Roles" url="~/roles/EditRolesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />

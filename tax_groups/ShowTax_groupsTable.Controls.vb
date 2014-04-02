@@ -3479,7 +3479,7 @@ Public Class BaseTax_groupsTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
-                 report.AddColumn(Tax_groupsTable.tax_group_code.Name, ReportEnum.Align.Left, "${tax_group_code}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(Tax_groupsTable.tax_group_code.Name, ReportEnum.Align.Left, "${tax_group_code}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Tax_groupsTable.notes.Name, ReportEnum.Align.Left, "${notes}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Tax_groupsTable.id_taxes_1.Name, ReportEnum.Align.Left, "${id_taxes_1}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Tax_groupsTable.id_taxes_2.Name, ReportEnum.Align.Left, "${id_taxes_2}", ReportEnum.Align.Left, 24)
@@ -3625,7 +3625,7 @@ Public Class BaseTax_groupsTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
-                 report.AddColumn(Tax_groupsTable.tax_group_code.Name, ReportEnum.Align.Left, "${tax_group_code}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(Tax_groupsTable.tax_group_code.Name, ReportEnum.Align.Left, "${tax_group_code}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Tax_groupsTable.notes.Name, ReportEnum.Align.Left, "${notes}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Tax_groupsTable.id_taxes_1.Name, ReportEnum.Align.Left, "${id_taxes_1}", ReportEnum.Align.Left, 24)
                  report.AddColumn(Tax_groupsTable.id_taxes_2.Name, ReportEnum.Align.Left, "${id_taxes_2}", ReportEnum.Align.Left, 24)

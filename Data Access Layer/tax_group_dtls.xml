@@ -269,9 +269,37 @@
       <columnTableAliasName>
       </columnTableAliasName>
     </Column>
+    <Column InternalName="9" Priority="10" ColumnNum="9">
+      <columnName>tax_type</columnName>
+      <columnUIName>%ISD_DEFAULT%</columnUIName>
+      <columnType>String</columnType>
+      <columnDBType>nchar</columnDBType>
+      <columnLengthSet>20</columnLengthSet>
+      <columnDefault>
+      </columnDefault>
+      <columnDBDefault>
+      </columnDBDefault>
+      <columnIndex>N</columnIndex>
+      <columnUnique>N</columnUnique>
+      <columnFunction>
+      </columnFunction>
+      <columnDBFormat>
+      </columnDBFormat>
+      <columnPK>N</columnPK>
+      <columnPermanent>N</columnPermanent>
+      <columnComputed>N</columnComputed>
+      <columnIdentity>N</columnIdentity>
+      <columnReadOnly>N</columnReadOnly>
+      <columnRequired>N</columnRequired>
+      <columnNotNull>N</columnNotNull>
+      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
+      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
+      <columnTableAliasName>
+      </columnTableAliasName>
+    </Column>
   </ColumnDefinition>
   <TableName>tax_group_dtls</TableName>
-  <Version>2</Version>
+  <Version>3</Version>
   <Owner>dbo</Owner>
   <TableCodeName>Tax_group_dtls</TableCodeName>
   <TableAliasName>Tax_group_dtls_</TableAliasName>

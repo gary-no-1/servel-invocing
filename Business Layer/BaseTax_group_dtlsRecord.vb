@@ -376,6 +376,35 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.calc_typeColumn)
 	End Sub
 
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Tax_group_dtls_.tax_type field.
+	''' </summary>
+	Public Function Gettax_typeValue() As ColumnValue
+		Return Me.GetValue(TableUtils.tax_typeColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Tax_group_dtls_.tax_type field.
+	''' </summary>
+	Public Function Gettax_typeFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.tax_typeColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_type field.
+	''' </summary>
+	Public Sub Settax_typeFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.tax_typeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Tax_group_dtls_.tax_type field.
+	''' </summary>
+	Public Sub Settax_typeFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tax_typeColumn)
+	End Sub
+
 
 
 #End Region
@@ -699,6 +728,41 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property calc_typeDefault() As String
         Get
             Return TableUtils.calc_typeColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Tax_group_dtls_.tax_type field.
+	''' </summary>
+	Public Property tax_type() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.tax_typeColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.tax_typeColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property tax_typeSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.tax_typeColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property tax_typeDefault() As String
+        Get
+            Return TableUtils.tax_typeColumn.DefaultValue
         End Get
     End Property
 

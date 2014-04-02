@@ -69,6 +69,15 @@ Namespace ServelInvocing.Business
         id_tax_groupColumn.CodeName = "id_tax_group"
         item_totalColumn.CodeName = "item_total"
         grand_totalColumn.CodeName = "grand_total"
+        road_permit_noColumn.CodeName = "road_permit_no"
+        packing_detailsColumn.CodeName = "packing_details"
+        weightColumn.CodeName = "weight"
+        no_of_packagesColumn.CodeName = "no_of_packages"
+        id_transporterColumn.CodeName = "id_transporter"
+        gr_rr_noColumn.CodeName = "gr_rr_no"
+        gr_rr_dtColumn.CodeName = "gr_rr_dt"
+        freight_to_payColumn.CodeName = "freight_to_pay"
+        vehicle_noColumn.CodeName = "vehicle_no"
         
     End Sub
 
@@ -378,6 +387,177 @@ Namespace ServelInvocing.Business
             Return Pro_inv_hdrTable.Instance.grand_totalColumn
         End Get
     End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.road_permit_no column object.
+    ''' </summary>
+    Public ReadOnly Property road_permit_noColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(16), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.road_permit_no column object.
+    ''' </summary>
+    Public Shared ReadOnly Property road_permit_no() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.road_permit_noColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.packing_details column object.
+    ''' </summary>
+    Public ReadOnly Property packing_detailsColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(17), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.packing_details column object.
+    ''' </summary>
+    Public Shared ReadOnly Property packing_details() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.packing_detailsColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.weight column object.
+    ''' </summary>
+    Public ReadOnly Property weightColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(18), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.weight column object.
+    ''' </summary>
+    Public Shared ReadOnly Property weight() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.weightColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.no_of_packages column object.
+    ''' </summary>
+    Public ReadOnly Property no_of_packagesColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(19), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.no_of_packages column object.
+    ''' </summary>
+    Public Shared ReadOnly Property no_of_packages() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.no_of_packagesColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.id_transporter column object.
+    ''' </summary>
+    Public ReadOnly Property id_transporterColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(20), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.id_transporter column object.
+    ''' </summary>
+    Public Shared ReadOnly Property id_transporter() As BaseClasses.Data.NumberColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.id_transporterColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.gr_rr_no column object.
+    ''' </summary>
+    Public ReadOnly Property gr_rr_noColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(21), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.gr_rr_no column object.
+    ''' </summary>
+    Public Shared ReadOnly Property gr_rr_no() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.gr_rr_noColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.gr_rr_dt column object.
+    ''' </summary>
+    Public ReadOnly Property gr_rr_dtColumn() As BaseClasses.Data.DateColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(22), BaseClasses.Data.DateColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.gr_rr_dt column object.
+    ''' </summary>
+    Public Shared ReadOnly Property gr_rr_dt() As BaseClasses.Data.DateColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.gr_rr_dtColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.freight_to_pay column object.
+    ''' </summary>
+    Public ReadOnly Property freight_to_payColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(23), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.freight_to_pay column object.
+    ''' </summary>
+    Public Shared ReadOnly Property freight_to_pay() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.freight_to_payColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.vehicle_no column object.
+    ''' </summary>
+    Public ReadOnly Property vehicle_noColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(24), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.vehicle_no column object.
+    ''' </summary>
+    Public Shared ReadOnly Property vehicle_no() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.vehicle_noColumn
+        End Get
+    End Property
 
 
 #End Region
@@ -666,7 +846,16 @@ Namespace ServelInvocing.Business
         ByVal po_dtValue As String, _
         ByVal id_tax_groupValue As String, _
         ByVal item_totalValue As String, _
-        ByVal grand_totalValue As String _
+        ByVal grand_totalValue As String, _
+        ByVal road_permit_noValue As String, _
+        ByVal packing_detailsValue As String, _
+        ByVal weightValue As String, _
+        ByVal no_of_packagesValue As String, _
+        ByVal id_transporterValue As String, _
+        ByVal gr_rr_noValue As String, _
+        ByVal gr_rr_dtValue As String, _
+        ByVal freight_to_payValue As String, _
+        ByVal vehicle_noValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(pro_inv_noValue, pro_inv_noColumn)
@@ -684,6 +873,15 @@ Namespace ServelInvocing.Business
         rec.SetString(id_tax_groupValue, id_tax_groupColumn)
         rec.SetString(item_totalValue, item_totalColumn)
         rec.SetString(grand_totalValue, grand_totalColumn)
+        rec.SetString(road_permit_noValue, road_permit_noColumn)
+        rec.SetString(packing_detailsValue, packing_detailsColumn)
+        rec.SetString(weightValue, weightColumn)
+        rec.SetString(no_of_packagesValue, no_of_packagesColumn)
+        rec.SetString(id_transporterValue, id_transporterColumn)
+        rec.SetString(gr_rr_noValue, gr_rr_noColumn)
+        rec.SetString(gr_rr_dtValue, gr_rr_dtColumn)
+        rec.SetString(freight_to_payValue, freight_to_payColumn)
+        rec.SetString(vehicle_noValue, vehicle_noColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

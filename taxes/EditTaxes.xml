@@ -41,6 +41,10 @@
           <Name>PREVIOUS TOTAL</Name>
           <Value>On Previous Row Total</Value>
         </Item>
+        <Item>
+          <Name>SUB TOTAL</Name>
+          <Value>Sub Total</Value>
+        </Item>
       </SpecifiedItems>
       <PassthroughAttributes>
         <Attribute>

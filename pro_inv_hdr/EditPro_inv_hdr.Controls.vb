@@ -202,11 +202,13 @@ Public Class Pro_inv_hdrRecordControl
 				
 				index += 1
        	    Next
-
+		
 			Dim net_total  As Decimal = 0
 			Dim prv_amount As Decimal = 0
 			Dim prv_total  As Decimal = 0
 			Dim tax_amount As Decimal = 0
+			Dim ex_total   As Decimal = 0
+			Dim inv_total  As Decimal = 0
 			
 			net_total  = item_total
 			prv_amount = item_total
@@ -229,6 +231,7 @@ Public Class Pro_inv_hdrRecordControl
 					prv_total += tax_amount
 					prv_amount = tax_amount
 				end if
+				'if trecControl.calc_type.text = "PREVIOUS AMOUNT     " then
 				if trecControl.calc_type.text.trim() = "PREVIOUS AMOUNT" then
 					if trecControl.tax_lock.Checked then
 						tax_amount = CDec(trecControl.tax_amount.text)
@@ -241,6 +244,7 @@ Public Class Pro_inv_hdrRecordControl
 					prv_total += tax_amount
 					prv_amount = tax_amount
 				end if
+				'if trecControl.calc_type.text = "PREVIOUS TOTAL      " then
 				if trecControl.calc_type.text.trim() = "PREVIOUS TOTAL" then
 					if trecControl.tax_lock.Checked then
 						tax_amount = CDec(trecControl.tax_amount.text)
@@ -253,13 +257,26 @@ Public Class Pro_inv_hdrRecordControl
 					prv_total += tax_amount
 					prv_amount = tax_amount
 				end if
-				if trecControl.calc_type.text.trim() = "ACTUAL"
+				'if trecControl.calc_type.text = "ACTUAL              " then
+				if trecControl.calc_type.text.trim() = "ACTUAL" then
 					trecControl.tax_on.text = FORMAT(CDec(trecControl.tax_amount.text),"c")
 					tax_amount = CDec(trecControl.tax_amount.text)
 					trecControl.tax_amount.text = Format(tax_amount, "c")
 					prv_total += tax_amount
 					prv_amount = tax_amount
 				end if
+				if trecControl.calc_type.text.trim() = "SUB TOTAL" then
+					trecControl.tax_on.text = FORMAT(prv_total, "c")
+					tax_amount = prv_total
+					trecControl.tax_amount.text = Format(tax_amount, "c")
+					'prv_total += tax_amount
+					prv_amount = tax_amount
+				end if
+			    ' compute total amount of excise duty
+				if trecControl.tax_type.text.trim() = "EXCISE" then
+					tax_amount = CDec(trecControl.tax_amount.text)
+					ex_total += tax_amount					
+				end if	
 					'Tax_group_dtlsRec = TaxesManyRec(taxctr)
 					'recControl.id_taxes.text = Tax_group_dtlsRec.id_taxes.tostring()
 					'recControl.tax_code.text = Tax_group_dtlsRec.tax_code
@@ -271,8 +288,20 @@ Public Class Pro_inv_hdrRecordControl
 				
 				index += 1
        	    Next
-		
-            me.item_total.text  = FORMAT(item_total, "c")
+
+			inv_total = prv_total
+			
+			Dim crep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_taxesTableControlRepeater"),System.Web.UI.WebControls.Repeater)
+           	For Each crepItem As System.Web.UI.WebControls.RepeaterItem In crep.Items
+               	Dim crecControl As Pro_inv_taxesTableControlRow = DirectCast(crepItem.FindControl("Pro_inv_taxesTableControlRow"), Pro_inv_taxesTableControlRow) 
+				crecControl.item_total1.text  = FORMAT(item_total, "c")
+				crecControl.excise_total.text = FORMAT(ex_total, "c")
+				crecControl.grand_total1.text = FORMAT(inv_total, "c")
+				
+				index += 1
+       	    Next
+
+			me.item_total.text  = FORMAT(item_total, "c")
             me.grand_total.text = FORMAT(prv_total, "c")
 			'me.item_total.text = index.ToString()
 			
@@ -3192,6 +3221,12 @@ Public Class BasePro_inv_taxesTableControlRow
             
               AddHandler Me.calc_type.TextChanged, AddressOf calc_type_TextChanged
             
+              AddHandler Me.excise_total.TextChanged, AddressOf excise_total_TextChanged
+            
+              AddHandler Me.grand_total1.TextChanged, AddressOf grand_total1_TextChanged
+            
+              AddHandler Me.item_total1.TextChanged, AddressOf item_total1_TextChanged
+            
               AddHandler Me.sort_order.TextChanged, AddressOf sort_order_TextChanged
             
               AddHandler Me.tax_amount.TextChanged, AddressOf tax_amount_TextChanged
@@ -3205,6 +3240,8 @@ Public Class BasePro_inv_taxesTableControlRow
               AddHandler Me.tax_print.TextChanged, AddressOf tax_print_TextChanged
             
               AddHandler Me.tax_rate.TextChanged, AddressOf tax_rate_TextChanged
+            
+              AddHandler Me.tax_type.TextChanged, AddressOf tax_type_TextChanged
             
         End Sub
 
@@ -3250,7 +3287,10 @@ Public Class BasePro_inv_taxesTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setcalc_type()
+            Setexcise_total()
+            Setgrand_total1()
             Setid_taxes()
+            Setitem_total1()
             Setsort_order()
             Settax_amount()
             Settax_code()
@@ -3260,6 +3300,7 @@ Public Class BasePro_inv_taxesTableControlRow
             Settax_on()
             Settax_print()
             Settax_rate()
+            Settax_type()
       
       
             Me.IsNewRecord = True
@@ -3321,6 +3362,92 @@ Public Class BasePro_inv_taxesTableControlRow
                  
         End Sub
                 
+        Public Overridable Sub Setexcise_total()
+            					
+            ' If data was retrieved from UI previously, restore it
+            If Me.PreviousUIData.ContainsKey(Me.excise_total.ID) Then
+            
+                Me.excise_total.Text = Me.PreviousUIData(Me.excise_total.ID).ToString()
+              
+                Return
+            End If
+            
+        
+            ' Set the excise_total TextBox on the webpage with value from the
+            ' pro_inv_taxes database record.
+
+            ' Me.DataSource is the pro_inv_taxes record retrieved from the database.
+            ' Me.excise_total is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setexcise_total()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.excise_totalSpecified Then
+                				
+                ' If the excise_total is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_taxesTable.excise_total)
+                            
+                Me.excise_total.Text = formattedValue
+              
+            Else 
+            
+                ' excise_total is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.excise_total.Text = Pro_inv_taxesTable.excise_total.Format(Pro_inv_taxesTable.excise_total.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setgrand_total1()
+            					
+            ' If data was retrieved from UI previously, restore it
+            If Me.PreviousUIData.ContainsKey(Me.grand_total1.ID) Then
+            
+                Me.grand_total1.Text = Me.PreviousUIData(Me.grand_total1.ID).ToString()
+              
+                Return
+            End If
+            
+        
+            ' Set the grand_total TextBox on the webpage with value from the
+            ' pro_inv_taxes database record.
+
+            ' Me.DataSource is the pro_inv_taxes record retrieved from the database.
+            ' Me.grand_total1 is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgrand_total1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.grand_totalSpecified Then
+                				
+                ' If the grand_total is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_taxesTable.grand_total)
+                            
+                Me.grand_total1.Text = formattedValue
+              
+            Else 
+            
+                ' grand_total is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.grand_total1.Text = Pro_inv_taxesTable.grand_total.Format(Pro_inv_taxesTable.grand_total.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setid_taxes()
             							
             ' If selection was retrieved from UI previously, restore it
@@ -3363,6 +3490,49 @@ Public Class BasePro_inv_taxesTableControlRow
                 				
             End If			
                 
+        End Sub
+                
+        Public Overridable Sub Setitem_total1()
+            					
+            ' If data was retrieved from UI previously, restore it
+            If Me.PreviousUIData.ContainsKey(Me.item_total1.ID) Then
+            
+                Me.item_total1.Text = Me.PreviousUIData(Me.item_total1.ID).ToString()
+              
+                Return
+            End If
+            
+        
+            ' Set the item_total TextBox on the webpage with value from the
+            ' pro_inv_taxes database record.
+
+            ' Me.DataSource is the pro_inv_taxes record retrieved from the database.
+            ' Me.item_total1 is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setitem_total1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.item_totalSpecified Then
+                				
+                ' If the item_total is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_taxesTable.item_total)
+                            
+                Me.item_total1.Text = formattedValue
+              
+            Else 
+            
+                ' item_total is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.item_total1.Text = Pro_inv_taxesTable.item_total.Format(Pro_inv_taxesTable.item_total.DefaultValue)
+                        		
+                End If
+                 
         End Sub
                 
         Public Overridable Sub Setsort_order()
@@ -3703,6 +3873,49 @@ Public Class BasePro_inv_taxesTableControlRow
                  
         End Sub
                 
+        Public Overridable Sub Settax_type()
+            					
+            ' If data was retrieved from UI previously, restore it
+            If Me.PreviousUIData.ContainsKey(Me.tax_type.ID) Then
+            
+                Me.tax_type.Text = Me.PreviousUIData(Me.tax_type.ID).ToString()
+              
+                Return
+            End If
+            
+        
+            ' Set the tax_type TextBox on the webpage with value from the
+            ' pro_inv_taxes database record.
+
+            ' Me.DataSource is the pro_inv_taxes record retrieved from the database.
+            ' Me.tax_type is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Settax_type()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_typeSpecified Then
+                				
+                ' If the tax_type is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_taxesTable.tax_type)
+                            
+                Me.tax_type.Text = formattedValue
+              
+            Else 
+            
+                ' tax_type is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.tax_type.Text = Pro_inv_taxesTable.tax_type.Format(Pro_inv_taxesTable.tax_type.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
       
         Public Overridable Function EvaluateFormula(ByVal formula As String, Optional ByVal dataSourceForEvaluate as BaseClasses.Data.BaseRecord = Nothing, Optional ByVal format as String = Nothing) As String
             Dim e As FormulaEvaluator = New FormulaEvaluator()
@@ -3815,7 +4028,10 @@ Public Class BasePro_inv_taxesTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getcalc_type()
+            Getexcise_total()
+            Getgrand_total1()
             Getid_taxes()
+            Getitem_total1()
             Getsort_order()
             Gettax_amount()
             Gettax_code()
@@ -3824,6 +4040,7 @@ Public Class BasePro_inv_taxesTableControlRow
             Gettax_on()
             Gettax_print()
             Gettax_rate()
+            Gettax_type()
         End Sub
         
         
@@ -3840,6 +4057,32 @@ Public Class BasePro_inv_taxesTableControlRow
                       
         End Sub
                 
+        Public Overridable Sub Getexcise_total()
+            
+            ' Retrieve the value entered by the user on the excise_total ASP:TextBox, and
+            ' save it into the excise_total field in DataSource pro_inv_taxes record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.excise_total.Text, Pro_inv_taxesTable.excise_total)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getgrand_total1()
+            
+            ' Retrieve the value entered by the user on the grand_total ASP:TextBox, and
+            ' save it into the grand_total field in DataSource pro_inv_taxes record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.grand_total1.Text, Pro_inv_taxesTable.grand_total)			
+
+                      
+        End Sub
+                
         Public Overridable Sub Getid_taxes()
          
             ' Retrieve the value entered by the user on the id_taxes ASP:DropDownList, and
@@ -3849,6 +4092,19 @@ Public Class BasePro_inv_taxesTableControlRow
             
             Me.DataSource.Parse(GetValueSelectedPageRequest(Me.id_taxes), Pro_inv_taxesTable.id_taxes)				
             
+        End Sub
+                
+        Public Overridable Sub Getitem_total1()
+            
+            ' Retrieve the value entered by the user on the item_total ASP:TextBox, and
+            ' save it into the item_total field in DataSource pro_inv_taxes record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.item_total1.Text, Pro_inv_taxesTable.item_total)			
+
+                      
         End Sub
                 
         Public Overridable Sub Getsort_order()
@@ -3950,6 +4206,19 @@ Public Class BasePro_inv_taxesTableControlRow
             
             'Save the value to data source
             Me.DataSource.Parse(Me.tax_rate.Text, Pro_inv_taxesTable.tax_rate)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Gettax_type()
+            
+            ' Retrieve the value entered by the user on the tax_type ASP:TextBox, and
+            ' save it into the tax_type field in DataSource pro_inv_taxes record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.tax_type.Text, Pro_inv_taxesTable.tax_type)			
 
                       
         End Sub
@@ -4319,6 +4588,18 @@ Public Class BasePro_inv_taxesTableControlRow
                     				
         End Sub
             
+        Protected Overridable Sub excise_total_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub grand_total1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub item_total1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub sort_order_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -4344,6 +4625,10 @@ Public Class BasePro_inv_taxesTableControlRow
         End Sub
             
         Protected Overridable Sub tax_rate_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub tax_type_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -4462,9 +4747,27 @@ Public Class BasePro_inv_taxesTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property excise_total() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "excise_total"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property grand_total1() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_total1"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
         Public ReadOnly Property id_taxes() As System.Web.UI.WebControls.DropDownList
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_taxes"), System.Web.UI.WebControls.DropDownList)
+            End Get
+        End Property
+            
+        Public ReadOnly Property item_total1() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_total1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
@@ -4537,6 +4840,12 @@ Public Class BasePro_inv_taxesTableControlRow
         Public ReadOnly Property tax_rate() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_rate"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property tax_type() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_type"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
@@ -5195,8 +5504,17 @@ Public Class BasePro_inv_taxesTableControl
                         If recControl.calc_type.Text <> "" Then
                             rec.Parse(recControl.calc_type.Text, Pro_inv_taxesTable.calc_type)
                         End If
+                        If recControl.excise_total.Text <> "" Then
+                            rec.Parse(recControl.excise_total.Text, Pro_inv_taxesTable.excise_total)
+                        End If
+                        If recControl.grand_total1.Text <> "" Then
+                            rec.Parse(recControl.grand_total1.Text, Pro_inv_taxesTable.grand_total)
+                        End If
                         If MiscUtils.IsValueSelected(recControl.id_taxes) Then
                             rec.Parse(recControl.id_taxes.SelectedItem.Value, Pro_inv_taxesTable.id_taxes)
+                        End If
+                        If recControl.item_total1.Text <> "" Then
+                            rec.Parse(recControl.item_total1.Text, Pro_inv_taxesTable.item_total)
                         End If
                         If recControl.sort_order.Text <> "" Then
                             rec.Parse(recControl.sort_order.Text, Pro_inv_taxesTable.sort_order)
@@ -5220,6 +5538,9 @@ Public Class BasePro_inv_taxesTableControl
                         End If
                         If recControl.tax_rate.Text <> "" Then
                             rec.Parse(recControl.tax_rate.Text, Pro_inv_taxesTable.tax_rate)
+                        End If
+                        If recControl.tax_type.Text <> "" Then
+                            rec.Parse(recControl.tax_type.Text, Pro_inv_taxesTable.tax_type)
                         End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
@@ -8267,13 +8588,25 @@ Public Class BasePro_inv_hdrRecordControl
             
               AddHandler Me.id_tax_group.SelectedIndexChanged, AddressOf id_tax_group_SelectedIndexChanged
             
+              AddHandler Me.id_transporter.SelectedIndexChanged, AddressOf id_transporter_SelectedIndexChanged
+            
               AddHandler Me.bill_address.TextChanged, AddressOf bill_address_TextChanged
             
               AddHandler Me.bill_name.TextChanged, AddressOf bill_name_TextChanged
             
+              AddHandler Me.freight_to_pay.TextChanged, AddressOf freight_to_pay_TextChanged
+            
+              AddHandler Me.gr_rr_dt.TextChanged, AddressOf gr_rr_dt_TextChanged
+            
+              AddHandler Me.gr_rr_no.TextChanged, AddressOf gr_rr_no_TextChanged
+            
               AddHandler Me.grand_total.TextChanged, AddressOf grand_total_TextChanged
             
               AddHandler Me.item_total.TextChanged, AddressOf item_total_TextChanged
+            
+              AddHandler Me.no_of_packages.TextChanged, AddressOf no_of_packages_TextChanged
+            
+              AddHandler Me.packing_details.TextChanged, AddressOf packing_details_TextChanged
             
               AddHandler Me.po_dt.TextChanged, AddressOf po_dt_TextChanged
             
@@ -8282,6 +8615,8 @@ Public Class BasePro_inv_hdrRecordControl
               AddHandler Me.pro_inv_dt.TextChanged, AddressOf pro_inv_dt_TextChanged
             
               AddHandler Me.pro_inv_no.TextChanged, AddressOf pro_inv_no_TextChanged
+            
+              AddHandler Me.road_permit_no.TextChanged, AddressOf road_permit_no_TextChanged
             
               AddHandler Me.sale_ord_dt.TextChanged, AddressOf sale_ord_dt_TextChanged
             
@@ -8292,6 +8627,8 @@ Public Class BasePro_inv_hdrRecordControl
               AddHandler Me.ship_name.TextChanged, AddressOf ship_name_TextChanged
             
               AddHandler Me.tin_no.TextChanged, AddressOf tin_no_TextChanged
+            
+              AddHandler Me.weight.TextChanged, AddressOf weight_TextChanged
             
         End Sub
 
@@ -8375,14 +8712,26 @@ Public Class BasePro_inv_hdrRecordControl
             Setbill_addressLabel()
             Setbill_name()
             Setbill_nameLabel()
+            Setfreight_to_pay()
+            Setfreight_to_payLabel()
+            Setgr_rr_dt()
+            Setgr_rr_dtLabel()
+            Setgr_rr_no()
+            Setgr_rr_noLabel()
             Setgrand_total()
             Setgrand_totalLabel()
             Setid_party()
             Setid_partyLabel()
             Setid_tax_group()
             Setid_tax_groupLabel()
+            Setid_transporter()
+            Setid_transporterLabel()
             Setitem_total()
             Setitem_totalLabel()
+            Setno_of_packages()
+            Setno_of_packagesLabel()
+            Setpacking_details()
+            Setpacking_detailsLabel()
             Setpo_dt()
             Setpo_dtLabel()
             Setpo_no()
@@ -8391,6 +8740,8 @@ Public Class BasePro_inv_hdrRecordControl
             Setpro_inv_dtLabel()
             Setpro_inv_no()
             Setpro_inv_noLabel()
+            Setroad_permit_no()
+            Setroad_permit_noLabel()
             Setsale_ord_dt()
             Setsale_ord_dtLabel()
             Setsale_ord_no()
@@ -8401,6 +8752,8 @@ Public Class BasePro_inv_hdrRecordControl
             Setship_nameLabel()
             Settin_no()
             Settin_noLabel()
+            Setweight()
+            SetweightLabel()
       
       
             Me.IsNewRecord = True
@@ -8516,6 +8869,111 @@ Public Class BasePro_inv_hdrRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Setfreight_to_pay()
+            
+        
+            ' Set the freight_to_pay TextBox on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.freight_to_pay is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setfreight_to_pay()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.freight_to_paySpecified Then
+                				
+                ' If the freight_to_pay is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.freight_to_pay)
+                            
+                Me.freight_to_pay.Text = formattedValue
+              
+            Else 
+            
+                ' freight_to_pay is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.freight_to_pay.Text = Pro_inv_hdrTable.freight_to_pay.Format(Pro_inv_hdrTable.freight_to_pay.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setgr_rr_dt()
+            
+        
+            ' Set the gr_rr_dt TextBox on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.gr_rr_dt is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgr_rr_dt()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gr_rr_dtSpecified Then
+                				
+                ' If the gr_rr_dt is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.gr_rr_dt, "d")
+                            
+                Me.gr_rr_dt.Text = formattedValue
+              
+            Else 
+            
+                ' gr_rr_dt is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gr_rr_dt.Text = Pro_inv_hdrTable.gr_rr_dt.Format(Pro_inv_hdrTable.gr_rr_dt.DefaultValue, "d")
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setgr_rr_no()
+            
+        
+            ' Set the gr_rr_no TextBox on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.gr_rr_no is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgr_rr_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gr_rr_noSpecified Then
+                				
+                ' If the gr_rr_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.gr_rr_no)
+                            
+                Me.gr_rr_no.Text = formattedValue
+              
+            Else 
+            
+                ' gr_rr_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gr_rr_no.Text = Pro_inv_hdrTable.gr_rr_no.Format(Pro_inv_hdrTable.gr_rr_no.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setgrand_total()
             
         
@@ -8619,6 +9077,40 @@ Public Class BasePro_inv_hdrRecordControl
                 
         End Sub
                 
+        Public Overridable Sub Setid_transporter()
+            
+        
+            ' Set the id_transporter DropDownList on the webpage with value from the
+            ' pro_inv_hdr database record.
+            
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.id_transporter is the ASP:DropDownList on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid_transporter()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_transporterSpecified Then
+                            
+                ' If the id_transporter is non-NULL, then format the value.
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                Me.Populateid_transporterDropDownList(Me.DataSource.id_transporter.ToString(), 100)
+                
+            Else
+                
+                ' id_transporter is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+                If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
+                    Me.Populateid_transporterDropDownList(Nothing, 100)
+                Else
+                    Me.Populateid_transporterDropDownList(Pro_inv_hdrTable.id_transporter.DefaultValue, 100)
+                End If
+                				
+            End If			
+                
+        End Sub
+                
         Public Overridable Sub Setitem_total()
             
         
@@ -8649,6 +9141,76 @@ Public Class BasePro_inv_hdrRecordControl
                 ' Default Value could also be NULL.
         
                 Me.item_total.Text = Pro_inv_hdrTable.item_total.Format(Pro_inv_hdrTable.item_total.DefaultValue, "c")
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setno_of_packages()
+            
+        
+            ' Set the no_of_packages TextBox on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.no_of_packages is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setno_of_packages()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.no_of_packagesSpecified Then
+                				
+                ' If the no_of_packages is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.no_of_packages)
+                            
+                Me.no_of_packages.Text = formattedValue
+              
+            Else 
+            
+                ' no_of_packages is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.no_of_packages.Text = Pro_inv_hdrTable.no_of_packages.Format(Pro_inv_hdrTable.no_of_packages.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setpacking_details()
+            
+        
+            ' Set the packing_details TextBox on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.packing_details is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setpacking_details()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.packing_detailsSpecified Then
+                				
+                ' If the packing_details is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.packing_details)
+                            
+                Me.packing_details.Text = formattedValue
+              
+            Else 
+            
+                ' packing_details is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.packing_details.Text = Pro_inv_hdrTable.packing_details.Format(Pro_inv_hdrTable.packing_details.DefaultValue)
                         		
                 End If
                  
@@ -8789,6 +9351,41 @@ Public Class BasePro_inv_hdrRecordControl
                 ' Default Value could also be NULL.
         
                 Me.pro_inv_no.Text = Pro_inv_hdrTable.pro_inv_no.Format(Pro_inv_hdrTable.pro_inv_no.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setroad_permit_no()
+            
+        
+            ' Set the road_permit_no TextBox on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.road_permit_no is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setroad_permit_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.road_permit_noSpecified Then
+                				
+                ' If the road_permit_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.road_permit_no)
+                            
+                Me.road_permit_no.Text = formattedValue
+              
+            Else 
+            
+                ' road_permit_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.road_permit_no.Text = Pro_inv_hdrTable.road_permit_no.Format(Pro_inv_hdrTable.road_permit_no.DefaultValue)
                         		
                 End If
                  
@@ -8969,12 +9566,62 @@ Public Class BasePro_inv_hdrRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Setweight()
+            
+        
+            ' Set the weight TextBox on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.weight is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setweight()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.weightSpecified Then
+                				
+                ' If the weight is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.weight)
+                            
+                Me.weight.Text = formattedValue
+              
+            Else 
+            
+                ' weight is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.weight.Text = Pro_inv_hdrTable.weight.Format(Pro_inv_hdrTable.weight.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setbill_addressLabel()
             
                     
         End Sub
                 
         Public Overridable Sub Setbill_nameLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setfreight_to_payLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setgr_rr_dtLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setgr_rr_noLabel()
             
                     
         End Sub
@@ -8994,7 +9641,22 @@ Public Class BasePro_inv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setid_transporterLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setitem_totalLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setno_of_packagesLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setpacking_detailsLabel()
             
                     
         End Sub
@@ -9015,6 +9677,11 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setpro_inv_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setroad_permit_noLabel()
             
                     
         End Sub
@@ -9040,6 +9707,11 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Settin_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetweightLabel()
             
                     
         End Sub
@@ -9161,19 +9833,27 @@ Public Class BasePro_inv_hdrRecordControl
         
             Getbill_address()
             Getbill_name()
+            Getfreight_to_pay()
+            Getgr_rr_dt()
+            Getgr_rr_no()
             Getgrand_total()
             Getid_party()
             Getid_tax_group()
+            Getid_transporter()
             Getitem_total()
+            Getno_of_packages()
+            Getpacking_details()
             Getpo_dt()
             Getpo_no()
             Getpro_inv_dt()
             Getpro_inv_no()
+            Getroad_permit_no()
             Getsale_ord_dt()
             Getsale_ord_no()
             Getship_address()
             Getship_name()
             Gettin_no()
+            Getweight()
         End Sub
         
         
@@ -9199,6 +9879,48 @@ Public Class BasePro_inv_hdrRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.bill_name.Text, Pro_inv_hdrTable.bill_name)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getfreight_to_pay()
+            
+            ' Retrieve the value entered by the user on the freight_to_pay ASP:TextBox, and
+            ' save it into the freight_to_pay field in DataSource pro_inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.freight_to_pay.Text, Pro_inv_hdrTable.freight_to_pay)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getgr_rr_dt()
+            
+            ' Retrieve the value entered by the user on the gr_rr_dt ASP:TextBox, and
+            ' save it into the gr_rr_dt field in DataSource pro_inv_hdr record.
+            ' Parse will also validate the date to ensure it is of the proper format
+            ' and a valid date.  The format is verified based on the current culture 
+            ' settings including the order of month, day and year and the separator character.
+            ' Parse throws an exception if the date is invalid.
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.gr_rr_dt.Text, Pro_inv_hdrTable.gr_rr_dt)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getgr_rr_no()
+            
+            ' Retrieve the value entered by the user on the gr_rr_no ASP:TextBox, and
+            ' save it into the gr_rr_no field in DataSource pro_inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.gr_rr_no.Text, Pro_inv_hdrTable.gr_rr_no)			
 
                       
         End Sub
@@ -9238,6 +9960,17 @@ Public Class BasePro_inv_hdrRecordControl
             
         End Sub
                 
+        Public Overridable Sub Getid_transporter()
+         
+            ' Retrieve the value entered by the user on the id_transporter ASP:DropDownList, and
+            ' save it into the id_transporter field in DataSource pro_inv_hdr record.
+                        
+            ' Custom validation should be performed in Validate, not here.
+            
+            Me.DataSource.Parse(GetValueSelectedPageRequest(Me.id_transporter), Pro_inv_hdrTable.id_transporter)				
+            
+        End Sub
+                
         Public Overridable Sub Getitem_total()
             
             ' Retrieve the value entered by the user on the item_total ASP:TextBox, and
@@ -9247,6 +9980,32 @@ Public Class BasePro_inv_hdrRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.item_total.Text, Pro_inv_hdrTable.item_total)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getno_of_packages()
+            
+            ' Retrieve the value entered by the user on the no_of_packages ASP:TextBox, and
+            ' save it into the no_of_packages field in DataSource pro_inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.no_of_packages.Text, Pro_inv_hdrTable.no_of_packages)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getpacking_details()
+            
+            ' Retrieve the value entered by the user on the packing_details ASP:TextBox, and
+            ' save it into the packing_details field in DataSource pro_inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.packing_details.Text, Pro_inv_hdrTable.packing_details)			
 
                       
         End Sub
@@ -9305,6 +10064,19 @@ Public Class BasePro_inv_hdrRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.pro_inv_no.Text, Pro_inv_hdrTable.pro_inv_no)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getroad_permit_no()
+            
+            ' Retrieve the value entered by the user on the road_permit_no ASP:TextBox, and
+            ' save it into the road_permit_no field in DataSource pro_inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.road_permit_no.Text, Pro_inv_hdrTable.road_permit_no)			
 
                       
         End Sub
@@ -9373,6 +10145,19 @@ Public Class BasePro_inv_hdrRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.tin_no.Text, Pro_inv_hdrTable.tin_no)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getweight()
+            
+            ' Retrieve the value entered by the user on the weight ASP:TextBox, and
+            ' save it into the weight field in DataSource pro_inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.weight.Text, Pro_inv_hdrTable.weight)			
 
                       
         End Sub
@@ -9690,6 +10475,22 @@ Public Class BasePro_inv_hdrRecordControl
         End Function
         
                 
+
+        Public Overridable Function CreateWhereClause_id_transporterDropDownList() As WhereClause
+            ' By default, we simply return a new WhereClause.
+            ' Add additional where clauses to restrict the items shown in the dropdown list.
+            						
+            ' This WhereClause is for the transporters table.
+            ' Examples:
+            ' wc.iAND(TransportersTable.name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(TransportersTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
+            
+            Dim wc As WhereClause = New WhereClause()
+            Return wc
+            				
+        End Function
+        
+                
         ' Fill the id_party list.
         Protected Overridable Sub Populateid_partyDropDownList( _
                 ByVal selectedValue As String, _
@@ -9870,6 +10671,96 @@ Public Class BasePro_inv_hdrRecordControl
                 
         End Sub
                 
+        ' Fill the id_transporter list.
+        Protected Overridable Sub Populateid_transporterDropDownList( _
+                ByVal selectedValue As String, _
+                ByVal maxItems As Integer)
+            		  					                
+            Me.id_transporter.Items.Clear()
+            
+            ' This is a four step process.
+            ' 1. Setup the static list items
+            ' 2. Set up the WHERE and the ORDER BY clause
+            ' 3. Read a total of maxItems from the database and insert them
+            ' 4. Set the selected value (insert if not already present).
+                    
+            ' 1. Setup the static list items
+            														
+            Me.id_transporter.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))							
+                            		  			
+            ' 2. Set up the WHERE and the ORDER BY clause by calling the CreateWhereClause_id_transporterDropDownList function.
+            ' It is better to customize the where clause there.
+            
+            Dim wc As WhereClause = CreateWhereClause_id_transporterDropDownList()
+            ' Create the ORDER BY clause to sort based on the displayed value.			
+                
+      
+      
+            Dim orderBy As OrderBy = New OrderBy(false, true)			
+        
+            orderBy.Add(TransportersTable.name, OrderByItem.OrderDir.Asc)				
+            
+            ' 3. Read a total of maxItems from the database and insert them		
+            Dim itemValues() As TransportersRecord = Nothing
+            If wc.RunQuery
+                Dim counter As Integer = 0
+                Dim pageNum As Integer = 0
+                Do
+                    itemValues = TransportersTable.GetRecords(wc, orderBy, pageNum, 500)
+                    For each itemValue As TransportersRecord In itemValues
+                        ' Create the item and add to the list.
+                        Dim cvalue As String = Nothing
+                        Dim fvalue As String = Nothing
+                        If itemValue.id0Specified Then
+                            cvalue = itemValue.id0.ToString()
+                            fvalue = itemValue.Format(TransportersTable.name)
+                                    
+                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
+                            Dim newItem As New ListItem(fvalue, cvalue)
+                            If counter < maxItems AndAlso Not Me.id_transporter.Items.Contains(newItem) Then Me.id_transporter.Items.Add(newItem)
+                            counter += 1
+                        End If
+                    Next
+                    pageNum += 1
+                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
+            End If
+                            
+                    
+            ' 4. Set the selected value (insert if not already present).
+              
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_transporter, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_transporter, selectedValue)Then
+
+                ' construct a whereclause to query a record with transporters.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(TransportersTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As TransportersRecord = TransportersTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Pro_inv_hdrTable.id_transporter.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_transporter.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+                
+        End Sub
+                
         ' event handler for Button with Layout
         Public Overridable Sub CalculateButton_Click(ByVal sender As Object, ByVal args As EventArgs)
               
@@ -9982,6 +10873,54 @@ Public Class BasePro_inv_hdrRecordControl
                 
         End Sub
             
+        Protected Overridable Sub id_transporter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.id_transporter.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_transporter)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_transporter, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_transporter, selectedValue)Then
+
+                ' construct a whereclause to query a record with transporters.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(TransportersTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As TransportersRecord = TransportersTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Pro_inv_hdrTable.id_transporter.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_transporter.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+            End If
+          									
+                
+                
+        End Sub
+            
         Protected Overridable Sub bill_address_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -9990,11 +10929,31 @@ Public Class BasePro_inv_hdrRecordControl
                     				
         End Sub
             
+        Protected Overridable Sub freight_to_pay_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub gr_rr_dt_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub gr_rr_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub grand_total_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
         Protected Overridable Sub item_total_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub no_of_packages_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub packing_details_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -10011,6 +10970,10 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
             
         Protected Overridable Sub pro_inv_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub road_permit_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -10031,6 +10994,10 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
             
         Protected Overridable Sub tin_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub weight_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -10197,6 +11164,42 @@ Public Class BasePro_inv_hdrRecordControl
           End Get
           End Property
         
+        Public ReadOnly Property freight_to_pay() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "freight_to_pay"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property freight_to_payLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "freight_to_payLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property gr_rr_dt() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gr_rr_dt"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property gr_rr_dtLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gr_rr_dtLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property gr_rr_no() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gr_rr_no"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property gr_rr_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gr_rr_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property grand_total() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_total"), System.Web.UI.WebControls.TextBox)
@@ -10233,6 +11236,18 @@ Public Class BasePro_inv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property id_transporter() As System.Web.UI.WebControls.DropDownList
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_transporter"), System.Web.UI.WebControls.DropDownList)
+            End Get
+        End Property
+            
+        Public ReadOnly Property id_transporterLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_transporterLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property item_total() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_total"), System.Web.UI.WebControls.TextBox)
@@ -10242,6 +11257,30 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property item_totalLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_totalLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property no_of_packages() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "no_of_packages"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property no_of_packagesLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "no_of_packagesLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property packing_details() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "packing_details"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property packing_detailsLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "packing_detailsLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -10296,6 +11335,18 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property pro_inv_noLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property road_permit_no() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "road_permit_no"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property road_permit_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "road_permit_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -10356,6 +11407,18 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property tin_noLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property weight() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "weight"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property weightLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "weightLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

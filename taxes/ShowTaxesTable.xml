@@ -1370,6 +1370,14 @@
       <Table>taxes</Table>
       <PassthroughAttributes>
         <Attribute>
+          <Name>DataReaderAlwaysSortBy</Name>
+          <Value>calc_type ASC</Value>
+        </Attribute>
+        <Attribute>
+          <Name>DataReaderSortBy</Name>
+          <Value>tax_type ASC</Value>
+        </Attribute>
+        <Attribute>
           <Name>HideDataUntilSearched</Name>
           <Value>False</Value>
         </Attribute>
@@ -1382,8 +1390,12 @@
           <Value>TableOrQuery</Value>
         </Attribute>
         <Attribute>
+          <Name>InternalUse:DataSourceArg</Name>
+          <Value />
+        </Attribute>
+        <Attribute>
           <Name>PageSize</Name>
-          <Value>10</Value>
+          <Value>50</Value>
         </Attribute>
         <Attribute>
           <Name>PaginationCurrentPage</Name>

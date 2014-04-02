@@ -63,7 +63,7 @@
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="contactLabel1" Text="Contact" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="phoneLabel1" Text="Phone" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="emailLabel1" Text="Email" CausesValidation="False">	</asp:LinkButton></th><th class="thc" scope="col"><asp:LinkButton runat="server" id="pan_noLabel1" Text="Pan Number" CausesValidation="False">	</asp:LinkButton>
-                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="ecc_noLabel1" Text="ECC Number" CausesValidation="False">	</asp:LinkButton>
+                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="ecc_noLabel1" Text="Number" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tin_noLabel1" Text="Tin Number" CausesValidation="False">	</asp:LinkButton>
                         </th></tr><asp:Repeater runat="server" id="SitesTableControlRepeater">		<ITEMTEMPLATE>		<ServelInvocing:SitesTableControlRow runat="server" id="SitesTableControlRow">
 <tr><td class="ticnb" scope="row"><asp:ImageButton runat="server" id="SitesRowViewButton" causesvalidation="False" commandname="Redirect" cssclass="button_link" imageurl="../Images/icon_view.gif" tooltip="&lt;%# GetResourceValue(&quot;Txt:ViewRecord&quot;, &quot;ServelInvocing&quot;) %>">		
