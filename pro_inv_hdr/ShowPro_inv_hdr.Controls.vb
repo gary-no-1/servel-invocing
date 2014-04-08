@@ -127,6 +127,299 @@ Public Class Pro_inv_hdrRecordControl
         ' CreateWhereClause, DataBind, SaveData, GetUIData, and Validate methods.
         
 
+
+		Public Overrides Sub BtnPrint_Click(ByVal sender As Object, ByVal args As EventArgs)
+
+			Dim parameterValue As String = Me.id1.Text
+
+			System.Web.HttpContext.Current.Session("PrintProInvId") = parameterValue
+    		Dim url As String = "../pro_inv_hdr/PrintProInv.aspx"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+			
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+				url = Me.ModifyRedirectUrl(url, "",False)
+	            url = Me.Page.ModifyRedirectUrl(url, "",False)
+    		    Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+			'ShowAlertMessage("Start")
+			
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+				'Dim st as New StringBuilder() 
+				'st.Append("<script language=javascript>")
+				'st.Append("var w=window.open('")
+				'st.append(url)
+				'st.append("');")
+				'st.Append("w.focus();")
+				'st.Append("</script>")
+
+				Dim s As String 
+				s = "<script language=javascript>"
+				s = s + "var w=window.open('" + url + "');"
+				s = s + "w.focus();"
+				s = s + "</script>"
+				
+				'ShowAlertMessage(s)
+
+				'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", s)
+
+				Me.Page.Response.Write(s)
+                'Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+	            Me.Page.ShouldSaveControlsToSession = True
+    	        Me.Page.CloseWindow(True)
+        
+            End If
+			
+        End Sub
+
+		Public Shared Sub ShowAlertMessage(ByVal msg As String)
+		'Display javascript-alert
+			Dim page As Page = TryCast(HttpContext.Current.Handler, Page)
+
+			If page IsNot Nothing Then
+				msg = msg.Replace("'", "\")
+				ScriptManager.RegisterStartupScript(page, page.GetType(), "err_msg", "alert('" & msg & "');", True)
+			End If
+		End Sub
+	
+
+		Public Overrides Sub BtnConvert_Click(ByVal sender As Object, ByVal args As EventArgs)
+
+			Dim kk As String = "111"			
+
+			Dim thisInv_created As String
+			'thisInv_created = Me.inv_created.text
+			thisInv_created = "NO"
+
+			Dim inv_modify As Boolean = False
+			If thisInv_created = "YES" Then
+				inv_modify = True
+			End If
+			Dim inv_add As Boolean = Not inv_modify
+			
+			Dim thisCustomer_id As String
+			thisCustomer_id = Me.id_party.text
+			If String.IsNullOrEmpty(thisCustomer_id) Then
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "No Customer for Invoice")
+				Return
+			End If
+
+			Dim thisItem_total As String
+			thisItem_total = Me.item_total.text
+			If String.IsNullOrEmpty(thisItem_total) Then
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Item Value is zero")
+				Return
+			End If
+
+			'Dim chkInv_dtlRec As Pro_inv_itemsRecord
+			'Dim chkInv_dtlManyRec As Pro_inv_itemsRecord()
+			'Dim chkThis_Id As String = Me.id1.text
+			'Dim chkSrchDtlStr As String
+			'chkSrchDtlStr = "id_pro_inv_hdr = '" + chkThis_id + "'"
+			'chkInv_dtlManyRec = Pro_inv_itemsTable.GetRecords(chkSrchDtlStr)
+
+			Try
+				DbUtils.StartTransaction()
+
+				If inv_add Then
+					' new invoice has to be created
+					Dim this_Id As String = Me.id1.text
+					Dim srchHdrStr As String
+					Dim srchDtlStr As String
+					Dim srchTermsStr As String
+					Dim srchTaxStr As String
+
+					srchHdrStr = "id = '" + this_Id + "'"
+					srchDtlStr = "id_pro_inv_hdr = '" + this_id + "'"
+					srchTermsStr = "id_pro_inv_hdr = '" + this_id + "'"
+					srchTaxStr = "id_pro_inv_hdr = '" + this_id + "'"
+
+					Dim Pro_inv_hdrCopyRec As Pro_inv_hdrRecord = Pro_inv_hdrTable.GetRecord(srchHdrStr, True)
+
+					'Dim srchCustStr As String
+					'srchCustStr = "id =  '" + Enq_hdrCopyRec.customer_id.tostring() + "'"
+					'Dim CustomerCopyRec As CustomerRecord = CustomerTable.GetRecord(srchCustStr)
+
+					Dim Pro_inv_itemsRec As Pro_inv_itemsRecord
+					Dim Pro_inv_itemsManyRec As Pro_inv_itemsRecord()
+					Pro_inv_itemsManyRec = Pro_inv_itemsTable.GetRecords(srchDtlStr)
+
+					Dim Pro_inv_taxesRec As Pro_inv_taxesRecord
+					Dim Pro_inv_taxesManyRec As Pro_inv_taxesRecord()
+					Pro_inv_taxesManyRec = Pro_inv_taxesTable.GetRecords(srchtaxStr)
+
+					Dim TermsRec As Pro_inv_termsRecord
+					Dim TermsManyRec As Pro_inv_termsRecord()
+					TermsManyRec = Pro_inv_termsTable.GetRecords(srchTermsStr)
+
+					Dim srchCompanyStr As String
+					srchCompanyStr = "id =  '1'"
+					Dim CompanyRec As CompanyRecord = CompanyTable.GetRecord(srchCompanyStr, True)
+
+					Dim inv_hdr_rec As New inv_hdrRecord
+					Dim tempToday, tempTime As String
+
+					tempToday = Today().tostring()
+					tempToday = mid(tempToday, 9, 2) + mid(tempToday, 4, 2) + left(tempToday, 2)
+					tempTime = Now.ToShortTimeString()
+					tempTime = left(right(tempTime, 8), 5)
+					Dim strInvNo As String
+					strInvNo = CompanyRec.inv_pfx.trim() + CompanyRec.next_inv_no.ToString().trim()
+
+					inv_hdr_rec.inv_no       = strInvNo
+					inv_hdr_rec.inv_dt       = Today()
+					inv_hdr_rec.pro_inv_no   = Me.pro_inv_no.text
+					inv_hdr_rec.pro_inv_dt   = Convert.ToDateTime(Me.pro_inv_dt.text)
+					inv_hdr_rec.sale_ord_no  = Pro_inv_hdrCopyRec.sale_ord_no
+					inv_hdr_rec.sale_ord_dt  = Pro_inv_hdrCopyRec.sale_ord_dt
+					inv_hdr_rec.id_party     = Pro_inv_hdrCopyRec.id_party
+					inv_hdr_rec.bill_name    = Pro_inv_hdrCopyRec.bill_name
+					inv_hdr_rec.bill_address = Pro_inv_hdrCopyRec.bill_address
+					inv_hdr_rec.ship_name    = Pro_inv_hdrCopyRec.ship_name
+					inv_hdr_rec.ship_address = Pro_inv_hdrCopyRec.ship_address
+					inv_hdr_rec.tin_no       = Pro_inv_hdrCopyRec.tin_no
+					inv_hdr_rec.po_no        = Pro_inv_hdrCopyRec.po_no
+					inv_hdr_rec.po_dt        = Pro_inv_hdrCopyRec.po_dt
+					inv_hdr_rec.id_tax_group = Pro_inv_hdrCopyRec.id_tax_group
+					inv_hdr_rec.item_total   = Pro_inv_hdrCopyRec.item_total
+					inv_hdr_rec.grand_total  = Pro_inv_hdrCopyRec.grand_total
+
+					
+					inv_hdr_rec.road_permit_no  = Pro_inv_hdrCopyRec.road_permit_no
+					inv_hdr_rec.packing_details = Pro_inv_hdrCopyRec.packing_details
+					inv_hdr_rec.weight          = Pro_inv_hdrCopyRec.weight
+					inv_hdr_rec.no_of_packages  = Pro_inv_hdrCopyRec.no_of_packages
+					inv_hdr_rec.id_transporter  = Pro_inv_hdrCopyRec.id_transporter
+					inv_hdr_rec.gr_rr_no        = Pro_inv_hdrCopyRec.gr_rr_no
+					inv_hdr_rec.gr_rr_dt        = Pro_inv_hdrCopyRec.gr_rr_dt
+					inv_hdr_rec.freight_to_pay  = Pro_inv_hdrCopyRec.freight_to_pay
+					inv_hdr_rec.vehicle_no      = Pro_inv_hdrCopyRec.vehicle_no
+					
+					
+					'inv_hdr_rec.userid0 = Enq_hdrCopyRec.userid0
+					'inv_hdr_rec.customer_contact = Enq_hdrCopyRec.contact
+					' next line added - 18-05-2012
+					'inv_hdr_rec.customer_phone = Enq_hdrCopyRec.customer_phone
+					' next line added - 12-12-2011
+					'inv_hdr_rec.reference = Enq_hdrCopyRec.reference
+					' next line added - 26-03-2012 -- company quote body will be copied into inv_hdr.mail_body
+					'inv_hdr_rec.mail_body = CompanyRec.inv_body
+
+					'inv_hdr_rec.customer_email = CustomerCopyRec.email
+					'inv_hdr_rec.customer_email = CustomerCopyRec.email
+					'inv_hdr_rec.customer_address = CustomerCopyRec.address
+
+					inv_hdr_rec.save()
+
+					Dim InvId As String
+					InvId = inv_hdr_rec.id0.ToString()
+					
+					For Each Pro_inv_itemsRec In Pro_inv_itemsManyRec
+						Dim inv_items_rec As New inv_itemsRecord
+						inv_items_rec.id_inv_hdr = convert.toint32(InvId)
+						If Pro_inv_itemsRec.id_item > 0 Then
+							inv_items_rec.id_item          = Pro_inv_itemsRec.id_item
+							inv_items_rec.item_code        = Pro_inv_itemsRec.item_code
+							inv_items_rec.item_description = Pro_inv_itemsRec.item_description
+							inv_items_rec.uom              = Pro_inv_itemsRec.uom
+							inv_items_rec.qty              = Pro_inv_itemsRec.qty
+							inv_items_rec.rate             = Pro_inv_itemsRec.rate
+							inv_items_rec.amount           = Pro_inv_itemsRec.amount
+
+							inv_items_rec.save()
+						End If
+					Next
+				
+					For Each Pro_inv_taxesRec In Pro_inv_taxesManyRec
+						Dim inv_taxes_rec As New inv_taxesRecord
+						inv_taxes_rec.id_inv_hdr = convert.toint32(InvId)
+						'If Pro_inv_itemsRec.id_item > 0 Then
+							inv_taxes_rec.id_taxes   = Pro_inv_taxesRec.id_taxes
+							inv_taxes_rec.tax_code   = Pro_inv_taxesRec.tax_code
+							inv_taxes_rec.tax_name   = Pro_inv_taxesRec.tax_name
+							inv_taxes_rec.tax_print  = Pro_inv_taxesRec.tax_print
+							inv_taxes_rec.tax_rate   = Pro_inv_taxesRec.tax_rate
+							inv_taxes_rec.tax_on     = Pro_inv_taxesRec.tax_on
+							inv_taxes_rec.tax_amount = Pro_inv_taxesRec.tax_amount
+							inv_taxes_rec.tax_lock   = Pro_inv_taxesRec.tax_lock
+							inv_taxes_rec.calc_type  = Pro_inv_taxesRec.calc_type
+							inv_taxes_rec.sort_order = Pro_inv_taxesRec.sort_order
+							inv_taxes_rec.tax_type   = Pro_inv_taxesRec.tax_type
+							inv_taxes_rec.item_total = Pro_inv_taxesRec.item_total
+							inv_taxes_rec.excise_total = Pro_inv_taxesRec.excise_total
+							inv_taxes_rec.grand_total  = Pro_inv_taxesRec.grand_total
+
+							inv_taxes_rec.save()
+						'End If
+					Next
+
+					For Each TermsRec In TermsManyRec
+						Dim inv_terms_rec As New inv_termsRecord
+						inv_terms_rec.id_inv_hdr = convert.toint32(InvId)
+						inv_terms_rec.narration = TermsRec.narration
+						inv_terms_rec.sort_order = TermsRec.sort_order
+						inv_terms_rec.save()
+					Next
+
+					CompanyRec.next_inv_no = CompanyRec.next_inv_no + 1
+					CompanyRec.save()
+
+					'Enq_hdrCopyRec.qtn_created = "YES"
+					'Enq_hdrCopyRec.qtn_date = DateTime.now()
+					' 01-05-2012 - next 2 lines addded
+					'Enq_hdrCopyRec.quote_no = quote_hdr_rec.quote_no
+					'Enq_hdrCopyRec.rate_type = quote_hdr_rec.rate_type
+					'Enq_hdrCopyRec.save()
+
+				End If
+				
+				
+				DbUtils.CommitTransaction()
+
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Invoice has been created")
+				'Me.GenerateQuote.Button.Enabled = False
+
+			Catch ex As Exception
+				DbUtils.RollBackTransaction()
+				'Report the error message to the user
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "UNIQUE_SCRIPTKEY", ex.Message)
+			Finally
+				DbUtils.EndTransaction()
+			End Try
+			
+		
+			
+            Try
+                
+            Catch ex As Exception
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+    
+            End Try
+    
+        End Sub
 End Class
 
   
@@ -7113,6 +7406,12 @@ Public Class BasePro_inv_hdrRecordControl
             
               AddHandler Me.id_tax_group.Click, AddressOf id_tax_group_Click
             
+              AddHandler Me.id_transporter.Click, AddressOf id_transporter_Click
+            
+            AddHandler Me.BtnConvert.Button.Click, AddressOf BtnConvert_Click
+        
+            AddHandler Me.BtnPrint.Button.Click, AddressOf BtnPrint_Click
+        
         End Sub
 
         
@@ -7195,14 +7494,27 @@ Public Class BasePro_inv_hdrRecordControl
             Setbill_addressLabel()
             Setbill_name()
             Setbill_nameLabel()
+            Setfreight_to_pay()
+            Setfreight_to_payLabel()
+            Setgr_rr_dt()
+            Setgr_rr_dtLabel()
+            Setgr_rr_no()
+            Setgr_rr_noLabel()
             Setgrand_total()
             Setgrand_totalLabel()
             Setid_party()
             Setid_partyLabel()
             Setid_tax_group()
             Setid_tax_groupLabel()
+            Setid_transporter()
+            Setid_transporterLabel()
+            Setid1()
             Setitem_total()
             Setitem_totalLabel()
+            Setno_of_packages()
+            Setno_of_packagesLabel()
+            Setpacking_details()
+            Setpacking_detailsLabel()
             Setpo_dt()
             Setpo_dtLabel()
             Setpo_no()
@@ -7211,6 +7523,8 @@ Public Class BasePro_inv_hdrRecordControl
             Setpro_inv_dtLabel()
             Setpro_inv_no()
             Setpro_inv_noLabel()
+            Setroad_permit_no()
+            Setroad_permit_noLabel()
             Setsale_ord_dt()
             Setsale_ord_dtLabel()
             Setsale_ord_no()
@@ -7221,6 +7535,8 @@ Public Class BasePro_inv_hdrRecordControl
             Setship_nameLabel()
             Settin_no()
             Settin_noLabel()
+            Setweight()
+            SetweightLabel()
       
       
             Me.IsNewRecord = True
@@ -7387,6 +7703,138 @@ Public Class BasePro_inv_hdrRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setfreight_to_pay()
+            
+        
+            ' Set the freight_to_pay Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.freight_to_pay is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setfreight_to_pay()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.freight_to_paySpecified Then
+                				
+                ' If the freight_to_pay is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.freight_to_pay)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.freight_to_pay.Text = formattedValue
+              
+            Else 
+            
+                ' freight_to_pay is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.freight_to_pay.Text = Pro_inv_hdrTable.freight_to_pay.Format(Pro_inv_hdrTable.freight_to_pay.DefaultValue)
+                        		
+                End If
+                 
+            ' If the freight_to_pay is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.freight_to_pay.Text Is Nothing _
+                OrElse Me.freight_to_pay.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.freight_to_pay.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setgr_rr_dt()
+            
+        
+            ' Set the gr_rr_dt Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.gr_rr_dt is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgr_rr_dt()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gr_rr_dtSpecified Then
+                				
+                ' If the gr_rr_dt is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.gr_rr_dt, "d")
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.gr_rr_dt.Text = formattedValue
+              
+            Else 
+            
+                ' gr_rr_dt is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gr_rr_dt.Text = Pro_inv_hdrTable.gr_rr_dt.Format(Pro_inv_hdrTable.gr_rr_dt.DefaultValue, "d")
+                        		
+                End If
+                 
+            ' If the gr_rr_dt is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.gr_rr_dt.Text Is Nothing _
+                OrElse Me.gr_rr_dt.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.gr_rr_dt.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setgr_rr_no()
+            
+        
+            ' Set the gr_rr_no Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.gr_rr_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgr_rr_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gr_rr_noSpecified Then
+                				
+                ' If the gr_rr_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.gr_rr_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.gr_rr_no.Text = formattedValue
+              
+            Else 
+            
+                ' gr_rr_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gr_rr_no.Text = Pro_inv_hdrTable.gr_rr_no.Format(Pro_inv_hdrTable.gr_rr_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the gr_rr_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.gr_rr_no.Text Is Nothing _
+                OrElse Me.gr_rr_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.gr_rr_no.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setgrand_total()
             
         
@@ -7501,6 +7949,77 @@ Public Class BasePro_inv_hdrRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Setid_transporter()
+            
+        
+            ' Set the id_transporter LinkButton on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.id_transporter is the ASP:LinkButton on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid_transporter()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_transporterSpecified Then
+                				
+                ' If the id_transporter is non-NULL, then format the value.
+
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.id_transporter)
+                            
+                Me.id_transporter.Text = formattedValue
+              
+            Else 
+            
+                ' id_transporter is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.id_transporter.Text = Pro_inv_hdrTable.id_transporter.Format(Pro_inv_hdrTable.id_transporter.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setid1()
+            
+        
+            ' Set the id Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.id1 is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id0Specified Then
+                				
+                ' If the id is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.id0)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.id1.Text = formattedValue
+              
+            Else 
+            
+                ' id is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.id1.Text = Pro_inv_hdrTable.id0.Format(Pro_inv_hdrTable.id0.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setitem_total()
             
         
@@ -7541,6 +8060,94 @@ Public Class BasePro_inv_hdrRecordControl
                 OrElse Me.item_total.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.item_total.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setno_of_packages()
+            
+        
+            ' Set the no_of_packages Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.no_of_packages is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setno_of_packages()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.no_of_packagesSpecified Then
+                				
+                ' If the no_of_packages is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.no_of_packages)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.no_of_packages.Text = formattedValue
+              
+            Else 
+            
+                ' no_of_packages is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.no_of_packages.Text = Pro_inv_hdrTable.no_of_packages.Format(Pro_inv_hdrTable.no_of_packages.DefaultValue)
+                        		
+                End If
+                 
+            ' If the no_of_packages is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.no_of_packages.Text Is Nothing _
+                OrElse Me.no_of_packages.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.no_of_packages.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setpacking_details()
+            
+        
+            ' Set the packing_details Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.packing_details is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setpacking_details()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.packing_detailsSpecified Then
+                				
+                ' If the packing_details is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.packing_details)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.packing_details.Text = formattedValue
+              
+            Else 
+            
+                ' packing_details is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.packing_details.Text = Pro_inv_hdrTable.packing_details.Format(Pro_inv_hdrTable.packing_details.DefaultValue)
+                        		
+                End If
+                 
+            ' If the packing_details is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.packing_details.Text Is Nothing _
+                OrElse Me.packing_details.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.packing_details.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -7717,6 +8324,50 @@ Public Class BasePro_inv_hdrRecordControl
                 OrElse Me.pro_inv_no.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.pro_inv_no.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setroad_permit_no()
+            
+        
+            ' Set the road_permit_no Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.road_permit_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setroad_permit_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.road_permit_noSpecified Then
+                				
+                ' If the road_permit_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.road_permit_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.road_permit_no.Text = formattedValue
+              
+            Else 
+            
+                ' road_permit_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.road_permit_no.Text = Pro_inv_hdrTable.road_permit_no.Format(Pro_inv_hdrTable.road_permit_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the road_permit_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.road_permit_no.Text Is Nothing _
+                OrElse Me.road_permit_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.road_permit_no.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -7974,12 +8625,71 @@ Public Class BasePro_inv_hdrRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setweight()
+            
+        
+            ' Set the weight Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.weight is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setweight()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.weightSpecified Then
+                				
+                ' If the weight is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.weight)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.weight.Text = formattedValue
+              
+            Else 
+            
+                ' weight is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.weight.Text = Pro_inv_hdrTable.weight.Format(Pro_inv_hdrTable.weight.DefaultValue)
+                        		
+                End If
+                 
+            ' If the weight is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.weight.Text Is Nothing _
+                OrElse Me.weight.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.weight.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setbill_addressLabel()
             
                     
         End Sub
                 
         Public Overridable Sub Setbill_nameLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setfreight_to_payLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setgr_rr_dtLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setgr_rr_noLabel()
             
                     
         End Sub
@@ -7999,7 +8709,22 @@ Public Class BasePro_inv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setid_transporterLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setitem_totalLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setno_of_packagesLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setpacking_detailsLabel()
             
                     
         End Sub
@@ -8020,6 +8745,11 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setpro_inv_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setroad_permit_noLabel()
             
                     
         End Sub
@@ -8045,6 +8775,11 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Settin_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetweightLabel()
             
                     
         End Sub
@@ -8164,19 +8899,28 @@ Public Class BasePro_inv_hdrRecordControl
         
             Getbill_address()
             Getbill_name()
+            Getfreight_to_pay()
+            Getgr_rr_dt()
+            Getgr_rr_no()
             Getgrand_total()
             Getid_party()
             Getid_tax_group()
+            Getid_transporter()
+            Getid1()
             Getitem_total()
+            Getno_of_packages()
+            Getpacking_details()
             Getpo_dt()
             Getpo_no()
             Getpro_inv_dt()
             Getpro_inv_no()
+            Getroad_permit_no()
             Getsale_ord_dt()
             Getsale_ord_no()
             Getship_address()
             Getship_name()
             Gettin_no()
+            Getweight()
         End Sub
         
         
@@ -8185,6 +8929,18 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getbill_name()
+            
+        End Sub
+                
+        Public Overridable Sub Getfreight_to_pay()
+            
+        End Sub
+                
+        Public Overridable Sub Getgr_rr_dt()
+            
+        End Sub
+                
+        Public Overridable Sub Getgr_rr_no()
             
         End Sub
                 
@@ -8200,7 +8956,23 @@ Public Class BasePro_inv_hdrRecordControl
             
         End Sub
                 
+        Public Overridable Sub Getid_transporter()
+            
+        End Sub
+                
+        Public Overridable Sub Getid1()
+            
+        End Sub
+                
         Public Overridable Sub Getitem_total()
+            
+        End Sub
+                
+        Public Overridable Sub Getno_of_packages()
+            
+        End Sub
+                
+        Public Overridable Sub Getpacking_details()
             
         End Sub
                 
@@ -8217,6 +8989,10 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getpro_inv_no()
+            
+        End Sub
+                
+        Public Overridable Sub Getroad_permit_no()
             
         End Sub
                 
@@ -8237,6 +9013,10 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Gettin_no()
+            
+        End Sub
+                
+        Public Overridable Sub Getweight()
             
         End Sub
                 
@@ -8653,6 +9433,110 @@ Public Class BasePro_inv_hdrRecordControl
             End If
         End Sub
             
+        ' event handler for LinkButton
+        Public Overridable Sub id_transporter_Click(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../transporters/ShowTransporters.aspx?Transporters={Pro_inv_hdrRecordControl:FK:pro_inv_hdr_transporters_id_transporter_FK}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If
+        End Sub
+            
+        ' event handler for Button with Layout
+        Public Overridable Sub BtnConvert_Click(ByVal sender As Object, ByVal args As EventArgs)
+              
+            Try
+                
+            Catch ex As Exception
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+    
+            End Try
+    
+        End Sub
+            
+        ' event handler for Button with Layout
+        Public Overridable Sub BtnPrint_Click(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../pro_inv_hdr/PrintProInv.aspx?pro_inv_hdr={Pro_inv_hdrRecordControl:PK}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If
+        End Sub
+            
    
         Private _PreviousUIData As New Hashtable
         Public Overridable Property PreviousUIData() As Hashtable
@@ -8810,6 +9694,54 @@ Public Class BasePro_inv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property BtnConvert() As ServelInvocing.UI.IThemeButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "BtnConvert"), ServelInvocing.UI.IThemeButton)
+          End Get
+          End Property
+        
+        Public ReadOnly Property BtnPrint() As ServelInvocing.UI.IThemeButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "BtnPrint"), ServelInvocing.UI.IThemeButton)
+          End Get
+          End Property
+        
+        Public ReadOnly Property freight_to_pay() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "freight_to_pay"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property freight_to_payLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "freight_to_payLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property gr_rr_dt() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gr_rr_dt"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property gr_rr_dtLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gr_rr_dtLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property gr_rr_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gr_rr_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property gr_rr_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gr_rr_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property grand_total() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_total"), System.Web.UI.WebControls.Literal)
@@ -8846,6 +9778,24 @@ Public Class BasePro_inv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property id_transporter() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_transporter"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+            
+        Public ReadOnly Property id_transporterLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_transporterLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property id1() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id1"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property item_total() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_total"), System.Web.UI.WebControls.Literal)
@@ -8855,6 +9805,30 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property item_totalLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_totalLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property no_of_packages() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "no_of_packages"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property no_of_packagesLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "no_of_packagesLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property packing_details() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "packing_details"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property packing_detailsLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "packing_detailsLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -8918,6 +9892,18 @@ Public Class BasePro_inv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property road_permit_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "road_permit_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property road_permit_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "road_permit_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property sale_ord_dt() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sale_ord_dt"), System.Web.UI.WebControls.Literal)
@@ -8975,6 +9961,18 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property tin_noLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property weight() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "weight"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property weightLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "weightLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

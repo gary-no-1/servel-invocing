@@ -78,6 +78,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Bin\System.Web.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="C:\Users\rk\Documents\IronSpeed\ServelInvoicing\bin\Telerik.Reporting.dll">
+      <Assembly>ServelInvoicing</Assembly>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -182,18 +186,165 @@
     <Compile Include="Header and Footer\IEmailHeader.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Header and Footer\Footer.ascx.vb">
-      <DependentUpon>Footer.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Header and Footer\IFooter.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Header and Footer\PrintHeader.ascx.vb">
       <DependentUpon>PrintHeader.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Header and Footer\IPrintHeader.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\EditInv_hdr.aspx.vb">
+      <DependentUpon>EditInv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\EditInv_hdr.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\EmailInv_hdr.aspx.vb">
+      <DependentUpon>EmailInv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\EmailInv_hdr.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\Inv_hdrWebReport.aspx.vb">
+      <DependentUpon>Inv_hdrWebReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\Inv_hdrWebReport.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\PrintInv_hdr.aspx.vb">
+      <DependentUpon>PrintInv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\PrintInv_hdr.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_items\EditInv_items.aspx.vb">
+      <DependentUpon>EditInv_items.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_items\EditInv_items.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_items\EmailInv_items.aspx.vb">
+      <DependentUpon>EmailInv_items.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_items\EmailInv_items.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_items\Inv_itemsWebReport.aspx.vb">
+      <DependentUpon>Inv_itemsWebReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_items\Inv_itemsWebReport.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_items\PrintInv_items.aspx.vb">
+      <DependentUpon>PrintInv_items.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_items\PrintInv_items.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_items\ShowInv_items.aspx.vb">
+      <DependentUpon>ShowInv_items.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_items\ShowInv_items.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_items\ShowInv_itemsTable.aspx.vb">
+      <DependentUpon>ShowInv_itemsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_items\ShowInv_itemsTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_taxes\EditInv_taxes.aspx.vb">
+      <DependentUpon>EditInv_taxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_taxes\EditInv_taxes.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_taxes\EmailInv_taxes.aspx.vb">
+      <DependentUpon>EmailInv_taxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_taxes\EmailInv_taxes.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_taxes\Inv_taxesWebReport.aspx.vb">
+      <DependentUpon>Inv_taxesWebReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_taxes\Inv_taxesWebReport.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_taxes\PrintInv_taxes.aspx.vb">
+      <DependentUpon>PrintInv_taxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_taxes\PrintInv_taxes.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_taxes\ShowInv_taxes.aspx.vb">
+      <DependentUpon>ShowInv_taxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_taxes\ShowInv_taxes.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_taxes\ShowInv_taxesTable.aspx.vb">
+      <DependentUpon>ShowInv_taxesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_taxes\ShowInv_taxesTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_terms\EditInv_terms.aspx.vb">
+      <DependentUpon>EditInv_terms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_terms\EditInv_terms.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_terms\EmailInv_terms.aspx.vb">
+      <DependentUpon>EmailInv_terms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_terms\EmailInv_terms.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_terms\Inv_termsWebReport.aspx.vb">
+      <DependentUpon>Inv_termsWebReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_terms\Inv_termsWebReport.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_terms\PrintInv_terms.aspx.vb">
+      <DependentUpon>PrintInv_terms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_terms\PrintInv_terms.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_terms\ShowInv_terms.aspx.vb">
+      <DependentUpon>ShowInv_terms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_terms\ShowInv_terms.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_terms\ShowInv_termsTable.aspx.vb">
+      <DependentUpon>ShowInv_termsTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_terms\ShowInv_termsTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="items\AddItems.aspx.vb">
@@ -301,12 +452,16 @@
     <Compile Include="party\ShowPartyTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.aspx.vb">
-      <DependentUpon>ShowPro_inv_hdr.aspx</DependentUpon>
+    <Compile Include="pro_inv_hdr\AddPro_inv_hdr.aspx.vb">
+      <DependentUpon>AddPro_inv_hdr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.Controls.vb">
+    <Compile Include="pro_inv_hdr\AddPro_inv_hdr.Controls.vb">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\PrintPro_inv.aspx.vb">
+      <DependentUpon>PrintPro_inv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pro_inv_items\AddPro_inv_items.aspx.vb">
       <DependentUpon>AddPro_inv_items.aspx</DependentUpon>
@@ -623,6 +778,34 @@
     <Compile Include="terms\ShowTerms.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="transporters\AddTransporters.aspx.vb">
+      <DependentUpon>AddTransporters.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transporters\AddTransporters.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="transporters\EditTransporters.aspx.vb">
+      <DependentUpon>EditTransporters.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transporters\EditTransporters.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="transporters\ShowTransporters.aspx.vb">
+      <DependentUpon>ShowTransporters.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transporters\ShowTransporters.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="transporters\ShowTransportersTable.aspx.vb">
+      <DependentUpon>ShowTransportersTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transporters\ShowTransportersTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="unitsofmeasure\AddUnitsofmeasure.aspx.vb">
       <DependentUpon>AddUnitsofmeasure.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -693,39 +876,18 @@
     <Compile Include="users\ShowUsersTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="transporters\ShowTransportersTable.aspx.vb">
-      <DependentUpon>ShowTransportersTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="transporters\ShowTransportersTable.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="transporters\AddTransporters.aspx.vb">
-      <DependentUpon>AddTransporters.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="transporters\AddTransporters.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="transporters\ShowTransporters.aspx.vb">
-      <DependentUpon>ShowTransporters.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="transporters\ShowTransporters.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="transporters\EditTransporters.aspx.vb">
-      <DependentUpon>EditTransporters.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="transporters\EditTransporters.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="company\EditCompany.aspx.vb" >
       <DependentUpon>EditCompany.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="company\EditCompany.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\Footer.ascx.vb" >
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\IFooter.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Header and Footer\Header.ascx.vb" >
@@ -735,6 +897,20 @@
     <Compile Include="Header and Footer\IHeader.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="inv_hdr\ShowInv_hdr.aspx.vb" >
+      <DependentUpon>ShowInv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\ShowInv_hdr.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\ShowInv_hdrTable.aspx.vb" >
+      <DependentUpon>ShowInv_hdrTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\ShowInv_hdrTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Menu Panels\Menu.ascx.vb" >
       <DependentUpon>Menu.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -742,18 +918,18 @@
     <Compile Include="Menu Panels\IMenu.vb" >
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="pro_inv_hdr\AddPro_inv_hdr.aspx.vb" >
-      <DependentUpon>AddPro_inv_hdr.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\AddPro_inv_hdr.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="pro_inv_hdr\EditPro_inv_hdr.aspx.vb" >
       <DependentUpon>EditPro_inv_hdr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pro_inv_hdr\EditPro_inv_hdr.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.aspx.vb" >
+      <DependentUpon>ShowPro_inv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx.vb" >
@@ -1121,8 +1297,29 @@
     <Content Include="company\ShowCompany.aspx" />
     <Content Include="company\ShowCompanyTable.aspx" />
     <Content Include="Header and Footer\EmailHeader.ascx" />
-    <Content Include="Header and Footer\Footer.ascx" />
     <Content Include="Header and Footer\PrintHeader.ascx" />
+    <Content Include="inv_hdr\EditInv_hdr.aspx" />
+    <Content Include="inv_hdr\EmailInv_hdr.aspx" />
+    <Content Include="inv_hdr\Inv_hdrWebReport.aspx" />
+    <Content Include="inv_hdr\PrintInv_hdr.aspx" />
+    <Content Include="inv_items\EditInv_items.aspx" />
+    <Content Include="inv_items\EmailInv_items.aspx" />
+    <Content Include="inv_items\Inv_itemsWebReport.aspx" />
+    <Content Include="inv_items\PrintInv_items.aspx" />
+    <Content Include="inv_items\ShowInv_items.aspx" />
+    <Content Include="inv_items\ShowInv_itemsTable.aspx" />
+    <Content Include="inv_taxes\EditInv_taxes.aspx" />
+    <Content Include="inv_taxes\EmailInv_taxes.aspx" />
+    <Content Include="inv_taxes\Inv_taxesWebReport.aspx" />
+    <Content Include="inv_taxes\PrintInv_taxes.aspx" />
+    <Content Include="inv_taxes\ShowInv_taxes.aspx" />
+    <Content Include="inv_taxes\ShowInv_taxesTable.aspx" />
+    <Content Include="inv_terms\EditInv_terms.aspx" />
+    <Content Include="inv_terms\EmailInv_terms.aspx" />
+    <Content Include="inv_terms\Inv_termsWebReport.aspx" />
+    <Content Include="inv_terms\PrintInv_terms.aspx" />
+    <Content Include="inv_terms\ShowInv_terms.aspx" />
+    <Content Include="inv_terms\ShowInv_termsTable.aspx" />
     <Content Include="items\AddItems.aspx" />
     <Content Include="items\EditItems.aspx" />
     <Content Include="items\ShowItems.aspx" />
@@ -1138,7 +1335,8 @@
     <Content Include="party\EditParty.aspx" />
     <Content Include="party\ShowParty.aspx" />
     <Content Include="party\ShowPartyTable.aspx" />
-    <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx" />
+    <Content Include="pro_inv_hdr\AddPro_inv_hdr.aspx" />
+    <Content Include="pro_inv_hdr\PrintPro_inv.aspx" />
     <Content Include="pro_inv_items\AddPro_inv_items.aspx" />
     <Content Include="pro_inv_items\EditPro_inv_items.aspx" />
     <Content Include="pro_inv_items\ShowPro_inv_items.aspx" />
@@ -1184,6 +1382,10 @@
     <Content Include="terms\AddTerms.aspx" />
     <Content Include="terms\EditTerms.aspx" />
     <Content Include="terms\ShowTerms.aspx" />
+    <Content Include="transporters\AddTransporters.aspx" />
+    <Content Include="transporters\EditTransporters.aspx" />
+    <Content Include="transporters\ShowTransporters.aspx" />
+    <Content Include="transporters\ShowTransportersTable.aspx" />
     <Content Include="unitsofmeasure\AddUnitsofmeasure.aspx" />
     <Content Include="unitsofmeasure\EditUnitsofmeasure.aspx" />
     <Content Include="unitsofmeasure\EditUnitsofmeasureTable.aspx" />
@@ -1194,20 +1396,19 @@
     <Content Include="users\EditUsersTable.aspx" />
     <Content Include="users\ShowUsers.aspx" />
     <Content Include="users\ShowUsersTable.aspx" />
-    <Content Include="transporters\ShowTransportersTable.aspx" />
-    <Content Include="transporters\AddTransporters.aspx" />
-    <Content Include="transporters\ShowTransporters.aspx" />
-    <Content Include="transporters\EditTransporters.aspx" />
     <Content Include="company\EditCompany.aspx"  />
+    <Content Include="Header and Footer\Footer.ascx"  />
     <Content Include="Header and Footer\Header.ascx"  />
+    <Content Include="inv_hdr\ShowInv_hdr.aspx"  />
+    <Content Include="inv_hdr\ShowInv_hdrTable.aspx"  />
     <Content Include="Master Pages\Blank.master"  />
     <Content Include="Master Pages\Email.master"  />
     <Content Include="Master Pages\HorizontalMenu.master"  />
     <Content Include="Master Pages\Print.master"  />
     <Content Include="Master Pages\VerticalMenu.master"  />
     <Content Include="Menu Panels\Menu.ascx"  />
-    <Content Include="pro_inv_hdr\AddPro_inv_hdr.aspx"  />
     <Content Include="pro_inv_hdr\EditPro_inv_hdr.aspx"  />
+    <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx"  />
     <Content Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx"  />
     <Content Include="taxes\AddTaxes.aspx"  />
     <Content Include="taxes\EditTaxes.aspx"  />

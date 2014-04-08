@@ -1553,7 +1553,7 @@ PARSEDECIMAL(Pro_inv_itemsTableControlRow.rate.Text) ,0) , "c")</Value>
         </Attribute>
         <Attribute>
           <Name>Text</Name>
-          <Value>&lt;%#String.Concat(GetResourceValue("Title:Edit")," Pro Inv HDR") %&gt;</Value>
+          <Value>&lt;%#String.Concat(GetResourceValue("Title:Edit")," Proforma Invoice") %&gt;</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_hdrRecordControl</InsideControl>

@@ -12,6 +12,9 @@
 /reference:bin\MySql.Data.dll
 /reference:bin\Report.dll
 /reference:bin\Ciloci.Flee.dll
+/reference:bin\ServelInvoicingReportLibrary.dll
+/reference:bin\Telerik.Reporting.dll
+/reference:bin\Telerik.Reportviewer.Webforms.dll
 /reference:System.Configuration.dll
 /reference:System.Data.dll
 /reference:System.dll

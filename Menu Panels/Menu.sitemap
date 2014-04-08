@@ -61,6 +61,7 @@ The tags are case-sensitive and should contain the following case-sensitive attr
     <siteMapNode title="Items" description="{Menu:Show} Items" url="~/items/ShowItemsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
     <siteMapNode title="Party" description="Party" url="~/party/ShowPartyTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
     <siteMapNode title="Proforma Invoice" description="{Menu:Show} Pro Inv HDR" url="~/pro_inv_hdr/ShowPro_inv_hdrTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+    <siteMapNode title="Invoice" description="{Menu:Show} Inv HDR" url="~/inv_hdr/ShowInv_hdrTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
     <siteMapNode title="Sites" description="Sites" url="~/sites/ShowSitesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
       <siteMapNode title="{Menu:Show} Sites" description="{Menu:Show} Sites" url="~/sites/ShowSitesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="{Menu:Add} Sites" description="{Menu:Add} Sites" url="~/sites/AddSites.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />

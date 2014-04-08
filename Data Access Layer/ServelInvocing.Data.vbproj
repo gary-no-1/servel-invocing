@@ -79,6 +79,33 @@
     <Compile Include="CompanySqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Inv_hdrDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inv_hdrSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inv_itemsDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inv_itemsSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inv_taxesDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inv_taxesSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inv_termsDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inv_termsSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseInv_termsSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ItemsDefinition.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -221,6 +248,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseCompanySqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseInv_hdrSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseInv_itemsSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseInv_taxesSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseItemsSqlTable.vb" >

@@ -165,7 +165,15 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents bill_name As System.Web.UI.WebControls.Literal
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents BtnConvert As ThemeButton
+        Public WithEvents BtnPrint As ThemeButton
         Public WithEvents EditButton As ThemeButton
+        Public WithEvents freight_to_pay As System.Web.UI.WebControls.Literal
+        Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents gr_rr_dt As System.Web.UI.WebControls.Literal
+        Public WithEvents gr_rr_dtLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents gr_rr_no As System.Web.UI.WebControls.Literal
+        Public WithEvents gr_rr_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents grand_total As System.Web.UI.WebControls.Literal
         Public WithEvents grand_totalLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
@@ -174,11 +182,18 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents id_tax_group As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_tax_groupLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_taxesLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents id_transporter As System.Web.UI.WebControls.LinkButton
+        Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id1 As System.Web.UI.WebControls.Literal
         Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents item_total As System.Web.UI.WebControls.Literal
         Public WithEvents item_totalLabel As System.Web.UI.WebControls.Literal
         Public WithEvents narrationLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents no_of_packages As System.Web.UI.WebControls.Literal
+        Public WithEvents no_of_packagesLabel As System.Web.UI.WebControls.Literal
         Public WithEvents OKButton As ThemeButton
+        Public WithEvents packing_details As System.Web.UI.WebControls.Literal
+        Public WithEvents packing_detailsLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents po_dt As System.Web.UI.WebControls.Literal
         Public WithEvents po_dtLabel As System.Web.UI.WebControls.Literal
@@ -220,6 +235,8 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents Pro_inv_termsWordButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents qtyLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents rateLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents road_permit_no As System.Web.UI.WebControls.Literal
+        Public WithEvents road_permit_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_dt As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_no As System.Web.UI.WebControls.Literal
@@ -235,6 +252,8 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents tin_no As System.Web.UI.WebControls.Literal
         Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents uomLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents weight As System.Web.UI.WebControls.Literal
+        Public WithEvents weightLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   
