@@ -312,6 +312,69 @@
       <InsideControl>Inv_hdrTableControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
+      <Name>id1</Name>
+      <Type>FieldValue</Type>
+      <Field>id</Field>
+      <FieldValueStyle>Literal</FieldValueStyle>
+      <Table>inv_hdr</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>FieldMaxLength</Name>
+          <Value>Default</Value>
+        </Attribute>
+        <Attribute>
+          <Name>HTMLEncodeValue</Name>
+          <Value>Default</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:ApplySaveToField</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupDisplay</Name>
+          <Value>Default</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupThreshold</Name>
+          <Value>Default</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowHeight</Name>
+          <Value>200</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowPersist</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowScrollBar</Name>
+          <Value>True</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowTitle</Name>
+          <Value>%ISD_DEFAULT%</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowWidth</Name>
+          <Value>300</Value>
+        </Attribute>
+        <Attribute>
+          <Name>TextFormat</Name>
+          <Value>{0}</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Visible</Name>
+          <Value>False</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Inv_hdrTableControl</InsideControl>
+      <InsideItemTemplate>true</InsideItemTemplate>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>inv_dt</Name>
       <Type>FieldValue</Type>
       <Field>inv_dt</Field>
@@ -915,6 +978,14 @@
       <Table>inv_hdr</Table>
       <PassthroughAttributes>
         <Attribute>
+          <Name>DataReaderAlwaysSortBy</Name>
+          <Value>inv_no DESC</Value>
+        </Attribute>
+        <Attribute>
+          <Name>DataReaderSortBy</Name>
+          <Value>inv_dt DESC</Value>
+        </Attribute>
+        <Attribute>
           <Name>HideDataUntilSearched</Name>
           <Value>False</Value>
         </Attribute>
@@ -925,6 +996,10 @@
         <Attribute>
           <Name>InternalUse:DataSource</Name>
           <Value>TableOrQuery</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSourceArg</Name>
+          <Value />
         </Attribute>
         <Attribute>
           <Name>PageSize</Name>
@@ -2126,7 +2201,8 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_no" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_no" /&amp;gt; 
+&amp;lt;GEN:FIELDVALUE NAME="id1" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;

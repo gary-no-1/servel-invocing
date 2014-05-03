@@ -48,7 +48,27 @@ Partial Public Class PrintInv_hdr
           'Dim controlToFocus As System.Web.UI.WebControls.TextBox = DirectCast(Me.FindControlRecursively("ProductsSearch"), System.Web.UI.WebControls.TextBox)
           'Me.SetFocusOnLoad(controlToFocus)
           'If no control is passed or control does not exist this method will set focus on the first focusable control on the page.
-          Me.SetFocusOnLoad()  
+		Try
+	    	If Not IsPostBack Then
+	            If Not Page.Session("PrintProInvID") Is Nothing Then
+    	            Dim sID As String = Page.Session("PrintProInvID").tostring()
+					Dim fs As New ServelInvoicingReportLibrary.ServelInvoice()
+					fs.ReportParameters("PrintProInvId").value = sID
+
+					Dim reportviewer As New Telerik.Reportviewer.Webforms.Reportviewer
+					reportviewer = Directcast(FindControlRecursively("ReportViewer1"),Telerik.Reportviewer.Webforms.Reportviewer)
+					If (Not reportviewer Is Nothing)
+						reportviewer.Report = fs
+		   			Else
+    		  			Response.Write("Control not found.....")
+   					End If
+				End If
+			End If
+        Catch ex As Exception
+        'Do Something Here
+        End Try		
+
+		  Me.SetFocusOnLoad()  
       End Sub
        
       Public Sub LoadData()
@@ -145,13 +165,11 @@ Partial Public Class PrintInv_hdr
 #Region "Section 2: Do not modify this section."
 
         Public WithEvents amountLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents ass_valueLabel As System.Web.UI.WebControls.Literal
         Public WithEvents bill_address As System.Web.UI.WebControls.Literal
         Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents bill_name As System.Web.UI.WebControls.Literal
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents calc_typeLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents excise_totalLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents BtnPrtInv As System.Web.UI.WebControls.Button
         Public WithEvents freight_to_pay As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
         Public WithEvents gr_rr_dt As System.Web.UI.WebControls.Literal
@@ -160,28 +178,27 @@ Partial Public Class PrintInv_hdr
         Public WithEvents gr_rr_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents grand_total As System.Web.UI.WebControls.Literal
         Public WithEvents grand_totalLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents grand_totalLabel1 As System.Web.UI.WebControls.Literal
         Public WithEvents id_itemLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_party As System.Web.UI.WebControls.Literal
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_tax_group As System.Web.UI.WebControls.Literal
-        Public WithEvents id_tax_groupLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_taxesLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_transporter As System.Web.UI.WebControls.Literal
         Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id1 As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_dt As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_hdrRecordControl As ServelInvocing.UI.Controls.PrintInv_hdr.Inv_hdrRecordControl
         Public WithEvents Inv_hdrTitle As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_itemsTableControl As ServelInvocing.UI.Controls.PrintInv_hdr.Inv_itemsTableControl
         Public WithEvents Inv_itemsTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_no As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_taxesTableControl As ServelInvocing.UI.Controls.PrintInv_hdr.Inv_taxesTableControl
         Public WithEvents Inv_taxesTitle As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_termsTableControl As ServelInvocing.UI.Controls.PrintInv_hdr.Inv_termsTableControl
         Public WithEvents Inv_termsTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents item_codeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.Literal
         Public WithEvents item_total As System.Web.UI.WebControls.Literal
         Public WithEvents item_totalLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents item_totalLabel1 As System.Web.UI.WebControls.Literal
         Public WithEvents narrationLabel As System.Web.UI.WebControls.Literal
         Public WithEvents no_of_packages As System.Web.UI.WebControls.Literal
         Public WithEvents no_of_packagesLabel As System.Web.UI.WebControls.Literal
@@ -192,10 +209,6 @@ Partial Public Class PrintInv_hdr
         Public WithEvents po_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents po_no As System.Web.UI.WebControls.Literal
         Public WithEvents po_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents pro_inv_dt As System.Web.UI.WebControls.Literal
-        Public WithEvents pro_inv_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents pro_inv_no As System.Web.UI.WebControls.Literal
-        Public WithEvents pro_inv_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents qtyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents rateLabel As System.Web.UI.WebControls.Literal
         Public WithEvents road_permit_no As System.Web.UI.WebControls.Literal
@@ -208,16 +221,8 @@ Partial Public Class PrintInv_hdr
         Public WithEvents ship_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ship_name As System.Web.UI.WebControls.Literal
         Public WithEvents ship_nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents sort_orderLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents sort_orderLabel1 As System.Web.UI.WebControls.Literal
         Public WithEvents tax_amountLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_codeLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_lockLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_onLabel As System.Web.UI.WebControls.Literal
         Public WithEvents tax_printLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_rateLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_typeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents tin_no As System.Web.UI.WebControls.Literal
         Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents uomLabel As System.Web.UI.WebControls.Literal

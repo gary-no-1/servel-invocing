@@ -47,6 +47,85 @@ Public Class Pro_inv_hdrTableControlRow
         ' SaveData, GetUIData, and Validate methods.
         
 
+
+		Public Overrides Sub Pro_inv_hdrRowEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+			if me.inv_created.text = "YES" then
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Invoice has been created. Modification Not Allowed")
+				return
+			end if
+			
+            Dim url As String = "../pro_inv_hdr/EditPro_inv_hdr.aspx?Pro_inv_hdr={PK}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If              
+        End Sub
+
+		Public Overrides Sub Pro_inv_hdrRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+
+			if me.inv_created.text = "YES" then
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Invoice has been created. Cannot be Deleted")
+				return
+			end if
+        
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            If(Not Me.Page.IsPageRefresh) Then
+        
+                  Me.Delete()
+              
+            End If
+      Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+                  
+        End Sub
 End Class
 
   
@@ -92,8 +171,6 @@ Public Class BasePro_inv_hdrTableControlRow
               Me.Pro_inv_hdrRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              AddHandler Me.Pro_inv_hdrRowCopyButton.Click, AddressOf Pro_inv_hdrRowCopyButton_Click
-              
               AddHandler Me.Pro_inv_hdrRowDeleteButton.Click, AddressOf Pro_inv_hdrRowDeleteButton_Click
               
               AddHandler Me.Pro_inv_hdrRowEditButton.Click, AddressOf Pro_inv_hdrRowEditButton_Click
@@ -147,18 +224,18 @@ Public Class BasePro_inv_hdrTableControlRow
       
             ' Call the Set methods for each controls on the panel
         
-            Setbill_address()
             Setgrand_total()
             Setid_party()
             Setid_tax_group()
+            Setinv_cr8_dt()
+            Setinv_created()
+            Setinv_no()
             Setpo_dt()
             Setpo_no()
             Setpro_inv_dt()
             Setpro_inv_no()
             Setsale_ord_dt()
             Setsale_ord_no()
-            Setship_address()
-            Settin_no()
       
       
             Me.IsNewRecord = True
@@ -177,83 +254,6 @@ Public Class BasePro_inv_hdrTableControlRow
         End Sub
         
         
-        Public Overridable Sub Setbill_address()
-            
-        
-            ' Set the bill_address Literal on the webpage with value from the
-            ' pro_inv_hdr database record.
-
-            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
-            ' Me.bill_address is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setbill_address()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.bill_addressSpecified Then
-                				
-                ' If the bill_address is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.bill_address)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                If Not formattedValue is Nothing Then
-                    Dim popupThreshold as Integer = CType(100, Integer)
-                              
-                    Dim maxLength as Integer = Len(formattedValue)
-                    If (maxLength > CType(100, Integer)) Then
-                        ' Truncate based on FieldMaxLength on Properties.
-                        maxLength = CType(100, Integer)
-                        
-                    End If
-                                
-                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
-                    If Len(formattedValue) >= popupThreshold Then
-                    
-                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
-                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.Pro_inv_hdrTable, ServelInvocing.Business\"",\""" _
-                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""bill_address\"", \""bill_address\"", \""Bill Address\"", false, 200," _
-                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
-                        
-                        If (maxLength = CType(100, Integer)) Then
-                            formattedValue = formattedValue & "..." & "</a>"
-                        Else
-                            formattedValue = formattedValue & "</a>"
-                            
-                        End If
-                    Else
-                        If maxLength = CType(100, Integer) Then
-                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
-                            formattedValue = formattedValue & "..."
-                            
-                        End If
-                    End If
-                End If  
-                
-                Me.bill_address.Text = formattedValue
-              
-            Else 
-            
-                ' bill_address is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.bill_address.Text = Pro_inv_hdrTable.bill_address.Format(Pro_inv_hdrTable.bill_address.DefaultValue)
-                        		
-                End If
-                 
-            ' If the bill_address is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.bill_address.Text Is Nothing _
-                OrElse Me.bill_address.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.bill_address.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
         Public Overridable Sub Setgrand_total()
             
         
@@ -366,6 +366,138 @@ Public Class BasePro_inv_hdrTableControlRow
                         		
                 End If
                  
+        End Sub
+                
+        Public Overridable Sub Setinv_cr8_dt()
+            
+        
+            ' Set the inv_cr8_dt Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.inv_cr8_dt is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_cr8_dt()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_cr8_dtSpecified Then
+                				
+                ' If the inv_cr8_dt is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.inv_cr8_dt, "g")
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.inv_cr8_dt.Text = formattedValue
+              
+            Else 
+            
+                ' inv_cr8_dt is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_cr8_dt.Text = Pro_inv_hdrTable.inv_cr8_dt.Format(Pro_inv_hdrTable.inv_cr8_dt.DefaultValue, "g")
+                        		
+                End If
+                 
+            ' If the inv_cr8_dt is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.inv_cr8_dt.Text Is Nothing _
+                OrElse Me.inv_cr8_dt.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.inv_cr8_dt.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setinv_created()
+            
+        
+            ' Set the inv_created Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.inv_created is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_created()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_createdSpecified Then
+                				
+                ' If the inv_created is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.inv_created)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.inv_created.Text = formattedValue
+              
+            Else 
+            
+                ' inv_created is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_created.Text = Pro_inv_hdrTable.inv_created.Format(Pro_inv_hdrTable.inv_created.DefaultValue)
+                        		
+                End If
+                 
+            ' If the inv_created is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.inv_created.Text Is Nothing _
+                OrElse Me.inv_created.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.inv_created.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setinv_no()
+            
+        
+            ' Set the inv_no Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.inv_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_noSpecified Then
+                				
+                ' If the inv_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.inv_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.inv_no.Text = formattedValue
+              
+            Else 
+            
+                ' inv_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_no.Text = Pro_inv_hdrTable.inv_no.Format(Pro_inv_hdrTable.inv_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the inv_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.inv_no.Text Is Nothing _
+                OrElse Me.inv_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.inv_no.Text = "&nbsp;"
+            End If
+                  
         End Sub
                 
         Public Overridable Sub Setpo_dt()
@@ -632,127 +764,6 @@ Public Class BasePro_inv_hdrTableControlRow
                   
         End Sub
                 
-        Public Overridable Sub Setship_address()
-            
-        
-            ' Set the ship_address Literal on the webpage with value from the
-            ' pro_inv_hdr database record.
-
-            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
-            ' Me.ship_address is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setship_address()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.ship_addressSpecified Then
-                				
-                ' If the ship_address is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.ship_address)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                If Not formattedValue is Nothing Then
-                    Dim popupThreshold as Integer = CType(100, Integer)
-                              
-                    Dim maxLength as Integer = Len(formattedValue)
-                    If (maxLength > CType(100, Integer)) Then
-                        ' Truncate based on FieldMaxLength on Properties.
-                        maxLength = CType(100, Integer)
-                        
-                    End If
-                                
-                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
-                    If Len(formattedValue) >= popupThreshold Then
-                    
-                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
-                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.Pro_inv_hdrTable, ServelInvocing.Business\"",\""" _
-                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""ship_address\"", \""ship_address\"", \""Ship Address\"", false, 200," _
-                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
-                        
-                        If (maxLength = CType(100, Integer)) Then
-                            formattedValue = formattedValue & "..." & "</a>"
-                        Else
-                            formattedValue = formattedValue & "</a>"
-                            
-                        End If
-                    Else
-                        If maxLength = CType(100, Integer) Then
-                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
-                            formattedValue = formattedValue & "..."
-                            
-                        End If
-                    End If
-                End If  
-                
-                Me.ship_address.Text = formattedValue
-              
-            Else 
-            
-                ' ship_address is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.ship_address.Text = Pro_inv_hdrTable.ship_address.Format(Pro_inv_hdrTable.ship_address.DefaultValue)
-                        		
-                End If
-                 
-            ' If the ship_address is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.ship_address.Text Is Nothing _
-                OrElse Me.ship_address.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.ship_address.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Settin_no()
-            
-        
-            ' Set the tin_no Literal on the webpage with value from the
-            ' pro_inv_hdr database record.
-
-            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
-            ' Me.tin_no is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settin_no()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tin_noSpecified Then
-                				
-                ' If the tin_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.tin_no)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.tin_no.Text = formattedValue
-              
-            Else 
-            
-                ' tin_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tin_no.Text = Pro_inv_hdrTable.tin_no.Format(Pro_inv_hdrTable.tin_no.DefaultValue)
-                        		
-                End If
-                 
-            ' If the tin_no is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.tin_no.Text Is Nothing _
-                OrElse Me.tin_no.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.tin_no.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
       
         Public Overridable Function EvaluateFormula(ByVal formula As String, Optional ByVal dataSourceForEvaluate as BaseClasses.Data.BaseRecord = Nothing, Optional ByVal format as String = Nothing) As String
             Dim e As FormulaEvaluator = New FormulaEvaluator()
@@ -849,25 +860,21 @@ Public Class BasePro_inv_hdrTableControlRow
       
             ' Call the Get methods for each of the user interface controls.
         
-            Getbill_address()
             Getgrand_total()
             Getid_party()
             Getid_tax_group()
+            Getinv_cr8_dt()
+            Getinv_created()
+            Getinv_no()
             Getpo_dt()
             Getpo_no()
             Getpro_inv_dt()
             Getpro_inv_no()
             Getsale_ord_dt()
             Getsale_ord_no()
-            Getship_address()
-            Gettin_no()
         End Sub
         
         
-        Public Overridable Sub Getbill_address()
-            
-        End Sub
-                
         Public Overridable Sub Getgrand_total()
             
         End Sub
@@ -877,6 +884,18 @@ Public Class BasePro_inv_hdrTableControlRow
         End Sub
                 
         Public Overridable Sub Getid_tax_group()
+            
+        End Sub
+                
+        Public Overridable Sub Getinv_cr8_dt()
+            
+        End Sub
+                
+        Public Overridable Sub Getinv_created()
+            
+        End Sub
+                
+        Public Overridable Sub Getinv_no()
             
         End Sub
                 
@@ -901,14 +920,6 @@ Public Class BasePro_inv_hdrTableControlRow
         End Sub
                 
         Public Overridable Sub Getsale_ord_no()
-            
-        End Sub
-                
-        Public Overridable Sub Getship_address()
-            
-        End Sub
-                
-        Public Overridable Sub Gettin_no()
             
         End Sub
                 
@@ -994,50 +1005,6 @@ Public Class BasePro_inv_hdrTableControlRow
             Return MyBase.SaveViewState()
         End Function
         
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Pro_inv_hdrRowCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../pro_inv_hdr/AddPro_inv_hdr.aspx?Pro_inv_hdr={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
         
         ' event handler for ImageButton
         Public Overridable Sub Pro_inv_hdrRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
@@ -1351,12 +1318,6 @@ Public Class BasePro_inv_hdrTableControlRow
 
 #Region "Helper Properties"
         
-        Public ReadOnly Property bill_address() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_address"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
         Public ReadOnly Property grand_total() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_total"), System.Web.UI.WebControls.Literal)
@@ -1372,6 +1333,24 @@ Public Class BasePro_inv_hdrTableControlRow
         Public ReadOnly Property id_tax_group() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_group"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_cr8_dt() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_cr8_dt"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_created() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_created"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_no"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -1396,12 +1375,6 @@ Public Class BasePro_inv_hdrTableControlRow
         Public ReadOnly Property Pro_inv_hdrRecordRowSelection() As System.Web.UI.WebControls.CheckBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_hdrRecordRowSelection"), System.Web.UI.WebControls.CheckBox)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Pro_inv_hdrRowCopyButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Pro_inv_hdrRowCopyButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
@@ -1438,18 +1411,6 @@ Public Class BasePro_inv_hdrTableControlRow
         Public ReadOnly Property sale_ord_no() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sale_ord_no"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property ship_address() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_address"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tin_no() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_no"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -1594,13 +1555,15 @@ Public Class BasePro_inv_hdrTableControl
               
             ' Setup the sorting events.
           
-              AddHandler Me.bill_addressLabel.Click, AddressOf bill_addressLabel_Click
-            
               AddHandler Me.grand_totalLabel.Click, AddressOf grand_totalLabel_Click
             
               AddHandler Me.id_partyLabel1.Click, AddressOf id_partyLabel1_Click
             
               AddHandler Me.id_tax_groupLabel1.Click, AddressOf id_tax_groupLabel1_Click
+            
+              AddHandler Me.inv_cr8_dtLabel.Click, AddressOf inv_cr8_dtLabel_Click
+            
+              AddHandler Me.inv_createdLabel.Click, AddressOf inv_createdLabel_Click
             
               AddHandler Me.po_dtLabel.Click, AddressOf po_dtLabel_Click
             
@@ -1613,10 +1576,6 @@ Public Class BasePro_inv_hdrTableControl
               AddHandler Me.sale_ord_dtLabel.Click, AddressOf sale_ord_dtLabel_Click
             
               AddHandler Me.sale_ord_noLabel.Click, AddressOf sale_ord_noLabel_Click
-            
-              AddHandler Me.ship_addressLabel.Click, AddressOf ship_addressLabel_Click
-            
-              AddHandler Me.tin_noLabel.Click, AddressOf tin_noLabel_Click
             
             ' Setup the button events.
           
@@ -1751,13 +1710,15 @@ Public Class BasePro_inv_hdrTableControl
 
             ' Call the Set methods for each controls on the panel
         
-            Setbill_addressLabel()
             Setgrand_totalLabel()
             Setid_partyFilter()
             
             Setid_partyLabel()
             Setid_partyLabel1()
             Setid_tax_groupLabel1()
+            Setinv_cr8_dtLabel()
+            Setinv_createdLabel()
+            Setinv_noLabel()
             Setpo_dtLabel()
             Setpo_noLabel()
             Setpro_inv_dtLabel()
@@ -1766,8 +1727,6 @@ Public Class BasePro_inv_hdrTableControl
             Setpro_inv_noLabel()
             Setsale_ord_dtLabel()
             Setsale_ord_noLabel()
-            Setship_addressLabel()
-            Settin_noLabel()
       
   
 
@@ -1801,19 +1760,19 @@ Public Class BasePro_inv_hdrTableControl
 
             ' Initialize other asp controls
             
-            Setbill_addressLabel()
             Setgrand_totalLabel()
             Setid_partyLabel()
             Setid_partyLabel1()
             Setid_tax_groupLabel1()
+            Setinv_cr8_dtLabel()
+            Setinv_createdLabel()
+            Setinv_noLabel()
             Setpo_dtLabel()
             Setpo_noLabel()
             Setpro_inv_dtLabel()
             Setpro_inv_noLabel()
             Setsale_ord_dtLabel()
             Setsale_ord_noLabel()
-            Setship_addressLabel()
-            Settin_noLabel()
       End Sub
 
       
@@ -2297,9 +2256,6 @@ Public Class BasePro_inv_hdrTableControl
                     
                         Dim rec As Pro_inv_hdrRecord = New Pro_inv_hdrRecord()
         
-                        If recControl.bill_address.Text <> "" Then
-                            rec.Parse(recControl.bill_address.Text, Pro_inv_hdrTable.bill_address)
-                        End If
                         If recControl.grand_total.Text <> "" Then
                             rec.Parse(recControl.grand_total.Text, Pro_inv_hdrTable.grand_total)
                         End If
@@ -2308,6 +2264,15 @@ Public Class BasePro_inv_hdrTableControl
                         End If
                         If recControl.id_tax_group.Text <> "" Then
                             rec.Parse(recControl.id_tax_group.Text, Pro_inv_hdrTable.id_tax_group)
+                        End If
+                        If recControl.inv_cr8_dt.Text <> "" Then
+                            rec.Parse(recControl.inv_cr8_dt.Text, Pro_inv_hdrTable.inv_cr8_dt)
+                        End If
+                        If recControl.inv_created.Text <> "" Then
+                            rec.Parse(recControl.inv_created.Text, Pro_inv_hdrTable.inv_created)
+                        End If
+                        If recControl.inv_no.Text <> "" Then
+                            rec.Parse(recControl.inv_no.Text, Pro_inv_hdrTable.inv_no)
                         End If
                         If recControl.po_dt.Text <> "" Then
                             rec.Parse(recControl.po_dt.Text, Pro_inv_hdrTable.po_dt)
@@ -2326,12 +2291,6 @@ Public Class BasePro_inv_hdrTableControl
                         End If
                         If recControl.sale_ord_no.Text <> "" Then
                             rec.Parse(recControl.sale_ord_no.Text, Pro_inv_hdrTable.sale_ord_no)
-                        End If
-                        If recControl.ship_address.Text <> "" Then
-                            rec.Parse(recControl.ship_address.Text, Pro_inv_hdrTable.ship_address)
-                        End If
-                        If recControl.tin_no.Text <> "" Then
-                            rec.Parse(recControl.tin_no.Text, Pro_inv_hdrTable.tin_no)
                         End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
@@ -2400,11 +2359,6 @@ Public Class BasePro_inv_hdrTableControl
       
         ' Create Set, WhereClause, and Populate Methods
         
-        Public Overridable Sub Setbill_addressLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Setgrand_totalLabel()
             
                     
@@ -2421,6 +2375,21 @@ Public Class BasePro_inv_hdrTableControl
         End Sub
                 
         Public Overridable Sub Setid_tax_groupLabel1()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setinv_cr8_dtLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setinv_createdLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setinv_noLabel()
             
                     
         End Sub
@@ -2451,16 +2420,6 @@ Public Class BasePro_inv_hdrTableControl
         End Sub
                 
         Public Overridable Sub Setsale_ord_noLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setship_addressLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settin_noLabel()
             
                     
         End Sub
@@ -2770,28 +2729,6 @@ Public Class BasePro_inv_hdrTableControl
 
         ' Generate the event handling functions for sorting events.
         
-        Public Overridable Sub bill_addressLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by bill_address when clicked.
-              
-            ' Get previous sorting state for bill_address.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_hdrTable.bill_address)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for bill_address.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Pro_inv_hdrTable.bill_address, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by bill_address, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
         Public Overridable Sub grand_totalLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by grand_total when clicked.
               
@@ -2848,6 +2785,50 @@ Public Class BasePro_inv_hdrTableControl
                 Me.CurrentSortOrder.Add(Pro_inv_hdrTable.id_tax_group, OrderByItem.OrderDir.Asc)
             Else
                 ' Previously sorted by id_tax_group, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
+        Public Overridable Sub inv_cr8_dtLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by inv_cr8_dt when clicked.
+              
+            ' Get previous sorting state for inv_cr8_dt.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_hdrTable.inv_cr8_dt)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for inv_cr8_dt.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(Pro_inv_hdrTable.inv_cr8_dt, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by inv_cr8_dt, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
+        Public Overridable Sub inv_createdLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by inv_created when clicked.
+              
+            ' Get previous sorting state for inv_created.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_hdrTable.inv_created)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for inv_created.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(Pro_inv_hdrTable.inv_created, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by inv_created, so just reverse.
                 sd.Reverse()
             End If
             
@@ -2980,50 +2961,6 @@ Public Class BasePro_inv_hdrTableControl
                 Me.CurrentSortOrder.Add(Pro_inv_hdrTable.sale_ord_no, OrderByItem.OrderDir.Asc)
             Else
                 ' Previously sorted by sale_ord_no, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub ship_addressLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by ship_address when clicked.
-              
-            ' Get previous sorting state for ship_address.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_hdrTable.ship_address)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for ship_address.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Pro_inv_hdrTable.ship_address, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by ship_address, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub tin_noLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by tin_no when clicked.
-              
-            ' Get previous sorting state for tin_no.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_hdrTable.tin_no)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for tin_no.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Pro_inv_hdrTable.tin_no, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by tin_no, so just reverse.
                 sd.Reverse()
             End If
             
@@ -3174,13 +3111,13 @@ Public Class BasePro_inv_hdrTableControl
              Pro_inv_hdrTable.sale_ord_no, _ 
              Pro_inv_hdrTable.sale_ord_dt, _ 
              Pro_inv_hdrTable.id_party, _ 
-             Pro_inv_hdrTable.bill_address, _ 
-             Pro_inv_hdrTable.ship_address, _ 
-             Pro_inv_hdrTable.tin_no, _ 
              Pro_inv_hdrTable.po_no, _ 
              Pro_inv_hdrTable.po_dt, _ 
              Pro_inv_hdrTable.id_tax_group, _ 
              Pro_inv_hdrTable.grand_total, _ 
+             Pro_inv_hdrTable.inv_no, _ 
+             Pro_inv_hdrTable.inv_cr8_dt, _ 
+             Pro_inv_hdrTable.inv_created, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(Pro_inv_hdrTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -3226,13 +3163,13 @@ Public Class BasePro_inv_hdrTableControl
              excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.sale_ord_no, "Default"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.sale_ord_dt, "Short Date"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.id_party, "Default"))
-             excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.bill_address, "Default"))
-             excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.ship_address, "Default"))
-             excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.tin_no, "Default"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.po_no, "Default"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.po_dt, "Short Date"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.id_tax_group, "Default"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.grand_total, "Standard"))
+             excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.inv_no, "Default"))
+             excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.inv_cr8_dt, "Short Date"))
+             excelReport.AddColumn(New ExcelColumn(Pro_inv_hdrTable.inv_created, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -3350,13 +3287,13 @@ Public Class BasePro_inv_hdrTableControl
                  report.AddColumn(Pro_inv_hdrTable.sale_ord_no.Name, ReportEnum.Align.Left, "${sale_ord_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.sale_ord_dt.Name, ReportEnum.Align.Left, "${sale_ord_dt}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.id_party.Name, ReportEnum.Align.Left, "${id_party}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(Pro_inv_hdrTable.bill_address.Name, ReportEnum.Align.Left, "${bill_address}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(Pro_inv_hdrTable.ship_address.Name, ReportEnum.Align.Left, "${ship_address}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(Pro_inv_hdrTable.tin_no.Name, ReportEnum.Align.Left, "${tin_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.po_no.Name, ReportEnum.Align.Left, "${po_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.po_dt.Name, ReportEnum.Align.Left, "${po_dt}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.id_tax_group.Name, ReportEnum.Align.Left, "${id_tax_group}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Pro_inv_hdrTable.grand_total.Name, ReportEnum.Align.Right, "${grand_total}", ReportEnum.Align.Right, 20)
+                 report.AddColumn(Pro_inv_hdrTable.inv_no.Name, ReportEnum.Align.Left, "${inv_no}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(Pro_inv_hdrTable.inv_cr8_dt.Name, ReportEnum.Align.Left, "${inv_cr8_dt}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(Pro_inv_hdrTable.inv_created.Name, ReportEnum.Align.Left, "${inv_created}", ReportEnum.Align.Left, 15)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -3389,13 +3326,13 @@ Public Class BasePro_inv_hdrTableControl
                              report.AddData("${sale_ord_no}", record.Format(Pro_inv_hdrTable.sale_ord_no), ReportEnum.Align.Left, 100)
                              report.AddData("${sale_ord_dt}", record.Format(Pro_inv_hdrTable.sale_ord_dt), ReportEnum.Align.Left, 100)
                              report.AddData("${id_party}", record.Format(Pro_inv_hdrTable.id_party), ReportEnum.Align.Left)
-                             report.AddData("${bill_address}", record.Format(Pro_inv_hdrTable.bill_address), ReportEnum.Align.Left, 100)
-                             report.AddData("${ship_address}", record.Format(Pro_inv_hdrTable.ship_address), ReportEnum.Align.Left, 100)
-                             report.AddData("${tin_no}", record.Format(Pro_inv_hdrTable.tin_no), ReportEnum.Align.Left, 100)
                              report.AddData("${po_no}", record.Format(Pro_inv_hdrTable.po_no), ReportEnum.Align.Left, 100)
                              report.AddData("${po_dt}", record.Format(Pro_inv_hdrTable.po_dt), ReportEnum.Align.Left, 100)
                              report.AddData("${id_tax_group}", record.Format(Pro_inv_hdrTable.id_tax_group), ReportEnum.Align.Left)
                              report.AddData("${grand_total}", record.Format(Pro_inv_hdrTable.grand_total), ReportEnum.Align.Right, 100)
+                             report.AddData("${inv_no}", record.Format(Pro_inv_hdrTable.inv_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${inv_cr8_dt}", record.Format(Pro_inv_hdrTable.inv_cr8_dt), ReportEnum.Align.Left, 100)
+                             report.AddData("${inv_created}", record.Format(Pro_inv_hdrTable.inv_created), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -3501,13 +3438,13 @@ Public Class BasePro_inv_hdrTableControl
                  report.AddColumn(Pro_inv_hdrTable.sale_ord_no.Name, ReportEnum.Align.Left, "${sale_ord_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.sale_ord_dt.Name, ReportEnum.Align.Left, "${sale_ord_dt}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.id_party.Name, ReportEnum.Align.Left, "${id_party}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(Pro_inv_hdrTable.bill_address.Name, ReportEnum.Align.Left, "${bill_address}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(Pro_inv_hdrTable.ship_address.Name, ReportEnum.Align.Left, "${ship_address}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(Pro_inv_hdrTable.tin_no.Name, ReportEnum.Align.Left, "${tin_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.po_no.Name, ReportEnum.Align.Left, "${po_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.po_dt.Name, ReportEnum.Align.Left, "${po_dt}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Pro_inv_hdrTable.id_tax_group.Name, ReportEnum.Align.Left, "${id_tax_group}", ReportEnum.Align.Left, 30)
                  report.AddColumn(Pro_inv_hdrTable.grand_total.Name, ReportEnum.Align.Right, "${grand_total}", ReportEnum.Align.Right, 20)
+                 report.AddColumn(Pro_inv_hdrTable.inv_no.Name, ReportEnum.Align.Left, "${inv_no}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(Pro_inv_hdrTable.inv_cr8_dt.Name, ReportEnum.Align.Left, "${inv_cr8_dt}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(Pro_inv_hdrTable.inv_created.Name, ReportEnum.Align.Left, "${inv_created}", ReportEnum.Align.Left, 15)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -3537,13 +3474,13 @@ Public Class BasePro_inv_hdrTableControl
                              report.AddData("${sale_ord_no}", record.Format(Pro_inv_hdrTable.sale_ord_no), ReportEnum.Align.Left, 100)
                              report.AddData("${sale_ord_dt}", record.Format(Pro_inv_hdrTable.sale_ord_dt), ReportEnum.Align.Left, 100)
                              report.AddData("${id_party}", record.Format(Pro_inv_hdrTable.id_party), ReportEnum.Align.Left)
-                             report.AddData("${bill_address}", record.Format(Pro_inv_hdrTable.bill_address), ReportEnum.Align.Left, 100)
-                             report.AddData("${ship_address}", record.Format(Pro_inv_hdrTable.ship_address), ReportEnum.Align.Left, 100)
-                             report.AddData("${tin_no}", record.Format(Pro_inv_hdrTable.tin_no), ReportEnum.Align.Left, 100)
                              report.AddData("${po_no}", record.Format(Pro_inv_hdrTable.po_no), ReportEnum.Align.Left, 100)
                              report.AddData("${po_dt}", record.Format(Pro_inv_hdrTable.po_dt), ReportEnum.Align.Left, 100)
                              report.AddData("${id_tax_group}", record.Format(Pro_inv_hdrTable.id_tax_group), ReportEnum.Align.Left)
                              report.AddData("${grand_total}", record.Format(Pro_inv_hdrTable.grand_total), ReportEnum.Align.Right, 100)
+                             report.AddData("${inv_no}", record.Format(Pro_inv_hdrTable.inv_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${inv_cr8_dt}", record.Format(Pro_inv_hdrTable.inv_cr8_dt), ReportEnum.Align.Left, 100)
+                             report.AddData("${inv_created}", record.Format(Pro_inv_hdrTable.inv_created), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -3722,12 +3659,6 @@ Public Class BasePro_inv_hdrTableControl
        
 #Region "Helper Properties"
         
-        Public ReadOnly Property bill_addressLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_addressLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property grand_totalLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_totalLabel"), System.Web.UI.WebControls.LinkButton)
@@ -3755,6 +3686,24 @@ Public Class BasePro_inv_hdrTableControl
         Public ReadOnly Property id_tax_groupLabel1() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_groupLabel1"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property inv_cr8_dtLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_cr8_dtLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property inv_createdLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_createdLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property inv_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -3887,18 +3836,6 @@ Public Class BasePro_inv_hdrTableControl
         Public ReadOnly Property sale_ord_noLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sale_ord_noLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property ship_addressLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_addressLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tin_noLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_noLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         

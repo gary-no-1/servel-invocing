@@ -127,6 +127,56 @@ Public Class Inv_hdrRecordControl
         ' CreateWhereClause, DataBind, SaveData, GetUIData, and Validate methods.
         
 
+
+'		Public Overrides Sub SetBtnPrtInv()
+'			Page.Session("PrintProInvID") = Me.id1.text
+'                    
+'        End Sub
+
+		Public Overrides Sub BtnPrint_Click(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+			Page.Session("PrintProInvID") = Me.id1.text
+
+            Dim url As String = "../inv_hdr/PrintInv_hdr.aspx?inv_hdr={Inv_hdrRecordControl:PK}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If
+        End Sub
 End Class
 
   
@@ -245,7 +295,7 @@ Public Class BaseInv_itemsTableControlRow
                 ' If the amount is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.amount)
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.amount, "c")
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.amount.Text = formattedValue
@@ -255,7 +305,7 @@ Public Class BaseInv_itemsTableControlRow
                 ' amount is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.amount.Text = Inv_itemsTable.amount.Format(Inv_itemsTable.amount.DefaultValue)
+                Me.amount.Text = Inv_itemsTable.amount.Format(Inv_itemsTable.amount.DefaultValue, "c")
                         		
                 End If
                  
@@ -2765,7 +2815,7 @@ Public Class BaseInv_taxesTableControlRow
                 ' If the tax_amount is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_amount)
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_amount, "c")
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.tax_amount.Text = formattedValue
@@ -2775,7 +2825,7 @@ Public Class BaseInv_taxesTableControlRow
                 ' tax_amount is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.tax_amount.Text = Inv_taxesTable.tax_amount.Format(Inv_taxesTable.tax_amount.DefaultValue)
+                Me.tax_amount.Text = Inv_taxesTable.tax_amount.Format(Inv_taxesTable.tax_amount.DefaultValue, "c")
                         		
                 End If
                  
@@ -6952,10 +7002,14 @@ Public Class BaseInv_hdrRecordControl
           
               AddHandler Me.Inv_hdrDialogEditButton.Click, AddressOf Inv_hdrDialogEditButton_Click
               
+              AddHandler Me.id_commodity.Click, AddressOf id_commodity_Click
+            
               AddHandler Me.id_party.Click, AddressOf id_party_Click
             
               AddHandler Me.id_transporter.Click, AddressOf id_transporter_Click
             
+            AddHandler Me.BtnPrint.Button.Click, AddressOf BtnPrint_Click
+        
         End Sub
 
         
@@ -7038,6 +7092,7 @@ Public Class BaseInv_hdrRecordControl
             Setbill_addressLabel()
             Setbill_name()
             Setbill_nameLabel()
+            SetBtnPrtInv()
             Setfreight_to_pay()
             Setfreight_to_payLabel()
             Setgr_rr_dt()
@@ -7046,10 +7101,13 @@ Public Class BaseInv_hdrRecordControl
             Setgr_rr_noLabel()
             Setgrand_total()
             Setgrand_totalLabel()
+            Setid_commodity()
+            Setid_commodityLabel()
             Setid_party()
             Setid_partyLabel()
             Setid_transporter()
             Setid_transporterLabel()
+            Setid1()
             Setinv_dt()
             Setinv_dtLabel()
             Setinv_no()
@@ -7422,6 +7480,41 @@ Public Class BaseInv_hdrRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setid_commodity()
+            
+        
+            ' Set the id_commodity LinkButton on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.id_commodity is the ASP:LinkButton on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid_commodity()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_commoditySpecified Then
+                				
+                ' If the id_commodity is non-NULL, then format the value.
+
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.id_commodity)
+                            
+                Me.id_commodity.Text = formattedValue
+              
+            Else 
+            
+                ' id_commodity is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.id_commodity.Text = Inv_hdrTable.id_commodity.Format(Inv_hdrTable.id_commodity.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setid_party()
             
         
@@ -7487,6 +7580,42 @@ Public Class BaseInv_hdrRecordControl
                 ' Default Value could also be NULL.
         
                 Me.id_transporter.Text = Inv_hdrTable.id_transporter.Format(Inv_hdrTable.id_transporter.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setid1()
+            
+        
+            ' Set the id Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.id1 is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id0Specified Then
+                				
+                ' If the id is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.id0)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.id1.Text = formattedValue
+              
+            Else 
+            
+                ' id is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.id1.Text = Inv_hdrTable.id0.Format(Inv_hdrTable.id0.DefaultValue)
                         		
                 End If
                  
@@ -8195,6 +8324,11 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub SetBtnPrtInv()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setfreight_to_payLabel()
             
                     
@@ -8211,6 +8345,11 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setgrand_totalLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setid_commodityLabel()
             
                     
         End Sub
@@ -8419,8 +8558,10 @@ Public Class BaseInv_hdrRecordControl
             Getgr_rr_dt()
             Getgr_rr_no()
             Getgrand_total()
+            Getid_commodity()
             Getid_party()
             Getid_transporter()
+            Getid1()
             Getinv_dt()
             Getinv_no()
             Getitem_total()
@@ -8463,11 +8604,19 @@ Public Class BaseInv_hdrRecordControl
             
         End Sub
                 
+        Public Overridable Sub Getid_commodity()
+            
+        End Sub
+                
         Public Overridable Sub Getid_party()
             
         End Sub
                 
         Public Overridable Sub Getid_transporter()
+            
+        End Sub
+                
+        Public Overridable Sub Getid1()
             
         End Sub
                 
@@ -8857,6 +9006,50 @@ Public Class BaseInv_hdrRecordControl
         End Sub
         
         ' event handler for LinkButton
+        Public Overridable Sub id_commodity_Click(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../commodity/ShowCommodity.aspx?Commodity={Inv_hdrRecordControl:FK:inv_hdr_commodity_id_commodity_FK}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If
+        End Sub
+            
+        ' event handler for LinkButton
         Public Overridable Sub id_party_Click(ByVal sender As Object, ByVal args As EventArgs)
               
             ' The redirect URL is set on the Properties, Bindings.
@@ -8909,6 +9102,50 @@ Public Class BaseInv_hdrRecordControl
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
             Dim url As String = "../transporters/ShowTransporters.aspx?Transporters={Inv_hdrRecordControl:FK:inv_hdr_transporters_id_transporter_FK}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If
+        End Sub
+            
+        ' event handler for Button with Layout
+        Public Overridable Sub BtnPrint_Click(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../inv_hdr/PrintInv_hdr.aspx?inv_hdr={Inv_hdrRecordControl:PK}"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -9101,6 +9338,18 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property BtnPrint() As ServelInvocing.UI.IThemeButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "BtnPrint"), ServelInvocing.UI.IThemeButton)
+          End Get
+          End Property
+        
+        Public ReadOnly Property BtnPrtInv() As System.Web.UI.WebControls.Button
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "BtnPrtInv"), System.Web.UI.WebControls.Button)
+            End Get
+        End Property
+        
         Public ReadOnly Property freight_to_pay() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "freight_to_pay"), System.Web.UI.WebControls.Literal)
@@ -9149,6 +9398,18 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property id_commodity() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_commodity"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+            
+        Public ReadOnly Property id_commodityLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_commodityLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property id_party() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_party"), System.Web.UI.WebControls.LinkButton)
@@ -9173,6 +9434,12 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property id1() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id1"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property inv_dt() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_dt"), System.Web.UI.WebControls.Literal)

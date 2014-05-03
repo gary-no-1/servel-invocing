@@ -48,6 +48,27 @@ Partial Public Class ShowInv_hdr
           'Dim controlToFocus As System.Web.UI.WebControls.TextBox = DirectCast(Me.FindControlRecursively("ProductsSearch"), System.Web.UI.WebControls.TextBox)
           'Me.SetFocusOnLoad(controlToFocus)
           'If no control is passed or control does not exist this method will set focus on the first focusable control on the page.
+		Try
+	    	If Not IsPostBack Then
+	            If Not Page.Session("PrintProInvID") Is Nothing Then
+    	            Dim sID As String = Page.Session("PrintProInvID").tostring()
+    	            'Dim sID As String = me.id1.text
+					Dim fs As New ServelInvoicingReportLibrary.ServelInvoice()
+					fs.ReportParameters("PrintProInvId").value = sID
+
+					Dim reportviewer As New Telerik.Reportviewer.Webforms.Reportviewer
+					reportviewer = Directcast(FindControlRecursively("ReportViewer1"),Telerik.Reportviewer.Webforms.Reportviewer)
+					If (Not reportviewer Is Nothing)
+						reportviewer.Report = fs
+		   			Else
+    		  			Response.Write("Control not found.....")
+   					End If
+				End If
+			End If
+        Catch ex As Exception
+        'Do Something Here
+        End Try		
+		
           Me.SetFocusOnLoad()  
       End Sub
        
@@ -56,6 +77,7 @@ Partial Public Class ShowInv_hdr
           ' Customize by adding code before or after the call to LoadData_Base()
           ' or replace the call to LoadData_Base().
           LoadData_Base()
+			Page.Session("PrintProInvID") = Me.id1.text
                   
       End Sub
       
@@ -138,7 +160,12 @@ Partial Public Class ShowInv_hdr
 
     ' Page Event Handlers - buttons, sort, links
     
-        Public Sub EditButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+		Public Sub EditButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+
+			'if me.inv_created.text = "YES" then
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Modification Not Allowed")
+				return
+			'end if
             
           ' Click handler for EditButton.
           ' Customize by adding code before the call or replace the call to the Base function with your own code.
@@ -165,6 +192,8 @@ Partial Public Class ShowInv_hdr
         Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents bill_name As System.Web.UI.WebControls.Literal
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents BtnPrint As ThemeButton
+        Public WithEvents BtnPrtInv As System.Web.UI.WebControls.Button
         Public WithEvents EditButton As ThemeButton
         Public WithEvents freight_to_pay As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
@@ -174,11 +203,14 @@ Partial Public Class ShowInv_hdr
         Public WithEvents gr_rr_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents grand_total As System.Web.UI.WebControls.Literal
         Public WithEvents grand_totalLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id_commodity As System.Web.UI.WebControls.LinkButton
+        Public WithEvents id_commodityLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_party As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_transporter As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id1 As System.Web.UI.WebControls.Literal
         Public WithEvents inv_dt As System.Web.UI.WebControls.Literal
         Public WithEvents inv_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_hdrDialogEditButton As System.Web.UI.WebControls.ImageButton

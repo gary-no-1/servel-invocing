@@ -181,9 +181,17 @@ Partial Public Class ShowCompany
         Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents EditButton As ThemeButton
         Public WithEvents email As System.Web.UI.WebControls.Literal
+        Public WithEvents email_bcc As System.Web.UI.WebControls.Literal
+        Public WithEvents email_bccLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents email_from As System.Web.UI.WebControls.Literal
+        Public WithEvents email_fromLabel As System.Web.UI.WebControls.Literal
         Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
         Public WithEvents goods As System.Web.UI.WebControls.Literal
         Public WithEvents goodsLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_declaration As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_declarationLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_email_body As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_email_bodyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents license As System.Web.UI.WebControls.Literal
         Public WithEvents licenseLabel As System.Web.UI.WebControls.Literal
         Public WithEvents name As System.Web.UI.WebControls.Literal

@@ -200,9 +200,7 @@ Public Class BaseInv_itemsTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setamount()
-            Setass_value()
             Setid_item()
-            Setitem_code()
             Setitem_description()
             Setqty()
             Setrate()
@@ -245,7 +243,7 @@ Public Class BaseInv_itemsTableControlRow
                 ' If the amount is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.amount)
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.amount, "c")
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.amount.Text = formattedValue
@@ -255,7 +253,7 @@ Public Class BaseInv_itemsTableControlRow
                 ' amount is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.amount.Text = Inv_itemsTable.amount.Format(Inv_itemsTable.amount.DefaultValue)
+                Me.amount.Text = Inv_itemsTable.amount.Format(Inv_itemsTable.amount.DefaultValue, "c")
                         		
                 End If
                  
@@ -265,50 +263,6 @@ Public Class BaseInv_itemsTableControlRow
                 OrElse Me.amount.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.amount.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setass_value()
-            
-        
-            ' Set the ass_value Literal on the webpage with value from the
-            ' inv_items database record.
-
-            ' Me.DataSource is the inv_items record retrieved from the database.
-            ' Me.ass_value is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setass_value()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.ass_valueSpecified Then
-                				
-                ' If the ass_value is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.ass_value)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.ass_value.Text = formattedValue
-              
-            Else 
-            
-                ' ass_value is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.ass_value.Text = Inv_itemsTable.ass_value.Format(Inv_itemsTable.ass_value.DefaultValue)
-                        		
-                End If
-                 
-            ' If the ass_value is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.ass_value.Text Is Nothing _
-                OrElse Me.ass_value.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.ass_value.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -353,50 +307,6 @@ Public Class BaseInv_itemsTableControlRow
                 OrElse Me.id_item.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.id_item.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setitem_code()
-            
-        
-            ' Set the item_code Literal on the webpage with value from the
-            ' inv_items database record.
-
-            ' Me.DataSource is the inv_items record retrieved from the database.
-            ' Me.item_code is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setitem_code()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.item_codeSpecified Then
-                				
-                ' If the item_code is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.item_code)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.item_code.Text = formattedValue
-              
-            Else 
-            
-                ' item_code is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.item_code.Text = Inv_itemsTable.item_code.Format(Inv_itemsTable.item_code.DefaultValue)
-                        		
-                End If
-                 
-            ' If the item_code is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.item_code.Text Is Nothing _
-                OrElse Me.item_code.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.item_code.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -689,9 +599,7 @@ Public Class BaseInv_itemsTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getamount()
-            Getass_value()
             Getid_item()
-            Getitem_code()
             Getitem_description()
             Getqty()
             Getrate()
@@ -703,15 +611,7 @@ Public Class BaseInv_itemsTableControlRow
             
         End Sub
                 
-        Public Overridable Sub Getass_value()
-            
-        End Sub
-                
         Public Overridable Sub Getid_item()
-            
-        End Sub
-                
-        Public Overridable Sub Getitem_code()
             
         End Sub
                 
@@ -929,21 +829,9 @@ Public Class BaseInv_itemsTableControlRow
             End Get
         End Property
             
-        Public ReadOnly Property ass_value() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ass_value"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
         Public ReadOnly Property id_item() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_item"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property item_code() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_code"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -1176,9 +1064,7 @@ Public Class BaseInv_itemsTableControl
             ' Call the Set methods for each controls on the panel
         
             SetamountLabel()
-            Setass_valueLabel()
             Setid_itemLabel()
-            Setitem_codeLabel()
             Setitem_descriptionLabel()
             SetqtyLabel()
             SetrateLabel()
@@ -1217,9 +1103,7 @@ Public Class BaseInv_itemsTableControl
             ' Initialize other asp controls
             
             SetamountLabel()
-            Setass_valueLabel()
             Setid_itemLabel()
-            Setitem_codeLabel()
             Setitem_descriptionLabel()
             SetqtyLabel()
             SetrateLabel()
@@ -1565,14 +1449,8 @@ Public Class BaseInv_itemsTableControl
                         If recControl.amount.Text <> "" Then
                             rec.Parse(recControl.amount.Text, Inv_itemsTable.amount)
                         End If
-                        If recControl.ass_value.Text <> "" Then
-                            rec.Parse(recControl.ass_value.Text, Inv_itemsTable.ass_value)
-                        End If
                         If recControl.id_item.Text <> "" Then
                             rec.Parse(recControl.id_item.Text, Inv_itemsTable.id_item)
-                        End If
-                        If recControl.item_code.Text <> "" Then
-                            rec.Parse(recControl.item_code.Text, Inv_itemsTable.item_code)
                         End If
                         If recControl.item_description.Text <> "" Then
                             rec.Parse(recControl.item_description.Text, Inv_itemsTable.item_description)
@@ -1658,17 +1536,7 @@ Public Class BaseInv_itemsTableControl
                     
         End Sub
                 
-        Public Overridable Sub Setass_valueLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Setid_itemLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setitem_codeLabel()
             
                     
         End Sub
@@ -1935,12 +1803,6 @@ Public Class BaseInv_itemsTableControl
             End Get
         End Property
         
-        Public ReadOnly Property ass_valueLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ass_valueLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property id_itemLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_itemLabel"), System.Web.UI.WebControls.Literal)
@@ -1950,12 +1812,6 @@ Public Class BaseInv_itemsTableControl
         Public ReadOnly Property Inv_itemsTitle() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_itemsTitle"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property item_codeLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_codeLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -2138,20 +1994,8 @@ Public Class BaseInv_taxesTableControlRow
       
             ' Call the Set methods for each controls on the panel
         
-            Setcalc_type()
-            Setexcise_total()
-            Setgrand_total1()
-            Setid_taxes()
-            Setitem_total1()
-            Setsort_order()
             Settax_amount()
-            Settax_code()
-            Settax_lock()
-            Settax_name()
-            Settax_on()
             Settax_print()
-            Settax_rate()
-            Settax_type()
       
       
             Me.IsNewRecord = True
@@ -2170,270 +2014,6 @@ Public Class BaseInv_taxesTableControlRow
         End Sub
         
         
-        Public Overridable Sub Setcalc_type()
-            
-        
-            ' Set the calc_type Literal on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.calc_type is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setcalc_type()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.calc_typeSpecified Then
-                				
-                ' If the calc_type is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.calc_type)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.calc_type.Text = formattedValue
-              
-            Else 
-            
-                ' calc_type is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.calc_type.Text = Inv_taxesTable.calc_type.Format(Inv_taxesTable.calc_type.DefaultValue)
-                        		
-                End If
-                 
-            ' If the calc_type is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.calc_type.Text Is Nothing _
-                OrElse Me.calc_type.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.calc_type.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setexcise_total()
-            
-        
-            ' Set the excise_total Literal on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.excise_total is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setexcise_total()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.excise_totalSpecified Then
-                				
-                ' If the excise_total is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.excise_total)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.excise_total.Text = formattedValue
-              
-            Else 
-            
-                ' excise_total is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.excise_total.Text = Inv_taxesTable.excise_total.Format(Inv_taxesTable.excise_total.DefaultValue)
-                        		
-                End If
-                 
-            ' If the excise_total is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.excise_total.Text Is Nothing _
-                OrElse Me.excise_total.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.excise_total.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setgrand_total1()
-            
-        
-            ' Set the grand_total Literal on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.grand_total1 is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setgrand_total1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.grand_totalSpecified Then
-                				
-                ' If the grand_total is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.grand_total)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.grand_total1.Text = formattedValue
-              
-            Else 
-            
-                ' grand_total is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.grand_total1.Text = Inv_taxesTable.grand_total.Format(Inv_taxesTable.grand_total.DefaultValue)
-                        		
-                End If
-                 
-            ' If the grand_total is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.grand_total1.Text Is Nothing _
-                OrElse Me.grand_total1.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.grand_total1.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setid_taxes()
-            
-        
-            ' Set the id_taxes Literal on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.id_taxes is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setid_taxes()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_taxesSpecified Then
-                				
-                ' If the id_taxes is non-NULL, then format the value.
-
-                ' The Format method will return the Display Foreign Key As (DFKA) value
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.id_taxes)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.id_taxes.Text = formattedValue
-              
-            Else 
-            
-                ' id_taxes is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.id_taxes.Text = Inv_taxesTable.id_taxes.Format(Inv_taxesTable.id_taxes.DefaultValue)
-                        		
-                End If
-                 
-            ' If the id_taxes is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.id_taxes.Text Is Nothing _
-                OrElse Me.id_taxes.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.id_taxes.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setitem_total1()
-            
-        
-            ' Set the item_total Literal on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.item_total1 is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setitem_total1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.item_totalSpecified Then
-                				
-                ' If the item_total is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.item_total)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.item_total1.Text = formattedValue
-              
-            Else 
-            
-                ' item_total is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.item_total1.Text = Inv_taxesTable.item_total.Format(Inv_taxesTable.item_total.DefaultValue)
-                        		
-                End If
-                 
-            ' If the item_total is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.item_total1.Text Is Nothing _
-                OrElse Me.item_total1.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.item_total1.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setsort_order()
-            
-        
-            ' Set the sort_order Literal on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.sort_order is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setsort_order()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.sort_orderSpecified Then
-                				
-                ' If the sort_order is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.sort_order)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.sort_order.Text = formattedValue
-              
-            Else 
-            
-                ' sort_order is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.sort_order.Text = Inv_taxesTable.sort_order.Format(Inv_taxesTable.sort_order.DefaultValue)
-                        		
-                End If
-                 
-            ' If the sort_order is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.sort_order.Text Is Nothing _
-                OrElse Me.sort_order.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.sort_order.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
         Public Overridable Sub Settax_amount()
             
         
@@ -2454,7 +2034,7 @@ Public Class BaseInv_taxesTableControlRow
                 ' If the tax_amount is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_amount)
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_amount, "c")
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.tax_amount.Text = formattedValue
@@ -2464,7 +2044,7 @@ Public Class BaseInv_taxesTableControlRow
                 ' tax_amount is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.tax_amount.Text = Inv_taxesTable.tax_amount.Format(Inv_taxesTable.tax_amount.DefaultValue)
+                Me.tax_amount.Text = Inv_taxesTable.tax_amount.Format(Inv_taxesTable.tax_amount.DefaultValue, "c")
                         		
                 End If
                  
@@ -2474,182 +2054,6 @@ Public Class BaseInv_taxesTableControlRow
                 OrElse Me.tax_amount.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.tax_amount.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Settax_code()
-            
-        
-            ' Set the tax_code Literal on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_code is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_code()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_codeSpecified Then
-                				
-                ' If the tax_code is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_code)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.tax_code.Text = formattedValue
-              
-            Else 
-            
-                ' tax_code is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tax_code.Text = Inv_taxesTable.tax_code.Format(Inv_taxesTable.tax_code.DefaultValue)
-                        		
-                End If
-                 
-            ' If the tax_code is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.tax_code.Text Is Nothing _
-                OrElse Me.tax_code.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.tax_code.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Settax_lock()
-            
-        
-            ' Set the tax_lock Literal on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_lock is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_lock()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_lockSpecified Then
-                				
-                ' If the tax_lock is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_lock)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.tax_lock.Text = formattedValue
-              
-            Else 
-            
-                ' tax_lock is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tax_lock.Text = Inv_taxesTable.tax_lock.Format(Inv_taxesTable.tax_lock.DefaultValue)
-                        		
-                End If
-                 
-            ' If the tax_lock is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.tax_lock.Text Is Nothing _
-                OrElse Me.tax_lock.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.tax_lock.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Settax_name()
-            
-        
-            ' Set the tax_name Literal on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_name is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_name()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_nameSpecified Then
-                				
-                ' If the tax_name is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_name)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.tax_name.Text = formattedValue
-              
-            Else 
-            
-                ' tax_name is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tax_name.Text = Inv_taxesTable.tax_name.Format(Inv_taxesTable.tax_name.DefaultValue)
-                        		
-                End If
-                 
-            ' If the tax_name is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.tax_name.Text Is Nothing _
-                OrElse Me.tax_name.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.tax_name.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Settax_on()
-            
-        
-            ' Set the tax_on Literal on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_on is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_on()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_onSpecified Then
-                				
-                ' If the tax_on is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_on)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.tax_on.Text = formattedValue
-              
-            Else 
-            
-                ' tax_on is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tax_on.Text = Inv_taxesTable.tax_on.Format(Inv_taxesTable.tax_on.DefaultValue)
-                        		
-                End If
-                 
-            ' If the tax_on is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.tax_on.Text Is Nothing _
-                OrElse Me.tax_on.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.tax_on.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -2694,94 +2098,6 @@ Public Class BaseInv_taxesTableControlRow
                 OrElse Me.tax_print.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.tax_print.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Settax_rate()
-            
-        
-            ' Set the tax_rate Literal on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_rate is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_rate()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_rateSpecified Then
-                				
-                ' If the tax_rate is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_rate)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.tax_rate.Text = formattedValue
-              
-            Else 
-            
-                ' tax_rate is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tax_rate.Text = Inv_taxesTable.tax_rate.Format(Inv_taxesTable.tax_rate.DefaultValue)
-                        		
-                End If
-                 
-            ' If the tax_rate is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.tax_rate.Text Is Nothing _
-                OrElse Me.tax_rate.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.tax_rate.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Settax_type()
-            
-        
-            ' Set the tax_type Literal on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_type is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_type()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_typeSpecified Then
-                				
-                ' If the tax_type is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_type)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.tax_type.Text = formattedValue
-              
-            Else 
-            
-                ' tax_type is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tax_type.Text = Inv_taxesTable.tax_type.Format(Inv_taxesTable.tax_type.DefaultValue)
-                        		
-                End If
-                 
-            ' If the tax_type is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.tax_type.Text Is Nothing _
-                OrElse Me.tax_type.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.tax_type.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -2897,76 +2213,16 @@ Public Class BaseInv_taxesTableControlRow
       
             ' Call the Get methods for each of the user interface controls.
         
-            Getcalc_type()
-            Getexcise_total()
-            Getgrand_total1()
-            Getid_taxes()
-            Getitem_total1()
-            Getsort_order()
             Gettax_amount()
-            Gettax_code()
-            Gettax_lock()
-            Gettax_name()
-            Gettax_on()
             Gettax_print()
-            Gettax_rate()
-            Gettax_type()
         End Sub
         
         
-        Public Overridable Sub Getcalc_type()
-            
-        End Sub
-                
-        Public Overridable Sub Getexcise_total()
-            
-        End Sub
-                
-        Public Overridable Sub Getgrand_total1()
-            
-        End Sub
-                
-        Public Overridable Sub Getid_taxes()
-            
-        End Sub
-                
-        Public Overridable Sub Getitem_total1()
-            
-        End Sub
-                
-        Public Overridable Sub Getsort_order()
-            
-        End Sub
-                
         Public Overridable Sub Gettax_amount()
             
         End Sub
                 
-        Public Overridable Sub Gettax_code()
-            
-        End Sub
-                
-        Public Overridable Sub Gettax_lock()
-            
-        End Sub
-                
-        Public Overridable Sub Gettax_name()
-            
-        End Sub
-                
-        Public Overridable Sub Gettax_on()
-            
-        End Sub
-                
         Public Overridable Sub Gettax_print()
-            
-        End Sub
-                
-        Public Overridable Sub Gettax_rate()
-            
-        End Sub
-                
-        Public Overridable Sub Gettax_type()
             
         End Sub
                 
@@ -3162,87 +2418,15 @@ Public Class BaseInv_taxesTableControlRow
 
 #Region "Helper Properties"
         
-        Public ReadOnly Property calc_type() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "calc_type"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property excise_total() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "excise_total"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property grand_total1() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_total1"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property id_taxes() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_taxes"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property item_total1() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_total1"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property sort_order() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_order"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
         Public ReadOnly Property tax_amount() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_amount"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property tax_code() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_code"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_lock() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_lock"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_name() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_name"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_on() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_on"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
         Public ReadOnly Property tax_print() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_print"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_rate() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_rate"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_type() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_type"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -3441,29 +2625,14 @@ Public Class BaseInv_taxesTableControl
             If Me.DataSource Is Nothing Then
                 Return
             End If
-      
-          ' Improve performance by prefetching display as records.
-          Me.PreFetchForeignKeyValues()
-             
+           
             ' Setup the pagination controls.
             BindPaginationControls()
 
             ' Call the Set methods for each controls on the panel
         
-            Setcalc_typeLabel()
-            Setexcise_totalLabel()
-            Setgrand_totalLabel1()
-            Setid_taxesLabel()
-            Setitem_totalLabel1()
-            Setsort_orderLabel()
             Settax_amountLabel()
-            Settax_codeLabel()
-            Settax_lockLabel()
-            Settax_nameLabel()
-            Settax_onLabel()
             Settax_printLabel()
-            Settax_rateLabel()
-            Settax_typeLabel()
       
   
 
@@ -3497,32 +2666,11 @@ Public Class BaseInv_taxesTableControl
 
             ' Initialize other asp controls
             
-            Setcalc_typeLabel()
-            Setexcise_totalLabel()
-            Setgrand_totalLabel1()
-            Setid_taxesLabel()
-            Setitem_totalLabel1()
-            Setsort_orderLabel()
             Settax_amountLabel()
-            Settax_codeLabel()
-            Settax_lockLabel()
-            Settax_nameLabel()
-            Settax_onLabel()
             Settax_printLabel()
-            Settax_rateLabel()
-            Settax_typeLabel()
       End Sub
 
       
-          Public Sub PreFetchForeignKeyValues()
-          If (IsNothing(Me.DataSource))
-            Return
-          End If
-          
-            Me.Page.PregetDfkaRecords(Inv_taxesTable.id_taxes, Me.DataSource)
-          
-          End Sub
-        
       
         Public Overridable Sub RegisterPostback()
         
@@ -3849,47 +2997,11 @@ Public Class BaseInv_taxesTableControl
                     
                         Dim rec As Inv_taxesRecord = New Inv_taxesRecord()
         
-                        If recControl.calc_type.Text <> "" Then
-                            rec.Parse(recControl.calc_type.Text, Inv_taxesTable.calc_type)
-                        End If
-                        If recControl.excise_total.Text <> "" Then
-                            rec.Parse(recControl.excise_total.Text, Inv_taxesTable.excise_total)
-                        End If
-                        If recControl.grand_total1.Text <> "" Then
-                            rec.Parse(recControl.grand_total1.Text, Inv_taxesTable.grand_total)
-                        End If
-                        If recControl.id_taxes.Text <> "" Then
-                            rec.Parse(recControl.id_taxes.Text, Inv_taxesTable.id_taxes)
-                        End If
-                        If recControl.item_total1.Text <> "" Then
-                            rec.Parse(recControl.item_total1.Text, Inv_taxesTable.item_total)
-                        End If
-                        If recControl.sort_order.Text <> "" Then
-                            rec.Parse(recControl.sort_order.Text, Inv_taxesTable.sort_order)
-                        End If
                         If recControl.tax_amount.Text <> "" Then
                             rec.Parse(recControl.tax_amount.Text, Inv_taxesTable.tax_amount)
                         End If
-                        If recControl.tax_code.Text <> "" Then
-                            rec.Parse(recControl.tax_code.Text, Inv_taxesTable.tax_code)
-                        End If
-                        If recControl.tax_lock.Text <> "" Then
-                            rec.Parse(recControl.tax_lock.Text, Inv_taxesTable.tax_lock)
-                        End If
-                        If recControl.tax_name.Text <> "" Then
-                            rec.Parse(recControl.tax_name.Text, Inv_taxesTable.tax_name)
-                        End If
-                        If recControl.tax_on.Text <> "" Then
-                            rec.Parse(recControl.tax_on.Text, Inv_taxesTable.tax_on)
-                        End If
                         If recControl.tax_print.Text <> "" Then
                             rec.Parse(recControl.tax_print.Text, Inv_taxesTable.tax_print)
-                        End If
-                        If recControl.tax_rate.Text <> "" Then
-                            rec.Parse(recControl.tax_rate.Text, Inv_taxesTable.tax_rate)
-                        End If
-                        If recControl.tax_type.Text <> "" Then
-                            rec.Parse(recControl.tax_type.Text, Inv_taxesTable.tax_type)
                         End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
@@ -3958,72 +3070,12 @@ Public Class BaseInv_taxesTableControl
       
         ' Create Set, WhereClause, and Populate Methods
         
-        Public Overridable Sub Setcalc_typeLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setexcise_totalLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setgrand_totalLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setid_taxesLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setitem_totalLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setsort_orderLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Settax_amountLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub Settax_codeLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settax_lockLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settax_nameLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settax_onLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Settax_printLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settax_rateLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settax_typeLabel()
             
                     
         End Sub
@@ -4264,45 +3316,9 @@ Public Class BaseInv_taxesTableControl
        
 #Region "Helper Properties"
         
-        Public ReadOnly Property calc_typeLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "calc_typeLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property excise_totalLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "excise_totalLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property grand_totalLabel1() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_totalLabel1"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property id_taxesLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_taxesLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property Inv_taxesTitle() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_taxesTitle"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property item_totalLabel1() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_totalLabel1"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property sort_orderLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_orderLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -4312,45 +3328,9 @@ Public Class BaseInv_taxesTableControl
             End Get
         End Property
         
-        Public ReadOnly Property tax_codeLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_codeLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tax_lockLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_lockLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tax_nameLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_nameLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tax_onLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_onLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property tax_printLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_printLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tax_rateLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_rateLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tax_typeLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_typeLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -4510,7 +3490,6 @@ Public Class BaseInv_termsTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setnarration()
-            Setsort_order1()
       
       
             Me.IsNewRecord = True
@@ -4569,50 +3548,6 @@ Public Class BaseInv_termsTableControlRow
                 OrElse Me.narration.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.narration.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setsort_order1()
-            
-        
-            ' Set the sort_order Literal on the webpage with value from the
-            ' inv_terms database record.
-
-            ' Me.DataSource is the inv_terms record retrieved from the database.
-            ' Me.sort_order1 is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setsort_order1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.sort_orderSpecified Then
-                				
-                ' If the sort_order is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_termsTable.sort_order)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.sort_order1.Text = formattedValue
-              
-            Else 
-            
-                ' sort_order is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.sort_order1.Text = Inv_termsTable.sort_order.Format(Inv_termsTable.sort_order.DefaultValue)
-                        		
-                End If
-                 
-            ' If the sort_order is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.sort_order1.Text Is Nothing _
-                OrElse Me.sort_order1.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.sort_order1.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -4729,15 +3664,10 @@ Public Class BaseInv_termsTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getnarration()
-            Getsort_order1()
         End Sub
         
         
         Public Overridable Sub Getnarration()
-            
-        End Sub
-                
-        Public Overridable Sub Getsort_order1()
             
         End Sub
                 
@@ -4936,12 +3866,6 @@ Public Class BaseInv_termsTableControlRow
         Public ReadOnly Property narration() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "narration"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property sort_order1() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_order1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -5147,7 +4071,6 @@ Public Class BaseInv_termsTableControl
             ' Call the Set methods for each controls on the panel
         
             SetnarrationLabel()
-            Setsort_orderLabel1()
       
   
 
@@ -5182,7 +4105,6 @@ Public Class BaseInv_termsTableControl
             ' Initialize other asp controls
             
             SetnarrationLabel()
-            Setsort_orderLabel1()
       End Sub
 
       
@@ -5515,9 +4437,6 @@ Public Class BaseInv_termsTableControl
                         If recControl.narration.Text <> "" Then
                             rec.Parse(recControl.narration.Text, Inv_termsTable.narration)
                         End If
-                        If recControl.sort_order1.Text <> "" Then
-                            rec.Parse(recControl.sort_order1.Text, Inv_termsTable.sort_order)
-                        End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
                     End If
@@ -5586,11 +4505,6 @@ Public Class BaseInv_termsTableControl
         ' Create Set, WhereClause, and Populate Methods
         
         Public Overridable Sub SetnarrationLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setsort_orderLabel1()
             
                     
         End Sub
@@ -5843,12 +4757,6 @@ Public Class BaseInv_termsTableControl
             End Get
         End Property
         
-        Public ReadOnly Property sort_orderLabel1() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_orderLabel1"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
 #End Region
 
 #Region "Helper Functions"
@@ -6044,6 +4952,7 @@ Public Class BaseInv_hdrRecordControl
             Setbill_addressLabel()
             Setbill_name()
             Setbill_nameLabel()
+            SetBtnPrtInv()
             Setfreight_to_pay()
             Setfreight_to_payLabel()
             Setgr_rr_dt()
@@ -6054,10 +4963,13 @@ Public Class BaseInv_hdrRecordControl
             Setgrand_totalLabel()
             Setid_party()
             Setid_partyLabel()
-            Setid_tax_group()
-            Setid_tax_groupLabel()
             Setid_transporter()
             Setid_transporterLabel()
+            Setid1()
+            Setinv_dt()
+            Setinv_dtLabel()
+            Setinv_no()
+            Setinv_noLabel()
             Setitem_total()
             Setitem_totalLabel()
             Setno_of_packages()
@@ -6068,10 +4980,6 @@ Public Class BaseInv_hdrRecordControl
             Setpo_dtLabel()
             Setpo_no()
             Setpo_noLabel()
-            Setpro_inv_dt()
-            Setpro_inv_dtLabel()
-            Setpro_inv_no()
-            Setpro_inv_noLabel()
             Setroad_permit_no()
             Setroad_permit_noLabel()
             Setsale_ord_dt()
@@ -6373,7 +5281,7 @@ Public Class BaseInv_hdrRecordControl
                 ' If the grand_total is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.grand_total)
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.grand_total, "c")
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.grand_total.Text = formattedValue
@@ -6383,7 +5291,7 @@ Public Class BaseInv_hdrRecordControl
                 ' grand_total is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.grand_total.Text = Inv_hdrTable.grand_total.Format(Inv_hdrTable.grand_total.DefaultValue)
+                Me.grand_total.Text = Inv_hdrTable.grand_total.Format(Inv_hdrTable.grand_total.DefaultValue, "c")
                         		
                 End If
                  
@@ -6441,50 +5349,6 @@ Public Class BaseInv_hdrRecordControl
                   
         End Sub
                 
-        Public Overridable Sub Setid_tax_group()
-            
-        
-            ' Set the id_tax_group Literal on the webpage with value from the
-            ' inv_hdr database record.
-
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.id_tax_group is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setid_tax_group()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_tax_groupSpecified Then
-                				
-                ' If the id_tax_group is non-NULL, then format the value.
-
-                ' The Format method will return the Display Foreign Key As (DFKA) value
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.id_tax_group)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.id_tax_group.Text = formattedValue
-              
-            Else 
-            
-                ' id_tax_group is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.id_tax_group.Text = Inv_hdrTable.id_tax_group.Format(Inv_hdrTable.id_tax_group.DefaultValue)
-                        		
-                End If
-                 
-            ' If the id_tax_group is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.id_tax_group.Text Is Nothing _
-                OrElse Me.id_tax_group.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.id_tax_group.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
         Public Overridable Sub Setid_transporter()
             
         
@@ -6529,6 +5393,130 @@ Public Class BaseInv_hdrRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setid1()
+            
+        
+            ' Set the id Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.id1 is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id0Specified Then
+                				
+                ' If the id is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.id0)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.id1.Text = formattedValue
+              
+            Else 
+            
+                ' id is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.id1.Text = Inv_hdrTable.id0.Format(Inv_hdrTable.id0.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setinv_dt()
+            
+        
+            ' Set the inv_dt Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.inv_dt is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_dt()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_dtSpecified Then
+                				
+                ' If the inv_dt is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.inv_dt, "d")
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.inv_dt.Text = formattedValue
+              
+            Else 
+            
+                ' inv_dt is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_dt.Text = Inv_hdrTable.inv_dt.Format(Inv_hdrTable.inv_dt.DefaultValue, "d")
+                        		
+                End If
+                 
+            ' If the inv_dt is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.inv_dt.Text Is Nothing _
+                OrElse Me.inv_dt.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.inv_dt.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setinv_no()
+            
+        
+            ' Set the inv_no Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.inv_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_noSpecified Then
+                				
+                ' If the inv_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.inv_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.inv_no.Text = formattedValue
+              
+            Else 
+            
+                ' inv_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_no.Text = Inv_hdrTable.inv_no.Format(Inv_hdrTable.inv_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the inv_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.inv_no.Text Is Nothing _
+                OrElse Me.inv_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.inv_no.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setitem_total()
             
         
@@ -6549,7 +5537,7 @@ Public Class BaseInv_hdrRecordControl
                 ' If the item_total is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.item_total)
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.item_total, "c")
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.item_total.Text = formattedValue
@@ -6559,7 +5547,7 @@ Public Class BaseInv_hdrRecordControl
                 ' item_total is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.item_total.Text = Inv_hdrTable.item_total.Format(Inv_hdrTable.item_total.DefaultValue)
+                Me.item_total.Text = Inv_hdrTable.item_total.Format(Inv_hdrTable.item_total.DefaultValue, "c")
                         		
                 End If
                  
@@ -6745,94 +5733,6 @@ Public Class BaseInv_hdrRecordControl
                 OrElse Me.po_no.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.po_no.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setpro_inv_dt()
-            
-        
-            ' Set the pro_inv_dt Literal on the webpage with value from the
-            ' inv_hdr database record.
-
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.pro_inv_dt is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setpro_inv_dt()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.pro_inv_dtSpecified Then
-                				
-                ' If the pro_inv_dt is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.pro_inv_dt, "d")
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.pro_inv_dt.Text = formattedValue
-              
-            Else 
-            
-                ' pro_inv_dt is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.pro_inv_dt.Text = Inv_hdrTable.pro_inv_dt.Format(Inv_hdrTable.pro_inv_dt.DefaultValue, "d")
-                        		
-                End If
-                 
-            ' If the pro_inv_dt is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.pro_inv_dt.Text Is Nothing _
-                OrElse Me.pro_inv_dt.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.pro_inv_dt.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setpro_inv_no()
-            
-        
-            ' Set the pro_inv_no Literal on the webpage with value from the
-            ' inv_hdr database record.
-
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.pro_inv_no is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setpro_inv_no()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.pro_inv_noSpecified Then
-                				
-                ' If the pro_inv_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.pro_inv_no)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.pro_inv_no.Text = formattedValue
-              
-            Else 
-            
-                ' pro_inv_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.pro_inv_no.Text = Inv_hdrTable.pro_inv_no.Format(Inv_hdrTable.pro_inv_no.DefaultValue)
-                        		
-                End If
-                 
-            ' If the pro_inv_no is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.pro_inv_no.Text Is Nothing _
-                OrElse Me.pro_inv_no.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.pro_inv_no.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -7199,6 +6099,11 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub SetBtnPrtInv()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setfreight_to_payLabel()
             
                     
@@ -7224,12 +6129,17 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Setid_tax_groupLabel()
+        Public Overridable Sub Setid_transporterLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub Setid_transporterLabel()
+        Public Overridable Sub Setinv_dtLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setinv_noLabel()
             
                     
         End Sub
@@ -7255,16 +6165,6 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setpo_noLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setpro_inv_dtLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setpro_inv_noLabel()
             
                     
         End Sub
@@ -7429,15 +6329,15 @@ Public Class BaseInv_hdrRecordControl
             Getgr_rr_no()
             Getgrand_total()
             Getid_party()
-            Getid_tax_group()
             Getid_transporter()
+            Getid1()
+            Getinv_dt()
+            Getinv_no()
             Getitem_total()
             Getno_of_packages()
             Getpacking_details()
             Getpo_dt()
             Getpo_no()
-            Getpro_inv_dt()
-            Getpro_inv_no()
             Getroad_permit_no()
             Getsale_ord_dt()
             Getsale_ord_no()
@@ -7477,11 +6377,19 @@ Public Class BaseInv_hdrRecordControl
             
         End Sub
                 
-        Public Overridable Sub Getid_tax_group()
+        Public Overridable Sub Getid_transporter()
             
         End Sub
                 
-        Public Overridable Sub Getid_transporter()
+        Public Overridable Sub Getid1()
+            
+        End Sub
+                
+        Public Overridable Sub Getinv_dt()
+            
+        End Sub
+                
+        Public Overridable Sub Getinv_no()
             
         End Sub
                 
@@ -7502,14 +6410,6 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getpo_no()
-            
-        End Sub
-                
-        Public Overridable Sub Getpro_inv_dt()
-            
-        End Sub
-                
-        Public Overridable Sub Getpro_inv_no()
             
         End Sub
                 
@@ -7983,6 +6883,12 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property BtnPrtInv() As System.Web.UI.WebControls.Button
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "BtnPrtInv"), System.Web.UI.WebControls.Button)
+            End Get
+        End Property
+        
         Public ReadOnly Property freight_to_pay() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "freight_to_pay"), System.Web.UI.WebControls.Literal)
@@ -8043,18 +6949,6 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property id_tax_group() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_group"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property id_tax_groupLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_groupLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property id_transporter() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_transporter"), System.Web.UI.WebControls.Literal)
@@ -8067,9 +6961,39 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property id1() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id1"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_dt() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_dt"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_dtLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_dtLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property Inv_hdrTitle() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_hdrTitle"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property inv_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -8130,30 +7054,6 @@ Public Class BaseInv_hdrRecordControl
         Public ReadOnly Property po_noLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_noLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property pro_inv_dt() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_dt"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property pro_inv_dtLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_dtLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property pro_inv_no() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_no"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property pro_inv_noLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

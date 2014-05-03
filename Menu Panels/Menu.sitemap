@@ -36,6 +36,7 @@ The tags are case-sensitive and should contain the following case-sensitive attr
       <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
       <siteMapNode title="Item Types" description="{Menu:Show} Item Types" url="~/item_types/ShowItem_typesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="Item Groups" description="{Menu:Show} Item Groups" url="~/item_groups/ShowItem_groupsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      <siteMapNode title="Commodity" description="{Menu:Show} Commodity" url="~/commodity/ShowCommodityTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
       <siteMapNode title="Units Of Measure" description="{Menu:Show} Units Ofmeasure" url="~/unitsofmeasure/ShowUnitsofmeasureTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="Sale Person" description="{Menu:Show} Sale Person" url="~/saleperson/ShowSalepersonTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />

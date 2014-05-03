@@ -73,6 +73,12 @@
     <Compile Include="Shared\BaseFormulaUtils.vb" />
     <Compile Include="Shared\DatabaseObjects.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="CommodityDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommoditySqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CompanyDefinition.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -245,6 +251,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseUsersSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseCommoditySqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseCompanySqlTable.vb" >

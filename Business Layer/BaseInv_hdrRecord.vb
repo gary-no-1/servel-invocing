@@ -513,6 +513,57 @@ Namespace ServelInvocing.Business
 	End Sub
 
 	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_commodity field.
+	''' </summary>
+	Public Function Getid_commodityValue() As ColumnValue
+		Return Me.GetValue(TableUtils.id_commodityColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_commodity field.
+	''' </summary>
+	Public Function Getid_commodityFieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id_commodityColumn).ToInt32(), Int32)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_commodity field.
+	''' </summary>
+	Public Sub Setid_commodityFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.id_commodityColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_commodity field.
+	''' </summary>
+	Public Sub Setid_commodityFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.id_commodityColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_commodity field.
+	''' </summary>
+	Public Sub Setid_commodityFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_commodityColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_commodity field.
+	''' </summary>
+	Public Sub Setid_commodityFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_commodityColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_commodity field.
+	''' </summary>
+	Public Sub Setid_commodityFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_commodityColumn)
+	End Sub
+	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_tax_group field.
 	''' </summary>
 	Public Function Getid_tax_groupValue() As ColumnValue
@@ -1489,6 +1540,42 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property po_dtDefault() As String
         Get
             Return TableUtils.po_dtColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.id_commodity field.
+	''' </summary>
+	Public Property id_commodity() As Int32
+		Get 
+			Return CType(Me.GetValue(TableUtils.id_commodityColumn).ToInt32(), Int32)
+		End Get
+		Set (ByVal val As Int32) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.id_commodityColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property id_commoditySpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id_commodityColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property id_commodityDefault() As String
+        Get
+            Return TableUtils.id_commodityColumn.DefaultValue
         End Get
     End Property
 

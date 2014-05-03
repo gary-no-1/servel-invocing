@@ -137,6 +137,70 @@ Public Class Pro_inv_taxesTableControlRow
         ' SaveData, GetUIData, and Validate methods.
         
 
+
+		Protected Overrides Sub id_taxes_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.id_taxes.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_taxes)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_taxes, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_taxes, selectedValue)Then
+
+                ' construct a whereclause to query a record with taxes.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(TaxesTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As TaxesRecord = TaxesTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Pro_inv_taxesTable.id_taxes.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_taxes.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+            End If
+
+			Dim selectedText As String = id_taxes.SelectedItem.Text
+	    	If not (BaseClasses.Utils.StringUtils.InvariantUCase(selectedText).Equals(BaseClasses.Utils.StringUtils.InvariantUCase(Page.GetResourceValue("Txt:PleaseSelect", "ServelInvocing"))))
+    	    	' if "Please Select" string is selected for first dropdown list,
+	        	' then do not continue populating the second dropdown list.
+				Dim thisTaxes_id As String
+				thisTaxes_id = me.id_taxes.text
+				Dim srchHdrStr As String
+				srchHdrStr = "id = '" + thisTaxes_Id + "'"
+				Dim ProInvTaxesRec As taxesRecord = TaxesTable.GetRecord(srchHdrStr, False)
+				me.tax_code.text  = ProInvtaxesRec.tax_code
+				me.tax_rate.text  = ProInvtaxesRec.tax_rate.tostring()
+				me.tax_name.text  = ProInvtaxesRec.tax_name
+				me.tax_print.text = ProInvtaxesRec.tax_print
+				me.calc_type.text = ProInvtaxesRec.calc_type
+				me.tax_type.text  = ProInvtaxesRec.tax_type
+    	    	Return    
+    		End If
+                
+        End Sub
 End Class
 
   
@@ -521,128 +585,121 @@ Public Class Pro_inv_hdrRecordControl
 			' id_party should be filled , id_tax_group should be filled
 			Dim search_pointer as String = "111"
        	    Dim index As Integer = 0
-
-			Dim irep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_itemsTableControlRepeater"),System.Web.UI.WebControls.Repeater)
-			Dim item_total As Decimal = 0
-           	For Each irepItem As System.Web.UI.WebControls.RepeaterItem In irep.Items
-               	Dim irecControl As Pro_inv_itemsTableControlRow = DirectCast(irepItem.FindControl("Pro_inv_itemsTableControlRow"), Pro_inv_itemsTableControlRow) 
-				item_total += CDec(irecControl.amount.text)
-				
-				index += 1
-       	    Next
-
-			Dim net_total  As Decimal = 0
-			Dim prv_amount As Decimal = 0
-			Dim prv_total  As Decimal = 0
-			Dim tax_amount As Decimal = 0
-			Dim ex_total   As Decimal = 0
-			Dim inv_total  As Decimal = 0
-			
-			net_total  = item_total
-			prv_amount = item_total
-			prv_total  = item_total
-			
-			Dim trep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_taxesTableControlRepeater"),System.Web.UI.WebControls.Repeater)
-       	    index = 0
-           	For Each trepItem As System.Web.UI.WebControls.RepeaterItem In trep.Items
-               	Dim trecControl As Pro_inv_taxesTableControlRow = DirectCast(trepItem.FindControl("Pro_inv_taxesTableControlRow"), Pro_inv_taxesTableControlRow) 
-				'if trecControl.calc_type.text = "ON NET TOTAL        " then
-				if trecControl.calc_type.text.trim() = "ON NET TOTAL" then
-					if trecControl.tax_lock.Checked then
-						tax_amount = CDec(trecControl.tax_amount.text)
-						trecControl.tax_amount.text = Format(tax_amount, "c")
-					else
-						trecControl.tax_on.text = FORMAT(net_total, "c")
-						tax_amount = Math.round(net_total * CDec(trecControl.tax_rate.text) / 100,0)
-						trecControl.tax_amount.text = Format(tax_amount, "c")
-					end if 	
-					prv_total += tax_amount
-					prv_amount = tax_amount
-				end if
-				'if trecControl.calc_type.text = "PREVIOUS AMOUNT     " then
-				if trecControl.calc_type.text.trim() = "PREVIOUS AMOUNT" then
-					if trecControl.tax_lock.Checked then
-						tax_amount = CDec(trecControl.tax_amount.text)
-						trecControl.tax_amount.text = Format(tax_amount, "c")
-					else
-						trecControl.tax_on.text = FORMAT(prv_amount, "c")
-						tax_amount = Math.round(prv_amount * CDec(trecControl.tax_rate.text) / 100,0)
-						trecControl.tax_amount.text = Format(tax_amount, "c")
-					end if	
-					prv_total += tax_amount
-					prv_amount = tax_amount
-				end if
-				'if trecControl.calc_type.text = "PREVIOUS TOTAL      " then
-				if trecControl.calc_type.text.trim() = "PREVIOUS TOTAL" then
-					if trecControl.tax_lock.Checked then
-						tax_amount = CDec(trecControl.tax_amount.text)
-						trecControl.tax_amount.text = Format(tax_amount, "c")
-					else
-						trecControl.tax_on.text = FORMAT(prv_total, "c")
-						tax_amount = Math.round(prv_total * CDec(trecControl.tax_rate.text) / 100,0)
-						trecControl.tax_amount.text = Format(tax_amount, "c")
-					end if	
-					prv_total += tax_amount
-					prv_amount = tax_amount
-				end if
-				'if trecControl.calc_type.text = "ACTUAL              " then
-				if trecControl.calc_type.text.trim() = "ACTUAL" then
-					trecControl.tax_on.text = FORMAT(CDec(trecControl.tax_amount.text),"c")
-					tax_amount = CDec(trecControl.tax_amount.text)
-					trecControl.tax_amount.text = Format(tax_amount, "c")
-					prv_total += tax_amount
-					prv_amount = tax_amount
-				end if
-				if trecControl.calc_type.text.trim() = "SUB TOTAL" then
-					trecControl.tax_on.text = FORMAT(prv_total, "c")
-					tax_amount = prv_total
-					trecControl.tax_amount.text = Format(tax_amount, "c")
-					'prv_total += tax_amount
-					prv_amount = tax_amount
-				end if
-			    ' compute total amount of excise duty
-				if trecControl.tax_type.text.trim() = "EXCISE" then
-					tax_amount = CDec(trecControl.tax_amount.text)
-					ex_total += tax_amount					
-				end if	
-					'Tax_group_dtlsRec = TaxesManyRec(taxctr)
-					'recControl.id_taxes.text = Tax_group_dtlsRec.id_taxes.tostring()
-					'recControl.tax_code.text = Tax_group_dtlsRec.tax_code
-					'recControl.tax_name.text = Tax_group_dtlsRec.tax_name
-					'recControl.tax_print.text = Tax_group_dtlsRec.tax_print
-					'recControl.tax_rate.text = Tax_group_dtlsRec.tax_rate.tostring()
-					'recControl.calc_type.text = Tax_group_dtlsRec.calc_type
-					'recControl.sort_order1.text = Tax_group_dtlsRec.sort_order.tostring()
-				
-				index += 1
-       	    Next
-
-			inv_total = prv_total
-			
-			Dim crep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_taxesTableControlRepeater"),System.Web.UI.WebControls.Repeater)
-           	For Each crepItem As System.Web.UI.WebControls.RepeaterItem In crep.Items
-               	Dim crecControl As Pro_inv_taxesTableControlRow = DirectCast(crepItem.FindControl("Pro_inv_taxesTableControlRow"), Pro_inv_taxesTableControlRow) 
-				crecControl.item_total1.text  = FORMAT(item_total, "c")
-				crecControl.excise_total.text = FORMAT(ex_total, "c")
-				crecControl.grand_total1.text = FORMAT(inv_total, "c")
-				
-				index += 1
-       	    Next
-
-			me.item_total.text  = FORMAT(item_total, "c")
-            me.grand_total.text = FORMAT(prv_total, "c")
-			me.item_totalLabel.visible = true
-			me.item_total.visible = true
-			me.grand_totalLabel.visible = true
-			me.grand_total.visible = true
 			
             Try
-                
+				Dim irep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_itemsTableControlRepeater"),System.Web.UI.WebControls.Repeater)
+				Dim item_total As Decimal = 0
+        	   	For Each irepItem As System.Web.UI.WebControls.RepeaterItem In irep.Items
+            	   	Dim irecControl As Pro_inv_itemsTableControlRow = DirectCast(irepItem.FindControl("Pro_inv_itemsTableControlRow"), Pro_inv_itemsTableControlRow) 
+					item_total += CDec(irecControl.amount.text)
+					index += 1
+    	   	    Next
+
+				Dim net_total  As Decimal = 0
+				Dim prv_amount As Decimal = 0
+				Dim prv_total  As Decimal = 0
+				Dim tax_amount As Decimal = 0
+				Dim ex_total   As Decimal = 0
+				Dim inv_total  As Decimal = 0
+			
+				net_total  = item_total
+				prv_amount = item_total
+				prv_total  = item_total
+			
+				Dim trep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_taxesTableControlRepeater"),System.Web.UI.WebControls.Repeater)
+       		    index = 0
+           		For Each trepItem As System.Web.UI.WebControls.RepeaterItem In trep.Items
+	               	Dim trecControl As Pro_inv_taxesTableControlRow = DirectCast(trepItem.FindControl("Pro_inv_taxesTableControlRow"), Pro_inv_taxesTableControlRow) 
+				'if trecControl.calc_type.text = "ON NET TOTAL        " then
+					if trecControl.calc_type.text.trim() = "ON NET TOTAL" then
+						if trecControl.tax_lock.Checked then
+							tax_amount = CDec(trecControl.tax_amount.text)
+							trecControl.tax_amount.text = Format(tax_amount, "c")
+						else
+							trecControl.tax_on.text = FORMAT(net_total, "c")
+							tax_amount = Math.round(net_total * CDec(trecControl.tax_rate.text) / 100,0)
+							trecControl.tax_amount.text = Format(tax_amount, "c")
+						end if 	
+						prv_total += tax_amount
+						prv_amount = tax_amount
+					end if
+				'if trecControl.calc_type.text = "PREVIOUS AMOUNT     " then
+					if trecControl.calc_type.text.trim() = "PREVIOUS AMOUNT" then
+						if trecControl.tax_lock.Checked then
+							tax_amount = CDec(trecControl.tax_amount.text)
+							trecControl.tax_amount.text = Format(tax_amount, "c")
+						else
+							trecControl.tax_on.text = FORMAT(prv_amount, "c")
+							tax_amount = Math.round(prv_amount * CDec(trecControl.tax_rate.text) / 100,0)
+							trecControl.tax_amount.text = Format(tax_amount, "c")
+						end if	
+						prv_total += tax_amount
+						prv_amount = tax_amount
+					end if
+				'if trecControl.calc_type.text = "PREVIOUS TOTAL      " then
+					if trecControl.calc_type.text.trim() = "PREVIOUS TOTAL" then
+						if trecControl.tax_lock.Checked then
+							tax_amount = CDec(trecControl.tax_amount.text)
+							trecControl.tax_amount.text = Format(tax_amount, "c")
+						else
+							trecControl.tax_on.text = FORMAT(prv_total, "c")
+							tax_amount = Math.round(prv_total * CDec(trecControl.tax_rate.text) / 100,0)
+							trecControl.tax_amount.text = Format(tax_amount, "c")
+						end if	
+						prv_total += tax_amount
+						prv_amount = tax_amount
+					end if
+				'if trecControl.calc_type.text = "ACTUAL              " then
+					if trecControl.calc_type.text.trim() = "ACTUAL" then
+						trecControl.tax_on.text = FORMAT(CDec(trecControl.tax_amount.text),"c")
+						tax_amount = CDec(trecControl.tax_amount.text)
+						trecControl.tax_amount.text = Format(tax_amount, "c")
+						prv_total += tax_amount
+						prv_amount = tax_amount
+					end if
+					if trecControl.calc_type.text.trim() = "SUB TOTAL" then
+						trecControl.tax_on.text = FORMAT(prv_total, "c")
+						tax_amount = prv_total
+						trecControl.tax_amount.text = Format(tax_amount, "c")
+					'prv_total += tax_amount
+						prv_amount = tax_amount
+					end if
+			    ' compute total amount of excise duty
+					if trecControl.tax_type.text.trim() = "EXCISE" then
+						tax_amount = CDec(trecControl.tax_amount.text)
+						ex_total += tax_amount					
+					end if	
+					index += 1
+    	   	    Next
+
+				inv_total = prv_total
+			
+				Dim crep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_taxesTableControlRepeater"),System.Web.UI.WebControls.Repeater)
+	           	For Each crepItem As System.Web.UI.WebControls.RepeaterItem In crep.Items
+    	           	Dim crecControl As Pro_inv_taxesTableControlRow = DirectCast(crepItem.FindControl("Pro_inv_taxesTableControlRow"), Pro_inv_taxesTableControlRow) 
+					crecControl.item_total1.text  = FORMAT(item_total, "c")
+					crecControl.excise_total.text = FORMAT(ex_total, "c")
+					crecControl.grand_total1.text = FORMAT(inv_total, "c")
+				
+					index += 1
+    	   	    Next
+
+				me.item_total.text  = FORMAT(item_total, "c")
+            	me.grand_total.text = FORMAT(prv_total, "c")
+				me.item_totalLabel.visible = true
+				me.item_total.visible = true
+				me.grand_totalLabel.visible = true
+				me.grand_total.visible = true
+				
             Catch ex As Exception
                 Me.Page.ErrorOnPage = True
     
                 ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+                'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+				
+				Dim msg_calc_error as String
+				msg_calc_error = "Please check all tax rates | item rate / qty - one of them is blank"
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", msg_calc_error)
             Finally
     
             End Try
@@ -8384,6 +8441,8 @@ Public Class BasePro_inv_hdrRecordControl
           
             AddHandler Me.CalculateButton.Button.Click, AddressOf CalculateButton_Click
         
+              AddHandler Me.id_commodity.SelectedIndexChanged, AddressOf id_commodity_SelectedIndexChanged
+            
               AddHandler Me.id_party.SelectedIndexChanged, AddressOf id_party_SelectedIndexChanged
             
               AddHandler Me.id_tax_group.SelectedIndexChanged, AddressOf id_tax_group_SelectedIndexChanged
@@ -8507,6 +8566,8 @@ Public Class BasePro_inv_hdrRecordControl
             Setgr_rr_noLabel()
             Setgrand_total()
             Setgrand_totalLabel()
+            Setid_commodity()
+            Setid_commodityLabel()
             Setid_party()
             Setid_partyLabel()
             Setid_tax_group()
@@ -8794,6 +8855,40 @@ Public Class BasePro_inv_hdrRecordControl
                         		
                 End If
                  
+        End Sub
+                
+        Public Overridable Sub Setid_commodity()
+            
+        
+            ' Set the id_commodity DropDownList on the webpage with value from the
+            ' pro_inv_hdr database record.
+            
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.id_commodity is the ASP:DropDownList on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid_commodity()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_commoditySpecified Then
+                            
+                ' If the id_commodity is non-NULL, then format the value.
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                Me.Populateid_commodityDropDownList(Me.DataSource.id_commodity.ToString(), 100)
+                
+            Else
+                
+                ' id_commodity is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+                If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
+                    Me.Populateid_commodityDropDownList(Nothing, 100)
+                Else
+                    Me.Populateid_commodityDropDownList(Pro_inv_hdrTable.id_commodity.DefaultValue, 100)
+                End If
+                				
+            End If			
+                
         End Sub
                 
         Public Overridable Sub Setid_party()
@@ -9415,6 +9510,11 @@ Public Class BasePro_inv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setid_commodityLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setid_partyLabel()
             
                     
@@ -9631,6 +9731,7 @@ Public Class BasePro_inv_hdrRecordControl
             Getgr_rr_dt()
             Getgr_rr_no()
             Getgrand_total()
+            Getid_commodity()
             Getid_party()
             Getid_tax_group()
             Getid_transporter()
@@ -9730,6 +9831,17 @@ Public Class BasePro_inv_hdrRecordControl
             Me.DataSource.Parse(Me.grand_total.Text, Pro_inv_hdrTable.grand_total)			
 
                       
+        End Sub
+                
+        Public Overridable Sub Getid_commodity()
+         
+            ' Retrieve the value entered by the user on the id_commodity ASP:DropDownList, and
+            ' save it into the id_commodity field in DataSource pro_inv_hdr record.
+                        
+            ' Custom validation should be performed in Validate, not here.
+            
+            Me.DataSource.Parse(GetValueSelectedPageRequest(Me.id_commodity), Pro_inv_hdrTable.id_commodity)				
+            
         End Sub
                 
         Public Overridable Sub Getid_party()
@@ -10236,6 +10348,22 @@ Public Class BasePro_inv_hdrRecordControl
         ' Generate the event handling functions for filter and search events.
             
 
+        Public Overridable Function CreateWhereClause_id_commodityDropDownList() As WhereClause
+            ' By default, we simply return a new WhereClause.
+            ' Add additional where clauses to restrict the items shown in the dropdown list.
+            						
+            ' This WhereClause is for the commodity table.
+            ' Examples:
+            ' wc.iAND(CommodityTable.commodity, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(CommodityTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
+            
+            Dim wc As WhereClause = New WhereClause()
+            Return wc
+            				
+        End Function
+        
+                
+
         Public Overridable Function CreateWhereClause_id_partyDropDownList() As WhereClause
             ' By default, we simply return a new WhereClause.
             ' Add additional where clauses to restrict the items shown in the dropdown list.
@@ -10282,6 +10410,96 @@ Public Class BasePro_inv_hdrRecordControl
             				
         End Function
         
+                
+        ' Fill the id_commodity list.
+        Protected Overridable Sub Populateid_commodityDropDownList( _
+                ByVal selectedValue As String, _
+                ByVal maxItems As Integer)
+            		  					                
+            Me.id_commodity.Items.Clear()
+            
+            ' This is a four step process.
+            ' 1. Setup the static list items
+            ' 2. Set up the WHERE and the ORDER BY clause
+            ' 3. Read a total of maxItems from the database and insert them
+            ' 4. Set the selected value (insert if not already present).
+                    
+            ' 1. Setup the static list items
+            														
+            Me.id_commodity.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))							
+                            		  			
+            ' 2. Set up the WHERE and the ORDER BY clause by calling the CreateWhereClause_id_commodityDropDownList function.
+            ' It is better to customize the where clause there.
+            
+            Dim wc As WhereClause = CreateWhereClause_id_commodityDropDownList()
+            ' Create the ORDER BY clause to sort based on the displayed value.			
+                
+      
+      
+            Dim orderBy As OrderBy = New OrderBy(false, true)			
+        
+            orderBy.Add(CommodityTable.commodity, OrderByItem.OrderDir.Asc)				
+            
+            ' 3. Read a total of maxItems from the database and insert them		
+            Dim itemValues() As CommodityRecord = Nothing
+            If wc.RunQuery
+                Dim counter As Integer = 0
+                Dim pageNum As Integer = 0
+                Do
+                    itemValues = CommodityTable.GetRecords(wc, orderBy, pageNum, 500)
+                    For each itemValue As CommodityRecord In itemValues
+                        ' Create the item and add to the list.
+                        Dim cvalue As String = Nothing
+                        Dim fvalue As String = Nothing
+                        If itemValue.id0Specified Then
+                            cvalue = itemValue.id0.ToString()
+                            fvalue = itemValue.Format(CommodityTable.commodity)
+                                    
+                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
+                            Dim newItem As New ListItem(fvalue, cvalue)
+                            If counter < maxItems AndAlso Not Me.id_commodity.Items.Contains(newItem) Then Me.id_commodity.Items.Add(newItem)
+                            counter += 1
+                        End If
+                    Next
+                    pageNum += 1
+                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
+            End If
+                            
+                    
+            ' 4. Set the selected value (insert if not already present).
+              
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_commodity, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_commodity, selectedValue)Then
+
+                ' construct a whereclause to query a record with commodity.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(CommodityTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As CommodityRecord = CommodityTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Pro_inv_hdrTable.id_commodity.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_commodity.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+                
+        End Sub
                 
         ' Fill the id_party list.
         Protected Overridable Sub Populateid_partyDropDownList( _
@@ -10567,6 +10785,54 @@ Public Class BasePro_inv_hdrRecordControl
     
             End Try
     
+        End Sub
+            
+        Protected Overridable Sub id_commodity_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.id_commodity.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_commodity)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_commodity, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_commodity, selectedValue)Then
+
+                ' construct a whereclause to query a record with commodity.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(CommodityTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As CommodityRecord = CommodityTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Pro_inv_hdrTable.id_commodity.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_commodity.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+            End If
+          									
+                
+                
         End Sub
             
         Protected Overridable Sub id_party_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
@@ -11001,6 +11267,18 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property grand_totalLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_totalLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property id_commodity() As System.Web.UI.WebControls.DropDownList
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_commodity"), System.Web.UI.WebControls.DropDownList)
+            End Get
+        End Property
+            
+        Public ReadOnly Property id_commodityLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_commodityLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

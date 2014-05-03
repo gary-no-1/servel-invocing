@@ -88,9 +88,17 @@ Public Class BaseCompanyRecordControl
             
               AddHandler Me.email.TextChanged, AddressOf email_TextChanged
             
+              AddHandler Me.email_bcc.TextChanged, AddressOf email_bcc_TextChanged
+            
+              AddHandler Me.email_from.TextChanged, AddressOf email_from_TextChanged
+            
               AddHandler Me.fin_year_end.TextChanged, AddressOf fin_year_end_TextChanged
             
               AddHandler Me.fin_year_start.TextChanged, AddressOf fin_year_start_TextChanged
+            
+              AddHandler Me.inv_declaration.TextChanged, AddressOf inv_declaration_TextChanged
+            
+              AddHandler Me.inv_email_body.TextChanged, AddressOf inv_email_body_TextChanged
             
               AddHandler Me.inv_pfx.TextChanged, AddressOf inv_pfx_TextChanged
             
@@ -203,11 +211,19 @@ Public Class BaseCompanyRecordControl
             Setecc_no()
             Setecc_noLabel()
             Setemail()
+            Setemail_bcc()
+            Setemail_bccLabel()
+            Setemail_from()
+            Setemail_fromLabel()
             SetemailLabel()
             Setfin_year_end()
             Setfin_year_endLabel()
             Setfin_year_start()
             Setfin_year_startLabel()
+            Setinv_declaration()
+            Setinv_declarationLabel()
+            Setinv_email_body()
+            Setinv_email_bodyLabel()
             Setinv_pfx()
             Setinv_pfxLabel()
             Setinv_sfx()
@@ -458,6 +474,76 @@ Public Class BaseCompanyRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Setemail_bcc()
+            
+        
+            ' Set the email_bcc TextBox on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.email_bcc is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setemail_bcc()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.email_bccSpecified Then
+                				
+                ' If the email_bcc is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.email_bcc)
+                            
+                Me.email_bcc.Text = formattedValue
+              
+            Else 
+            
+                ' email_bcc is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.email_bcc.Text = CompanyTable.email_bcc.Format(CompanyTable.email_bcc.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setemail_from()
+            
+        
+            ' Set the email_from TextBox on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.email_from is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setemail_from()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.email_fromSpecified Then
+                				
+                ' If the email_from is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.email_from)
+                            
+                Me.email_from.Text = formattedValue
+              
+            Else 
+            
+                ' email_from is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.email_from.Text = CompanyTable.email_from.Format(CompanyTable.email_from.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setfin_year_end()
             
         
@@ -523,6 +609,76 @@ Public Class BaseCompanyRecordControl
                 ' Default Value could also be NULL.
         
                 Me.fin_year_start.Text = CompanyTable.fin_year_start.Format(CompanyTable.fin_year_start.DefaultValue, "d")
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setinv_declaration()
+            
+        
+            ' Set the inv_declaration TextBox on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.inv_declaration is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_declaration()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_declarationSpecified Then
+                				
+                ' If the inv_declaration is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.inv_declaration)
+                            
+                Me.inv_declaration.Text = formattedValue
+              
+            Else 
+            
+                ' inv_declaration is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_declaration.Text = CompanyTable.inv_declaration.Format(CompanyTable.inv_declaration.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setinv_email_body()
+            
+        
+            ' Set the inv_email_body TextBox on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.inv_email_body is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_email_body()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_email_bodySpecified Then
+                				
+                ' If the inv_email_body is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.inv_email_body)
+                            
+                Me.inv_email_body.Text = formattedValue
+              
+            Else 
+            
+                ' inv_email_body is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_email_body.Text = CompanyTable.inv_email_body.Format(CompanyTable.inv_email_body.DefaultValue)
                         		
                 End If
                  
@@ -938,6 +1094,16 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setemail_bccLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setemail_fromLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub SetemailLabel()
             
                     
@@ -949,6 +1115,16 @@ Public Class BaseCompanyRecordControl
         End Sub
                 
         Public Overridable Sub Setfin_year_startLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setinv_declarationLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setinv_email_bodyLabel()
             
                     
         End Sub
@@ -1118,8 +1294,12 @@ Public Class BaseCompanyRecordControl
             Getdivision()
             Getecc_no()
             Getemail()
+            Getemail_bcc()
+            Getemail_from()
             Getfin_year_end()
             Getfin_year_start()
+            Getinv_declaration()
+            Getinv_email_body()
             Getinv_pfx()
             Getinv_sfx()
             Getname()
@@ -1212,6 +1392,32 @@ Public Class BaseCompanyRecordControl
                       
         End Sub
                 
+        Public Overridable Sub Getemail_bcc()
+            
+            ' Retrieve the value entered by the user on the email_bcc ASP:TextBox, and
+            ' save it into the email_bcc field in DataSource company record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.email_bcc.Text, CompanyTable.email_bcc)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getemail_from()
+            
+            ' Retrieve the value entered by the user on the email_from ASP:TextBox, and
+            ' save it into the email_from field in DataSource company record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.email_from.Text, CompanyTable.email_from)			
+
+                      
+        End Sub
+                
         Public Overridable Sub Getfin_year_end()
             
             ' Retrieve the value entered by the user on the fin_year_end ASP:TextBox, and
@@ -1240,6 +1446,32 @@ Public Class BaseCompanyRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.fin_year_start.Text, CompanyTable.fin_year_start)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getinv_declaration()
+            
+            ' Retrieve the value entered by the user on the inv_declaration ASP:TextBox, and
+            ' save it into the inv_declaration field in DataSource company record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.inv_declaration.Text, CompanyTable.inv_declaration)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getinv_email_body()
+            
+            ' Retrieve the value entered by the user on the inv_email_body ASP:TextBox, and
+            ' save it into the inv_email_body field in DataSource company record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.inv_email_body.Text, CompanyTable.inv_email_body)			
 
                       
         End Sub
@@ -1692,11 +1924,27 @@ Public Class BaseCompanyRecordControl
                     				
         End Sub
             
+        Protected Overridable Sub email_bcc_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub email_from_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub fin_year_end_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
         Protected Overridable Sub fin_year_start_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub inv_declaration_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub inv_email_body_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -1949,6 +2197,30 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
             
+        Public ReadOnly Property email_bcc() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email_bcc"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property email_bccLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email_bccLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property email_from() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email_from"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property email_fromLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email_fromLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property emailLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel"), System.Web.UI.WebControls.Literal)
@@ -1976,6 +2248,30 @@ Public Class BaseCompanyRecordControl
         Public ReadOnly Property fin_year_startLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_startLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property inv_declaration() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_declaration"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_declarationLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_declarationLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property inv_email_body() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_email_body"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_email_bodyLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_email_bodyLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

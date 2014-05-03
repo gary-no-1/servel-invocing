@@ -138,8 +138,13 @@ Partial Public Class ShowPro_inv_hdr
 
     ' Page Event Handlers - buttons, sort, links
     
-        Public Sub EditButton_Click(ByVal sender As Object, ByVal args As EventArgs)
-            
+		Public Sub EditButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+
+			if me.inv_created.text = "YES" then
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Invoice has been created. Modification Not Allowed")
+				return
+			end if
+
           ' Click handler for EditButton.
           ' Customize by adding code before the call or replace the call to the Base function with your own code.
           EditButton_Click_Base(sender, args)
@@ -176,6 +181,8 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents gr_rr_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents grand_total As System.Web.UI.WebControls.Literal
         Public WithEvents grand_totalLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id_commodity As System.Web.UI.WebControls.LinkButton
+        Public WithEvents id_commodityLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_party As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
@@ -185,6 +192,7 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents id_transporter As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id1 As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_created As System.Web.UI.WebControls.Literal
         Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents item_total As System.Web.UI.WebControls.Literal
         Public WithEvents item_totalLabel As System.Web.UI.WebControls.Literal

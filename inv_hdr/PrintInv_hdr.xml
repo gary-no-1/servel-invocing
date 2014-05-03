@@ -22,6 +22,10 @@
       <Table>inv_items</Table>
       <PassthroughAttributes>
         <Attribute>
+          <Name>DataFormat</Name>
+          <Value>c</Value>
+        </Attribute>
+        <Attribute>
           <Name>FieldMaxLength</Name>
           <Value>9999999</Value>
         </Attribute>
@@ -96,92 +100,6 @@
         <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%inv_items%amount</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_itemsTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>ass_value</Name>
-      <Type>FieldValue</Type>
-      <Field>ass_value</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_items</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_itemsTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>ass_valueLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_itemsTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>ass_value</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_items</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_items%ass_value</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_itemsTableControl</InsideControl>
@@ -357,176 +275,16 @@
       <InsideControl>Inv_hdrRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>calc_type</Name>
-      <Type>FieldValue</Type>
-      <Field>calc_type</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_taxes</Table>
+      <Name>BtnPrtInv</Name>
+      <Type>Aspx</Type>
       <PassthroughAttributes>
         <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
+          <Name>InternalUse:TreatAs</Name>
+          <Value>FieldValue</Value>
         </Attribute>
       </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>calc_typeLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>calc_type</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_taxes%calc_type</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>excise_total</Name>
-      <Type>FieldValue</Type>
-      <Field>excise_total</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_taxes</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>excise_totalLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>excise_total</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_taxes%excise_total</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
+      <InsideControl>Inv_hdrRecordControl</InsideControl>
+      <ControlClass>System.Web.UI.WebControls.Button</ControlClass>
     </ContainedComponent>
     <ContainedComponent>
       <Name>freight_to_pay</Name>
@@ -791,6 +549,10 @@
       <Table>inv_hdr</Table>
       <PassthroughAttributes>
         <Attribute>
+          <Name>DataFormat</Name>
+          <Value>c</Value>
+        </Attribute>
+        <Attribute>
           <Name>FieldMaxLength</Name>
           <Value>2147483647</Value>
         </Attribute>
@@ -846,69 +608,6 @@
       <InsideControl>Inv_hdrRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>grand_total1</Name>
-      <Type>FieldValue</Type>
-      <Field>grand_total</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_taxes</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>grand_totalLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
@@ -930,29 +629,6 @@
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_hdrRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>grand_totalLabel1</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>grand_total</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_taxes%grand_total</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
       <Name>id_item</Name>
@@ -1126,177 +802,6 @@
       <InsideControl>Inv_hdrRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>id_tax_group</Name>
-      <Type>FieldValue</Type>
-      <Field>id_tax_group</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_hdr</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>2147483647</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_hdrRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>id_tax_groupLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_hdrRecordControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>id_tax_group</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_hdr</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_hdr%id_tax_group</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_hdrRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>id_taxes</Name>
-      <Type>FieldValue</Type>
-      <Field>id_taxes</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_taxes</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>id_taxesLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>id_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_taxes%id_taxes</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>id_transporter</Name>
       <Type>FieldValue</Type>
       <Field>id_transporter</Field>
@@ -1377,6 +882,149 @@
         <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%inv_hdr%id_transporter</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Inv_hdrRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>id1</Name>
+      <Type>FieldValue</Type>
+      <Field>id</Field>
+      <FieldValueStyle>Literal</FieldValueStyle>
+      <Table>inv_hdr</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>FieldMaxLength</Name>
+          <Value>2147483647</Value>
+        </Attribute>
+        <Attribute>
+          <Name>HTMLEncodeValue</Name>
+          <Value>Default</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:ApplySaveToField</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupDisplay</Name>
+          <Value>false</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupThreshold</Name>
+          <Value>Default</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowHeight</Name>
+          <Value>200</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowPersist</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowScrollBar</Name>
+          <Value>True</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowTitle</Name>
+          <Value>%ISD_DEFAULT%</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowWidth</Name>
+          <Value>300</Value>
+        </Attribute>
+        <Attribute>
+          <Name>TextFormat</Name>
+          <Value>{0}</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Inv_hdrRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>inv_dt</Name>
+      <Type>FieldValue</Type>
+      <Field>inv_dt</Field>
+      <FieldValueStyle>Literal</FieldValueStyle>
+      <Table>inv_hdr</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>FieldMaxLength</Name>
+          <Value>2147483647</Value>
+        </Attribute>
+        <Attribute>
+          <Name>HTMLEncodeValue</Name>
+          <Value>Default</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:ApplySaveToField</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>NullValueText</Name>
+          <Value>&amp;nbsp;</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupDisplay</Name>
+          <Value>false</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupThreshold</Name>
+          <Value>Default</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowHeight</Name>
+          <Value>200</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowPersist</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowScrollBar</Name>
+          <Value>True</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowTitle</Name>
+          <Value>%ISD_DEFAULT%</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowWidth</Name>
+          <Value>300</Value>
+        </Attribute>
+        <Attribute>
+          <Name>TextFormat</Name>
+          <Value>{0}</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Inv_hdrRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>inv_dtLabel</Name>
+      <Type>Literal</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>Inv_hdrRecordControl</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Field</Name>
+          <Value>inv_dt</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Table</Name>
+          <Value>inv_hdr</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>%ISD_DEFAULT%inv_hdr%inv_dt</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_hdrRecordControl</InsideControl>
@@ -1501,6 +1149,91 @@
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_itemsTableControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>inv_no</Name>
+      <Type>FieldValue</Type>
+      <Field>inv_no</Field>
+      <FieldValueStyle>Literal</FieldValueStyle>
+      <Table>inv_hdr</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>FieldMaxLength</Name>
+          <Value>2147483647</Value>
+        </Attribute>
+        <Attribute>
+          <Name>HTMLEncodeValue</Name>
+          <Value>Default</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:ApplySaveToField</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>NullValueText</Name>
+          <Value>&amp;nbsp;</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupDisplay</Name>
+          <Value>false</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupThreshold</Name>
+          <Value>Default</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowHeight</Name>
+          <Value>200</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowPersist</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowScrollBar</Name>
+          <Value>True</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowTitle</Name>
+          <Value>%ISD_DEFAULT%</Value>
+        </Attribute>
+        <Attribute>
+          <Name>PopupWindowWidth</Name>
+          <Value>300</Value>
+        </Attribute>
+        <Attribute>
+          <Name>TextFormat</Name>
+          <Value>{0}</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Inv_hdrRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>inv_noLabel</Name>
+      <Type>Literal</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>Inv_hdrRecordControl</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Field</Name>
+          <Value>inv_no</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Table</Name>
+          <Value>inv_hdr</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>%ISD_DEFAULT%inv_hdr%inv_no</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Inv_hdrRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
       <Name>Inv_taxesTableControl</Name>
@@ -1639,92 +1372,6 @@
       <InsideControl>Inv_termsTableControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>item_code</Name>
-      <Type>FieldValue</Type>
-      <Field>item_code</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_items</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_itemsTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>item_codeLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_itemsTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>item_code</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_items</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_items%item_code</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_itemsTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>item_description</Name>
       <Type>FieldValue</Type>
       <Field>item_description</Field>
@@ -1818,6 +1465,10 @@
       <Table>inv_hdr</Table>
       <PassthroughAttributes>
         <Attribute>
+          <Name>DataFormat</Name>
+          <Value>c</Value>
+        </Attribute>
+        <Attribute>
           <Name>FieldMaxLength</Name>
           <Value>2147483647</Value>
         </Attribute>
@@ -1873,69 +1524,6 @@
       <InsideControl>Inv_hdrRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>item_total1</Name>
-      <Type>FieldValue</Type>
-      <Field>item_total</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_taxes</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>item_totalLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
@@ -1957,29 +1545,6 @@
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_hdrRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>item_totalLabel1</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>item_total</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_taxes%item_total</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
       <Name>narration</Name>
@@ -2326,6 +1891,10 @@
           <Value>inv_hdr</Value>
         </Attribute>
         <Attribute>
+          <Name>InternalUse:TreatAs</Name>
+          <Value>FieldValue</Value>
+        </Attribute>
+        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%inv_hdr%po_dt</Value>
         </Attribute>
@@ -2411,178 +1980,12 @@
           <Value>inv_hdr</Value>
         </Attribute>
         <Attribute>
+          <Name>InternalUse:TreatAs</Name>
+          <Value>FieldValue</Value>
+        </Attribute>
+        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%inv_hdr%po_no</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_hdrRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>pro_inv_dt</Name>
-      <Type>FieldValue</Type>
-      <Field>pro_inv_dt</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_hdr</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>2147483647</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_hdrRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>pro_inv_dtLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_hdrRecordControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>pro_inv_dt</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_hdr</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_hdr%pro_inv_dt</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_hdrRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>pro_inv_no</Name>
-      <Type>FieldValue</Type>
-      <Field>pro_inv_no</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_hdr</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>2147483647</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_hdrRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>pro_inv_noLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_hdrRecordControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>pro_inv_no</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_hdr</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_hdr%pro_inv_no</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_hdrRecordControl</InsideControl>
@@ -3185,184 +2588,16 @@
       <InsideControl>Inv_hdrRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>sort_order</Name>
-      <Type>FieldValue</Type>
-      <Field>sort_order</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_taxes</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>sort_order1</Name>
-      <Type>FieldValue</Type>
-      <Field>sort_order</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_terms</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_termsTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>sort_orderLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>sort_order</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_taxes%sort_order</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>sort_orderLabel1</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_termsTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>sort_order</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_terms</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_terms%sort_order</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_termsTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>tax_amount</Name>
       <Type>FieldValue</Type>
       <Field>tax_amount</Field>
       <FieldValueStyle>Literal</FieldValueStyle>
       <Table>inv_taxes</Table>
       <PassthroughAttributes>
+        <Attribute>
+          <Name>DataFormat</Name>
+          <Value>c</Value>
+        </Attribute>
         <Attribute>
           <Name>FieldMaxLength</Name>
           <Value>9999999</Value>
@@ -3438,350 +2673,6 @@
         <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%inv_taxes%tax_amount</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tax_code</Name>
-      <Type>FieldValue</Type>
-      <Field>tax_code</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_taxes</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tax_codeLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>tax_code</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_taxes%tax_code</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tax_lock</Name>
-      <Type>FieldValue</Type>
-      <Field>tax_lock</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_taxes</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tax_lockLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>tax_lock</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_taxes%tax_lock</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tax_name</Name>
-      <Type>FieldValue</Type>
-      <Field>tax_name</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_taxes</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tax_nameLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>tax_name</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_taxes%tax_name</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tax_on</Name>
-      <Type>FieldValue</Type>
-      <Field>tax_on</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_taxes</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tax_onLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>tax_on</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_taxes%tax_on</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_taxesTableControl</InsideControl>
@@ -3868,178 +2759,6 @@
         <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%inv_taxes%tax_print</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tax_rate</Name>
-      <Type>FieldValue</Type>
-      <Field>tax_rate</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_taxes</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tax_rateLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>tax_rate</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_taxes%tax_rate</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tax_type</Name>
-      <Type>FieldValue</Type>
-      <Field>tax_type</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
-      <Table>inv_taxes</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>9999999</Value>
-        </Attribute>
-        <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:ApplySaveToField</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>NullValueText</Name>
-          <Value>&amp;nbsp;</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>%ISD_DEFAULT%</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextFormat</Name>
-          <Value>{0}</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_taxesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tax_typeLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>Inv_taxesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>tax_type</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>inv_taxes</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%inv_taxes%tax_type</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_taxesTableControl</InsideControl>
@@ -4402,15 +3121,17 @@
     &lt;Prolog&gt;
       &lt;Value&gt;&amp;lt;asp:Content id="PageSection" ContentPlaceHolderID="PageContent" Runat="server"&amp;gt;
     &amp;lt;a id="StartOfPageContent"&amp;gt;&amp;lt;/a&amp;gt;
-    &amp;lt;GEN:UPDATEPANEL NAME="UpdatePanel1"&amp;gt;
-                &lt;/Value&gt;
+&amp;lt;%@ Register assembly="Telerik.ReportViewer.WebForms, Version=5.3.12.119, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" namespace="Telerik.ReportViewer.WebForms" tagprefix="telerik" %&amp;gt;
+    &amp;lt;GEN:UPDATEPANEL NAME="UpdatePanel1"&amp;gt;&lt;/Value&gt;
     &lt;/Prolog&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;
                         &amp;lt;GEN:RECORD NAME="Inv_hdrRecordControl"&amp;gt;&amp;lt;/GEN:RECORD&amp;gt;
             &lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -4425,15 +3146,15 @@
   &amp;lt;GEN:TABLE NAME="Inv_termsTableControl"/&amp;gt;
  &amp;lt;/GEN:TABPANEL&amp;gt;
 &amp;lt;/GEN:TABCONTAINER&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Epilog&gt;
-      &lt;Value&gt;
-    &amp;lt;/GEN:UPDATEPANEL&amp;gt;
+      &lt;Value&gt;&amp;lt;/GEN:UPDATEPANEL&amp;gt;
     &amp;lt;div id="detailPopup" class="detailRolloverPopup" onmouseout="detailRolloverPopupClose();" onmouseover="clearTimeout(gPopupTimer);"&amp;gt;&amp;lt;/div&amp;gt;
     &amp;lt;asp:ValidationSummary id="ValidationSummary1" ShowMessageBox="true" ShowSummary="false" runat="server"&amp;gt;&amp;lt;/asp:ValidationSummary&amp;gt;
-&amp;lt;/asp:Content&amp;gt;
-                &lt;/Value&gt;
+&amp;lt;/asp:Content&amp;gt;&lt;/Value&gt;
     &lt;/Epilog&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
@@ -4451,6 +3172,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_hdrRecordControl" Type="RecordPanel" PanelControlName="Inv_hdrRecordControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Inv_hdrPanelHeader"/&amp;gt;&lt;/Value&gt;
@@ -4461,12 +3183,16 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;asp:panel id="Inv_hdrRecordControlCollapsibleRegion" runat="server"&amp;gt;&amp;lt;GEN:PANEL NAME="Inv_hdrPanel"/&amp;gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -4487,6 +3213,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_hdrPanelHeader" Type="PanelHeader" PanelControlName="Inv_hdrRecordControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/space.gif" alt=""/&amp;gt;&lt;/Value&gt;
@@ -4515,7 +3242,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -4536,6 +3265,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_hdrRecordControlTitleRegion" PanelControlName="Inv_hdrRecordControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:HTML NAME="Inv_hdrTitle"/&amp;gt;&lt;/Value&gt;
@@ -4550,7 +3280,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -4567,12 +3299,15 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_hdrPanel" PanelControlName="Inv_hdrRecordControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Inv_hdrFields"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -4602,7 +3337,7 @@
     &lt;/Prolog&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="pro_inv_noLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="inv_noLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4611,7 +3346,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="pro_inv_no"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_no" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4620,7 +3355,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="pro_inv_dtLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="inv_dtLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4629,7 +3364,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="pro_inv_dt"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_dt" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4637,6 +3372,24 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id1" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -4675,6 +3428,78 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="po_noLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="po_no" /&amp;gt; &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="po_dtLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="po_dt" /&amp;gt; &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -4696,45 +3521,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="bill_nameLabel"/&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="bill_name"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-    &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="ship_nameLabel"/&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="ship_name"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tin_noLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tin_noLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4751,10 +3538,42 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;asp:button id="BtnPrtInv" runat="server" text="Print Invoice" cssclass="button_link" OnClientClick="MyPrint(); return false;"&amp;gt;&amp;lt;/asp:button&amp;gt;
+&amp;lt;telerik:ReportViewer ID="ReportViewer1" runat="server" style="display:none" /&amp;gt;
+&amp;lt;script type="text/javascript"&amp;gt;
+    ReportViewer.OnReportLoadedOld = ReportViewer.OnReportLoaded; 
+    ReportViewer.prototype.OnReportLoaded = function()
+    {
+        this.OnReportLoadedOld();            
+        var printButton = document.getElementById("BtnPrtInv"); 
+        printButton.disabled = false; 
+    } 
+    function MyPrint()
+    {
+        &amp;lt;%=ReportViewer1.ClientID %&amp;gt;.PrintReport();
+    }
+&amp;lt;/script&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="po_noLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="bill_nameLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4763,7 +3582,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="po_no"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="bill_name" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4772,7 +3591,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="po_dtLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="ship_nameLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4781,7 +3600,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="po_dt"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="ship_name" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4789,10 +3608,26 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_tax_groupLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4801,7 +3636,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_tax_group"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4827,10 +3661,26 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="grand_totalLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4839,7 +3689,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="grand_total"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4848,7 +3697,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="road_permit_noLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="grand_totalLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4857,7 +3706,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="road_permit_no"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="grand_total" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4865,6 +3714,74 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -4903,10 +3820,29 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="no_of_packagesLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="no_of_packages" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="no_of_packagesLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_transporterLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4915,7 +3851,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="no_of_packages"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_transporter" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4924,7 +3860,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_transporterLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="road_permit_noLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4933,7 +3869,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_transporter"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="road_permit_no" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4941,6 +3877,25 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="vehicle_noLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="vehicle_no" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -4979,10 +3934,28 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="freight_to_payLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="freight_to_pay" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="freight_to_payLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -4991,7 +3964,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="freight_to_pay"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -5000,7 +3972,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="vehicle_noLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -5009,7 +3980,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="vehicle_no"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -5017,6 +3987,23 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -5041,6 +4028,23 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -5065,6 +4069,23 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Epilog&gt;
       &lt;Value&gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
@@ -5085,6 +4106,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_itemsTableControl" Type="TablePanel" PanelControlName="Inv_itemsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Inv_itemsPanelHeader"/&amp;gt;&lt;/Value&gt;
@@ -5095,12 +4117,16 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;asp:panel id="Inv_itemsTableControlCollapsibleRegion" runat="server"&amp;gt;&amp;lt;GEN:PANEL NAME="Inv_itemsPanel"/&amp;gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -5121,6 +4147,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_itemsPanelHeader" Type="PanelHeader" PanelControlName="Inv_itemsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/space.gif" alt=""/&amp;gt;&lt;/Value&gt;
@@ -5149,7 +4176,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -5170,6 +4199,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_itemsTableControlTitleRegion" PanelControlName="Inv_itemsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:HTML NAME="Inv_itemsTitle"/&amp;gt;&lt;/Value&gt;
@@ -5184,7 +4214,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -5201,6 +4233,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_itemsPanel" PanelControlName="Inv_itemsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Inv_itemsFields"/&amp;gt;&lt;/Value&gt;
@@ -5211,7 +4244,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -5236,23 +4271,10 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_itemsFields" Type="TableGridRegular" PanelControlName="Inv_itemsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row Type="Header"&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_itemLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="item_codeLabel"/&amp;gt;
                         &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
@@ -5322,20 +4344,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="ass_valueLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="amountLabel"/&amp;gt;
                         &lt;/Value&gt;
         &lt;CellAttributes&gt;
@@ -5359,15 +4367,6 @@
     &lt;Row Type="Repeater"&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_item"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="item_code"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -5420,19 +4419,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="ass_value"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;text-align: right;&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="amount"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
@@ -5445,7 +4431,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -5470,6 +4458,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_taxesTableControl" Type="TablePanel" PanelControlName="Inv_taxesTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Inv_taxesPanelHeader"/&amp;gt;&lt;/Value&gt;
@@ -5480,12 +4469,16 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;asp:panel id="Inv_taxesTableControlCollapsibleRegion" runat="server"&amp;gt;&amp;lt;GEN:PANEL NAME="Inv_taxesPanel"/&amp;gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -5506,6 +4499,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_taxesPanelHeader" Type="PanelHeader" PanelControlName="Inv_taxesTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/space.gif" alt=""/&amp;gt;&lt;/Value&gt;
@@ -5534,7 +4528,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -5555,6 +4551,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_taxesTableControlTitleRegion" PanelControlName="Inv_taxesTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:HTML NAME="Inv_taxesTitle"/&amp;gt;&lt;/Value&gt;
@@ -5569,7 +4566,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -5586,6 +4585,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_taxesPanel" PanelControlName="Inv_taxesTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Inv_taxesFields"/&amp;gt;&lt;/Value&gt;
@@ -5596,7 +4596,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -5621,79 +4623,10 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_taxesFields" Type="TableGridRegular" PanelControlName="Inv_taxesTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row Type="Header"&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_taxesLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_codeLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_nameLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_printLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_rateLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_onLabel"/&amp;gt;
                         &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
@@ -5720,104 +4653,6 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_lockLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="calc_typeLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="sort_orderLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tax_typeLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="item_totalLabel1"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="excise_totalLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="grand_totalLabel1"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
       &lt;RowAttributes&gt;
         &lt;Attribute&gt;
           &lt;Name&gt;class&lt;/Name&gt;
@@ -5827,64 +4662,11 @@
     &lt;/Row&gt;
     &lt;Row Type="Repeater"&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_taxes"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_code"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_name"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_print"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
             &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_rate"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;text-align: right;&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_on"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;text-align: right;&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
@@ -5901,86 +4683,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_lock"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="calc_type"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="sort_order"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;text-align: right;&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tax_type"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="item_total1"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;text-align: right;&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="excise_total"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;text-align: right;&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="grand_total1"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;text-align: right;&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -6005,6 +4710,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_termsTableControl" Type="TablePanel" PanelControlName="Inv_termsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Inv_termsPanelHeader"/&amp;gt;&lt;/Value&gt;
@@ -6015,12 +4721,16 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;asp:panel id="Inv_termsTableControlCollapsibleRegion" runat="server"&amp;gt;&amp;lt;GEN:PANEL NAME="Inv_termsPanel"/&amp;gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -6041,6 +4751,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_termsPanelHeader" Type="PanelHeader" PanelControlName="Inv_termsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;img src="../Images/space.gif" alt=""/&amp;gt;&lt;/Value&gt;
@@ -6069,7 +4780,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -6090,6 +4803,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_termsTableControlTitleRegion" PanelControlName="Inv_termsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:HTML NAME="Inv_termsTitle"/&amp;gt;&lt;/Value&gt;
@@ -6104,7 +4818,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;
@@ -6121,6 +4837,7 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_termsPanel" PanelControlName="Inv_termsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PANEL NAME="Inv_termsFields"/&amp;gt;&lt;/Value&gt;
@@ -6131,7 +4848,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;class&lt;/Name&gt;
@@ -6156,23 +4875,10 @@
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="Inv_termsFields" Type="TableGridRegular" PanelControlName="Inv_termsTableControl"&gt;
+    &lt;Prolog /&gt;
     &lt;Row Type="Header"&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="narrationLabel"/&amp;gt;
-                        &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;thc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;scope&lt;/Name&gt;
-            &lt;AttributeValue&gt;col&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="sort_orderLabel1"/&amp;gt;
                         &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
@@ -6202,20 +4908,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="sort_order1"/&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;ttc&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;text-align: right;&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
     &lt;/Row&gt;
+    &lt;Epilog /&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
         &lt;Name&gt;cellpadding&lt;/Name&gt;

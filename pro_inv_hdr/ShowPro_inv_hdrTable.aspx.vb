@@ -154,11 +154,13 @@ Partial Public Class ShowPro_inv_hdrTable
 
 #Region "Section 2: Do not modify this section."
 
-        Public WithEvents bill_addressLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents grand_totalLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_partyLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_tax_groupLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents inv_cr8_dtLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents inv_createdLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents inv_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents po_dtLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents po_noLabel As System.Web.UI.WebControls.LinkButton
@@ -183,8 +185,6 @@ Partial Public Class ShowPro_inv_hdrTable
         Public WithEvents pro_inv_noLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents sale_ord_dtLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents sale_ord_noLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents ship_addressLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tin_noLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   

@@ -47,6 +47,131 @@ Public Class Inv_hdrTableControlRow
         ' SaveData, GetUIData, and Validate methods.
         
 
+
+		Public Overrides Sub Inv_hdrRowViewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+			Page.Session("PrintProInvID") = Me.id1.text
+			
+            Dim url As String = "../inv_hdr/ShowInv_hdr.aspx?Inv_hdr={PK}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If              
+        End Sub
+
+		Public Overrides Sub Inv_hdrRowEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+
+			'if me.inv_created.text = "YES" then
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Modification Not Allowed")
+				return
+			'end if
+			
+            Dim url As String = "../inv_hdr/EditInv_hdr.aspx?Inv_hdr={PK}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If              
+        End Sub
+
+		Public Overrides Sub Inv_hdrRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+
+			'if me.inv_created.text = "YES" then
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Delete Not Allowed")
+				return
+			'end if
+
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            If(Not Me.Page.IsPageRefresh) Then
+        
+                  Me.Delete()
+              
+            End If
+      Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+                  
+        End Sub
 End Class
 
   
@@ -146,6 +271,7 @@ Public Class BaseInv_hdrTableControlRow
             Setbill_address()
             Setgrand_total()
             Setid_party()
+            Setid1()
             Setinv_dt()
             Setinv_no()
             Setitem_total()
@@ -321,6 +447,42 @@ Public Class BaseInv_hdrTableControlRow
                 ' Default Value could also be NULL.
         
                 Me.id_party.Text = Inv_hdrTable.id_party.Format(Inv_hdrTable.id_party.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setid1()
+            
+        
+            ' Set the id Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.id1 is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id0Specified Then
+                				
+                ' If the id is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.id0)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.id1.Text = formattedValue
+              
+            Else 
+            
+                ' id is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.id1.Text = Inv_hdrTable.id0.Format(Inv_hdrTable.id0.DefaultValue)
                         		
                 End If
                  
@@ -689,6 +851,7 @@ Public Class BaseInv_hdrTableControlRow
             Getbill_address()
             Getgrand_total()
             Getid_party()
+            Getid1()
             Getinv_dt()
             Getinv_no()
             Getitem_total()
@@ -707,6 +870,10 @@ Public Class BaseInv_hdrTableControlRow
         End Sub
                 
         Public Overridable Sub Getid_party()
+            
+        End Sub
+                
+        Public Overridable Sub Getid1()
             
         End Sub
                 
@@ -1103,6 +1270,12 @@ Public Class BaseInv_hdrTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property id1() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id1"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property inv_dt() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_dt"), System.Web.UI.WebControls.Literal)
@@ -1273,6 +1446,10 @@ Public Class BaseInv_hdrTableControl
             Else
                 Me.CurrentSortOrder = New OrderBy(True, True)
             
+                Me.CurrentSortOrder.Add(Inv_hdrTable.inv_dt, OrderByItem.OrderDir.Desc)
+              
+                Me.CurrentSortOrder.Add(Inv_hdrTable.inv_no, OrderByItem.OrderDir.Desc)
+              
             End If
 
             ' Setup default pagination settings.
@@ -1562,6 +1739,10 @@ Public Class BaseInv_hdrTableControl
             Else
                 Me.CurrentSortOrder = New OrderBy(true, true)
             
+                Me.CurrentSortOrder.Add(Inv_hdrTable.inv_dt, OrderByItem.OrderDir.Desc)
+              
+                Me.CurrentSortOrder.Add(Inv_hdrTable.inv_no, OrderByItem.OrderDir.Desc)
+              
             End If
                 
             Me.PageIndex = 0
@@ -1987,6 +2168,9 @@ Public Class BaseInv_hdrTableControl
                         End If
                         If recControl.id_party.Text <> "" Then
                             rec.Parse(recControl.id_party.Text, Inv_hdrTable.id_party)
+                        End If
+                        If recControl.id1.Text <> "" Then
+                            rec.Parse(recControl.id1.Text, Inv_hdrTable.id0)
                         End If
                         If recControl.inv_dt.Text <> "" Then
                             rec.Parse(recControl.inv_dt.Text, Inv_hdrTable.inv_dt)
@@ -2646,7 +2830,8 @@ Public Class BaseInv_hdrTableControl
               
             ' Add each of the columns in order of export.
             Dim columns() as BaseColumn = New BaseColumn() { _
-                       Inv_hdrTable.inv_no, _ 
+                       Inv_hdrTable.id0, _ 
+             Inv_hdrTable.inv_no, _ 
              Inv_hdrTable.inv_dt, _ 
              Inv_hdrTable.id_party, _ 
              Inv_hdrTable.bill_address, _ 
@@ -2695,6 +2880,7 @@ Public Class BaseInv_hdrTableControl
             ' Add each of the columns in order of export.
             ' To customize the data type, change the second parameter of the new ExcelColumn to be
             ' a format string from Excel's Format Cell menu. For example "dddd, mmmm dd, yyyy h:mm AM/PM;@", "#,##0.00"
+             excelReport.AddColumn(New ExcelColumn(Inv_hdrTable.id0, "0"))
              excelReport.AddColumn(New ExcelColumn(Inv_hdrTable.inv_no, "Default"))
              excelReport.AddColumn(New ExcelColumn(Inv_hdrTable.inv_dt, "Short Date"))
              excelReport.AddColumn(New ExcelColumn(Inv_hdrTable.id_party, "Default"))
@@ -2772,6 +2958,7 @@ Public Class BaseInv_hdrTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
+                 report.AddColumn(Inv_hdrTable.id0.Name, ReportEnum.Align.Right, "${id0}", ReportEnum.Align.Right, 15)
                  report.AddColumn(Inv_hdrTable.inv_no.Name, ReportEnum.Align.Left, "${inv_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Inv_hdrTable.inv_dt.Name, ReportEnum.Align.Left, "${inv_dt}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Inv_hdrTable.id_party.Name, ReportEnum.Align.Left, "${id_party}", ReportEnum.Align.Left, 30)
@@ -2808,7 +2995,8 @@ Public Class BaseInv_hdrTableControl
                             ' The 2nd parameters represent the data value
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
-                                                         report.AddData("${inv_no}", record.Format(Inv_hdrTable.inv_no), ReportEnum.Align.Left, 100)
+                                                         report.AddData("${id0}", record.Format(Inv_hdrTable.id0), ReportEnum.Align.Right, 100)
+                             report.AddData("${inv_no}", record.Format(Inv_hdrTable.inv_no), ReportEnum.Align.Left, 100)
                              report.AddData("${inv_dt}", record.Format(Inv_hdrTable.inv_dt), ReportEnum.Align.Left, 100)
                              report.AddData("${id_party}", record.Format(Inv_hdrTable.id_party), ReportEnum.Align.Left)
                              report.AddData("${bill_address}", record.Format(Inv_hdrTable.bill_address), ReportEnum.Align.Left, 100)
@@ -2877,6 +3065,10 @@ Public Class BaseInv_hdrTableControl
               Else
                   Me.CurrentSortOrder = New OrderBy(True, True)
               
+                Me.CurrentSortOrder.Add(Inv_hdrTable.inv_dt, OrderByItem.OrderDir.Desc)
+                
+                Me.CurrentSortOrder.Add(Inv_hdrTable.inv_no, OrderByItem.OrderDir.Desc)
+                
               End If
               
 
@@ -2915,6 +3107,7 @@ Public Class BaseInv_hdrTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
+                 report.AddColumn(Inv_hdrTable.id0.Name, ReportEnum.Align.Right, "${id0}", ReportEnum.Align.Right, 15)
                  report.AddColumn(Inv_hdrTable.inv_no.Name, ReportEnum.Align.Left, "${inv_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Inv_hdrTable.inv_dt.Name, ReportEnum.Align.Left, "${inv_dt}", ReportEnum.Align.Left, 20)
                  report.AddColumn(Inv_hdrTable.id_party.Name, ReportEnum.Align.Left, "${id_party}", ReportEnum.Align.Left, 30)
@@ -2948,6 +3141,7 @@ Public Class BaseInv_hdrTableControl
                             ' The 2nd parameters represent the data value
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
+                             report.AddData("${id0}", record.Format(Inv_hdrTable.id0), ReportEnum.Align.Right, 100)
                              report.AddData("${inv_no}", record.Format(Inv_hdrTable.inv_no), ReportEnum.Align.Left, 100)
                              report.AddData("${inv_dt}", record.Format(Inv_hdrTable.inv_dt), ReportEnum.Align.Left, 100)
                              report.AddData("${id_party}", record.Format(Inv_hdrTable.id_party), ReportEnum.Align.Left)

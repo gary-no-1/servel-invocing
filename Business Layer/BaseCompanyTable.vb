@@ -79,6 +79,10 @@ Namespace ServelInvocing.Business
         inv_sfxColumn.CodeName = "inv_sfx"
         next_inv_noColumn.CodeName = "next_inv_no"
         pad_inv_noColumn.CodeName = "pad_inv_no"
+        inv_declarationColumn.CodeName = "inv_declaration"
+        email_fromColumn.CodeName = "email_from"
+        email_bccColumn.CodeName = "email_bcc"
+        inv_email_bodyColumn.CodeName = "inv_email_body"
         
     End Sub
 
@@ -578,6 +582,82 @@ Namespace ServelInvocing.Business
             Return CompanyTable.Instance.pad_inv_noColumn
         End Get
     End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Company_.inv_declaration column object.
+    ''' </summary>
+    Public ReadOnly Property inv_declarationColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(26), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Company_.inv_declaration column object.
+    ''' </summary>
+    Public Shared ReadOnly Property inv_declaration() As BaseClasses.Data.StringColumn
+        Get
+            Return CompanyTable.Instance.inv_declarationColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Company_.email_from column object.
+    ''' </summary>
+    Public ReadOnly Property email_fromColumn() As BaseClasses.Data.EmailColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(27), BaseClasses.Data.EmailColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Company_.email_from column object.
+    ''' </summary>
+    Public Shared ReadOnly Property email_from() As BaseClasses.Data.EmailColumn
+        Get
+            Return CompanyTable.Instance.email_fromColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Company_.email_bcc column object.
+    ''' </summary>
+    Public ReadOnly Property email_bccColumn() As BaseClasses.Data.EmailColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(28), BaseClasses.Data.EmailColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Company_.email_bcc column object.
+    ''' </summary>
+    Public Shared ReadOnly Property email_bcc() As BaseClasses.Data.EmailColumn
+        Get
+            Return CompanyTable.Instance.email_bccColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Company_.inv_email_body column object.
+    ''' </summary>
+    Public ReadOnly Property inv_email_bodyColumn() As BaseClasses.Data.EmailColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(29), BaseClasses.Data.EmailColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Company_.inv_email_body column object.
+    ''' </summary>
+    Public Shared ReadOnly Property inv_email_body() As BaseClasses.Data.EmailColumn
+        Get
+            Return CompanyTable.Instance.inv_email_bodyColumn
+        End Get
+    End Property
 
 
 #End Region
@@ -876,7 +956,11 @@ Namespace ServelInvocing.Business
         ByVal inv_pfxValue As String, _
         ByVal inv_sfxValue As String, _
         ByVal next_inv_noValue As String, _
-        ByVal pad_inv_noValue As String _
+        ByVal pad_inv_noValue As String, _
+        ByVal inv_declarationValue As String, _
+        ByVal email_fromValue As String, _
+        ByVal email_bccValue As String, _
+        ByVal inv_email_bodyValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(nameValue, nameColumn)
@@ -904,6 +988,10 @@ Namespace ServelInvocing.Business
         rec.SetString(inv_sfxValue, inv_sfxColumn)
         rec.SetString(next_inv_noValue, next_inv_noColumn)
         rec.SetString(pad_inv_noValue, pad_inv_noColumn)
+        rec.SetString(inv_declarationValue, inv_declarationColumn)
+        rec.SetString(email_fromValue, email_fromColumn)
+        rec.SetString(email_bccValue, email_bccColumn)
+        rec.SetString(inv_email_bodyValue, inv_email_bodyColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

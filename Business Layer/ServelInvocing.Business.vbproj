@@ -63,6 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="CommodityTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommodityRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CompanyTable.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -73,6 +79,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Inv_hdrTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseInv_hdrTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Inv_hdrRecord.vb">
@@ -133,9 +142,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Pro_inv_hdrTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BasePro_inv_hdrTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Pro_inv_hdrRecord.vb">
@@ -252,10 +258,13 @@
     <Compile Include="UsersRecord.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseCompanyRecord.vb" >
+    <Compile Include="BaseCommodityTable.vb" >
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseInv_hdrTable.vb" >
+    <Compile Include="BaseCommodityRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseCompanyRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseInv_hdrRecord.vb" >
@@ -289,6 +298,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BasePartyRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePro_inv_hdrTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BasePro_inv_hdrRecord.vb" >

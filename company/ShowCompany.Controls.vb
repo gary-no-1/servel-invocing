@@ -173,9 +173,17 @@ Public Class BaseCompanyRecordControl
             Setecc_no()
             Setecc_noLabel()
             Setemail()
+            Setemail_bcc()
+            Setemail_bccLabel()
+            Setemail_from()
+            Setemail_fromLabel()
             SetemailLabel()
             Setgoods()
             SetgoodsLabel()
+            Setinv_declaration()
+            Setinv_declarationLabel()
+            Setinv_email_body()
+            Setinv_email_bodyLabel()
             Setlicense()
             SetlicenseLabel()
             Setname()
@@ -641,6 +649,94 @@ Public Class BaseCompanyRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setemail_bcc()
+            
+        
+            ' Set the email_bcc Literal on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.email_bcc is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setemail_bcc()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.email_bccSpecified Then
+                				
+                ' If the email_bcc is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.email_bcc)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.email_bcc.Text = formattedValue
+              
+            Else 
+            
+                ' email_bcc is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.email_bcc.Text = CompanyTable.email_bcc.Format(CompanyTable.email_bcc.DefaultValue)
+                        		
+                End If
+                 
+            ' If the email_bcc is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.email_bcc.Text Is Nothing _
+                OrElse Me.email_bcc.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.email_bcc.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setemail_from()
+            
+        
+            ' Set the email_from Literal on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.email_from is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setemail_from()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.email_fromSpecified Then
+                				
+                ' If the email_from is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.email_from)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.email_from.Text = formattedValue
+              
+            Else 
+            
+                ' email_from is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.email_from.Text = CompanyTable.email_from.Format(CompanyTable.email_from.DefaultValue)
+                        		
+                End If
+                 
+            ' If the email_from is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.email_from.Text Is Nothing _
+                OrElse Me.email_from.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.email_from.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setgoods()
             
         
@@ -681,6 +777,163 @@ Public Class BaseCompanyRecordControl
                 OrElse Me.goods.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.goods.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setinv_declaration()
+            
+        
+            ' Set the inv_declaration Literal on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.inv_declaration is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_declaration()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_declarationSpecified Then
+                				
+                ' If the inv_declaration is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.inv_declaration)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                If Not formattedValue is Nothing Then
+                    Dim popupThreshold as Integer = CType(100, Integer)
+                              
+                    Dim maxLength as Integer = Len(formattedValue)
+                    If (maxLength > CType(100, Integer)) Then
+                        ' Truncate based on FieldMaxLength on Properties.
+                        maxLength = CType(100, Integer)
+                        
+                    End If
+                                
+                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
+                    If Len(formattedValue) >= popupThreshold Then
+                    
+                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
+                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.CompanyTable, ServelInvocing.Business\"",\""" _
+                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""inv_declaration\"", \""inv_declaration\"", \""Declaration on Invoice\"", false, 200," _
+                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
+                        
+                        If (maxLength = CType(100, Integer)) Then
+                            formattedValue = formattedValue & "..." & "</a>"
+                        Else
+                            formattedValue = formattedValue & "</a>"
+                            
+                        End If
+                    Else
+                        If maxLength = CType(100, Integer) Then
+                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
+                            formattedValue = formattedValue & "..."
+                            
+                        End If
+                    End If
+                End If  
+                
+                Me.inv_declaration.Text = formattedValue
+              
+            Else 
+            
+                ' inv_declaration is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_declaration.Text = CompanyTable.inv_declaration.Format(CompanyTable.inv_declaration.DefaultValue)
+                        		
+                End If
+                 
+            ' If the inv_declaration is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.inv_declaration.Text Is Nothing _
+                OrElse Me.inv_declaration.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.inv_declaration.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setinv_email_body()
+            
+        
+            ' Set the inv_email_body Literal on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.inv_email_body is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_email_body()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_email_bodySpecified Then
+                				
+                ' If the inv_email_body is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.inv_email_body)
+                            
+                If Not formattedValue is Nothing Then
+                    Dim popupThreshold as Integer = CType(100, Integer)
+                              
+                    Dim maxLength as Integer = Len(formattedValue)
+                    If (maxLength > CType(100, Integer)) Then
+                        ' Truncate based on FieldMaxLength on Properties.
+                        maxLength = CType(100, Integer)
+                         
+                        formattedValue = HttpUtility.HtmlEncode(formattedValue) 
+                    End If
+                                
+                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
+                    If Len(formattedValue) >= popupThreshold Then
+                    
+                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
+                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.CompanyTable, ServelInvocing.Business\"",\""" _
+                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""inv_email_body\"", \""inv_email_body\"", \""Invoice Email Body\"", false, 200," _
+                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
+                        
+                        If (maxLength = CType(100, Integer)) Then
+                            formattedValue = formattedValue & "..." & "</a>"
+                        Else
+                            formattedValue = formattedValue & "</a>"
+                            
+                            formattedValue = "<table border=""0"" cellpadding=""0"" cellspacing=""0""><tr><td>" & formattedValue & "</td></tr></table>"
+                        End If
+                    Else
+                        If maxLength = CType(100, Integer) Then
+                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
+                            formattedValue = formattedValue & "..."
+                            
+                        Else
+                            formattedValue = "<table border=""0"" cellpadding=""0"" cellspacing=""0""><tr><td>" & formattedValue & "</td></tr></table>"
+                        End If
+                    End If
+                End If  
+                
+                Me.inv_email_body.Text = formattedValue
+              
+            Else 
+            
+                ' inv_email_body is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_email_body.Text = CompanyTable.inv_email_body.Format(CompanyTable.inv_email_body.DefaultValue)
+                        		
+                End If
+                 
+            ' If the inv_email_body is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.inv_email_body.Text Is Nothing _
+                OrElse Me.inv_email_body.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.inv_email_body.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -1154,12 +1407,32 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setemail_bccLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setemail_fromLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub SetemailLabel()
             
                     
         End Sub
                 
         Public Overridable Sub SetgoodsLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setinv_declarationLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setinv_email_bodyLabel()
             
                     
         End Sub
@@ -1322,7 +1595,11 @@ Public Class BaseCompanyRecordControl
             Geteac()
             Getecc_no()
             Getemail()
+            Getemail_bcc()
+            Getemail_from()
             Getgoods()
+            Getinv_declaration()
+            Getinv_email_body()
             Getlicense()
             Getname()
             Getpan_no()
@@ -1371,7 +1648,23 @@ Public Class BaseCompanyRecordControl
             
         End Sub
                 
+        Public Overridable Sub Getemail_bcc()
+            
+        End Sub
+                
+        Public Overridable Sub Getemail_from()
+            
+        End Sub
+                
         Public Overridable Sub Getgoods()
+            
+        End Sub
+                
+        Public Overridable Sub Getinv_declaration()
+            
+        End Sub
+                
+        Public Overridable Sub Getinv_email_body()
             
         End Sub
                 
@@ -1983,6 +2276,30 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
             
+        Public ReadOnly Property email_bcc() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email_bcc"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property email_bccLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email_bccLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property email_from() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email_from"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property email_fromLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email_fromLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property emailLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel"), System.Web.UI.WebControls.Literal)
@@ -1998,6 +2315,30 @@ Public Class BaseCompanyRecordControl
         Public ReadOnly Property goodsLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "goodsLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property inv_declaration() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_declaration"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_declarationLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_declarationLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property inv_email_body() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_email_body"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_email_bodyLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_email_bodyLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

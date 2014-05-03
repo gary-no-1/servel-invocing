@@ -1,6 +1,6 @@
 ﻿
-' This file implements the code-behind class for PrintPro_inv.aspx.
-' PrintPro_inv.Controls.vb contains the Table, Row and Record control classes
+' This file implements the code-behind class for PrintPro_Inv.aspx.
+' PrintPro_Inv.Controls.vb contains the Table, Row and Record control classes
 ' for the page.  Best practices calls for overriding methods in the Row or Record control classes.
 
 #Region "Imports statements"
@@ -27,16 +27,15 @@ Imports BaseClasses.Web.UI.WebControls
 Imports ServelInvocing.Business
 Imports ServelInvocing.Data
         
-Imports telerik.reporting
 
 #End Region
 
   
 Namespace ServelInvocing.UI
   
-Partial Public Class PrintPro_inv
+Partial Public Class PrintPro_Inv
         Inherits BaseApplicationPage
-' Code-behind class for the PrintPro_inv page.
+' Code-behind class for the PrintPro_Inv page.
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
@@ -51,9 +50,10 @@ Partial Public Class PrintPro_inv
           'If no control is passed or control does not exist this method will set focus on the first focusable control on the page.
 		Try
 	    	If Not IsPostBack Then
-	            'If Not Page.Session("PrintQuoteID") Is Nothing Then
-    	            'Dim sID As String = Page.Session("PrintQuoteID").tostring()
-					Dim sID As String = "7"
+	            If Not Page.Session("PrintProInvID") Is Nothing Then
+    	            Dim sID As String = Page.Session("PrintProInvID").tostring()
+    	            'Dim sID As String = Page.Session("PrintProInvID")
+					'Dim sID As String = "7"
 					Dim fs As New ServelInvoicingReportLibrary.ServelInvProformaInvoice()
 					fs.ReportParameters("PrintProInvId").value = sID
 
@@ -64,7 +64,7 @@ Partial Public Class PrintPro_inv
 		   			Else
     		  			Response.Write("Control not found.....")
    					End If
-				'End If
+				End If
 			End If
 
         Catch ex As Exception

@@ -839,6 +839,122 @@ Namespace ServelInvocing.Business
 		Dim colValue As ColumnValue = New ColumnValue(val)
 		Me.SetValue(colValue, TableUtils.pad_inv_noColumn)
 	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.inv_declaration field.
+	''' </summary>
+	Public Function Getinv_declarationValue() As ColumnValue
+		Return Me.GetValue(TableUtils.inv_declarationColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.inv_declaration field.
+	''' </summary>
+	Public Function Getinv_declarationFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.inv_declarationColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.inv_declaration field.
+	''' </summary>
+	Public Sub Setinv_declarationFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.inv_declarationColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.inv_declaration field.
+	''' </summary>
+	Public Sub Setinv_declarationFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.inv_declarationColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.email_from field.
+	''' </summary>
+	Public Function Getemail_fromValue() As ColumnValue
+		Return Me.GetValue(TableUtils.email_fromColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.email_from field.
+	''' </summary>
+	Public Function Getemail_fromFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.email_fromColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.email_from field.
+	''' </summary>
+	Public Sub Setemail_fromFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.email_fromColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.email_from field.
+	''' </summary>
+	Public Sub Setemail_fromFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.email_fromColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.email_bcc field.
+	''' </summary>
+	Public Function Getemail_bccValue() As ColumnValue
+		Return Me.GetValue(TableUtils.email_bccColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.email_bcc field.
+	''' </summary>
+	Public Function Getemail_bccFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.email_bccColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.email_bcc field.
+	''' </summary>
+	Public Sub Setemail_bccFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.email_bccColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.email_bcc field.
+	''' </summary>
+	Public Sub Setemail_bccFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.email_bccColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.inv_email_body field.
+	''' </summary>
+	Public Function Getinv_email_bodyValue() As ColumnValue
+		Return Me.GetValue(TableUtils.inv_email_bodyColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.inv_email_body field.
+	''' </summary>
+	Public Function Getinv_email_bodyFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.inv_email_bodyColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.inv_email_body field.
+	''' </summary>
+	Public Sub Setinv_email_bodyFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.inv_email_bodyColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.inv_email_body field.
+	''' </summary>
+	Public Sub Setinv_email_bodyFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.inv_email_bodyColumn)
+	End Sub
+
 
 
 #End Region
@@ -1757,6 +1873,146 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property pad_inv_noDefault() As String
         Get
             Return TableUtils.pad_inv_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.inv_declaration field.
+	''' </summary>
+	Public Property inv_declaration() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.inv_declarationColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.inv_declarationColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property inv_declarationSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.inv_declarationColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property inv_declarationDefault() As String
+        Get
+            Return TableUtils.inv_declarationColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.email_from field.
+	''' </summary>
+	Public Property email_from() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.email_fromColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.email_fromColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property email_fromSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.email_fromColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property email_fromDefault() As String
+        Get
+            Return TableUtils.email_fromColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.email_bcc field.
+	''' </summary>
+	Public Property email_bcc() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.email_bccColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.email_bccColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property email_bccSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.email_bccColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property email_bccDefault() As String
+        Get
+            Return TableUtils.email_bccColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.inv_email_body field.
+	''' </summary>
+	Public Property inv_email_body() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.inv_email_bodyColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.inv_email_bodyColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property inv_email_bodySpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.inv_email_bodyColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property inv_email_bodyDefault() As String
+        Get
+            Return TableUtils.inv_email_bodyColumn.DefaultValue
         End Get
     End Property
 

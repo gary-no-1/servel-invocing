@@ -1,7 +1,7 @@
 ﻿<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Tagprefix="Selectors" Namespace="ServelInvocing" Assembly="ServelInvocing" %>
 
-<%@ Page Language="vb" EnableEventValidation="false" AutoEventWireup="false" Codebehind="PrintPro_inv.aspx.vb" Culture="en-IN" MasterPageFile="../Master Pages/Blank.master" Inherits="ServelInvocing.UI.PrintPro_inv" %>
+<%@ Page Language="vb" EnableEventValidation="false" AutoEventWireup="false" Codebehind="PrintPro_Inv.aspx.vb" Culture="en-IN" MasterPageFile="../Master Pages/VerticalMenu.master" Inherits="ServelInvocing.UI.PrintPro_Inv" %>
 <%@ Register Tagprefix="BaseClasses" Namespace="BaseClasses.Web.UI.WebControls" Assembly="BaseClasses" %><asp:Content id="PageSection" ContentPlaceHolderID="PageContent" Runat="server">
     <a id="StartOfPageContent"></a>
 <%@ Register assembly="Telerik.ReportViewer.WebForms, Version=5.3.12.119, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" namespace="Telerik.ReportViewer.WebForms" tagprefix="telerik" %>
@@ -20,6 +20,9 @@
 <table cellpadding="0" cellspacing="0" border="0"><tr><td><div>
     <center>
         <telerik:ReportViewer ID="ReportViewer1" runat="server" style="border:1px solid #ccc;" width="1200px" height="1000px" />
+        <script type="text/javascript"> 
+            <%=ReportViewer1.ClientID %>.PrintReport(); 
+        </script>		
     </center>
 </div></td></tr></table></ContentTemplate>
 </asp:UpdatePanel>
