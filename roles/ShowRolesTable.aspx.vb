@@ -155,8 +155,8 @@ Partial Public Class ShowRolesTable
 #Region "Section 2: Do not modify this section."
 
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents RoleLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents RoleLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents roleLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents roleLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents RolesCopyButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents RolesDeleteButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents RolesEditButton As System.Web.UI.WebControls.ImageButton
@@ -349,15 +349,6 @@ Partial Public Class ShowRolesTable
                 Me.DataBind()
             
                 
-                'Set the corresponding menu item to be highlighted for this page
-                Dim pageMaster As System.Web.UI.MasterPage = Me.Master
-                If Not pageMaster is Nothing Then
-                    Dim menuComponent As IMenuComponent = CType(Me.Master.FindControl("_MenuV"), IMenuComponent)
-                    If Not menuComponent is Nothing Then
-                        menuComponent.HiliteSettings = "RolesMenuItem"
-                    End If
-                End If
-      
                 
 
             Catch ex As Exception

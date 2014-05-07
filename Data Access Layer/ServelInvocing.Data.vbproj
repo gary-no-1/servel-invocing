@@ -175,9 +175,6 @@
     <Compile Include="RolesSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseRolesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="SalepersonDefinition.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -250,7 +247,13 @@
     <Compile Include="UsersSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseUsersSqlTable.vb">
+    <Compile Include="User_rolesDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User_rolesSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseUser_rolesSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseCommoditySqlTable.vb" >
@@ -283,6 +286,9 @@
     <Compile Include="BasePro_inv_taxesSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseRolesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseSitesSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
@@ -296,6 +302,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseTermsSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseUsersSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

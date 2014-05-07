@@ -53,17 +53,17 @@ Namespace ServelInvocing.Business
         Directcast(Me.DataAdapter, RolesSqlTable).ConnectionName = Me.ConnectionName
         
         Me.TableDefinition.AdapterMetaData = Me.DataAdapter.AdapterMetaData
-        RoleIdColumn.CodeName = "RoleId"
-        RoleColumn.CodeName = "Role"
+        id0Column.CodeName = "id0"
+        roleColumn.CodeName = "role"
         
     End Sub
 
 #Region "Properties for columns"
 
     ''' <summary>
-    ''' This is a convenience property that provides direct access to the table's Roles_.RoleId column object.
+    ''' This is a convenience property that provides direct access to the table's Roles_.id column object.
     ''' </summary>
-    Public ReadOnly Property RoleIdColumn() As BaseClasses.Data.NumberColumn
+    Public ReadOnly Property id0Column() As BaseClasses.Data.NumberColumn
         Get
             Return CType(Me.TableDefinition.ColumnList(0), BaseClasses.Data.NumberColumn)
         End Get
@@ -72,17 +72,17 @@ Namespace ServelInvocing.Business
 
     
     ''' <summary>
-    ''' This is a convenience property that provides direct access to the table's Roles_.RoleId column object.
+    ''' This is a convenience property that provides direct access to the table's Roles_.id column object.
     ''' </summary>
-    Public Shared ReadOnly Property RoleId() As BaseClasses.Data.NumberColumn
+    Public Shared ReadOnly Property id0() As BaseClasses.Data.NumberColumn
         Get
-            Return RolesTable.Instance.RoleIdColumn
+            Return RolesTable.Instance.id0Column
         End Get
     End Property
     ''' <summary>
-    ''' This is a convenience property that provides direct access to the table's Roles_.Role column object.
+    ''' This is a convenience property that provides direct access to the table's Roles_.role column object.
     ''' </summary>
-    Public ReadOnly Property RoleColumn() As BaseClasses.Data.StringColumn
+    Public ReadOnly Property roleColumn() As BaseClasses.Data.StringColumn
         Get
             Return CType(Me.TableDefinition.ColumnList(1), BaseClasses.Data.StringColumn)
         End Get
@@ -91,11 +91,11 @@ Namespace ServelInvocing.Business
 
     
     ''' <summary>
-    ''' This is a convenience property that provides direct access to the table's Roles_.Role column object.
+    ''' This is a convenience property that provides direct access to the table's Roles_.role column object.
     ''' </summary>
-    Public Shared ReadOnly Property Role() As BaseClasses.Data.StringColumn
+    Public Shared ReadOnly Property role() As BaseClasses.Data.StringColumn
         Get
-            Return RolesTable.Instance.RoleColumn
+            Return RolesTable.Instance.roleColumn
         End Get
     End Property
 
@@ -372,10 +372,10 @@ Namespace ServelInvocing.Business
 
     ' Convenience method for creating a record
     Public Overloads Function NewRecord( _
-        ByVal RoleValue As String _
+        ByVal roleValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
-                rec.SetString(RoleValue, RoleColumn)
+                rec.SetString(roleValue, roleColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

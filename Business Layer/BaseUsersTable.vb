@@ -53,21 +53,22 @@ Namespace ServelInvocing.Business
         Directcast(Me.DataAdapter, UsersSqlTable).ConnectionName = Me.ConnectionName
         
         Me.TableDefinition.AdapterMetaData = Me.DataAdapter.AdapterMetaData
-        UserId0Column.CodeName = "UserId0"
-        UserName0Column.CodeName = "UserName0"
-        FullNameColumn.CodeName = "FullName"
+        id0Column.CodeName = "id0"
+        nameColumn.CodeName = "name"
         emailColumn.CodeName = "email"
-        RoleIdColumn.CodeName = "RoleId"
         passwordColumn.CodeName = "password"
+        mobileColumn.CodeName = "mobile"
+        phoneColumn.CodeName = "phone"
+        addressColumn.CodeName = "address"
         
     End Sub
 
 #Region "Properties for columns"
 
     ''' <summary>
-    ''' This is a convenience property that provides direct access to the table's Users_.UserId column object.
+    ''' This is a convenience property that provides direct access to the table's Users_.id column object.
     ''' </summary>
-    Public ReadOnly Property UserId0Column() As BaseClasses.Data.NumberColumn
+    Public ReadOnly Property id0Column() As BaseClasses.Data.NumberColumn
         Get
             Return CType(Me.TableDefinition.ColumnList(0), BaseClasses.Data.NumberColumn)
         End Get
@@ -76,17 +77,17 @@ Namespace ServelInvocing.Business
 
     
     ''' <summary>
-    ''' This is a convenience property that provides direct access to the table's Users_.UserId column object.
+    ''' This is a convenience property that provides direct access to the table's Users_.id column object.
     ''' </summary>
-    Public Shared ReadOnly Property UserId0() As BaseClasses.Data.NumberColumn
+    Public Shared ReadOnly Property id0() As BaseClasses.Data.NumberColumn
         Get
-            Return UsersTable.Instance.UserId0Column
+            Return UsersTable.Instance.id0Column
         End Get
     End Property
     ''' <summary>
-    ''' This is a convenience property that provides direct access to the table's Users_.UserName column object.
+    ''' This is a convenience property that provides direct access to the table's Users_.name column object.
     ''' </summary>
-    Public ReadOnly Property UserName0Column() As BaseClasses.Data.StringColumn
+    Public ReadOnly Property nameColumn() As BaseClasses.Data.StringColumn
         Get
             Return CType(Me.TableDefinition.ColumnList(1), BaseClasses.Data.StringColumn)
         End Get
@@ -95,30 +96,11 @@ Namespace ServelInvocing.Business
 
     
     ''' <summary>
-    ''' This is a convenience property that provides direct access to the table's Users_.UserName column object.
+    ''' This is a convenience property that provides direct access to the table's Users_.name column object.
     ''' </summary>
-    Public Shared ReadOnly Property UserName0() As BaseClasses.Data.StringColumn
+    Public Shared ReadOnly Property name() As BaseClasses.Data.StringColumn
         Get
-            Return UsersTable.Instance.UserName0Column
-        End Get
-    End Property
-    ''' <summary>
-    ''' This is a convenience property that provides direct access to the table's Users_.FullName column object.
-    ''' </summary>
-    Public ReadOnly Property FullNameColumn() As BaseClasses.Data.StringColumn
-        Get
-            Return CType(Me.TableDefinition.ColumnList(2), BaseClasses.Data.StringColumn)
-        End Get
-    End Property
-
-
-    
-    ''' <summary>
-    ''' This is a convenience property that provides direct access to the table's Users_.FullName column object.
-    ''' </summary>
-    Public Shared ReadOnly Property FullName() As BaseClasses.Data.StringColumn
-        Get
-            Return UsersTable.Instance.FullNameColumn
+            Return UsersTable.Instance.nameColumn
         End Get
     End Property
     ''' <summary>
@@ -126,7 +108,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property emailColumn() As BaseClasses.Data.EmailColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(3), BaseClasses.Data.EmailColumn)
+            Return CType(Me.TableDefinition.ColumnList(2), BaseClasses.Data.EmailColumn)
         End Get
     End Property
 
@@ -141,30 +123,11 @@ Namespace ServelInvocing.Business
         End Get
     End Property
     ''' <summary>
-    ''' This is a convenience property that provides direct access to the table's Users_.RoleId column object.
-    ''' </summary>
-    Public ReadOnly Property RoleIdColumn() As BaseClasses.Data.NumberColumn
-        Get
-            Return CType(Me.TableDefinition.ColumnList(4), BaseClasses.Data.NumberColumn)
-        End Get
-    End Property
-
-
-    
-    ''' <summary>
-    ''' This is a convenience property that provides direct access to the table's Users_.RoleId column object.
-    ''' </summary>
-    Public Shared ReadOnly Property RoleId() As BaseClasses.Data.NumberColumn
-        Get
-            Return UsersTable.Instance.RoleIdColumn
-        End Get
-    End Property
-    ''' <summary>
     ''' This is a convenience property that provides direct access to the table's Users_.password column object.
     ''' </summary>
     Public ReadOnly Property passwordColumn() As BaseClasses.Data.PasswordColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(5), BaseClasses.Data.PasswordColumn)
+            Return CType(Me.TableDefinition.ColumnList(3), BaseClasses.Data.PasswordColumn)
         End Get
     End Property
 
@@ -176,6 +139,63 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property password() As BaseClasses.Data.PasswordColumn
         Get
             Return UsersTable.Instance.passwordColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Users_.mobile column object.
+    ''' </summary>
+    Public ReadOnly Property mobileColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(4), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Users_.mobile column object.
+    ''' </summary>
+    Public Shared ReadOnly Property mobile() As BaseClasses.Data.StringColumn
+        Get
+            Return UsersTable.Instance.mobileColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Users_.phone column object.
+    ''' </summary>
+    Public ReadOnly Property phoneColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(5), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Users_.phone column object.
+    ''' </summary>
+    Public Shared ReadOnly Property phone() As BaseClasses.Data.StringColumn
+        Get
+            Return UsersTable.Instance.phoneColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Users_.address column object.
+    ''' </summary>
+    Public ReadOnly Property addressColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(6), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Users_.address column object.
+    ''' </summary>
+    Public Shared ReadOnly Property address() As BaseClasses.Data.StringColumn
+        Get
+            Return UsersTable.Instance.addressColumn
         End Get
     End Property
 
@@ -452,18 +472,20 @@ Namespace ServelInvocing.Business
 
     ' Convenience method for creating a record
     Public Overloads Function NewRecord( _
-        ByVal UserName0Value As String, _
-        ByVal FullNameValue As String, _
+        ByVal nameValue As String, _
         ByVal emailValue As String, _
-        ByVal RoleIdValue As String, _
-        ByVal passwordValue As String _
+        ByVal passwordValue As String, _
+        ByVal mobileValue As String, _
+        ByVal phoneValue As String, _
+        ByVal addressValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
-                rec.SetString(UserName0Value, UserName0Column)
-        rec.SetString(FullNameValue, FullNameColumn)
+                rec.SetString(nameValue, nameColumn)
         rec.SetString(emailValue, emailColumn)
-        rec.SetString(RoleIdValue, RoleIdColumn)
         rec.SetString(passwordValue, passwordColumn)
+        rec.SetString(mobileValue, mobileColumn)
+        rec.SetString(phoneValue, phoneColumn)
+        rec.SetString(addressValue, addressColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

@@ -161,31 +161,13 @@ Partial Public Class ShowRoles
 #Region "Section 2: Do not modify this section."
 
         Public WithEvents EditButton As ThemeButton
-        Public WithEvents emailLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents FullNameLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents OKButton As ThemeButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents passwordLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents Role As System.Web.UI.WebControls.Literal
-        Public WithEvents RoleLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents role As System.Web.UI.WebControls.Literal
+        Public WithEvents roleLabel As System.Web.UI.WebControls.Literal
         Public WithEvents RolesDialogEditButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents RolesRecordControl As ServelInvocing.UI.Controls.ShowRoles.RolesRecordControl
         Public WithEvents RolesTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents UserNameLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents UsersCopyButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersEditButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersExportCSVButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersExportExcelButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersImportButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersNewButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersPagination As Pagination
-        Public WithEvents UsersPDFButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersRefreshButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersTableControl As ServelInvocing.UI.Controls.ShowRoles.UsersTableControl
-        Public WithEvents UsersToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents UsersWordButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   
@@ -354,15 +336,6 @@ Partial Public Class ShowRoles
                 Me.DataBind()
             
                 
-                'Set the corresponding menu item to be highlighted for this page
-                Dim pageMaster As System.Web.UI.MasterPage = Me.Master
-                If Not pageMaster is Nothing Then
-                    Dim menuComponent As IMenuComponent = CType(Me.Master.FindControl("_MenuV"), IMenuComponent)
-                    If Not menuComponent is Nothing Then
-                        menuComponent.HiliteSettings = "RolesMenuItem"
-                    End If
-                End If
-      
                 
 
             Catch ex As Exception

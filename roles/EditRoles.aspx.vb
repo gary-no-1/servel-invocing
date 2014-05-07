@@ -161,22 +161,11 @@ Partial Public Class EditRoles
 #Region "Section 2: Do not modify this section."
 
         Public WithEvents CancelButton As ThemeButton
-        Public WithEvents emailLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents FullNameLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents passwordLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents RoleLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents roleLabel As System.Web.UI.WebControls.Literal
         Public WithEvents RolesRecordControl As ServelInvocing.UI.Controls.EditRoles.RolesRecordControl
         Public WithEvents RolesTitle As System.Web.UI.WebControls.Literal
         Public WithEvents SaveButton As ThemeButton
-        Public WithEvents UserNameLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents UsersAddButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersEditButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersPagination As Pagination
-        Public WithEvents UsersResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersTableControl As ServelInvocing.UI.Controls.EditRoles.UsersTableControl
-        Public WithEvents UsersToggleAll As System.Web.UI.WebControls.CheckBox
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   
@@ -349,15 +338,6 @@ Partial Public Class EditRoles
                 Me.DataBind()
             
                 
-                'Set the corresponding menu item to be highlighted for this page
-                Dim pageMaster As System.Web.UI.MasterPage = Me.Master
-                If Not pageMaster is Nothing Then
-                    Dim menuComponent As IMenuComponent = CType(Me.Master.FindControl("_MenuV"), IMenuComponent)
-                    If Not menuComponent is Nothing Then
-                        menuComponent.HiliteSettings = "RolesMenuItem"
-                    End If
-                End If
-      
                 
 
             Catch ex As Exception
@@ -452,7 +432,7 @@ Partial Public Class EditRoles
                 DFKA = Me.Page.Request.QueryString.Item("DFKA")
                 If Not Me.RolesRecordControl Is Nothing AndAlso Not Me.RolesRecordControl.DataSource Is Nothing Then
                       
-                      id = Me.RolesRecordControl.DataSource.RoleId.ToString
+                      id = Me.RolesRecordControl.DataSource.id0.ToString
                       value = Me.RolesRecordControl.DataSource.GetValue(Me.RolesRecordControl.DataSource.TableAccess.TableDefinition.ColumnList.GetByAnyName(DFKA)).ToString
                       If value is Nothing Then
                             value = id

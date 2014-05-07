@@ -76,18 +76,17 @@ Public Class BaseUsersRecordControl
          
               ' Register the event handlers.
           
-              Me.RoleIdAddRecordLink.PostBackUrl = "../roles/AddRoles.aspx" & "?Target=" & Me.RoleId.ClientID & "&DFKA=Role"
-              Me.RoleIdAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.RoleIdAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
-              
-              AddHandler Me.RoleId.SelectedIndexChanged, AddressOf RoleId_SelectedIndexChanged
+              AddHandler Me.address.TextChanged, AddressOf address_TextChanged
             
               AddHandler Me.email.TextChanged, AddressOf email_TextChanged
             
-              AddHandler Me.FullName.TextChanged, AddressOf FullName_TextChanged
+              AddHandler Me.mobile.TextChanged, AddressOf mobile_TextChanged
+            
+              AddHandler Me.name.TextChanged, AddressOf name_TextChanged
             
               AddHandler Me.password.TextChanged, AddressOf password_TextChanged
             
-              AddHandler Me.UserName1.TextChanged, AddressOf UserName1_TextChanged
+              AddHandler Me.phone.TextChanged, AddressOf phone_TextChanged
             
         End Sub
 
@@ -154,16 +153,18 @@ Public Class BaseUsersRecordControl
       
             ' Call the Set methods for each controls on the panel
         
+            Setaddress()
+            SetaddressLabel()
             Setemail()
             SetemailLabel()
-            SetFullName()
-            SetFullNameLabel()
+            Setmobile()
+            SetmobileLabel()
+            Setname()
+            SetnameLabel()
             Setpassword()
             SetpasswordLabel()
-            SetRoleId()
-            SetRoleIdLabel()
-            SetUserName1()
-            SetUserNameLabel()
+            Setphone()
+            SetphoneLabel()
       
       
             Me.IsNewRecord = True
@@ -182,6 +183,41 @@ Public Class BaseUsersRecordControl
         End Sub
         
         
+        Public Overridable Sub Setaddress()
+            
+        
+            ' Set the address TextBox on the webpage with value from the
+            ' users database record.
+
+            ' Me.DataSource is the users record retrieved from the database.
+            ' Me.address is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setaddress()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.addressSpecified Then
+                				
+                ' If the address is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.address)
+                            
+                Me.address.Text = formattedValue
+              
+            Else 
+            
+                ' address is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.address.Text = UsersTable.address.Format(UsersTable.address.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setemail()
             
         
@@ -217,36 +253,71 @@ Public Class BaseUsersRecordControl
                  
         End Sub
                 
-        Public Overridable Sub SetFullName()
+        Public Overridable Sub Setmobile()
             
         
-            ' Set the FullName TextBox on the webpage with value from the
+            ' Set the mobile TextBox on the webpage with value from the
             ' users database record.
 
             ' Me.DataSource is the users record retrieved from the database.
-            ' Me.FullName is the ASP:TextBox on the webpage.
+            ' Me.mobile is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.SetFullName()
+            '     MyBase.Setmobile()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.FullNameSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.mobileSpecified Then
                 				
-                ' If the FullName is non-NULL, then format the value.
+                ' If the mobile is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.FullName)
+                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.mobile)
                             
-                Me.FullName.Text = formattedValue
+                Me.mobile.Text = formattedValue
               
             Else 
             
-                ' FullName is NULL in the database, so use the Default Value.  
+                ' mobile is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.FullName.Text = UsersTable.FullName.Format(UsersTable.FullName.DefaultValue)
+                Me.mobile.Text = UsersTable.mobile.Format(UsersTable.mobile.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setname()
+            
+        
+            ' Set the name TextBox on the webpage with value from the
+            ' users database record.
+
+            ' Me.DataSource is the users record retrieved from the database.
+            ' Me.name is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setname()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.nameSpecified Then
+                				
+                ' If the name is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.name)
+                            
+                Me.name.Text = formattedValue
+              
+            Else 
+            
+                ' name is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.name.Text = UsersTable.name.Format(UsersTable.name.DefaultValue)
                         		
                 End If
                  
@@ -287,73 +358,44 @@ Public Class BaseUsersRecordControl
                  
         End Sub
                 
-        Public Overridable Sub SetRoleId()
+        Public Overridable Sub Setphone()
             
         
-            ' Set the RoleId DropDownList on the webpage with value from the
-            ' users database record.
-            
-            ' Me.DataSource is the users record retrieved from the database.
-            ' Me.RoleId is the ASP:DropDownList on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.SetRoleId()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.RoleIdSpecified Then
-                            
-                ' If the RoleId is non-NULL, then format the value.
-                ' The Format method will return the Display Foreign Key As (DFKA) value
-                Me.PopulateRoleIdDropDownList(Me.DataSource.RoleId.ToString(), 100)
-                
-            Else
-                
-                ' RoleId is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-                If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
-                    Me.PopulateRoleIdDropDownList(Nothing, 100)
-                Else
-                    Me.PopulateRoleIdDropDownList(UsersTable.RoleId.DefaultValue, 100)
-                End If
-                				
-            End If			
-                
-        End Sub
-                
-        Public Overridable Sub SetUserName1()
-            
-        
-            ' Set the UserName TextBox on the webpage with value from the
+            ' Set the phone TextBox on the webpage with value from the
             ' users database record.
 
             ' Me.DataSource is the users record retrieved from the database.
-            ' Me.UserName1 is the ASP:TextBox on the webpage.
+            ' Me.phone is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.SetUserName1()
+            '     MyBase.Setphone()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.UserName0Specified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.phoneSpecified Then
                 				
-                ' If the UserName is non-NULL, then format the value.
+                ' If the phone is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.UserName0)
+                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.phone)
                             
-                Me.UserName1.Text = formattedValue
+                Me.phone.Text = formattedValue
               
             Else 
             
-                ' UserName is NULL in the database, so use the Default Value.  
+                ' phone is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.UserName1.Text = UsersTable.UserName0.Format(UsersTable.UserName0.DefaultValue)
+                Me.phone.Text = UsersTable.phone.Format(UsersTable.phone.DefaultValue)
                         		
                 End If
                  
+        End Sub
+                
+        Public Overridable Sub SetaddressLabel()
+            
+                    
         End Sub
                 
         Public Overridable Sub SetemailLabel()
@@ -361,7 +403,12 @@ Public Class BaseUsersRecordControl
                     
         End Sub
                 
-        Public Overridable Sub SetFullNameLabel()
+        Public Overridable Sub SetmobileLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetnameLabel()
             
                     
         End Sub
@@ -371,12 +418,7 @@ Public Class BaseUsersRecordControl
                     
         End Sub
                 
-        Public Overridable Sub SetRoleIdLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub SetUserNameLabel()
+        Public Overridable Sub SetphoneLabel()
             
                     
         End Sub
@@ -495,14 +537,28 @@ Public Class BaseUsersRecordControl
       
             ' Call the Get methods for each of the user interface controls.
         
+            Getaddress()
             Getemail()
-            GetFullName()
+            Getmobile()
+            Getname()
             Getpassword()
-            GetRoleId()
-            GetUserName1()
+            Getphone()
         End Sub
         
         
+        Public Overridable Sub Getaddress()
+            
+            ' Retrieve the value entered by the user on the address ASP:TextBox, and
+            ' save it into the address field in DataSource users record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.address.Text, UsersTable.address)			
+
+                      
+        End Sub
+                
         Public Overridable Sub Getemail()
             
             ' Retrieve the value entered by the user on the email ASP:TextBox, and
@@ -516,15 +572,28 @@ Public Class BaseUsersRecordControl
                       
         End Sub
                 
-        Public Overridable Sub GetFullName()
+        Public Overridable Sub Getmobile()
             
-            ' Retrieve the value entered by the user on the FullName ASP:TextBox, and
-            ' save it into the FullName field in DataSource users record.
+            ' Retrieve the value entered by the user on the mobile ASP:TextBox, and
+            ' save it into the mobile field in DataSource users record.
             
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.FullName.Text, UsersTable.FullName)			
+            Me.DataSource.Parse(Me.mobile.Text, UsersTable.mobile)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getname()
+            
+            ' Retrieve the value entered by the user on the name ASP:TextBox, and
+            ' save it into the name field in DataSource users record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.name.Text, UsersTable.name)			
 
                       
         End Sub
@@ -549,26 +618,15 @@ Public Class BaseUsersRecordControl
                       
         End Sub
                 
-        Public Overridable Sub GetRoleId()
-         
-            ' Retrieve the value entered by the user on the RoleId ASP:DropDownList, and
-            ' save it into the RoleId field in DataSource users record.
-                        
-            ' Custom validation should be performed in Validate, not here.
+        Public Overridable Sub Getphone()
             
-            Me.DataSource.Parse(GetValueSelectedPageRequest(Me.RoleId), UsersTable.RoleId)				
-            
-        End Sub
-                
-        Public Overridable Sub GetUserName1()
-            
-            ' Retrieve the value entered by the user on the UserName ASP:TextBox, and
-            ' save it into the UserName field in DataSource users record.
+            ' Retrieve the value entered by the user on the phone ASP:TextBox, and
+            ' save it into the phone field in DataSource users record.
             
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.UserName1.Text, UsersTable.UserName0)			
+            Me.DataSource.Parse(Me.phone.Text, UsersTable.phone)			
 
                       
         End Sub
@@ -602,12 +660,12 @@ Public Class BaseUsersRecordControl
                 ' If XML, then add a Where clause based on the Primary Key in the XML.
                 Dim pkValue As KeyValue = KeyValue.XmlToKey(recId)
                  
-                wc.iAND(UsersTable.UserId0, BaseFilter.ComparisonOperator.EqualsTo, pkValue.GetColumnValue(UsersTable.UserId0).ToString())
+                wc.iAND(UsersTable.id0, BaseFilter.ComparisonOperator.EqualsTo, pkValue.GetColumnValue(UsersTable.id0).ToString())
         
                     Else
                     ' The URL parameter contains the actual value, not an XML structure.
                     
-                wc.iAND(UsersTable.UserId0, BaseFilter.ComparisonOperator.EqualsTo, recId)
+                wc.iAND(UsersTable.id0, BaseFilter.ComparisonOperator.EqualsTo, recId)
         
             End If
                 
@@ -852,165 +910,19 @@ Public Class BaseUsersRecordControl
       
         ' Generate the event handling functions for filter and search events.
             
-
-        Public Overridable Function CreateWhereClause_RoleIdDropDownList() As WhereClause
-            ' By default, we simply return a new WhereClause.
-            ' Add additional where clauses to restrict the items shown in the dropdown list.
-            						
-            ' This WhereClause is for the roles table.
-            ' Examples:
-            ' wc.iAND(RolesTable.Role, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
-            ' wc.iAND(RolesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
-            
-            Dim wc As WhereClause = New WhereClause()
-            Return wc
-            				
-        End Function
-        
-                
-        ' Fill the RoleId list.
-        Protected Overridable Sub PopulateRoleIdDropDownList( _
-                ByVal selectedValue As String, _
-                ByVal maxItems As Integer)
-            		  					                
-            Me.RoleId.Items.Clear()
-            
-            ' This is a four step process.
-            ' 1. Setup the static list items
-            ' 2. Set up the WHERE and the ORDER BY clause
-            ' 3. Read a total of maxItems from the database and insert them
-            ' 4. Set the selected value (insert if not already present).
-                    
-            ' 1. Setup the static list items
-            														
-            Me.RoleId.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))							
-                            		  			
-            ' 2. Set up the WHERE and the ORDER BY clause by calling the CreateWhereClause_RoleIdDropDownList function.
-            ' It is better to customize the where clause there.
-            
-            Dim wc As WhereClause = CreateWhereClause_RoleIdDropDownList()
-            ' Create the ORDER BY clause to sort based on the displayed value.			
-                
-      
-      
-            Dim orderBy As OrderBy = New OrderBy(false, true)			
-        
-            orderBy.Add(RolesTable.Role, OrderByItem.OrderDir.Asc)				
-            
-            ' 3. Read a total of maxItems from the database and insert them		
-            Dim itemValues() As RolesRecord = Nothing
-            If wc.RunQuery
-                Dim counter As Integer = 0
-                Dim pageNum As Integer = 0
-                Do
-                    itemValues = RolesTable.GetRecords(wc, orderBy, pageNum, 500)
-                    For each itemValue As RolesRecord In itemValues
-                        ' Create the item and add to the list.
-                        Dim cvalue As String = Nothing
-                        Dim fvalue As String = Nothing
-                        If itemValue.RoleIdSpecified Then
-                            cvalue = itemValue.RoleId.ToString()
-                            fvalue = itemValue.Format(RolesTable.Role)
-                                    
-                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
-                            Dim newItem As New ListItem(fvalue, cvalue)
-                            If counter < maxItems AndAlso Not Me.RoleId.Items.Contains(newItem) Then Me.RoleId.Items.Add(newItem)
-                            counter += 1
-                        End If
-                    Next
-                    pageNum += 1
-                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
-            End If
-                            
-                    
-            ' 4. Set the selected value (insert if not already present).
-              
-            If Not selectedValue Is Nothing AndAlso _
-                selectedValue.Trim <> "" AndAlso _
-                Not SetSelectedValue(Me.RoleId, selectedValue) AndAlso _
-                Not SetSelectedDisplayText(Me.RoleId, selectedValue)Then
-
-                ' construct a whereclause to query a record with roles.RoleId = selectedValue
-                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
-                Dim whereClause2 As WhereClause = New WhereClause()
-                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(RolesTable.RoleId, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
-                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
-
-                Try
-                    ' Execute the query
-                    Dim rc() As RolesRecord = RolesTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
-
-                    ' if find a record, add it to the dropdown and set it as selected item
-                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
-                        
-                        Dim fvalue As String = UsersTable.RoleId.Format(selectedValue)																			
-                            
-                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
-                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
-                        item.Selected = True
-                        Me.RoleId.Items.Add(item)
-                    End If
-                Catch
-                End Try
-
-            End If					
-                        
-                
-        End Sub
-                
-        Protected Overridable Sub RoleId_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
-            ' If a large list selector or a Quick Add link is used, the dropdown list
-            ' will contain an item that was not in the original (smaller) list.  During postbacks,
-            ' this new item will not be in the list - since the list is based on the original values
-            ' read from the database. This function adds the value back if necessary.
-            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
-            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
-            ' When this function is fire for Make or Model, we don't want the following code executed.
-            ' Therefore, we check this situation using Items.Count > 1			
-            If Me.RoleId.Items.Count > 1 Then
-                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.RoleId)
-                 
-            If Not selectedValue Is Nothing AndAlso _
-                selectedValue.Trim <> "" AndAlso _
-                Not SetSelectedValue(Me.RoleId, selectedValue) AndAlso _
-                Not SetSelectedDisplayText(Me.RoleId, selectedValue)Then
-
-                ' construct a whereclause to query a record with roles.RoleId = selectedValue
-                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
-                Dim whereClause2 As WhereClause = New WhereClause()
-                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(RolesTable.RoleId, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
-                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
-
-                Try
-                    ' Execute the query
-                    Dim rc() As RolesRecord = RolesTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
-
-                    ' if find a record, add it to the dropdown and set it as selected item
-                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
-                        
-                        Dim fvalue As String = UsersTable.RoleId.Format(selectedValue)																			
-                            
-                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
-                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
-                        item.Selected = True
-                        Me.RoleId.Items.Add(item)
-                    End If
-                Catch
-                End Try
-
-            End If					
-                        
-            End If
-          									
-                
-                
+        Protected Overridable Sub address_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
         End Sub
             
         Protected Overridable Sub email_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
-        Protected Overridable Sub FullName_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub mobile_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub name_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -1018,7 +930,7 @@ Public Class BaseUsersRecordControl
                     				
         End Sub
             
-        Protected Overridable Sub UserName1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub phone_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -1155,6 +1067,18 @@ Public Class BaseUsersRecordControl
 
 #Region "Helper Properties"
         
+        Public ReadOnly Property address() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "address"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property addressLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "addressLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property email() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email"), System.Web.UI.WebControls.TextBox)
@@ -1167,15 +1091,27 @@ Public Class BaseUsersRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property FullName() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property mobile() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "FullName"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "mobile"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property FullNameLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property mobileLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "FullNameLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "mobileLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property name() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "name"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property nameLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "nameLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -1191,33 +1127,15 @@ Public Class BaseUsersRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property RoleId() As System.Web.UI.WebControls.DropDownList
+        Public ReadOnly Property phone() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleId"), System.Web.UI.WebControls.DropDownList)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "phone"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property RoleIdAddRecordLink() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property phoneLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleIdAddRecordLink"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property RoleIdLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleIdLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property UserName1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "UserName1"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property UserNameLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "UserNameLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "phoneLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

@@ -154,14 +154,15 @@ Partial Public Class ShowUsersTable
 
 #Region "Section 2: Do not modify this section."
 
-        Public WithEvents emailLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents FullNameLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents addressLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents emailLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents mobileLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents nameLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents passwordLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents RoleIdLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents RoleIdLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents UserNameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents UserNameLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents phoneLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents UsersCopyButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents UsersDeleteButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents UsersEditButton As System.Web.UI.WebControls.ImageButton
@@ -354,15 +355,6 @@ Partial Public Class ShowUsersTable
                 Me.DataBind()
             
                 
-                'Set the corresponding menu item to be highlighted for this page
-                Dim pageMaster As System.Web.UI.MasterPage = Me.Master
-                If Not pageMaster is Nothing Then
-                    Dim menuComponent As IMenuComponent = CType(Me.Master.FindControl("_MenuV"), IMenuComponent)
-                    If Not menuComponent is Nothing Then
-                        menuComponent.HiliteSettings = "UsersMenuItem"
-                    End If
-                End If
-      
                 
 
             Catch ex As Exception

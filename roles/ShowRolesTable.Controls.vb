@@ -143,7 +143,7 @@ Public Class BaseRolesTableControlRow
       
             ' Call the Set methods for each controls on the panel
         
-            SetRole()
+            Setrole()
       
       
             Me.IsNewRecord = True
@@ -162,46 +162,46 @@ Public Class BaseRolesTableControlRow
         End Sub
         
         
-        Public Overridable Sub SetRole()
+        Public Overridable Sub Setrole()
             
         
-            ' Set the Role Literal on the webpage with value from the
+            ' Set the role Literal on the webpage with value from the
             ' roles database record.
 
             ' Me.DataSource is the roles record retrieved from the database.
-            ' Me.Role is the ASP:Literal on the webpage.
+            ' Me.role is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.SetRole()
+            '     MyBase.Setrole()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.RoleSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.roleSpecified Then
                 				
-                ' If the Role is non-NULL, then format the value.
+                ' If the role is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(RolesTable.Role)
+                                Dim formattedValue As String = Me.DataSource.Format(RolesTable.role)
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.Role.Text = formattedValue
+                Me.role.Text = formattedValue
               
             Else 
             
-                ' Role is NULL in the database, so use the Default Value.  
+                ' role is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.Role.Text = RolesTable.Role.Format(RolesTable.Role.DefaultValue)
+                Me.role.Text = RolesTable.role.Format(RolesTable.role.DefaultValue)
                         		
                 End If
                  
-            ' If the Role is NULL or blank, then use the value specified  
+            ' If the role is NULL or blank, then use the value specified  
             ' on Properties.
-            If Me.Role.Text Is Nothing _
-                OrElse Me.Role.Text.Trim() = "" Then
+            If Me.role.Text Is Nothing _
+                OrElse Me.role.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
-                Me.Role.Text = "&nbsp;"
+                Me.role.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -302,11 +302,11 @@ Public Class BaseRolesTableControlRow
       
             ' Call the Get methods for each of the user interface controls.
         
-            GetRole()
+            Getrole()
         End Sub
         
         
-        Public Overridable Sub GetRole()
+        Public Overridable Sub Getrole()
             
         End Sub
                 
@@ -661,9 +661,9 @@ Public Class BaseRolesTableControlRow
 
 #Region "Helper Properties"
         
-        Public ReadOnly Property Role() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property role() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Role"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "role"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -768,18 +768,18 @@ Public Class BaseRolesTableControl
       
            ' Setup the filter and search events.
         
-            AddHandler Me.RoleFilter.SelectedIndexChanged, AddressOf RoleFilter_SelectedIndexChanged
+            AddHandler Me.roleFilter.SelectedIndexChanged, AddressOf roleFilter_SelectedIndexChanged
             If Not Me.Page.IsPostBack Then
                 Dim initialVal As String = ""
-                If  Me.InSession(Me.RoleFilter) 				
-                    initialVal = Me.GetFromSession(Me.RoleFilter)
+                If  Me.InSession(Me.roleFilter) 				
+                    initialVal = Me.GetFromSession(Me.roleFilter)
                 
                 End If
                 If initialVal <> ""				
                         
-                        Me.RoleFilter.Items.Add(New ListItem(initialVal, initialVal))
+                        Me.roleFilter.Items.Add(New ListItem(initialVal, initialVal))
                             
-                        Me.RoleFilter.SelectedValue = initialVal
+                        Me.roleFilter.SelectedValue = initialVal
                             
                     End If
                 
@@ -836,7 +836,7 @@ Public Class BaseRolesTableControl
               
             ' Setup the sorting events.
           
-              AddHandler Me.RoleLabel1.Click, AddressOf RoleLabel1_Click
+              AddHandler Me.roleLabel1.Click, AddressOf roleLabel1_Click
             
             ' Setup the button events.
           
@@ -968,10 +968,10 @@ Public Class BaseRolesTableControl
 
             ' Call the Set methods for each controls on the panel
         
-            SetRoleFilter()
+            SetroleFilter()
             
-            SetRoleLabel()
-            SetRoleLabel1()
+            SetroleLabel()
+            SetroleLabel1()
             SetRolesSearch()
             
       
@@ -1007,8 +1007,8 @@ Public Class BaseRolesTableControl
 
             ' Initialize other asp controls
             
-            SetRoleLabel()
-            SetRoleLabel1()
+            SetroleLabel()
+            SetroleLabel1()
       End Sub
 
       
@@ -1052,7 +1052,7 @@ Public Class BaseRolesTableControl
 
         Public Overridable Sub ResetControl()
                     
-            Me.RoleFilter.ClearSelection()
+            Me.roleFilter.ClearSelection()
             
             Me.RolesSearch.Text = ""
             
@@ -1153,9 +1153,9 @@ Public Class BaseRolesTableControl
             ' 3. User selected filter criteria.
 
               
-            If IsValueSelected(Me.RoleFilter) Then
+            If IsValueSelected(Me.roleFilter) Then
                 
-                wc.iAND(RolesTable.Role, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.RoleFilter, Me.GetFromSession(Me.RoleFilter)), False, False)
+                wc.iAND(RolesTable.role, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.roleFilter, Me.GetFromSession(Me.roleFilter)), False, False)
             
                 
             End If
@@ -1177,7 +1177,7 @@ Public Class BaseRolesTableControl
                     
                     Dim search As WhereClause = New WhereClause()
                     
-                    search.iOR(RolesTable.Role, BaseFilter.ComparisonOperator.Contains, MiscUtils.GetSelectedValue(Me.RolesSearch, Me.GetFromSession(Me.RolesSearch)), True, False)
+                    search.iOR(RolesTable.role, BaseFilter.ComparisonOperator.Contains, MiscUtils.GetSelectedValue(Me.RolesSearch, Me.GetFromSession(Me.RolesSearch)), True, False)
         
                     wc.iAND(search)
                   
@@ -1202,10 +1202,10 @@ Public Class BaseRolesTableControl
             
             ' Adds clauses if values are selected in Filter controls which are configured in the page.
           
-            Dim RoleFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "RoleFilter_Ajax"), String)
-            If IsValueSelected(RoleFilterSelectedValue) Then
+            Dim roleFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "roleFilter_Ajax"), String)
+            If IsValueSelected(roleFilterSelectedValue) Then
               
-                 wc.iAND(RolesTable.Role, BaseFilter.ComparisonOperator.EqualsTo, RoleFilterSelectedValue, false, False)
+                 wc.iAND(RolesTable.role, BaseFilter.ComparisonOperator.EqualsTo, roleFilterSelectedValue, false, False)
              
              End If
                       
@@ -1228,12 +1228,12 @@ Public Class BaseRolesTableControl
                     
                     If InvariantLCase(AutoTypeAheadSearch).equals("wordsstartingwithsearchstring") Then
                 
-                        search.iOR(RolesTable.Role, BaseFilter.ComparisonOperator.Starts_With, formatedSearchText, True, False)
-                        search.iOR(RolesTable.Role, BaseFilter.ComparisonOperator.Contains, AutoTypeAheadWordSeparators & formatedSearchText, True, False)
+                        search.iOR(RolesTable.role, BaseFilter.ComparisonOperator.Starts_With, formatedSearchText, True, False)
+                        search.iOR(RolesTable.role, BaseFilter.ComparisonOperator.Contains, AutoTypeAheadWordSeparators & formatedSearchText, True, False)
                 
                     Else
                         
-                        search.iOR(RolesTable.Role, BaseFilter.ComparisonOperator.Contains, formatedSearchText, True, False)
+                        search.iOR(RolesTable.role, BaseFilter.ComparisonOperator.Contains, formatedSearchText, True, False)
                     End If
                     wc.iAND(search)
                   
@@ -1264,7 +1264,7 @@ Public Class BaseRolesTableControl
                     ' Since search had to be done in multiple fields (selected in Control's page property, binding tab) in a record,
                     ' We need to find relevent field to display which matches the prefixText and is not already present in the result list.
                 
-                    resultItem = rec.Format(RolesTable.Role)
+                    resultItem = rec.Format(RolesTable.role)
                     If resultItem IsNot Nothing AndAlso resultItem.ToUpper(System.Threading.Thread.CurrentThread.CurrentCulture).Contains(prefixText.ToUpper(System.Threading.Thread.CurrentThread.CurrentCulture))  Then
       
                         Dim isAdded As Boolean = FormatSuggestions(prefixText, resultItem, 50, "AtBeginningOfMatchedString", "WordsStartingWithSearchString", "[^a-zA-Z0-9]", resultList)
@@ -1464,8 +1464,8 @@ Public Class BaseRolesTableControl
                     
                         Dim rec As RolesRecord = New RolesRecord()
         
-                        If recControl.Role.Text <> "" Then
-                            rec.Parse(recControl.Role.Text, RolesTable.Role)
+                        If recControl.role.Text <> "" Then
+                            rec.Parse(recControl.role.Text, RolesTable.role)
                         End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
@@ -1534,23 +1534,23 @@ Public Class BaseRolesTableControl
       
         ' Create Set, WhereClause, and Populate Methods
         
-        Public Overridable Sub SetRoleLabel()
+        Public Overridable Sub SetroleLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub SetRoleLabel1()
+        Public Overridable Sub SetroleLabel1()
             
                     
         End Sub
                 
-        Public Overridable Sub SetRoleFilter()
+        Public Overridable Sub SetroleFilter()
             
-            If (Me.InSession(Me.RoleFilter))
-                Me.PopulateRoleFilter(GetSelectedValue(Me.RoleFilter, Me.GetFromSession(Me.RoleFilter)), 500)
+            If (Me.InSession(Me.roleFilter))
+                Me.PopulateroleFilter(GetSelectedValue(Me.roleFilter, Me.GetFromSession(Me.roleFilter)), 500)
             Else
                 
-                Me.PopulateRoleFilter(GetSelectedValue(Me.RoleFilter,  Nothing), 500)					
+                Me.PopulateroleFilter(GetSelectedValue(Me.roleFilter,  Nothing), 500)					
                 
             End If
                     
@@ -1560,27 +1560,27 @@ Public Class BaseRolesTableControl
             
         End Sub	
             
-        ' Get the filters' data for RoleFilter
-        Protected Overridable Sub PopulateRoleFilter(ByVal selectedValue As String, ByVal maxItems As Integer)
+        ' Get the filters' data for roleFilter
+        Protected Overridable Sub PopulateroleFilter(ByVal selectedValue As String, ByVal maxItems As Integer)
                     
                 
-            Me.RoleFilter.Items.Clear()
+            Me.roleFilter.Items.Clear()
             
             
             ' Setup the WHERE clause, including the base table if needed.
                 
-            Dim wc As WhereClause = Me.CreateWhereClause_RoleFilter()
+            Dim wc As WhereClause = Me.CreateWhereClause_roleFilter()
                   
             Dim orderBy As OrderBy = New OrderBy(False, True)
-            orderBy.Add(RolesTable.Role, OrderByItem.OrderDir.Asc)
+            orderBy.Add(RolesTable.role, OrderByItem.OrderDir.Asc)
 
             
             ' Add the All item.
-            Me.RoleFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
+            Me.roleFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
                             	
 
 
-            Dim values() As String = RolesTable.GetValues(RolesTable.Role, wc, orderBy, maxItems)
+            Dim values() As String = RolesTable.GetValues(RolesTable.role, wc, orderBy, maxItems)
             
             Dim itemValue As String
             
@@ -1588,29 +1588,29 @@ Public Class BaseRolesTableControl
                 ' Create the item and add to the list.
                 Dim fvalue As String
           
-                If ( RolesTable.Role.IsColumnValueTypeBoolean()) Then
+                If ( RolesTable.role.IsColumnValueTypeBoolean()) Then
                     fvalue = itemValue
                 Else
-                    fvalue = RolesTable.Role.Format(itemValue)
+                    fvalue = RolesTable.role.Format(itemValue)
                 End If
                 Dim item As ListItem = New ListItem(fvalue, itemValue)
           
-                Me.RoleFilter.Items.Add(item)
+                Me.roleFilter.Items.Add(item)
             Next
                     
 
                 
             ' Set the selected value.
-            SetSelectedValue(Me.RoleFilter, selectedValue)
+            SetSelectedValue(Me.roleFilter, selectedValue)
 
                 
         End Sub
             
-        Public Overridable Function CreateWhereClause_RoleFilter() As WhereClause
+        Public Overridable Function CreateWhereClause_roleFilter() As WhereClause
         
-            ' Create a where clause for the filter RoleFilter.
+            ' Create a where clause for the filter roleFilter.
             ' This function is called by the Populate method to load the items 
-            ' in the RoleFilterDropDownList
+            ' in the roleFilterDropDownList
                    
             Dim wc As WhereClause = new WhereClause()
             ' Add additional where clauses to restrict the items shown in the control.
@@ -1650,7 +1650,7 @@ Public Class BaseRolesTableControl
 
             ' Save filter controls to values to session.
         
-            Me.SaveToSession(Me.RoleFilter, Me.RoleFilter.SelectedValue)
+            Me.SaveToSession(Me.roleFilter, Me.roleFilter.SelectedValue)
                   
             Me.SaveToSession(Me.RolesSearch, Me.RolesSearch.Text)
                   
@@ -1669,7 +1669,7 @@ Public Class BaseRolesTableControl
         Protected  Sub SaveControlsToSession_Ajax()
             ' Save filter controls to values to session.
           
-      Me.SaveToSession("RoleFilter_Ajax", Me.RoleFilter.SelectedValue)
+      Me.SaveToSession("roleFilter_Ajax", Me.roleFilter.SelectedValue)
               
       Me.SaveToSession("RolesSearch_Ajax", Me.RolesSearch.Text)
               
@@ -1682,7 +1682,7 @@ Public Class BaseRolesTableControl
 
             ' Clear filter controls values from the session.
         
-            Me.RemoveFromSession(Me.RoleFilter)
+            Me.RemoveFromSession(Me.roleFilter)
             Me.RemoveFromSession(Me.RolesSearch)
             
             ' Clear table properties from the session.
@@ -1838,18 +1838,18 @@ Public Class BaseRolesTableControl
 
         ' Generate the event handling functions for sorting events.
         
-        Public Overridable Sub RoleLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by Role when clicked.
+        Public Overridable Sub roleLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by role when clicked.
               
-            ' Get previous sorting state for Role.
+            ' Get previous sorting state for role.
             
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(RolesTable.Role)
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(RolesTable.role)
             If sd Is Nothing Then
-                ' First time sort, so add sort order for Role.
+                ' First time sort, so add sort order for role.
                 Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(RolesTable.Role, OrderByItem.OrderDir.Asc)
+                Me.CurrentSortOrder.Add(RolesTable.role, OrderByItem.OrderDir.Asc)
             Else
-                ' Previously sorted by Role, so just reverse.
+                ' Previously sorted by role, so just reverse.
                 sd.Reverse()
             End If
             
@@ -1995,7 +1995,7 @@ Public Class BaseRolesTableControl
               
             ' Add each of the columns in order of export.
             Dim columns() as BaseColumn = New BaseColumn() { _
-                       RolesTable.Role, _ 
+                       RolesTable.role, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(RolesTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -2036,7 +2036,7 @@ Public Class BaseRolesTableControl
             ' Add each of the columns in order of export.
             ' To customize the data type, change the second parameter of the new ExcelColumn to be
             ' a format string from Excel's Format Cell menu. For example "dddd, mmmm dd, yyyy h:mm AM/PM;@", "#,##0.00"
-             excelReport.AddColumn(New ExcelColumn(RolesTable.Role, "Default"))
+             excelReport.AddColumn(New ExcelColumn(RolesTable.role, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2149,7 +2149,7 @@ Public Class BaseRolesTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
-                 report.AddColumn(RolesTable.Role.Name, ReportEnum.Align.Left, "${Role}", ReportEnum.Align.Left, 15)
+                 report.AddColumn(RolesTable.role.Name, ReportEnum.Align.Left, "${role}", ReportEnum.Align.Left, 24)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2177,7 +2177,7 @@ Public Class BaseRolesTableControl
                             ' The 2nd parameters represent the data value
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
-                                                         report.AddData("${Role}", record.Format(RolesTable.Role), ReportEnum.Align.Left, 100)
+                                                         report.AddData("${role}", record.Format(RolesTable.role), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -2230,7 +2230,7 @@ Public Class BaseRolesTableControl
         
             Try
                 
-              Me.RoleFilter.ClearSelection()
+              Me.roleFilter.ClearSelection()
               Me.RolesSearch.Text = ""
               Me.CurrentSortOrder.Reset()
               If Me.InSession(Me, "Order_By") Then
@@ -2276,7 +2276,7 @@ Public Class BaseRolesTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
-                 report.AddColumn(RolesTable.Role.Name, ReportEnum.Align.Left, "${Role}", ReportEnum.Align.Left, 15)
+                 report.AddColumn(RolesTable.role.Name, ReportEnum.Align.Left, "${role}", ReportEnum.Align.Left, 24)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -2301,7 +2301,7 @@ Public Class BaseRolesTableControl
                             ' The 2nd parameters represent the data value
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
-                             report.AddData("${Role}", record.Format(RolesTable.Role), ReportEnum.Align.Left, 100)
+                             report.AddData("${role}", record.Format(RolesTable.role), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -2349,7 +2349,7 @@ Public Class BaseRolesTableControl
         ' Generate the event handling functions for filter and search events.
         
         ' event handler for FieldFilter
-        Protected Overridable Sub RoleFilter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+        Protected Overridable Sub roleFilter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
            ' Setting the DataChanged to True results in the page being refreshed with
            ' the most recent data from the database.  This happens in PreRender event
            ' based on the current sort, search and filter criteria.
@@ -2480,21 +2480,21 @@ Public Class BaseRolesTableControl
        
 #Region "Helper Properties"
         
-        Public ReadOnly Property RoleFilter() As System.Web.UI.WebControls.DropDownList
+        Public ReadOnly Property roleFilter() As System.Web.UI.WebControls.DropDownList
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleFilter"), System.Web.UI.WebControls.DropDownList)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "roleFilter"), System.Web.UI.WebControls.DropDownList)
             End Get
         End Property
         
-        Public ReadOnly Property RoleLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property roleLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "roleLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property RoleLabel1() As System.Web.UI.WebControls.LinkButton
+        Public ReadOnly Property roleLabel1() As System.Web.UI.WebControls.LinkButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleLabel1"), System.Web.UI.WebControls.LinkButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "roleLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         

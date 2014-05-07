@@ -100,8 +100,6 @@ Public Class BaseUsersTableControlRow
               
               AddHandler Me.UsersRowViewButton.Click, AddressOf UsersRowViewButton_Click
               
-              AddHandler Me.RoleId.Click, AddressOf RoleId_Click
-            
         End Sub
 
         
@@ -145,11 +143,12 @@ Public Class BaseUsersTableControlRow
       
             ' Call the Set methods for each controls on the panel
         
+            Setaddress()
             Setemail()
-            SetFullName()
+            Setmobile()
+            Setname()
             Setpassword()
-            SetRoleId()
-            SetUserName1()
+            Setphone()
       
       
             Me.IsNewRecord = True
@@ -168,6 +167,83 @@ Public Class BaseUsersTableControlRow
         End Sub
         
         
+        Public Overridable Sub Setaddress()
+            
+        
+            ' Set the address Literal on the webpage with value from the
+            ' users database record.
+
+            ' Me.DataSource is the users record retrieved from the database.
+            ' Me.address is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setaddress()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.addressSpecified Then
+                				
+                ' If the address is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.address)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                If Not formattedValue is Nothing Then
+                    Dim popupThreshold as Integer = CType(100, Integer)
+                              
+                    Dim maxLength as Integer = Len(formattedValue)
+                    If (maxLength > CType(100, Integer)) Then
+                        ' Truncate based on FieldMaxLength on Properties.
+                        maxLength = CType(100, Integer)
+                        
+                    End If
+                                
+                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
+                    If Len(formattedValue) >= popupThreshold Then
+                    
+                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
+                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.UsersTable, ServelInvocing.Business\"",\""" _
+                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""address\"", \""address\"", \""Address\"", false, 200," _
+                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
+                        
+                        If (maxLength = CType(100, Integer)) Then
+                            formattedValue = formattedValue & "..." & "</a>"
+                        Else
+                            formattedValue = formattedValue & "</a>"
+                            
+                        End If
+                    Else
+                        If maxLength = CType(100, Integer) Then
+                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
+                            formattedValue = formattedValue & "..."
+                            
+                        End If
+                    End If
+                End If  
+                
+                Me.address.Text = formattedValue
+              
+            Else 
+            
+                ' address is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.address.Text = UsersTable.address.Format(UsersTable.address.DefaultValue)
+                        		
+                End If
+                 
+            ' If the address is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.address.Text Is Nothing _
+                OrElse Me.address.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.address.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setemail()
             
         
@@ -212,46 +288,90 @@ Public Class BaseUsersTableControlRow
                   
         End Sub
                 
-        Public Overridable Sub SetFullName()
+        Public Overridable Sub Setmobile()
             
         
-            ' Set the FullName Literal on the webpage with value from the
+            ' Set the mobile Literal on the webpage with value from the
             ' users database record.
 
             ' Me.DataSource is the users record retrieved from the database.
-            ' Me.FullName is the ASP:Literal on the webpage.
+            ' Me.mobile is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.SetFullName()
+            '     MyBase.Setmobile()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.FullNameSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.mobileSpecified Then
                 				
-                ' If the FullName is non-NULL, then format the value.
+                ' If the mobile is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.FullName)
+                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.mobile)
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.FullName.Text = formattedValue
+                Me.mobile.Text = formattedValue
               
             Else 
             
-                ' FullName is NULL in the database, so use the Default Value.  
+                ' mobile is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.FullName.Text = UsersTable.FullName.Format(UsersTable.FullName.DefaultValue)
+                Me.mobile.Text = UsersTable.mobile.Format(UsersTable.mobile.DefaultValue)
                         		
                 End If
                  
-            ' If the FullName is NULL or blank, then use the value specified  
+            ' If the mobile is NULL or blank, then use the value specified  
             ' on Properties.
-            If Me.FullName.Text Is Nothing _
-                OrElse Me.FullName.Text.Trim() = "" Then
+            If Me.mobile.Text Is Nothing _
+                OrElse Me.mobile.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
-                Me.FullName.Text = "&nbsp;"
+                Me.mobile.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setname()
+            
+        
+            ' Set the name Literal on the webpage with value from the
+            ' users database record.
+
+            ' Me.DataSource is the users record retrieved from the database.
+            ' Me.name is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setname()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.nameSpecified Then
+                				
+                ' If the name is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.name)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.name.Text = formattedValue
+              
+            Else 
+            
+                ' name is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.name.Text = UsersTable.name.Format(UsersTable.name.DefaultValue)
+                        		
+                End If
+                 
+            ' If the name is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.name.Text Is Nothing _
+                OrElse Me.name.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.name.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -300,81 +420,46 @@ Public Class BaseUsersTableControlRow
                   
         End Sub
                 
-        Public Overridable Sub SetRoleId()
+        Public Overridable Sub Setphone()
             
         
-            ' Set the RoleId LinkButton on the webpage with value from the
+            ' Set the phone Literal on the webpage with value from the
             ' users database record.
 
             ' Me.DataSource is the users record retrieved from the database.
-            ' Me.RoleId is the ASP:LinkButton on the webpage.
+            ' Me.phone is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.SetRoleId()
+            '     MyBase.Setphone()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.RoleIdSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.phoneSpecified Then
                 				
-                ' If the RoleId is non-NULL, then format the value.
-
-                ' The Format method will return the Display Foreign Key As (DFKA) value
-                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.RoleId)
-                            
-                Me.RoleId.Text = formattedValue
-              
-            Else 
-            
-                ' RoleId is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.RoleId.Text = UsersTable.RoleId.Format(UsersTable.RoleId.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub SetUserName1()
-            
-        
-            ' Set the UserName Literal on the webpage with value from the
-            ' users database record.
-
-            ' Me.DataSource is the users record retrieved from the database.
-            ' Me.UserName1 is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.SetUserName1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.UserName0Specified Then
-                				
-                ' If the UserName is non-NULL, then format the value.
+                ' If the phone is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.UserName0)
+                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.phone)
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.UserName1.Text = formattedValue
+                Me.phone.Text = formattedValue
               
             Else 
             
-                ' UserName is NULL in the database, so use the Default Value.  
+                ' phone is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.UserName1.Text = UsersTable.UserName0.Format(UsersTable.UserName0.DefaultValue)
+                Me.phone.Text = UsersTable.phone.Format(UsersTable.phone.DefaultValue)
                         		
                 End If
                  
-            ' If the UserName is NULL or blank, then use the value specified  
+            ' If the phone is NULL or blank, then use the value specified  
             ' on Properties.
-            If Me.UserName1.Text Is Nothing _
-                OrElse Me.UserName1.Text.Trim() = "" Then
+            If Me.phone.Text Is Nothing _
+                OrElse Me.phone.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
-                Me.UserName1.Text = "&nbsp;"
+                Me.phone.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -475,19 +560,28 @@ Public Class BaseUsersTableControlRow
       
             ' Call the Get methods for each of the user interface controls.
         
+            Getaddress()
             Getemail()
-            GetFullName()
+            Getmobile()
+            Getname()
             Getpassword()
-            GetRoleId()
-            GetUserName1()
+            Getphone()
         End Sub
         
         
+        Public Overridable Sub Getaddress()
+            
+        End Sub
+                
         Public Overridable Sub Getemail()
             
         End Sub
                 
-        Public Overridable Sub GetFullName()
+        Public Overridable Sub Getmobile()
+            
+        End Sub
+                
+        Public Overridable Sub Getname()
             
         End Sub
                 
@@ -495,11 +589,7 @@ Public Class BaseUsersTableControlRow
             
         End Sub
                 
-        Public Overridable Sub GetRoleId()
-            
-        End Sub
-                
-        Public Overridable Sub GetUserName1()
+        Public Overridable Sub Getphone()
             
         End Sub
                 
@@ -745,50 +835,6 @@ Public Class BaseUsersTableControlRow
             End If              
         End Sub
         
-        ' event handler for LinkButton
-        Public Overridable Sub RoleId_Click(ByVal sender As Object, ByVal args As EventArgs)
-              
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../roles/ShowRoles.aspx?Roles={UsersTableControlRow:FK:users_roleid_fk}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If
-        End Sub
-            
    
         Private _PreviousUIData As New Hashtable
         Public Overridable Property PreviousUIData() As Hashtable
@@ -898,15 +944,27 @@ Public Class BaseUsersTableControlRow
 
 #Region "Helper Properties"
         
+        Public ReadOnly Property address() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "address"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property email() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property FullName() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property mobile() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "FullName"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "mobile"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property name() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "name"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -916,15 +974,9 @@ Public Class BaseUsersTableControlRow
             End Get
         End Property
             
-        Public ReadOnly Property RoleId() As System.Web.UI.WebControls.LinkButton
+        Public ReadOnly Property phone() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleId"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-            
-        Public ReadOnly Property UserName1() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "UserName1"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "phone"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -1029,34 +1081,34 @@ Public Class BaseUsersTableControl
       
            ' Setup the filter and search events.
         
-            AddHandler Me.RoleIdFilter.SelectedIndexChanged, AddressOf RoleIdFilter_SelectedIndexChanged
-            AddHandler Me.UserNameFilter.SelectedIndexChanged, AddressOf UserNameFilter_SelectedIndexChanged
+            AddHandler Me.emailFilter.SelectedIndexChanged, AddressOf emailFilter_SelectedIndexChanged
+            AddHandler Me.nameFilter.SelectedIndexChanged, AddressOf nameFilter_SelectedIndexChanged
             If Not Me.Page.IsPostBack Then
                 Dim initialVal As String = ""
-                If  Me.InSession(Me.RoleIdFilter) 				
-                    initialVal = Me.GetFromSession(Me.RoleIdFilter)
+                If  Me.InSession(Me.emailFilter) 				
+                    initialVal = Me.GetFromSession(Me.emailFilter)
                 
                 End If
                 If initialVal <> ""				
                         
-                        Me.RoleIdFilter.Items.Add(New ListItem(initialVal, initialVal))
+                        Me.emailFilter.Items.Add(New ListItem(initialVal, initialVal))
                             
-                        Me.RoleIdFilter.SelectedValue = initialVal
+                        Me.emailFilter.SelectedValue = initialVal
                             
                     End If
                 
             End If
             If Not Me.Page.IsPostBack Then
                 Dim initialVal As String = ""
-                If  Me.InSession(Me.UserNameFilter) 				
-                    initialVal = Me.GetFromSession(Me.UserNameFilter)
+                If  Me.InSession(Me.nameFilter) 				
+                    initialVal = Me.GetFromSession(Me.nameFilter)
                 
                 End If
                 If initialVal <> ""				
                         
-                        Me.UserNameFilter.Items.Add(New ListItem(initialVal, initialVal))
+                        Me.nameFilter.Items.Add(New ListItem(initialVal, initialVal))
                             
-                        Me.UserNameFilter.SelectedValue = initialVal
+                        Me.nameFilter.SelectedValue = initialVal
                             
                     End If
                 
@@ -1113,13 +1165,15 @@ Public Class BaseUsersTableControl
               
             ' Setup the sorting events.
           
-              AddHandler Me.emailLabel.Click, AddressOf emailLabel_Click
+              AddHandler Me.addressLabel.Click, AddressOf addressLabel_Click
             
-              AddHandler Me.FullNameLabel.Click, AddressOf FullNameLabel_Click
+              AddHandler Me.emailLabel1.Click, AddressOf emailLabel1_Click
             
-              AddHandler Me.RoleIdLabel1.Click, AddressOf RoleIdLabel1_Click
+              AddHandler Me.mobileLabel.Click, AddressOf mobileLabel_Click
             
-              AddHandler Me.UserNameLabel1.Click, AddressOf UserNameLabel1_Click
+              AddHandler Me.nameLabel1.Click, AddressOf nameLabel1_Click
+            
+              AddHandler Me.phoneLabel.Click, AddressOf phoneLabel_Click
             
             ' Setup the button events.
           
@@ -1245,26 +1299,24 @@ Public Class BaseUsersTableControl
             If Me.DataSource Is Nothing Then
                 Return
             End If
-      
-          ' Improve performance by prefetching display as records.
-          Me.PreFetchForeignKeyValues()
-             
+           
             ' Setup the pagination controls.
             BindPaginationControls()
 
             ' Call the Set methods for each controls on the panel
         
+            SetaddressLabel()
+            SetemailFilter()
+            
             SetemailLabel()
-            SetFullNameLabel()
+            SetemailLabel1()
+            SetmobileLabel()
+            SetnameFilter()
+            
+            SetnameLabel()
+            SetnameLabel1()
             SetpasswordLabel()
-            SetRoleIdFilter()
-            
-            SetRoleIdLabel()
-            SetRoleIdLabel1()
-            SetUserNameFilter()
-            
-            SetUserNameLabel()
-            SetUserNameLabel1()
+            SetphoneLabel()
             SetUsersSearch()
             
       
@@ -1300,25 +1352,17 @@ Public Class BaseUsersTableControl
 
             ' Initialize other asp controls
             
+            SetaddressLabel()
             SetemailLabel()
-            SetFullNameLabel()
+            SetemailLabel1()
+            SetmobileLabel()
+            SetnameLabel()
+            SetnameLabel1()
             SetpasswordLabel()
-            SetRoleIdLabel()
-            SetRoleIdLabel1()
-            SetUserNameLabel()
-            SetUserNameLabel1()
+            SetphoneLabel()
       End Sub
 
       
-          Public Sub PreFetchForeignKeyValues()
-          If (IsNothing(Me.DataSource))
-            Return
-          End If
-          
-            Me.Page.PregetDfkaRecords(UsersTable.RoleId, Me.DataSource)
-          
-          End Sub
-        
       
         Public Overridable Sub RegisterPostback()
         
@@ -1359,9 +1403,9 @@ Public Class BaseUsersTableControl
 
         Public Overridable Sub ResetControl()
                     
-            Me.RoleIdFilter.ClearSelection()
+            Me.emailFilter.ClearSelection()
             
-            Me.UserNameFilter.ClearSelection()
+            Me.nameFilter.ClearSelection()
             
             Me.UsersSearch.Text = ""
             
@@ -1462,16 +1506,16 @@ Public Class BaseUsersTableControl
             ' 3. User selected filter criteria.
 
               
-            If IsValueSelected(Me.RoleIdFilter) Then
+            If IsValueSelected(Me.emailFilter) Then
                 
-                wc.iAND(UsersTable.RoleId, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.RoleIdFilter, Me.GetFromSession(Me.RoleIdFilter)), False, False)
+                wc.iAND(UsersTable.email, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.emailFilter, Me.GetFromSession(Me.emailFilter)), False, False)
             
                 
             End If
                        
-            If IsValueSelected(Me.UserNameFilter) Then
+            If IsValueSelected(Me.nameFilter) Then
                 
-                wc.iAND(UsersTable.UserName0, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.UserNameFilter, Me.GetFromSession(Me.UserNameFilter)), False, False)
+                wc.iAND(UsersTable.name, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.nameFilter, Me.GetFromSession(Me.nameFilter)), False, False)
             
                 
             End If
@@ -1493,9 +1537,9 @@ Public Class BaseUsersTableControl
                     
                     Dim search As WhereClause = New WhereClause()
                     
-                    search.iOR(UsersTable.UserName0, BaseFilter.ComparisonOperator.Contains, MiscUtils.GetSelectedValue(Me.UsersSearch, Me.GetFromSession(Me.UsersSearch)), True, False)
+                    search.iOR(UsersTable.name, BaseFilter.ComparisonOperator.Contains, MiscUtils.GetSelectedValue(Me.UsersSearch, Me.GetFromSession(Me.UsersSearch)), True, False)
         
-                    search.iOR(UsersTable.FullName, BaseFilter.ComparisonOperator.Contains, MiscUtils.GetSelectedValue(Me.UsersSearch, Me.GetFromSession(Me.UsersSearch)), True, False)
+                    search.iOR(UsersTable.email, BaseFilter.ComparisonOperator.Contains, MiscUtils.GetSelectedValue(Me.UsersSearch, Me.GetFromSession(Me.UsersSearch)), True, False)
         
                     wc.iAND(search)
                   
@@ -1520,17 +1564,17 @@ Public Class BaseUsersTableControl
             
             ' Adds clauses if values are selected in Filter controls which are configured in the page.
           
-            Dim RoleIdFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "RoleIdFilter_Ajax"), String)
-            If IsValueSelected(RoleIdFilterSelectedValue) Then
+            Dim emailFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "emailFilter_Ajax"), String)
+            If IsValueSelected(emailFilterSelectedValue) Then
               
-                 wc.iAND(UsersTable.RoleId, BaseFilter.ComparisonOperator.EqualsTo, RoleIdFilterSelectedValue, false, False)
+                 wc.iAND(UsersTable.email, BaseFilter.ComparisonOperator.EqualsTo, emailFilterSelectedValue, false, False)
              
              End If
                       
-            Dim UserNameFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "UserNameFilter_Ajax"), String)
-            If IsValueSelected(UserNameFilterSelectedValue) Then
+            Dim nameFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "nameFilter_Ajax"), String)
+            If IsValueSelected(nameFilterSelectedValue) Then
               
-                 wc.iAND(UsersTable.UserName0, BaseFilter.ComparisonOperator.EqualsTo, UserNameFilterSelectedValue, false, False)
+                 wc.iAND(UsersTable.name, BaseFilter.ComparisonOperator.EqualsTo, nameFilterSelectedValue, false, False)
              
              End If
                       
@@ -1553,16 +1597,16 @@ Public Class BaseUsersTableControl
                     
                     If InvariantLCase(AutoTypeAheadSearch).equals("wordsstartingwithsearchstring") Then
                 
-                        search.iOR(UsersTable.UserName0, BaseFilter.ComparisonOperator.Starts_With, formatedSearchText, True, False)
-                        search.iOR(UsersTable.UserName0, BaseFilter.ComparisonOperator.Contains, AutoTypeAheadWordSeparators & formatedSearchText, True, False)
+                        search.iOR(UsersTable.name, BaseFilter.ComparisonOperator.Starts_With, formatedSearchText, True, False)
+                        search.iOR(UsersTable.name, BaseFilter.ComparisonOperator.Contains, AutoTypeAheadWordSeparators & formatedSearchText, True, False)
                 
-                        search.iOR(UsersTable.FullName, BaseFilter.ComparisonOperator.Starts_With, formatedSearchText, True, False)
-                        search.iOR(UsersTable.FullName, BaseFilter.ComparisonOperator.Contains, AutoTypeAheadWordSeparators & formatedSearchText, True, False)
+                        search.iOR(UsersTable.email, BaseFilter.ComparisonOperator.Starts_With, formatedSearchText, True, False)
+                        search.iOR(UsersTable.email, BaseFilter.ComparisonOperator.Contains, AutoTypeAheadWordSeparators & formatedSearchText, True, False)
                 
                     Else
                         
-                        search.iOR(UsersTable.UserName0, BaseFilter.ComparisonOperator.Contains, formatedSearchText, True, False)
-                        search.iOR(UsersTable.FullName, BaseFilter.ComparisonOperator.Contains, formatedSearchText, True, False)
+                        search.iOR(UsersTable.name, BaseFilter.ComparisonOperator.Contains, formatedSearchText, True, False)
+                        search.iOR(UsersTable.email, BaseFilter.ComparisonOperator.Contains, formatedSearchText, True, False)
                     End If
                     wc.iAND(search)
                   
@@ -1593,7 +1637,7 @@ Public Class BaseUsersTableControl
                     ' Since search had to be done in multiple fields (selected in Control's page property, binding tab) in a record,
                     ' We need to find relevent field to display which matches the prefixText and is not already present in the result list.
                 
-                    resultItem = rec.Format(UsersTable.UserName0)
+                    resultItem = rec.Format(UsersTable.name)
                     If resultItem IsNot Nothing AndAlso resultItem.ToUpper(System.Threading.Thread.CurrentThread.CurrentCulture).Contains(prefixText.ToUpper(System.Threading.Thread.CurrentThread.CurrentCulture))  Then
       
                         Dim isAdded As Boolean = FormatSuggestions(prefixText, resultItem, 50, "AtBeginningOfMatchedString", "WordsStartingWithSearchString", "[^a-zA-Z0-9]", resultList)
@@ -1602,7 +1646,7 @@ Public Class BaseUsersTableControl
                         End If
                     End If
       
-                    resultItem = rec.Format(UsersTable.FullName)
+                    resultItem = rec.Format(UsersTable.email)
                     If resultItem IsNot Nothing AndAlso resultItem.ToUpper(System.Threading.Thread.CurrentThread.CurrentCulture).Contains(prefixText.ToUpper(System.Threading.Thread.CurrentThread.CurrentCulture))  Then
       
                         Dim isAdded As Boolean = FormatSuggestions(prefixText, resultItem, 50, "AtBeginningOfMatchedString", "WordsStartingWithSearchString", "[^a-zA-Z0-9]", resultList)
@@ -1802,20 +1846,23 @@ Public Class BaseUsersTableControl
                     
                         Dim rec As UsersRecord = New UsersRecord()
         
+                        If recControl.address.Text <> "" Then
+                            rec.Parse(recControl.address.Text, UsersTable.address)
+                        End If
                         If recControl.email.Text <> "" Then
                             rec.Parse(recControl.email.Text, UsersTable.email)
                         End If
-                        If recControl.FullName.Text <> "" Then
-                            rec.Parse(recControl.FullName.Text, UsersTable.FullName)
+                        If recControl.mobile.Text <> "" Then
+                            rec.Parse(recControl.mobile.Text, UsersTable.mobile)
+                        End If
+                        If recControl.name.Text <> "" Then
+                            rec.Parse(recControl.name.Text, UsersTable.name)
                         End If
                         If recControl.password.Text <> "" Then
                             rec.Parse(recControl.password.Text, UsersTable.password)
                         End If
-                        If recControl.RoleId.Text <> "" Then
-                            rec.Parse(recControl.RoleId.Text, UsersTable.RoleId)
-                        End If
-                        If recControl.UserName1.Text <> "" Then
-                            rec.Parse(recControl.UserName1.Text, UsersTable.UserName0)
+                        If recControl.phone.Text <> "" Then
+                            rec.Parse(recControl.phone.Text, UsersTable.phone)
                         End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
@@ -1884,12 +1931,32 @@ Public Class BaseUsersTableControl
       
         ' Create Set, WhereClause, and Populate Methods
         
+        Public Overridable Sub SetaddressLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub SetemailLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub SetFullNameLabel()
+        Public Overridable Sub SetemailLabel1()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetmobileLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetnameLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetnameLabel1()
             
                     
         End Sub
@@ -1899,45 +1966,30 @@ Public Class BaseUsersTableControl
                     
         End Sub
                 
-        Public Overridable Sub SetRoleIdLabel()
+        Public Overridable Sub SetphoneLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub SetRoleIdLabel1()
+        Public Overridable Sub SetemailFilter()
             
-                    
-        End Sub
-                
-        Public Overridable Sub SetUserNameLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub SetUserNameLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub SetRoleIdFilter()
-            
-            If (Me.InSession(Me.RoleIdFilter))
-                Me.PopulateRoleIdFilter(GetSelectedValue(Me.RoleIdFilter, Me.GetFromSession(Me.RoleIdFilter)), 500)
+            If (Me.InSession(Me.emailFilter))
+                Me.PopulateemailFilter(GetSelectedValue(Me.emailFilter, Me.GetFromSession(Me.emailFilter)), 500)
             Else
                 
-                Me.PopulateRoleIdFilter(GetSelectedValue(Me.RoleIdFilter,  Nothing), 500)					
+                Me.PopulateemailFilter(GetSelectedValue(Me.emailFilter,  Nothing), 500)					
                 
             End If
                     
         End Sub	
             
-        Public Overridable Sub SetUserNameFilter()
+        Public Overridable Sub SetnameFilter()
             
-            If (Me.InSession(Me.UserNameFilter))
-                Me.PopulateUserNameFilter(GetSelectedValue(Me.UserNameFilter, Me.GetFromSession(Me.UserNameFilter)), 500)
+            If (Me.InSession(Me.nameFilter))
+                Me.PopulatenameFilter(GetSelectedValue(Me.nameFilter, Me.GetFromSession(Me.nameFilter)), 500)
             Else
                 
-                Me.PopulateUserNameFilter(GetSelectedValue(Me.UserNameFilter,  Nothing), 500)					
+                Me.PopulatenameFilter(GetSelectedValue(Me.nameFilter,  Nothing), 500)					
                 
             End If
                     
@@ -1947,84 +1999,27 @@ Public Class BaseUsersTableControl
             
         End Sub	
             
-        ' Get the filters' data for RoleIdFilter
-        Protected Overridable Sub PopulateRoleIdFilter(ByVal selectedValue As String, ByVal maxItems As Integer)
+        ' Get the filters' data for emailFilter
+        Protected Overridable Sub PopulateemailFilter(ByVal selectedValue As String, ByVal maxItems As Integer)
                     
                 
-            Me.RoleIdFilter.Items.Clear()
-            
-            
-            'Setup the WHERE clause.
-            Dim wc As WhereClause = Me.CreateWhereClause_RoleIdFilter()
-            
-      
-      
-            Dim orderBy As OrderBy = New OrderBy(false, true)			
-        
-            orderBy.Add(RolesTable.Role, OrderByItem.OrderDir.Asc)				
-            
-            ' Add the All item.
-            Me.RoleIdFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
-                            	
-
-            Dim noValueFormat As String = Page.GetResourceValue("Txt:Other", "ServelInvocing")
-            
-
-            Dim itemValues() As RolesRecord = Nothing
-            If wc.RunQuery
-                Dim counter As Integer = 0
-                Dim pageNum As Integer = 0
-                Do
-                    itemValues = RolesTable.GetRecords(wc, orderBy, pageNum, 500)
-                    For each itemValue As RolesRecord In itemValues
-                        ' Create the item and add to the list.
-                        Dim cvalue As String = Nothing
-                        Dim fvalue As String = Nothing
-                        If itemValue.RoleIdSpecified Then
-                            cvalue = itemValue.RoleId.ToString()
-                                
-                            fvalue = itemValue.Format(RolesTable.Role)
-                                    
-                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
-                            Dim newItem As New ListItem(fvalue, cvalue)
-                            If counter < maxItems AndAlso Not Me.RoleIdFilter.Items.Contains(newItem) Then Me.RoleIdFilter.Items.Add(newItem)
-                            counter += 1
-                        End If
-                    Next
-                    pageNum += 1
-                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
-            End If			
-            
-            
-
-                
-            ' Set the selected value.
-            SetSelectedValue(Me.RoleIdFilter, selectedValue)
-
-                
-        End Sub
-            
-        ' Get the filters' data for UserNameFilter
-        Protected Overridable Sub PopulateUserNameFilter(ByVal selectedValue As String, ByVal maxItems As Integer)
-                    
-                
-            Me.UserNameFilter.Items.Clear()
+            Me.emailFilter.Items.Clear()
             
             
             ' Setup the WHERE clause, including the base table if needed.
                 
-            Dim wc As WhereClause = Me.CreateWhereClause_UserNameFilter()
+            Dim wc As WhereClause = Me.CreateWhereClause_emailFilter()
                   
             Dim orderBy As OrderBy = New OrderBy(False, True)
-            orderBy.Add(UsersTable.UserName0, OrderByItem.OrderDir.Asc)
+            orderBy.Add(UsersTable.email, OrderByItem.OrderDir.Asc)
 
             
             ' Add the All item.
-            Me.UserNameFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
+            Me.emailFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
                             	
 
 
-            Dim values() As String = UsersTable.GetValues(UsersTable.UserName0, wc, orderBy, maxItems)
+            Dim values() As String = UsersTable.GetValues(UsersTable.email, wc, orderBy, maxItems)
             
             Dim itemValue As String
             
@@ -2032,44 +2027,90 @@ Public Class BaseUsersTableControl
                 ' Create the item and add to the list.
                 Dim fvalue As String
           
-                If ( UsersTable.UserName0.IsColumnValueTypeBoolean()) Then
+                If ( UsersTable.email.IsColumnValueTypeBoolean()) Then
                     fvalue = itemValue
                 Else
-                    fvalue = UsersTable.UserName0.Format(itemValue)
+                    fvalue = UsersTable.email.Format(itemValue)
                 End If
                 Dim item As ListItem = New ListItem(fvalue, itemValue)
           
-                Me.UserNameFilter.Items.Add(item)
+                Me.emailFilter.Items.Add(item)
             Next
                     
 
                 
             ' Set the selected value.
-            SetSelectedValue(Me.UserNameFilter, selectedValue)
+            SetSelectedValue(Me.emailFilter, selectedValue)
 
                 
         End Sub
             
-        Public Overridable Function CreateWhereClause_RoleIdFilter() As WhereClause
+        ' Get the filters' data for nameFilter
+        Protected Overridable Sub PopulatenameFilter(ByVal selectedValue As String, ByVal maxItems As Integer)
+                    
+                
+            Me.nameFilter.Items.Clear()
+            
+            
+            ' Setup the WHERE clause, including the base table if needed.
+                
+            Dim wc As WhereClause = Me.CreateWhereClause_nameFilter()
+                  
+            Dim orderBy As OrderBy = New OrderBy(False, True)
+            orderBy.Add(UsersTable.name, OrderByItem.OrderDir.Asc)
+
+            
+            ' Add the All item.
+            Me.nameFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
+                            	
+
+
+            Dim values() As String = UsersTable.GetValues(UsersTable.name, wc, orderBy, maxItems)
+            
+            Dim itemValue As String
+            
+            For Each itemValue In values
+                ' Create the item and add to the list.
+                Dim fvalue As String
+          
+                If ( UsersTable.name.IsColumnValueTypeBoolean()) Then
+                    fvalue = itemValue
+                Else
+                    fvalue = UsersTable.name.Format(itemValue)
+                End If
+                Dim item As ListItem = New ListItem(fvalue, itemValue)
+          
+                Me.nameFilter.Items.Add(item)
+            Next
+                    
+
+                
+            ' Set the selected value.
+            SetSelectedValue(Me.nameFilter, selectedValue)
+
+                
+        End Sub
+            
+        Public Overridable Function CreateWhereClause_emailFilter() As WhereClause
         
-            ' Create a where clause for the filter RoleIdFilter.
+            ' Create a where clause for the filter emailFilter.
             ' This function is called by the Populate method to load the items 
-            ' in the RoleIdFilterDropDownList
+            ' in the emailFilterDropDownList
                    
             Dim wc As WhereClause = new WhereClause()
             ' Add additional where clauses to restrict the items shown in the control.
             ' Examples:
-            ' wc.iAND(RolesTable.Role, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
-            ' wc.iAND(RolesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
+            ' wc.iAND(., BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
             Return wc
         
         End Function			
             
-        Public Overridable Function CreateWhereClause_UserNameFilter() As WhereClause
+        Public Overridable Function CreateWhereClause_nameFilter() As WhereClause
         
-            ' Create a where clause for the filter UserNameFilter.
+            ' Create a where clause for the filter nameFilter.
             ' This function is called by the Populate method to load the items 
-            ' in the UserNameFilterDropDownList
+            ' in the nameFilterDropDownList
                    
             Dim wc As WhereClause = new WhereClause()
             ' Add additional where clauses to restrict the items shown in the control.
@@ -2109,9 +2150,9 @@ Public Class BaseUsersTableControl
 
             ' Save filter controls to values to session.
         
-            Me.SaveToSession(Me.RoleIdFilter, Me.RoleIdFilter.SelectedValue)
+            Me.SaveToSession(Me.emailFilter, Me.emailFilter.SelectedValue)
                   
-            Me.SaveToSession(Me.UserNameFilter, Me.UserNameFilter.SelectedValue)
+            Me.SaveToSession(Me.nameFilter, Me.nameFilter.SelectedValue)
                   
             Me.SaveToSession(Me.UsersSearch, Me.UsersSearch.Text)
                   
@@ -2130,9 +2171,9 @@ Public Class BaseUsersTableControl
         Protected  Sub SaveControlsToSession_Ajax()
             ' Save filter controls to values to session.
           
-      Me.SaveToSession("RoleIdFilter_Ajax", Me.RoleIdFilter.SelectedValue)
+      Me.SaveToSession("emailFilter_Ajax", Me.emailFilter.SelectedValue)
               
-      Me.SaveToSession("UserNameFilter_Ajax", Me.UserNameFilter.SelectedValue)
+      Me.SaveToSession("nameFilter_Ajax", Me.nameFilter.SelectedValue)
               
       Me.SaveToSession("UsersSearch_Ajax", Me.UsersSearch.Text)
               
@@ -2145,8 +2186,8 @@ Public Class BaseUsersTableControl
 
             ' Clear filter controls values from the session.
         
-            Me.RemoveFromSession(Me.RoleIdFilter)
-            Me.RemoveFromSession(Me.UserNameFilter)
+            Me.RemoveFromSession(Me.emailFilter)
+            Me.RemoveFromSession(Me.nameFilter)
             Me.RemoveFromSession(Me.UsersSearch)
             
             ' Clear table properties from the session.
@@ -2302,7 +2343,29 @@ Public Class BaseUsersTableControl
 
         ' Generate the event handling functions for sorting events.
         
-        Public Overridable Sub emailLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+        Public Overridable Sub addressLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by address when clicked.
+              
+            ' Get previous sorting state for address.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(UsersTable.address)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for address.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(UsersTable.address, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by address, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
+        Public Overridable Sub emailLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by email when clicked.
               
             ' Get previous sorting state for email.
@@ -2324,18 +2387,18 @@ Public Class BaseUsersTableControl
               
         End Sub
             
-        Public Overridable Sub FullNameLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by FullName when clicked.
+        Public Overridable Sub mobileLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by mobile when clicked.
               
-            ' Get previous sorting state for FullName.
+            ' Get previous sorting state for mobile.
             
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(UsersTable.FullName)
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(UsersTable.mobile)
             If sd Is Nothing Then
-                ' First time sort, so add sort order for FullName.
+                ' First time sort, so add sort order for mobile.
                 Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(UsersTable.FullName, OrderByItem.OrderDir.Asc)
+                Me.CurrentSortOrder.Add(UsersTable.mobile, OrderByItem.OrderDir.Asc)
             Else
-                ' Previously sorted by FullName, so just reverse.
+                ' Previously sorted by mobile, so just reverse.
                 sd.Reverse()
             End If
             
@@ -2346,18 +2409,18 @@ Public Class BaseUsersTableControl
               
         End Sub
             
-        Public Overridable Sub RoleIdLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by RoleId when clicked.
+        Public Overridable Sub nameLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by name when clicked.
               
-            ' Get previous sorting state for RoleId.
+            ' Get previous sorting state for name.
             
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(UsersTable.RoleId)
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(UsersTable.name)
             If sd Is Nothing Then
-                ' First time sort, so add sort order for RoleId.
+                ' First time sort, so add sort order for name.
                 Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(UsersTable.RoleId, OrderByItem.OrderDir.Asc)
+                Me.CurrentSortOrder.Add(UsersTable.name, OrderByItem.OrderDir.Asc)
             Else
-                ' Previously sorted by RoleId, so just reverse.
+                ' Previously sorted by name, so just reverse.
                 sd.Reverse()
             End If
             
@@ -2368,18 +2431,18 @@ Public Class BaseUsersTableControl
               
         End Sub
             
-        Public Overridable Sub UserNameLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by UserName when clicked.
+        Public Overridable Sub phoneLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by phone when clicked.
               
-            ' Get previous sorting state for UserName.
+            ' Get previous sorting state for phone.
             
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(UsersTable.UserName0)
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(UsersTable.phone)
             If sd Is Nothing Then
-                ' First time sort, so add sort order for UserName.
+                ' First time sort, so add sort order for phone.
                 Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(UsersTable.UserName0, OrderByItem.OrderDir.Asc)
+                Me.CurrentSortOrder.Add(UsersTable.phone, OrderByItem.OrderDir.Asc)
             Else
-                ' Previously sorted by UserName, so just reverse.
+                ' Previously sorted by phone, so just reverse.
                 sd.Reverse()
             End If
             
@@ -2525,11 +2588,12 @@ Public Class BaseUsersTableControl
               
             ' Add each of the columns in order of export.
             Dim columns() as BaseColumn = New BaseColumn() { _
-                       UsersTable.UserName0, _ 
-             UsersTable.FullName, _ 
+                       UsersTable.name, _ 
              UsersTable.email, _ 
-             UsersTable.RoleId, _ 
              UsersTable.password, _ 
+             UsersTable.mobile, _ 
+             UsersTable.phone, _ 
+             UsersTable.address, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(UsersTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -2570,11 +2634,12 @@ Public Class BaseUsersTableControl
             ' Add each of the columns in order of export.
             ' To customize the data type, change the second parameter of the new ExcelColumn to be
             ' a format string from Excel's Format Cell menu. For example "dddd, mmmm dd, yyyy h:mm AM/PM;@", "#,##0.00"
-             excelReport.AddColumn(New ExcelColumn(UsersTable.UserName0, "Default"))
-             excelReport.AddColumn(New ExcelColumn(UsersTable.FullName, "Default"))
+             excelReport.AddColumn(New ExcelColumn(UsersTable.name, "Default"))
              excelReport.AddColumn(New ExcelColumn(UsersTable.email, "Default"))
-             excelReport.AddColumn(New ExcelColumn(UsersTable.RoleId, "Default"))
              excelReport.AddColumn(New ExcelColumn(UsersTable.password, "Default"))
+             excelReport.AddColumn(New ExcelColumn(UsersTable.mobile, "Default"))
+             excelReport.AddColumn(New ExcelColumn(UsersTable.phone, "Default"))
+             excelReport.AddColumn(New ExcelColumn(UsersTable.address, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2687,11 +2752,12 @@ Public Class BaseUsersTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
-                 report.AddColumn(UsersTable.UserName0.Name, ReportEnum.Align.Left, "${UserName0}", ReportEnum.Align.Left, 15)
-                 report.AddColumn(UsersTable.FullName.Name, ReportEnum.Align.Left, "${FullName}", ReportEnum.Align.Left, 24)
+                 report.AddColumn(UsersTable.name.Name, ReportEnum.Align.Left, "${name}", ReportEnum.Align.Left, 30)
                  report.AddColumn(UsersTable.email.Name, ReportEnum.Align.Left, "${email}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(UsersTable.RoleId.Name, ReportEnum.Align.Left, "${RoleId}", ReportEnum.Align.Left, 15)
-                 report.AddColumn(UsersTable.password.Name, ReportEnum.Align.Left, "${password}", ReportEnum.Align.Left, 15)
+                 report.AddColumn(UsersTable.password.Name, ReportEnum.Align.Left, "${password}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(UsersTable.mobile.Name, ReportEnum.Align.Left, "${mobile}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(UsersTable.phone.Name, ReportEnum.Align.Left, "${phone}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(UsersTable.address.Name, ReportEnum.Align.Left, "${address}", ReportEnum.Align.Left, 30)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2719,11 +2785,12 @@ Public Class BaseUsersTableControl
                             ' The 2nd parameters represent the data value
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
-                                                         report.AddData("${UserName0}", record.Format(UsersTable.UserName0), ReportEnum.Align.Left, 100)
-                             report.AddData("${FullName}", record.Format(UsersTable.FullName), ReportEnum.Align.Left, 100)
+                                                         report.AddData("${name}", record.Format(UsersTable.name), ReportEnum.Align.Left, 100)
                              report.AddData("${email}", record.Format(UsersTable.email), ReportEnum.Align.Left, 100)
-                             report.AddData("${RoleId}", record.Format(UsersTable.RoleId), ReportEnum.Align.Left)
                              report.AddData("${password}", record.Format(UsersTable.password), ReportEnum.Align.Left, 100)
+                             report.AddData("${mobile}", record.Format(UsersTable.mobile), ReportEnum.Align.Left, 100)
+                             report.AddData("${phone}", record.Format(UsersTable.phone), ReportEnum.Align.Left, 100)
+                             report.AddData("${address}", record.Format(UsersTable.address), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -2776,8 +2843,8 @@ Public Class BaseUsersTableControl
         
             Try
                 
-              Me.RoleIdFilter.ClearSelection()
-              Me.UserNameFilter.ClearSelection()
+              Me.emailFilter.ClearSelection()
+              Me.nameFilter.ClearSelection()
               Me.UsersSearch.Text = ""
               Me.CurrentSortOrder.Reset()
               If Me.InSession(Me, "Order_By") Then
@@ -2823,11 +2890,12 @@ Public Class BaseUsersTableControl
                 ' The 3rd parameter represents the text format of the column detail
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
-                 report.AddColumn(UsersTable.UserName0.Name, ReportEnum.Align.Left, "${UserName0}", ReportEnum.Align.Left, 15)
-                 report.AddColumn(UsersTable.FullName.Name, ReportEnum.Align.Left, "${FullName}", ReportEnum.Align.Left, 24)
+                 report.AddColumn(UsersTable.name.Name, ReportEnum.Align.Left, "${name}", ReportEnum.Align.Left, 30)
                  report.AddColumn(UsersTable.email.Name, ReportEnum.Align.Left, "${email}", ReportEnum.Align.Left, 30)
-                 report.AddColumn(UsersTable.RoleId.Name, ReportEnum.Align.Left, "${RoleId}", ReportEnum.Align.Left, 15)
-                 report.AddColumn(UsersTable.password.Name, ReportEnum.Align.Left, "${password}", ReportEnum.Align.Left, 15)
+                 report.AddColumn(UsersTable.password.Name, ReportEnum.Align.Left, "${password}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(UsersTable.mobile.Name, ReportEnum.Align.Left, "${mobile}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(UsersTable.phone.Name, ReportEnum.Align.Left, "${phone}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(UsersTable.address.Name, ReportEnum.Align.Left, "${address}", ReportEnum.Align.Left, 30)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -2852,11 +2920,12 @@ Public Class BaseUsersTableControl
                             ' The 2nd parameters represent the data value
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
-                             report.AddData("${UserName0}", record.Format(UsersTable.UserName0), ReportEnum.Align.Left, 100)
-                             report.AddData("${FullName}", record.Format(UsersTable.FullName), ReportEnum.Align.Left, 100)
+                             report.AddData("${name}", record.Format(UsersTable.name), ReportEnum.Align.Left, 100)
                              report.AddData("${email}", record.Format(UsersTable.email), ReportEnum.Align.Left, 100)
-                             report.AddData("${RoleId}", record.Format(UsersTable.RoleId), ReportEnum.Align.Left)
                              report.AddData("${password}", record.Format(UsersTable.password), ReportEnum.Align.Left, 100)
+                             report.AddData("${mobile}", record.Format(UsersTable.mobile), ReportEnum.Align.Left, 100)
+                             report.AddData("${phone}", record.Format(UsersTable.phone), ReportEnum.Align.Left, 100)
+                             report.AddData("${address}", record.Format(UsersTable.address), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -2904,7 +2973,7 @@ Public Class BaseUsersTableControl
         ' Generate the event handling functions for filter and search events.
         
         ' event handler for FieldFilter
-        Protected Overridable Sub RoleIdFilter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+        Protected Overridable Sub emailFilter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
            ' Setting the DataChanged to True results in the page being refreshed with
            ' the most recent data from the database.  This happens in PreRender event
            ' based on the current sort, search and filter criteria.
@@ -2914,7 +2983,7 @@ Public Class BaseUsersTableControl
         End Sub
             
         ' event handler for FieldFilter
-        Protected Overridable Sub UserNameFilter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+        Protected Overridable Sub nameFilter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
            ' Setting the DataChanged to True results in the page being refreshed with
            ' the most recent data from the database.  This happens in PreRender event
            ' based on the current sort, search and filter criteria.
@@ -3045,15 +3114,51 @@ Public Class BaseUsersTableControl
        
 #Region "Helper Properties"
         
-        Public ReadOnly Property emailLabel() As System.Web.UI.WebControls.LinkButton
+        Public ReadOnly Property addressLabel() As System.Web.UI.WebControls.LinkButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel"), System.Web.UI.WebControls.LinkButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "addressLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
-        Public ReadOnly Property FullNameLabel() As System.Web.UI.WebControls.LinkButton
+        Public ReadOnly Property emailFilter() As System.Web.UI.WebControls.DropDownList
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "FullNameLabel"), System.Web.UI.WebControls.LinkButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailFilter"), System.Web.UI.WebControls.DropDownList)
+            End Get
+        End Property
+        
+        Public ReadOnly Property emailLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property emailLabel1() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel1"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property mobileLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "mobileLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property nameFilter() As System.Web.UI.WebControls.DropDownList
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "nameFilter"), System.Web.UI.WebControls.DropDownList)
+            End Get
+        End Property
+        
+        Public ReadOnly Property nameLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "nameLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property nameLabel1() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "nameLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -3063,39 +3168,9 @@ Public Class BaseUsersTableControl
             End Get
         End Property
         
-        Public ReadOnly Property RoleIdFilter() As System.Web.UI.WebControls.DropDownList
+        Public ReadOnly Property phoneLabel() As System.Web.UI.WebControls.LinkButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleIdFilter"), System.Web.UI.WebControls.DropDownList)
-            End Get
-        End Property
-        
-        Public ReadOnly Property RoleIdLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleIdLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property RoleIdLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleIdLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property UserNameFilter() As System.Web.UI.WebControls.DropDownList
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "UserNameFilter"), System.Web.UI.WebControls.DropDownList)
-            End Get
-        End Property
-        
-        Public ReadOnly Property UserNameLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "UserNameLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property UserNameLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "UserNameLabel1"), System.Web.UI.WebControls.LinkButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "phoneLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         

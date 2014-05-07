@@ -9,13 +9,13 @@
 Public Class UsersDefinition
 
 #Region "Definition (XML) for UsersDefinition table"
-	'Next 162 lines contain Table Definition (XML) for table "UsersDefinition"
+	'Next 183 lines contain Table Definition (XML) for table "UsersDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
     "<Column InternalName=""0"" Priority=""1"" ColumnNum=""0"">"& _
-      "<columnName>UserId</columnName>"& _
-      "<columnUIName>User</columnUIName>"& _
+      "<columnName>id</columnName>"& _
+      "<columnUIName>ID</columnUIName>"& _
       "<columnType>Number</columnType>"& _
       "<columnDBType>int</columnDBType>"& _
       "<columnLengthSet>10.0</columnLengthSet>"& _
@@ -37,57 +37,63 @@ Public Class UsersDefinition
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
     "<Column InternalName=""1"" Priority=""2"" ColumnNum=""1"">"& _
-      "<columnName>UserName</columnName>"& _
-      "<columnUIName>User Name</columnUIName>"& _
+      "<columnName>name</columnName>"& _
+      "<columnUIName Source=""User"">Name</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
-      "<columnLengthSet>10</columnLengthSet>"& _
+      "<columnLengthSet>50</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
+      "<columnFunction>title</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
-      "<columnRequired>N</columnRequired>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>Y</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>1</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""2"" Priority=""3"" ColumnNum=""2"">"& _
-      "<columnName>FullName</columnName>"& _
-      "<columnUIName>Full Name</columnUIName>"& _
-      "<columnType>String</columnType>"& _
-      "<columnDBType>nchar</columnDBType>"& _
-      "<columnLengthSet>30</columnLengthSet>"& _
-      "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
-      "<columnIndex>N</columnIndex>"& _
-      "<columnUnique>N</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
-      "<columnDBFormat></columnDBFormat>"& _
-      "<columnPK>N</columnPK>"& _
-      "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
-      "<columnRequired>N</columnRequired>"& _
-      "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
-      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
-      "<columnTableAliasName></columnTableAliasName>"& _
-    "</Column>"& _
-    "<Column InternalName=""3"" Priority=""4"" ColumnNum=""3"">"& _
       "<columnName>email</columnName>"& _
-      "<columnUIName>Email</columnUIName>"& _
+      "<columnUIName Source=""User"">Email</columnUIName>"& _
       "<columnType>Email</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>50</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>Y</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>2</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
+    "<Column InternalName=""3"" Priority=""4"" ColumnNum=""3"">"& _
+      "<columnName>password</columnName>"& _
+      "<columnUIName>Password</columnUIName>"& _
+      "<columnType>Password</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>20</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
       "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
@@ -106,16 +112,16 @@ Public Class UsersDefinition
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
     "<Column InternalName=""4"" Priority=""5"" ColumnNum=""4"">"& _
-      "<columnName>RoleId</columnName>"& _
-      "<columnUIName>Role</columnUIName>"& _
-      "<columnType>Number</columnType>"& _
-      "<columnDBType>int</columnDBType>"& _
-      "<columnLengthSet>10.0</columnLengthSet>"& _
+      "<columnName>mobile</columnName>"& _
+      "<columnUIName>Mobile</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>25</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
       "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
-      "<columnFunction>notrim</columnFunction>"& _
+      "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
@@ -124,24 +130,39 @@ Public Class UsersDefinition
       "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<foreignKey>"& _
-        "<columnFKName>users_roleid_fk</columnFKName>"& _
-        "<columnFKTable>ServelInvocing.Business.RolesTable, ServelInvocing.Business</columnFKTable>"& _
-        "<columnFKOwner>dbo</columnFKOwner>"& _
-        "<columnFKColumn>RoleId</columnFKColumn>"& _
-        "<columnFKColumnDisplay>Role</columnFKColumnDisplay>"& _
-        "<foreignKeyType>Explicit</foreignKeyType>"& _
-      "</foreignKey>"& _
     "</Column>"& _
     "<Column InternalName=""5"" Priority=""6"" ColumnNum=""5"">"& _
-      "<columnName>password</columnName>"& _
-      "<columnUIName>Password</columnUIName>"& _
-      "<columnType>Password</columnType>"& _
+      "<columnName>phone</columnName>"& _
+      "<columnUIName>Phone</columnUIName>"& _
+      "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
-      "<columnLengthSet>10</columnLengthSet>"& _
+      "<columnLengthSet>25</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""6"" Priority=""7"" ColumnNum=""6"">"& _
+      "<columnName>address</columnName>"& _
+      "<columnUIName>Address</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nvarchar</columnDBType>"& _
+      "<columnLengthSet>100</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
       "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
@@ -161,7 +182,7 @@ Public Class UsersDefinition
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>users</TableName>"& _
-  "<Version></Version>"& _
+  "<Version>1</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Users</TableCodeName>"& _
   "<TableAliasName>Users_</TableAliasName>"& _

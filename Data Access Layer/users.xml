@@ -2,7 +2,7 @@
 <XMLDefinition Generator="Iron Speed Designer" Version="7.0" Type="GENERIC">
   <ColumnDefinition>
     <Column InternalName="0" Priority="1" ColumnNum="0">
-      <columnName>UserId</columnName>
+      <columnName>id</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>Number</columnType>
       <columnDBType>int</columnDBType>
@@ -29,67 +29,76 @@
       </columnTableAliasName>
     </Column>
     <Column InternalName="1" Priority="2" ColumnNum="1">
-      <columnName>UserName</columnName>
-      <columnUIName>%ISD_DEFAULT%</columnUIName>
+      <columnName>name</columnName>
+      <columnUIName Source="User">%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
-      <columnLengthSet>10</columnLengthSet>
+      <columnLengthSet>50</columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault>
+      <columnDBDefault Source="User">
       </columnDBDefault>
       <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
-      <columnFunction>
-      </columnFunction>
+      <columnFunction>title</columnFunction>
       <columnDBFormat>
       </columnDBFormat>
       <columnPK>N</columnPK>
       <columnPermanent>N</columnPermanent>
-      <columnComputed>N</columnComputed>
-      <columnIdentity>N</columnIdentity>
-      <columnReadOnly>N</columnReadOnly>
-      <columnRequired>N</columnRequired>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
+      <columnRequired>Y</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>1</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
     </Column>
     <Column InternalName="2" Priority="3" ColumnNum="2">
-      <columnName>FullName</columnName>
-      <columnUIName>%ISD_DEFAULT%</columnUIName>
-      <columnType>String</columnType>
-      <columnDBType>nchar</columnDBType>
-      <columnLengthSet>30</columnLengthSet>
-      <columnDefault>
-      </columnDefault>
-      <columnDBDefault>
-      </columnDBDefault>
-      <columnIndex>N</columnIndex>
-      <columnUnique>N</columnUnique>
-      <columnFunction>
-      </columnFunction>
-      <columnDBFormat>
-      </columnDBFormat>
-      <columnPK>N</columnPK>
-      <columnPermanent>N</columnPermanent>
-      <columnComputed>N</columnComputed>
-      <columnIdentity>N</columnIdentity>
-      <columnReadOnly>N</columnReadOnly>
-      <columnRequired>N</columnRequired>
-      <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
-      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
-      <columnTableAliasName>
-      </columnTableAliasName>
-    </Column>
-    <Column InternalName="3" Priority="4" ColumnNum="3">
       <columnName>email</columnName>
-      <columnUIName>%ISD_DEFAULT%</columnUIName>
+      <columnUIName Source="User">%ISD_DEFAULT%</columnUIName>
       <columnType>Email</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>50</columnLengthSet>
+      <columnDefault>
+      </columnDefault>
+      <columnDBDefault Source="User">
+      </columnDBDefault>
+      <columnIndex>N</columnIndex>
+      <columnUnique>N</columnUnique>
+      <columnFunction>
+      </columnFunction>
+      <columnDBFormat>
+      </columnDBFormat>
+      <columnPK>N</columnPK>
+      <columnPermanent>N</columnPermanent>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
+      <columnRequired>Y</columnRequired>
+      <columnNotNull>N</columnNotNull>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
+      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
+      <columnTableAliasName>
+      </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>2</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
+    </Column>
+    <Column InternalName="3" Priority="4" ColumnNum="3">
+      <columnName>password</columnName>
+      <columnUIName>%ISD_DEFAULT%</columnUIName>
+      <columnType>Password</columnType>
+      <columnDBType>nchar</columnDBType>
+      <columnLengthSet>20</columnLengthSet>
       <columnDefault>
       </columnDefault>
       <columnDBDefault>
@@ -113,18 +122,19 @@
       </columnTableAliasName>
     </Column>
     <Column InternalName="4" Priority="5" ColumnNum="4">
-      <columnName>RoleId</columnName>
+      <columnName>mobile</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
-      <columnType>Number</columnType>
-      <columnDBType>int</columnDBType>
-      <columnLengthSet>10.0</columnLengthSet>
+      <columnType>String</columnType>
+      <columnDBType>nchar</columnDBType>
+      <columnLengthSet>25</columnLengthSet>
       <columnDefault>
       </columnDefault>
       <columnDBDefault>
       </columnDBDefault>
       <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
-      <columnFunction>notrim</columnFunction>
+      <columnFunction>
+      </columnFunction>
       <columnDBFormat>
       </columnDBFormat>
       <columnPK>N</columnPK>
@@ -134,25 +144,45 @@
       <columnReadOnly>N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive>N</columnCaseSensitive>
+      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
-      <foreignKey>
-        <columnFKName>users_roleid_fk</columnFKName>
-        <columnFKTable>roles</columnFKTable>
-        <columnFKOwner>dbo</columnFKOwner>
-        <columnFKColumn>RoleId</columnFKColumn>
-        <columnFKColumnDisplay>Role</columnFKColumnDisplay>
-        <foreignKeyType>Explicit</foreignKeyType>
-      </foreignKey>
     </Column>
     <Column InternalName="5" Priority="6" ColumnNum="5">
-      <columnName>password</columnName>
+      <columnName>phone</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
-      <columnType>Password</columnType>
+      <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
-      <columnLengthSet>10</columnLengthSet>
+      <columnLengthSet>25</columnLengthSet>
+      <columnDefault>
+      </columnDefault>
+      <columnDBDefault>
+      </columnDBDefault>
+      <columnIndex>N</columnIndex>
+      <columnUnique>N</columnUnique>
+      <columnFunction>
+      </columnFunction>
+      <columnDBFormat>
+      </columnDBFormat>
+      <columnPK>N</columnPK>
+      <columnPermanent>N</columnPermanent>
+      <columnComputed>N</columnComputed>
+      <columnIdentity>N</columnIdentity>
+      <columnReadOnly>N</columnReadOnly>
+      <columnRequired>N</columnRequired>
+      <columnNotNull>N</columnNotNull>
+      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
+      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
+      <columnTableAliasName>
+      </columnTableAliasName>
+    </Column>
+    <Column InternalName="6" Priority="7" ColumnNum="6">
+      <columnName>address</columnName>
+      <columnUIName>%ISD_DEFAULT%</columnUIName>
+      <columnType>String</columnType>
+      <columnDBType>nvarchar</columnDBType>
+      <columnLengthSet>100</columnLengthSet>
       <columnDefault>
       </columnDefault>
       <columnDBDefault>
@@ -177,8 +207,7 @@
     </Column>
   </ColumnDefinition>
   <TableName>users</TableName>
-  <Version>
-  </Version>
+  <Version>1</Version>
   <Owner>dbo</Owner>
   <TableCodeName>Users</TableCodeName>
   <TableAliasName>Users_</TableAliasName>

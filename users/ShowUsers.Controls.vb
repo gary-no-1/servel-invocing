@@ -78,8 +78,6 @@ Public Class BaseUsersRecordControl
           
               AddHandler Me.UsersDialogEditButton.Click, AddressOf UsersDialogEditButton_Click
               
-              AddHandler Me.RoleId.Click, AddressOf RoleId_Click
-            
         End Sub
 
         
@@ -158,16 +156,18 @@ Public Class BaseUsersRecordControl
       
             ' Call the Set methods for each controls on the panel
         
+            Setaddress()
+            SetaddressLabel()
             Setemail()
             SetemailLabel()
-            SetFullName()
-            SetFullNameLabel()
+            Setmobile()
+            SetmobileLabel()
+            Setname()
+            SetnameLabel()
             Setpassword()
             SetpasswordLabel()
-            SetRoleId()
-            SetRoleIdLabel()
-            SetUserName1()
-            SetUserNameLabel()
+            Setphone()
+            SetphoneLabel()
       
       
             Me.IsNewRecord = True
@@ -186,6 +186,83 @@ Public Class BaseUsersRecordControl
         End Sub
         
         
+        Public Overridable Sub Setaddress()
+            
+        
+            ' Set the address Literal on the webpage with value from the
+            ' users database record.
+
+            ' Me.DataSource is the users record retrieved from the database.
+            ' Me.address is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setaddress()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.addressSpecified Then
+                				
+                ' If the address is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.address)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                If Not formattedValue is Nothing Then
+                    Dim popupThreshold as Integer = CType(100, Integer)
+                              
+                    Dim maxLength as Integer = Len(formattedValue)
+                    If (maxLength > CType(100, Integer)) Then
+                        ' Truncate based on FieldMaxLength on Properties.
+                        maxLength = CType(100, Integer)
+                        
+                    End If
+                                
+                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
+                    If Len(formattedValue) >= popupThreshold Then
+                    
+                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
+                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.UsersTable, ServelInvocing.Business\"",\""" _
+                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""address\"", \""address\"", \""Address\"", false, 200," _
+                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
+                        
+                        If (maxLength = CType(100, Integer)) Then
+                            formattedValue = formattedValue & "..." & "</a>"
+                        Else
+                            formattedValue = formattedValue & "</a>"
+                            
+                        End If
+                    Else
+                        If maxLength = CType(100, Integer) Then
+                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
+                            formattedValue = formattedValue & "..."
+                            
+                        End If
+                    End If
+                End If  
+                
+                Me.address.Text = formattedValue
+              
+            Else 
+            
+                ' address is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.address.Text = UsersTable.address.Format(UsersTable.address.DefaultValue)
+                        		
+                End If
+                 
+            ' If the address is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.address.Text Is Nothing _
+                OrElse Me.address.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.address.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setemail()
             
         
@@ -230,46 +307,90 @@ Public Class BaseUsersRecordControl
                   
         End Sub
                 
-        Public Overridable Sub SetFullName()
+        Public Overridable Sub Setmobile()
             
         
-            ' Set the FullName Literal on the webpage with value from the
+            ' Set the mobile Literal on the webpage with value from the
             ' users database record.
 
             ' Me.DataSource is the users record retrieved from the database.
-            ' Me.FullName is the ASP:Literal on the webpage.
+            ' Me.mobile is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.SetFullName()
+            '     MyBase.Setmobile()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.FullNameSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.mobileSpecified Then
                 				
-                ' If the FullName is non-NULL, then format the value.
+                ' If the mobile is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.FullName)
+                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.mobile)
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.FullName.Text = formattedValue
+                Me.mobile.Text = formattedValue
               
             Else 
             
-                ' FullName is NULL in the database, so use the Default Value.  
+                ' mobile is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.FullName.Text = UsersTable.FullName.Format(UsersTable.FullName.DefaultValue)
+                Me.mobile.Text = UsersTable.mobile.Format(UsersTable.mobile.DefaultValue)
                         		
                 End If
                  
-            ' If the FullName is NULL or blank, then use the value specified  
+            ' If the mobile is NULL or blank, then use the value specified  
             ' on Properties.
-            If Me.FullName.Text Is Nothing _
-                OrElse Me.FullName.Text.Trim() = "" Then
+            If Me.mobile.Text Is Nothing _
+                OrElse Me.mobile.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
-                Me.FullName.Text = "&nbsp;"
+                Me.mobile.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setname()
+            
+        
+            ' Set the name Literal on the webpage with value from the
+            ' users database record.
+
+            ' Me.DataSource is the users record retrieved from the database.
+            ' Me.name is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setname()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.nameSpecified Then
+                				
+                ' If the name is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.name)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.name.Text = formattedValue
+              
+            Else 
+            
+                ' name is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.name.Text = UsersTable.name.Format(UsersTable.name.DefaultValue)
+                        		
+                End If
+                 
+            ' If the name is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.name.Text Is Nothing _
+                OrElse Me.name.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.name.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -318,83 +439,53 @@ Public Class BaseUsersRecordControl
                   
         End Sub
                 
-        Public Overridable Sub SetRoleId()
+        Public Overridable Sub Setphone()
             
         
-            ' Set the RoleId LinkButton on the webpage with value from the
+            ' Set the phone Literal on the webpage with value from the
             ' users database record.
 
             ' Me.DataSource is the users record retrieved from the database.
-            ' Me.RoleId is the ASP:LinkButton on the webpage.
+            ' Me.phone is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.SetRoleId()
+            '     MyBase.Setphone()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.RoleIdSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.phoneSpecified Then
                 				
-                ' If the RoleId is non-NULL, then format the value.
-
-                ' The Format method will return the Display Foreign Key As (DFKA) value
-                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.RoleId)
-                            
-                Me.RoleId.Text = formattedValue
-              
-            Else 
-            
-                ' RoleId is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.RoleId.Text = UsersTable.RoleId.Format(UsersTable.RoleId.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub SetUserName1()
-            
-        
-            ' Set the UserName Literal on the webpage with value from the
-            ' users database record.
-
-            ' Me.DataSource is the users record retrieved from the database.
-            ' Me.UserName1 is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.SetUserName1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.UserName0Specified Then
-                				
-                ' If the UserName is non-NULL, then format the value.
+                ' If the phone is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.UserName0)
+                                Dim formattedValue As String = Me.DataSource.Format(UsersTable.phone)
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.UserName1.Text = formattedValue
+                Me.phone.Text = formattedValue
               
             Else 
             
-                ' UserName is NULL in the database, so use the Default Value.  
+                ' phone is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.UserName1.Text = UsersTable.UserName0.Format(UsersTable.UserName0.DefaultValue)
+                Me.phone.Text = UsersTable.phone.Format(UsersTable.phone.DefaultValue)
                         		
                 End If
                  
-            ' If the UserName is NULL or blank, then use the value specified  
+            ' If the phone is NULL or blank, then use the value specified  
             ' on Properties.
-            If Me.UserName1.Text Is Nothing _
-                OrElse Me.UserName1.Text.Trim() = "" Then
+            If Me.phone.Text Is Nothing _
+                OrElse Me.phone.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
-                Me.UserName1.Text = "&nbsp;"
+                Me.phone.Text = "&nbsp;"
             End If
                   
+        End Sub
+                
+        Public Overridable Sub SetaddressLabel()
+            
+                    
         End Sub
                 
         Public Overridable Sub SetemailLabel()
@@ -402,7 +493,12 @@ Public Class BaseUsersRecordControl
                     
         End Sub
                 
-        Public Overridable Sub SetFullNameLabel()
+        Public Overridable Sub SetmobileLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetnameLabel()
             
                     
         End Sub
@@ -412,12 +508,7 @@ Public Class BaseUsersRecordControl
                     
         End Sub
                 
-        Public Overridable Sub SetRoleIdLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub SetUserNameLabel()
+        Public Overridable Sub SetphoneLabel()
             
                     
         End Sub
@@ -526,19 +617,28 @@ Public Class BaseUsersRecordControl
       
             ' Call the Get methods for each of the user interface controls.
         
+            Getaddress()
             Getemail()
-            GetFullName()
+            Getmobile()
+            Getname()
             Getpassword()
-            GetRoleId()
-            GetUserName1()
+            Getphone()
         End Sub
         
         
+        Public Overridable Sub Getaddress()
+            
+        End Sub
+                
         Public Overridable Sub Getemail()
             
         End Sub
                 
-        Public Overridable Sub GetFullName()
+        Public Overridable Sub Getmobile()
+            
+        End Sub
+                
+        Public Overridable Sub Getname()
             
         End Sub
                 
@@ -546,11 +646,7 @@ Public Class BaseUsersRecordControl
             
         End Sub
                 
-        Public Overridable Sub GetRoleId()
-            
-        End Sub
-                
-        Public Overridable Sub GetUserName1()
+        Public Overridable Sub Getphone()
             
         End Sub
                 
@@ -584,12 +680,12 @@ Public Class BaseUsersRecordControl
                 ' If XML, then add a Where clause based on the Primary Key in the XML.
                 Dim pkValue As KeyValue = KeyValue.XmlToKey(recId)
                 
-                wc.iAND(UsersTable.UserId0, BaseFilter.ComparisonOperator.EqualsTo, pkValue.GetColumnValue(UsersTable.UserId0).ToString())
+                wc.iAND(UsersTable.id0, BaseFilter.ComparisonOperator.EqualsTo, pkValue.GetColumnValue(UsersTable.id0).ToString())
         
             Else
                 ' The URL parameter contains the actual value, not an XML structure.
                 
-                wc.iAND(UsersTable.UserId0, BaseFilter.ComparisonOperator.EqualsTo, recId)
+                wc.iAND(UsersTable.id0, BaseFilter.ComparisonOperator.EqualsTo, recId)
         
             End If
               
@@ -879,50 +975,6 @@ Public Class BaseUsersRecordControl
             End If              
         End Sub
         
-        ' event handler for LinkButton
-        Public Overridable Sub RoleId_Click(ByVal sender As Object, ByVal args As EventArgs)
-              
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../roles/ShowRoles.aspx?Roles={UsersRecordControl:FK:users_roleid_fk}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If
-        End Sub
-            
    
         Private _PreviousUIData As New Hashtable
         Public Overridable Property PreviousUIData() As Hashtable
@@ -1056,6 +1108,18 @@ Public Class BaseUsersRecordControl
 
 #Region "Helper Properties"
         
+        Public ReadOnly Property address() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "address"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property addressLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "addressLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property email() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email"), System.Web.UI.WebControls.Literal)
@@ -1068,15 +1132,27 @@ Public Class BaseUsersRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property FullName() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property mobile() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "FullName"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "mobile"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property FullNameLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property mobileLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "FullNameLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "mobileLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property name() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "name"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property nameLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "nameLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -1092,27 +1168,15 @@ Public Class BaseUsersRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property RoleId() As System.Web.UI.WebControls.LinkButton
+        Public ReadOnly Property phone() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleId"), System.Web.UI.WebControls.LinkButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "phone"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property RoleIdLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property phoneLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleIdLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property UserName1() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "UserName1"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property UserNameLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "UserNameLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "phoneLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

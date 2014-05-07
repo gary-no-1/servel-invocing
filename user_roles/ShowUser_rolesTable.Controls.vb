@@ -1,6 +1,6 @@
 ﻿
 ' This file implements the TableControl, TableControlRow, and RecordControl classes for the 
-' EditRolesTable.aspx page.  The Row or RecordControl classes are the 
+' ShowUser_rolesTable.aspx page.  The Row or RecordControl classes are the 
 ' ideal place to add code customizations. For example, you can override the LoadData, 
 ' CreateWhereClause, DataBind, SaveData, GetUIData, and Validate methods.
 
@@ -32,16 +32,16 @@ Imports ServelInvocing.UI
 #End Region
 
   
-Namespace ServelInvocing.UI.Controls.EditRolesTable
+Namespace ServelInvocing.UI.Controls.ShowUser_rolesTable
 
 #Region "Section 1: Place your customizations here."
 
     
-Public Class RolesTableControlRow
-        Inherits BaseRolesTableControlRow
-        ' The BaseRolesTableControlRow implements code for a ROW within the
-        ' the RolesTableControl table.  The BaseRolesTableControlRow implements the DataBind and SaveData methods.
-        ' The loading of data is actually performed by the LoadData method in the base class of RolesTableControl.
+Public Class User_rolesTableControlRow
+        Inherits BaseUser_rolesTableControlRow
+        ' The BaseUser_rolesTableControlRow implements code for a ROW within the
+        ' the User_rolesTableControl table.  The BaseUser_rolesTableControlRow implements the DataBind and SaveData methods.
+        ' The loading of data is actually performed by the LoadData method in the base class of User_rolesTableControl.
 
         ' This is the ideal place to add your code customizations. For example, you can override the DataBind, 
         ' SaveData, GetUIData, and Validate methods.
@@ -51,14 +51,14 @@ End Class
 
   
 
-Public Class RolesTableControl
-        Inherits BaseRolesTableControl
+Public Class User_rolesTableControl
+        Inherits BaseUser_rolesTableControl
 
-    ' The BaseRolesTableControl class implements the LoadData, DataBind, CreateWhereClause
+    ' The BaseUser_rolesTableControl class implements the LoadData, DataBind, CreateWhereClause
     ' and other methods to load and display the data in a table control.
 
     ' This is the ideal place to add your code customizations. You can override the LoadData and CreateWhereClause,
-    ' The RolesTableControlRow class offers another place where you can customize
+    ' The User_rolesTableControlRow class offers another place where you can customize
     ' the DataBind, GetUIData, SaveData and Validate methods specific to each row displayed on the table.
 
 End Class
@@ -72,39 +72,43 @@ End Class
 #Region "Section 2: Do not modify this section."
     
     
-' Base class for the RolesTableControlRow control on the EditRolesTable page.
-' Do not modify this class. Instead override any method in RolesTableControlRow.
-Public Class BaseRolesTableControlRow
+' Base class for the User_rolesTableControlRow control on the ShowUser_rolesTable page.
+' Do not modify this class. Instead override any method in User_rolesTableControlRow.
+Public Class BaseUser_rolesTableControlRow
         Inherits ServelInvocing.UI.BaseApplicationRecordControl
 
-        '  To customize, override this method in RolesTableControlRow.
+        '  To customize, override this method in User_rolesTableControlRow.
         Protected Overridable Sub Control_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Init
       
         End Sub
 
-        '  To customize, override this method in RolesTableControlRow.
+        '  To customize, override this method in User_rolesTableControlRow.
         Protected Overridable Sub Control_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
 		
 			'Call LoadFocusScripts from repeater so that onfocus attribute could be added to elements
 			Me.Page.LoadFocusScripts(Me)
 		
               ' Show confirmation message on Click
-              Me.RolesRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
+              Me.User_rolesRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              AddHandler Me.RolesRowDeleteButton.Click, AddressOf RolesRowDeleteButton_Click
+              AddHandler Me.User_rolesRowCopyButton.Click, AddressOf User_rolesRowCopyButton_Click
               
-              AddHandler Me.RolesRowEditButton.Click, AddressOf RolesRowEditButton_Click
+              AddHandler Me.User_rolesRowDeleteButton.Click, AddressOf User_rolesRowDeleteButton_Click
               
-              AddHandler Me.RolesRowViewButton.Click, AddressOf RolesRowViewButton_Click
+              AddHandler Me.User_rolesRowEditButton.Click, AddressOf User_rolesRowEditButton_Click
               
-              AddHandler Me.Role.TextChanged, AddressOf Role_TextChanged
+              AddHandler Me.User_rolesRowViewButton.Click, AddressOf User_rolesRowViewButton_Click
+              
+              AddHandler Me.role_id.Click, AddressOf role_id_Click
+            
+              AddHandler Me.user_id.Click, AddressOf user_id_Click
             
         End Sub
 
         
         Public Overridable Sub LoadData()        
-            ' Load the data from the database into the DataSource roles record.
+            ' Load the data from the database into the DataSource user_roles record.
             ' It is better to make changes to functions called by LoadData such as
             ' CreateWhereClause, rather than making changes here.
     
@@ -112,20 +116,20 @@ Public Class BaseRolesTableControlRow
             ' used during a PostBack to load the record.
           
             If Me.RecordUniqueId IsNot Nothing AndAlso Me.RecordUniqueId.Trim <> "" Then
-                Me.DataSource = RolesTable.GetRecord(Me.RecordUniqueId, True)
+                Me.DataSource = User_rolesTable.GetRecord(Me.RecordUniqueId, True)
           
                 Return
             End If
         
             ' Since this is a row in the table, the data for this row is loaded by the 
-            ' LoadData method of the BaseRolesTableControl when the data for the entire
+            ' LoadData method of the BaseUser_rolesTableControl when the data for the entire
             ' table is loaded.
             
-            Me.DataSource = New RolesRecord()
+            Me.DataSource = New User_rolesRecord()
           
         End Sub
 
-        ' Populate the UI controls using the DataSource.  To customize, override this method in RolesTableControlRow.
+        ' Populate the UI controls using the DataSource.  To customize, override this method in User_rolesTableControlRow.
         Public Overrides Sub DataBind()
             ' The DataBind method binds the user interface controls to the values
             ' from the database record.  To do this, it calls the Set methods for 
@@ -143,7 +147,8 @@ Public Class BaseRolesTableControlRow
       
             ' Call the Set methods for each controls on the panel
         
-            SetRole()
+            Setrole_id()
+            Setuser_id()
       
       
             Me.IsNewRecord = True
@@ -162,44 +167,71 @@ Public Class BaseRolesTableControlRow
         End Sub
         
         
-        Public Overridable Sub SetRole()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.Role.ID) Then
-            
-                Me.Role.Text = Me.PreviousUIData(Me.Role.ID).ToString()
-              
-                Return
-            End If
+        Public Overridable Sub Setrole_id()
             
         
-            ' Set the Role TextBox on the webpage with value from the
-            ' roles database record.
+            ' Set the role_id LinkButton on the webpage with value from the
+            ' user_roles database record.
 
-            ' Me.DataSource is the roles record retrieved from the database.
-            ' Me.Role is the ASP:TextBox on the webpage.
+            ' Me.DataSource is the user_roles record retrieved from the database.
+            ' Me.role_id is the ASP:LinkButton on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.SetRole()
+            '     MyBase.Setrole_id()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.RoleSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.role_idSpecified Then
                 				
-                ' If the Role is non-NULL, then format the value.
+                ' If the role_id is non-NULL, then format the value.
 
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(RolesTable.Role)
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                                Dim formattedValue As String = Me.DataSource.Format(User_rolesTable.role_id)
                             
-                Me.Role.Text = formattedValue
+                Me.role_id.Text = formattedValue
               
             Else 
             
-                ' Role is NULL in the database, so use the Default Value.  
+                ' role_id is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.Role.Text = RolesTable.Role.Format(RolesTable.Role.DefaultValue)
+                Me.role_id.Text = User_rolesTable.role_id.Format(User_rolesTable.role_id.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setuser_id()
+            
+        
+            ' Set the user_id LinkButton on the webpage with value from the
+            ' user_roles database record.
+
+            ' Me.DataSource is the user_roles record retrieved from the database.
+            ' Me.user_id is the ASP:LinkButton on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setuser_id()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.user_idSpecified Then
+                				
+                ' If the user_id is non-NULL, then format the value.
+
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                                Dim formattedValue As String = Me.DataSource.Format(User_rolesTable.user_id)
+                            
+                Me.user_id.Text = formattedValue
+              
+            Else 
+            
+                ' user_id is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.user_id.Text = User_rolesTable.user_id.Format(User_rolesTable.user_id.DefaultValue)
                         		
                 End If
                  
@@ -244,7 +276,7 @@ Public Class BaseRolesTableControlRow
 
       
         
-        ' To customize, override this method in RolesTableControlRow.
+        ' To customize, override this method in User_rolesTableControlRow.
         Public Overridable Sub SaveData()
             ' Saves the associated record in the database.
             ' SaveData calls Validate and Get methods - so it may be more appropriate to
@@ -272,8 +304,8 @@ Public Class BaseRolesTableControlRow
                 ' Auto generated ids are available after saving for use by child (dependent) records.
                 Me.DataSource.Save()
               
-                DirectCast(GetParentControlObject(Me, "RolesTableControl"), RolesTableControl).DataChanged = True
-                DirectCast(GetParentControlObject(Me, "RolesTableControl"), RolesTableControl).ResetData = True
+                DirectCast(GetParentControlObject(Me, "User_rolesTableControl"), User_rolesTableControl).DataChanged = True
+                DirectCast(GetParentControlObject(Me, "User_rolesTableControl"), User_rolesTableControl).ResetData = True
             End If
             
       
@@ -290,7 +322,7 @@ Public Class BaseRolesTableControlRow
           
         End Sub
 
-        ' To customize, override this method in RolesTableControlRow.
+        ' To customize, override this method in User_rolesTableControlRow.
         Public Overridable Sub GetUIData()
             ' The GetUIData method retrieves the updated values from the user interface 
             ' controls into a database record in preparation for saving or updating.
@@ -301,25 +333,21 @@ Public Class BaseRolesTableControlRow
       
             ' Call the Get methods for each of the user interface controls.
         
-            GetRole()
+            Getrole_id()
+            Getuser_id()
         End Sub
         
         
-        Public Overridable Sub GetRole()
+        Public Overridable Sub Getrole_id()
             
-            ' Retrieve the value entered by the user on the Role ASP:TextBox, and
-            ' save it into the Role field in DataSource roles record.
+        End Sub
+                
+        Public Overridable Sub Getuser_id()
             
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.Role.Text, RolesTable.Role)			
-
-                      
         End Sub
                 
       
-        ' To customize, override this method in RolesTableControlRow.
+        ' To customize, override this method in User_rolesTableControlRow.
         
         Public Overridable Function CreateWhereClause() As WhereClause
         
@@ -328,7 +356,7 @@ Public Class BaseRolesTableControlRow
         End Function
         
 
-        ' To customize, override this method in RolesTableControlRow.
+        ' To customize, override this method in User_rolesTableControlRow.
         Public Overridable Sub Validate() 
             ' Add custom validation for any control within this panel.
             ' Example.  If you have a State ASP:Textbox control
@@ -350,10 +378,10 @@ Public Class BaseRolesTableControlRow
             End If
 
             Dim pkValue As KeyValue = KeyValue.XmlToKey(Me.RecordUniqueId)
-          RolesTable.DeleteRecord(pkValue)
+          User_rolesTable.DeleteRecord(pkValue)
           
-            DirectCast(GetParentControlObject(Me, "RolesTableControl"), RolesTableControl).DataChanged = True
-            DirectCast(GetParentControlObject(Me, "RolesTableControl"), RolesTableControl).ResetData = True
+            DirectCast(GetParentControlObject(Me, "User_rolesTableControl"), User_rolesTableControl).DataChanged = True
+            DirectCast(GetParentControlObject(Me, "User_rolesTableControl"), User_rolesTableControl).ResetData = True
         End Sub
 
         Protected Overridable Sub Control_PreRender(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.PreRender
@@ -402,7 +430,51 @@ Public Class BaseRolesTableControlRow
         
         
         ' event handler for ImageButton
-        Public Overridable Sub RolesRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub User_rolesRowCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../user_roles/AddUser_roles.aspx?User_roles={PK}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If              
+        End Sub
+        
+        ' event handler for ImageButton
+        Public Overridable Sub User_rolesRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
                 ' Enclose all database retrieval/update code within a Transaction boundary
@@ -410,11 +482,7 @@ Public Class BaseRolesTableControlRow
                 
             If(Not Me.Page.IsPageRefresh) Then
         
-                Dim tc As RolesTableControl = DirectCast(GetParentControlObject(Me, "RolesTableControl"), RolesTableControl)
-                If Not (IsNothing(tc)) Then
-                    
-                    Me.Visible = False
-                End If
+                  Me.Delete()
               
             End If
       Me.Page.CommitTransaction(sender)
@@ -433,14 +501,14 @@ Public Class BaseRolesTableControlRow
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub RolesRowEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub User_rolesRowEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             ' The redirect URL is set on the Properties, Bindings.
             ' The ModifyRedirectURL call resolves the parameters before the
             ' Response.Redirect redirects the page to the URL.  
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
-            Dim url As String = "../roles/EditRoles.aspx?Roles={PK}"
+            Dim url As String = "../user_roles/EditUser_roles.aspx?User_roles={PK}"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -477,14 +545,14 @@ Public Class BaseRolesTableControlRow
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub RolesRowViewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub User_rolesRowViewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             ' The redirect URL is set on the Properties, Bindings.
             ' The ModifyRedirectURL call resolves the parameters before the
             ' Response.Redirect redirects the page to the URL.  
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
-            Dim url As String = "../roles/ShowRoles.aspx?Roles={PK}"
+            Dim url As String = "../user_roles/ShowUser_roles.aspx?User_roles={PK}"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -520,8 +588,92 @@ Public Class BaseRolesTableControlRow
             End If              
         End Sub
         
-        Protected Overridable Sub Role_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
+        ' event handler for LinkButton
+        Public Overridable Sub role_id_Click(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../roles/ShowRoles.aspx?Roles={User_rolesTableControlRow:FK:FK_user_roles_roles}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If
+        End Sub
+            
+        ' event handler for LinkButton
+        Public Overridable Sub user_id_Click(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../users/ShowUsers.aspx?Users={User_rolesTableControlRow:FK:FK_user_roles_users}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If
         End Sub
             
    
@@ -567,20 +719,20 @@ Public Class BaseRolesTableControlRow
         
         Public Property RecordUniqueId() As String
             Get
-                Return CType(Me.ViewState("BaseRolesTableControlRow_Rec"), String)
+                Return CType(Me.ViewState("BaseUser_rolesTableControlRow_Rec"), String)
             End Get
             Set(ByVal value As String)
-                Me.ViewState("BaseRolesTableControlRow_Rec") = value
+                Me.ViewState("BaseUser_rolesTableControlRow_Rec") = value
             End Set
         End Property
         
-        Private _DataSource As RolesRecord
-        Public Property DataSource() As RolesRecord     
+        Private _DataSource As User_rolesRecord
+        Public Property DataSource() As User_rolesRecord     
             Get
                 Return Me._DataSource
             End Get
             
-            Set(ByVal value As RolesRecord)
+            Set(ByVal value As User_rolesRecord)
             
                 Me._DataSource = value
             End Set
@@ -633,33 +785,45 @@ Public Class BaseRolesTableControlRow
 
 #Region "Helper Properties"
         
-        Public ReadOnly Property Role() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property role_id() As System.Web.UI.WebControls.LinkButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Role"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "role_id"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
             
-        Public ReadOnly Property RolesRecordRowSelection() As System.Web.UI.WebControls.CheckBox
+        Public ReadOnly Property user_id() As System.Web.UI.WebControls.LinkButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesRecordRowSelection"), System.Web.UI.WebControls.CheckBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "user_id"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+            
+        Public ReadOnly Property User_rolesRecordRowSelection() As System.Web.UI.WebControls.CheckBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesRecordRowSelection"), System.Web.UI.WebControls.CheckBox)
             End Get
         End Property
         
-        Public ReadOnly Property RolesRowDeleteButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property User_rolesRowCopyButton() As System.Web.UI.WebControls.ImageButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesRowDeleteButton"), System.Web.UI.WebControls.ImageButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesRowCopyButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
-        Public ReadOnly Property RolesRowEditButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property User_rolesRowDeleteButton() As System.Web.UI.WebControls.ImageButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesRowEditButton"), System.Web.UI.WebControls.ImageButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesRowDeleteButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
-        Public ReadOnly Property RolesRowViewButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property User_rolesRowEditButton() As System.Web.UI.WebControls.ImageButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesRowViewButton"), System.Web.UI.WebControls.ImageButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesRowEditButton"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property User_rolesRowViewButton() As System.Web.UI.WebControls.ImageButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesRowViewButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
@@ -673,7 +837,7 @@ Public Class BaseRolesTableControlRow
 
         Public Overrides Overloads Function EvaluateExpressions(ByVal url As String, ByVal arg As String, ByVal bEncrypt As Boolean) As String
             
-            Dim rec As RolesRecord = Nothing
+            Dim rec As User_rolesRecord = Nothing
              
         
             Try
@@ -692,14 +856,14 @@ Public Class BaseRolesTableControlRow
         End Function
 
          
-        Public Overridable Function GetRecord() As RolesRecord
+        Public Overridable Function GetRecord() As User_rolesRecord
             If Not Me.DataSource Is Nothing Then
                 Return Me.DataSource
             End If
             
             If Not Me.RecordUniqueId Is Nothing Then
                 
-                Return RolesTable.GetRecord(Me.RecordUniqueId, True)
+                Return User_rolesTable.GetRecord(Me.RecordUniqueId, True)
                 
             End If
             
@@ -721,9 +885,9 @@ End Class
 
   
 
-' Base class for the RolesTableControl control on the EditRolesTable page.
-' Do not modify this class. Instead override any method in RolesTableControl.
-Public Class BaseRolesTableControl
+' Base class for the User_rolesTableControl control on the ShowUser_rolesTable page.
+' Do not modify this class. Instead override any method in User_rolesTableControl.
+Public Class BaseUser_rolesTableControl
         Inherits ServelInvocing.UI.BaseApplicationTableControl
 
         
@@ -734,31 +898,34 @@ Public Class BaseRolesTableControl
       
            ' Setup the filter and search events.
         
-            AddHandler Me.RoleFilter.SelectedIndexChanged, AddressOf RoleFilter_SelectedIndexChanged
+            AddHandler Me.role_idFilter.SelectedIndexChanged, AddressOf role_idFilter_SelectedIndexChanged
+            AddHandler Me.user_idFilter.SelectedIndexChanged, AddressOf user_idFilter_SelectedIndexChanged
             If Not Me.Page.IsPostBack Then
                 Dim initialVal As String = ""
-                If  Me.InSession(Me.RoleFilter) 				
-                    initialVal = Me.GetFromSession(Me.RoleFilter)
+                If  Me.InSession(Me.role_idFilter) 				
+                    initialVal = Me.GetFromSession(Me.role_idFilter)
                 
                 End If
                 If initialVal <> ""				
                         
-                        Me.RoleFilter.Items.Add(New ListItem(initialVal, initialVal))
+                        Me.role_idFilter.Items.Add(New ListItem(initialVal, initialVal))
                             
-                        Me.RoleFilter.SelectedValue = initialVal
+                        Me.role_idFilter.SelectedValue = initialVal
                             
                     End If
                 
             End If
             If Not Me.Page.IsPostBack Then
                 Dim initialVal As String = ""
-                If  Me.InSession(Me.RolesSearch) 				
-                    initialVal = Me.GetFromSession(Me.RolesSearch)
+                If  Me.InSession(Me.user_idFilter) 				
+                    initialVal = Me.GetFromSession(Me.user_idFilter)
                 
                 End If
                 If initialVal <> ""				
                         
-                        Me.RolesSearch.Text = initialVal
+                        Me.user_idFilter.Items.Add(New ListItem(initialVal, initialVal))
+                            
+                        Me.user_idFilter.SelectedValue = initialVal
                             
                     End If
                 
@@ -787,41 +954,49 @@ Public Class BaseRolesTableControl
             SaveControlsToSession_Ajax()
         
               ' Show confirmation message on Click
-              Me.RolesDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteConfirm", "ServelInvocing") & "'));")
+              Me.User_rolesDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteConfirm", "ServelInvocing") & "'));")
             ' Setup the pagination events.
             
-              AddHandler Me.RolesPagination.FirstPage.Click, AddressOf RolesPagination_FirstPage_Click
+              AddHandler Me.User_rolesPagination.FirstPage.Click, AddressOf User_rolesPagination_FirstPage_Click
               
-              AddHandler Me.RolesPagination.LastPage.Click, AddressOf RolesPagination_LastPage_Click
+              AddHandler Me.User_rolesPagination.LastPage.Click, AddressOf User_rolesPagination_LastPage_Click
               
-              AddHandler Me.RolesPagination.NextPage.Click, AddressOf RolesPagination_NextPage_Click
+              AddHandler Me.User_rolesPagination.NextPage.Click, AddressOf User_rolesPagination_NextPage_Click
               
-              AddHandler Me.RolesPagination.PageSizeButton.Click, AddressOf RolesPagination_PageSizeButton_Click
+              AddHandler Me.User_rolesPagination.PageSizeButton.Click, AddressOf User_rolesPagination_PageSizeButton_Click
             
-              AddHandler Me.RolesPagination.PreviousPage.Click, AddressOf RolesPagination_PreviousPage_Click
+              AddHandler Me.User_rolesPagination.PreviousPage.Click, AddressOf User_rolesPagination_PreviousPage_Click
               
             ' Setup the sorting events.
           
-              AddHandler Me.RoleLabel1.Click, AddressOf RoleLabel1_Click
+              AddHandler Me.role_idLabel1.Click, AddressOf role_idLabel1_Click
+            
+              AddHandler Me.user_idLabel1.Click, AddressOf user_idLabel1_Click
             
             ' Setup the button events.
           
-              AddHandler Me.RolesAddButton.Click, AddressOf RolesAddButton_Click
+              AddHandler Me.User_rolesCopyButton.Click, AddressOf User_rolesCopyButton_Click
               
-              AddHandler Me.RolesDeleteButton.Click, AddressOf RolesDeleteButton_Click
+              AddHandler Me.User_rolesDeleteButton.Click, AddressOf User_rolesDeleteButton_Click
               
-              AddHandler Me.RolesEditButton.Click, AddressOf RolesEditButton_Click
+              AddHandler Me.User_rolesEditButton.Click, AddressOf User_rolesEditButton_Click
               
-              AddHandler Me.RolesRefreshButton.Click, AddressOf RolesRefreshButton_Click
+              AddHandler Me.User_rolesExportCSVButton.Click, AddressOf User_rolesExportCSVButton_Click
               
-              AddHandler Me.RolesResetButton.Click, AddressOf RolesResetButton_Click
+              AddHandler Me.User_rolesExportExcelButton.Click, AddressOf User_rolesExportExcelButton_Click
               
-              AddHandler Me.RolesSaveButton.Click, AddressOf RolesSaveButton_Click
+              AddHandler Me.User_rolesImportButton.Click, AddressOf User_rolesImportButton_Click
               
-            Me.RolesSaveButton.Attributes.Add("onclick", "SubmitHRefOnce(this, """ & Me.Page.GetResourceValue("Txt:SaveRecord", "ServelInvocing") & """);")
-        
-            AddHandler Me.RolesSearchButton.Button.Click, AddressOf RolesSearchButton_Click
-        
+              AddHandler Me.User_rolesNewButton.Click, AddressOf User_rolesNewButton_Click
+              
+              AddHandler Me.User_rolesPDFButton.Click, AddressOf User_rolesPDFButton_Click
+              
+              AddHandler Me.User_rolesRefreshButton.Click, AddressOf User_rolesRefreshButton_Click
+              
+              AddHandler Me.User_rolesResetButton.Click, AddressOf User_rolesResetButton_Click
+              
+              AddHandler Me.User_rolesWordButton.Click, AddressOf User_rolesWordButton_Click
+              
           ' Setup events for others
             
         End Sub
@@ -837,7 +1012,7 @@ Public Class BaseRolesTableControl
                 If wc IsNot Nothing AndAlso Not wc.RunQuery Then
                     ' Initialize an empty array of records
                     Dim alist As New ArrayList(0)
-                    Me.DataSource = DirectCast(alist.ToArray(GetType(RolesRecord)), RolesRecord())
+                    Me.DataSource = DirectCast(alist.ToArray(GetType(User_rolesRecord)), User_rolesRecord())
                     ' Add records to the list if needed.
                     Me.AddNewRecords()
                     Return
@@ -852,7 +1027,7 @@ Public Class BaseRolesTableControl
                 
                 ' Get the total number of records to be displayed.
                 
-                Me.TotalRecords = RolesTable.GetRecordCount(wc)
+                Me.TotalRecords = User_rolesTable.GetRecordCount(wc)
                               
                 ' Make sure PageIndex (current page) is within bounds.
                 If Me.TotalPages <= 0 OrElse Me.PageIndex < 0 Then
@@ -867,13 +1042,13 @@ Public Class BaseRolesTableControl
                     ' No records matching query. Initialize an empty array of records
                     
                     Dim alist As New ArrayList(0)
-                    Me.DataSource = DirectCast(alist.ToArray(GetType(RolesRecord)), RolesRecord())
+                    Me.DataSource = DirectCast(alist.ToArray(GetType(User_rolesRecord)), User_rolesRecord())
                     
                 ElseIf Me.AddNewRecord > 0 Then
                 ' Make sure to preserve the previously entered data on new rows.
                 
                     Dim postdata As New ArrayList
-                    For Each rc As RolesTableControlRow In Me.GetRecordControls()
+                    For Each rc As User_rolesTableControlRow In Me.GetRecordControls()
                         If Not rc.IsNewRecord Then
                             rc.DataSource = rc.GetRecord()
                             rc.GetUIData()
@@ -881,17 +1056,17 @@ Public Class BaseRolesTableControl
                             UIData.Add(rc.PreservedUIData())							
                         End If
                     Next
-                    Me.DataSource = DirectCast(postdata.ToArray(GetType(RolesRecord)), RolesRecord())
+                    Me.DataSource = DirectCast(postdata.ToArray(GetType(User_rolesRecord)), User_rolesRecord())
                 
                 Else  ' Get the records from the database	
-                    Me.DataSource = RolesTable.GetRecords(wc, orderBy, Me.PageIndex, Me.PageSize) 
+                    Me.DataSource = User_rolesTable.GetRecords(wc, orderBy, Me.PageIndex, Me.PageSize) 
                 End If
                 
                 ' Add any new rows desired by the user.
                 Me.AddNewRecords()
             
                 ' Turn off the ToggleAll checkbox
-                Me.RolesToggleAll.Checked = False
+                Me.User_rolesToggleAll.Checked = False
             
 
                 ' Initialize the page and grand totals. now
@@ -920,23 +1095,28 @@ Public Class BaseRolesTableControl
             If Me.DataSource Is Nothing Then
                 Return
             End If
-           
+      
+          ' Improve performance by prefetching display as records.
+          Me.PreFetchForeignKeyValues()
+             
             ' Setup the pagination controls.
             BindPaginationControls()
 
             ' Call the Set methods for each controls on the panel
         
-            SetRoleFilter()
+            Setrole_idFilter()
             
-            SetRoleLabel()
-            SetRoleLabel1()
-            SetRolesSearch()
+            Setrole_idLabel()
+            Setrole_idLabel1()
+            Setuser_idFilter()
             
+            Setuser_idLabel()
+            Setuser_idLabel1()
       
   
 
             ' Bind the repeater with the list of records to expand the UI.
-            Dim rep As System.Web.UI.WebControls.Repeater = CType(Me.FindControl("RolesTableControlRepeater"), System.Web.UI.WebControls.Repeater)
+            Dim rep As System.Web.UI.WebControls.Repeater = CType(Me.FindControl("User_rolesTableControlRepeater"), System.Web.UI.WebControls.Repeater)
             If rep Is Nothing Then Return
             rep.DataSource = DataSource()
             rep.DataBind()
@@ -944,7 +1124,7 @@ Public Class BaseRolesTableControl
             Dim index As Integer = 0
             For Each repItem As System.Web.UI.WebControls.RepeaterItem In rep.Items
                 ' Loop through all rows in the table, set its DataSource and call DataBind().
-                Dim recControl As RolesTableControlRow = DirectCast(repItem.FindControl("RolesTableControlRow"), RolesTableControlRow) 
+                Dim recControl As User_rolesTableControlRow = DirectCast(repItem.FindControl("User_rolesTableControlRow"), User_rolesTableControlRow) 
                 recControl.DataSource = Me.DataSource(index)
                 If Me.UIData.Count > index Then
                     recControl.PreviousUIData = Me.UIData(index)
@@ -965,15 +1145,34 @@ Public Class BaseRolesTableControl
 
             ' Initialize other asp controls
             
-            SetRoleLabel()
-            SetRoleLabel1()
+            Setrole_idLabel()
+            Setrole_idLabel1()
+            Setuser_idLabel()
+            Setuser_idLabel1()
       End Sub
 
       
+          Public Sub PreFetchForeignKeyValues()
+          If (IsNothing(Me.DataSource))
+            Return
+          End If
+          
+            Me.Page.PregetDfkaRecords(User_rolesTable.role_id, Me.DataSource)
+          
+            Me.Page.PregetDfkaRecords(User_rolesTable.user_id, Me.DataSource)
+          
+          End Sub
+        
       
         Public Overridable Sub RegisterPostback()
         
-              Me.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"RolesSaveButton"))
+              Me.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"User_rolesExportCSVButton"))
+                        
+              Me.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"User_rolesExportExcelButton"))
+                        
+              Me.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"User_rolesPDFButton"))
+                        
+              Me.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"User_rolesWordButton"))
                         
         
         End Sub
@@ -1004,9 +1203,9 @@ Public Class BaseRolesTableControl
 
         Public Overridable Sub ResetControl()
                     
-            Me.RoleFilter.ClearSelection()
+            Me.role_idFilter.ClearSelection()
             
-            Me.RolesSearch.Text = ""
+            Me.user_idFilter.ClearSelection()
             
             Me.CurrentSortOrder.Reset()
             If (Me.InSession(Me, "Order_By")) Then
@@ -1022,31 +1221,31 @@ Public Class BaseRolesTableControl
         Protected Overridable Sub BindPaginationControls()
             ' Setup the pagination controls.
 
-            ' Bind the buttons for RolesTableControl pagination.
+            ' Bind the buttons for User_rolesTableControl pagination.
         
-            Me.RolesPagination.FirstPage.Enabled = Not (Me.PageIndex = 0)
-            Me.RolesPagination.LastPage.Enabled = Not (Me.PageIndex = Me.TotalPages - 1)
+            Me.User_rolesPagination.FirstPage.Enabled = Not (Me.PageIndex = 0)
+            Me.User_rolesPagination.LastPage.Enabled = Not (Me.PageIndex = Me.TotalPages - 1)
             If Me.TotalPages = 0 Then
-                Me.RolesPagination.LastPage.Enabled = False
+                Me.User_rolesPagination.LastPage.Enabled = False
             End If
           
-            Me.RolesPagination.NextPage.Enabled = Not (Me.PageIndex = Me.TotalPages - 1)
+            Me.User_rolesPagination.NextPage.Enabled = Not (Me.PageIndex = Me.TotalPages - 1)
             If Me.TotalPages = 0 Then
-                Me.RolesPagination.NextPage.Enabled = False
+                Me.User_rolesPagination.NextPage.Enabled = False
             End If
           
-            Me.RolesPagination.PreviousPage.Enabled = Not (Me.PageIndex = 0)
+            Me.User_rolesPagination.PreviousPage.Enabled = Not (Me.PageIndex = 0)
 
             ' Bind the pagination labels.
         
             If Me.TotalPages > 0 Then
-                Me.RolesPagination.CurrentPage.Text = (Me.PageIndex + 1).ToString()
+                Me.User_rolesPagination.CurrentPage.Text = (Me.PageIndex + 1).ToString()
             Else
-                Me.RolesPagination.CurrentPage.Text = "0"
+                Me.User_rolesPagination.CurrentPage.Text = "0"
             End If
-            Me.RolesPagination.PageSize.Text = Me.PageSize.ToString()
-            Me.RolesPagination.TotalItems.Text = Me.TotalRecords.ToString()
-            Me.RolesPagination.TotalPages.Text = Me.TotalPages.ToString()
+            Me.User_rolesPagination.PageSize.Text = Me.PageSize.ToString()
+            Me.User_rolesPagination.TotalItems.Text = Me.TotalRecords.ToString()
+            Me.User_rolesPagination.TotalPages.Text = Me.TotalPages.ToString()
         End Sub
 
         Public Overridable Sub SaveData()
@@ -1054,7 +1253,7 @@ Public Class BaseRolesTableControl
             ' to save their data.  This function is called by the Click handler of the
             ' Save button.  The button handler should Start/Commit/End a transaction.
             
-            Dim recCtl As RolesTableControlRow
+            Dim recCtl As User_rolesTableControlRow
             For Each recCtl In Me.GetRecordControls()
         
                 If Me.InDeletedRecordIds(recCtl) Then
@@ -1096,7 +1295,7 @@ Public Class BaseRolesTableControl
       
         Public Overridable Function CreateWhereClause() As WhereClause
             'This CreateWhereClause is used for loading the data.
-            RolesTable.Instance.InnerFilter = Nothing
+            User_rolesTable.Instance.InnerFilter = Nothing
             Dim wc As WhereClause = New WhereClause()
               
             ' Compose the WHERE clause consiting of:
@@ -1105,44 +1304,27 @@ Public Class BaseRolesTableControl
             ' 3. User selected filter criteria.
 
               
-            If IsValueSelected(Me.RoleFilter) Then
+            If IsValueSelected(Me.role_idFilter) Then
                 
-                wc.iAND(RolesTable.Role, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.RoleFilter, Me.GetFromSession(Me.RoleFilter)), False, False)
+                wc.iAND(User_rolesTable.role_id, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.role_idFilter, Me.GetFromSession(Me.role_idFilter)), False, False)
             
                 
             End If
                        
-            If IsValueSelected(Me.RolesSearch) Then
-                ' Strip "..." from begin and ending of the search text, otherwise the search will return 0 values as in database "..." is not stored.
-                If Me.RolesSearch.Text.StartsWith("...") Then
-                    Me.RolesSearch.Text = Me.RolesSearch.Text.SubString(3,Me.RolesSearch.Text.Length-3)
-                End If
-                If Me.RolesSearch.Text.EndsWith("...") then
-                    Me.RolesSearch.Text = Me.RolesSearch.Text.SubString(0,Me.RolesSearch.Text.Length-3)
-                End If
+            If IsValueSelected(Me.user_idFilter) Then
                 
-                Dim formatedSearchText As String = MiscUtils.GetSelectedValue(Me.RolesSearch, Me.GetFromSession(Me.RolesSearch))
+                wc.iAND(User_rolesTable.user_id, BaseFilter.ComparisonOperator.EqualsTo, MiscUtils.GetSelectedValue(Me.user_idFilter, Me.GetFromSession(Me.user_idFilter)), False, False)
+            
                 
-                ' After stripping "..." see if the search text is null or empty.
-                If IsValueSelected(Me.RolesSearch) Then 
-        ' These clauses are added depending on operator and fields selected in Control's property page, bindings tab.
-                    
-                    Dim search As WhereClause = New WhereClause()
-                    
-                    search.iOR(RolesTable.Role, BaseFilter.ComparisonOperator.Contains, MiscUtils.GetSelectedValue(Me.RolesSearch, Me.GetFromSession(Me.RolesSearch)), True, False)
-        
-                    wc.iAND(search)
-                  
-                End If
             End If
-                  
+                       
             Return wc
         End Function
         
     
         Public Overridable Function CreateWhereClause(ByVal searchText as String, ByVal fromSearchControl as String, ByVal AutoTypeAheadSearch as String, ByVal AutoTypeAheadWordSeparators as String) As WhereClause
             ' This CreateWhereClause is used for loading list of suggestions for Auto Type-Ahead feature.
-            RolesTable.Instance.InnerFilter = Nothing
+            User_rolesTable.Instance.InnerFilter = Nothing
             Dim wc As WhereClause = New WhereClause()
         
             ' Compose the WHERE clause consiting of:
@@ -1154,89 +1336,21 @@ Public Class BaseRolesTableControl
             
             ' Adds clauses if values are selected in Filter controls which are configured in the page.
           
-            Dim RoleFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "RoleFilter_Ajax"), String)
-            If IsValueSelected(RoleFilterSelectedValue) Then
+            Dim role_idFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "role_idFilter_Ajax"), String)
+            If IsValueSelected(role_idFilterSelectedValue) Then
               
-                 wc.iAND(RolesTable.Role, BaseFilter.ComparisonOperator.EqualsTo, RoleFilterSelectedValue, false, False)
+                 wc.iAND(User_rolesTable.role_id, BaseFilter.ComparisonOperator.EqualsTo, role_idFilterSelectedValue, false, False)
              
              End If
                       
-            If IsValueSelected(searchText) and fromSearchControl = "RolesSearch" Then
-                Dim formatedSearchText as String = searchText
-                ' strip "..." from begin and ending of the search text, otherwise the search will return 0 values as in database "..." is not stored.
-                If searchText.StartsWith("...") Then
-                    formatedSearchText = searchText.SubString(3,searchText.Length-3)
-                End If
-                If searchText.EndsWith("...") Then
-                    formatedSearchText = searchText.SubString(0,searchText.Length-3)
-                End If
-                'After stripping "...", trim any leading and trailing whitespaces 
-                formatedSearchText = formatedSearchText.Trim()
-                ' After stripping "..." see if the search text is null or empty.
-                If IsValueSelected(formatedSearchText) Then
-                      ' These clauses are added depending on operator and fields selected in Control's property page, bindings tab.
-                    
-                    Dim search As WhereClause = New WhereClause()
-                    
-                    If InvariantLCase(AutoTypeAheadSearch).equals("wordsstartingwithsearchstring") Then
-                
-                        search.iOR(RolesTable.Role, BaseFilter.ComparisonOperator.Starts_With, formatedSearchText, True, False)
-                        search.iOR(RolesTable.Role, BaseFilter.ComparisonOperator.Contains, AutoTypeAheadWordSeparators & formatedSearchText, True, False)
-                
-                    Else
-                        
-                        search.iOR(RolesTable.Role, BaseFilter.ComparisonOperator.Contains, formatedSearchText, True, False)
-                    End If
-                    wc.iAND(search)
-                  
-                End If
-            End If
-                  
-            Return wc
-        End Function
-          
-        Public Overridable Function GetAutoCompletionList_RolesSearch(ByVal prefixText As String, ByVal count As Integer) As String()
-            Dim resultList As ArrayList = New ArrayList
-            Dim wordList As ArrayList = New ArrayList
-            Dim iteration As Integer = 0
-            
-            Dim wc As WhereClause = CreateWhereClause(prefixText,"RolesSearch", "WordsStartingWithSearchString", "[^a-zA-Z0-9]")
-            While (resultList.Count < count AndAlso iteration < 5)
-                ' Fetch 100 records in each iteration
-                Dim recordList () As ServelInvocing.Business.RolesRecord = RolesTable.GetRecords(wc, Nothing, iteration, 100)
-                Dim rec As RolesRecord = Nothing
-                Dim resultItem As String = ""
-                For Each rec In recordList 
-                    ' Exit the loop if recordList count has reached AutoTypeAheadListSize.
-                    If resultList.Count >= count then
-                        Exit For
-                    End If
-                    ' If the field is configured to Display as Foreign key, Format() method returns the 
-                    ' Display as Forien Key value instead of original field value.
-                    ' Since search had to be done in multiple fields (selected in Control's page property, binding tab) in a record,
-                    ' We need to find relevent field to display which matches the prefixText and is not already present in the result list.
-                
-                    resultItem = rec.Format(RolesTable.Role)
-                    If resultItem IsNot Nothing AndAlso resultItem.ToUpper(System.Threading.Thread.CurrentThread.CurrentCulture).Contains(prefixText.ToUpper(System.Threading.Thread.CurrentThread.CurrentCulture))  Then
-      
-                        Dim isAdded As Boolean = FormatSuggestions(prefixText, resultItem, 50, "AtBeginningOfMatchedString", "WordsStartingWithSearchString", "[^a-zA-Z0-9]", resultList)
-                        If isAdded Then
-                            Continue For
-                        End If
-                    End If
-      
-                Next
-                ' Exit the loop if number of records found is less as further iteration will not return any more records
-                If recordList .Length < 100 Then
-                    Exit While
-                End If
-                iteration += 1
-            End While
+            Dim user_idFilterSelectedValue As String = CType(HttpContext.Current.Session()(HttpContext.Current.Session.SessionID & appRelativeVirtualPath & "user_idFilter_Ajax"), String)
+            If IsValueSelected(user_idFilterSelectedValue) Then
+              
+                 wc.iAND(User_rolesTable.user_id, BaseFilter.ComparisonOperator.EqualsTo, user_idFilterSelectedValue, false, False)
              
-            resultList.Sort()
-            Dim result() As String = New String(resultList.Count - 1) {}
-            Array.Copy(resultList.ToArray, result, resultList.Count)
-            Return result
+             End If
+                      
+            Return wc
         End Function
           
           
@@ -1386,9 +1500,9 @@ Public Class BaseRolesTableControl
     
         Protected Overridable Sub GetPageSize()
         
-            If Me.RolesPagination.PageSize.Text.Trim <> "" Then
+            If Me.User_rolesPagination.PageSize.Text.Trim <> "" Then
                 Try
-                    'Me.PageSize = Integer.Parse(Me.RolesPagination.PageSize.Text)
+                    'Me.PageSize = Integer.Parse(Me.User_rolesPagination.PageSize.Text)
                 Catch ex As Exception
                 End Try
             End If
@@ -1404,20 +1518,23 @@ Public Class BaseRolesTableControl
             ' does not have a unique record id set, then create a record
             ' and add to the list.
             If Not Me.ResetData Then
-                Dim rep As System.Web.UI.WebControls.Repeater = CType(Me.FindControl("RolesTableControlRepeater"), System.Web.UI.WebControls.Repeater)
+                Dim rep As System.Web.UI.WebControls.Repeater = CType(Me.FindControl("User_rolesTableControlRepeater"), System.Web.UI.WebControls.Repeater)
                 If rep Is Nothing Then Return
 
                 Dim repItem As System.Web.UI.WebControls.RepeaterItem
                 For Each repItem In rep.Items
                     ' Loop through all rows in the table, set its DataSource and call DataBind().
-                    Dim recControl As RolesTableControlRow = DirectCast(repItem.FindControl("RolesTableControlRow"), RolesTableControlRow)
+                    Dim recControl As User_rolesTableControlRow = DirectCast(repItem.FindControl("User_rolesTableControlRow"), User_rolesTableControlRow)
 
                     If recControl.Visible AndAlso recControl.IsNewRecord() Then
                     
-                        Dim rec As RolesRecord = New RolesRecord()
+                        Dim rec As User_rolesRecord = New User_rolesRecord()
         
-                        If recControl.Role.Text <> "" Then
-                            rec.Parse(recControl.Role.Text, RolesTable.Role)
+                        If recControl.role_id.Text <> "" Then
+                            rec.Parse(recControl.role_id.Text, User_rolesTable.role_id)
+                        End If
+                        If recControl.user_id.Text <> "" Then
+                            rec.Parse(recControl.user_id.Text, User_rolesTable.user_id)
                         End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
@@ -1429,7 +1546,7 @@ Public Class BaseRolesTableControl
             Dim index As Integer = 0
             For index = 1 To Me.AddNewRecord
             
-                newRecordList.Insert(0, New RolesRecord())
+                newRecordList.Insert(0, New User_rolesRecord())
                 newUIDataList.Insert(0, New Hashtable())				
               
             Next
@@ -1441,7 +1558,7 @@ Public Class BaseRolesTableControl
                 Dim finalList As ArrayList = New ArrayList(Me.DataSource)
                 finalList.InsertRange(0, newRecordList)
 
-                Me.DataSource = DirectCast(finalList.ToArray(GetType(RolesRecord)), RolesRecord())
+                Me.DataSource = DirectCast(finalList.ToArray(GetType(User_rolesRecord)), User_rolesRecord())
               
             End If
             
@@ -1453,7 +1570,7 @@ Public Class BaseRolesTableControl
         End Sub
 
         
-        Public Sub AddToDeletedRecordIds(ByVal rec As RolesTableControlRow)
+        Public Sub AddToDeletedRecordIds(ByVal rec As User_rolesTableControlRow)
             If rec.IsNewRecord() Then
                 Return
             End If
@@ -1465,7 +1582,7 @@ Public Class BaseRolesTableControl
             Me.DeletedRecordIds &= "[" & rec.RecordUniqueId & "]"
         End Sub
 
-        Protected Overridable Function InDeletedRecordIds(ByVal rec As RolesTableControlRow) As Boolean
+        Protected Overridable Function InDeletedRecordIds(ByVal rec As User_rolesTableControlRow) As Boolean
             If Me.DeletedRecordIds Is Nothing OrElse Me.DeletedRecordIds.Trim = "" Then
                 Return False
             End If
@@ -1486,89 +1603,190 @@ Public Class BaseRolesTableControl
       
         ' Create Set, WhereClause, and Populate Methods
         
-        Public Overridable Sub SetRoleLabel()
+        Public Overridable Sub Setrole_idLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub SetRoleLabel1()
+        Public Overridable Sub Setrole_idLabel1()
             
                     
         End Sub
                 
-        Public Overridable Sub SetRoleFilter()
+        Public Overridable Sub Setuser_idLabel()
             
-            If (Me.InSession(Me.RoleFilter))
-                Me.PopulateRoleFilter(GetSelectedValue(Me.RoleFilter, Me.GetFromSession(Me.RoleFilter)), 500)
+                    
+        End Sub
+                
+        Public Overridable Sub Setuser_idLabel1()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setrole_idFilter()
+            
+            If (Me.InSession(Me.role_idFilter))
+                Me.Populaterole_idFilter(GetSelectedValue(Me.role_idFilter, Me.GetFromSession(Me.role_idFilter)), 500)
             Else
                 
-                Me.PopulateRoleFilter(GetSelectedValue(Me.RoleFilter,  Nothing), 500)					
+                Me.Populaterole_idFilter(GetSelectedValue(Me.role_idFilter,  Nothing), 500)					
                 
             End If
                     
         End Sub	
             
-        Public Overridable Sub SetRolesSearch()
+        Public Overridable Sub Setuser_idFilter()
             
+            If (Me.InSession(Me.user_idFilter))
+                Me.Populateuser_idFilter(GetSelectedValue(Me.user_idFilter, Me.GetFromSession(Me.user_idFilter)), 500)
+            Else
+                
+                Me.Populateuser_idFilter(GetSelectedValue(Me.user_idFilter,  Nothing), 500)					
+                
+            End If
+                    
         End Sub	
             
-        ' Get the filters' data for RoleFilter
-        Protected Overridable Sub PopulateRoleFilter(ByVal selectedValue As String, ByVal maxItems As Integer)
+        ' Get the filters' data for role_idFilter
+        Protected Overridable Sub Populaterole_idFilter(ByVal selectedValue As String, ByVal maxItems As Integer)
                     
                 
-            Me.RoleFilter.Items.Clear()
+            Me.role_idFilter.Items.Clear()
             
             
-            ' Setup the WHERE clause, including the base table if needed.
-                
-            Dim wc As WhereClause = Me.CreateWhereClause_RoleFilter()
-                  
-            Dim orderBy As OrderBy = New OrderBy(False, True)
-            orderBy.Add(RolesTable.Role, OrderByItem.OrderDir.Asc)
-
+            'Setup the WHERE clause.
+            Dim wc As WhereClause = Me.CreateWhereClause_role_idFilter()
+            
+      
+      
+            Dim orderBy As OrderBy = New OrderBy(false, true)			
+        
+            orderBy.Add(RolesTable.role, OrderByItem.OrderDir.Asc)				
             
             ' Add the All item.
-            Me.RoleFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
+            Me.role_idFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
                             	
 
+            Dim noValueFormat As String = Page.GetResourceValue("Txt:Other", "ServelInvocing")
+            
 
-            Dim values() As String = RolesTable.GetValues(RolesTable.Role, wc, orderBy, maxItems)
+            Dim itemValues() As RolesRecord = Nothing
+            If wc.RunQuery
+                Dim counter As Integer = 0
+                Dim pageNum As Integer = 0
+                Do
+                    itemValues = RolesTable.GetRecords(wc, orderBy, pageNum, 500)
+                    For each itemValue As RolesRecord In itemValues
+                        ' Create the item and add to the list.
+                        Dim cvalue As String = Nothing
+                        Dim fvalue As String = Nothing
+                        If itemValue.id0Specified Then
+                            cvalue = itemValue.id0.ToString()
+                                
+                            fvalue = itemValue.Format(RolesTable.role)
+                                    
+                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
+                            Dim newItem As New ListItem(fvalue, cvalue)
+                            If counter < maxItems AndAlso Not Me.role_idFilter.Items.Contains(newItem) Then Me.role_idFilter.Items.Add(newItem)
+                            counter += 1
+                        End If
+                    Next
+                    pageNum += 1
+                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
+            End If			
             
-            Dim itemValue As String
             
-            For Each itemValue In values
-                ' Create the item and add to the list.
-                Dim fvalue As String
-          
-                If ( RolesTable.Role.IsColumnValueTypeBoolean()) Then
-                    fvalue = itemValue
-                Else
-                    fvalue = RolesTable.Role.Format(itemValue)
-                End If
-                Dim item As ListItem = New ListItem(fvalue, itemValue)
-          
-                Me.RoleFilter.Items.Add(item)
-            Next
-                    
 
                 
             ' Set the selected value.
-            SetSelectedValue(Me.RoleFilter, selectedValue)
+            SetSelectedValue(Me.role_idFilter, selectedValue)
 
                 
         End Sub
             
-        Public Overridable Function CreateWhereClause_RoleFilter() As WhereClause
+        ' Get the filters' data for user_idFilter
+        Protected Overridable Sub Populateuser_idFilter(ByVal selectedValue As String, ByVal maxItems As Integer)
+                    
+                
+            Me.user_idFilter.Items.Clear()
+            
+            
+            'Setup the WHERE clause.
+            Dim wc As WhereClause = Me.CreateWhereClause_user_idFilter()
+            
+      
+      
+            Dim orderBy As OrderBy = New OrderBy(false, true)			
         
-            ' Create a where clause for the filter RoleFilter.
+            orderBy.Add(UsersTable.name, OrderByItem.OrderDir.Asc)				
+            
+            ' Add the All item.
+            Me.user_idFilter.Items.Insert(0, new ListItem(Me.Page.GetResourceValue("Txt:All", "ServelInvocing"), "--ANY--"))
+                            	
+
+            Dim noValueFormat As String = Page.GetResourceValue("Txt:Other", "ServelInvocing")
+            
+
+            Dim itemValues() As UsersRecord = Nothing
+            If wc.RunQuery
+                Dim counter As Integer = 0
+                Dim pageNum As Integer = 0
+                Do
+                    itemValues = UsersTable.GetRecords(wc, orderBy, pageNum, 500)
+                    For each itemValue As UsersRecord In itemValues
+                        ' Create the item and add to the list.
+                        Dim cvalue As String = Nothing
+                        Dim fvalue As String = Nothing
+                        If itemValue.id0Specified Then
+                            cvalue = itemValue.id0.ToString()
+                                
+                            fvalue = itemValue.Format(UsersTable.name)
+                                    
+                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
+                            Dim newItem As New ListItem(fvalue, cvalue)
+                            If counter < maxItems AndAlso Not Me.user_idFilter.Items.Contains(newItem) Then Me.user_idFilter.Items.Add(newItem)
+                            counter += 1
+                        End If
+                    Next
+                    pageNum += 1
+                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
+            End If			
+            
+            
+
+                
+            ' Set the selected value.
+            SetSelectedValue(Me.user_idFilter, selectedValue)
+
+                
+        End Sub
+            
+        Public Overridable Function CreateWhereClause_role_idFilter() As WhereClause
+        
+            ' Create a where clause for the filter role_idFilter.
             ' This function is called by the Populate method to load the items 
-            ' in the RoleFilterDropDownList
+            ' in the role_idFilterDropDownList
                    
             Dim wc As WhereClause = new WhereClause()
             ' Add additional where clauses to restrict the items shown in the control.
             ' Examples:
-            ' wc.iAND(., BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
-            ' wc.iAND(.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
+            ' wc.iAND(RolesTable.role, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(RolesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
+            Return wc
+        
+        End Function			
+            
+        Public Overridable Function CreateWhereClause_user_idFilter() As WhereClause
+        
+            ' Create a where clause for the filter user_idFilter.
+            ' This function is called by the Populate method to load the items 
+            ' in the user_idFilterDropDownList
+                   
+            Dim wc As WhereClause = new WhereClause()
+            ' Add additional where clauses to restrict the items shown in the control.
+            ' Examples:
+            ' wc.iAND(UsersTable.name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(UsersTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
             Return wc
         
         End Function			
@@ -1583,13 +1801,9 @@ Public Class BaseRolesTableControl
                     ' Re-load the data and update the web page if necessary.
                     ' This is typically done during a postback (filter, search button, sort, pagination button).
                     ' In each of the other click handlers, simply set DataChanged to True to reload the data.
-                    Dim added As Boolean = Me.AddNewRecord > 0
+                    
                     Me.LoadData()
                     Me.DataBind()
-                    
-                    If added Then
-                        Me.SetFocusToAddedRow()
-                    End If
                     
                 End If
                 				
@@ -1600,39 +1814,15 @@ Public Class BaseRolesTableControl
             End Try
         End Sub
         
-        'this function sets focus to the first editable element in the new added row in the editable table	
-        Protected Overridable Sub SetFocusToAddedRow()
-            Dim rep As System.Web.UI.WebControls.Repeater = CType(Me.FindControl("RolesTableControlRepeater"), System.Web.UI.WebControls.Repeater)
-            If rep Is Nothing OrElse rep.Items.Count = 0 Then Return
-            Dim repItem As System.Web.UI.WebControls.RepeaterItem
-            For Each repItem In rep.Items  
-			    'Load scripts to table rows
-                Me.Page.LoadFocusScripts(repItem)
-                Dim recControl As RolesTableControlRow = DirectCast(repItem.FindControl("RolesTableControlRow"), RolesTableControlRow)
-                If recControl.IsNewRecord Then
-                    For Each field As Control In recControl.Controls
-                        If field.Visible AndAlso Me.Page.IsControlEditable(field, False) Then
-						    'set focus on the first editable field in the new row
-						    field.Focus()
-                            Dim updPan As UpdatePanel = DirectCast(Me.Page.FindControlRecursively("UpdatePanel1"), UpdatePanel)
-                            If Not updPan Is Nothing Then updPan.Update()
-                            Return
-                        End If
-                    Next
-                    Return
-                End If
-            Next
-        End Sub
-        
         
         Protected Overrides Sub SaveControlsToSession()
             MyBase.SaveControlsToSession()
 
             ' Save filter controls to values to session.
         
-            Me.SaveToSession(Me.RoleFilter, Me.RoleFilter.SelectedValue)
+            Me.SaveToSession(Me.role_idFilter, Me.role_idFilter.SelectedValue)
                   
-            Me.SaveToSession(Me.RolesSearch, Me.RolesSearch.Text)
+            Me.SaveToSession(Me.user_idFilter, Me.user_idFilter.SelectedValue)
                   
             
             ' Save table control properties to the session.
@@ -1649,9 +1839,9 @@ Public Class BaseRolesTableControl
         Protected  Sub SaveControlsToSession_Ajax()
             ' Save filter controls to values to session.
           
-      Me.SaveToSession("RoleFilter_Ajax", Me.RoleFilter.SelectedValue)
+      Me.SaveToSession("role_idFilter_Ajax", Me.role_idFilter.SelectedValue)
               
-      Me.SaveToSession("RolesSearch_Ajax", Me.RolesSearch.Text)
+      Me.SaveToSession("user_idFilter_Ajax", Me.user_idFilter.SelectedValue)
               
             HttpContext.Current.Session("AppRelativeVirtualPath") = Me.Page.AppRelativeVirtualPath
          
@@ -1662,8 +1852,8 @@ Public Class BaseRolesTableControl
 
             ' Clear filter controls values from the session.
         
-            Me.RemoveFromSession(Me.RoleFilter)
-            Me.RemoveFromSession(Me.RolesSearch)
+            Me.RemoveFromSession(Me.role_idFilter)
+            Me.RemoveFromSession(Me.user_idFilter)
             
             ' Clear table properties from the session.
             Me.RemoveFromSession(Me, "Order_By")
@@ -1677,7 +1867,7 @@ Public Class BaseRolesTableControl
         Protected Overrides Sub LoadViewState(ByVal savedState As Object)
             MyBase.LoadViewState(savedState)
 
-            Dim orderByStr As String = CType(ViewState("RolesTableControl_OrderBy"), String)
+            Dim orderByStr As String = CType(ViewState("User_rolesTableControl_OrderBy"), String)
             
             If orderByStr IsNot Nothing AndAlso orderByStr.Trim <> "" Then
                 Me.CurrentSortOrder = BaseClasses.Data.OrderBy.FromXmlString(orderByStr)
@@ -1702,7 +1892,7 @@ Public Class BaseRolesTableControl
         Protected Overrides Function SaveViewState() As Object
             
             If Me.CurrentSortOrder IsNot Nothing Then
-                Me.ViewState("RolesTableControl_OrderBy") = Me.CurrentSortOrder.ToXmlString()
+                Me.ViewState("User_rolesTableControl_OrderBy") = Me.CurrentSortOrder.ToXmlString()
             End If
                       
             Me.ViewState("Page_Index") = Me.PageIndex
@@ -1716,7 +1906,7 @@ Public Class BaseRolesTableControl
         ' Generate the event handling functions for pagination events.
         
         ' event handler for ImageButton
-        Public Overridable Sub RolesPagination_FirstPage_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub User_rolesPagination_FirstPage_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
                 
@@ -1735,7 +1925,7 @@ Public Class BaseRolesTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub RolesPagination_LastPage_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub User_rolesPagination_LastPage_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
                 
@@ -1754,7 +1944,7 @@ Public Class BaseRolesTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub RolesPagination_NextPage_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub User_rolesPagination_NextPage_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
                 
@@ -1773,15 +1963,15 @@ Public Class BaseRolesTableControl
         End Sub
         
         ' event handler for LinkButton
-        Public Overridable Sub RolesPagination_PageSizeButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+        Public Overridable Sub User_rolesPagination_PageSizeButton_Click(ByVal sender As Object, ByVal args As EventArgs)
               
             Try
                 
             Me.DataChanged = True
       
-            Me.PageSize = Integer.Parse(Me.RolesPagination.PageSize.Text)
+            Me.PageSize = Integer.Parse(Me.User_rolesPagination.PageSize.Text)
       
-            Me.PageIndex = Integer.Parse(Me.RolesPagination.CurrentPage.Text) - 1
+            Me.PageIndex = Integer.Parse(Me.User_rolesPagination.CurrentPage.Text) - 1
           
             Catch ex As Exception
                 Me.Page.ErrorOnPage = True
@@ -1795,7 +1985,7 @@ Public Class BaseRolesTableControl
         End Sub
             
         ' event handler for ImageButton
-        Public Overridable Sub RolesPagination_PreviousPage_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub User_rolesPagination_PreviousPage_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
                 
@@ -1818,18 +2008,40 @@ Public Class BaseRolesTableControl
 
         ' Generate the event handling functions for sorting events.
         
-        Public Overridable Sub RoleLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by Role when clicked.
+        Public Overridable Sub role_idLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by role_id when clicked.
               
-            ' Get previous sorting state for Role.
+            ' Get previous sorting state for role_id.
             
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(RolesTable.Role)
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(User_rolesTable.role_id)
             If sd Is Nothing Then
-                ' First time sort, so add sort order for Role.
+                ' First time sort, so add sort order for role_id.
                 Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(RolesTable.Role, OrderByItem.OrderDir.Asc)
+                Me.CurrentSortOrder.Add(User_rolesTable.role_id, OrderByItem.OrderDir.Asc)
             Else
-                ' Previously sorted by Role, so just reverse.
+                ' Previously sorted by role_id, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
+        Public Overridable Sub user_idLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by user_id when clicked.
+              
+            ' Get previous sorting state for user_id.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(User_rolesTable.user_id)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for user_id.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(User_rolesTable.user_id, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by user_id, so just reverse.
                 sd.Reverse()
             End If
             
@@ -1844,65 +2056,14 @@ Public Class BaseRolesTableControl
         ' Generate the event handling functions for button events.
         
         ' event handler for ImageButton
-        Public Overridable Sub RolesAddButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            Me.AddNewRecord = 1
-            Me.DataChanged = True
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub RolesDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                Me.DeleteSelectedRecords(True)
-          
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub RolesEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub User_rolesCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             ' The redirect URL is set on the Properties, Bindings.
             ' The ModifyRedirectURL call resolves the parameters before the
             ' Response.Redirect redirects the page to the URL.  
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
-            Dim url As String = "../roles/EditRoles.aspx?Roles={PK}"
+            Dim url As String = "../user_roles/AddUser_roles.aspx?User_roles={PK}"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -1939,15 +2100,315 @@ Public Class BaseRolesTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub RolesRefreshButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub User_rolesDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            If(Not Me.Page.IsPageRefresh) Then
+        
+                Me.DeleteSelectedRecords(False)
+          
+            End If
+      Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+                  
+        End Sub
+        
+        ' event handler for ImageButton
+        Public Overridable Sub User_rolesEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../user_roles/EditUser_roles.aspx?User_roles={PK}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If              
+        End Sub
+        
+        ' event handler for ImageButton
+        Public Overridable Sub User_rolesExportCSVButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                	
+          ' Build the where clause based on the current filter and search criteria
+          ' Create the Order By clause based on the user's current sorting preference.
+          
+              Dim wc As WhereClause = CreateWhereClause
+              Dim orderBy As OrderBy = Nothing
+              
+              orderBy = CreateOrderBy
+              
+            ' Add each of the columns in order of export.
+            Dim columns() as BaseColumn = New BaseColumn() { _
+                       User_rolesTable.user_id, _ 
+             User_rolesTable.role_id, _ 
+             Nothing}
+            Dim  exportData as ExportDataToCSV = New ExportDataToCSV(User_rolesTable.Instance, wc, orderBy, columns)
+            exportData.Export(Me.Page.Response)
+        Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+                  
+        End Sub
+        
+        ' event handler for ImageButton
+        Public Overridable Sub User_rolesExportExcelButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            ' To customize the columns or the format, override this function in Section 1 of the page 
+            ' and modify it to your liking.
+            ' Build the where clause based on the current filter and search criteria
+            ' Create the Order By clause based on the user's current sorting preference.
+          
+              Dim wc As WhereClause = CreateWhereClause
+              Dim orderBy As OrderBy = Nothing
+              
+              orderBy = CreateOrderBy
+              
+            ' Create an instance of the Excel report class with the table class, where clause and order by.
+            Dim excelReport As ExportDataToExcel = New ExportDataToExcel(User_rolesTable.Instance, wc, orderBy)
+            ' Add each of the columns in order of export.
+            ' To customize the data type, change the second parameter of the new ExcelColumn to be
+            ' a format string from Excel's Format Cell menu. For example "dddd, mmmm dd, yyyy h:mm AM/PM;@", "#,##0.00"
+             excelReport.AddColumn(New ExcelColumn(User_rolesTable.user_id, "Default"))
+             excelReport.AddColumn(New ExcelColumn(User_rolesTable.role_id, "Default"))
+
+            excelReport.Export(Me.Page.Response)
+            Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+                  
+        End Sub
+        
+        ' event handler for ImageButton
+        Public Overridable Sub User_rolesImportButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../Shared/SelectFileToImport.aspx?TableName=User_roles"
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            Dim script As String = "window.open('" &  Me.Page.EncryptUrlParameter(url) &  "','importWindow', 'width=700, height=500,top=' +(screen.availHeight-500)/2 + ',left=' + (screen.availWidth-700)/2+ ', resizable=yes, scrollbars=yes,modal=yes');"
+            'If (Not Me.Page.ClientScript.IsStartupScriptRegistered("OpenPopup")) Then
+            ScriptManager.RegisterStartupScript(Me.Page, Page.GetType(), "OpenPopup", script, True)
+            'End If
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+                  
+        End Sub
+        
+        ' event handler for ImageButton
+        Public Overridable Sub User_rolesNewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../user_roles/AddUser_roles.aspx"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
+            End If              
+        End Sub
+        
+        ' event handler for ImageButton
+        Public Overridable Sub User_rolesPDFButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+                Dim report As PDFReport = New PDFReport() 
+                report.SpecificReportFileName = Page.Server.MapPath("ShowUser_rolesTable.User_rolesPDFButton.report")
+                ' report.Title replaces the value tag of page header and footer containing ${ReportTitle}
+                report.Title = "user_roles"
+                ' If ShowUser_rolesTable.User_rolesPDFButton.report specifies a valid report template,
+                ' AddColumn method will generate a report template.   
+                ' Each AddColumn method-call specifies a column
+                ' The 1st parameter represents the text of the column header
+                ' The 2nd parameter represents the horizontal alignment of the column header
+                ' The 3rd parameter represents the text format of the column detail
+                ' The 4th parameter represents the horizontal alignment of the column detail
+                ' The 5th parameter represents the relative width of the column   			
+                 report.AddColumn(User_rolesTable.user_id.Name, ReportEnum.Align.Left, "${user_id}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(User_rolesTable.role_id.Name, ReportEnum.Align.Left, "${role_id}", ReportEnum.Align.Left, 24)
+
+          
+                Dim rowsPerQuery As Integer = 5000 
+                Dim recordCount As Integer = 0 
+                                
+                report.Page = Page.GetResourceValue("Txt:Page", "ServelInvocing")
+                report.ApplicationPath = Me.Page.MapPath(Page.Request.ApplicationPath)
+            
+                Dim whereClause As WhereClause = CreateWhereClause
+                Dim orderBy As OrderBy = CreateOrderBy
+            
+                Dim pageNum As Integer = 0 
+                Dim totalRows As Integer = User_rolesTable.GetRecordCount(whereClause)
+                Dim columns As ColumnList = User_rolesTable.GetColumnList()
+                Dim records As User_rolesRecord() = Nothing
+            
+                Do 
+                    
+                    records = User_rolesTable.GetRecords(whereClause, orderBy, pageNum, rowsPerQuery)
+                    If Not (records Is Nothing) AndAlso records.Length > 0 AndAlso whereClause.RunQuery Then 
+                        For Each record As User_rolesRecord In records 
+                    
+                            ' AddData method takes four parameters   
+                            ' The 1st parameters represent the data format
+                            ' The 2nd parameters represent the data value
+                            ' The 3rd parameters represent the default alignment of column using the data
+                            ' The 4th parameters represent the maximum length of the data value being shown
+                                                         report.AddData("${user_id}", record.Format(User_rolesTable.user_id), ReportEnum.Align.Left)
+                             report.AddData("${role_id}", record.Format(User_rolesTable.role_id), ReportEnum.Align.Left)
+
+                            report.WriteRow 
+                        Next 
+                        pageNum = pageNum + 1
+                        recordCount += records.Length 
+                    End If 
+                Loop While Not (records Is Nothing) AndAlso recordCount < totalRows  AndAlso whereClause.RunQuery 
+                
+                report.Close 
+                BaseClasses.Utils.NetUtils.WriteResponseBinaryAttachment(Me.Page.Response, report.Title + ".pdf", report.ReportInByteArray, 0, true)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+                  
+        End Sub
+        
+        ' event handler for ImageButton
+        Public Overridable Sub User_rolesRefreshButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
                 
-            Dim RolesTableControlObj as RolesTableControl = DirectCast(Me.Page.FindControlRecursively("RolesTableControl"), RolesTableControl)
-            RolesTableControlObj.ResetData = True
+            Dim User_rolesTableControlObj as User_rolesTableControl = DirectCast(Me.Page.FindControlRecursively("User_rolesTableControl"), User_rolesTableControl)
+            User_rolesTableControlObj.ResetData = True
                         
-            RolesTableControlObj.RemoveFromSession(RolesTableControlObj, "DeletedRecordIds")
-            RolesTableControlObj.DeletedRecordIds = Nothing
+            User_rolesTableControlObj.RemoveFromSession(User_rolesTableControlObj, "DeletedRecordIds")
+            User_rolesTableControlObj.DeletedRecordIds = Nothing
             
             Catch ex As Exception
                 Me.Page.ErrorOnPage = True
@@ -1961,12 +2422,12 @@ Public Class BaseRolesTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub RolesResetButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub User_rolesResetButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
                 
-              Me.RoleFilter.ClearSelection()
-              Me.RolesSearch.Text = ""
+              Me.role_idFilter.ClearSelection()
+              Me.user_idFilter.ClearSelection()
               Me.CurrentSortOrder.Reset()
               If Me.InSession(Me, "Order_By") Then
                   Me.CurrentSortOrder = OrderBy.FromXmlString(Me.GetFromSession(Me, "Order_By", Nothing))
@@ -1993,31 +2454,63 @@ Public Class BaseRolesTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub RolesSaveButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub User_rolesWordButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
                 ' Enclose all database retrieval/update code within a Transaction boundary
                 DbUtils.StartTransaction
                 
-        
-              If (Not Me.Page.IsPageRefresh) Then         
-                  Me.SaveData()
-              End If        
-        
-            Me.Page.CommitTransaction(sender)
+                Dim report As WordReport = New WordReport
+                report.SpecificReportFileName = Page.Server.MapPath("ShowUser_rolesTable.User_rolesWordButton.word")
+                ' report.Title replaces the value tag of page header and footer containing ${ReportTitle}
+                report.Title = "user_roles"
+                ' If ShowUser_rolesTable.User_rolesWordButton.report specifies a valid report template,
+                ' AddColumn method will generate a report template.
+                ' Each AddColumn method-call specifies a column
+                ' The 1st parameter represents the text of the column header
+                ' The 2nd parameter represents the horizontal alignment of the column header
+                ' The 3rd parameter represents the text format of the column detail
+                ' The 4th parameter represents the horizontal alignment of the column detail
+                ' The 5th parameter represents the relative width of the column
+                 report.AddColumn(User_rolesTable.user_id.Name, ReportEnum.Align.Left, "${user_id}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(User_rolesTable.role_id.Name, ReportEnum.Align.Left, "${role_id}", ReportEnum.Align.Left, 24)
+
+              Dim whereClause As WhereClause = CreateWhereClause
+              
+              Dim orderBy As OrderBy = CreateOrderBy
+                
+                Dim rowsPerQuery As Integer = 5000
+                Dim pageNum As Integer = 0
+                Dim recordCount As Integer = 0
+                Dim totalRows As Integer = User_rolesTable.GetRecordCount(whereClause)
+
+                report.Page = Page.GetResourceValue("Txt:Page", "ServelInvocing")
+                report.ApplicationPath = Me.Page.MapPath(Page.Request.ApplicationPath)
+
+                Dim columns As ColumnList = User_rolesTable.GetColumnList()
+                Dim records As User_rolesRecord() = Nothing
+                Do
+                    records = User_rolesTable.GetRecords(whereClause, orderBy, pageNum, rowsPerQuery)
+                    If Not (records Is Nothing) AndAlso records.Length > 0 AndAlso whereClause.RunQuery Then
+                        For Each record As User_rolesRecord In records
+                            ' AddData method takes four parameters
+                            ' The 1st parameters represent the data format
+                            ' The 2nd parameters represent the data value
+                            ' The 3rd parameters represent the default alignment of column using the data
+                            ' The 4th parameters represent the maximum length of the data value being shown
+                             report.AddData("${user_id}", record.Format(User_rolesTable.user_id), ReportEnum.Align.Left)
+                             report.AddData("${role_id}", record.Format(User_rolesTable.role_id), ReportEnum.Align.Left)
+
+                            report.WriteRow
+                        Next
+                        pageNum = pageNum + 1
+                        recordCount += records.Length
+                    End If
+                Loop While Not (records Is Nothing) AndAlso recordCount < totalRows AndAlso whereClause.RunQuery 
+                report.save
+                BaseClasses.Utils.NetUtils.WriteResponseBinaryAttachment(Me.Page.Response, report.Title + ".doc", report.ReportInByteArray, 0, true)
+          Me.Page.CommitTransaction(sender)
           
-          ' Set IsNewRecord to False for all records - since everything has been saved and is no longer "new"
-          Dim recCtl As RolesTableControlRow
-          For Each recCtl in Me.GetRecordControls()
-            
-            recCtl.IsNewRecord = False
-          Next
-    
-      
-          ' Set DeletedRecordsIds to Nothing since we have deleted all pending deletes.
-          
-                Me.DeletedRecordIds = Nothing
-            
             Catch ex As Exception
                 ' Upon error, rollback the transaction
                 Me.Page.RollBackTransaction(sender)
@@ -2031,30 +2524,22 @@ Public Class BaseRolesTableControl
                   
         End Sub
         
-        ' event handler for Button with Layout
-        Public Overridable Sub RolesSearchButton_Click(ByVal sender As Object, ByVal args As EventArgs)
-              
-            Try
-                
-          Me.DataChanged = True
-      
-            Catch ex As Exception
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-    
-            End Try
-    
-        End Sub
-            
       
 
         ' Generate the event handling functions for filter and search events.
         
         ' event handler for FieldFilter
-        Protected Overridable Sub RoleFilter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+        Protected Overridable Sub role_idFilter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+           ' Setting the DataChanged to True results in the page being refreshed with
+           ' the most recent data from the database.  This happens in PreRender event
+           ' based on the current sort, search and filter criteria.
+           Me.DataChanged = True
+           
+          	   
+        End Sub
+            
+        ' event handler for FieldFilter
+        Protected Overridable Sub user_idFilter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
            ' Setting the DataChanged to True results in the page being refreshed with
            ' the most recent data from the database.  This happens in PreRender event
            ' based on the current sort, search and filter criteria.
@@ -2173,99 +2658,135 @@ Public Class BaseRolesTableControl
             End Set
         End Property
         
-        Private _DataSource() As RolesRecord = Nothing
-        Public Property DataSource() As RolesRecord ()
+        Private _DataSource() As User_rolesRecord = Nothing
+        Public Property DataSource() As User_rolesRecord ()
             Get
                 Return Me._DataSource
             End Get
-            Set(ByVal value() As RolesRecord)
+            Set(ByVal value() As User_rolesRecord)
                 Me._DataSource = value
             End Set
         End Property
        
 #Region "Helper Properties"
         
-        Public ReadOnly Property RoleFilter() As System.Web.UI.WebControls.DropDownList
+        Public ReadOnly Property role_idFilter() As System.Web.UI.WebControls.DropDownList
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleFilter"), System.Web.UI.WebControls.DropDownList)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "role_idFilter"), System.Web.UI.WebControls.DropDownList)
             End Get
         End Property
         
-        Public ReadOnly Property RoleLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property role_idLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "role_idLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property RoleLabel1() As System.Web.UI.WebControls.LinkButton
+        Public ReadOnly Property role_idLabel1() As System.Web.UI.WebControls.LinkButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RoleLabel1"), System.Web.UI.WebControls.LinkButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "role_idLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
-        Public ReadOnly Property RolesAddButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property user_idFilter() As System.Web.UI.WebControls.DropDownList
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesAddButton"), System.Web.UI.WebControls.ImageButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "user_idFilter"), System.Web.UI.WebControls.DropDownList)
             End Get
         End Property
         
-        Public ReadOnly Property RolesDeleteButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property user_idLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesDeleteButton"), System.Web.UI.WebControls.ImageButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "user_idLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property RolesEditButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property user_idLabel1() As System.Web.UI.WebControls.LinkButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesEditButton"), System.Web.UI.WebControls.ImageButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "user_idLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
-        Public ReadOnly Property RolesPagination() As ServelInvocing.UI.IPagination
+        Public ReadOnly Property User_rolesCopyButton() As System.Web.UI.WebControls.ImageButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesPagination"), ServelInvocing.UI.IPagination)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesCopyButton"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property User_rolesDeleteButton() As System.Web.UI.WebControls.ImageButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesDeleteButton"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property User_rolesEditButton() As System.Web.UI.WebControls.ImageButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesEditButton"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property User_rolesExportCSVButton() As System.Web.UI.WebControls.ImageButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesExportCSVButton"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property User_rolesExportExcelButton() As System.Web.UI.WebControls.ImageButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesExportExcelButton"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property User_rolesImportButton() As System.Web.UI.WebControls.ImageButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesImportButton"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property User_rolesNewButton() As System.Web.UI.WebControls.ImageButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesNewButton"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property User_rolesPagination() As ServelInvocing.UI.IPagination
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesPagination"), ServelInvocing.UI.IPagination)
           End Get
           End Property
         
-        Public ReadOnly Property RolesRefreshButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property User_rolesPDFButton() As System.Web.UI.WebControls.ImageButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesRefreshButton"), System.Web.UI.WebControls.ImageButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesPDFButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
-        Public ReadOnly Property RolesResetButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property User_rolesRefreshButton() As System.Web.UI.WebControls.ImageButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesResetButton"), System.Web.UI.WebControls.ImageButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesRefreshButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
-        Public ReadOnly Property RolesSaveButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property User_rolesResetButton() As System.Web.UI.WebControls.ImageButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesSaveButton"), System.Web.UI.WebControls.ImageButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesResetButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
-        Public ReadOnly Property RolesSearch() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property User_rolesTitle() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesSearch"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesTitle"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property RolesSearchButton() As ServelInvocing.UI.IThemeButton
+        Public ReadOnly Property User_rolesToggleAll() As System.Web.UI.WebControls.CheckBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesSearchButton"), ServelInvocing.UI.IThemeButton)
-          End Get
-          End Property
-        
-        Public ReadOnly Property RolesTitle() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesTitle"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesToggleAll"), System.Web.UI.WebControls.CheckBox)
             End Get
         End Property
         
-        Public ReadOnly Property RolesToggleAll() As System.Web.UI.WebControls.CheckBox
+        Public ReadOnly Property User_rolesWordButton() As System.Web.UI.WebControls.ImageButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "RolesToggleAll"), System.Web.UI.WebControls.CheckBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "User_rolesWordButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
@@ -2280,12 +2801,12 @@ Public Class BaseRolesTableControl
         Public Overrides Overloads Function EvaluateExpressions(url As String, arg As String, ByVal bEncrypt As Boolean) As String
             Dim needToProcess As Boolean = AreAnyUrlParametersForMe(url, arg)
             If (needToProcess) Then
-                Dim recCtl As RolesTableControlRow = Me.GetSelectedRecordControl()
+                Dim recCtl As User_rolesTableControlRow = Me.GetSelectedRecordControl()
                 If recCtl Is Nothing AndAlso url.IndexOf("{") >= 0 Then
                     ' Localization.
                     Throw New Exception(Page.GetResourceValue("Err:NoRecSelected", "ServelInvocing"))
                 End If
-                Dim rec As RolesRecord = Nothing     
+                Dim rec As User_rolesRecord = Nothing     
                 If recCtl IsNot Nothing Then
                     rec = recCtl.GetRecord()
                 End If
@@ -2296,9 +2817,9 @@ Public Class BaseRolesTableControl
           
         Public Overridable Function GetSelectedRecordIndex() As Integer
             Dim counter As Integer = 0
-            Dim recControl As RolesTableControlRow
+            Dim recControl As User_rolesTableControlRow
             For Each recControl In Me.GetRecordControls()
-                If recControl.RolesRecordRowSelection.Checked Then
+                If recControl.User_rolesRecordRowSelection.Checked Then
                     Return counter
                 End If
                 counter += 1
@@ -2306,8 +2827,8 @@ Public Class BaseRolesTableControl
             Return -1
         End Function
         
-        Public Overridable Function GetSelectedRecordControl() As RolesTableControlRow
-            Dim selectedList() As RolesTableControlRow = Me.GetSelectedRecordControls()
+        Public Overridable Function GetSelectedRecordControl() As User_rolesTableControlRow
+            Dim selectedList() As User_rolesTableControlRow = Me.GetSelectedRecordControls()
             If selectedList.Length = 0 Then
                 Return Nothing
             End If
@@ -2315,27 +2836,27 @@ Public Class BaseRolesTableControl
           
         End Function
 
-        Public Overridable Function GetSelectedRecordControls() As RolesTableControlRow()
+        Public Overridable Function GetSelectedRecordControls() As User_rolesTableControlRow()
         
             Dim selectedList As ArrayList = New ArrayList(25)
-            Dim recControl As RolesTableControlRow
+            Dim recControl As User_rolesTableControlRow
             For Each recControl In Me.GetRecordControls()
-                If recControl.RolesRecordRowSelection.Checked Then
+                If recControl.User_rolesRecordRowSelection.Checked Then
                     selectedList.Add(recControl)
                 End If
             Next
-            Return DirectCast(selectedList.ToArray(GetType(RolesTableControlRow)), RolesTableControlRow())
+            Return DirectCast(selectedList.ToArray(GetType(User_rolesTableControlRow)), User_rolesTableControlRow())
           
         End Function
 
         Public Overridable Sub DeleteSelectedRecords(ByVal deferDeletion As Boolean)
-            Dim recList() As RolesTableControlRow = Me.GetSelectedRecordControls()
+            Dim recList() As User_rolesTableControlRow = Me.GetSelectedRecordControls()
             If recList.Length = 0 Then
                 ' Localization.
                 Throw New Exception(Page.GetResourceValue("Err:NoRecSelected", "ServelInvocing"))
             End If
             
-            Dim recCtl As RolesTableControlRow
+            Dim recCtl As User_rolesTableControlRow
             For Each recCtl In recList
                 If deferDeletion Then
                     If Not recCtl.IsNewRecord Then
@@ -2345,7 +2866,7 @@ Public Class BaseRolesTableControl
                     End If
                     recCtl.Visible = False
                 
-                    recCtl.RolesRecordRowSelection.Checked = False
+                    recCtl.User_rolesRecordRowSelection.Checked = False
                 
                 Else
                 
@@ -2361,18 +2882,18 @@ Public Class BaseRolesTableControl
             Next
         End Sub
 
-        Public Function GetRecordControls() As RolesTableControlRow()
+        Public Function GetRecordControls() As User_rolesTableControlRow()
             Dim recList As ArrayList = New ArrayList()
-            Dim rep As System.Web.UI.WebControls.Repeater = CType(Me.FindControl("RolesTableControlRepeater"), System.Web.UI.WebControls.Repeater)
+            Dim rep As System.Web.UI.WebControls.Repeater = CType(Me.FindControl("User_rolesTableControlRepeater"), System.Web.UI.WebControls.Repeater)
             If rep Is Nothing Then Return Nothing
             Dim repItem As System.Web.UI.WebControls.RepeaterItem
 
             For Each repItem In rep.Items
-                Dim recControl As RolesTableControlRow = DirectCast(repItem.FindControl("RolesTableControlRow"), RolesTableControlRow)
+                Dim recControl As User_rolesTableControlRow = DirectCast(repItem.FindControl("User_rolesTableControlRow"), User_rolesTableControlRow)
                 recList.Add(recControl)
             Next
 
-            Return DirectCast(recList.ToArray(GetType(RolesTableControlRow)), RolesTableControlRow())
+            Return DirectCast(recList.ToArray(GetType(User_rolesTableControlRow)), User_rolesTableControlRow())
         End Function
 
         Public Shadows ReadOnly Property Page() As BaseApplicationPage

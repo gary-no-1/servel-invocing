@@ -11,9 +11,7 @@
     <Layout>roles\ShowRolesTable.html</Layout>
     <DisplayName>ShowRolesTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
-    <MenuFileToHilite>MenuV</MenuFileToHilite>
-    <MenuHiliteItem>RolesMenuItem</MenuHiliteItem>
-    <CheckSum>-1596199595-22349</CheckSum>
+    <CheckSum>-1416220493-22261</CheckSum>
   </Self>
   <ComposedOf>
     <ContainedComponent>
@@ -27,9 +25,9 @@
       </PassthroughAttributes>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>Role</Name>
+      <Name>role</Name>
       <Type>FieldValue</Type>
-      <Field>Role</Field>
+      <Field>role</Field>
       <FieldValueStyle>Literal</FieldValueStyle>
       <Table>roles</Table>
       <PassthroughAttributes>
@@ -90,7 +88,7 @@
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>RoleFilter</Name>
+      <Name>roleFilter</Name>
       <Type>FieldFilter</Type>
       <FieldValueStyle>DropDownList</FieldValueStyle>
       <PassthroughAttributes>
@@ -112,7 +110,7 @@
         </Attribute>
         <Attribute>
           <Name>Field</Name>
-          <Value>Role</Value>
+          <Value>role</Value>
         </Attribute>
         <Attribute>
           <Name>FilterOperator</Name>
@@ -134,12 +132,12 @@
       <InsideControl>RolesTableControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>RoleLabel</Name>
+      <Name>roleLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
           <Name>InternalUse:Field</Name>
-          <Value>Role</Value>
+          <Value>role</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:Table</Name>
@@ -147,13 +145,13 @@
         </Attribute>
         <Attribute>
           <Name>Text</Name>
-          <Value>%ISD_DEFAULT%roles%Role</Value>
+          <Value>%ISD_DEFAULT%roles%role</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>RolesTableControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>RoleLabel1</Name>
+      <Name>roleLabel1</Name>
       <Type>FieldSort</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -162,7 +160,7 @@
         </Attribute>
         <Attribute>
           <Name>Field</Name>
-          <Value>Role</Value>
+          <Value>role</Value>
         </Attribute>
         <Attribute>
           <Name>Table</Name>
@@ -170,7 +168,7 @@
         </Attribute>
         <Attribute>
           <Name>Text</Name>
-          <Value>%ISD_DEFAULT%roles%Role</Value>
+          <Value>%ISD_DEFAULT%roles%role</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>RolesTableControl</InsideControl>
@@ -847,7 +845,7 @@
         </Attribute>
         <Attribute>
           <Name>Fields</Name>
-          <Value>Role</Value>
+          <Value>role</Value>
         </Attribute>
         <Attribute>
           <Name>FilterOperator</Name>
@@ -1263,7 +1261,7 @@
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="RoleLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="roleLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -1272,7 +1270,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDFILTER NAME="RoleFilter"/&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDFILTER NAME="roleFilter"/&amp;gt;&lt;/Value&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;CellAttributes&gt;
@@ -1508,7 +1506,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="RoleLabel1"/&amp;gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="roleLabel1"/&amp;gt;
                         &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
@@ -1591,7 +1589,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="Role"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="role"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;

@@ -43,46 +43,46 @@ Namespace ServelInvocing.Business
 #Region "Convenience methods to get/set values of fields"
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Roles_.RoleId field.
+	''' This is a convenience method that provides direct access to the value of the record's Roles_.id field.
 	''' </summary>
-	Public Function GetRoleIdValue() As ColumnValue
-		Return Me.GetValue(TableUtils.RoleIdColumn)
+	Public Function Getid0Value() As ColumnValue
+		Return Me.GetValue(TableUtils.id0Column)
 	End Function
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Roles_.RoleId field.
+	''' This is a convenience method that provides direct access to the value of the record's Roles_.id field.
 	''' </summary>
-	Public Function GetRoleIdFieldValue() As Int32
-		Return CType(Me.GetValue(TableUtils.RoleIdColumn).ToInt32(), Int32)
+	Public Function Getid0FieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id0Column).ToInt32(), Int32)
 	End Function
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Roles_.Role field.
+	''' This is a convenience method that provides direct access to the value of the record's Roles_.role field.
 	''' </summary>
-	Public Function GetRoleValue() As ColumnValue
-		Return Me.GetValue(TableUtils.RoleColumn)
+	Public Function GetroleValue() As ColumnValue
+		Return Me.GetValue(TableUtils.roleColumn)
 	End Function
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Roles_.Role field.
+	''' This is a convenience method that provides direct access to the value of the record's Roles_.role field.
 	''' </summary>
-	Public Function GetRoleFieldValue() As String
-		Return CType(Me.GetValue(TableUtils.RoleColumn).ToString(), String)
+	Public Function GetroleFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.roleColumn).ToString(), String)
 	End Function
 
 	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Roles_.Role field.
+	''' This is a convenience method that allows direct modification of the value of the record's Roles_.role field.
 	''' </summary>
-	Public Sub SetRoleFieldValue(ByVal val As ColumnValue)
-		Me.SetValue(val, TableUtils.RoleColumn)
+	Public Sub SetroleFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.roleColumn)
 	End Sub
 
 	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Roles_.Role field.
+	''' This is a convenience method that allows direct modification of the value of the record's Roles_.role field.
 	''' </summary>
-	Public Sub SetRoleFieldValue(ByVal val As String)
+	Public Sub SetroleFieldValue(ByVal val As String)
 		Dim colValue As ColumnValue = New ColumnValue(val)
-		Me.SetValue(colValue, TableUtils.RoleColumn)
+		Me.SetValue(colValue, TableUtils.roleColumn)
 	End Sub
 
 
@@ -92,15 +92,15 @@ Namespace ServelInvocing.Business
 #Region "Convenience methods to get field names"
 
 	''' <summary>
-	''' This is a convenience property that provides direct access to the value of the record's Roles_.RoleId field.
+	''' This is a convenience property that provides direct access to the value of the record's Roles_.id field.
 	''' </summary>
-	Public Property RoleId() As Int32
+	Public Property id0() As Int32
 		Get 
-			Return CType(Me.GetValue(TableUtils.RoleIdColumn).ToInt32(), Int32)
+			Return CType(Me.GetValue(TableUtils.id0Column).ToInt32(), Int32)
 		End Get
 		Set (ByVal val As Int32) 
 			Dim colValue As ColumnValue = New ColumnValue(val)
-			Me.SetValue(colValue, TableUtils.RoleIdColumn)
+			Me.SetValue(colValue, TableUtils.id0Column)
 		End Set
 	End Property
 
@@ -108,9 +108,9 @@ Namespace ServelInvocing.Business
 	''' <summary>
 	''' This is a convenience method that can be used to determine that the column is set.
 	''' </summary>
-	Public ReadOnly Property RoleIdSpecified() As Boolean
+	Public ReadOnly Property id0Specified() As Boolean
         Get
-            Dim val As ColumnValue = Me.GetValue(TableUtils.RoleIdColumn)
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id0Column)
             If val Is Nothing OrElse val.IsNull Then
                 Return False
             End If
@@ -121,21 +121,21 @@ Namespace ServelInvocing.Business
 	''' <summary>
 	''' This is a convenience method that can be used to get the default value of a column.
 	''' </summary>
-    Public ReadOnly Property RoleIdDefault() As String
+    Public ReadOnly Property id0Default() As String
         Get
-            Return TableUtils.RoleIdColumn.DefaultValue
+            Return TableUtils.id0Column.DefaultValue
         End Get
     End Property
 
 	''' <summary>
-	''' This is a convenience property that provides direct access to the value of the record's Roles_.Role field.
+	''' This is a convenience property that provides direct access to the value of the record's Roles_.role field.
 	''' </summary>
-	Public Property Role() As String
+	Public Property role() As String
 		Get 
-			Return CType(Me.GetValue(TableUtils.RoleColumn).ToString(), String)
+			Return CType(Me.GetValue(TableUtils.roleColumn).ToString(), String)
 		End Get
 		Set (ByVal Value As String) 
-			Me.SetString(value, TableUtils.RoleColumn)
+			Me.SetString(value, TableUtils.roleColumn)
 		End Set
 	End Property
 
@@ -143,9 +143,9 @@ Namespace ServelInvocing.Business
 	''' <summary>
 	''' This is a convenience method that can be used to determine that the column is set.
 	''' </summary>
-	Public ReadOnly Property RoleSpecified() As Boolean
+	Public ReadOnly Property roleSpecified() As Boolean
         Get
-            Dim val As ColumnValue = Me.GetValue(TableUtils.RoleColumn)
+            Dim val As ColumnValue = Me.GetValue(TableUtils.roleColumn)
             If val Is Nothing OrElse val.IsNull Then
                 Return False
             End If
@@ -156,9 +156,9 @@ Namespace ServelInvocing.Business
 	''' <summary>
 	''' This is a convenience method that can be used to get the default value of a column.
 	''' </summary>
-    Public ReadOnly Property RoleDefault() As String
+    Public ReadOnly Property roleDefault() As String
         Get
-            Return TableUtils.RoleColumn.DefaultValue
+            Return TableUtils.roleColumn.DefaultValue
         End Get
     End Property
 

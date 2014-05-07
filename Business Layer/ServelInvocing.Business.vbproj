@@ -171,9 +171,6 @@
     <Compile Include="RolesTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseRolesTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="RolesRecord.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -252,10 +249,16 @@
     <Compile Include="UsersTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseUsersTable.vb">
+    <Compile Include="UsersRecord.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UsersRecord.vb">
+    <Compile Include="User_rolesTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseUser_rolesTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User_rolesRecord.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseCommodityTable.vb" >
@@ -321,6 +324,9 @@
     <Compile Include="BasePro_inv_termsRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseRolesTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseRolesRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
@@ -360,7 +366,13 @@
     <Compile Include="BaseUnitsofmeasureRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseUsersTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseUsersRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseUser_rolesRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

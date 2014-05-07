@@ -1,6 +1,6 @@
 ﻿
-' This file implements the code-behind class for EditUsersTable.aspx.
-' EditUsersTable.Controls.vb contains the Table, Row and Record control classes
+' This file implements the code-behind class for AddUser_roles.aspx.
+' AddUser_roles.Controls.vb contains the Table, Row and Record control classes
 ' for the page.  Best practices calls for overriding methods in the Row or Record control classes.
 
 #Region "Imports statements"
@@ -33,9 +33,9 @@ Imports ServelInvocing.Data
   
 Namespace ServelInvocing.UI
   
-Partial Public Class EditUsersTable
+Partial Public Class AddUser_roles
         Inherits BaseApplicationPage
-' Code-behind class for the EditUsersTable page.
+' Code-behind class for the AddUser_roles page.
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
@@ -122,16 +122,6 @@ Partial Public Class EditUsersTable
             Return GetImage_Base(tableName, recordID, columnName, title, persist, popupWindowHeight, popupWindowWidth, popupWindowScrollBar)
         End Function
     
-      <Services.WebMethod()> _
-      Public Shared Function GetAutoCompletionList_UsersSearch(ByVal prefixText As String, ByVal count As Integer) As String()
-      ' GetUsersSearchCompletionList gets the list of suggestions from the database.
-      ' prefixText is the search text typed by the user .
-      ' count specifies the number of suggestions to be returned.
-      ' Customize by adding code before or after the call to  GetAutoCompletionList_UsersSearch()
-      ' or replace the call to GetAutoCompletionList_UsersSearch().
-      Return GetAutoCompletionList_UsersSearch_Base(prefixText, count)
-      End Function
-    
       Protected Overloads Overrides Sub BasePage_PreRender(ByVal sender As Object, ByVal e As EventArgs)
           MyBase.BasePage_PreRender(sender, e)
           RegisterPostback()
@@ -148,32 +138,48 @@ Partial Public Class EditUsersTable
 
     ' Page Event Handlers - buttons, sort, links
     
+        Public Sub CancelButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+            
+          ' Click handler for CancelButton.
+          ' Customize by adding code before the call or replace the call to the Base function with your own code.
+          CancelButton_Click_Base(sender, args)
+          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
+        End Sub
+        
+        Public Sub SaveAndNewButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+            
+          ' Click handler for SaveAndNewButton.
+          ' Customize by adding code before the call or replace the call to the Base function with your own code.
+          SaveAndNewButton_Click_Base(sender, args)
+          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
+        End Sub
+        
+        Public Sub SaveButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+            
+          ' Click handler for SaveButton.
+          ' Customize by adding code before the call or replace the call to the Base function with your own code.
+          SaveButton_Click_Base(sender, args)
+          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
+        End Sub
+        
 
     
 #End Region
 
 #Region "Section 2: Do not modify this section."
 
-        Public WithEvents emailLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents FullNameLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents CancelButton As ThemeButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents passwordLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents RoleIdLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents RoleIdLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents UserNameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents UserNameLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents UsersAddButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersEditButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersPagination As Pagination
-        Public WithEvents UsersRefreshButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersSaveButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents UsersSearch As System.Web.UI.WebControls.TextBox
-        Public WithEvents UsersSearchButton As ThemeButton
-        Public WithEvents UsersTableControl As ServelInvocing.UI.Controls.EditUsersTable.UsersTableControl
-        Public WithEvents UsersTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents UsersToggleAll As System.Web.UI.WebControls.CheckBox
+        Public WithEvents role_id As System.Web.UI.WebControls.DropDownList
+        Public WithEvents role_idAddRecordLink As System.Web.UI.WebControls.ImageButton
+        Public WithEvents role_idLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents SaveAndNewButton As ThemeButton
+        Public WithEvents SaveButton As ThemeButton
+        Public WithEvents user_id As System.Web.UI.WebControls.DropDownList
+        Public WithEvents user_idAddRecordLink As System.Web.UI.WebControls.ImageButton
+        Public WithEvents user_idLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents User_rolesRecordControl As ServelInvocing.UI.Controls.AddUser_roles.User_rolesRecordControl
+        Public WithEvents User_rolesTitle As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   
@@ -187,11 +193,25 @@ Partial Public Class EditUsersTable
 					
             ' Register the Event handler for any Events.
       
+            AddHandler Me.CancelButton.Button.Click, AddressOf CancelButton_Click
+        
+            AddHandler Me.SaveAndNewButton.Button.Click, AddressOf SaveAndNewButton_Click
+        
+            Me.SaveAndNewButton.Button.Attributes.Add("onclick", "SubmitHRefOnce(this, """ & Me.GetResourceValue("Txt:SaveRecord", "ServelInvocing") & """);")
+        
+            AddHandler Me.SaveButton.Button.Click, AddressOf SaveButton_Click
+        
+            Me.SaveButton.Button.Attributes.Add("onclick", "SubmitHRefOnce(this, """ & Me.GetResourceValue("Txt:SaveRecord", "ServelInvocing") & """);")
+        
       
         End Sub
 
         Private Sub Base_RegisterPostback()
         
+              Me.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"SaveAndNewButton"))
+                        
+              Me.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"SaveButton"))
+                        
         End Sub
 
         ' Handles MyBase.Load.  Read database data and put into the UI controls.
@@ -231,7 +251,7 @@ Partial Public Class EditUsersTable
             End If
         
         
-            Page.Title = GetResourceValue("Title:Edit") + " Users"
+            Page.Title = GetResourceValue("Title:Add") + " User Roles"
         End Sub
 
     Public Shared Function GetRecordFieldValue_Base(ByVal tableName As String, _
@@ -305,7 +325,7 @@ Partial Public Class EditUsersTable
       
       Public Sub SaveData_Base()
               
-        Me.UsersTableControl.SaveData()
+        Me.User_rolesRecordControl.SaveData()
         
       End Sub
       
@@ -316,17 +336,6 @@ Partial Public Class EditUsersTable
       
       End Sub
       
-        Public Shared Function GetAutoCompletionList_UsersSearch_Base(ByVal prefixText As String, ByVal count As Integer) As String()
-            ' Since this method is a shared/static method it does not maintain information about page or controls within the page.
-            ' Hence we can not invoke any method associated with any controls.
-            ' So, if we need to use any control in the page we need to instantiate it.
-            Dim control as ServelInvocing.UI.Controls.EditUsersTable.UsersTableControl 
-            control = new ServelInvocing.UI.Controls.EditUsersTable.UsersTableControl()
-            
-            Return control.GetAutoCompletionList_UsersSearch(prefixText, count)
-              
-        End Function
-          
         ' Load data from database into UI controls.
         ' Modify LoadData in Section 1 above to customize.  Or override DataBind() in
         ' the individual table and record controls to customize.
@@ -343,21 +352,12 @@ Partial Public Class EditUsersTable
                 ' Ordering is important because child controls get
                 ' their parent ids from their parent UI controls.
                         
-        Me.UsersTableControl.LoadData()
+        Me.User_rolesRecordControl.LoadData()
         
       
                 Me.DataBind()
             
                 
-                'Set the corresponding menu item to be highlighted for this page
-                Dim pageMaster As System.Web.UI.MasterPage = Me.Master
-                If Not pageMaster is Nothing Then
-                    Dim menuComponent As IMenuComponent = CType(Me.Master.FindControl("_MenuV"), IMenuComponent)
-                    If Not menuComponent is Nothing Then
-                        menuComponent.HiliteSettings = "UsersMenuItem"
-                    End If
-                End If
-      
                 
 
             Catch ex As Exception
@@ -389,7 +389,135 @@ Partial Public Class EditUsersTable
         
 
         ' Write out event methods for the page events
+        
+        ' event handler for Button with Layout
+        Public Sub CancelButton_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
+              
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                
+
+                TargetKey = Me.Page.Request.QueryString.Item("Target")
+                If Not TargetKey Is Nothing Then
+                   shouldRedirect = False
+                End If
+      
+            Catch ex As Exception
+                shouldRedirect = False
+                Me.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+    
+            End Try
+            If shouldRedirect Then
+                Me.ShouldSaveControlsToSession = True
+                Me.RedirectBack()
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.ShouldSaveControlsToSession = True
+            Me.CloseWindow(True)
+        
+            End If
+        End Sub
             
+        ' event handler for Button with Layout
+        Public Sub SaveAndNewButton_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
+              
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+        
+              If (Not Me.IsPageRefresh) Then         
+                  Me.SaveData()
+              End If        
+        
+            Me.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.RollBackTransaction(sender)
+                Me.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+    
+        End Sub
+            
+        ' event handler for Button with Layout
+        Public Sub SaveButton_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
+              
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+        
+              If (Not Me.IsPageRefresh) Then         
+                  Me.SaveData()
+              End If        
+        
+            Me.CommitTransaction(sender)
+          
+            TargetKey = Me.Page.Request.QueryString.Item("Target")
+
+            If Not TargetKey Is Nothing Then
+                  
+                DFKA = Me.Page.Request.QueryString.Item("DFKA")
+                If Not Me.User_rolesRecordControl Is Nothing AndAlso Not Me.User_rolesRecordControl.DataSource Is Nothing Then
+                      
+                      id = Me.User_rolesRecordControl.DataSource.id0.ToString
+                      value = Me.User_rolesRecordControl.DataSource.GetValue(Me.User_rolesRecordControl.DataSource.TableAccess.TableDefinition.ColumnList.GetByAnyName(DFKA)).ToString
+                      If value is Nothing Then
+                            value = id
+                      End If
+                      
+                      Dim Formula As String = Me.Page.Request.QueryString.Item("Formula")							
+                      If Not Formula Is Nothing Then
+                            value = EvaluateFormula(Formula, Me.User_rolesRecordControl.DataSource)
+                      End If
+
+                      BaseClasses.Utils.MiscUtils.RegisterAddButtonScript(Me, TargetKey, id, value)
+                End If
+                shouldRedirect = False
+                        
+            End If
+        
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.ShouldSaveControlsToSession = True
+                Me.RedirectBack()
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.ShouldSaveControlsToSession = True
+            Me.CloseWindow(True)
+        
+            End If
+        End Sub
+                
     
 #End Region
 

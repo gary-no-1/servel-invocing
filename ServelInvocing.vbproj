@@ -249,6 +249,13 @@
     <Compile Include="inv_hdr\Inv_hdrWebReport.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="inv_hdr\ShowInv_hdr.aspx.vb">
+      <DependentUpon>ShowInv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\ShowInv_hdr.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="inv_items\EditInv_items.aspx.vb">
       <DependentUpon>EditInv_items.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -578,13 +585,6 @@
     <Compile Include="roles\EditRoles.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="roles\EditRolesTable.aspx.vb">
-      <DependentUpon>EditRolesTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="roles\EditRolesTable.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="roles\ShowRoles.aspx.vb">
       <DependentUpon>ShowRoles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -858,39 +858,39 @@
     <Compile Include="unitsofmeasure\ShowUnitsofmeasureTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="users\AddUsers.aspx.vb">
-      <DependentUpon>AddUsers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="users\AddUsers.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="users\EditUsers.aspx.vb">
-      <DependentUpon>EditUsers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="users\EditUsers.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="users\EditUsersTable.aspx.vb">
-      <DependentUpon>EditUsersTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="users\EditUsersTable.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="users\ShowUsers.aspx.vb">
-      <DependentUpon>ShowUsers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="users\ShowUsers.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="users\ShowUsersTable.aspx.vb">
       <DependentUpon>ShowUsersTable.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="users\ShowUsersTable.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="user_roles\AddUser_roles.aspx.vb">
+      <DependentUpon>AddUser_roles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_roles\AddUser_roles.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="user_roles\EditUser_roles.aspx.vb">
+      <DependentUpon>EditUser_roles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_roles\EditUser_roles.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="user_roles\ShowUser_roles.aspx.vb">
+      <DependentUpon>ShowUser_roles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_roles\ShowUser_roles.Controls.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="user_roles\ShowUser_rolesTable.aspx.vb">
+      <DependentUpon>ShowUser_rolesTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_roles\ShowUser_rolesTable.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="commodity\ShowCommodityTable.aspx.vb" >
@@ -923,13 +923,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="inv_hdr\PrintInv_hdr.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="inv_hdr\ShowInv_hdr.aspx.vb" >
-      <DependentUpon>ShowInv_hdr.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="inv_hdr\ShowInv_hdr.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="inv_hdr\ShowInv_hdrTable.aspx.vb" >
@@ -1015,6 +1008,27 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="terms\ShowTermsTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\AddUsers.aspx.vb" >
+      <DependentUpon>AddUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\AddUsers.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\EditUsers.aspx.vb" >
+      <DependentUpon>EditUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\EditUsers.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\ShowUsers.aspx.vb" >
+      <DependentUpon>ShowUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\ShowUsers.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -1349,6 +1363,7 @@
     <Content Include="inv_hdr\EditInv_hdr.aspx" />
     <Content Include="inv_hdr\EmailInv_hdr.aspx" />
     <Content Include="inv_hdr\Inv_hdrWebReport.aspx" />
+    <Content Include="inv_hdr\ShowInv_hdr.aspx" />
     <Content Include="inv_items\EditInv_items.aspx" />
     <Content Include="inv_items\EmailInv_items.aspx" />
     <Content Include="inv_items\Inv_itemsWebReport.aspx" />
@@ -1396,7 +1411,6 @@
     <Content Include="pro_inv_terms\ShowPro_inv_termsTable.aspx" />
     <Content Include="roles\AddRoles.aspx" />
     <Content Include="roles\EditRoles.aspx" />
-    <Content Include="roles\EditRolesTable.aspx" />
     <Content Include="roles\ShowRoles.aspx" />
     <Content Include="roles\ShowRolesTable.aspx" />
     <Content Include="saleperson\AddSaleperson.aspx" />
@@ -1436,17 +1450,16 @@
     <Content Include="unitsofmeasure\EditUnitsofmeasureTable.aspx" />
     <Content Include="unitsofmeasure\ShowUnitsofmeasure.aspx" />
     <Content Include="unitsofmeasure\ShowUnitsofmeasureTable.aspx" />
-    <Content Include="users\AddUsers.aspx" />
-    <Content Include="users\EditUsers.aspx" />
-    <Content Include="users\EditUsersTable.aspx" />
-    <Content Include="users\ShowUsers.aspx" />
     <Content Include="users\ShowUsersTable.aspx" />
+    <Content Include="user_roles\AddUser_roles.aspx" />
+    <Content Include="user_roles\EditUser_roles.aspx" />
+    <Content Include="user_roles\ShowUser_roles.aspx" />
+    <Content Include="user_roles\ShowUser_rolesTable.aspx" />
     <Content Include="commodity\ShowCommodityTable.aspx"  />
     <Content Include="Header and Footer\Footer.ascx"  />
     <Content Include="Header and Footer\Header.ascx"  />
     <Content Include="inv_hdr\PrintInvoice.aspx"  />
     <Content Include="inv_hdr\PrintInv_hdr.aspx"  />
-    <Content Include="inv_hdr\ShowInv_hdr.aspx"  />
     <Content Include="inv_hdr\ShowInv_hdrTable.aspx"  />
     <Content Include="Master Pages\Blank.master"  />
     <Content Include="Master Pages\Email.master"  />
@@ -1465,6 +1478,9 @@
     <Content Include="taxes\ShowTaxesTable.aspx"  />
     <Content Include="tax_groups\ShowTax_groups.aspx"  />
     <Content Include="terms\ShowTermsTable.aspx"  />
+    <Content Include="users\AddUsers.aspx"  />
+    <Content Include="users\EditUsers.aspx"  />
+    <Content Include="users\ShowUsers.aspx"  />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Global.asax.resx">

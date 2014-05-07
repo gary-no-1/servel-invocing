@@ -160,16 +160,15 @@ Partial Public Class EditUsers
 
 #Region "Section 2: Do not modify this section."
 
+        Public WithEvents addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents CancelButton As ThemeButton
         Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents FullNameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents mobileLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents passwordLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents RoleId As System.Web.UI.WebControls.DropDownList
-        Public WithEvents RoleIdAddRecordLink As System.Web.UI.WebControls.ImageButton
-        Public WithEvents RoleIdLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal
         Public WithEvents SaveButton As ThemeButton
-        Public WithEvents UserNameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents UsersRecordControl As ServelInvocing.UI.Controls.EditUsers.UsersRecordControl
         Public WithEvents UsersTitle As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
@@ -344,15 +343,6 @@ Partial Public Class EditUsers
                 Me.DataBind()
             
                 
-                'Set the corresponding menu item to be highlighted for this page
-                Dim pageMaster As System.Web.UI.MasterPage = Me.Master
-                If Not pageMaster is Nothing Then
-                    Dim menuComponent As IMenuComponent = CType(Me.Master.FindControl("_MenuV"), IMenuComponent)
-                    If Not menuComponent is Nothing Then
-                        menuComponent.HiliteSettings = "UsersMenuItem"
-                    End If
-                End If
-      
                 
 
             Catch ex As Exception
@@ -447,7 +437,7 @@ Partial Public Class EditUsers
                 DFKA = Me.Page.Request.QueryString.Item("DFKA")
                 If Not Me.UsersRecordControl Is Nothing AndAlso Not Me.UsersRecordControl.DataSource Is Nothing Then
                       
-                      id = Me.UsersRecordControl.DataSource.UserId0.ToString
+                      id = Me.UsersRecordControl.DataSource.id0.ToString
                       value = Me.UsersRecordControl.DataSource.GetValue(Me.UsersRecordControl.DataSource.TableAccess.TableDefinition.ColumnList.GetByAnyName(DFKA)).ToString
                       If value is Nothing Then
                             value = id

@@ -43,75 +43,46 @@ Namespace ServelInvocing.Business
 #Region "Convenience methods to get/set values of fields"
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Users_.UserId field.
+	''' This is a convenience method that provides direct access to the value of the record's Users_.id field.
 	''' </summary>
-	Public Function GetUserId0Value() As ColumnValue
-		Return Me.GetValue(TableUtils.UserId0Column)
+	Public Function Getid0Value() As ColumnValue
+		Return Me.GetValue(TableUtils.id0Column)
 	End Function
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Users_.UserId field.
+	''' This is a convenience method that provides direct access to the value of the record's Users_.id field.
 	''' </summary>
-	Public Function GetUserId0FieldValue() As Int32
-		Return CType(Me.GetValue(TableUtils.UserId0Column).ToInt32(), Int32)
+	Public Function Getid0FieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id0Column).ToInt32(), Int32)
 	End Function
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Users_.UserName field.
+	''' This is a convenience method that provides direct access to the value of the record's Users_.name field.
 	''' </summary>
-	Public Function GetUserName0Value() As ColumnValue
-		Return Me.GetValue(TableUtils.UserName0Column)
+	Public Function GetnameValue() As ColumnValue
+		Return Me.GetValue(TableUtils.nameColumn)
 	End Function
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Users_.UserName field.
+	''' This is a convenience method that provides direct access to the value of the record's Users_.name field.
 	''' </summary>
-	Public Function GetUserName0FieldValue() As String
-		Return CType(Me.GetValue(TableUtils.UserName0Column).ToString(), String)
+	Public Function GetnameFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.nameColumn).ToString(), String)
 	End Function
 
 	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Users_.UserName field.
+	''' This is a convenience method that allows direct modification of the value of the record's Users_.name field.
 	''' </summary>
-	Public Sub SetUserName0FieldValue(ByVal val As ColumnValue)
-		Me.SetValue(val, TableUtils.UserName0Column)
+	Public Sub SetnameFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.nameColumn)
 	End Sub
 
 	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Users_.UserName field.
+	''' This is a convenience method that allows direct modification of the value of the record's Users_.name field.
 	''' </summary>
-	Public Sub SetUserName0FieldValue(ByVal val As String)
+	Public Sub SetnameFieldValue(ByVal val As String)
 		Dim colValue As ColumnValue = New ColumnValue(val)
-		Me.SetValue(colValue, TableUtils.UserName0Column)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Users_.FullName field.
-	''' </summary>
-	Public Function GetFullNameValue() As ColumnValue
-		Return Me.GetValue(TableUtils.FullNameColumn)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Users_.FullName field.
-	''' </summary>
-	Public Function GetFullNameFieldValue() As String
-		Return CType(Me.GetValue(TableUtils.FullNameColumn).ToString(), String)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Users_.FullName field.
-	''' </summary>
-	Public Sub SetFullNameFieldValue(ByVal val As ColumnValue)
-		Me.SetValue(val, TableUtils.FullNameColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Users_.FullName field.
-	''' </summary>
-	Public Sub SetFullNameFieldValue(ByVal val As String)
-		Dim colValue As ColumnValue = New ColumnValue(val)
-		Me.SetValue(colValue, TableUtils.FullNameColumn)
+		Me.SetValue(colValue, TableUtils.nameColumn)
 	End Sub
 
 	''' <summary>
@@ -144,57 +115,6 @@ Namespace ServelInvocing.Business
 	End Sub
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Users_.RoleId field.
-	''' </summary>
-	Public Function GetRoleIdValue() As ColumnValue
-		Return Me.GetValue(TableUtils.RoleIdColumn)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Users_.RoleId field.
-	''' </summary>
-	Public Function GetRoleIdFieldValue() As Int32
-		Return CType(Me.GetValue(TableUtils.RoleIdColumn).ToInt32(), Int32)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Users_.RoleId field.
-	''' </summary>
-	Public Sub SetRoleIdFieldValue(ByVal val As ColumnValue)
-		Me.SetValue(val, TableUtils.RoleIdColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Users_.RoleId field.
-	''' </summary>
-	Public Sub SetRoleIdFieldValue(ByVal val As String)
-		Me.SetString(val, TableUtils.RoleIdColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Users_.RoleId field.
-	''' </summary>
-	Public Sub SetRoleIdFieldValue(ByVal val As Double)
-		Dim colValue As ColumnValue = New ColumnValue(val)
-		Me.SetValue(colValue, TableUtils.RoleIdColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Users_.RoleId field.
-	''' </summary>
-	Public Sub SetRoleIdFieldValue(ByVal val As Decimal)
-		Dim colValue As ColumnValue = New ColumnValue(val)
-		Me.SetValue(colValue, TableUtils.RoleIdColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Users_.RoleId field.
-	''' </summary>
-	Public Sub SetRoleIdFieldValue(ByVal val As Int64)
-		Dim colValue As ColumnValue = New ColumnValue(val)
-		Me.SetValue(colValue, TableUtils.RoleIdColumn)
-	End Sub
-	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Users_.password field.
 	''' </summary>
 	Public Function GetpasswordValue() As ColumnValue
@@ -223,6 +143,93 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.passwordColumn)
 	End Sub
 
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Users_.mobile field.
+	''' </summary>
+	Public Function GetmobileValue() As ColumnValue
+		Return Me.GetValue(TableUtils.mobileColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Users_.mobile field.
+	''' </summary>
+	Public Function GetmobileFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.mobileColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Users_.mobile field.
+	''' </summary>
+	Public Sub SetmobileFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.mobileColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Users_.mobile field.
+	''' </summary>
+	Public Sub SetmobileFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.mobileColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Users_.phone field.
+	''' </summary>
+	Public Function GetphoneValue() As ColumnValue
+		Return Me.GetValue(TableUtils.phoneColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Users_.phone field.
+	''' </summary>
+	Public Function GetphoneFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.phoneColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Users_.phone field.
+	''' </summary>
+	Public Sub SetphoneFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.phoneColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Users_.phone field.
+	''' </summary>
+	Public Sub SetphoneFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.phoneColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Users_.address field.
+	''' </summary>
+	Public Function GetaddressValue() As ColumnValue
+		Return Me.GetValue(TableUtils.addressColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Users_.address field.
+	''' </summary>
+	Public Function GetaddressFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.addressColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Users_.address field.
+	''' </summary>
+	Public Sub SetaddressFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.addressColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Users_.address field.
+	''' </summary>
+	Public Sub SetaddressFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.addressColumn)
+	End Sub
+
 
 
 #End Region
@@ -230,15 +237,15 @@ Namespace ServelInvocing.Business
 #Region "Convenience methods to get field names"
 
 	''' <summary>
-	''' This is a convenience property that provides direct access to the value of the record's Users_.UserId field.
+	''' This is a convenience property that provides direct access to the value of the record's Users_.id field.
 	''' </summary>
-	Public Property UserId0() As Int32
+	Public Property id0() As Int32
 		Get 
-			Return CType(Me.GetValue(TableUtils.UserId0Column).ToInt32(), Int32)
+			Return CType(Me.GetValue(TableUtils.id0Column).ToInt32(), Int32)
 		End Get
 		Set (ByVal val As Int32) 
 			Dim colValue As ColumnValue = New ColumnValue(val)
-			Me.SetValue(colValue, TableUtils.UserId0Column)
+			Me.SetValue(colValue, TableUtils.id0Column)
 		End Set
 	End Property
 
@@ -246,9 +253,9 @@ Namespace ServelInvocing.Business
 	''' <summary>
 	''' This is a convenience method that can be used to determine that the column is set.
 	''' </summary>
-	Public ReadOnly Property UserId0Specified() As Boolean
+	Public ReadOnly Property id0Specified() As Boolean
         Get
-            Dim val As ColumnValue = Me.GetValue(TableUtils.UserId0Column)
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id0Column)
             If val Is Nothing OrElse val.IsNull Then
                 Return False
             End If
@@ -259,21 +266,21 @@ Namespace ServelInvocing.Business
 	''' <summary>
 	''' This is a convenience method that can be used to get the default value of a column.
 	''' </summary>
-    Public ReadOnly Property UserId0Default() As String
+    Public ReadOnly Property id0Default() As String
         Get
-            Return TableUtils.UserId0Column.DefaultValue
+            Return TableUtils.id0Column.DefaultValue
         End Get
     End Property
 
 	''' <summary>
-	''' This is a convenience property that provides direct access to the value of the record's Users_.UserName field.
+	''' This is a convenience property that provides direct access to the value of the record's Users_.name field.
 	''' </summary>
-	Public Property UserName0() As String
+	Public Property name() As String
 		Get 
-			Return CType(Me.GetValue(TableUtils.UserName0Column).ToString(), String)
+			Return CType(Me.GetValue(TableUtils.nameColumn).ToString(), String)
 		End Get
 		Set (ByVal Value As String) 
-			Me.SetString(value, TableUtils.UserName0Column)
+			Me.SetString(value, TableUtils.nameColumn)
 		End Set
 	End Property
 
@@ -281,9 +288,9 @@ Namespace ServelInvocing.Business
 	''' <summary>
 	''' This is a convenience method that can be used to determine that the column is set.
 	''' </summary>
-	Public ReadOnly Property UserName0Specified() As Boolean
+	Public ReadOnly Property nameSpecified() As Boolean
         Get
-            Dim val As ColumnValue = Me.GetValue(TableUtils.UserName0Column)
+            Dim val As ColumnValue = Me.GetValue(TableUtils.nameColumn)
             If val Is Nothing OrElse val.IsNull Then
                 Return False
             End If
@@ -294,44 +301,9 @@ Namespace ServelInvocing.Business
 	''' <summary>
 	''' This is a convenience method that can be used to get the default value of a column.
 	''' </summary>
-    Public ReadOnly Property UserName0Default() As String
+    Public ReadOnly Property nameDefault() As String
         Get
-            Return TableUtils.UserName0Column.DefaultValue
-        End Get
-    End Property
-
-	''' <summary>
-	''' This is a convenience property that provides direct access to the value of the record's Users_.FullName field.
-	''' </summary>
-	Public Property FullName() As String
-		Get 
-			Return CType(Me.GetValue(TableUtils.FullNameColumn).ToString(), String)
-		End Get
-		Set (ByVal Value As String) 
-			Me.SetString(value, TableUtils.FullNameColumn)
-		End Set
-	End Property
-
-
-	''' <summary>
-	''' This is a convenience method that can be used to determine that the column is set.
-	''' </summary>
-	Public ReadOnly Property FullNameSpecified() As Boolean
-        Get
-            Dim val As ColumnValue = Me.GetValue(TableUtils.FullNameColumn)
-            If val Is Nothing OrElse val.IsNull Then
-                Return False
-            End If
-            Return True
-        End Get
-    End Property
-
-	''' <summary>
-	''' This is a convenience method that can be used to get the default value of a column.
-	''' </summary>
-    Public ReadOnly Property FullNameDefault() As String
-        Get
-            Return TableUtils.FullNameColumn.DefaultValue
+            Return TableUtils.nameColumn.DefaultValue
         End Get
     End Property
 
@@ -371,42 +343,6 @@ Namespace ServelInvocing.Business
     End Property
 
 	''' <summary>
-	''' This is a convenience property that provides direct access to the value of the record's Users_.RoleId field.
-	''' </summary>
-	Public Property RoleId() As Int32
-		Get 
-			Return CType(Me.GetValue(TableUtils.RoleIdColumn).ToInt32(), Int32)
-		End Get
-		Set (ByVal val As Int32) 
-			Dim colValue As ColumnValue = New ColumnValue(val)
-			Me.SetValue(colValue, TableUtils.RoleIdColumn)
-		End Set
-	End Property
-
-
-	''' <summary>
-	''' This is a convenience method that can be used to determine that the column is set.
-	''' </summary>
-	Public ReadOnly Property RoleIdSpecified() As Boolean
-        Get
-            Dim val As ColumnValue = Me.GetValue(TableUtils.RoleIdColumn)
-            If val Is Nothing OrElse val.IsNull Then
-                Return False
-            End If
-            Return True
-        End Get
-    End Property
-
-	''' <summary>
-	''' This is a convenience method that can be used to get the default value of a column.
-	''' </summary>
-    Public ReadOnly Property RoleIdDefault() As String
-        Get
-            Return TableUtils.RoleIdColumn.DefaultValue
-        End Get
-    End Property
-
-	''' <summary>
 	''' This is a convenience property that provides direct access to the value of the record's Users_.password field.
 	''' </summary>
 	Public Property password() As String
@@ -438,6 +374,111 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property passwordDefault() As String
         Get
             Return TableUtils.passwordColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Users_.mobile field.
+	''' </summary>
+	Public Property mobile() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.mobileColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.mobileColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property mobileSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.mobileColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property mobileDefault() As String
+        Get
+            Return TableUtils.mobileColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Users_.phone field.
+	''' </summary>
+	Public Property phone() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.phoneColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.phoneColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property phoneSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.phoneColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property phoneDefault() As String
+        Get
+            Return TableUtils.phoneColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Users_.address field.
+	''' </summary>
+	Public Property address() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.addressColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.addressColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property addressSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.addressColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property addressDefault() As String
+        Get
+            Return TableUtils.addressColumn.DefaultValue
         End Get
     End Property
 

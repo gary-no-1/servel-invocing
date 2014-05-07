@@ -31,6 +31,11 @@ The tags are case-sensitive and should contain the following case-sensitive attr
   -->
 <siteMap>
   <siteMapNode>
+    <siteMapNode title="Administration" description="Administration" url="" imageUrl="../Images/MLMBullet2.gif" roles="" order="0">
+      <siteMapNode title="Users" description="{Menu:Show} Users" url="~/users/ShowUsersTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      <siteMapNode title="Roles" description="{Menu:Show} Roles" url="~/roles/ShowRolesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      <siteMapNode title="User Roles" description="{Menu:Show} User Roles" url="~/user_roles/ShowUser_rolesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+    </siteMapNode>
     <siteMapNode title="Masters" description="Masters" url="" imageUrl="../Images/MLMBullet2.gif" roles="" order="0">
       <siteMapNode title="Company" description="{Menu:Show} Company" url="~/company/ShowCompanyTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
@@ -48,24 +53,10 @@ The tags are case-sensitive and should contain the following case-sensitive attr
       <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
       <siteMapNode title="Transporters" description="{Menu:Show} Transporters" url="~/transporters/ShowTransportersTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="" order="0" />
-      <siteMapNode title="Roles" description="Roles" url="~/roles/ShowRolesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
-        <siteMapNode title="{Menu:Show} Roles" description="{Menu:Show} Roles" url="~/roles/ShowRolesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
-        <siteMapNode title="{Menu:Edit} Roles" description="{Menu:Edit} Roles" url="~/roles/EditRolesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
-        <siteMapNode title="{Menu:Add} Roles" description="{Menu:Add} Roles" url="~/roles/AddRoles.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
-      </siteMapNode>
-      <siteMapNode title="Users" description="Users" url="~/users/ShowUsersTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
-        <siteMapNode title="{Menu:Show} Users" description="{Menu:Show} Users" url="~/users/ShowUsersTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
-        <siteMapNode title="{Menu:Edit} Users" description="{Menu:Edit} Users" url="~/users/EditUsersTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
-        <siteMapNode title="{Menu:Add} Users" description="{Menu:Add} Users" url="~/users/AddUsers.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
-      </siteMapNode>
     </siteMapNode>
     <siteMapNode title="Items" description="{Menu:Show} Items" url="~/items/ShowItemsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
     <siteMapNode title="Party" description="Party" url="~/party/ShowPartyTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
     <siteMapNode title="Proforma Invoice" description="{Menu:Show} Pro Inv HDR" url="~/pro_inv_hdr/ShowPro_inv_hdrTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
     <siteMapNode title="Invoice" description="{Menu:Show} Inv HDR" url="~/inv_hdr/ShowInv_hdrTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
-    <siteMapNode title="Sites" description="Sites" url="~/sites/ShowSitesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
-      <siteMapNode title="{Menu:Show} Sites" description="{Menu:Show} Sites" url="~/sites/ShowSitesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
-      <siteMapNode title="{Menu:Add} Sites" description="{Menu:Add} Sites" url="~/sites/AddSites.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
-    </siteMapNode>
   </siteMapNode>
 </siteMap>
