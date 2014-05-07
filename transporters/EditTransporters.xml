@@ -11,6 +11,7 @@
     <Layout>transporters\EditTransporters.html</Layout>
     <DisplayName>EditTransporters</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-2125842892-56337</CheckSum>
   </Self>
   <ComposedOf>

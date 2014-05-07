@@ -11,6 +11,7 @@
     <Layout>terms\ShowTermsTable.html</Layout>
     <DisplayName>ShowTermsTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>1779779524-26891</CheckSum>
   </Self>
   <ComposedOf>

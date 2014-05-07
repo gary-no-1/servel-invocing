@@ -11,6 +11,7 @@
     <Layout>tax_types\EditTax_types.html</Layout>
     <DisplayName>EditTax_types</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-1533312519-4683</CheckSum>
   </Self>
   <ComposedOf>

@@ -11,6 +11,7 @@
     <Layout>pro_inv_hdr\ShowPro_inv_hdrTable.html</Layout>
     <DisplayName>ShowPro_inv_hdrTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>2145067643-44836</CheckSum>
   </Self>
   <ComposedOf>

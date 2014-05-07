@@ -11,6 +11,7 @@
     <Layout>items\AddItems.html</Layout>
     <DisplayName>AddItems</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-1108193728-17531</CheckSum>
   </Self>
   <ComposedOf>

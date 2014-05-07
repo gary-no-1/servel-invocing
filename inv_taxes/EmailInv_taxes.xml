@@ -11,6 +11,7 @@
     <Layout>inv_taxes\EmailInv_taxes.html</Layout>
     <DisplayName>EmailInv_taxes</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>2059761986-28540</CheckSum>
   </Self>
   <ComposedOf>

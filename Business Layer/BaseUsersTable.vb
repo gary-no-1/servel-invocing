@@ -26,12 +26,91 @@ Namespace ServelInvocing.Business
 
 <Serializable()> Public Class BaseUsersTable
     Inherits PrimaryKeyTable
-    
+    Implements IUserIdentityTable
+
 
     Private ReadOnly TableDefinitionString As String = UsersDefinition.GetXMLString()
 
+#Region "IUserTable Members"
+
+	' Get the column that specifies the user's unique identifier
+	Public ReadOnly Property UserId() As BaseColumn Implements IUserTable.UserIdColumn
+		Get
+			Return Me.TableDefinition.ColumnList.GetByNumber(0)
+		End Get
+	End Property
+
+	' Get a list of records that match the criteria specified in a filter
+	Public Overloads Function GetRecordList( _
+		ByVal userId As String, _
+		ByVal filter As BaseFilter, _
+		ByVal orderBy As OrderBy, _
+		ByVal pageNumber As Integer, _
+		ByVal batchSize As Integer, _
+		Optional ByRef totalRows As Integer = Nothing _
+	) As ArrayList
+		If (Not IsNothing(userId)) Then
+			filter = BaseFilter.CombineFilters( _
+				CompoundFilter.CompoundingOperators.And_Operator, _
+				filter, _
+				BaseFilter.CreateUserIdFilter(CType(Me, IUserTable), userId))
+		End If
+		Return CType(Me, ITable).GetRecordList(filter, orderBy, pageNumber, batchSize, totalRows)
+	End Function
+
+#End Region
 
 
+
+#Region "IUserIdentityTable Members"
+
+	' Get the column that specifies the user's name
+	Public ReadOnly Property UserName() As BaseColumn Implements IUserIdentityTable.UserNameColumn
+		Get
+			Return Me.TableDefinition.ColumnList.GetByNumber(2)
+		End Get
+	End Property
+
+	' Get the column that specifies the user's password
+	Public ReadOnly Property UserPassword() As BaseColumn Implements IUserIdentityTable.UserPasswordColumn
+		Get
+			Return Me.TableDefinition.ColumnList.GetByNumber(3)
+		End Get
+	End Property
+
+	' Get the column that specifies the user's email address
+	Public ReadOnly Property UserEmail() As BaseColumn Implements IUserIdentityTable.UserEmailColumn
+		Get
+			Return Nothing
+		End Get
+	End Property
+
+	' Get a role table object
+	Public Function GetUserRoleTable() As IUserRoleTable Implements IUserIdentityTable.GetUserRoleTable
+		Return User_rolesTable.Instance
+	End Function
+
+	' Get a list of records that match the user's name/password
+	Public Overloads Function GetRecordList( _
+		ByVal userName As String, _
+		ByVal userPassword As String, _
+		ByVal filter As BaseFilter, _
+		ByVal orderBy As OrderBy, _
+		ByVal pageNumber As Integer, _
+		ByVal batchSize As Integer, _
+		Optional ByRef totalRows As Integer = Nothing _
+	) As ArrayList
+		' Set up a name/password filter   
+		If (Not (IsNothing(userName) AndAlso IsNothing(userPassword))) Then
+			filter = BaseFilter.CombineFilters( _
+				CompoundFilter.CompoundingOperators.And_Operator, _
+				filter, _
+				BaseFilter.CreateUserAuthenticationFilter(CType(Me, IUserIdentityTable), userName, userPassword))
+		End If
+		Return CType(Me, ITable).GetRecordList(filter, orderBy, pageNumber, batchSize, totalRows)
+	End Function
+
+#End Region
 
 
 

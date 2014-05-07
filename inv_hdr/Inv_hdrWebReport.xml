@@ -11,6 +11,7 @@
     <Layout>inv_hdr\Inv_hdrWebReport.html</Layout>
     <DisplayName>Inv_hdrWebReport</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>104528751-44807</CheckSum>
   </Self>
   <ComposedOf>

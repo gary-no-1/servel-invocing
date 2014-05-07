@@ -11,6 +11,7 @@
     <Layout>inv_items\Inv_itemsWebReport.html</Layout>
     <DisplayName>Inv_itemsWebReport</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>1879843339-18094</CheckSum>
   </Self>
   <ComposedOf>

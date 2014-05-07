@@ -11,6 +11,7 @@
     <Layout>inv_terms\PrintInv_terms.html</Layout>
     <DisplayName>PrintInv_terms</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-799309467-7395</CheckSum>
   </Self>
   <ComposedOf>

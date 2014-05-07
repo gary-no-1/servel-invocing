@@ -11,6 +11,7 @@
     <Layout>inv_terms\ShowInv_termsTable.html</Layout>
     <DisplayName>ShowInv_termsTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-345457652-27180</CheckSum>
   </Self>
   <ComposedOf>

@@ -255,9 +255,6 @@
     <Compile Include="User_rolesTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseUser_rolesTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="User_rolesRecord.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -370,6 +367,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseUsersRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseUser_rolesTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseUser_rolesRecord.vb" >

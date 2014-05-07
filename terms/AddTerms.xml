@@ -11,6 +11,7 @@
     <Layout>terms\AddTerms.html</Layout>
     <DisplayName>AddTerms</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>1095057900-6640</CheckSum>
   </Self>
   <ComposedOf>

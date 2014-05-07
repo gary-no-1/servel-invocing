@@ -11,6 +11,7 @@
     <Layout>inv_items\EmailInv_items.html</Layout>
     <DisplayName>EmailInv_items</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-231738155-18012</CheckSum>
   </Self>
   <ComposedOf>

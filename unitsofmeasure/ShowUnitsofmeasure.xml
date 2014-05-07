@@ -13,6 +13,7 @@
     <Description>Standard record panel.</Description>
     <MenuFileToHilite>MenuV</MenuFileToHilite>
     <MenuHiliteItem>UnitsofmeasureMenuItem</MenuHiliteItem>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>739438877-34453</CheckSum>
   </Self>
   <ComposedOf>

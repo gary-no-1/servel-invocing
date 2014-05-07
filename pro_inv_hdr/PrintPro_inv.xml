@@ -11,6 +11,7 @@
     <Layout>pro_inv_hdr\PrintPro_Inv.xml</Layout>
     <DisplayName>PrintPro_Inv</DisplayName>
     <Description>This is a blank page.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-1831787499-1146</CheckSum>
   </Self>
   <ComposedOf>

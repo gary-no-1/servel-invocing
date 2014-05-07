@@ -281,9 +281,19 @@ Partial Public Class Header
         Protected Overridable Sub SignInButtonInit()
         
             Me.UserStatusLbl.Visible = False  
-            Me.SIOImage.Visible = False  
-            Me.SignIn.Visible = False 
-      Me.Divider2.Visible = False 
+            If (BaseClasses.Configuration.ApplicationSettings.Current.AuthenticationType = BaseClasses.Configuration.SecurityConstants.None) Then
+            
+                Me.SIOImage.Visible = False  
+                Me.SignIn.Visible = False    
+        Me.Divider2.Visible = False
+            Else
+              
+                Me.SIOImage.Visible = True  
+                Me.SignIn.Visible = True 
+        Me.Divider2.Visible = True 
+                Me.UserStatusLbl.Visible = True 
+            End If
+          
                    
       Select Case (DirectCast(Me.Page, BaseApplicationPage).CurrentSecurity.GetUserStatus())
             Case Nothing, ""

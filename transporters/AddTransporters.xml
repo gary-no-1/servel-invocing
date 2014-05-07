@@ -11,6 +11,7 @@
     <Layout>transporters\AddTransporters.html</Layout>
     <DisplayName>AddTransporters</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-54747445-54297</CheckSum>
   </Self>
   <ComposedOf>

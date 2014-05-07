@@ -11,6 +11,7 @@
     <Layout>pro_inv_items\ShowPro_inv_itemsTable.html</Layout>
     <DisplayName>ShowPro_inv_itemsTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-1548306393-38004</CheckSum>
   </Self>
   <ComposedOf>

@@ -11,6 +11,7 @@
     <Layout>pro_inv_taxes\ShowPro_inv_taxes.html</Layout>
     <DisplayName>ShowPro_inv_taxes</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>228197148-14113</CheckSum>
   </Self>
   <ComposedOf>

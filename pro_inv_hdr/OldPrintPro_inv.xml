@@ -11,6 +11,7 @@
     <Layout>pro_inv_hdr\OldPrintPro_inv.xml</Layout>
     <DisplayName>OldPrintPro_inv</DisplayName>
     <Description>This is a blank page.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>858272642-1139</CheckSum>
   </Self>
   <ComposedOf>

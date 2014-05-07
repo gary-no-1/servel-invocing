@@ -11,6 +11,7 @@
     <Layout>inv_hdr\PrintInvoice.xml</Layout>
     <DisplayName>PrintInvoice</DisplayName>
     <Description>This is a blank page.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>76345096-1138</CheckSum>
   </Self>
   <ComposedOf>

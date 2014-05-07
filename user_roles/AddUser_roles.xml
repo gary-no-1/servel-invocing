@@ -11,6 +11,7 @@
     <Layout>user_roles\AddUser_roles.html</Layout>
     <DisplayName>AddUser_roles</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-64533858-8658</CheckSum>
   </Self>
   <ComposedOf>

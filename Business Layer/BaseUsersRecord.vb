@@ -20,7 +20,8 @@ Namespace ServelInvocing.Business
 
 <Serializable()> Public Class BaseUsersRecord
 	Inherits PrimaryKeyRecord
-	
+	Implements IUserIdentityRecord
+
 
 	Public Shared Shadows ReadOnly TableUtils As UsersTable = UsersTable.Instance
 
@@ -34,8 +35,64 @@ Namespace ServelInvocing.Business
 		MyBase.New(record, TableUtils)
 	End Sub
 
+#Region "IUserRecord Members"
+
+	' Get the user's unique identifier
+	Public Function GetUserId() As String Implements IUserRecord.GetUserId
+		Return CType(Me, IRecord).GetString(CType(Me.TableAccess, IUserTable).UserIdColumn)
+	End Function
+
+#End Region
 
 
+#Region "IUserIdentityRecord Members"
+
+	' Get the user's name
+	Public Function GetUserName() As String Implements IUserIdentityRecord.GetUserName
+		Return CType(Me, IRecord).getString(CType(Me.TableAccess, IUserIdentityTable).UserNameColumn)
+	End Function
+
+	' Get the user's password
+	Public Function GetUserPassword() As String Implements IUserIdentityRecord.GetUserPassword
+		Return CType(Me, IRecord).getString(CType(Me.TableAccess, IUserIdentityTable).UserPasswordColumn)
+	End Function
+
+	' Get the user's email address
+	Public Function GetUserEmail() As String Implements IUserIdentityRecord.GetUserEmail
+		Return CType(Me, IRecord).getString(CType(Me.TableAccess, IUserIdentityTable).UserEmailColumn)
+	End Function
+
+	' Get a list of roles to which the user belongs
+	Public Function GetUserRoles() As String() Implements IUserIdentityRecord.GetUserRoles
+		Dim roles() As String
+		If (TypeOf (Me) Is IUserRoleRecord) Then
+			roles = New String(0) {}
+			roles(0) = CType(Me, IUserRoleRecord).GetUserRole()
+		Else
+			Dim roleTable As IUserRoleTable = CType(Me.TableAccess, IUserIdentityTable).GetUserRoleTable()
+			If (IsNothing(roleTable)) Then
+				Return Nothing
+#If False Then
+			'Note: Not compiled for performance
+			ElseIf (CType(roleTable, Object).Equals(Me.TableAccess)) Then
+				'This should never occur because it should be handled above instead
+#End If
+			Else
+				Dim filter As ColumnValueFilter = BaseFilter.CreateUserIdFilter(roleTable, Me.GetUserId())
+				Dim order As New OrderBy(False, False)
+				Dim roleRecords As ArrayList = roleTable.GetRecordList(filter, order, BaseTable.MIN_PAGE_NUMBER, BaseTable.MAX_BATCH_SIZE)
+				Dim roleRecord As IUserRoleRecord
+				Dim roleList As New ArrayList(roleRecords.Count)
+				For Each roleRecord In roleRecords
+					roleList.Add(roleRecord.GetUserRole())
+				Next
+				roles = CType(roleList.ToArray(GetType(String)), String())
+			End If
+		End If
+		Return roles
+	End Function
+
+#End Region
 
 
 

@@ -11,6 +11,7 @@
     <Layout>users\ShowUsersTable.html</Layout>
     <DisplayName>ShowUsersTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-1177994485-32231</CheckSum>
   </Self>
   <ComposedOf>

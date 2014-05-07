@@ -11,6 +11,7 @@
     <Layout>company\ShowCompany.html</Layout>
     <DisplayName>ShowCompany</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>123341402-36787</CheckSum>
   </Self>
   <ComposedOf>

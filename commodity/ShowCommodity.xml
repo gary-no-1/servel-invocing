@@ -11,6 +11,7 @@
     <Layout>commodity\ShowCommodity.html</Layout>
     <DisplayName>ShowCommodity</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>274257599-5977</CheckSum>
   </Self>
   <ComposedOf>

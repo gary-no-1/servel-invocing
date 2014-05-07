@@ -11,6 +11,7 @@
     <Layout>tax_groups\ShowTax_groups.html</Layout>
     <DisplayName>ShowTax_groups</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>306037824-19649</CheckSum>
   </Self>
   <ComposedOf>

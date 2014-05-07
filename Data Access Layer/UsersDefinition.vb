@@ -9,9 +9,9 @@
 Public Class UsersDefinition
 
 #Region "Definition (XML) for UsersDefinition table"
-	'Next 183 lines contain Table Definition (XML) for table "UsersDefinition"
+	'Next 187 lines contain Table Definition (XML) for table "UsersDefinition"
 	Private Shared _DefinitionString As String = _
-"<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
+"<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""USER"">"& _
   "<ColumnDefinition>"& _
     "<Column InternalName=""0"" Priority=""1"" ColumnNum=""0"">"& _
       "<columnName>id</columnName>"& _
@@ -193,6 +193,10 @@ Public Class UsersDefinition
   "<canViewRecords Source=""Database"">Y</canViewRecords>"& _
   "<ConcurrencyMethod>BinaryChecksum</ConcurrencyMethod>"& _
   "<AppShortName>ServelInvocing</AppShortName>"& _
+  "<IsUserTable>Y</IsUserTable>"& _
+  "<UserUserIDField>id</UserUserIDField>"& _
+  "<UserUserNameField>email</UserUserNameField>"& _
+  "<UserPassword>password</UserPassword>"& _
 "</XMLDefinition>"
 #End Region
 	

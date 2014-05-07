@@ -13,6 +13,7 @@
     <Description>Table view to show or edit multiple records.</Description>
     <MenuFileToHilite>MenuV</MenuFileToHilite>
     <MenuHiliteItem>SalepersonMenuItem</MenuHiliteItem>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-377507448-22881</CheckSum>
   </Self>
   <ComposedOf>

@@ -11,6 +11,7 @@
     <Layout>inv_items\PrintInv_items.html</Layout>
     <DisplayName>PrintInv_items</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>141535577-17791</CheckSum>
   </Self>
   <ComposedOf>

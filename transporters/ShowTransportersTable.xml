@@ -11,6 +11,7 @@
     <Layout>transporters\ShowTransportersTable.html</Layout>
     <DisplayName>ShowTransportersTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-1659539101-38542</CheckSum>
   </Self>
   <ComposedOf>

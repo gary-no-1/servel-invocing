@@ -13,6 +13,7 @@
     <Description>Standard record panel.</Description>
     <MenuFileToHilite>MenuV</MenuFileToHilite>
     <MenuHiliteItem>SalepersonMenuItem</MenuHiliteItem>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>1005373927-6074</CheckSum>
   </Self>
   <ComposedOf>

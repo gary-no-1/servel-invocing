@@ -11,6 +11,7 @@
     <Layout>taxes\ShowTaxes.html</Layout>
     <DisplayName>ShowTaxes</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>217285367-12302</CheckSum>
   </Self>
   <ComposedOf>

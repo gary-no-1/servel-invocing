@@ -26,14 +26,54 @@ Namespace ServelInvocing.Business
 
 <Serializable()> Public Class BaseUser_rolesTable
     Inherits PrimaryKeyTable
-    
+    Implements IUserRoleTable
+
 
     Private ReadOnly TableDefinitionString As String = User_rolesDefinition.GetXMLString()
 
+#Region "IUserTable Members"
+
+	' Get the column that specifies the user's unique identifier
+	Public ReadOnly Property UserId() As BaseColumn Implements IUserTable.UserIdColumn
+		Get
+			Return Me.TableDefinition.ColumnList.GetByNumber(1)
+		End Get
+	End Property
+
+	' Get a list of records that match the criteria specified in a filter
+	Public Overloads Function GetRecordList( _
+		ByVal userId As String, _
+		ByVal filter As BaseFilter, _
+		ByVal orderBy As OrderBy, _
+		ByVal pageNumber As Integer, _
+		ByVal batchSize As Integer, _
+		Optional ByRef totalRows As Integer = Nothing _
+	) As ArrayList
+		If (Not IsNothing(userId)) Then
+			filter = BaseFilter.CombineFilters( _
+				CompoundFilter.CompoundingOperators.And_Operator, _
+				filter, _
+				BaseFilter.CreateUserIdFilter(CType(Me, IUserTable), userId))
+		End If
+		Return CType(Me, ITable).GetRecordList(filter, orderBy, pageNumber, batchSize, totalRows)
+	End Function
+
+#End Region
 
 
 
 
+
+#Region "IUserRoleTable Members"
+
+	' Get the column that specifies role values
+	Public ReadOnly Property UserRole() As BaseColumn Implements IUserRoleTable.UserRoleColumn
+		Get
+			Return Me.TableDefinition.ColumnList.GetByNumber(2)
+		End Get
+	End Property
+
+#End Region
 
 
     Protected Sub New()

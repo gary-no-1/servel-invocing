@@ -11,6 +11,7 @@
     <Layout>tax_groups\ShowTax_groupsTable.html</Layout>
     <DisplayName>ShowTax_groupsTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>516733150-38180</CheckSum>
   </Self>
   <ComposedOf>

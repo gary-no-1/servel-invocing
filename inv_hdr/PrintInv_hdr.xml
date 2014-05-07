@@ -11,6 +11,7 @@
     <Layout>inv_hdr\PrintInv_hdr.html</Layout>
     <DisplayName>PrintInv_hdr</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-718690643-91375</CheckSum>
   </Self>
   <ComposedOf>

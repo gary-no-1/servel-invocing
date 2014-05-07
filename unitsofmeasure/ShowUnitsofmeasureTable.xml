@@ -13,6 +13,7 @@
     <Description>Table view to show or edit multiple records.</Description>
     <MenuFileToHilite>MenuV</MenuFileToHilite>
     <MenuHiliteItem>UnitsofmeasureMenuItem</MenuHiliteItem>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>837256313-23294</CheckSum>
   </Self>
   <ComposedOf>

@@ -11,6 +11,7 @@
     <Layout>party\ShowParty.html</Layout>
     <DisplayName>ShowParty</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>2070787983-65129</CheckSum>
   </Self>
   <ComposedOf>

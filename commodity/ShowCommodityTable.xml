@@ -11,6 +11,7 @@
     <Layout>commodity\ShowCommodityTable.html</Layout>
     <DisplayName>ShowCommodityTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>570578833-22736</CheckSum>
   </Self>
   <ComposedOf>

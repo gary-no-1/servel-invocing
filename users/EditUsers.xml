@@ -11,6 +11,7 @@
     <Layout>users\EditUsers.html</Layout>
     <DisplayName>EditUsers</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>2013347166-10719</CheckSum>
   </Self>
   <ComposedOf>

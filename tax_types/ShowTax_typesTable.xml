@@ -11,6 +11,7 @@
     <Layout>tax_types\ShowTax_typesTable.html</Layout>
     <DisplayName>ShowTax_typesTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>721271392-22725</CheckSum>
   </Self>
   <ComposedOf>

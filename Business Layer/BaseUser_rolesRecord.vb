@@ -20,7 +20,8 @@ Namespace ServelInvocing.Business
 
 <Serializable()> Public Class BaseUser_rolesRecord
 	Inherits PrimaryKeyRecord
-	
+	Implements IUserRoleRecord
+
 
 	Public Shared Shadows ReadOnly TableUtils As User_rolesTable = User_rolesTable.Instance
 
@@ -34,10 +35,26 @@ Namespace ServelInvocing.Business
 		MyBase.New(record, TableUtils)
 	End Sub
 
+#Region "IUserRecord Members"
+
+	' Get the user's unique identifier
+	Public Function GetUserId() As String Implements IUserRecord.GetUserId
+		Return CType(Me, IRecord).GetString(CType(Me.TableAccess, IUserTable).UserIdColumn)
+	End Function
+
+#End Region
 
 
 
 
+#Region "IUserRoleRecord Members"
+
+	' Get the role to which this user belongs
+	Public Function GetUserRole() As String Implements IUserRoleRecord.GetUserRole
+		Return CType(Me, IRecord).GetString(CType(Me.TableAccess, IUserRoleTable).UserRoleColumn)
+	End Function
+
+#End Region
 
 
 #Region "Convenience methods to get/set values of fields"

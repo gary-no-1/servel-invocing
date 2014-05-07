@@ -11,6 +11,7 @@
     <Layout>roles\ShowRolesTable.html</Layout>
     <DisplayName>ShowRolesTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-1416220493-22261</CheckSum>
   </Self>
   <ComposedOf>

@@ -11,6 +11,7 @@
     <Layout>taxes\EditTaxes.html</Layout>
     <DisplayName>EditTaxes</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-923434844-10414</CheckSum>
   </Self>
   <ComposedOf>

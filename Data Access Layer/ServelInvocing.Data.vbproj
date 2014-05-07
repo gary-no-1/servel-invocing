@@ -241,19 +241,10 @@
     <Compile Include="BaseUnitsofmeasureSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UsersDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="UsersSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="User_rolesDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="User_rolesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseUser_rolesSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseCommoditySqlTable.vb" >
@@ -304,7 +295,16 @@
     <Compile Include="BaseTermsSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UsersDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseUsersSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User_rolesDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseUser_rolesSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

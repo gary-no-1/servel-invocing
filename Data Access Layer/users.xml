@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<XMLDefinition Generator="Iron Speed Designer" Version="7.0" Type="GENERIC">
+<XMLDefinition Generator="Iron Speed Designer" Version="7.0" Type="USER">
   <ColumnDefinition>
     <Column InternalName="0" Priority="1" ColumnNum="0">
       <columnName>id</columnName>
@@ -218,4 +218,8 @@
   <canViewRecords Source="Database">Y</canViewRecords>
   <ConcurrencyMethod>BinaryChecksum</ConcurrencyMethod>
   <AppShortName>ServelInvocing</AppShortName>
+  <IsUserTable>Y</IsUserTable>
+  <UserUserIDField>id</UserUserIDField>
+  <UserUserNameField>email</UserUserNameField>
+  <UserPassword>password</UserPassword>
 </XMLDefinition>

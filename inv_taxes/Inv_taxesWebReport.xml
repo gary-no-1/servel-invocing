@@ -11,6 +11,7 @@
     <Layout>inv_taxes\Inv_taxesWebReport.html</Layout>
     <DisplayName>Inv_taxesWebReport</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-392460161-28886</CheckSum>
   </Self>
   <ComposedOf>

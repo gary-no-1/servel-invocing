@@ -11,6 +11,7 @@
     <Layout>inv_taxes\ShowInv_taxesTable.html</Layout>
     <DisplayName>ShowInv_taxesTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-206024390-47916</CheckSum>
   </Self>
   <ComposedOf>

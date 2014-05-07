@@ -11,6 +11,7 @@
     <Layout>company\ShowCompanyTable.html</Layout>
     <DisplayName>ShowCompanyTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-1546029602-55059</CheckSum>
   </Self>
   <ComposedOf>
