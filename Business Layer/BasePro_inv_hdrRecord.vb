@@ -238,6 +238,57 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.id_partyColumn)
 	End Sub
 	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_hdr_.id_site field.
+	''' </summary>
+	Public Function Getid_siteValue() As ColumnValue
+		Return Me.GetValue(TableUtils.id_siteColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_hdr_.id_site field.
+	''' </summary>
+	Public Function Getid_siteFieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id_siteColumn).ToInt32(), Int32)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_hdr_.id_site field.
+	''' </summary>
+	Public Sub Setid_siteFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.id_siteColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_hdr_.id_site field.
+	''' </summary>
+	Public Sub Setid_siteFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.id_siteColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_hdr_.id_site field.
+	''' </summary>
+	Public Sub Setid_siteFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_siteColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_hdr_.id_site field.
+	''' </summary>
+	Public Sub Setid_siteFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_siteColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_hdr_.id_site field.
+	''' </summary>
+	Public Sub Setid_siteFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_siteColumn)
+	End Sub
+	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_hdr_.bill_name field.
 	''' </summary>
 	Public Function Getbill_nameValue() As ColumnValue
@@ -1252,6 +1303,42 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property id_partyDefault() As String
         Get
             Return TableUtils.id_partyColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Pro_inv_hdr_.id_site field.
+	''' </summary>
+	Public Property id_site() As Int32
+		Get 
+			Return CType(Me.GetValue(TableUtils.id_siteColumn).ToInt32(), Int32)
+		End Get
+		Set (ByVal val As Int32) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.id_siteColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property id_siteSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id_siteColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property id_siteDefault() As String
+        Get
+            Return TableUtils.id_siteColumn.DefaultValue
         End Get
     End Property
 

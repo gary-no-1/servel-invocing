@@ -31,13 +31,13 @@
     </Column>
     <Column InternalName="1" Priority="2" ColumnNum="1">
       <columnName>inv_no</columnName>
-      <columnUIName Source="Database">Invoice No.</columnUIName>
+      <columnUIName Source="User">Invoice No:</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>20</columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault>
+      <columnDBDefault Source="User">
       </columnDBDefault>
       <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
@@ -47,48 +47,58 @@
       </columnDBFormat>
       <columnPK>N</columnPK>
       <columnPermanent>N</columnPermanent>
-      <columnComputed>N</columnComputed>
-      <columnIdentity>N</columnIdentity>
-      <columnReadOnly>N</columnReadOnly>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>1</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
     </Column>
     <Column InternalName="2" Priority="3" ColumnNum="2">
       <columnName>inv_dt</columnName>
-      <columnUIName Source="Database">Invoice Date</columnUIName>
+      <columnUIName Source="User">Invoice Date</columnUIName>
       <columnType>Date</columnType>
       <columnDBType>date</columnDBType>
       <columnLengthSet>
       </columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault>
+      <columnDBDefault Source="User">
       </columnDBDefault>
       <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
       <columnFunction>
       </columnFunction>
-      <columnFormat>d</columnFormat>
+      <columnFormat Source="User">d</columnFormat>
       <columnDBFormat>d</columnDBFormat>
       <columnPK>N</columnPK>
       <columnPermanent>N</columnPermanent>
-      <columnComputed>N</columnComputed>
-      <columnIdentity>N</columnIdentity>
-      <columnReadOnly>N</columnReadOnly>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="Database">Y</columnCaseSensitive>
+      <columnCaseSensitive Source="User">Y</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>2</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
     </Column>
     <Column InternalName="3" Priority="4" ColumnNum="3">
       <columnName>pro_inv_no</columnName>
-      <columnUIName Source="User">Pro Inv No.</columnUIName>
+      <columnUIName Source="User">Pro Inv No:</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>20</columnLengthSet>
@@ -121,40 +131,35 @@
     </Column>
     <Column InternalName="4" Priority="5" ColumnNum="4">
       <columnName>pro_inv_dt</columnName>
-      <columnUIName Source="User">Pro Inv Date</columnUIName>
+      <columnUIName Source="Database">Pro Inv Date</columnUIName>
       <columnType>Date</columnType>
       <columnDBType>date</columnDBType>
       <columnLengthSet>
       </columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault Source="User">getdate()</columnDBDefault>
+      <columnDBDefault>getdate()</columnDBDefault>
       <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
       <columnFunction>
       </columnFunction>
-      <columnFormat Source="User">d</columnFormat>
+      <columnFormat>d</columnFormat>
       <columnDBFormat>d</columnDBFormat>
       <columnPK>N</columnPK>
       <columnPermanent>N</columnPermanent>
-      <columnComputed Source="User">N</columnComputed>
-      <columnIdentity Source="User">N</columnIdentity>
-      <columnReadOnly Source="User">N</columnReadOnly>
+      <columnComputed>N</columnComputed>
+      <columnIdentity>N</columnIdentity>
+      <columnReadOnly>N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="User">Y</columnCaseSensitive>
+      <columnCaseSensitive Source="Database">Y</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
-      <columnCodeName>
-      </columnCodeName>
-      <InternalName>4</InternalName>
-      <columnTableClassName>
-      </columnTableClassName>
     </Column>
     <Column InternalName="5" Priority="6" ColumnNum="5">
       <columnName>sale_ord_no</columnName>
-      <columnUIName Source="User">Sale Order No.</columnUIName>
+      <columnUIName Source="User">OA No:</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>20</columnLengthSet>
@@ -187,7 +192,7 @@
     </Column>
     <Column InternalName="6" Priority="7" ColumnNum="6">
       <columnName>sale_ord_dt</columnName>
-      <columnUIName Source="User">Sale Order Date</columnUIName>
+      <columnUIName Source="User">OA Date</columnUIName>
       <columnType>Date</columnType>
       <columnDBType>date</columnDBType>
       <columnLengthSet>
@@ -256,6 +261,47 @@
       </foreignKey>
     </Column>
     <Column InternalName="8" Priority="9" ColumnNum="8">
+      <columnName>id_site</columnName>
+      <columnUIName Source="User">Site</columnUIName>
+      <columnType>Number</columnType>
+      <columnDBType>int</columnDBType>
+      <columnLengthSet>10.0</columnLengthSet>
+      <columnDefault>
+      </columnDefault>
+      <columnDBDefault Source="User">
+      </columnDBDefault>
+      <columnIndex>N</columnIndex>
+      <columnUnique>N</columnUnique>
+      <columnFunction>
+      </columnFunction>
+      <columnDBFormat>
+      </columnDBFormat>
+      <columnPK>N</columnPK>
+      <columnPermanent>N</columnPermanent>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
+      <columnRequired>N</columnRequired>
+      <columnNotNull>N</columnNotNull>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
+      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
+      <columnTableAliasName>
+      </columnTableAliasName>
+      <foreignKey>
+        <columnFKName>inv_hdr_sites_id_site_FK</columnFKName>
+        <columnFKTable>sites</columnFKTable>
+        <columnFKOwner>dbo</columnFKOwner>
+        <columnFKColumn>id</columnFKColumn>
+        <columnFKColumnDisplay>name</columnFKColumnDisplay>
+        <foreignKeyType>Explicit</foreignKeyType>
+      </foreignKey>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>8</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
+    </Column>
+    <Column InternalName="9" Priority="10" ColumnNum="9">
       <columnName>bill_name</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
@@ -283,7 +329,7 @@
       <columnTableAliasName>
       </columnTableAliasName>
     </Column>
-    <Column InternalName="9" Priority="10" ColumnNum="9">
+    <Column InternalName="10" Priority="11" ColumnNum="10">
       <columnName>bill_address</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
@@ -311,7 +357,7 @@
       <columnTableAliasName>
       </columnTableAliasName>
     </Column>
-    <Column InternalName="10" Priority="11" ColumnNum="10">
+    <Column InternalName="11" Priority="12" ColumnNum="11">
       <columnName>ship_name</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
@@ -339,7 +385,7 @@
       <columnTableAliasName>
       </columnTableAliasName>
     </Column>
-    <Column InternalName="11" Priority="12" ColumnNum="11">
+    <Column InternalName="12" Priority="13" ColumnNum="12">
       <columnName>ship_address</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
@@ -367,37 +413,9 @@
       <columnTableAliasName>
       </columnTableAliasName>
     </Column>
-    <Column InternalName="12" Priority="13" ColumnNum="12">
-      <columnName>tin_no</columnName>
-      <columnUIName>%ISD_DEFAULT%</columnUIName>
-      <columnType>String</columnType>
-      <columnDBType>nchar</columnDBType>
-      <columnLengthSet>20</columnLengthSet>
-      <columnDefault>
-      </columnDefault>
-      <columnDBDefault>
-      </columnDBDefault>
-      <columnIndex>N</columnIndex>
-      <columnUnique>N</columnUnique>
-      <columnFunction>
-      </columnFunction>
-      <columnDBFormat>
-      </columnDBFormat>
-      <columnPK>N</columnPK>
-      <columnPermanent>N</columnPermanent>
-      <columnComputed>N</columnComputed>
-      <columnIdentity>N</columnIdentity>
-      <columnReadOnly>N</columnReadOnly>
-      <columnRequired>N</columnRequired>
-      <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
-      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
-      <columnTableAliasName>
-      </columnTableAliasName>
-    </Column>
     <Column InternalName="13" Priority="14" ColumnNum="13">
-      <columnName>po_no</columnName>
-      <columnUIName Source="User">P.O. No.</columnUIName>
+      <columnName>tin_no</columnName>
+      <columnUIName Source="User">TIN</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>20</columnLengthSet>
@@ -429,45 +447,11 @@
       </columnTableClassName>
     </Column>
     <Column InternalName="14" Priority="15" ColumnNum="14">
-      <columnName>po_dt</columnName>
-      <columnUIName Source="User">P.O. Date</columnUIName>
-      <columnType>Date</columnType>
-      <columnDBType>date</columnDBType>
-      <columnLengthSet>
-      </columnLengthSet>
-      <columnDefault>
-      </columnDefault>
-      <columnDBDefault Source="User">
-      </columnDBDefault>
-      <columnIndex>N</columnIndex>
-      <columnUnique>N</columnUnique>
-      <columnFunction>
-      </columnFunction>
-      <columnFormat Source="User">d</columnFormat>
-      <columnDBFormat>d</columnDBFormat>
-      <columnPK>N</columnPK>
-      <columnPermanent>N</columnPermanent>
-      <columnComputed Source="User">N</columnComputed>
-      <columnIdentity Source="User">N</columnIdentity>
-      <columnReadOnly Source="User">N</columnReadOnly>
-      <columnRequired>N</columnRequired>
-      <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="User">Y</columnCaseSensitive>
-      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
-      <columnTableAliasName>
-      </columnTableAliasName>
-      <columnCodeName>
-      </columnCodeName>
-      <InternalName>14</InternalName>
-      <columnTableClassName>
-      </columnTableClassName>
-    </Column>
-    <Column InternalName="15" Priority="16" ColumnNum="15">
-      <columnName>id_commodity</columnName>
-      <columnUIName Source="User">Commodity</columnUIName>
-      <columnType>Number</columnType>
-      <columnDBType>int</columnDBType>
-      <columnLengthSet>10.0</columnLengthSet>
+      <columnName>po_no</columnName>
+      <columnUIName Source="User">P.O. No:</columnUIName>
+      <columnType>String</columnType>
+      <columnDBType>nchar</columnDBType>
+      <columnLengthSet>20</columnLengthSet>
       <columnDefault>
       </columnDefault>
       <columnDBDefault Source="User">
@@ -489,6 +473,68 @@
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>14</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
+    </Column>
+    <Column InternalName="15" Priority="16" ColumnNum="15">
+      <columnName>po_dt</columnName>
+      <columnUIName Source="Database">P.O. Date</columnUIName>
+      <columnType>Date</columnType>
+      <columnDBType>date</columnDBType>
+      <columnLengthSet>
+      </columnLengthSet>
+      <columnDefault>
+      </columnDefault>
+      <columnDBDefault>
+      </columnDBDefault>
+      <columnIndex>N</columnIndex>
+      <columnUnique>N</columnUnique>
+      <columnFunction>
+      </columnFunction>
+      <columnFormat>d</columnFormat>
+      <columnDBFormat>d</columnDBFormat>
+      <columnPK>N</columnPK>
+      <columnPermanent>N</columnPermanent>
+      <columnComputed>N</columnComputed>
+      <columnIdentity>N</columnIdentity>
+      <columnReadOnly>N</columnReadOnly>
+      <columnRequired>N</columnRequired>
+      <columnNotNull>N</columnNotNull>
+      <columnCaseSensitive Source="Database">Y</columnCaseSensitive>
+      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
+      <columnTableAliasName>
+      </columnTableAliasName>
+    </Column>
+    <Column InternalName="16" Priority="17" ColumnNum="16">
+      <columnName>id_commodity</columnName>
+      <columnUIName>Commodity</columnUIName>
+      <columnType>Number</columnType>
+      <columnDBType>int</columnDBType>
+      <columnLengthSet>10.0</columnLengthSet>
+      <columnDefault>
+      </columnDefault>
+      <columnDBDefault>
+      </columnDBDefault>
+      <columnIndex>N</columnIndex>
+      <columnUnique>N</columnUnique>
+      <columnFunction>
+      </columnFunction>
+      <columnDBFormat>
+      </columnDBFormat>
+      <columnPK>N</columnPK>
+      <columnPermanent>N</columnPermanent>
+      <columnComputed>N</columnComputed>
+      <columnIdentity>N</columnIdentity>
+      <columnReadOnly>N</columnReadOnly>
+      <columnRequired>N</columnRequired>
+      <columnNotNull>N</columnNotNull>
+      <columnCaseSensitive>N</columnCaseSensitive>
+      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
+      <columnTableAliasName>
+      </columnTableAliasName>
       <foreignKey>
         <columnFKName>inv_hdr_commodity_id_commodity_FK</columnFKName>
         <columnFKTable>commodity</columnFKTable>
@@ -497,13 +543,8 @@
         <columnFKColumnDisplay>commodity</columnFKColumnDisplay>
         <foreignKeyType>Explicit</foreignKeyType>
       </foreignKey>
-      <columnCodeName>
-      </columnCodeName>
-      <InternalName>15</InternalName>
-      <columnTableClassName>
-      </columnTableClassName>
     </Column>
-    <Column InternalName="16" Priority="17" ColumnNum="16">
+    <Column InternalName="17" Priority="18" ColumnNum="17">
       <columnName>id_tax_group</columnName>
       <columnUIName>Tax Code</columnUIName>
       <columnType>Number</columnType>
@@ -539,7 +580,7 @@
         <foreignKeyType>Explicit</foreignKeyType>
       </foreignKey>
     </Column>
-    <Column InternalName="17" Priority="18" ColumnNum="17">
+    <Column InternalName="18" Priority="19" ColumnNum="18">
       <columnName>item_total</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>Number</columnType>
@@ -567,7 +608,7 @@
       <columnTableAliasName>
       </columnTableAliasName>
     </Column>
-    <Column InternalName="18" Priority="19" ColumnNum="18">
+    <Column InternalName="19" Priority="20" ColumnNum="19">
       <columnName>grand_total</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>Number</columnType>
@@ -595,15 +636,15 @@
       <columnTableAliasName>
       </columnTableAliasName>
     </Column>
-    <Column InternalName="19" Priority="20" ColumnNum="19">
+    <Column InternalName="20" Priority="21" ColumnNum="20">
       <columnName>road_permit_no</columnName>
-      <columnUIName Source="User">Road Permit No.</columnUIName>
+      <columnUIName Source="Database">Road Permit No.</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>40</columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault Source="User">
+      <columnDBDefault>
       </columnDBDefault>
       <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
@@ -613,22 +654,17 @@
       </columnDBFormat>
       <columnPK>N</columnPK>
       <columnPermanent>N</columnPermanent>
-      <columnComputed Source="User">N</columnComputed>
-      <columnIdentity Source="User">N</columnIdentity>
-      <columnReadOnly Source="User">N</columnReadOnly>
+      <columnComputed>N</columnComputed>
+      <columnIdentity>N</columnIdentity>
+      <columnReadOnly>N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="User">N</columnCaseSensitive>
+      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
-      <columnCodeName>
-      </columnCodeName>
-      <InternalName>19</InternalName>
-      <columnTableClassName>
-      </columnTableClassName>
     </Column>
-    <Column InternalName="20" Priority="21" ColumnNum="20">
+    <Column InternalName="21" Priority="22" ColumnNum="21">
       <columnName>packing_details</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
@@ -656,7 +692,7 @@
       <columnTableAliasName>
       </columnTableAliasName>
     </Column>
-    <Column InternalName="21" Priority="22" ColumnNum="21">
+    <Column InternalName="22" Priority="23" ColumnNum="22">
       <columnName>weight</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
@@ -684,7 +720,7 @@
       <columnTableAliasName>
       </columnTableAliasName>
     </Column>
-    <Column InternalName="22" Priority="23" ColumnNum="22">
+    <Column InternalName="23" Priority="24" ColumnNum="23">
       <columnName>no_of_packages</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
@@ -712,7 +748,7 @@
       <columnTableAliasName>
       </columnTableAliasName>
     </Column>
-    <Column InternalName="23" Priority="24" ColumnNum="23">
+    <Column InternalName="24" Priority="25" ColumnNum="24">
       <columnName>id_transporter</columnName>
       <columnUIName>Transporter</columnUIName>
       <columnType>Number</columnType>
@@ -748,9 +784,9 @@
         <foreignKeyType>Explicit</foreignKeyType>
       </foreignKey>
     </Column>
-    <Column InternalName="24" Priority="25" ColumnNum="24">
+    <Column InternalName="25" Priority="26" ColumnNum="25">
       <columnName>gr_rr_no</columnName>
-      <columnUIName Source="User">GR / RR No.</columnUIName>
+      <columnUIName Source="User">GR / RR No:</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>20</columnLengthSet>
@@ -777,45 +813,40 @@
       </columnTableAliasName>
       <columnCodeName>
       </columnCodeName>
-      <InternalName>24</InternalName>
+      <InternalName>25</InternalName>
       <columnTableClassName>
       </columnTableClassName>
     </Column>
-    <Column InternalName="25" Priority="26" ColumnNum="25">
+    <Column InternalName="26" Priority="27" ColumnNum="26">
       <columnName>gr_rr_dt</columnName>
-      <columnUIName Source="User">GR / RR Date</columnUIName>
+      <columnUIName Source="Database">GR / RR Date</columnUIName>
       <columnType>Date</columnType>
       <columnDBType>date</columnDBType>
       <columnLengthSet>
       </columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault Source="User">
+      <columnDBDefault>
       </columnDBDefault>
       <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
       <columnFunction>
       </columnFunction>
-      <columnFormat Source="User">d</columnFormat>
+      <columnFormat>d</columnFormat>
       <columnDBFormat>d</columnDBFormat>
       <columnPK>N</columnPK>
       <columnPermanent>N</columnPermanent>
-      <columnComputed Source="User">N</columnComputed>
-      <columnIdentity Source="User">N</columnIdentity>
-      <columnReadOnly Source="User">N</columnReadOnly>
+      <columnComputed>N</columnComputed>
+      <columnIdentity>N</columnIdentity>
+      <columnReadOnly>N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="User">Y</columnCaseSensitive>
+      <columnCaseSensitive Source="Database">Y</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
-      <columnCodeName>
-      </columnCodeName>
-      <InternalName>25</InternalName>
-      <columnTableClassName>
-      </columnTableClassName>
     </Column>
-    <Column InternalName="26" Priority="27" ColumnNum="26">
+    <Column InternalName="27" Priority="28" ColumnNum="27">
       <columnName>freight_to_pay</columnName>
       <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
@@ -843,15 +874,15 @@
       <columnTableAliasName>
       </columnTableAliasName>
     </Column>
-    <Column InternalName="27" Priority="28" ColumnNum="27">
+    <Column InternalName="28" Priority="29" ColumnNum="28">
       <columnName>vehicle_no</columnName>
-      <columnUIName>%ISD_DEFAULT%</columnUIName>
+      <columnUIName Source="User">Vehicle No:</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>20</columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault>
+      <columnDBDefault Source="User">
       </columnDBDefault>
       <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
@@ -861,19 +892,24 @@
       </columnDBFormat>
       <columnPK>N</columnPK>
       <columnPermanent>N</columnPermanent>
-      <columnComputed>N</columnComputed>
-      <columnIdentity>N</columnIdentity>
-      <columnReadOnly>N</columnReadOnly>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>28</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
     </Column>
   </ColumnDefinition>
   <TableName>inv_hdr</TableName>
-  <Version>2</Version>
+  <Version>3</Version>
   <Owner>dbo</Owner>
   <TableCodeName>Inv_hdr</TableCodeName>
   <TableAliasName>Inv_hdr_</TableAliasName>

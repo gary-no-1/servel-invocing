@@ -8662,6 +8662,8 @@ Public Class BasePro_inv_hdrRecordControl
             
               AddHandler Me.id_party.SelectedIndexChanged, AddressOf id_party_SelectedIndexChanged
             
+              AddHandler Me.id_site.SelectedIndexChanged, AddressOf id_site_SelectedIndexChanged
+            
               AddHandler Me.id_tax_group.SelectedIndexChanged, AddressOf id_tax_group_SelectedIndexChanged
             
               AddHandler Me.id_transporter.SelectedIndexChanged, AddressOf id_transporter_SelectedIndexChanged
@@ -8800,6 +8802,8 @@ Public Class BasePro_inv_hdrRecordControl
             Setid_commodityLabel()
             Setid_party()
             Setid_partyLabel()
+            Setid_site()
+            Setid_siteLabel()
             Setid_tax_group()
             Setid_tax_groupLabel()
             Setid_transporter()
@@ -9149,6 +9153,40 @@ Public Class BasePro_inv_hdrRecordControl
                     Me.Populateid_partyDropDownList(Nothing, 100)
                 Else
                     Me.Populateid_partyDropDownList(Pro_inv_hdrTable.id_party.DefaultValue, 100)
+                End If
+                				
+            End If			
+                
+        End Sub
+                
+        Public Overridable Sub Setid_site()
+            
+        
+            ' Set the id_site DropDownList on the webpage with value from the
+            ' pro_inv_hdr database record.
+            
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.id_site is the ASP:DropDownList on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid_site()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_siteSpecified Then
+                            
+                ' If the id_site is non-NULL, then format the value.
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                Me.Populateid_siteDropDownList(Me.DataSource.id_site.ToString(), 100)
+                
+            Else
+                
+                ' id_site is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+                If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
+                    Me.Populateid_siteDropDownList(Nothing, 100)
+                Else
+                    Me.Populateid_siteDropDownList(Pro_inv_hdrTable.id_site.DefaultValue, 100)
                 End If
                 				
             End If			
@@ -9753,6 +9791,11 @@ Public Class BasePro_inv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setid_siteLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setid_tax_groupLabel()
             
                     
@@ -9956,6 +9999,7 @@ Public Class BasePro_inv_hdrRecordControl
             Getgrand_total()
             Getid_commodity()
             Getid_party()
+            Getid_site()
             Getid_tax_group()
             Getid_transporter()
             Getitem_total()
@@ -10075,6 +10119,17 @@ Public Class BasePro_inv_hdrRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             Me.DataSource.Parse(GetValueSelectedPageRequest(Me.id_party), Pro_inv_hdrTable.id_party)				
+            
+        End Sub
+                
+        Public Overridable Sub Getid_site()
+         
+            ' Retrieve the value entered by the user on the id_site ASP:DropDownList, and
+            ' save it into the id_site field in DataSource pro_inv_hdr record.
+                        
+            ' Custom validation should be performed in Validate, not here.
+            
+            Me.DataSource.Parse(GetValueSelectedPageRequest(Me.id_site), Pro_inv_hdrTable.id_site)				
             
         End Sub
                 
@@ -10605,6 +10660,22 @@ Public Class BasePro_inv_hdrRecordControl
         
                 
 
+        Public Overridable Function CreateWhereClause_id_siteDropDownList() As WhereClause
+            ' By default, we simply return a new WhereClause.
+            ' Add additional where clauses to restrict the items shown in the dropdown list.
+            						
+            ' This WhereClause is for the sites table.
+            ' Examples:
+            ' wc.iAND(SitesTable.name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(SitesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
+            
+            Dim wc As WhereClause = New WhereClause()
+            Return wc
+            				
+        End Function
+        
+                
+
         Public Overridable Function CreateWhereClause_id_tax_groupDropDownList() As WhereClause
             ' By default, we simply return a new WhereClause.
             ' Add additional where clauses to restrict the items shown in the dropdown list.
@@ -10807,6 +10878,96 @@ Public Class BasePro_inv_hdrRecordControl
                         Dim item As ListItem = New ListItem(fvalue, selectedValue)
                         item.Selected = True
                         Me.id_party.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+                
+        End Sub
+                
+        ' Fill the id_site list.
+        Protected Overridable Sub Populateid_siteDropDownList( _
+                ByVal selectedValue As String, _
+                ByVal maxItems As Integer)
+            		  					                
+            Me.id_site.Items.Clear()
+            
+            ' This is a four step process.
+            ' 1. Setup the static list items
+            ' 2. Set up the WHERE and the ORDER BY clause
+            ' 3. Read a total of maxItems from the database and insert them
+            ' 4. Set the selected value (insert if not already present).
+                    
+            ' 1. Setup the static list items
+            														
+            Me.id_site.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))							
+                            		  			
+            ' 2. Set up the WHERE and the ORDER BY clause by calling the CreateWhereClause_id_siteDropDownList function.
+            ' It is better to customize the where clause there.
+            
+            Dim wc As WhereClause = CreateWhereClause_id_siteDropDownList()
+            ' Create the ORDER BY clause to sort based on the displayed value.			
+                
+      
+      
+            Dim orderBy As OrderBy = New OrderBy(false, true)			
+        
+            orderBy.Add(SitesTable.name, OrderByItem.OrderDir.Asc)				
+            
+            ' 3. Read a total of maxItems from the database and insert them		
+            Dim itemValues() As SitesRecord = Nothing
+            If wc.RunQuery
+                Dim counter As Integer = 0
+                Dim pageNum As Integer = 0
+                Do
+                    itemValues = SitesTable.GetRecords(wc, orderBy, pageNum, 500)
+                    For each itemValue As SitesRecord In itemValues
+                        ' Create the item and add to the list.
+                        Dim cvalue As String = Nothing
+                        Dim fvalue As String = Nothing
+                        If itemValue.id0Specified Then
+                            cvalue = itemValue.id0.ToString()
+                            fvalue = itemValue.Format(SitesTable.name)
+                                    
+                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
+                            Dim newItem As New ListItem(fvalue, cvalue)
+                            If counter < maxItems AndAlso Not Me.id_site.Items.Contains(newItem) Then Me.id_site.Items.Add(newItem)
+                            counter += 1
+                        End If
+                    Next
+                    pageNum += 1
+                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
+            End If
+                            
+                    
+            ' 4. Set the selected value (insert if not already present).
+              
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_site, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_site, selectedValue)Then
+
+                ' construct a whereclause to query a record with sites.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(SitesTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As SitesRecord = SitesTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Pro_inv_hdrTable.id_site.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_site.Items.Add(item)
                     End If
                 Catch
                 End Try
@@ -11096,6 +11257,54 @@ Public Class BasePro_inv_hdrRecordControl
                         Dim item As ListItem = New ListItem(fvalue, selectedValue)
                         item.Selected = True
                         Me.id_party.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+            End If
+          									
+                
+                
+        End Sub
+            
+        Protected Overridable Sub id_site_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.id_site.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_site)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_site, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_site, selectedValue)Then
+
+                ' construct a whereclause to query a record with sites.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(SitesTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As SitesRecord = SitesTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Pro_inv_hdrTable.id_site.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_site.Items.Add(item)
                     End If
                 Catch
                 End Try
@@ -11516,6 +11725,18 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property id_partyLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_partyLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property id_site() As System.Web.UI.WebControls.DropDownList
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_site"), System.Web.UI.WebControls.DropDownList)
+            End Get
+        End Property
+            
+        Public ReadOnly Property id_siteLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_siteLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

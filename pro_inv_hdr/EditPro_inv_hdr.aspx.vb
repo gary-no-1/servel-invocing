@@ -175,6 +175,8 @@ Partial Public Class EditPro_inv_hdr
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_party As System.Web.UI.WebControls.DropDownList
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id_site As System.Web.UI.WebControls.DropDownList
+        Public WithEvents id_siteLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_tax_group As System.Web.UI.WebControls.DropDownList
         Public WithEvents id_tax_groupLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_taxesLabel1 As System.Web.UI.WebControls.LinkButton
