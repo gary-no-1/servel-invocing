@@ -401,69 +401,7 @@ Public Class Pro_inv_hdrRecordControl
         
 
 
-		Protected Overrides Sub id_party_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
-            ' If a large list selector or a Quick Add link is used, the dropdown list
-            ' will contain an item that was not in the original (smaller) list.  During postbacks,
-            ' this new item will not be in the list - since the list is based on the original values
-            ' read from the database. This function adds the value back if necessary.
-            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
-            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
-            ' When this function is fire for Make or Model, we don't want the following code executed.
-            ' Therefore, we check this situation using Items.Count > 1			
-            If Me.id_party.Items.Count > 1 Then
-                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_party)
-                 
-            If Not selectedValue Is Nothing AndAlso _
-                selectedValue.Trim <> "" AndAlso _
-                Not SetSelectedValue(Me.id_party, selectedValue) AndAlso _
-                Not SetSelectedDisplayText(Me.id_party, selectedValue)Then
-
-                ' construct a whereclause to query a record with party.id = selectedValue
-                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
-                Dim whereClause2 As WhereClause = New WhereClause()
-                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(PartyTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
-                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
-
-                Try
-                    ' Execute the query
-                    Dim rc() As PartyRecord = PartyTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
-
-                    ' if find a record, add it to the dropdown and set it as selected item
-                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
-                        
-                        Dim fvalue As String = Pro_inv_hdrTable.id_party.Format(selectedValue)																			
-                            
-                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
-                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
-                        item.Selected = True
-                        Me.id_party.Items.Add(item)
-                    End If
-                Catch
-                End Try
-
-            End If					
-                        
-            End If
 		
-			Dim selectedText As String = id_party.SelectedItem.Text
-	    	If not (BaseClasses.Utils.StringUtils.InvariantUCase(selectedText).Equals(BaseClasses.Utils.StringUtils.InvariantUCase(Page.GetResourceValue("Txt:PleaseSelect", "ServelInvocing"))))
-    	    	' if "Please Select" string is selected for first dropdown list,
-	        	' then do not continue populating the second dropdown list.
-				Dim thisParty_id As String
-				thisParty_id = me.id_party.text
-				Dim srchHdrStr As String
-				srchHdrStr = "id = '" + thisParty_Id + "'"
-				Dim ProInvPartyRec As partyRecord = PartyTable.GetRecord(srchHdrStr, False)
-				me.tin_no.text = ProInvPartyRec.tin_no
-				me.bill_name.text = ProInvPartyRec.name
-				me.bill_address.text = ProInvPartyRec.address
-				me.ship_name.text = ProInvPartyRec.name
-				me.ship_address.text = ProInvPartyRec.address
-    	    	Return    
-    		End If
-               
-        End Sub
-
 		Protected Overrides Sub id_tax_group_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
             ' If a large list selector or a Quick Add link is used, the dropdown list
             ' will contain an item that was not in the original (smaller) list.  During postbacks,
@@ -704,6 +642,149 @@ Public Class Pro_inv_hdrRecordControl
     
             End Try
     
+        End Sub
+
+		Protected Overrides Sub id_party_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.id_party.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_party)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_party, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_party, selectedValue)Then
+
+                ' construct a whereclause to query a record with party.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(PartyTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As PartyRecord = PartyTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Pro_inv_hdrTable.id_party.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_party.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+            End If
+          
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction()
+                ' Because Set methods will be called, it is important to initialize the data source ahead of time
+                Me.DataSource = Me.GetRecord()
+                Me.Page.CommitTransaction(sender)
+
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+            Finally
+                DbUtils.EndTransaction()
+            End Try			
+
+			Dim selectedText As String = id_party.SelectedItem.Text
+	    	If not (BaseClasses.Utils.StringUtils.InvariantUCase(selectedText).Equals(BaseClasses.Utils.StringUtils.InvariantUCase(Page.GetResourceValue("Txt:PleaseSelect", "ServelInvocing"))))
+    	    	' if "Please Select" string is selected for first dropdown list,
+	        	' then do not continue populating the second dropdown list.
+				Dim thisParty_id As String
+				thisParty_id = me.id_party.text
+				Dim srchHdrStr As String
+				srchHdrStr = "id = '" + thisParty_Id + "'"
+				Dim ProInvPartyRec As partyRecord = PartyTable.GetRecord(srchHdrStr, False)
+				me.tin_no.text = ProInvPartyRec.tin_no
+				me.bill_name.text = ProInvPartyRec.name
+				me.bill_address.text = ProInvPartyRec.address
+				me.ship_name.text = ProInvPartyRec.name
+				me.ship_address.text = ProInvPartyRec.address
+    	    	' Return    
+    		End If
+		
+                
+            ' Reset id_site
+            Setid_site()									
+                
+                
+        End Sub
+
+		Protected Overrides Sub id_site_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.id_site.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_site)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_site, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_site, selectedValue)Then
+
+                ' construct a whereclause to query a record with sites.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(SitesTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As SitesRecord = SitesTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String= EvaluateFormula("name", rc(0))				
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_site.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+            End If
+          									
+			Dim selectedText As String = id_site.SelectedItem.Text
+	    	If not (BaseClasses.Utils.StringUtils.InvariantUCase(selectedText).Equals(BaseClasses.Utils.StringUtils.InvariantUCase(Page.GetResourceValue("Txt:PleaseSelect", "ServelInvocing"))))
+    	    	' if "Please Select" string is selected for first dropdown list,
+	        	' then do not continue populating the second dropdown list.
+				Dim thisSite_id As String
+				thisSite_id = me.id_site.text
+				Dim srchHdrStr As String
+				srchHdrStr = "id = '" + thisSite_Id + "'"
+				Dim ProInvSitesRec As sitesRecord = SitesTable.GetRecord(srchHdrStr, False)
+				me.ship_name.text = ProInvSitesRec.name
+				me.ship_address.text = ProInvSitesRec.address
+    	    	' Return    
+    		End If
+                
+                
         End Sub
 End Class
 
@@ -8897,6 +8978,9 @@ Public Class BasePro_inv_hdrRecordControl
                 
         Public Overridable Sub Setid_party()
             
+            ' Set AutoPostBack to true so that when the control value is changed, to refresh id_site controls
+            Me.id_party.AutoPostBack = True
+            
         
             ' Set the id_party DropDownList on the webpage with value from the
             ' pro_inv_hdr database record.
@@ -10443,10 +10527,16 @@ Public Class BasePro_inv_hdrRecordControl
             ' Examples:
             ' wc.iAND(SitesTable.name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
             ' wc.iAND(SitesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
-            
-            Dim wc As WhereClause = New WhereClause()
-            Return wc
-            				
+            Dim filter As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+        Dim whereClause As WhereClause = New WhereClause()
+
+            If EvaluateFormula("Pro_inv_hdrRecordControl.id_party.SelectedValue") <> "" Then filter.AddFilter(New BaseClasses.Data.ColumnValueFilter(BaseClasses.Data.BaseTable.CreateInstance("ServelInvocing.Business.SitesTable, ServelInvocing.Business").TableDefinition.ColumnList.GetByUniqueName("Sites_.id_party"), EvaluateFormula("Pro_inv_hdrRecordControl.id_party.SelectedValue"), BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+         If (EvaluateFormula("Pro_inv_hdrRecordControl.id_party.SelectedValue") = "--PLEASE_SELECT--" OrElse EvaluateFormula("Pro_inv_hdrRecordControl.id_party.SelectedValue") = "--ANY--") Then whereClause.RunQuery = False
+
+            whereClause.AddFilter(filter, CompoundFilter.CompoundingOperators.And_Operator)
+
+            Return whereClause
+				
         End Function
         
                 
@@ -10688,9 +10778,7 @@ Public Class BasePro_inv_hdrRecordControl
       
       
             Dim orderBy As OrderBy = New OrderBy(false, true)			
-        
-            orderBy.Add(SitesTable.name, OrderByItem.OrderDir.Asc)				
-            
+        orderBy.Add(SitesTable.name, OrderByItem.OrderDir.Asc)
             ' 3. Read a total of maxItems from the database and insert them		
             Dim itemValues() As SitesRecord = Nothing
             If wc.RunQuery
@@ -10704,7 +10792,7 @@ Public Class BasePro_inv_hdrRecordControl
                         Dim fvalue As String = Nothing
                         If itemValue.id0Specified Then
                             cvalue = itemValue.id0.ToString()
-                            fvalue = itemValue.Format(SitesTable.name)
+                            fvalue = EvaluateFormula("name", itemValue)
                                     
                             If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
                             Dim newItem As New ListItem(fvalue, cvalue)
@@ -10737,7 +10825,7 @@ Public Class BasePro_inv_hdrRecordControl
                     ' if find a record, add it to the dropdown and set it as selected item
                     If rc IsNot Nothing AndAlso rc.Length = 1 Then
                         
-                        Dim fvalue As String = Pro_inv_hdrTable.id_site.Format(selectedValue)																			
+                        Dim fvalue As String= EvaluateFormula("name", rc(0))				
                             
                         If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
                         Dim item As ListItem = New ListItem(fvalue, selectedValue)
@@ -11039,7 +11127,24 @@ Public Class BasePro_inv_hdrRecordControl
             End If					
                         
             End If
-          									
+          
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction()
+                ' Because Set methods will be called, it is important to initialize the data source ahead of time
+                Me.DataSource = Me.GetRecord()
+                Me.Page.CommitTransaction(sender)
+
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+            Finally
+                DbUtils.EndTransaction()
+            End Try			
+                
+                
+            ' Reset id_site
+            Setid_site()									
                 
                 
         End Sub
@@ -11074,7 +11179,7 @@ Public Class BasePro_inv_hdrRecordControl
                     ' if find a record, add it to the dropdown and set it as selected item
                     If rc IsNot Nothing AndAlso rc.Length = 1 Then
                         
-                        Dim fvalue As String = Pro_inv_hdrTable.id_site.Format(selectedValue)																			
+                        Dim fvalue As String= EvaluateFormula("name", rc(0))				
                             
                         If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
                         Dim item As ListItem = New ListItem(fvalue, selectedValue)

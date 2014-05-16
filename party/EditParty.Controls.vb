@@ -100,33 +100,19 @@ Public Class BaseSitesTableControlRow
 			'Call LoadFocusScripts from repeater so that onfocus attribute could be added to elements
 			Me.Page.LoadFocusScripts(Me)
 		
-              ' Show confirmation message on Click
-              Me.SitesRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              AddHandler Me.SitesRowDeleteButton.Click, AddressOf SitesRowDeleteButton_Click
-              
-              AddHandler Me.SitesRowEditButton.Click, AddressOf SitesRowEditButton_Click
-              
-              AddHandler Me.SitesRowViewButton.Click, AddressOf SitesRowViewButton_Click
-              
               AddHandler Me.address1.TextChanged, AddressOf address1_TextChanged
             
               AddHandler Me.city1.TextChanged, AddressOf city1_TextChanged
             
               AddHandler Me.contact1.TextChanged, AddressOf contact1_TextChanged
             
-              AddHandler Me.ecc_no1.TextChanged, AddressOf ecc_no1_TextChanged
-            
               AddHandler Me.email1.TextChanged, AddressOf email1_TextChanged
             
               AddHandler Me.name1.TextChanged, AddressOf name1_TextChanged
             
-              AddHandler Me.pan_no1.TextChanged, AddressOf pan_no1_TextChanged
-            
               AddHandler Me.phone1.TextChanged, AddressOf phone1_TextChanged
-            
-              AddHandler Me.tin_no1.TextChanged, AddressOf tin_no1_TextChanged
             
         End Sub
 
@@ -174,12 +160,9 @@ Public Class BaseSitesTableControlRow
             Setaddress1()
             Setcity1()
             Setcontact1()
-            Setecc_no1()
             Setemail1()
             Setname1()
-            Setpan_no1()
             Setphone1()
-            Settin_no1()
       
       
             Me.IsNewRecord = True
@@ -327,49 +310,6 @@ Public Class BaseSitesTableControlRow
                  
         End Sub
                 
-        Public Overridable Sub Setecc_no1()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.ecc_no1.ID) Then
-            
-                Me.ecc_no1.Text = Me.PreviousUIData(Me.ecc_no1.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the ecc_no TextBox on the webpage with value from the
-            ' sites database record.
-
-            ' Me.DataSource is the sites record retrieved from the database.
-            ' Me.ecc_no1 is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setecc_no1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.ecc_noSpecified Then
-                				
-                ' If the ecc_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.ecc_no)
-                            
-                Me.ecc_no1.Text = formattedValue
-              
-            Else 
-            
-                ' ecc_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.ecc_no1.Text = SitesTable.ecc_no.Format(SitesTable.ecc_no.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
         Public Overridable Sub Setemail1()
             					
             ' If data was retrieved from UI previously, restore it
@@ -456,49 +396,6 @@ Public Class BaseSitesTableControlRow
                  
         End Sub
                 
-        Public Overridable Sub Setpan_no1()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.pan_no1.ID) Then
-            
-                Me.pan_no1.Text = Me.PreviousUIData(Me.pan_no1.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the pan_no TextBox on the webpage with value from the
-            ' sites database record.
-
-            ' Me.DataSource is the sites record retrieved from the database.
-            ' Me.pan_no1 is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setpan_no1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.pan_noSpecified Then
-                				
-                ' If the pan_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.pan_no)
-                            
-                Me.pan_no1.Text = formattedValue
-              
-            Else 
-            
-                ' pan_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.pan_no1.Text = SitesTable.pan_no.Format(SitesTable.pan_no.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
         Public Overridable Sub Setphone1()
             					
             ' If data was retrieved from UI previously, restore it
@@ -537,49 +434,6 @@ Public Class BaseSitesTableControlRow
                 ' Default Value could also be NULL.
         
                 Me.phone1.Text = SitesTable.phone.Format(SitesTable.phone.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Settin_no1()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.tin_no1.ID) Then
-            
-                Me.tin_no1.Text = Me.PreviousUIData(Me.tin_no1.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the tin_no TextBox on the webpage with value from the
-            ' sites database record.
-
-            ' Me.DataSource is the sites record retrieved from the database.
-            ' Me.tin_no1 is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settin_no1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tin_noSpecified Then
-                				
-                ' If the tin_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.tin_no)
-                            
-                Me.tin_no1.Text = formattedValue
-              
-            Else 
-            
-                ' tin_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tin_no1.Text = SitesTable.tin_no.Format(SitesTable.tin_no.DefaultValue)
                         		
                 End If
                  
@@ -699,12 +553,9 @@ Public Class BaseSitesTableControlRow
             Getaddress1()
             Getcity1()
             Getcontact1()
-            Getecc_no1()
             Getemail1()
             Getname1()
-            Getpan_no1()
             Getphone1()
-            Gettin_no1()
         End Sub
         
         
@@ -747,19 +598,6 @@ Public Class BaseSitesTableControlRow
                       
         End Sub
                 
-        Public Overridable Sub Getecc_no1()
-            
-            ' Retrieve the value entered by the user on the ecc_no ASP:TextBox, and
-            ' save it into the ecc_no field in DataSource sites record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.ecc_no1.Text, SitesTable.ecc_no)			
-
-                      
-        End Sub
-                
         Public Overridable Sub Getemail1()
             
             ' Retrieve the value entered by the user on the email ASP:TextBox, and
@@ -786,19 +624,6 @@ Public Class BaseSitesTableControlRow
                       
         End Sub
                 
-        Public Overridable Sub Getpan_no1()
-            
-            ' Retrieve the value entered by the user on the pan_no ASP:TextBox, and
-            ' save it into the pan_no field in DataSource sites record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.pan_no1.Text, SitesTable.pan_no)			
-
-                      
-        End Sub
-                
         Public Overridable Sub Getphone1()
             
             ' Retrieve the value entered by the user on the phone ASP:TextBox, and
@@ -808,19 +633,6 @@ Public Class BaseSitesTableControlRow
             
             'Save the value to data source
             Me.DataSource.Parse(Me.phone1.Text, SitesTable.phone)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Gettin_no1()
-            
-            ' Retrieve the value entered by the user on the tin_no ASP:TextBox, and
-            ' save it into the tin_no field in DataSource sites record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.tin_no1.Text, SitesTable.tin_no)			
 
                       
         End Sub
@@ -908,125 +720,6 @@ Public Class BaseSitesTableControlRow
         End Function
         
         
-        ' event handler for ImageButton
-        Public Overridable Sub SitesRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                Dim tc As SitesTableControl = DirectCast(GetParentControlObject(Me, "SitesTableControl"), SitesTableControl)
-                If Not (IsNothing(tc)) Then
-                    
-                    Me.Visible = False
-                End If
-              
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub SitesRowEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../sites/EditSites.aspx?Sites={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub SitesRowViewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../sites/ShowSites.aspx?Sites={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
         Protected Overridable Sub address1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -1039,10 +732,6 @@ Public Class BaseSitesTableControlRow
                     				
         End Sub
             
-        Protected Overridable Sub ecc_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
         Protected Overridable Sub email1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -1051,15 +740,7 @@ Public Class BaseSitesTableControlRow
                     				
         End Sub
             
-        Protected Overridable Sub pan_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
         Protected Overridable Sub phone1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub tin_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -1190,12 +871,6 @@ Public Class BaseSitesTableControlRow
             End Get
         End Property
             
-        Public ReadOnly Property ecc_no1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_no1"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
         Public ReadOnly Property email1() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email1"), System.Web.UI.WebControls.TextBox)
@@ -1205,12 +880,6 @@ Public Class BaseSitesTableControlRow
         Public ReadOnly Property name1() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "name1"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property pan_no1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pan_no1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
@@ -1226,30 +895,6 @@ Public Class BaseSitesTableControlRow
             End Get
         End Property
         
-        Public ReadOnly Property SitesRowDeleteButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "SitesRowDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property SitesRowEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "SitesRowEditButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property SitesRowViewButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "SitesRowViewButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tin_no1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_no1"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
 #End Region
 
 #Region "Helper Functions"
@@ -1366,17 +1011,11 @@ Public Class BaseSitesTableControl
             
               AddHandler Me.contactLabel1.Click, AddressOf contactLabel1_Click
             
-              AddHandler Me.ecc_noLabel1.Click, AddressOf ecc_noLabel1_Click
-            
               AddHandler Me.emailLabel1.Click, AddressOf emailLabel1_Click
             
               AddHandler Me.nameLabel2.Click, AddressOf nameLabel2_Click
             
-              AddHandler Me.pan_noLabel1.Click, AddressOf pan_noLabel1_Click
-            
               AddHandler Me.phoneLabel1.Click, AddressOf phoneLabel1_Click
-            
-              AddHandler Me.tin_noLabel1.Click, AddressOf tin_noLabel1_Click
             
             ' Setup the button events.
           
@@ -1495,12 +1134,9 @@ Public Class BaseSitesTableControl
             SetaddressLabel1()
             SetcityLabel1()
             SetcontactLabel1()
-            Setecc_noLabel1()
             SetemailLabel1()
             SetnameLabel2()
-            Setpan_noLabel1()
             SetphoneLabel1()
-            Settin_noLabel1()
       
   
 
@@ -1537,12 +1173,9 @@ Public Class BaseSitesTableControl
             SetaddressLabel1()
             SetcityLabel1()
             SetcontactLabel1()
-            Setecc_noLabel1()
             SetemailLabel1()
             SetnameLabel2()
-            Setpan_noLabel1()
             SetphoneLabel1()
-            Settin_noLabel1()
       End Sub
 
       
@@ -1907,23 +1540,14 @@ Public Class BaseSitesTableControl
                         If recControl.contact1.Text <> "" Then
                             rec.Parse(recControl.contact1.Text, SitesTable.contact)
                         End If
-                        If recControl.ecc_no1.Text <> "" Then
-                            rec.Parse(recControl.ecc_no1.Text, SitesTable.ecc_no)
-                        End If
                         If recControl.email1.Text <> "" Then
                             rec.Parse(recControl.email1.Text, SitesTable.email)
                         End If
                         If recControl.name1.Text <> "" Then
                             rec.Parse(recControl.name1.Text, SitesTable.name)
                         End If
-                        If recControl.pan_no1.Text <> "" Then
-                            rec.Parse(recControl.pan_no1.Text, SitesTable.pan_no)
-                        End If
                         If recControl.phone1.Text <> "" Then
                             rec.Parse(recControl.phone1.Text, SitesTable.phone)
-                        End If
-                        If recControl.tin_no1.Text <> "" Then
-                            rec.Parse(recControl.tin_no1.Text, SitesTable.tin_no)
                         End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
@@ -2007,11 +1631,6 @@ Public Class BaseSitesTableControl
                     
         End Sub
                 
-        Public Overridable Sub Setecc_noLabel1()
-            
-                    
-        End Sub
-                
         Public Overridable Sub SetemailLabel1()
             
                     
@@ -2022,17 +1641,7 @@ Public Class BaseSitesTableControl
                     
         End Sub
                 
-        Public Overridable Sub Setpan_noLabel1()
-            
-                    
-        End Sub
-                
         Public Overridable Sub SetphoneLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settin_noLabel1()
             
                     
         End Sub
@@ -2338,28 +1947,6 @@ Public Class BaseSitesTableControl
               
         End Sub
             
-        Public Overridable Sub ecc_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by ecc_no when clicked.
-              
-            ' Get previous sorting state for ecc_no.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.ecc_no)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for ecc_no.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(SitesTable.ecc_no, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by ecc_no, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
         Public Overridable Sub emailLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by email when clicked.
               
@@ -2404,28 +1991,6 @@ Public Class BaseSitesTableControl
               
         End Sub
             
-        Public Overridable Sub pan_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by pan_no when clicked.
-              
-            ' Get previous sorting state for pan_no.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.pan_no)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for pan_no.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(SitesTable.pan_no, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by pan_no, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
         Public Overridable Sub phoneLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by phone when clicked.
               
@@ -2438,28 +2003,6 @@ Public Class BaseSitesTableControl
                 Me.CurrentSortOrder.Add(SitesTable.phone, OrderByItem.OrderDir.Asc)
             Else
                 ' Previously sorted by phone, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub tin_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by tin_no when clicked.
-              
-            ' Get previous sorting state for tin_no.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.tin_no)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for tin_no.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(SitesTable.tin_no, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by tin_no, so just reverse.
                 sd.Reverse()
             End If
             
@@ -2742,12 +2285,6 @@ Public Class BaseSitesTableControl
             End Get
         End Property
         
-        Public ReadOnly Property ecc_noLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_noLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property emailLabel1() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel1"), System.Web.UI.WebControls.LinkButton)
@@ -2757,12 +2294,6 @@ Public Class BaseSitesTableControl
         Public ReadOnly Property nameLabel2() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "nameLabel2"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property pan_noLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pan_noLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -2805,12 +2336,6 @@ Public Class BaseSitesTableControl
         Public ReadOnly Property SitesToggleAll() As System.Web.UI.WebControls.CheckBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "SitesToggleAll"), System.Web.UI.WebControls.CheckBox)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tin_noLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_noLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         

@@ -833,6 +833,10 @@ PARSEDECIMAL(Pro_inv_itemsTableControlRow.rate.Text) ,0) , "c")</Value>
       <Table>pro_inv_hdr</Table>
       <PassthroughAttributes>
         <Attribute>
+          <Name>AutoPostBack</Name>
+          <Value>True</Value>
+        </Attribute>
+        <Attribute>
           <Name>CssClass</Name>
           <Value>field_input</Value>
         </Attribute>

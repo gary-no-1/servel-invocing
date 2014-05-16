@@ -168,14 +168,12 @@ Partial Public Class EditParty
         Public WithEvents contactLabel As System.Web.UI.WebControls.Literal
         Public WithEvents contactLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents ecc_noLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
         Public WithEvents emailLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents nameLabel2 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents pan_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents pan_noLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PartyRecordControl As ServelInvocing.UI.Controls.EditParty.PartyRecordControl
         Public WithEvents PartyTitle As System.Web.UI.WebControls.Literal
         Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal
@@ -189,7 +187,6 @@ Partial Public Class EditParty
         Public WithEvents SitesTableControl As ServelInvocing.UI.Controls.EditParty.SitesTableControl
         Public WithEvents SitesToggleAll As System.Web.UI.WebControls.CheckBox
         Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tin_noLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   

@@ -171,7 +171,6 @@ Partial Public Class ShowParty
         Public WithEvents contactLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents ecc_no As System.Web.UI.WebControls.Literal
         Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents ecc_noLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents EditButton As ThemeButton
         Public WithEvents email As System.Web.UI.WebControls.Literal
         Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
@@ -183,20 +182,15 @@ Partial Public Class ShowParty
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents pan_no As System.Web.UI.WebControls.Literal
         Public WithEvents pan_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents pan_noLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PartyDialogEditButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents PartyRecordControl As ServelInvocing.UI.Controls.ShowParty.PartyRecordControl
         Public WithEvents PartyTitle As System.Web.UI.WebControls.Literal
         Public WithEvents phone As System.Web.UI.WebControls.Literal
         Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal
         Public WithEvents phoneLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents SitesCopyButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents SitesDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents SitesEditButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents SitesExportCSVButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents SitesExportExcelButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents SitesImportButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents SitesNewButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents SitesPagination As Pagination
         Public WithEvents SitesPDFButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents SitesRefreshButton As System.Web.UI.WebControls.ImageButton
@@ -206,7 +200,6 @@ Partial Public Class ShowParty
         Public WithEvents SitesWordButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents tin_no As System.Web.UI.WebControls.Literal
         Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tin_noLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   

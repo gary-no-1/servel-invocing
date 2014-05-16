@@ -112,21 +112,9 @@ Public Class BaseSitesTableControlRow
             
               AddHandler Me.contact1.TextChanged, AddressOf contact1_TextChanged
             
-              AddHandler Me.ecc_no1.TextChanged, AddressOf ecc_no1_TextChanged
-            
               AddHandler Me.name1.TextChanged, AddressOf name1_TextChanged
             
-              AddHandler Me.pan_no1.TextChanged, AddressOf pan_no1_TextChanged
-            
-              AddHandler Me.party_code1.TextChanged, AddressOf party_code1_TextChanged
-            
               AddHandler Me.phone1.TextChanged, AddressOf phone1_TextChanged
-            
-              AddHandler Me.st37_no1.TextChanged, AddressOf st37_no1_TextChanged
-            
-              AddHandler Me.tin_no1.TextChanged, AddressOf tin_no1_TextChanged
-            
-              AddHandler Me.vat_no1.TextChanged, AddressOf vat_no1_TextChanged
             
         End Sub
 
@@ -174,14 +162,8 @@ Public Class BaseSitesTableControlRow
             Setaddress1()
             Setcity1()
             Setcontact1()
-            Setecc_no1()
             Setname1()
-            Setpan_no1()
-            Setparty_code1()
             Setphone1()
-            Setst37_no1()
-            Settin_no1()
-            Setvat_no1()
       
       
             Me.IsNewRecord = True
@@ -329,49 +311,6 @@ Public Class BaseSitesTableControlRow
                  
         End Sub
                 
-        Public Overridable Sub Setecc_no1()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.ecc_no1.ID) Then
-            
-                Me.ecc_no1.Text = Me.PreviousUIData(Me.ecc_no1.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the ecc_no TextBox on the webpage with value from the
-            ' sites database record.
-
-            ' Me.DataSource is the sites record retrieved from the database.
-            ' Me.ecc_no1 is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setecc_no1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.ecc_noSpecified Then
-                				
-                ' If the ecc_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.ecc_no)
-                            
-                Me.ecc_no1.Text = formattedValue
-              
-            Else 
-            
-                ' ecc_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.ecc_no1.Text = SitesTable.ecc_no.Format(SitesTable.ecc_no.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
         Public Overridable Sub Setname1()
             					
             ' If data was retrieved from UI previously, restore it
@@ -415,92 +354,6 @@ Public Class BaseSitesTableControlRow
                  
         End Sub
                 
-        Public Overridable Sub Setpan_no1()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.pan_no1.ID) Then
-            
-                Me.pan_no1.Text = Me.PreviousUIData(Me.pan_no1.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the pan_no TextBox on the webpage with value from the
-            ' sites database record.
-
-            ' Me.DataSource is the sites record retrieved from the database.
-            ' Me.pan_no1 is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setpan_no1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.pan_noSpecified Then
-                				
-                ' If the pan_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.pan_no)
-                            
-                Me.pan_no1.Text = formattedValue
-              
-            Else 
-            
-                ' pan_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.pan_no1.Text = SitesTable.pan_no.Format(SitesTable.pan_no.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setparty_code1()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.party_code1.ID) Then
-            
-                Me.party_code1.Text = Me.PreviousUIData(Me.party_code1.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the party_code TextBox on the webpage with value from the
-            ' sites database record.
-
-            ' Me.DataSource is the sites record retrieved from the database.
-            ' Me.party_code1 is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setparty_code1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.party_codeSpecified Then
-                				
-                ' If the party_code is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.party_code)
-                            
-                Me.party_code1.Text = formattedValue
-              
-            Else 
-            
-                ' party_code is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.party_code1.Text = SitesTable.party_code.Format(SitesTable.party_code.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
         Public Overridable Sub Setphone1()
             					
             ' If data was retrieved from UI previously, restore it
@@ -539,135 +392,6 @@ Public Class BaseSitesTableControlRow
                 ' Default Value could also be NULL.
         
                 Me.phone1.Text = SitesTable.phone.Format(SitesTable.phone.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setst37_no1()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.st37_no1.ID) Then
-            
-                Me.st37_no1.Text = Me.PreviousUIData(Me.st37_no1.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the st37_no TextBox on the webpage with value from the
-            ' sites database record.
-
-            ' Me.DataSource is the sites record retrieved from the database.
-            ' Me.st37_no1 is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setst37_no1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.st37_noSpecified Then
-                				
-                ' If the st37_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.st37_no)
-                            
-                Me.st37_no1.Text = formattedValue
-              
-            Else 
-            
-                ' st37_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.st37_no1.Text = SitesTable.st37_no.Format(SitesTable.st37_no.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Settin_no1()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.tin_no1.ID) Then
-            
-                Me.tin_no1.Text = Me.PreviousUIData(Me.tin_no1.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the tin_no TextBox on the webpage with value from the
-            ' sites database record.
-
-            ' Me.DataSource is the sites record retrieved from the database.
-            ' Me.tin_no1 is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settin_no1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tin_noSpecified Then
-                				
-                ' If the tin_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.tin_no)
-                            
-                Me.tin_no1.Text = formattedValue
-              
-            Else 
-            
-                ' tin_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tin_no1.Text = SitesTable.tin_no.Format(SitesTable.tin_no.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setvat_no1()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.vat_no1.ID) Then
-            
-                Me.vat_no1.Text = Me.PreviousUIData(Me.vat_no1.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the vat_no TextBox on the webpage with value from the
-            ' sites database record.
-
-            ' Me.DataSource is the sites record retrieved from the database.
-            ' Me.vat_no1 is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setvat_no1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.vat_noSpecified Then
-                				
-                ' If the vat_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.vat_no)
-                            
-                Me.vat_no1.Text = formattedValue
-              
-            Else 
-            
-                ' vat_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.vat_no1.Text = SitesTable.vat_no.Format(SitesTable.vat_no.DefaultValue)
                         		
                 End If
                  
@@ -787,14 +511,8 @@ Public Class BaseSitesTableControlRow
             Getaddress1()
             Getcity1()
             Getcontact1()
-            Getecc_no1()
             Getname1()
-            Getpan_no1()
-            Getparty_code1()
             Getphone1()
-            Getst37_no1()
-            Gettin_no1()
-            Getvat_no1()
         End Sub
         
         
@@ -837,19 +555,6 @@ Public Class BaseSitesTableControlRow
                       
         End Sub
                 
-        Public Overridable Sub Getecc_no1()
-            
-            ' Retrieve the value entered by the user on the ecc_no ASP:TextBox, and
-            ' save it into the ecc_no field in DataSource sites record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.ecc_no1.Text, SitesTable.ecc_no)			
-
-                      
-        End Sub
-                
         Public Overridable Sub Getname1()
             
             ' Retrieve the value entered by the user on the name ASP:TextBox, and
@@ -863,32 +568,6 @@ Public Class BaseSitesTableControlRow
                       
         End Sub
                 
-        Public Overridable Sub Getpan_no1()
-            
-            ' Retrieve the value entered by the user on the pan_no ASP:TextBox, and
-            ' save it into the pan_no field in DataSource sites record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.pan_no1.Text, SitesTable.pan_no)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getparty_code1()
-            
-            ' Retrieve the value entered by the user on the party_code ASP:TextBox, and
-            ' save it into the party_code field in DataSource sites record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.party_code1.Text, SitesTable.party_code)			
-
-                      
-        End Sub
-                
         Public Overridable Sub Getphone1()
             
             ' Retrieve the value entered by the user on the phone ASP:TextBox, and
@@ -898,45 +577,6 @@ Public Class BaseSitesTableControlRow
             
             'Save the value to data source
             Me.DataSource.Parse(Me.phone1.Text, SitesTable.phone)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getst37_no1()
-            
-            ' Retrieve the value entered by the user on the st37_no ASP:TextBox, and
-            ' save it into the st37_no field in DataSource sites record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.st37_no1.Text, SitesTable.st37_no)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Gettin_no1()
-            
-            ' Retrieve the value entered by the user on the tin_no ASP:TextBox, and
-            ' save it into the tin_no field in DataSource sites record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.tin_no1.Text, SitesTable.tin_no)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getvat_no1()
-            
-            ' Retrieve the value entered by the user on the vat_no ASP:TextBox, and
-            ' save it into the vat_no field in DataSource sites record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.vat_no1.Text, SitesTable.vat_no)			
 
                       
         End Sub
@@ -1067,35 +707,11 @@ Public Class BaseSitesTableControlRow
                     				
         End Sub
             
-        Protected Overridable Sub ecc_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
         Protected Overridable Sub name1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
-        Protected Overridable Sub pan_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub party_code1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
         Protected Overridable Sub phone1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub st37_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub tin_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub vat_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -1226,27 +842,9 @@ Public Class BaseSitesTableControlRow
             End Get
         End Property
             
-        Public ReadOnly Property ecc_no1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_no1"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
         Public ReadOnly Property name1() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "name1"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property pan_no1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pan_no1"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property party_code1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_code1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
@@ -1268,24 +866,6 @@ Public Class BaseSitesTableControlRow
             End Get
         End Property
         
-        Public ReadOnly Property st37_no1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "st37_no1"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tin_no1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_no1"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property vat_no1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "vat_no1"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
 #End Region
 
 #Region "Helper Functions"
@@ -1402,21 +982,9 @@ Public Class BaseSitesTableControl
             
               AddHandler Me.contactLabel1.Click, AddressOf contactLabel1_Click
             
-              AddHandler Me.ecc_noLabel1.Click, AddressOf ecc_noLabel1_Click
-            
               AddHandler Me.nameLabel2.Click, AddressOf nameLabel2_Click
             
-              AddHandler Me.pan_noLabel1.Click, AddressOf pan_noLabel1_Click
-            
-              AddHandler Me.party_codeLabel2.Click, AddressOf party_codeLabel2_Click
-            
               AddHandler Me.phoneLabel1.Click, AddressOf phoneLabel1_Click
-            
-              AddHandler Me.st37_noLabel1.Click, AddressOf st37_noLabel1_Click
-            
-              AddHandler Me.tin_noLabel1.Click, AddressOf tin_noLabel1_Click
-            
-              AddHandler Me.vat_noLabel1.Click, AddressOf vat_noLabel1_Click
             
             ' Setup the button events.
           
@@ -1533,14 +1101,8 @@ Public Class BaseSitesTableControl
             SetaddressLabel1()
             SetcityLabel1()
             SetcontactLabel1()
-            Setecc_noLabel1()
             SetnameLabel2()
-            Setpan_noLabel1()
-            Setparty_codeLabel2()
             SetphoneLabel1()
-            Setst37_noLabel1()
-            Settin_noLabel1()
-            Setvat_noLabel1()
       
   
 
@@ -1577,14 +1139,8 @@ Public Class BaseSitesTableControl
             SetaddressLabel1()
             SetcityLabel1()
             SetcontactLabel1()
-            Setecc_noLabel1()
             SetnameLabel2()
-            Setpan_noLabel1()
-            Setparty_codeLabel2()
             SetphoneLabel1()
-            Setst37_noLabel1()
-            Settin_noLabel1()
-            Setvat_noLabel1()
       End Sub
 
       
@@ -1949,29 +1505,11 @@ Public Class BaseSitesTableControl
                         If recControl.contact1.Text <> "" Then
                             rec.Parse(recControl.contact1.Text, SitesTable.contact)
                         End If
-                        If recControl.ecc_no1.Text <> "" Then
-                            rec.Parse(recControl.ecc_no1.Text, SitesTable.ecc_no)
-                        End If
                         If recControl.name1.Text <> "" Then
                             rec.Parse(recControl.name1.Text, SitesTable.name)
                         End If
-                        If recControl.pan_no1.Text <> "" Then
-                            rec.Parse(recControl.pan_no1.Text, SitesTable.pan_no)
-                        End If
-                        If recControl.party_code1.Text <> "" Then
-                            rec.Parse(recControl.party_code1.Text, SitesTable.party_code)
-                        End If
                         If recControl.phone1.Text <> "" Then
                             rec.Parse(recControl.phone1.Text, SitesTable.phone)
-                        End If
-                        If recControl.st37_no1.Text <> "" Then
-                            rec.Parse(recControl.st37_no1.Text, SitesTable.st37_no)
-                        End If
-                        If recControl.tin_no1.Text <> "" Then
-                            rec.Parse(recControl.tin_no1.Text, SitesTable.tin_no)
-                        End If
-                        If recControl.vat_no1.Text <> "" Then
-                            rec.Parse(recControl.vat_no1.Text, SitesTable.vat_no)
                         End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
@@ -2055,42 +1593,12 @@ Public Class BaseSitesTableControl
                     
         End Sub
                 
-        Public Overridable Sub Setecc_noLabel1()
-            
-                    
-        End Sub
-                
         Public Overridable Sub SetnameLabel2()
             
                     
         End Sub
                 
-        Public Overridable Sub Setpan_noLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setparty_codeLabel2()
-            
-                    
-        End Sub
-                
         Public Overridable Sub SetphoneLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setst37_noLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settin_noLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setvat_noLabel1()
             
                     
         End Sub
@@ -2396,28 +1904,6 @@ Public Class BaseSitesTableControl
               
         End Sub
             
-        Public Overridable Sub ecc_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by ecc_no when clicked.
-              
-            ' Get previous sorting state for ecc_no.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.ecc_no)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for ecc_no.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(SitesTable.ecc_no, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by ecc_no, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
         Public Overridable Sub nameLabel2_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by name when clicked.
               
@@ -2440,50 +1926,6 @@ Public Class BaseSitesTableControl
               
         End Sub
             
-        Public Overridable Sub pan_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by pan_no when clicked.
-              
-            ' Get previous sorting state for pan_no.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.pan_no)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for pan_no.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(SitesTable.pan_no, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by pan_no, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub party_codeLabel2_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by party_code when clicked.
-              
-            ' Get previous sorting state for party_code.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.party_code)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for party_code.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(SitesTable.party_code, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by party_code, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
         Public Overridable Sub phoneLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by phone when clicked.
               
@@ -2496,72 +1938,6 @@ Public Class BaseSitesTableControl
                 Me.CurrentSortOrder.Add(SitesTable.phone, OrderByItem.OrderDir.Asc)
             Else
                 ' Previously sorted by phone, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub st37_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by st37_no when clicked.
-              
-            ' Get previous sorting state for st37_no.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.st37_no)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for st37_no.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(SitesTable.st37_no, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by st37_no, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub tin_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by tin_no when clicked.
-              
-            ' Get previous sorting state for tin_no.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.tin_no)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for tin_no.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(SitesTable.tin_no, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by tin_no, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub vat_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by vat_no when clicked.
-              
-            ' Get previous sorting state for vat_no.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.vat_no)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for vat_no.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(SitesTable.vat_no, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by vat_no, so just reverse.
                 sd.Reverse()
             End If
             
@@ -2800,27 +2176,9 @@ Public Class BaseSitesTableControl
             End Get
         End Property
         
-        Public ReadOnly Property ecc_noLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_noLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property nameLabel2() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "nameLabel2"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property pan_noLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pan_noLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property party_codeLabel2() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_codeLabel2"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -2857,24 +2215,6 @@ Public Class BaseSitesTableControl
         Public ReadOnly Property SitesToggleAll() As System.Web.UI.WebControls.CheckBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "SitesToggleAll"), System.Web.UI.WebControls.CheckBox)
-            End Get
-        End Property
-        
-        Public ReadOnly Property st37_noLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "st37_noLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tin_noLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_noLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property vat_noLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "vat_noLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -3022,29 +2362,17 @@ Public Class BasePartyRecordControl
             
               AddHandler Me.contact.TextChanged, AddressOf contact_TextChanged
             
-              AddHandler Me.cst_date.TextChanged, AddressOf cst_date_TextChanged
-            
-              AddHandler Me.cst_no.TextChanged, AddressOf cst_no_TextChanged
-            
               AddHandler Me.ecc_no.TextChanged, AddressOf ecc_no_TextChanged
             
-              AddHandler Me.lst_date.TextChanged, AddressOf lst_date_TextChanged
-            
-              AddHandler Me.lst_no.TextChanged, AddressOf lst_no_TextChanged
+              AddHandler Me.email.TextChanged, AddressOf email_TextChanged
             
               AddHandler Me.name.TextChanged, AddressOf name_TextChanged
             
               AddHandler Me.pan_no.TextChanged, AddressOf pan_no_TextChanged
             
-              AddHandler Me.party_code.TextChanged, AddressOf party_code_TextChanged
-            
               AddHandler Me.phone.TextChanged, AddressOf phone_TextChanged
             
-              AddHandler Me.st37_no.TextChanged, AddressOf st37_no_TextChanged
-            
               AddHandler Me.tin_no.TextChanged, AddressOf tin_no_TextChanged
-            
-              AddHandler Me.vat_no.TextChanged, AddressOf vat_no_TextChanged
             
         End Sub
 
@@ -3117,30 +2445,18 @@ Public Class BasePartyRecordControl
             SetcityLabel()
             Setcontact()
             SetcontactLabel()
-            Setcst_date()
-            Setcst_dateLabel()
-            Setcst_no()
-            Setcst_noLabel()
             Setecc_no()
             Setecc_noLabel()
-            Setlst_date()
-            Setlst_dateLabel()
-            Setlst_no()
-            Setlst_noLabel()
+            Setemail()
+            SetemailLabel()
             Setname()
             SetnameLabel()
             Setpan_no()
             Setpan_noLabel()
-            Setparty_code()
-            Setparty_codeLabel()
             Setphone()
             SetphoneLabel()
-            Setst37_no()
-            Setst37_noLabel()
             Settin_no()
             Settin_noLabel()
-            Setvat_no()
-            Setvat_noLabel()
       
       
             Me.IsNewRecord = True
@@ -3273,76 +2589,6 @@ Public Class BasePartyRecordControl
                  
         End Sub
                 
-        Public Overridable Sub Setcst_date()
-            
-        
-            ' Set the cst_date TextBox on the webpage with value from the
-            ' party database record.
-
-            ' Me.DataSource is the party record retrieved from the database.
-            ' Me.cst_date is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setcst_date()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.cst_dateSpecified Then
-                				
-                ' If the cst_date is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.cst_date, "d")
-                            
-                Me.cst_date.Text = formattedValue
-              
-            Else 
-            
-                ' cst_date is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.cst_date.Text = PartyTable.cst_date.Format(PartyTable.cst_date.DefaultValue, "d")
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setcst_no()
-            
-        
-            ' Set the cst_no TextBox on the webpage with value from the
-            ' party database record.
-
-            ' Me.DataSource is the party record retrieved from the database.
-            ' Me.cst_no is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setcst_no()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.cst_noSpecified Then
-                				
-                ' If the cst_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.cst_no)
-                            
-                Me.cst_no.Text = formattedValue
-              
-            Else 
-            
-                ' cst_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.cst_no.Text = PartyTable.cst_no.Format(PartyTable.cst_no.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
         Public Overridable Sub Setecc_no()
             
         
@@ -3378,71 +2624,36 @@ Public Class BasePartyRecordControl
                  
         End Sub
                 
-        Public Overridable Sub Setlst_date()
+        Public Overridable Sub Setemail()
             
         
-            ' Set the lst_date TextBox on the webpage with value from the
+            ' Set the email TextBox on the webpage with value from the
             ' party database record.
 
             ' Me.DataSource is the party record retrieved from the database.
-            ' Me.lst_date is the ASP:TextBox on the webpage.
+            ' Me.email is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setlst_date()
+            '     MyBase.Setemail()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.lst_dateSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.emailSpecified Then
                 				
-                ' If the lst_date is non-NULL, then format the value.
+                ' If the email is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.lst_date, "d")
+                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.email)
                             
-                Me.lst_date.Text = formattedValue
+                Me.email.Text = formattedValue
               
             Else 
             
-                ' lst_date is NULL in the database, so use the Default Value.  
+                ' email is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.lst_date.Text = PartyTable.lst_date.Format(PartyTable.lst_date.DefaultValue, "d")
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setlst_no()
-            
-        
-            ' Set the lst_no TextBox on the webpage with value from the
-            ' party database record.
-
-            ' Me.DataSource is the party record retrieved from the database.
-            ' Me.lst_no is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setlst_no()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.lst_noSpecified Then
-                				
-                ' If the lst_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.lst_no)
-                            
-                Me.lst_no.Text = formattedValue
-              
-            Else 
-            
-                ' lst_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.lst_no.Text = PartyTable.lst_no.Format(PartyTable.lst_no.DefaultValue)
+                Me.email.Text = PartyTable.email.Format(PartyTable.email.DefaultValue)
                         		
                 End If
                  
@@ -3518,41 +2729,6 @@ Public Class BasePartyRecordControl
                  
         End Sub
                 
-        Public Overridable Sub Setparty_code()
-            
-        
-            ' Set the party_code TextBox on the webpage with value from the
-            ' party database record.
-
-            ' Me.DataSource is the party record retrieved from the database.
-            ' Me.party_code is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setparty_code()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.party_codeSpecified Then
-                				
-                ' If the party_code is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.party_code)
-                            
-                Me.party_code.Text = formattedValue
-              
-            Else 
-            
-                ' party_code is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.party_code.Text = PartyTable.party_code.Format(PartyTable.party_code.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
         Public Overridable Sub Setphone()
             
         
@@ -3583,41 +2759,6 @@ Public Class BasePartyRecordControl
                 ' Default Value could also be NULL.
         
                 Me.phone.Text = PartyTable.phone.Format(PartyTable.phone.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setst37_no()
-            
-        
-            ' Set the st37_no TextBox on the webpage with value from the
-            ' party database record.
-
-            ' Me.DataSource is the party record retrieved from the database.
-            ' Me.st37_no is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setst37_no()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.st37_noSpecified Then
-                				
-                ' If the st37_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.st37_no)
-                            
-                Me.st37_no.Text = formattedValue
-              
-            Else 
-            
-                ' st37_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.st37_no.Text = PartyTable.st37_no.Format(PartyTable.st37_no.DefaultValue)
                         		
                 End If
                  
@@ -3658,41 +2799,6 @@ Public Class BasePartyRecordControl
                  
         End Sub
                 
-        Public Overridable Sub Setvat_no()
-            
-        
-            ' Set the vat_no TextBox on the webpage with value from the
-            ' party database record.
-
-            ' Me.DataSource is the party record retrieved from the database.
-            ' Me.vat_no is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setvat_no()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.vat_noSpecified Then
-                				
-                ' If the vat_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.vat_no)
-                            
-                Me.vat_no.Text = formattedValue
-              
-            Else 
-            
-                ' vat_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.vat_no.Text = PartyTable.vat_no.Format(PartyTable.vat_no.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
         Public Overridable Sub SetaddressLabel()
             
                     
@@ -3708,27 +2814,12 @@ Public Class BasePartyRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Setcst_dateLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setcst_noLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Setecc_noLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub Setlst_dateLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setlst_noLabel()
+        Public Overridable Sub SetemailLabel()
             
                     
         End Sub
@@ -3743,27 +2834,12 @@ Public Class BasePartyRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Setparty_codeLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub SetphoneLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub Setst37_noLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Settin_noLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setvat_noLabel()
             
                     
         End Sub
@@ -3888,18 +2964,12 @@ Public Class BasePartyRecordControl
             Getaddress()
             Getcity()
             Getcontact()
-            Getcst_date()
-            Getcst_no()
             Getecc_no()
-            Getlst_date()
-            Getlst_no()
+            Getemail()
             Getname()
             Getpan_no()
-            Getparty_code()
             Getphone()
-            Getst37_no()
             Gettin_no()
-            Getvat_no()
         End Sub
         
         
@@ -3942,35 +3012,6 @@ Public Class BasePartyRecordControl
                       
         End Sub
                 
-        Public Overridable Sub Getcst_date()
-            
-            ' Retrieve the value entered by the user on the cst_date ASP:TextBox, and
-            ' save it into the cst_date field in DataSource party record.
-            ' Parse will also validate the date to ensure it is of the proper format
-            ' and a valid date.  The format is verified based on the current culture 
-            ' settings including the order of month, day and year and the separator character.
-            ' Parse throws an exception if the date is invalid.
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.cst_date.Text, PartyTable.cst_date)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getcst_no()
-            
-            ' Retrieve the value entered by the user on the cst_no ASP:TextBox, and
-            ' save it into the cst_no field in DataSource party record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.cst_no.Text, PartyTable.cst_no)			
-
-                      
-        End Sub
-                
         Public Overridable Sub Getecc_no()
             
             ' Retrieve the value entered by the user on the ecc_no ASP:TextBox, and
@@ -3984,31 +3025,15 @@ Public Class BasePartyRecordControl
                       
         End Sub
                 
-        Public Overridable Sub Getlst_date()
+        Public Overridable Sub Getemail()
             
-            ' Retrieve the value entered by the user on the lst_date ASP:TextBox, and
-            ' save it into the lst_date field in DataSource party record.
-            ' Parse will also validate the date to ensure it is of the proper format
-            ' and a valid date.  The format is verified based on the current culture 
-            ' settings including the order of month, day and year and the separator character.
-            ' Parse throws an exception if the date is invalid.
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.lst_date.Text, PartyTable.lst_date)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getlst_no()
-            
-            ' Retrieve the value entered by the user on the lst_no ASP:TextBox, and
-            ' save it into the lst_no field in DataSource party record.
+            ' Retrieve the value entered by the user on the email ASP:TextBox, and
+            ' save it into the email field in DataSource party record.
             
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.lst_no.Text, PartyTable.lst_no)			
+            Me.DataSource.Parse(Me.email.Text, PartyTable.email)			
 
                       
         End Sub
@@ -4039,19 +3064,6 @@ Public Class BasePartyRecordControl
                       
         End Sub
                 
-        Public Overridable Sub Getparty_code()
-            
-            ' Retrieve the value entered by the user on the party_code ASP:TextBox, and
-            ' save it into the party_code field in DataSource party record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.party_code.Text, PartyTable.party_code)			
-
-                      
-        End Sub
-                
         Public Overridable Sub Getphone()
             
             ' Retrieve the value entered by the user on the phone ASP:TextBox, and
@@ -4065,19 +3077,6 @@ Public Class BasePartyRecordControl
                       
         End Sub
                 
-        Public Overridable Sub Getst37_no()
-            
-            ' Retrieve the value entered by the user on the st37_no ASP:TextBox, and
-            ' save it into the st37_no field in DataSource party record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.st37_no.Text, PartyTable.st37_no)			
-
-                      
-        End Sub
-                
         Public Overridable Sub Gettin_no()
             
             ' Retrieve the value entered by the user on the tin_no ASP:TextBox, and
@@ -4087,19 +3086,6 @@ Public Class BasePartyRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.tin_no.Text, PartyTable.tin_no)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getvat_no()
-            
-            ' Retrieve the value entered by the user on the vat_no ASP:TextBox, and
-            ' save it into the vat_no field in DataSource party record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.vat_no.Text, PartyTable.vat_no)			
 
                       
         End Sub
@@ -4395,23 +3381,11 @@ Public Class BasePartyRecordControl
                     				
         End Sub
             
-        Protected Overridable Sub cst_date_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub cst_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
         Protected Overridable Sub ecc_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
-        Protected Overridable Sub lst_date_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub lst_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub email_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -4423,23 +3397,11 @@ Public Class BasePartyRecordControl
                     				
         End Sub
             
-        Protected Overridable Sub party_code_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
         Protected Overridable Sub phone_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
-        Protected Overridable Sub st37_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
         Protected Overridable Sub tin_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub vat_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -4612,30 +3574,6 @@ Public Class BasePartyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property cst_date() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "cst_date"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property cst_dateLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "cst_dateLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property cst_no() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "cst_no"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property cst_noLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "cst_noLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property ecc_no() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_no"), System.Web.UI.WebControls.TextBox)
@@ -4648,27 +3586,15 @@ Public Class BasePartyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property lst_date() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property email() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "lst_date"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property lst_dateLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property emailLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "lst_dateLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property lst_no() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "lst_no"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property lst_noLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "lst_noLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -4696,18 +3622,6 @@ Public Class BasePartyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property party_code() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_code"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property party_codeLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_codeLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property PartyTitle() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "PartyTitle"), System.Web.UI.WebControls.Literal)
@@ -4726,18 +3640,6 @@ Public Class BasePartyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property st37_no() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "st37_no"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property st37_noLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "st37_noLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property tin_no() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_no"), System.Web.UI.WebControls.TextBox)
@@ -4747,18 +3649,6 @@ Public Class BasePartyRecordControl
         Public ReadOnly Property tin_noLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_noLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property vat_no() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "vat_no"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property vat_noLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "vat_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

@@ -54,8 +54,8 @@
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="contactLabel" Text="Contact" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="emailLabel" Text="Email" CausesValidation="False">	</asp:LinkButton></th><th class="thc" scope="col"><asp:LinkButton runat="server" id="phoneLabel" Text="Phone" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="pan_noLabel" Text="Pan Number" CausesValidation="False">	</asp:LinkButton>
-                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="ecc_noLabel" Text="Number" CausesValidation="False">	</asp:LinkButton>
-                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tin_noLabel" Text="Tin Number" CausesValidation="False">	</asp:LinkButton>
+                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="ecc_noLabel" Text="ECC Number" CausesValidation="False">	</asp:LinkButton>
+                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tin_noLabel" Text="TIN" CausesValidation="False">	</asp:LinkButton>
                         </th></tr><asp:Repeater runat="server" id="SitesTableControlRepeater">		<ITEMTEMPLATE>		<ServelInvocing:SitesTableControlRow runat="server" id="SitesTableControlRow">
 <tr><td class="ticnb" scope="row"><asp:ImageButton runat="server" id="SitesRowViewButton" causesvalidation="False" commandname="Redirect" cssclass="button_link" imageurl="../Images/icon_view.gif" tooltip="&lt;%# GetResourceValue(&quot;Txt:ViewRecord&quot;, &quot;ServelInvocing&quot;) %>">		
 	</asp:ImageButton></td><td class="ticnb" scope="row"><asp:ImageButton runat="server" id="SitesRowEditButton" causesvalidation="False" commandname="Redirect" cssclass="button_link" imageurl="../Images/icon_edit.gif" tooltip="&lt;%# GetResourceValue(&quot;Txt:EditRecord&quot;, &quot;ServelInvocing&quot;) %>">		

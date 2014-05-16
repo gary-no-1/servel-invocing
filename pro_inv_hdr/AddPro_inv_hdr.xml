@@ -838,10 +838,38 @@ PARSEDECIMAL(Pro_inv_itemsTableControlRow.rate.Text) ,0) , "c")</Value>
       <Field>id_site</Field>
       <FieldValueStyle>DropDownList</FieldValueStyle>
       <Table>pro_inv_hdr</Table>
+      <QueryDefinition>
+        <WhereClause>
+          <Position>1</Position>
+          <TableAlias>Sites_</TableAlias>
+          <Field>[Sites_].[id_party]</Field>
+          <Operator>=</Operator>
+          <Operand>
+            <Type>Formula</Type>
+            <Value>Pro_inv_hdrRecordControl.id_party.SelectedValue</Value>
+          </Operand>
+          <CompareDFKA>No</CompareDFKA>
+          <IgnoreBlankString>Yes</IgnoreBlankString>
+        </WhereClause>
+        <TableAliases>
+          <Alias>
+            <AliasName>Sites_</AliasName>
+            <TableName>sites</TableName>
+          </Alias>
+        </TableAliases>
+      </QueryDefinition>
       <PassthroughAttributes>
+        <Attribute>
+          <Name>AutoPostBack</Name>
+          <Value>True</Value>
+        </Attribute>
         <Attribute>
           <Name>CssClass</Name>
           <Value>field_input</Value>
+        </Attribute>
+        <Attribute>
+          <Name>DataReaderSortBy</Name>
+          <Value>name ASC</Value>
         </Attribute>
         <Attribute>
           <Name>id_siteRequiredFieldValidator:Enabled</Name>
@@ -857,7 +885,23 @@ PARSEDECIMAL(Pro_inv_itemsTableControlRow.rate.Text) ,0) , "c")</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
+          <Value>TableOrQuery</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSourceArg</Name>
+          <Value />
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:PopulateDisplayAs</Name>
+          <Value>name</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:PopulateFrom</Name>
+          <Value>sites</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:PopulateValue</Name>
+          <Value>id</Value>
         </Attribute>
         <Attribute>
           <Name>MaxGeneratedItems</Name>
