@@ -140,256 +140,50 @@ Public Class Pro_inv_hdrRecordControl
 		End Sub
 	
 
-		Public Overrides Sub BtnConvert_Click(ByVal sender As Object, ByVal args As EventArgs)
-
-			Dim kk As String = "111"			
-
-			Dim thisInv_created As String
-			'thisInv_created = Me.inv_created.text
-			thisInv_created = "NO"
-
-			Dim inv_modify As Boolean = False
-			If thisInv_created = "YES" Then
-				inv_modify = True
-			End If
-			Dim inv_add As Boolean = Not inv_modify
-			
-			Dim thisCustomer_id As String
-			thisCustomer_id = Me.id_party.text
-			If String.IsNullOrEmpty(thisCustomer_id) Then
-				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "No Customer for Invoice")
-				Return
-			End If
-
-			Dim thisItem_total As String
-			thisItem_total = Me.item_total.text
-			If String.IsNullOrEmpty(thisItem_total) Then
-				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Item Value is zero")
-				Return
-			End If
-
-			'Dim chkInv_dtlRec As Pro_inv_itemsRecord
-			'Dim chkInv_dtlManyRec As Pro_inv_itemsRecord()
-			'Dim chkThis_Id As String = Me.id1.text
-			'Dim chkSrchDtlStr As String
-			'chkSrchDtlStr = "id_pro_inv_hdr = '" + chkThis_id + "'"
-			'chkInv_dtlManyRec = Pro_inv_itemsTable.GetRecords(chkSrchDtlStr)
-
-			Try
-				DbUtils.StartTransaction()
-
-				If inv_add Then
-					' new invoice has to be created
-					Dim this_Id As String = Me.id1.text
-					Dim srchHdrStr As String
-					Dim srchDtlStr As String
-					Dim srchTermsStr As String
-					Dim srchTaxStr As String
-
-					srchHdrStr = "id = '" + this_Id + "'"
-					srchDtlStr = "id_pro_inv_hdr = '" + this_id + "'"
-					srchTermsStr = "id_pro_inv_hdr = '" + this_id + "'"
-					srchTaxStr = "id_pro_inv_hdr = '" + this_id + "'"
-
-					' The proforma invoice header is updated with invoice made indication. 
-					' So reading the proforma invoice header in read-write mode has to be part of a transaction
-					Dim Pro_inv_hdrCopyRec As Pro_inv_hdrRecord = Pro_inv_hdrTable.GetRecord(srchHdrStr, True)
-
-					'Dim srchCustStr As String
-					'srchCustStr = "id =  '" + Enq_hdrCopyRec.customer_id.tostring() + "'"
-					'Dim CustomerCopyRec As CustomerRecord = CustomerTable.GetRecord(srchCustStr)
-
-					Dim Pro_inv_itemsRec As Pro_inv_itemsRecord
-					Dim Pro_inv_itemsManyRec As Pro_inv_itemsRecord()
-					Pro_inv_itemsManyRec = Pro_inv_itemsTable.GetRecords(srchDtlStr)
-
-					Dim Pro_inv_taxesRec As Pro_inv_taxesRecord
-					Dim Pro_inv_taxesManyRec As Pro_inv_taxesRecord()
-					Pro_inv_taxesManyRec = Pro_inv_taxesTable.GetRecords(srchtaxStr)
-
-					Dim TermsRec As Pro_inv_termsRecord
-					Dim TermsManyRec As Pro_inv_termsRecord()
-					TermsManyRec = Pro_inv_termsTable.GetRecords(srchTermsStr)
-
-					Dim srchCompanyStr As String
-					srchCompanyStr = "id =  '1'"
-					Dim CompanyRec As CompanyRecord = CompanyTable.GetRecord(srchCompanyStr, True)
-
-					Dim inv_hdr_rec As New inv_hdrRecord
-					Dim tempToday, tempTime As String
-
-					tempToday = Today().tostring()
-					tempToday = mid(tempToday, 9, 2) + mid(tempToday, 4, 2) + left(tempToday, 2)
-					tempTime = Now.ToShortTimeString()
-					tempTime = left(right(tempTime, 8), 5)
-					Dim strInvNo As String
-					strInvNo = CompanyRec.inv_pfx.trim() + CompanyRec.next_inv_no.ToString().trim()
-
-					inv_hdr_rec.inv_no       = strInvNo
-					inv_hdr_rec.inv_dt       = Today()
-					inv_hdr_rec.pro_inv_no   = Me.pro_inv_no.text
-					inv_hdr_rec.pro_inv_dt   = Convert.ToDateTime(Me.pro_inv_dt.text)
-					inv_hdr_rec.sale_ord_no  = Pro_inv_hdrCopyRec.sale_ord_no
-					inv_hdr_rec.sale_ord_dt  = Pro_inv_hdrCopyRec.sale_ord_dt
-					inv_hdr_rec.id_party     = Pro_inv_hdrCopyRec.id_party
-					inv_hdr_rec.bill_name    = Pro_inv_hdrCopyRec.bill_name
-					inv_hdr_rec.bill_address = Pro_inv_hdrCopyRec.bill_address
-					inv_hdr_rec.ship_name    = Pro_inv_hdrCopyRec.ship_name
-					inv_hdr_rec.ship_address = Pro_inv_hdrCopyRec.ship_address
-					inv_hdr_rec.tin_no       = Pro_inv_hdrCopyRec.tin_no
-					inv_hdr_rec.po_no        = Pro_inv_hdrCopyRec.po_no
-					inv_hdr_rec.po_dt        = Pro_inv_hdrCopyRec.po_dt
-					inv_hdr_rec.id_tax_group = Pro_inv_hdrCopyRec.id_tax_group
-					' 3/5/14 - next 1 line added
-					inv_hdr_rec.id_commodity = Pro_inv_hdrCopyRec.id_commodity
-					inv_hdr_rec.item_total   = Pro_inv_hdrCopyRec.item_total
-					inv_hdr_rec.grand_total  = Pro_inv_hdrCopyRec.grand_total
-
-					
-					inv_hdr_rec.road_permit_no  = Pro_inv_hdrCopyRec.road_permit_no
-					inv_hdr_rec.packing_details = Pro_inv_hdrCopyRec.packing_details
-					inv_hdr_rec.weight          = Pro_inv_hdrCopyRec.weight
-					inv_hdr_rec.no_of_packages  = Pro_inv_hdrCopyRec.no_of_packages
-					inv_hdr_rec.id_transporter  = Pro_inv_hdrCopyRec.id_transporter
-					inv_hdr_rec.gr_rr_no        = Pro_inv_hdrCopyRec.gr_rr_no
-					inv_hdr_rec.gr_rr_dt        = Pro_inv_hdrCopyRec.gr_rr_dt
-					inv_hdr_rec.freight_to_pay  = Pro_inv_hdrCopyRec.freight_to_pay
-					inv_hdr_rec.vehicle_no      = Pro_inv_hdrCopyRec.vehicle_no
-
-					inv_hdr_rec.save()
-
-					Dim InvId As String
-					InvId = inv_hdr_rec.id0.ToString()
-					
-					For Each Pro_inv_itemsRec In Pro_inv_itemsManyRec
-						Dim inv_items_rec As New inv_itemsRecord
-						inv_items_rec.id_inv_hdr = convert.toint32(InvId)
-						If Pro_inv_itemsRec.id_item > 0 Then
-							inv_items_rec.id_item          = Pro_inv_itemsRec.id_item
-							inv_items_rec.item_code        = Pro_inv_itemsRec.item_code
-							inv_items_rec.item_description = Pro_inv_itemsRec.item_description
-							inv_items_rec.uom              = Pro_inv_itemsRec.uom
-							inv_items_rec.qty              = Pro_inv_itemsRec.qty
-							inv_items_rec.rate             = Pro_inv_itemsRec.rate
-							inv_items_rec.amount           = Pro_inv_itemsRec.amount
-
-							inv_items_rec.save()
-						End If
-					Next
-				
-					For Each Pro_inv_taxesRec In Pro_inv_taxesManyRec
-						Dim inv_taxes_rec As New inv_taxesRecord
-						inv_taxes_rec.id_inv_hdr = convert.toint32(InvId)
-						'If Pro_inv_itemsRec.id_item > 0 Then
-							inv_taxes_rec.id_taxes   = Pro_inv_taxesRec.id_taxes
-							inv_taxes_rec.tax_code   = Pro_inv_taxesRec.tax_code
-							inv_taxes_rec.tax_name   = Pro_inv_taxesRec.tax_name
-							inv_taxes_rec.tax_print  = Pro_inv_taxesRec.tax_print
-							inv_taxes_rec.tax_rate   = Pro_inv_taxesRec.tax_rate
-							inv_taxes_rec.tax_on     = Pro_inv_taxesRec.tax_on
-							inv_taxes_rec.tax_amount = Pro_inv_taxesRec.tax_amount
-							inv_taxes_rec.tax_lock   = Pro_inv_taxesRec.tax_lock
-							inv_taxes_rec.calc_type  = Pro_inv_taxesRec.calc_type
-							inv_taxes_rec.sort_order = Pro_inv_taxesRec.sort_order
-							inv_taxes_rec.tax_type   = Pro_inv_taxesRec.tax_type
-							inv_taxes_rec.item_total = Pro_inv_taxesRec.item_total
-							inv_taxes_rec.excise_total = Pro_inv_taxesRec.excise_total
-							inv_taxes_rec.grand_total  = Pro_inv_taxesRec.grand_total
-
-							inv_taxes_rec.save()
-						'End If
-					Next
-
-					For Each TermsRec In TermsManyRec
-						Dim inv_terms_rec As New inv_termsRecord
-						inv_terms_rec.id_inv_hdr = convert.toint32(InvId)
-						inv_terms_rec.narration = TermsRec.narration
-						inv_terms_rec.sort_order = TermsRec.sort_order
-						inv_terms_rec.save()
-					Next
-
-					CompanyRec.next_inv_no = CompanyRec.next_inv_no + 1
-					CompanyRec.save()
-
-					Pro_inv_hdrCopyRec.inv_created = "YES"
-					Pro_inv_hdrCopyRec.inv_cr8_dt = DateTime.now()
-					Pro_inv_hdrCopyRec.inv_no = inv_hdr_rec.inv_no
-					Pro_inv_hdrCopyRec.save()
-
-				End If
-				
-				
-				DbUtils.CommitTransaction()
-
-				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Invoice has been created")
-				'Me.GenerateQuote.Button.Enabled = False
-
-			Catch ex As Exception
-				DbUtils.RollBackTransaction()
-				'Report the error message to the user
-				Utils.MiscUtils.RegisterJScriptAlert(Me, "UNIQUE_SCRIPTKEY", ex.Message)
-			Finally
-				DbUtils.EndTransaction()
-			End Try
-			
 		
-			
-            Try
-                
-            Catch ex As Exception
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-    
-            End Try
-    
-        End Sub
-
-		Public Overrides Sub BtnPrint_Click(ByVal sender As Object, ByVal args As EventArgs)
-              
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-			Page.Session("PrintProInvID") = Me.id1.text
-            Dim url As String = "../pro_inv_hdr/PrintPro_inv.aspx"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If
-        End Sub
+'		Public Overrides Sub BtnPrint_Click(ByVal sender As Object, ByVal args As EventArgs)
+'              
+'            ' The redirect URL is set on the Properties, Bindings.
+'            ' The ModifyRedirectURL call resolves the parameters before the
+'            ' Response.Redirect redirects the page to the URL.  
+'            ' Any code after the Response.Redirect call will not be executed, since the page is
+'            ' redirected to the URL.
+'			Page.Session("PrintProInvID") = Me.id1.text
+'            Dim url As String = "../pro_inv_hdr/PrintPro_inv.aspx"
+'            Dim shouldRedirect As Boolean = True
+'            Dim TargetKey As String = Nothing
+'            Dim DFKA As String = Nothing
+'            Dim id As String = Nothing
+'            Dim value As String = Nothing
+'            Try
+'                ' Enclose all database retrieval/update code within a Transaction boundary
+'                DbUtils.StartTransaction
+'                
+'            url = Me.ModifyRedirectUrl(url, "",False)
+'            url = Me.Page.ModifyRedirectUrl(url, "",False)
+'          Me.Page.CommitTransaction(sender)
+'          
+'            Catch ex As Exception
+'                ' Upon error, rollback the transaction
+'                Me.Page.RollBackTransaction(sender)
+'                shouldRedirect = False
+'                Me.Page.ErrorOnPage = True
+'    
+'                ' Report the error message to the end user
+'                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+'            Finally
+'                DbUtils.EndTransaction
+'            End Try
+'            If shouldRedirect Then
+'                Me.Page.ShouldSaveControlsToSession = True
+'                Me.Page.Response.Redirect(url)
+'            ElseIf Not TargetKey Is Nothing AndAlso _
+'                        Not shouldRedirect Then
+'            Me.Page.ShouldSaveControlsToSession = True
+'            Me.Page.CloseWindow(True)
+'        
+'            End If
+'        End Sub
 
 		Protected Overrides Sub Control_PreRender(ByVal sender As Object, ByVal e As System.EventArgs) 
             ' PreRender event is raised just before page is being displayed.
@@ -413,6 +207,227 @@ Public Class Pro_inv_hdrRecordControl
             Finally
                 DbUtils.EndTransaction()
             End Try
+        End Sub
+
+		Public Overrides Sub BtnConvert_Click(ByVal sender As Object, ByVal args As EventArgs)
+
+		    Dim kk As String = "111"
+
+			Dim thisInv_created As String
+			thisInv_created = Me.inv_created.text
+			'thisInv_created = "NO"
+		
+			Dim inv_modify As Boolean = False
+			If thisInv_created = "YES" Then
+				inv_modify = True
+			End If
+			Dim inv_add As Boolean = Not inv_modify
+		
+			Dim thisCustomer_id As String
+			thisCustomer_id = Me.id_party.text
+			If String.IsNullOrEmpty(thisCustomer_id) Then
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "No Customer for Invoice")
+				Return
+			End If
+		
+			Dim thisItem_total As String
+			thisItem_total = Me.item_total.text
+			If String.IsNullOrEmpty(thisItem_total) Then
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Item Value is zero")
+				Return
+			End If
+
+			Try
+				DbUtils.StartTransaction()
+		
+				If inv_add Then
+					' new invoice has to be created
+					Dim this_Id As String = Me.id1.text
+					Dim srchHdrStr As String
+					Dim srchDtlStr As String
+					Dim srchTermsStr As String
+					Dim srchTaxStr As String
+		
+					srchHdrStr = "id = '" + this_Id + "'"
+					srchDtlStr = "id_pro_inv_hdr = '" + this_id + "'"
+					srchTermsStr = "id_pro_inv_hdr = '" + this_id + "'"
+					srchTaxStr = "id_pro_inv_hdr = '" + this_id + "'"
+		
+					' The proforma invoice header is updated with invoice made indication. 
+					' So reading the proforma invoice header in read-write mode has to be part of a transaction
+					Dim Pro_inv_hdrCopyRec As Pro_inv_hdrRecord = Pro_inv_hdrTable.GetRecord(srchHdrStr, True)
+		
+					Dim Pro_inv_itemsRec As Pro_inv_itemsRecord
+					Dim Pro_inv_itemsManyRec As Pro_inv_itemsRecord()
+					Pro_inv_itemsManyRec = Pro_inv_itemsTable.GetRecords(srchDtlStr)
+		
+					Dim Pro_inv_taxesRec As Pro_inv_taxesRecord
+					Dim Pro_inv_taxesManyRec As Pro_inv_taxesRecord()
+					Pro_inv_taxesManyRec = Pro_inv_taxesTable.GetRecords(srchtaxStr)
+		
+					Dim TermsRec As Pro_inv_termsRecord
+					Dim TermsManyRec As Pro_inv_termsRecord()
+					TermsManyRec = Pro_inv_termsTable.GetRecords(srchTermsStr)
+		
+					Dim srchCompanyStr As String
+					srchCompanyStr = "id =  '1'"
+					Dim CompanyRec As CompanyRecord = CompanyTable.GetRecord(srchCompanyStr, True)
+		
+					Dim inv_hdr_rec As New inv_hdrRecord
+					Dim tempToday, tempTime As String
+		
+					tempToday = Today().tostring()
+					tempToday = mid(tempToday, 9, 2) + mid(tempToday, 4, 2) + left(tempToday, 2)
+					tempTime = Now.ToShortTimeString()
+					tempTime = left(right(tempTime, 8), 5)
+					Dim strInvNo As String
+					strInvNo = CompanyRec.inv_pfx.trim() + CompanyRec.next_inv_no.ToString().trim()
+		
+					inv_hdr_rec.inv_no = strInvNo
+					inv_hdr_rec.inv_dt = Today()
+					inv_hdr_rec.pro_inv_no = Me.pro_inv_no.text
+					inv_hdr_rec.pro_inv_dt = Convert.ToDateTime(Me.pro_inv_dt.text)
+					inv_hdr_rec.sale_ord_no = Pro_inv_hdrCopyRec.sale_ord_no
+					inv_hdr_rec.sale_ord_dt = Pro_inv_hdrCopyRec.sale_ord_dt
+					inv_hdr_rec.id_party = Pro_inv_hdrCopyRec.id_party
+					inv_hdr_rec.bill_name = Pro_inv_hdrCopyRec.bill_name
+					inv_hdr_rec.bill_address = Pro_inv_hdrCopyRec.bill_address
+					inv_hdr_rec.ship_name = Pro_inv_hdrCopyRec.ship_name
+					inv_hdr_rec.ship_address = Pro_inv_hdrCopyRec.ship_address
+					inv_hdr_rec.tin_no = Pro_inv_hdrCopyRec.tin_no
+					inv_hdr_rec.po_no = Pro_inv_hdrCopyRec.po_no
+					inv_hdr_rec.po_dt = Pro_inv_hdrCopyRec.po_dt
+					inv_hdr_rec.id_tax_group = Pro_inv_hdrCopyRec.id_tax_group
+					' 3/5/14 - next 1 line added
+					inv_hdr_rec.id_commodity = Pro_inv_hdrCopyRec.id_commodity
+					inv_hdr_rec.item_total = Pro_inv_hdrCopyRec.item_total
+					inv_hdr_rec.grand_total = Pro_inv_hdrCopyRec.grand_total
+		
+		
+					inv_hdr_rec.road_permit_no = Pro_inv_hdrCopyRec.road_permit_no
+					inv_hdr_rec.packing_details = Pro_inv_hdrCopyRec.packing_details
+					inv_hdr_rec.weight = Pro_inv_hdrCopyRec.weight
+					inv_hdr_rec.no_of_packages = Pro_inv_hdrCopyRec.no_of_packages
+					inv_hdr_rec.id_transporter = Pro_inv_hdrCopyRec.id_transporter
+					inv_hdr_rec.gr_rr_no = Pro_inv_hdrCopyRec.gr_rr_no
+					inv_hdr_rec.gr_rr_dt = Pro_inv_hdrCopyRec.gr_rr_dt
+					inv_hdr_rec.freight_to_pay = Pro_inv_hdrCopyRec.freight_to_pay
+					inv_hdr_rec.vehicle_no = Pro_inv_hdrCopyRec.vehicle_no
+		
+					inv_hdr_rec.save()
+		
+					Dim InvId As String
+					InvId = inv_hdr_rec.id0.ToString()
+		
+					For Each Pro_inv_itemsRec In Pro_inv_itemsManyRec
+						Dim inv_items_rec As New inv_itemsRecord
+						inv_items_rec.id_inv_hdr = convert.toint32(InvId)
+						If Pro_inv_itemsRec.id_item > 0 Then
+							inv_items_rec.id_item = Pro_inv_itemsRec.id_item
+							inv_items_rec.item_code = Pro_inv_itemsRec.item_code
+							inv_items_rec.item_description = Pro_inv_itemsRec.item_description
+							inv_items_rec.uom = Pro_inv_itemsRec.uom
+							inv_items_rec.qty = Pro_inv_itemsRec.qty
+							inv_items_rec.rate = Pro_inv_itemsRec.rate
+							inv_items_rec.amount = Pro_inv_itemsRec.amount
+		
+							inv_items_rec.save()
+						End If
+					Next
+		
+					For Each Pro_inv_taxesRec In Pro_inv_taxesManyRec
+						Dim inv_taxes_rec As New inv_taxesRecord
+						inv_taxes_rec.id_inv_hdr = convert.toint32(InvId)
+						'If Pro_inv_itemsRec.id_item > 0 Then
+						inv_taxes_rec.id_taxes = Pro_inv_taxesRec.id_taxes
+						inv_taxes_rec.tax_code = Pro_inv_taxesRec.tax_code
+						inv_taxes_rec.tax_name = Pro_inv_taxesRec.tax_name
+						inv_taxes_rec.tax_print = Pro_inv_taxesRec.tax_print
+						inv_taxes_rec.tax_rate = Pro_inv_taxesRec.tax_rate
+						inv_taxes_rec.tax_on = Pro_inv_taxesRec.tax_on
+						inv_taxes_rec.tax_amount = Pro_inv_taxesRec.tax_amount
+						inv_taxes_rec.tax_lock = Pro_inv_taxesRec.tax_lock
+						inv_taxes_rec.calc_type = Pro_inv_taxesRec.calc_type
+						inv_taxes_rec.sort_order = Pro_inv_taxesRec.sort_order
+						inv_taxes_rec.tax_type = Pro_inv_taxesRec.tax_type
+						inv_taxes_rec.item_total = Pro_inv_taxesRec.item_total
+						inv_taxes_rec.excise_total = Pro_inv_taxesRec.excise_total
+						inv_taxes_rec.grand_total = Pro_inv_taxesRec.grand_total
+		
+						inv_taxes_rec.save()
+						'End If
+					Next
+		
+					For Each TermsRec In TermsManyRec
+						Dim inv_terms_rec As New inv_termsRecord
+						inv_terms_rec.id_inv_hdr = convert.toint32(InvId)
+						inv_terms_rec.narration = TermsRec.narration
+						inv_terms_rec.sort_order = TermsRec.sort_order
+						inv_terms_rec.save()
+					Next
+		
+					CompanyRec.next_inv_no = CompanyRec.next_inv_no + 1
+					CompanyRec.save()
+		
+					Pro_inv_hdrCopyRec.inv_created = "YES"
+					Pro_inv_hdrCopyRec.inv_cr8_dt = DateTime.now()
+					Pro_inv_hdrCopyRec.inv_no = inv_hdr_rec.inv_no
+					Pro_inv_hdrCopyRec.save()
+		
+				End If
+				DbUtils.CommitTransaction()
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Invoice has been created")
+				'Me.GenerateQuote.Button.Enabled = False
+				Me.BtnConvert.Button.Enabled = False
+		
+			Catch ex As Exception
+				DbUtils.RollBackTransaction()
+				'Report the error message to the user
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "UNIQUE_SCRIPTKEY", ex.Message)
+			Finally
+				DbUtils.EndTransaction()
+			End Try
+		
+			' The redirect URL is set on the Properties, Bindings.
+			' The ModifyRedirectURL call resolves the parameters before the
+			' Response.Redirect redirects the page to the URL.  
+			' Any code after the Response.Redirect call will not be executed, since the page is
+			' redirected to the URL.
+			Dim url As String = "../inv_hdr/ShowInv_hdrTable.aspx"
+			Dim shouldRedirect As Boolean = True
+			Dim TargetKey As String = Nothing
+			Dim DFKA As String = Nothing
+			Dim id As String = Nothing
+			Dim value As String = Nothing
+			Try
+				' Enclose all database retrieval/update code within a Transaction boundary
+				DbUtils.StartTransaction()
+		
+				url = Me.ModifyRedirectUrl(url, "", False)
+				url = Me.Page.ModifyRedirectUrl(url, "", False)
+				Me.Page.CommitTransaction(sender)
+		
+			Catch ex As Exception
+				' Upon error, rollback the transaction
+				Me.Page.RollBackTransaction(sender)
+				shouldRedirect = False
+				Me.Page.ErrorOnPage = True
+		
+				' Report the error message to the end user
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+			Finally
+				DbUtils.EndTransaction()
+			End Try
+			If shouldRedirect Then
+				Me.Page.ShouldSaveControlsToSession = True
+				Me.Page.Response.Redirect(url)
+			ElseIf Not TargetKey Is Nothing AndAlso _
+						Not shouldRedirect Then
+				Me.Page.ShouldSaveControlsToSession = True
+				Me.Page.CloseWindow(True)
+		
+			End If
+		
         End Sub
 End Class
 
@@ -7410,8 +7425,6 @@ Public Class BasePro_inv_hdrRecordControl
             
             AddHandler Me.BtnConvert.Button.Click, AddressOf BtnConvert_Click
         
-            AddHandler Me.BtnPrint.Button.Click, AddressOf BtnPrint_Click
-        
         End Sub
 
         
@@ -8909,6 +8922,8 @@ Public Class BasePro_inv_hdrRecordControl
 
         Public Overridable Sub RegisterPostback()
         
+              Me.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"BtnConvert"))
+                        
         
         End Sub
 
@@ -9621,28 +9636,12 @@ Public Class BasePro_inv_hdrRecordControl
         ' event handler for Button with Layout
         Public Overridable Sub BtnConvert_Click(ByVal sender As Object, ByVal args As EventArgs)
               
-            Try
-                
-            Catch ex As Exception
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-    
-            End Try
-    
-        End Sub
-            
-        ' event handler for Button with Layout
-        Public Overridable Sub BtnPrint_Click(ByVal sender As Object, ByVal args As EventArgs)
-              
             ' The redirect URL is set on the Properties, Bindings.
             ' The ModifyRedirectURL call resolves the parameters before the
             ' Response.Redirect redirects the page to the URL.  
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
-            Dim url As String = "../pro_inv_hdr/PrintPro_inv.aspx"
+            Dim url As String = "../inv_hdr/ShowInv_hdrTable.aspx"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -9838,12 +9837,6 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property BtnConvert() As ServelInvocing.UI.IThemeButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "BtnConvert"), ServelInvocing.UI.IThemeButton)
-          End Get
-          End Property
-        
-        Public ReadOnly Property BtnPrint() As ServelInvocing.UI.IThemeButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "BtnPrint"), ServelInvocing.UI.IThemeButton)
           End Get
           End Property
         

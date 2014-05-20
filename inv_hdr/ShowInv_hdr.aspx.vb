@@ -26,7 +26,8 @@ Imports BaseClasses.Web.UI.WebControls
         
 Imports ServelInvocing.Business
 Imports ServelInvocing.Data
-        
+
+Imports telerik.reporting
 
 #End Region
 
@@ -52,14 +53,29 @@ Partial Public Class ShowInv_hdr
 	    	If Not IsPostBack Then
 	            If Not Page.Session("PrintProInvID") Is Nothing Then
     	            Dim sID As String = Page.Session("PrintProInvID").tostring()
-    	            'Dim sID As String = me.id1.text
-					Dim fs As New ServelInvoicingReportLibrary.ServelInvoice()
-					fs.ReportParameters("PrintProInvId").value = sID
+	Dim reportBook = New ReportBook()
+	reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice())
+	reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice2Copy())
+    reportBook.Reports(0).ReportParameters("PrintProInvId").value = sID
+    reportBook.Reports(1).ReportParameters("PrintProInvId").value = sID
+
+	'Dim reportSource = New Telerik.Reporting.InstanceReportSource()
+	'Dim reportSource = New Telerik.Reporting.ReportSource()
+	'reportSource.ReportDocument = reportBook
+
+	'reportViewer.ReportSource = reportSource
+					
+					
+    	            ''Dim sID As String = me.id1.text
+					'Dim fs As New ServelInvoicingReportLibrary.ServelInvoice()
+					'' Dim fs As New ServelInvoicingReportLibrary.ServelInvoiceBook()
+					'fs.ReportParameters("PrintProInvId").value = sID
 
 					Dim reportviewer As New Telerik.Reportviewer.Webforms.Reportviewer
 					reportviewer = Directcast(FindControlRecursively("ReportViewer1"),Telerik.Reportviewer.Webforms.Reportviewer)
 					If (Not reportviewer Is Nothing)
-						reportviewer.Report = fs
+					'	reportviewer.Report = fs
+						reportviewer.Report = reportbook
 		   			Else
     		  			Response.Write("Control not found.....")
    					End If

@@ -171,7 +171,6 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents bill_name As System.Web.UI.WebControls.Literal
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents BtnConvert As ThemeButton
-        Public WithEvents BtnPrint As ThemeButton
         Public WithEvents EditButton As ThemeButton
         Public WithEvents freight_to_pay As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
