@@ -7507,6 +7507,10 @@ Public Class BasePro_inv_hdrRecordControl
             Setbill_addressLabel()
             Setbill_name()
             Setbill_nameLabel()
+            Setcontact()
+            SetcontactLabel()
+            Setemail()
+            SetemailLabel()
             Setfreight_to_pay()
             Setfreight_to_payLabel()
             Setgr_rr_dt()
@@ -7531,6 +7535,8 @@ Public Class BasePro_inv_hdrRecordControl
             Setno_of_packagesLabel()
             Setpacking_details()
             Setpacking_detailsLabel()
+            Setphone()
+            SetphoneLabel()
             Setpo_dt()
             Setpo_dtLabel()
             Setpo_no()
@@ -7715,6 +7721,94 @@ Public Class BasePro_inv_hdrRecordControl
                 OrElse Me.bill_name.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.bill_name.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setcontact()
+            
+        
+            ' Set the contact Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.contact is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setcontact()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.contactSpecified Then
+                				
+                ' If the contact is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.contact)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.contact.Text = formattedValue
+              
+            Else 
+            
+                ' contact is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.contact.Text = Pro_inv_hdrTable.contact.Format(Pro_inv_hdrTable.contact.DefaultValue)
+                        		
+                End If
+                 
+            ' If the contact is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.contact.Text Is Nothing _
+                OrElse Me.contact.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.contact.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setemail()
+            
+        
+            ' Set the email Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.email is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setemail()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.emailSpecified Then
+                				
+                ' If the email is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.email)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.email.Text = formattedValue
+              
+            Else 
+            
+                ' email is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.email.Text = Pro_inv_hdrTable.email.Format(Pro_inv_hdrTable.email.DefaultValue)
+                        		
+                End If
+                 
+            ' If the email is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.email.Text Is Nothing _
+                OrElse Me.email.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.email.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -8247,6 +8341,50 @@ Public Class BasePro_inv_hdrRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setphone()
+            
+        
+            ' Set the phone Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.phone is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setphone()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.phoneSpecified Then
+                				
+                ' If the phone is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.phone)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.phone.Text = formattedValue
+              
+            Else 
+            
+                ' phone is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.phone.Text = Pro_inv_hdrTable.phone.Format(Pro_inv_hdrTable.phone.DefaultValue)
+                        		
+                End If
+                 
+            ' If the phone is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.phone.Text Is Nothing _
+                OrElse Me.phone.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.phone.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setpo_dt()
             
         
@@ -8774,6 +8912,16 @@ Public Class BasePro_inv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub SetcontactLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetemailLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setfreight_to_payLabel()
             
                     
@@ -8825,6 +8973,11 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setpacking_detailsLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetphoneLabel()
             
                     
         End Sub
@@ -9001,6 +9154,8 @@ Public Class BasePro_inv_hdrRecordControl
         
             Getbill_address()
             Getbill_name()
+            Getcontact()
+            Getemail()
             Getfreight_to_pay()
             Getgr_rr_dt()
             Getgr_rr_no()
@@ -9014,6 +9169,7 @@ Public Class BasePro_inv_hdrRecordControl
             Getitem_total()
             Getno_of_packages()
             Getpacking_details()
+            Getphone()
             Getpo_dt()
             Getpo_no()
             Getpro_inv_dt()
@@ -9033,6 +9189,14 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getbill_name()
+            
+        End Sub
+                
+        Public Overridable Sub Getcontact()
+            
+        End Sub
+                
+        Public Overridable Sub Getemail()
             
         End Sub
                 
@@ -9085,6 +9249,10 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getpacking_details()
+            
+        End Sub
+                
+        Public Overridable Sub Getphone()
             
         End Sub
                 
@@ -9840,6 +10008,30 @@ Public Class BasePro_inv_hdrRecordControl
           End Get
           End Property
         
+        Public ReadOnly Property contact() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "contact"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property contactLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "contactLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property email() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property emailLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property freight_to_pay() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "freight_to_pay"), System.Web.UI.WebControls.Literal)
@@ -9981,6 +10173,18 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property packing_detailsLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "packing_detailsLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property phone() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "phone"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property phoneLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "phoneLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

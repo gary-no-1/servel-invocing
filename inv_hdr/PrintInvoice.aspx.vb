@@ -27,6 +27,7 @@ Imports BaseClasses.Web.UI.WebControls
 Imports ServelInvocing.Business
 Imports ServelInvocing.Data
         
+Imports telerik.reporting
 
 #End Region
 
@@ -39,7 +40,13 @@ Partial Public Class PrintInvoice
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
-	  
+
+		Protected Overrides Sub UpdateSessionNavigationHistory()
+			'Do nothing
+			' this helps in not updating session navigation history. so when OK button is clicked on showInv_hdr ,
+			' it goes back to showInv_hdrTable
+		End Sub
+
       Public Sub SetPageFocus()
 		  'load scripts to all controls on page so that they will retain focus on PostBack
 		  Me.LoadFocusScripts(Me.Page)	  
@@ -48,6 +55,34 @@ Partial Public Class PrintInvoice
           'Dim controlToFocus As System.Web.UI.WebControls.TextBox = DirectCast(Me.FindControlRecursively("ProductsSearch"), System.Web.UI.WebControls.TextBox)
           'Me.SetFocusOnLoad(controlToFocus)
           'If no control is passed or control does not exist this method will set focus on the first focusable control on the page.
+		Try
+	    	If Not IsPostBack Then
+	            If Not Page.Session("PrintProInvID") Is Nothing Then
+    	            Dim sID As String = Page.Session("PrintProInvID").tostring()
+					Dim reportBook = New ReportBook()
+					reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice())
+					reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice2Copy())
+					reportBook.Reports(0).ReportParameters("PrintProInvId").value = sID
+					reportBook.Reports(1).ReportParameters("PrintProInvId").value = sID
+
+    	            ''Dim sID As String = me.id1.text
+					'Dim fs As New ServelInvoicingReportLibrary.ServelInvoice()
+					'fs.ReportParameters("PrintProInvId").value = sID
+
+					Dim reportviewer As New Telerik.Reportviewer.Webforms.Reportviewer
+					reportviewer = Directcast(FindControlRecursively("ReportViewer1"),Telerik.Reportviewer.Webforms.Reportviewer)
+					If (Not reportviewer Is Nothing)
+					'	reportviewer.Report = fs
+						reportviewer.Report = reportbook
+		   			Else
+    		  			Response.Write("Control not found.....")
+   					End If
+				End If
+			End If
+        Catch ex As Exception
+        'Do Something Here
+        End Try		
+		
           Me.SetFocusOnLoad()  
       End Sub
        

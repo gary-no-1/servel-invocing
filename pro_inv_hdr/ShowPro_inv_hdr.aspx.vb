@@ -171,7 +171,11 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents bill_name As System.Web.UI.WebControls.Literal
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents BtnConvert As ThemeButton
+        Public WithEvents contact As System.Web.UI.WebControls.Literal
+        Public WithEvents contactLabel As System.Web.UI.WebControls.Literal
         Public WithEvents EditButton As ThemeButton
+        Public WithEvents email As System.Web.UI.WebControls.Literal
+        Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_pay As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
         Public WithEvents gr_rr_dt As System.Web.UI.WebControls.Literal
@@ -202,6 +206,8 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents packing_details As System.Web.UI.WebControls.Literal
         Public WithEvents packing_detailsLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents phone As System.Web.UI.WebControls.Literal
+        Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal
         Public WithEvents po_dt As System.Web.UI.WebControls.Literal
         Public WithEvents po_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents po_no As System.Web.UI.WebControls.Literal

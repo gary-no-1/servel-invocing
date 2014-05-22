@@ -174,6 +174,8 @@ Partial Public Class AddPro_inv_hdr
         Public WithEvents calc_typeLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents CalculateButton As ThemeButton
         Public WithEvents CancelButton As ThemeButton
+        Public WithEvents contactLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
         Public WithEvents gr_rr_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents gr_rr_noLabel As System.Web.UI.WebControls.Literal
@@ -196,6 +198,7 @@ Partial Public Class AddPro_inv_hdr
         Public WithEvents no_of_packagesLabel As System.Web.UI.WebControls.Literal
         Public WithEvents packing_detailsLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal
         Public WithEvents po_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents po_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents pro_inv_dtLabel As System.Web.UI.WebControls.Literal

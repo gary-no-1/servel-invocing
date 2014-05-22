@@ -6057,8 +6057,6 @@ Public Class BaseInv_hdrRecordControl
         
             Setbill_address()
             Setbill_addressLabel()
-            Setbill_name()
-            Setbill_nameLabel()
             Setfreight_to_pay()
             Setfreight_to_payLabel()
             Setgr_rr_dt()
@@ -6069,10 +6067,12 @@ Public Class BaseInv_hdrRecordControl
             Setgrand_totalLabel()
             Setid_party()
             Setid_partyLabel()
-            Setid_tax_group()
-            Setid_tax_groupLabel()
             Setid_transporter()
             Setid_transporterLabel()
+            Setinv_dt()
+            Setinv_dtLabel()
+            Setinv_no()
+            Setinv_noLabel()
             Setitem_total()
             Setitem_totalLabel()
             Setno_of_packages()
@@ -6083,10 +6083,6 @@ Public Class BaseInv_hdrRecordControl
             Setpo_dtLabel()
             Setpo_no()
             Setpo_noLabel()
-            Setpro_inv_dt()
-            Setpro_inv_dtLabel()
-            Setpro_inv_no()
-            Setpro_inv_noLabel()
             Setroad_permit_no()
             Setroad_permit_noLabel()
             Setsale_ord_dt()
@@ -6095,8 +6091,6 @@ Public Class BaseInv_hdrRecordControl
             Setsale_ord_noLabel()
             Setship_address()
             Setship_addressLabel()
-            Setship_name()
-            Setship_nameLabel()
             Settin_no()
             Settin_noLabel()
             Setvehicle_no()
@@ -6203,50 +6197,6 @@ Public Class BaseInv_hdrRecordControl
                 OrElse Me.bill_address.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.bill_address.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setbill_name()
-            
-        
-            ' Set the bill_name Literal on the webpage with value from the
-            ' inv_hdr database record.
-
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.bill_name is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setbill_name()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.bill_nameSpecified Then
-                				
-                ' If the bill_name is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.bill_name)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.bill_name.Text = formattedValue
-              
-            Else 
-            
-                ' bill_name is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.bill_name.Text = Inv_hdrTable.bill_name.Format(Inv_hdrTable.bill_name.DefaultValue)
-                        		
-                End If
-                 
-            ' If the bill_name is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.bill_name.Text Is Nothing _
-                OrElse Me.bill_name.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.bill_name.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -6403,7 +6353,7 @@ Public Class BaseInv_hdrRecordControl
                 ' If the grand_total is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.grand_total)
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.grand_total, "c")
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.grand_total.Text = formattedValue
@@ -6413,7 +6363,7 @@ Public Class BaseInv_hdrRecordControl
                 ' grand_total is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.grand_total.Text = Inv_hdrTable.grand_total.Format(Inv_hdrTable.grand_total.DefaultValue)
+                Me.grand_total.Text = Inv_hdrTable.grand_total.Format(Inv_hdrTable.grand_total.DefaultValue, "c")
                         		
                 End If
                  
@@ -6471,50 +6421,6 @@ Public Class BaseInv_hdrRecordControl
                   
         End Sub
                 
-        Public Overridable Sub Setid_tax_group()
-            
-        
-            ' Set the id_tax_group Literal on the webpage with value from the
-            ' inv_hdr database record.
-
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.id_tax_group is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setid_tax_group()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_tax_groupSpecified Then
-                				
-                ' If the id_tax_group is non-NULL, then format the value.
-
-                ' The Format method will return the Display Foreign Key As (DFKA) value
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.id_tax_group)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.id_tax_group.Text = formattedValue
-              
-            Else 
-            
-                ' id_tax_group is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.id_tax_group.Text = Inv_hdrTable.id_tax_group.Format(Inv_hdrTable.id_tax_group.DefaultValue)
-                        		
-                End If
-                 
-            ' If the id_tax_group is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.id_tax_group.Text Is Nothing _
-                OrElse Me.id_tax_group.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.id_tax_group.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
         Public Overridable Sub Setid_transporter()
             
         
@@ -6559,6 +6465,94 @@ Public Class BaseInv_hdrRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setinv_dt()
+            
+        
+            ' Set the inv_dt Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.inv_dt is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_dt()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_dtSpecified Then
+                				
+                ' If the inv_dt is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.inv_dt, "d")
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.inv_dt.Text = formattedValue
+              
+            Else 
+            
+                ' inv_dt is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_dt.Text = Inv_hdrTable.inv_dt.Format(Inv_hdrTable.inv_dt.DefaultValue, "d")
+                        		
+                End If
+                 
+            ' If the inv_dt is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.inv_dt.Text Is Nothing _
+                OrElse Me.inv_dt.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.inv_dt.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setinv_no()
+            
+        
+            ' Set the inv_no Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.inv_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_noSpecified Then
+                				
+                ' If the inv_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.inv_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.inv_no.Text = formattedValue
+              
+            Else 
+            
+                ' inv_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_no.Text = Inv_hdrTable.inv_no.Format(Inv_hdrTable.inv_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the inv_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.inv_no.Text Is Nothing _
+                OrElse Me.inv_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.inv_no.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setitem_total()
             
         
@@ -6579,7 +6573,7 @@ Public Class BaseInv_hdrRecordControl
                 ' If the item_total is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.item_total)
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.item_total, "c")
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.item_total.Text = formattedValue
@@ -6589,7 +6583,7 @@ Public Class BaseInv_hdrRecordControl
                 ' item_total is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.item_total.Text = Inv_hdrTable.item_total.Format(Inv_hdrTable.item_total.DefaultValue)
+                Me.item_total.Text = Inv_hdrTable.item_total.Format(Inv_hdrTable.item_total.DefaultValue, "c")
                         		
                 End If
                  
@@ -6775,94 +6769,6 @@ Public Class BaseInv_hdrRecordControl
                 OrElse Me.po_no.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.po_no.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setpro_inv_dt()
-            
-        
-            ' Set the pro_inv_dt Literal on the webpage with value from the
-            ' inv_hdr database record.
-
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.pro_inv_dt is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setpro_inv_dt()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.pro_inv_dtSpecified Then
-                				
-                ' If the pro_inv_dt is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.pro_inv_dt, "d")
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.pro_inv_dt.Text = formattedValue
-              
-            Else 
-            
-                ' pro_inv_dt is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.pro_inv_dt.Text = Inv_hdrTable.pro_inv_dt.Format(Inv_hdrTable.pro_inv_dt.DefaultValue, "d")
-                        		
-                End If
-                 
-            ' If the pro_inv_dt is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.pro_inv_dt.Text Is Nothing _
-                OrElse Me.pro_inv_dt.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.pro_inv_dt.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setpro_inv_no()
-            
-        
-            ' Set the pro_inv_no Literal on the webpage with value from the
-            ' inv_hdr database record.
-
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.pro_inv_no is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setpro_inv_no()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.pro_inv_noSpecified Then
-                				
-                ' If the pro_inv_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.pro_inv_no)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.pro_inv_no.Text = formattedValue
-              
-            Else 
-            
-                ' pro_inv_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.pro_inv_no.Text = Inv_hdrTable.pro_inv_no.Format(Inv_hdrTable.pro_inv_no.DefaultValue)
-                        		
-                End If
-                 
-            ' If the pro_inv_no is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.pro_inv_no.Text Is Nothing _
-                OrElse Me.pro_inv_no.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.pro_inv_no.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -7058,50 +6964,6 @@ Public Class BaseInv_hdrRecordControl
                   
         End Sub
                 
-        Public Overridable Sub Setship_name()
-            
-        
-            ' Set the ship_name Literal on the webpage with value from the
-            ' inv_hdr database record.
-
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.ship_name is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setship_name()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.ship_nameSpecified Then
-                				
-                ' If the ship_name is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.ship_name)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.ship_name.Text = formattedValue
-              
-            Else 
-            
-                ' ship_name is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.ship_name.Text = Inv_hdrTable.ship_name.Format(Inv_hdrTable.ship_name.DefaultValue)
-                        		
-                End If
-                 
-            ' If the ship_name is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.ship_name.Text Is Nothing _
-                OrElse Me.ship_name.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.ship_name.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
         Public Overridable Sub Settin_no()
             
         
@@ -7239,11 +7101,6 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Setbill_nameLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Setfreight_to_payLabel()
             
                     
@@ -7269,12 +7126,17 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Setid_tax_groupLabel()
+        Public Overridable Sub Setid_transporterLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub Setid_transporterLabel()
+        Public Overridable Sub Setinv_dtLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setinv_noLabel()
             
                     
         End Sub
@@ -7304,16 +7166,6 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Setpro_inv_dtLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setpro_inv_noLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Setroad_permit_noLabel()
             
                     
@@ -7330,11 +7182,6 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setship_addressLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setship_nameLabel()
             
                     
         End Sub
@@ -7468,26 +7315,23 @@ Public Class BaseInv_hdrRecordControl
             ' Call the Get methods for each of the user interface controls.
         
             Getbill_address()
-            Getbill_name()
             Getfreight_to_pay()
             Getgr_rr_dt()
             Getgr_rr_no()
             Getgrand_total()
             Getid_party()
-            Getid_tax_group()
             Getid_transporter()
+            Getinv_dt()
+            Getinv_no()
             Getitem_total()
             Getno_of_packages()
             Getpacking_details()
             Getpo_dt()
             Getpo_no()
-            Getpro_inv_dt()
-            Getpro_inv_no()
             Getroad_permit_no()
             Getsale_ord_dt()
             Getsale_ord_no()
             Getship_address()
-            Getship_name()
             Gettin_no()
             Getvehicle_no()
             Getweight()
@@ -7495,10 +7339,6 @@ Public Class BaseInv_hdrRecordControl
         
         
         Public Overridable Sub Getbill_address()
-            
-        End Sub
-                
-        Public Overridable Sub Getbill_name()
             
         End Sub
                 
@@ -7522,11 +7362,15 @@ Public Class BaseInv_hdrRecordControl
             
         End Sub
                 
-        Public Overridable Sub Getid_tax_group()
+        Public Overridable Sub Getid_transporter()
             
         End Sub
                 
-        Public Overridable Sub Getid_transporter()
+        Public Overridable Sub Getinv_dt()
+            
+        End Sub
+                
+        Public Overridable Sub Getinv_no()
             
         End Sub
                 
@@ -7550,14 +7394,6 @@ Public Class BaseInv_hdrRecordControl
             
         End Sub
                 
-        Public Overridable Sub Getpro_inv_dt()
-            
-        End Sub
-                
-        Public Overridable Sub Getpro_inv_no()
-            
-        End Sub
-                
         Public Overridable Sub Getroad_permit_no()
             
         End Sub
@@ -7571,10 +7407,6 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getship_address()
-            
-        End Sub
-                
-        Public Overridable Sub Getship_name()
             
         End Sub
                 
@@ -8016,18 +7848,6 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property bill_name() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_name"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property bill_nameLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_nameLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property freight_to_pay() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "freight_to_pay"), System.Web.UI.WebControls.Literal)
@@ -8088,18 +7908,6 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property id_tax_group() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_group"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property id_tax_groupLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_groupLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property id_transporter() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_transporter"), System.Web.UI.WebControls.Literal)
@@ -8112,9 +7920,33 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property inv_dt() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_dt"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_dtLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_dtLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property Inv_hdrTitle() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_hdrTitle"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property inv_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -8178,30 +8010,6 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property pro_inv_dt() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_dt"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property pro_inv_dtLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_dtLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property pro_inv_no() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_no"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property pro_inv_noLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_noLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property road_permit_no() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "road_permit_no"), System.Web.UI.WebControls.Literal)
@@ -8247,18 +8055,6 @@ Public Class BaseInv_hdrRecordControl
         Public ReadOnly Property ship_addressLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_addressLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property ship_name() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_name"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property ship_nameLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_nameLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

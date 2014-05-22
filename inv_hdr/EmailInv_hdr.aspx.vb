@@ -148,8 +148,6 @@ Partial Public Class EmailInv_hdr
         Public WithEvents ass_valueLabel As System.Web.UI.WebControls.Literal
         Public WithEvents bill_address As System.Web.UI.WebControls.Literal
         Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents bill_name As System.Web.UI.WebControls.Literal
-        Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents calc_typeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents excise_totalLabel As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_pay As System.Web.UI.WebControls.Literal
@@ -164,15 +162,17 @@ Partial Public Class EmailInv_hdr
         Public WithEvents id_itemLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_party As System.Web.UI.WebControls.Literal
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_tax_group As System.Web.UI.WebControls.Literal
-        Public WithEvents id_tax_groupLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_taxesLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_transporter As System.Web.UI.WebControls.Literal
         Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_dt As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_hdrRecordControl As ServelInvocing.UI.Controls.EmailInv_hdr.Inv_hdrRecordControl
         Public WithEvents Inv_hdrTitle As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_itemsTableControl As ServelInvocing.UI.Controls.EmailInv_hdr.Inv_itemsTableControl
         Public WithEvents Inv_itemsTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_no As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_taxesTableControl As ServelInvocing.UI.Controls.EmailInv_hdr.Inv_taxesTableControl
         Public WithEvents Inv_taxesTitle As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_termsTableControl As ServelInvocing.UI.Controls.EmailInv_hdr.Inv_termsTableControl
@@ -192,10 +192,6 @@ Partial Public Class EmailInv_hdr
         Public WithEvents po_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents po_no As System.Web.UI.WebControls.Literal
         Public WithEvents po_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents pro_inv_dt As System.Web.UI.WebControls.Literal
-        Public WithEvents pro_inv_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents pro_inv_no As System.Web.UI.WebControls.Literal
-        Public WithEvents pro_inv_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents qtyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents rateLabel As System.Web.UI.WebControls.Literal
         Public WithEvents road_permit_no As System.Web.UI.WebControls.Literal
@@ -206,8 +202,6 @@ Partial Public Class EmailInv_hdr
         Public WithEvents sale_ord_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ship_address As System.Web.UI.WebControls.Literal
         Public WithEvents ship_addressLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents ship_name As System.Web.UI.WebControls.Literal
-        Public WithEvents ship_nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sort_orderLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sort_orderLabel1 As System.Web.UI.WebControls.Literal
         Public WithEvents tax_amountLabel As System.Web.UI.WebControls.Literal

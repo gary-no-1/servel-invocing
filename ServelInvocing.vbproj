@@ -165,12 +165,16 @@
     <Compile Include="Header and Footer\IEmailHeader.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Header and Footer\PrintHeader.ascx.vb">
-      <DependentUpon>PrintHeader.ascx</DependentUpon>
+    <Compile Include="inv_hdr\EmailInv_hdr.aspx.vb">
+      <DependentUpon>EmailInv_hdr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Header and Footer\IPrintHeader.vb">
+    <Compile Include="inv_hdr\EmailInv_hdr.Controls.vb">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\PrintInvoice.aspx.vb">
+      <DependentUpon>PrintInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="party\AddParty.aspx.vb">
       <DependentUpon>AddParty.aspx</DependentUpon>
@@ -250,13 +254,6 @@
     <Compile Include="Shared\IThemeButton.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="inv_hdr\ShowInv_hdr.aspx.vb">
-      <DependentUpon>ShowInv_hdr.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="inv_hdr\ShowInv_hdr.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="commodity\AddCommodity.aspx.vb" >
       <DependentUpon>AddCommodity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -334,18 +331,18 @@
     <Compile Include="Header and Footer\IHeader.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Header and Footer\PrintHeader.ascx.vb" >
+      <DependentUpon>PrintHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header and Footer\IPrintHeader.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="inv_hdr\EditInv_hdr.aspx.vb" >
       <DependentUpon>EditInv_hdr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="inv_hdr\EditInv_hdr.Controls.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="inv_hdr\EmailInv_hdr.aspx.vb" >
-      <DependentUpon>EmailInv_hdr.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="inv_hdr\EmailInv_hdr.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="inv_hdr\Inv_hdrWebReport.aspx.vb" >
@@ -355,15 +352,18 @@
     <Compile Include="inv_hdr\Inv_hdrWebReport.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="inv_hdr\PrintInvoice.aspx.vb" >
-      <DependentUpon>PrintInvoice.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="inv_hdr\PrintInv_hdr.aspx.vb" >
       <DependentUpon>PrintInv_hdr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="inv_hdr\PrintInv_hdr.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\ShowInv_hdr.aspx.vb" >
+      <DependentUpon>ShowInv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\ShowInv_hdr.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="inv_hdr\ShowInv_hdrTable.aspx.vb" >
@@ -1359,7 +1359,8 @@
     <Content Include="Troubleshooting\TestConfiguration.mdb">
     </Content>
     <Content Include="Header and Footer\EmailHeader.ascx" />
-    <Content Include="Header and Footer\PrintHeader.ascx" />
+    <Content Include="inv_hdr\EmailInv_hdr.aspx" />
+    <Content Include="inv_hdr\PrintInvoice.aspx" />
     <Content Include="party\AddParty.aspx" />
     <Content Include="party\ShowParty.aspx" />
     <Content Include="Security\SignIn.aspx" />
@@ -1372,7 +1373,6 @@
     <Content Include="Shared\Pagination.ascx" />
     <Content Include="Shared\PaginationShort.ascx" />
     <Content Include="Shared\ThemeButton.ascx" />
-    <Content Include="inv_hdr\ShowInv_hdr.aspx" />
     <Content Include="commodity\AddCommodity.aspx"  />
     <Content Include="commodity\EditCommodity.aspx"  />
     <Content Include="commodity\EditCommodityTable.aspx"  />
@@ -1384,11 +1384,11 @@
     <Content Include="company\ShowCompanyTable.aspx"  />
     <Content Include="Header and Footer\Footer.ascx"  />
     <Content Include="Header and Footer\Header.ascx"  />
+    <Content Include="Header and Footer\PrintHeader.ascx"  />
     <Content Include="inv_hdr\EditInv_hdr.aspx"  />
-    <Content Include="inv_hdr\EmailInv_hdr.aspx"  />
     <Content Include="inv_hdr\Inv_hdrWebReport.aspx"  />
-    <Content Include="inv_hdr\PrintInvoice.aspx"  />
     <Content Include="inv_hdr\PrintInv_hdr.aspx"  />
+    <Content Include="inv_hdr\ShowInv_hdr.aspx"  />
     <Content Include="inv_hdr\ShowInv_hdrTable.aspx"  />
     <Content Include="inv_items\EditInv_items.aspx"  />
     <Content Include="inv_items\EmailInv_items.aspx"  />

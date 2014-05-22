@@ -53,22 +53,14 @@ Partial Public Class ShowInv_hdr
 	    	If Not IsPostBack Then
 	            If Not Page.Session("PrintProInvID") Is Nothing Then
     	            Dim sID As String = Page.Session("PrintProInvID").tostring()
-	Dim reportBook = New ReportBook()
-	reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice())
-	reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice2Copy())
-    reportBook.Reports(0).ReportParameters("PrintProInvId").value = sID
-    reportBook.Reports(1).ReportParameters("PrintProInvId").value = sID
+					Dim reportBook = New ReportBook()
+					reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice())
+					reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice2Copy())
+					reportBook.Reports(0).ReportParameters("PrintProInvId").value = sID
+					reportBook.Reports(1).ReportParameters("PrintProInvId").value = sID
 
-	'Dim reportSource = New Telerik.Reporting.InstanceReportSource()
-	'Dim reportSource = New Telerik.Reporting.ReportSource()
-	'reportSource.ReportDocument = reportBook
-
-	'reportViewer.ReportSource = reportSource
-					
-					
     	            ''Dim sID As String = me.id1.text
 					'Dim fs As New ServelInvoicingReportLibrary.ServelInvoice()
-					'' Dim fs As New ServelInvoicingReportLibrary.ServelInvoiceBook()
 					'fs.ReportParameters("PrintProInvId").value = sID
 
 					Dim reportviewer As New Telerik.Reportviewer.Webforms.Reportviewer
@@ -85,7 +77,7 @@ Partial Public Class ShowInv_hdr
         'Do Something Here
         End Try		
 		
-          Me.SetFocusOnLoad()  
+        Me.SetFocusOnLoad()  
       End Sub
        
       Public Sub LoadData()
@@ -208,6 +200,7 @@ Partial Public Class ShowInv_hdr
         Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents bill_name As System.Web.UI.WebControls.Literal
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents BtnEmail As ThemeButton
         Public WithEvents BtnPrint As ThemeButton
         Public WithEvents BtnPrtInv As System.Web.UI.WebControls.Button
         Public WithEvents EditButton As ThemeButton

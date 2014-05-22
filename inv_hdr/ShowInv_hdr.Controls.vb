@@ -133,6 +133,7 @@ Public Class Inv_hdrRecordControl
 '                    
 '        End Sub
 
+		
 		Public Overrides Sub BtnPrint_Click(ByVal sender As Object, ByVal args As EventArgs)
               
             ' The redirect URL is set on the Properties, Bindings.
@@ -141,8 +142,8 @@ Public Class Inv_hdrRecordControl
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
 			Page.Session("PrintProInvID") = Me.id1.text
-
-            Dim url As String = "../inv_hdr/PrintInv_hdr.aspx?inv_hdr={Inv_hdrRecordControl:PK}"
+			
+            Dim url As String = "../inv_hdr/PrintInvoice.aspx"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -151,10 +152,9 @@ Public Class Inv_hdrRecordControl
             Try
                 ' Enclose all database retrieval/update code within a Transaction boundary
                 DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
+	            url = Me.ModifyRedirectUrl(url, "",False)
+    	        url = Me.Page.ModifyRedirectUrl(url, "",False)
+        		Me.Page.CommitTransaction(sender)
           
             Catch ex As Exception
                 ' Upon error, rollback the transaction
@@ -169,7 +169,15 @@ Public Class Inv_hdrRecordControl
             End Try
             If shouldRedirect Then
                 Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
+				Dim s As String 
+				s = "<script language=javascript>"
+				s = s + "var w=window.open('" + url + "');"
+				s = s + "w.focus();"
+				s = s + "</script>"
+				
+				'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", s)
+				Me.Page.Response.Write(s)
+                'Me.Page.Response.Redirect(url)
             ElseIf Not TargetKey Is Nothing AndAlso _
                         Not shouldRedirect Then
             Me.Page.ShouldSaveControlsToSession = True
@@ -7008,6 +7016,8 @@ Public Class BaseInv_hdrRecordControl
             
               AddHandler Me.id_transporter.Click, AddressOf id_transporter_Click
             
+            AddHandler Me.BtnEmail.Button.Click, AddressOf BtnEmail_Click
+        
             AddHandler Me.BtnPrint.Button.Click, AddressOf BtnPrint_Click
         
         End Sub
@@ -8477,6 +8487,8 @@ Public Class BaseInv_hdrRecordControl
 
         Public Overridable Sub RegisterPostback()
         
+              Me.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"BtnPrint"))
+                        
         
         End Sub
 
@@ -9138,6 +9150,22 @@ Public Class BaseInv_hdrRecordControl
         End Sub
             
         ' event handler for Button with Layout
+        Public Overridable Sub BtnEmail_Click(ByVal sender As Object, ByVal args As EventArgs)
+              
+            Try
+                
+            Catch ex As Exception
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+    
+            End Try
+    
+        End Sub
+            
+        ' event handler for Button with Layout
         Public Overridable Sub BtnPrint_Click(ByVal sender As Object, ByVal args As EventArgs)
               
             ' The redirect URL is set on the Properties, Bindings.
@@ -9145,7 +9173,7 @@ Public Class BaseInv_hdrRecordControl
             ' Response.Redirect redirects the page to the URL.  
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
-            Dim url As String = "../inv_hdr/PrintInv_hdr.aspx?inv_hdr={Inv_hdrRecordControl:PK}"
+            Dim url As String = "../inv_hdr/PrintInvoice.aspx"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -9337,6 +9365,12 @@ Public Class BaseInv_hdrRecordControl
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_nameLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
+        
+        Public ReadOnly Property BtnEmail() As ServelInvocing.UI.IThemeButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "BtnEmail"), ServelInvocing.UI.IThemeButton)
+          End Get
+          End Property
         
         Public ReadOnly Property BtnPrint() As ServelInvocing.UI.IThemeButton
             Get

@@ -65,6 +65,10 @@ Namespace ServelInvocing.Business
         ship_nameColumn.CodeName = "ship_name"
         ship_addressColumn.CodeName = "ship_address"
         tin_noColumn.CodeName = "tin_no"
+        emailColumn.CodeName = "email"
+        additional_emailColumn.CodeName = "additional_email"
+        contactColumn.CodeName = "contact"
+        phoneColumn.CodeName = "phone"
         po_noColumn.CodeName = "po_no"
         po_dtColumn.CodeName = "po_dt"
         id_commodityColumn.CodeName = "id_commodity"
@@ -317,11 +321,87 @@ Namespace ServelInvocing.Business
         End Get
     End Property
     ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.email column object.
+    ''' </summary>
+    Public ReadOnly Property emailColumn() As BaseClasses.Data.EmailColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(12), BaseClasses.Data.EmailColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.email column object.
+    ''' </summary>
+    Public Shared ReadOnly Property email() As BaseClasses.Data.EmailColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.emailColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.additional_email column object.
+    ''' </summary>
+    Public ReadOnly Property additional_emailColumn() As BaseClasses.Data.EmailColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(13), BaseClasses.Data.EmailColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.additional_email column object.
+    ''' </summary>
+    Public Shared ReadOnly Property additional_email() As BaseClasses.Data.EmailColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.additional_emailColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.contact column object.
+    ''' </summary>
+    Public ReadOnly Property contactColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(14), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.contact column object.
+    ''' </summary>
+    Public Shared ReadOnly Property contact() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.contactColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.phone column object.
+    ''' </summary>
+    Public ReadOnly Property phoneColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(15), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.phone column object.
+    ''' </summary>
+    Public Shared ReadOnly Property phone() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.phoneColumn
+        End Get
+    End Property
+    ''' <summary>
     ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.po_no column object.
     ''' </summary>
     Public ReadOnly Property po_noColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(12), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(16), BaseClasses.Data.StringColumn)
         End Get
     End Property
 
@@ -340,7 +420,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property po_dtColumn() As BaseClasses.Data.DateColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(13), BaseClasses.Data.DateColumn)
+            Return CType(Me.TableDefinition.ColumnList(17), BaseClasses.Data.DateColumn)
         End Get
     End Property
 
@@ -359,7 +439,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property id_commodityColumn() As BaseClasses.Data.NumberColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(14), BaseClasses.Data.NumberColumn)
+            Return CType(Me.TableDefinition.ColumnList(18), BaseClasses.Data.NumberColumn)
         End Get
     End Property
 
@@ -378,7 +458,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property id_tax_groupColumn() As BaseClasses.Data.NumberColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(15), BaseClasses.Data.NumberColumn)
+            Return CType(Me.TableDefinition.ColumnList(19), BaseClasses.Data.NumberColumn)
         End Get
     End Property
 
@@ -397,7 +477,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property item_totalColumn() As BaseClasses.Data.NumberColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(16), BaseClasses.Data.NumberColumn)
+            Return CType(Me.TableDefinition.ColumnList(20), BaseClasses.Data.NumberColumn)
         End Get
     End Property
 
@@ -416,7 +496,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property grand_totalColumn() As BaseClasses.Data.NumberColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(17), BaseClasses.Data.NumberColumn)
+            Return CType(Me.TableDefinition.ColumnList(21), BaseClasses.Data.NumberColumn)
         End Get
     End Property
 
@@ -435,7 +515,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property road_permit_noColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(18), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(22), BaseClasses.Data.StringColumn)
         End Get
     End Property
 
@@ -454,7 +534,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property packing_detailsColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(19), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(23), BaseClasses.Data.StringColumn)
         End Get
     End Property
 
@@ -473,7 +553,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property weightColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(20), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(24), BaseClasses.Data.StringColumn)
         End Get
     End Property
 
@@ -492,7 +572,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property no_of_packagesColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(21), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(25), BaseClasses.Data.StringColumn)
         End Get
     End Property
 
@@ -511,7 +591,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property id_transporterColumn() As BaseClasses.Data.NumberColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(22), BaseClasses.Data.NumberColumn)
+            Return CType(Me.TableDefinition.ColumnList(26), BaseClasses.Data.NumberColumn)
         End Get
     End Property
 
@@ -530,7 +610,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property gr_rr_noColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(23), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(27), BaseClasses.Data.StringColumn)
         End Get
     End Property
 
@@ -549,7 +629,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property gr_rr_dtColumn() As BaseClasses.Data.DateColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(24), BaseClasses.Data.DateColumn)
+            Return CType(Me.TableDefinition.ColumnList(28), BaseClasses.Data.DateColumn)
         End Get
     End Property
 
@@ -568,7 +648,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property freight_to_payColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(25), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(29), BaseClasses.Data.StringColumn)
         End Get
     End Property
 
@@ -587,7 +667,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property vehicle_noColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(26), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(30), BaseClasses.Data.StringColumn)
         End Get
     End Property
 
@@ -606,7 +686,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property inv_noColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(27), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(31), BaseClasses.Data.StringColumn)
         End Get
     End Property
 
@@ -625,7 +705,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property inv_cr8_dtColumn() As BaseClasses.Data.DateColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(28), BaseClasses.Data.DateColumn)
+            Return CType(Me.TableDefinition.ColumnList(32), BaseClasses.Data.DateColumn)
         End Get
     End Property
 
@@ -644,7 +724,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property inv_createdColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(29), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(33), BaseClasses.Data.StringColumn)
         End Get
     End Property
 
@@ -943,6 +1023,10 @@ Namespace ServelInvocing.Business
         ByVal ship_nameValue As String, _
         ByVal ship_addressValue As String, _
         ByVal tin_noValue As String, _
+        ByVal emailValue As String, _
+        ByVal additional_emailValue As String, _
+        ByVal contactValue As String, _
+        ByVal phoneValue As String, _
         ByVal po_noValue As String, _
         ByVal po_dtValue As String, _
         ByVal id_commodityValue As String, _
@@ -974,6 +1058,10 @@ Namespace ServelInvocing.Business
         rec.SetString(ship_nameValue, ship_nameColumn)
         rec.SetString(ship_addressValue, ship_addressColumn)
         rec.SetString(tin_noValue, tin_noColumn)
+        rec.SetString(emailValue, emailColumn)
+        rec.SetString(additional_emailValue, additional_emailColumn)
+        rec.SetString(contactValue, contactColumn)
+        rec.SetString(phoneValue, phoneColumn)
         rec.SetString(po_noValue, po_noColumn)
         rec.SetString(po_dtValue, po_dtColumn)
         rec.SetString(id_commodityValue, id_commodityColumn)
