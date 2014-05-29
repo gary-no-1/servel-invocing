@@ -136,6 +136,15 @@
     <Compile Include="BaseItem_typesSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Mail_logDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mail_logSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseMail_logSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PartyDefinition.vb">
       <SubType>Code</SubType>
     </Compile>

@@ -85,6 +85,35 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.commodityColumn)
 	End Sub
 
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Commodity_.tariff field.
+	''' </summary>
+	Public Function GettariffValue() As ColumnValue
+		Return Me.GetValue(TableUtils.tariffColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Commodity_.tariff field.
+	''' </summary>
+	Public Function GettariffFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.tariffColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Commodity_.tariff field.
+	''' </summary>
+	Public Sub SettariffFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.tariffColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Commodity_.tariff field.
+	''' </summary>
+	Public Sub SettariffFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tariffColumn)
+	End Sub
+
 
 
 #End Region
@@ -159,6 +188,41 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property commodityDefault() As String
         Get
             Return TableUtils.commodityColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Commodity_.tariff field.
+	''' </summary>
+	Public Property tariff() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.tariffColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.tariffColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property tariffSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.tariffColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property tariffDefault() As String
+        Get
+            Return TableUtils.tariffColumn.DefaultValue
         End Get
     End Property
 

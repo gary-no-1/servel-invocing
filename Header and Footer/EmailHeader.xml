@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<ComponentDefinition xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ironspeed.com/designer">
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ComponentDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ironspeed.com/designer">
   <Generator>Iron Speed Designer</Generator>
   <Version>7.0.0</Version>
   <Self>
     <Name>EmailHeader</Name>
     <Type>Header</Type>
+    <SubType>DotNet</SubType>
     <GenerateDirectory>Header and Footer</GenerateDirectory>
     <Layout>Header and Footer\EmailHeader.html</Layout>
     <DisplayName>Header</DisplayName>
@@ -16,20 +17,20 @@
       <Type>Image</Type>
       <PassthroughAttributes>
         <Attribute>
+          <Name>AlternateText</Name>
+          <Value>Txt:PageHeader</Value>
+          <Type>ResourceReference</Type>
+        </Attribute>
+        <Attribute>
           <Name>ImageURL</Name>
-          <Value>../Images/logoEmail.gif</Value>
+          <Value>../Images/servel_india_Logo.gif</Value>
         </Attribute>
         <Attribute>
           <Name>style</Name>
           <Value>border-width:0px;</Value>
         </Attribute>
-	  <Attribute>
-          <Name>AlternateText</Name>
-          <Value>Txt:PageHeader</Value>
-	    <Type>ResourceReference</Type>
-        </Attribute>
       </PassthroughAttributes>
-     </ContainedComponent>
+    </ContainedComponent>
   </ComposedOf>
   <LayoutDefinition>&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-16"?&gt;
     &lt;LayoutDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;

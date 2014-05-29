@@ -955,6 +955,35 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.inv_email_bodyColumn)
 	End Sub
 
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.proforma_email_body field.
+	''' </summary>
+	Public Function Getproforma_email_bodyValue() As ColumnValue
+		Return Me.GetValue(TableUtils.proforma_email_bodyColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.proforma_email_body field.
+	''' </summary>
+	Public Function Getproforma_email_bodyFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.proforma_email_bodyColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.proforma_email_body field.
+	''' </summary>
+	Public Sub Setproforma_email_bodyFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.proforma_email_bodyColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.proforma_email_body field.
+	''' </summary>
+	Public Sub Setproforma_email_bodyFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.proforma_email_bodyColumn)
+	End Sub
+
 
 
 #End Region
@@ -2013,6 +2042,41 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property inv_email_bodyDefault() As String
         Get
             Return TableUtils.inv_email_bodyColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.proforma_email_body field.
+	''' </summary>
+	Public Property proforma_email_body() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.proforma_email_bodyColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.proforma_email_bodyColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property proforma_email_bodySpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.proforma_email_bodyColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property proforma_email_bodyDefault() As String
+        Get
+            Return TableUtils.proforma_email_bodyColumn.DefaultValue
         End Get
     End Property
 

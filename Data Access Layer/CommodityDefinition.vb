@@ -9,7 +9,7 @@
 Public Class CommodityDefinition
 
 #Region "Definition (XML) for CommodityDefinition table"
-	'Next 65 lines contain Table Definition (XML) for table "CommodityDefinition"
+	'Next 88 lines contain Table Definition (XML) for table "CommodityDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -23,7 +23,7 @@ Public Class CommodityDefinition
       "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>Y</columnIndex>"& _
       "<columnUnique>Y</columnUnique>"& _
-      "<columnFunction>notrim</columnFunction>"& _
+      "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>Y</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
@@ -38,13 +38,36 @@ Public Class CommodityDefinition
     "</Column>"& _
     "<Column InternalName=""1"" Priority=""2"" ColumnNum=""1"">"& _
       "<columnName>commodity</columnName>"& _
-      "<columnUIName Source=""User"">Commodity</columnUIName>"& _
+      "<columnUIName>Commodity</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>50</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>Y</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction>upper</columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>Y</columnRequired>"& _
+      "<columnNotNull>Y</columnNotNull>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""2"" Priority=""3"" ColumnNum=""2"">"& _
+      "<columnName>tariff</columnName>"& _
+      "<columnUIName Source=""User"">Tariff</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>30</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction>upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
@@ -53,18 +76,18 @@ Public Class CommodityDefinition
       "<columnComputed Source=""User"">N</columnComputed>"& _
       "<columnIdentity Source=""User"">N</columnIdentity>"& _
       "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
-      "<columnRequired>Y</columnRequired>"& _
-      "<columnNotNull>Y</columnNotNull>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
       "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
       "<columnCodeName></columnCodeName>"& _
-      "<InternalName>1</InternalName>"& _
+      "<InternalName>2</InternalName>"& _
       "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>commodity</TableName>"& _
-  "<Version></Version>"& _
+  "<Version>1</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Commodity</TableCodeName>"& _
   "<TableAliasName>Commodity_</TableAliasName>"& _

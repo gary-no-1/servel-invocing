@@ -38,7 +38,7 @@
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="id_tax_groupLabel1" Text="Tax Code">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="item_totalLabel" Text="Item Total">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="grand_totalLabel" Text="Grand Total">	</asp:Literal>
-                        </th><th class="thc" scope="col"><asp:Literal runat="server" id="road_permit_noLabel" Text="Road Permit No.">	</asp:Literal>
+                        </th><th class="thc" scope="col"><asp:Literal runat="server" id="road_permit_noLabel" Text="Road Permit No:">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="packing_detailsLabel" Text="Packing Details">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="weightLabel" Text="Weight">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="no_of_packagesLabel" Text="No Of Packages">	</asp:Literal>

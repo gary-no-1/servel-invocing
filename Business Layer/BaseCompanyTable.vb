@@ -83,6 +83,7 @@ Namespace ServelInvocing.Business
         email_fromColumn.CodeName = "email_from"
         email_bccColumn.CodeName = "email_bcc"
         inv_email_bodyColumn.CodeName = "inv_email_body"
+        proforma_email_bodyColumn.CodeName = "proforma_email_body"
         
     End Sub
 
@@ -658,6 +659,25 @@ Namespace ServelInvocing.Business
             Return CompanyTable.Instance.inv_email_bodyColumn
         End Get
     End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Company_.proforma_email_body column object.
+    ''' </summary>
+    Public ReadOnly Property proforma_email_bodyColumn() As BaseClasses.Data.EmailColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(30), BaseClasses.Data.EmailColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Company_.proforma_email_body column object.
+    ''' </summary>
+    Public Shared ReadOnly Property proforma_email_body() As BaseClasses.Data.EmailColumn
+        Get
+            Return CompanyTable.Instance.proforma_email_bodyColumn
+        End Get
+    End Property
 
 
 #End Region
@@ -960,7 +980,8 @@ Namespace ServelInvocing.Business
         ByVal inv_declarationValue As String, _
         ByVal email_fromValue As String, _
         ByVal email_bccValue As String, _
-        ByVal inv_email_bodyValue As String _
+        ByVal inv_email_bodyValue As String, _
+        ByVal proforma_email_bodyValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(nameValue, nameColumn)
@@ -992,6 +1013,7 @@ Namespace ServelInvocing.Business
         rec.SetString(email_fromValue, email_fromColumn)
         rec.SetString(email_bccValue, email_bccColumn)
         rec.SetString(inv_email_bodyValue, inv_email_bodyColumn)
+        rec.SetString(proforma_email_bodyValue, proforma_email_bodyColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

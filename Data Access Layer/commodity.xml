@@ -13,7 +13,8 @@
       </columnDBDefault>
       <columnIndex>Y</columnIndex>
       <columnUnique>Y</columnUnique>
-      <columnFunction>notrim</columnFunction>
+      <columnFunction>
+      </columnFunction>
       <columnDBFormat>
       </columnDBFormat>
       <columnPK>Y</columnPK>
@@ -30,15 +31,42 @@
     </Column>
     <Column InternalName="1" Priority="2" ColumnNum="1">
       <columnName>commodity</columnName>
-      <columnUIName Source="User">%ISD_DEFAULT%</columnUIName>
+      <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>50</columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault Source="User">
+      <columnDBDefault>
       </columnDBDefault>
       <columnIndex>Y</columnIndex>
+      <columnUnique>N</columnUnique>
+      <columnFunction>upper</columnFunction>
+      <columnDBFormat>
+      </columnDBFormat>
+      <columnPK>N</columnPK>
+      <columnPermanent>N</columnPermanent>
+      <columnComputed>N</columnComputed>
+      <columnIdentity>N</columnIdentity>
+      <columnReadOnly>N</columnReadOnly>
+      <columnRequired>Y</columnRequired>
+      <columnNotNull>Y</columnNotNull>
+      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
+      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
+      <columnTableAliasName>
+      </columnTableAliasName>
+    </Column>
+    <Column InternalName="2" Priority="3" ColumnNum="2">
+      <columnName>tariff</columnName>
+      <columnUIName Source="User">%ISD_DEFAULT%</columnUIName>
+      <columnType>String</columnType>
+      <columnDBType>nchar</columnDBType>
+      <columnLengthSet>30</columnLengthSet>
+      <columnDefault>
+      </columnDefault>
+      <columnDBDefault Source="User">
+      </columnDBDefault>
+      <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
       <columnFunction>upper</columnFunction>
       <columnDBFormat>
@@ -48,22 +76,21 @@
       <columnComputed Source="User">N</columnComputed>
       <columnIdentity Source="User">N</columnIdentity>
       <columnReadOnly Source="User">N</columnReadOnly>
-      <columnRequired>Y</columnRequired>
-      <columnNotNull>Y</columnNotNull>
+      <columnRequired>N</columnRequired>
+      <columnNotNull>N</columnNotNull>
       <columnCaseSensitive Source="User">N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
       <columnCodeName>
       </columnCodeName>
-      <InternalName>1</InternalName>
+      <InternalName>2</InternalName>
       <columnTableClassName>
       </columnTableClassName>
     </Column>
   </ColumnDefinition>
   <TableName>commodity</TableName>
-  <Version>
-  </Version>
+  <Version>1</Version>
   <Owner>dbo</Owner>
   <TableCodeName>Commodity</TableCodeName>
   <TableAliasName>Commodity_</TableAliasName>

@@ -78,6 +78,8 @@ Public Class BaseCommodityRecordControl
           
               AddHandler Me.commodity.TextChanged, AddressOf commodity_TextChanged
             
+              AddHandler Me.tariff.TextChanged, AddressOf tariff_TextChanged
+            
         End Sub
 
         
@@ -158,6 +160,8 @@ Public Class BaseCommodityRecordControl
         
             Setcommodity()
             SetcommodityLabel()
+            Settariff()
+            SettariffLabel()
       
       
             Me.IsNewRecord = True
@@ -211,7 +215,47 @@ Public Class BaseCommodityRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Settariff()
+            
+        
+            ' Set the tariff TextBox on the webpage with value from the
+            ' commodity database record.
+
+            ' Me.DataSource is the commodity record retrieved from the database.
+            ' Me.tariff is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Settariff()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tariffSpecified Then
+                				
+                ' If the tariff is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CommodityTable.tariff)
+                            
+                Me.tariff.Text = formattedValue
+              
+            Else 
+            
+                ' tariff is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.tariff.Text = CommodityTable.tariff.Format(CommodityTable.tariff.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub SetcommodityLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SettariffLabel()
             
                     
         End Sub
@@ -321,6 +365,7 @@ Public Class BaseCommodityRecordControl
             ' Call the Get methods for each of the user interface controls.
         
             Getcommodity()
+            Gettariff()
         End Sub
         
         
@@ -333,6 +378,19 @@ Public Class BaseCommodityRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.commodity.Text, CommodityTable.commodity)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Gettariff()
+            
+            ' Retrieve the value entered by the user on the tariff ASP:TextBox, and
+            ' save it into the tariff field in DataSource commodity record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.tariff.Text, CommodityTable.tariff)			
 
                       
         End Sub
@@ -622,6 +680,10 @@ Public Class BaseCommodityRecordControl
                     				
         End Sub
             
+        Protected Overridable Sub tariff_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
    
         Private _PreviousUIData As New Hashtable
         Public Overridable Property PreviousUIData() As Hashtable
@@ -770,6 +832,18 @@ Public Class BaseCommodityRecordControl
         Public ReadOnly Property CommodityTitle() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "CommodityTitle"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property tariff() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tariff"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property tariffLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tariffLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

@@ -1,6 +1,6 @@
 ﻿
-' This file implements the code-behind class for OldPrintPro_inv.aspx.
-' OldPrintPro_inv.Controls.vb contains the Table, Row and Record control classes
+' This file implements the code-behind class for EmailInv_hdr2.aspx.
+' EmailInv_hdr2.Controls.vb contains the Table, Row and Record control classes
 ' for the page.  Best practices calls for overriding methods in the Row or Record control classes.
 
 #Region "Imports statements"
@@ -27,16 +27,15 @@ Imports BaseClasses.Web.UI.WebControls
 Imports ServelInvocing.Business
 Imports ServelInvocing.Data
         
-Imports telerik.reporting
 
 #End Region
 
   
 Namespace ServelInvocing.UI
   
-Partial Public Class OldPrintPro_inv
+Partial Public Class EmailInv_hdr2
         Inherits BaseApplicationPage
-' Code-behind class for the OldPrintPro_inv page.
+' Code-behind class for the EmailInv_hdr2 page.
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
@@ -49,31 +48,6 @@ Partial Public Class OldPrintPro_inv
           'Dim controlToFocus As System.Web.UI.WebControls.TextBox = DirectCast(Me.FindControlRecursively("ProductsSearch"), System.Web.UI.WebControls.TextBox)
           'Me.SetFocusOnLoad(controlToFocus)
           'If no control is passed or control does not exist this method will set focus on the first focusable control on the page.
-		Try
-	    	If Not IsPostBack Then
-	            If Not Page.Session("PrintProInvID") Is Nothing Then
-    	            Dim sID As String = Page.Session("PrintProInvID").tostring()
-    	            'Dim sID As String = Page.Session("PrintProInvID")
-					'Dim sID As String = "7"
-					Dim fs As New ServelInvoicingReportLibrary.ServelInvProformaInvoice()
-					fs.ReportParameters("PrintProInvId").value = sID
-
-					Dim reportviewer As New Telerik.Reportviewer.Webforms.Reportviewer
-					reportviewer = Directcast(FindControlRecursively("ReportViewer1"),Telerik.Reportviewer.Webforms.Reportviewer)
-					If (Not reportviewer Is Nothing)
-						reportviewer.Report = fs
-		   			Else
-    		  			Response.Write("Control not found.....")
-   					End If
-				End If
-			End If
-
-        Catch ex As Exception
-
-        'Do Something Here
-
-        End Try		
-		
           Me.SetFocusOnLoad()  
       End Sub
        
@@ -170,7 +144,103 @@ Partial Public Class OldPrintPro_inv
 
 #Region "Section 2: Do not modify this section."
 
+        Public WithEvents additional_email As System.Web.UI.WebControls.Literal
+        Public WithEvents additional_emailLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents amountLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents ass_valueLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents bill_address As System.Web.UI.WebControls.Literal
+        Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents bill_name As System.Web.UI.WebControls.Literal
+        Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents calc_typeLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents contact As System.Web.UI.WebControls.Literal
+        Public WithEvents contactLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents email As System.Web.UI.WebControls.Literal
+        Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents excise_totalLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents freight_to_pay As System.Web.UI.WebControls.Literal
+        Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents gr_rr_dt As System.Web.UI.WebControls.Literal
+        Public WithEvents gr_rr_dtLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents gr_rr_no As System.Web.UI.WebControls.Literal
+        Public WithEvents gr_rr_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents grand_total As System.Web.UI.WebControls.Literal
+        Public WithEvents grand_totalLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents grand_totalLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents id_commodity As System.Web.UI.WebControls.Literal
+        Public WithEvents id_commodityLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id_itemLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id_party As System.Web.UI.WebControls.Literal
+        Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id_site As System.Web.UI.WebControls.Literal
+        Public WithEvents id_siteLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id_tax_group As System.Web.UI.WebControls.Literal
+        Public WithEvents id_tax_groupLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id_taxesLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id_transporter As System.Web.UI.WebControls.Literal
+        Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_dt As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_dtLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents Inv_hdrRecordControl As ServelInvocing.UI.Controls.EmailInv_hdr2.Inv_hdrRecordControl
+        Public WithEvents Inv_hdrTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents Inv_itemsTableControl As ServelInvocing.UI.Controls.EmailInv_hdr2.Inv_itemsTableControl
+        Public WithEvents Inv_itemsTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_no As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents Inv_taxesTableControl As ServelInvocing.UI.Controls.EmailInv_hdr2.Inv_taxesTableControl
+        Public WithEvents Inv_taxesTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents Inv_termsTableControl As ServelInvocing.UI.Controls.EmailInv_hdr2.Inv_termsTableControl
+        Public WithEvents Inv_termsTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents item_codeLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents item_total As System.Web.UI.WebControls.Literal
+        Public WithEvents item_totalLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents item_totalLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents narrationLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents no_of_packages As System.Web.UI.WebControls.Literal
+        Public WithEvents no_of_packagesLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents packing_details As System.Web.UI.WebControls.Literal
+        Public WithEvents packing_detailsLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents phone As System.Web.UI.WebControls.Literal
+        Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents po_dt As System.Web.UI.WebControls.Literal
+        Public WithEvents po_dtLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents po_no As System.Web.UI.WebControls.Literal
+        Public WithEvents po_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents pro_inv_dt As System.Web.UI.WebControls.Literal
+        Public WithEvents pro_inv_dtLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents pro_inv_no As System.Web.UI.WebControls.Literal
+        Public WithEvents pro_inv_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents qtyLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents rateLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents road_permit_no As System.Web.UI.WebControls.Literal
+        Public WithEvents road_permit_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents sale_ord_dt As System.Web.UI.WebControls.Literal
+        Public WithEvents sale_ord_dtLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents sale_ord_no As System.Web.UI.WebControls.Literal
+        Public WithEvents sale_ord_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents ship_address As System.Web.UI.WebControls.Literal
+        Public WithEvents ship_addressLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents ship_name As System.Web.UI.WebControls.Literal
+        Public WithEvents ship_nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents sort_orderLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents sort_orderLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents tax_amountLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents tax_codeLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents tax_lockLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents tax_nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents tax_onLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents tax_printLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents tax_rateLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents tax_typeLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents tin_no As System.Web.UI.WebControls.Literal
+        Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents uomLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents vehicle_no As System.Web.UI.WebControls.Literal
+        Public WithEvents vehicle_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents weight As System.Web.UI.WebControls.Literal
+        Public WithEvents weightLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   
@@ -200,7 +270,7 @@ Partial Public Class OldPrintPro_inv
             ' Check if user has access to this page.  Redirects to either sign-in page
             ' or 'no access' page if not. Does not do anything if role-based security
             ' is not turned on, but you can override to add your own security.
-            Me.Authorize("NOT_ANONYMOUS")
+            Me.Authorize("")
     
             If (Not Me.IsPostBack) Then
             
@@ -228,7 +298,7 @@ Partial Public Class OldPrintPro_inv
             End If
         
         
-            Page.Title = "Blank page"
+            Page.Title = "Inv hdr"
         End Sub
 
     Public Shared Function GetRecordFieldValue_Base(ByVal tableName As String, _
@@ -301,7 +371,9 @@ Partial Public Class OldPrintPro_inv
     
       
       Public Sub SaveData_Base()
-      
+              
+        Me.Inv_hdrRecordControl.SaveData()
+        
       End Sub
       
         
@@ -326,7 +398,9 @@ Partial Public Class OldPrintPro_inv
                 ' Load data for each record and table UI control.
                 ' Ordering is important because child controls get
                 ' their parent ids from their parent UI controls.
-                
+                        
+        Me.Inv_hdrRecordControl.LoadData()
+        
       
                 Me.DataBind()
             

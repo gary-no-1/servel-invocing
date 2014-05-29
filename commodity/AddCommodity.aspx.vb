@@ -175,6 +175,7 @@ Partial Public Class AddCommodity
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents SaveAndNewButton As ThemeButton
         Public WithEvents SaveButton As ThemeButton
+        Public WithEvents tariffLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   

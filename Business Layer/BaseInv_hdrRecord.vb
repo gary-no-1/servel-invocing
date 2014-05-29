@@ -499,6 +499,122 @@ Namespace ServelInvocing.Business
 	End Sub
 
 	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.email field.
+	''' </summary>
+	Public Function GetemailValue() As ColumnValue
+		Return Me.GetValue(TableUtils.emailColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.email field.
+	''' </summary>
+	Public Function GetemailFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.emailColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.email field.
+	''' </summary>
+	Public Sub SetemailFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.emailColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.email field.
+	''' </summary>
+	Public Sub SetemailFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.emailColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.additional_email field.
+	''' </summary>
+	Public Function Getadditional_emailValue() As ColumnValue
+		Return Me.GetValue(TableUtils.additional_emailColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.additional_email field.
+	''' </summary>
+	Public Function Getadditional_emailFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.additional_emailColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.additional_email field.
+	''' </summary>
+	Public Sub Setadditional_emailFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.additional_emailColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.additional_email field.
+	''' </summary>
+	Public Sub Setadditional_emailFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.additional_emailColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.contact field.
+	''' </summary>
+	Public Function GetcontactValue() As ColumnValue
+		Return Me.GetValue(TableUtils.contactColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.contact field.
+	''' </summary>
+	Public Function GetcontactFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.contactColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.contact field.
+	''' </summary>
+	Public Sub SetcontactFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.contactColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.contact field.
+	''' </summary>
+	Public Sub SetcontactFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.contactColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.phone field.
+	''' </summary>
+	Public Function GetphoneValue() As ColumnValue
+		Return Me.GetValue(TableUtils.phoneColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.phone field.
+	''' </summary>
+	Public Function GetphoneFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.phoneColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.phone field.
+	''' </summary>
+	Public Sub SetphoneFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.phoneColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.phone field.
+	''' </summary>
+	Public Sub SetphoneFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.phoneColumn)
+	End Sub
+
+	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.po_no field.
 	''' </summary>
 	Public Function Getpo_noValue() As ColumnValue
@@ -1556,6 +1672,146 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property tin_noDefault() As String
         Get
             Return TableUtils.tin_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.email field.
+	''' </summary>
+	Public Property email() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.emailColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.emailColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property emailSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.emailColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property emailDefault() As String
+        Get
+            Return TableUtils.emailColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.additional_email field.
+	''' </summary>
+	Public Property additional_email() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.additional_emailColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.additional_emailColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property additional_emailSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.additional_emailColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property additional_emailDefault() As String
+        Get
+            Return TableUtils.additional_emailColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.contact field.
+	''' </summary>
+	Public Property contact() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.contactColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.contactColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property contactSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.contactColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property contactDefault() As String
+        Get
+            Return TableUtils.contactColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.phone field.
+	''' </summary>
+	Public Property phone() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.phoneColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.phoneColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property phoneSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.phoneColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property phoneDefault() As String
+        Get
+            Return TableUtils.phoneColumn.DefaultValue
         End Get
     End Property
 

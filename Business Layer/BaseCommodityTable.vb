@@ -55,6 +55,7 @@ Namespace ServelInvocing.Business
         Me.TableDefinition.AdapterMetaData = Me.DataAdapter.AdapterMetaData
         id0Column.CodeName = "id0"
         commodityColumn.CodeName = "commodity"
+        tariffColumn.CodeName = "tariff"
         
     End Sub
 
@@ -96,6 +97,25 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property commodity() As BaseClasses.Data.StringColumn
         Get
             Return CommodityTable.Instance.commodityColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Commodity_.tariff column object.
+    ''' </summary>
+    Public ReadOnly Property tariffColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(2), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Commodity_.tariff column object.
+    ''' </summary>
+    Public Shared ReadOnly Property tariff() As BaseClasses.Data.StringColumn
+        Get
+            Return CommodityTable.Instance.tariffColumn
         End Get
     End Property
 
@@ -372,10 +392,12 @@ Namespace ServelInvocing.Business
 
     ' Convenience method for creating a record
     Public Overloads Function NewRecord( _
-        ByVal commodityValue As String _
+        ByVal commodityValue As String, _
+        ByVal tariffValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(commodityValue, commodityColumn)
+        rec.SetString(tariffValue, tariffColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

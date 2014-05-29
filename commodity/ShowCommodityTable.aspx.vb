@@ -174,6 +174,7 @@ Partial Public Class ShowCommodityTable
         Public WithEvents CommodityToggleAll As System.Web.UI.WebControls.CheckBox
         Public WithEvents CommodityWordButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents tariffLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   

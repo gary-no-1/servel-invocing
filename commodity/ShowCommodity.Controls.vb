@@ -158,6 +158,8 @@ Public Class BaseCommodityRecordControl
         
             Setcommodity()
             SetcommodityLabel()
+            Settariff()
+            SettariffLabel()
       
       
             Me.IsNewRecord = True
@@ -220,7 +222,56 @@ Public Class BaseCommodityRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Settariff()
+            
+        
+            ' Set the tariff Literal on the webpage with value from the
+            ' commodity database record.
+
+            ' Me.DataSource is the commodity record retrieved from the database.
+            ' Me.tariff is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Settariff()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tariffSpecified Then
+                				
+                ' If the tariff is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CommodityTable.tariff)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.tariff.Text = formattedValue
+              
+            Else 
+            
+                ' tariff is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.tariff.Text = CommodityTable.tariff.Format(CommodityTable.tariff.DefaultValue)
+                        		
+                End If
+                 
+            ' If the tariff is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.tariff.Text Is Nothing _
+                OrElse Me.tariff.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.tariff.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub SetcommodityLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SettariffLabel()
             
                     
         End Sub
@@ -330,10 +381,15 @@ Public Class BaseCommodityRecordControl
             ' Call the Get methods for each of the user interface controls.
         
             Getcommodity()
+            Gettariff()
         End Sub
         
         
         Public Overridable Sub Getcommodity()
+            
+        End Sub
+                
+        Public Overridable Sub Gettariff()
             
         End Sub
                 
@@ -816,6 +872,18 @@ Public Class BaseCommodityRecordControl
         Public ReadOnly Property CommodityTitle() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "CommodityTitle"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property tariff() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tariff"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property tariffLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tariffLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

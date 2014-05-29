@@ -142,6 +142,7 @@ Public Class BaseCommodityTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setcommodity()
+            Settariff()
       
       
             Me.IsNewRecord = True
@@ -200,6 +201,50 @@ Public Class BaseCommodityTableControlRow
                 OrElse Me.commodity.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.commodity.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Settariff()
+            
+        
+            ' Set the tariff Literal on the webpage with value from the
+            ' commodity database record.
+
+            ' Me.DataSource is the commodity record retrieved from the database.
+            ' Me.tariff is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Settariff()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tariffSpecified Then
+                				
+                ' If the tariff is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CommodityTable.tariff)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.tariff.Text = formattedValue
+              
+            Else 
+            
+                ' tariff is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.tariff.Text = CommodityTable.tariff.Format(CommodityTable.tariff.DefaultValue)
+                        		
+                End If
+                 
+            ' If the tariff is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.tariff.Text Is Nothing _
+                OrElse Me.tariff.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.tariff.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -301,10 +346,15 @@ Public Class BaseCommodityTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getcommodity()
+            Gettariff()
         End Sub
         
         
         Public Overridable Sub Getcommodity()
+            
+        End Sub
+                
+        Public Overridable Sub Gettariff()
             
         End Sub
                 
@@ -645,6 +695,12 @@ Public Class BaseCommodityTableControlRow
             End Get
         End Property
         
+        Public ReadOnly Property tariff() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tariff"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
 #End Region
 
 #Region "Helper Functions"
@@ -788,6 +844,8 @@ Public Class BaseCommodityTableControl
           
               AddHandler Me.commodityLabel1.Click, AddressOf commodityLabel1_Click
             
+              AddHandler Me.tariffLabel.Click, AddressOf tariffLabel_Click
+            
             ' Setup the button events.
           
               AddHandler Me.CommodityCopyButton.Click, AddressOf CommodityCopyButton_Click
@@ -924,6 +982,7 @@ Public Class BaseCommodityTableControl
             SetcommodityLabel1()
             SetCommoditySearch()
             
+            SettariffLabel()
       
   
 
@@ -959,6 +1018,7 @@ Public Class BaseCommodityTableControl
             
             SetcommodityLabel()
             SetcommodityLabel1()
+            SettariffLabel()
       End Sub
 
       
@@ -1419,6 +1479,9 @@ Public Class BaseCommodityTableControl
                         If recControl.commodity.Text <> "" Then
                             rec.Parse(recControl.commodity.Text, CommodityTable.commodity)
                         End If
+                        If recControl.tariff.Text <> "" Then
+                            rec.Parse(recControl.tariff.Text, CommodityTable.tariff)
+                        End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
                     End If
@@ -1492,6 +1555,11 @@ Public Class BaseCommodityTableControl
         End Sub
                 
         Public Overridable Sub SetcommodityLabel1()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SettariffLabel()
             
                     
         End Sub
@@ -1812,6 +1880,28 @@ Public Class BaseCommodityTableControl
               
         End Sub
             
+        Public Overridable Sub tariffLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by tariff when clicked.
+              
+            ' Get previous sorting state for tariff.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(CommodityTable.tariff)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for tariff.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(CommodityTable.tariff, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by tariff, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
 
         ' Generate the event handling functions for button events.
         
@@ -1948,6 +2038,7 @@ Public Class BaseCommodityTableControl
             ' Add each of the columns in order of export.
             Dim columns() as BaseColumn = New BaseColumn() { _
                        CommodityTable.commodity, _ 
+             CommodityTable.tariff, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(CommodityTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -1989,6 +2080,7 @@ Public Class BaseCommodityTableControl
             ' To customize the data type, change the second parameter of the new ExcelColumn to be
             ' a format string from Excel's Format Cell menu. For example "dddd, mmmm dd, yyyy h:mm AM/PM;@", "#,##0.00"
              excelReport.AddColumn(New ExcelColumn(CommodityTable.commodity, "Default"))
+             excelReport.AddColumn(New ExcelColumn(CommodityTable.tariff, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2102,6 +2194,7 @@ Public Class BaseCommodityTableControl
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
                  report.AddColumn(CommodityTable.commodity.Name, ReportEnum.Align.Left, "${commodity}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(CommodityTable.tariff.Name, ReportEnum.Align.Left, "${tariff}", ReportEnum.Align.Left, 24)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2130,6 +2223,7 @@ Public Class BaseCommodityTableControl
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
                                                          report.AddData("${commodity}", record.Format(CommodityTable.commodity), ReportEnum.Align.Left, 100)
+                             report.AddData("${tariff}", record.Format(CommodityTable.tariff), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -2231,6 +2325,7 @@ Public Class BaseCommodityTableControl
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
                  report.AddColumn(CommodityTable.commodity.Name, ReportEnum.Align.Left, "${commodity}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(CommodityTable.tariff.Name, ReportEnum.Align.Left, "${tariff}", ReportEnum.Align.Left, 24)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -2256,6 +2351,7 @@ Public Class BaseCommodityTableControl
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
                              report.AddData("${commodity}", record.Format(CommodityTable.commodity), ReportEnum.Align.Left, 100)
+                             report.AddData("${tariff}", record.Format(CommodityTable.tariff), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -2545,6 +2641,12 @@ Public Class BaseCommodityTableControl
         Public ReadOnly Property CommodityWordButton() As System.Web.UI.WebControls.ImageButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "CommodityWordButton"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property tariffLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tariffLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         

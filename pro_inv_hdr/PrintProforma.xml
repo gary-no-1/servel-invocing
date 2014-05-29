@@ -3,16 +3,15 @@
   <Generator>Iron Speed Designer</Generator>
   <Version>7.0.0</Version>
   <Self>
-    <Name>OldPrintPro_inv</Name>
+    <Name>PrintProforma</Name>
     <Type>Page</Type>
     <SubType>DotNet</SubType>
-    <MasterLayout>../Master Pages/Blank.master</MasterLayout>
+    <MasterLayout>../Master Pages/VerticalMenu.master</MasterLayout>
     <GenerateDirectory>pro_inv_hdr</GenerateDirectory>
-    <Layout>pro_inv_hdr\OldPrintPro_inv.xml</Layout>
-    <DisplayName>OldPrintPro_inv</DisplayName>
+    <Layout>pro_inv_hdr\PrintProforma.xml</Layout>
+    <DisplayName>PrintProforma</DisplayName>
     <Description>This is a blank page.</Description>
-    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
-    <CheckSum>858272642-1139</CheckSum>
+    <CheckSum>-1831787499-1146</CheckSum>
   </Self>
   <ComposedOf>
     <ContainedComponent>

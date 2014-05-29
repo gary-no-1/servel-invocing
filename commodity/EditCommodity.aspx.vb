@@ -166,6 +166,7 @@ Partial Public Class EditCommodity
         Public WithEvents CommodityTitle As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents SaveButton As ThemeButton
+        Public WithEvents tariffLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   
