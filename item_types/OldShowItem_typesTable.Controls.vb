@@ -1,6 +1,6 @@
 ﻿
 ' This file implements the TableControl, TableControlRow, and RecordControl classes for the 
-' ShowItem_typesTable.aspx page.  The Row or RecordControl classes are the 
+' OldShowItem_typesTable.aspx page.  The Row or RecordControl classes are the 
 ' ideal place to add code customizations. For example, you can override the LoadData, 
 ' CreateWhereClause, DataBind, SaveData, GetUIData, and Validate methods.
 
@@ -32,7 +32,7 @@ Imports ServelInvocing.UI
 #End Region
 
   
-Namespace ServelInvocing.UI.Controls.ShowItem_typesTable
+Namespace ServelInvocing.UI.Controls.OldShowItem_typesTable
 
 #Region "Section 1: Place your customizations here."
 
@@ -72,7 +72,7 @@ End Class
 #Region "Section 2: Do not modify this section."
     
     
-' Base class for the Item_typesTableControlRow control on the ShowItem_typesTable page.
+' Base class for the Item_typesTableControlRow control on the OldShowItem_typesTable page.
 ' Do not modify this class. Instead override any method in Item_typesTableControlRow.
 Public Class BaseItem_typesTableControlRow
         Inherits ServelInvocing.UI.BaseApplicationRecordControl
@@ -401,7 +401,7 @@ Public Class BaseItem_typesTableControlRow
             ' Response.Redirect redirects the page to the URL.  
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
-            Dim url As String = "../item_types/AddItem_types.aspx?Item_types={PK}"
+            Dim url As String = "../Shared/ConfigureAddRecord.aspx"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -472,7 +472,7 @@ Public Class BaseItem_typesTableControlRow
             ' Response.Redirect redirects the page to the URL.  
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
-            Dim url As String = "../item_types/EditItem_types.aspx?Item_types={PK}"
+            Dim url As String = "../Shared/ConfigureEditRecord.aspx"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -516,7 +516,7 @@ Public Class BaseItem_typesTableControlRow
             ' Response.Redirect redirects the page to the URL.  
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
-            Dim url As String = "../item_types/ShowItem_types.aspx?Item_types={PK}"
+            Dim url As String = "../Shared/ConfigureViewRecord.aspx"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -755,7 +755,7 @@ End Class
 
   
 
-' Base class for the Item_typesTableControl control on the ShowItem_typesTable page.
+' Base class for the Item_typesTableControl control on the OldShowItem_typesTable page.
 ' Do not modify this class. Instead override any method in Item_typesTableControl.
 Public Class BaseItem_typesTableControl
         Inherits ServelInvocing.UI.BaseApplicationTableControl
@@ -1871,7 +1871,7 @@ Public Class BaseItem_typesTableControl
             ' Response.Redirect redirects the page to the URL.  
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
-            Dim url As String = "../item_types/AddItem_types.aspx?Item_types={PK}"
+            Dim url As String = "../Shared/ConfigureAddRecord.aspx"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -1942,7 +1942,7 @@ Public Class BaseItem_typesTableControl
             ' Response.Redirect redirects the page to the URL.  
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
-            Dim url As String = "../item_types/EditItem_types.aspx?Item_types={PK}"
+            Dim url As String = "../Shared/ConfigureEditRecord.aspx"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -2094,7 +2094,7 @@ Public Class BaseItem_typesTableControl
             ' Response.Redirect redirects the page to the URL.  
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
-            Dim url As String = "../item_types/AddItem_types.aspx"
+            Dim url As String = "../Shared/ConfigureAddRecord.aspx"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -2138,10 +2138,10 @@ Public Class BaseItem_typesTableControl
                 DbUtils.StartTransaction
                 
                 Dim report As PDFReport = New PDFReport() 
-                report.SpecificReportFileName = Page.Server.MapPath("ShowItem_typesTable.Item_typesPDFButton.report")
+                report.SpecificReportFileName = Page.Server.MapPath("OldShowItem_typesTable.Item_typesPDFButton.report")
                 ' report.Title replaces the value tag of page header and footer containing ${ReportTitle}
                 report.Title = "item_types"
-                ' If ShowItem_typesTable.Item_typesPDFButton.report specifies a valid report template,
+                ' If OldShowItem_typesTable.Item_typesPDFButton.report specifies a valid report template,
                 ' AddColumn method will generate a report template.   
                 ' Each AddColumn method-call specifies a column
                 ' The 1st parameter represents the text of the column header
@@ -2265,10 +2265,10 @@ Public Class BaseItem_typesTableControl
                 DbUtils.StartTransaction
                 
                 Dim report As WordReport = New WordReport
-                report.SpecificReportFileName = Page.Server.MapPath("ShowItem_typesTable.Item_typesWordButton.word")
+                report.SpecificReportFileName = Page.Server.MapPath("OldShowItem_typesTable.Item_typesWordButton.word")
                 ' report.Title replaces the value tag of page header and footer containing ${ReportTitle}
                 report.Title = "item_types"
-                ' If ShowItem_typesTable.Item_typesWordButton.report specifies a valid report template,
+                ' If OldShowItem_typesTable.Item_typesWordButton.report specifies a valid report template,
                 ' AddColumn method will generate a report template.
                 ' Each AddColumn method-call specifies a column
                 ' The 1st parameter represents the text of the column header

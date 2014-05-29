@@ -1,6 +1,6 @@
 ﻿
-' This file implements the code-behind class for ShowItem_typesTable.aspx.
-' ShowItem_typesTable.Controls.vb contains the Table, Row and Record control classes
+' This file implements the code-behind class for ShowItem_types.aspx.
+' ShowItem_types.Controls.vb contains the Table, Row and Record control classes
 ' for the page.  Best practices calls for overriding methods in the Row or Record control classes.
 
 #Region "Imports statements"
@@ -33,9 +33,9 @@ Imports ServelInvocing.Data
   
 Namespace ServelInvocing.UI
   
-Partial Public Class ShowItem_typesTable
+Partial Public Class ShowItem_types
         Inherits BaseApplicationPage
-' Code-behind class for the ShowItem_typesTable page.
+' Code-behind class for the ShowItem_types page.
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
@@ -122,16 +122,6 @@ Partial Public Class ShowItem_typesTable
             Return GetImage_Base(tableName, recordID, columnName, title, persist, popupWindowHeight, popupWindowWidth, popupWindowScrollBar)
         End Function
     
-      <Services.WebMethod()> _
-      Public Shared Function GetAutoCompletionList_Item_typesSearch(ByVal prefixText As String, ByVal count As Integer) As String()
-      ' GetItem_typesSearchCompletionList gets the list of suggestions from the database.
-      ' prefixText is the search text typed by the user .
-      ' count specifies the number of suggestions to be returned.
-      ' Customize by adding code before or after the call to  GetAutoCompletionList_Item_typesSearch()
-      ' or replace the call to GetAutoCompletionList_Item_typesSearch().
-      Return GetAutoCompletionList_Item_typesSearch_Base(prefixText, count)
-      End Function
-    
       Protected Overloads Overrides Sub BasePage_PreRender(ByVal sender As Object, ByVal e As EventArgs)
           MyBase.BasePage_PreRender(sender, e)
           RegisterPostback()
@@ -148,31 +138,35 @@ Partial Public Class ShowItem_typesTable
 
     ' Page Event Handlers - buttons, sort, links
     
+        Public Sub EditButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+            
+          ' Click handler for EditButton.
+          ' Customize by adding code before the call or replace the call to the Base function with your own code.
+          EditButton_Click_Base(sender, args)
+          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
+        End Sub
+        
+        Public Sub OKButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+            
+          ' Click handler for OKButton.
+          ' Customize by adding code before the call or replace the call to the Base function with your own code.
+          OKButton_Click_Base(sender, args)
+          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
+        End Sub
+        
 
     
 #End Region
 
 #Region "Section 2: Do not modify this section."
 
+        Public WithEvents EditButton As ThemeButton
+        Public WithEvents item_type As System.Web.UI.WebControls.Literal
         Public WithEvents item_typeLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents item_typeLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents Item_typesCopyButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesEditButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesExportCSVButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesExportExcelButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesImportButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesNewButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesPagination As Pagination
-        Public WithEvents Item_typesPDFButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesRefreshButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesSearch As System.Web.UI.WebControls.TextBox
-        Public WithEvents Item_typesSearchButton As ThemeButton
-        Public WithEvents Item_typesTableControl As ServelInvocing.UI.Controls.ShowItem_typesTable.Item_typesTableControl
+        Public WithEvents Item_typesDialogEditButton As System.Web.UI.WebControls.ImageButton
+        Public WithEvents Item_typesRecordControl As ServelInvocing.UI.Controls.ShowItem_types.Item_typesRecordControl
         Public WithEvents Item_typesTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents Item_typesToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents Item_typesWordButton As System.Web.UI.WebControls.ImageButton
+        Public WithEvents OKButton As ThemeButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
     
@@ -187,6 +181,10 @@ Partial Public Class ShowItem_typesTable
 					
             ' Register the Event handler for any Events.
       
+            AddHandler Me.EditButton.Button.Click, AddressOf EditButton_Click
+        
+            AddHandler Me.OKButton.Button.Click, AddressOf OKButton_Click
+        
       
         End Sub
 
@@ -305,7 +303,7 @@ Partial Public Class ShowItem_typesTable
       
       Public Sub SaveData_Base()
               
-        Me.Item_typesTableControl.SaveData()
+        Me.Item_typesRecordControl.SaveData()
         
       End Sub
       
@@ -316,17 +314,6 @@ Partial Public Class ShowItem_typesTable
       
       End Sub
       
-        Public Shared Function GetAutoCompletionList_Item_typesSearch_Base(ByVal prefixText As String, ByVal count As Integer) As String()
-            ' Since this method is a shared/static method it does not maintain information about page or controls within the page.
-            ' Hence we can not invoke any method associated with any controls.
-            ' So, if we need to use any control in the page we need to instantiate it.
-            Dim control as ServelInvocing.UI.Controls.ShowItem_typesTable.Item_typesTableControl 
-            control = new ServelInvocing.UI.Controls.ShowItem_typesTable.Item_typesTableControl()
-            
-            Return control.GetAutoCompletionList_Item_typesSearch(prefixText, count)
-              
-        End Function
-          
         ' Load data from database into UI controls.
         ' Modify LoadData in Section 1 above to customize.  Or override DataBind() in
         ' the individual table and record controls to customize.
@@ -343,7 +330,7 @@ Partial Public Class ShowItem_typesTable
                 ' Ordering is important because child controls get
                 ' their parent ids from their parent UI controls.
                         
-        Me.Item_typesTableControl.LoadData()
+        Me.Item_typesRecordControl.LoadData()
         
       
                 Me.DataBind()
@@ -380,7 +367,86 @@ Partial Public Class ShowItem_typesTable
         
 
         ' Write out event methods for the page events
+        
+        ' event handler for Button with Layout
+        Public Sub EditButton_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../item_types/EditItem_types.aspx?Item_types={PK}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+              Me.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.ShouldSaveControlsToSession = True
+                Me.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.ShouldSaveControlsToSession = True
+            Me.CloseWindow(True)
+        
+            End If
+        End Sub
             
+        ' event handler for Button with Layout
+        Public Sub OKButton_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
+              
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                
+
+                TargetKey = Me.Page.Request.QueryString.Item("Target")
+                If Not TargetKey Is Nothing Then
+                   shouldRedirect = False
+                End If
+      
+            Catch ex As Exception
+                shouldRedirect = False
+                Me.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+    
+            End Try
+            If shouldRedirect Then
+                Me.ShouldSaveControlsToSession = True
+                Me.RedirectBack()
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.ShouldSaveControlsToSession = True
+            Me.CloseWindow(True)
+        
+            End If
+        End Sub
+                
     
 #End Region
 

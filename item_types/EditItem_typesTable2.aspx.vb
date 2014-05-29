@@ -1,6 +1,6 @@
 ﻿
-' This file implements the code-behind class for ShowItem_typesTable.aspx.
-' ShowItem_typesTable.Controls.vb contains the Table, Row and Record control classes
+' This file implements the code-behind class for EditItem_typesTable2.aspx.
+' EditItem_typesTable2.Controls.vb contains the Table, Row and Record control classes
 ' for the page.  Best practices calls for overriding methods in the Row or Record control classes.
 
 #Region "Imports statements"
@@ -33,9 +33,9 @@ Imports ServelInvocing.Data
   
 Namespace ServelInvocing.UI
   
-Partial Public Class ShowItem_typesTable
+Partial Public Class EditItem_typesTable2
         Inherits BaseApplicationPage
-' Code-behind class for the ShowItem_typesTable page.
+' Code-behind class for the EditItem_typesTable2 page.
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
@@ -156,23 +156,18 @@ Partial Public Class ShowItem_typesTable
 
         Public WithEvents item_typeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents item_typeLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents Item_typesCopyButton As System.Web.UI.WebControls.ImageButton
+        Public WithEvents Item_typesAddButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Item_typesDeleteButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Item_typesEditButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesExportCSVButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesExportExcelButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesImportButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Item_typesNewButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Item_typesPagination As Pagination
-        Public WithEvents Item_typesPDFButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Item_typesRefreshButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Item_typesResetButton As System.Web.UI.WebControls.ImageButton
+        Public WithEvents Item_typesSaveButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Item_typesSearch As System.Web.UI.WebControls.TextBox
         Public WithEvents Item_typesSearchButton As ThemeButton
-        Public WithEvents Item_typesTableControl As ServelInvocing.UI.Controls.ShowItem_typesTable.Item_typesTableControl
+        Public WithEvents Item_typesTableControl As ServelInvocing.UI.Controls.EditItem_typesTable2.Item_typesTableControl
         Public WithEvents Item_typesTitle As System.Web.UI.WebControls.Literal
         Public WithEvents Item_typesToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents Item_typesWordButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
     
@@ -231,7 +226,7 @@ Partial Public Class ShowItem_typesTable
             End If
         
         
-            Page.Title = "Item Types"
+            Page.Title = GetResourceValue("Title:Edit") + " Item Types"
         End Sub
 
     Public Shared Function GetRecordFieldValue_Base(ByVal tableName As String, _
@@ -320,8 +315,8 @@ Partial Public Class ShowItem_typesTable
             ' Since this method is a shared/static method it does not maintain information about page or controls within the page.
             ' Hence we can not invoke any method associated with any controls.
             ' So, if we need to use any control in the page we need to instantiate it.
-            Dim control as ServelInvocing.UI.Controls.ShowItem_typesTable.Item_typesTableControl 
-            control = new ServelInvocing.UI.Controls.ShowItem_typesTable.Item_typesTableControl()
+            Dim control as ServelInvocing.UI.Controls.EditItem_typesTable2.Item_typesTableControl 
+            control = new ServelInvocing.UI.Controls.EditItem_typesTable2.Item_typesTableControl()
             
             Return control.GetAutoCompletionList_Item_typesSearch(prefixText, count)
               

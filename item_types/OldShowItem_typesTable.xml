@@ -3,15 +3,16 @@
   <Generator>Iron Speed Designer</Generator>
   <Version>7.0.0</Version>
   <Self>
-    <Name>ShowItem_typesTable</Name>
+    <Name>OldShowItem_typesTable</Name>
     <Type>Page</Type>
     <SubType>DotNet</SubType>
     <MasterLayout>../Master Pages/VerticalMenu.master</MasterLayout>
     <GenerateDirectory>item_types</GenerateDirectory>
-    <Layout>item_types\ShowItem_typesTable.html</Layout>
-    <DisplayName>ShowItem_typesTable</DisplayName>
+    <Layout>item_types\OldShowItem_typesTable.html</Layout>
+    <DisplayName>OldShowItem_typesTable</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
-    <CheckSum>1240386397-22844</CheckSum>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
+    <CheckSum>1910331533-22767</CheckSum>
   </Self>
   <ComposedOf>
     <ContainedComponent>
@@ -197,7 +198,7 @@
         </Attribute>
         <Attribute>
           <Name>RedirectURL</Name>
-          <Value>../item_types/AddItem_types.aspx?Item_types={PK}</Value>
+          <Value>../Shared/ConfigureAddRecord.aspx</Value>
         </Attribute>
         <Attribute>
           <Name>ToolTip</Name>
@@ -286,7 +287,7 @@
         </Attribute>
         <Attribute>
           <Name>RedirectURL</Name>
-          <Value>../item_types/EditItem_types.aspx?Item_types={PK}</Value>
+          <Value>../Shared/ConfigureEditRecord.aspx</Value>
         </Attribute>
         <Attribute>
           <Name>ToolTip</Name>
@@ -454,7 +455,7 @@
         </Attribute>
         <Attribute>
           <Name>RedirectURL</Name>
-          <Value>../item_types/AddItem_types.aspx</Value>
+          <Value>../Shared/ConfigureAddRecord.aspx</Value>
         </Attribute>
         <Attribute>
           <Name>ToolTip</Name>
@@ -654,7 +655,7 @@
         </Attribute>
         <Attribute>
           <Name>RedirectURL</Name>
-          <Value>../item_types/AddItem_types.aspx?Item_types={PK}</Value>
+          <Value>../Shared/ConfigureAddRecord.aspx</Value>
         </Attribute>
         <Attribute>
           <Name>ToolTip</Name>
@@ -733,7 +734,7 @@
         </Attribute>
         <Attribute>
           <Name>RedirectURL</Name>
-          <Value>../item_types/EditItem_types.aspx?Item_types={PK}</Value>
+          <Value>../Shared/ConfigureEditRecord.aspx</Value>
         </Attribute>
         <Attribute>
           <Name>ToolTip</Name>
@@ -770,7 +771,7 @@
         </Attribute>
         <Attribute>
           <Name>RedirectURL</Name>
-          <Value>../item_types/ShowItem_types.aspx?Item_types={PK}</Value>
+          <Value>../Shared/ConfigureViewRecord.aspx</Value>
         </Attribute>
         <Attribute>
           <Name>ToolTip</Name>

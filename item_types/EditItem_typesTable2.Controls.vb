@@ -1,6 +1,6 @@
 ﻿
 ' This file implements the TableControl, TableControlRow, and RecordControl classes for the 
-' ShowItem_typesTable.aspx page.  The Row or RecordControl classes are the 
+' EditItem_typesTable2.aspx page.  The Row or RecordControl classes are the 
 ' ideal place to add code customizations. For example, you can override the LoadData, 
 ' CreateWhereClause, DataBind, SaveData, GetUIData, and Validate methods.
 
@@ -32,7 +32,7 @@ Imports ServelInvocing.UI
 #End Region
 
   
-Namespace ServelInvocing.UI.Controls.ShowItem_typesTable
+Namespace ServelInvocing.UI.Controls.EditItem_typesTable2
 
 #Region "Section 1: Place your customizations here."
 
@@ -72,7 +72,7 @@ End Class
 #Region "Section 2: Do not modify this section."
     
     
-' Base class for the Item_typesTableControlRow control on the ShowItem_typesTable page.
+' Base class for the Item_typesTableControlRow control on the EditItem_typesTable2 page.
 ' Do not modify this class. Instead override any method in Item_typesTableControlRow.
 Public Class BaseItem_typesTableControlRow
         Inherits ServelInvocing.UI.BaseApplicationRecordControl
@@ -92,14 +92,14 @@ Public Class BaseItem_typesTableControlRow
               Me.Item_typesRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              AddHandler Me.Item_typesRowCopyButton.Click, AddressOf Item_typesRowCopyButton_Click
-              
               AddHandler Me.Item_typesRowDeleteButton.Click, AddressOf Item_typesRowDeleteButton_Click
               
               AddHandler Me.Item_typesRowEditButton.Click, AddressOf Item_typesRowEditButton_Click
               
               AddHandler Me.Item_typesRowViewButton.Click, AddressOf Item_typesRowViewButton_Click
               
+              AddHandler Me.item_type.TextChanged, AddressOf item_type_TextChanged
+            
         End Sub
 
         
@@ -163,13 +163,21 @@ Public Class BaseItem_typesTableControlRow
         
         
         Public Overridable Sub Setitem_type()
+            					
+            ' If data was retrieved from UI previously, restore it
+            If Me.PreviousUIData.ContainsKey(Me.item_type.ID) Then
+            
+                Me.item_type.Text = Me.PreviousUIData(Me.item_type.ID).ToString()
+              
+                Return
+            End If
             
         
-            ' Set the item_type Literal on the webpage with value from the
+            ' Set the item_type TextBox on the webpage with value from the
             ' item_types database record.
 
             ' Me.DataSource is the item_types record retrieved from the database.
-            ' Me.item_type is the ASP:Literal on the webpage.
+            ' Me.item_type is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setitem_type()
@@ -184,7 +192,6 @@ Public Class BaseItem_typesTableControlRow
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Item_typesTable.item_type)
                             
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.item_type.Text = formattedValue
               
             Else 
@@ -196,14 +203,6 @@ Public Class BaseItem_typesTableControlRow
                         		
                 End If
                  
-            ' If the item_type is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.item_type.Text Is Nothing _
-                OrElse Me.item_type.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.item_type.Text = "&nbsp;"
-            End If
-                  
         End Sub
                 
       
@@ -308,6 +307,15 @@ Public Class BaseItem_typesTableControlRow
         
         Public Overridable Sub Getitem_type()
             
+            ' Retrieve the value entered by the user on the item_type ASP:TextBox, and
+            ' save it into the item_type field in DataSource item_types record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.item_type.Text, Item_typesTable.item_type)			
+
+                      
         End Sub
                 
       
@@ -394,50 +402,6 @@ Public Class BaseItem_typesTableControlRow
         
         
         ' event handler for ImageButton
-        Public Overridable Sub Item_typesRowCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../item_types/AddItem_types.aspx?Item_types={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
         Public Overridable Sub Item_typesRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
@@ -446,7 +410,11 @@ Public Class BaseItem_typesTableControlRow
                 
             If(Not Me.Page.IsPageRefresh) Then
         
-                  Me.Delete()
+                Dim tc As Item_typesTableControl = DirectCast(GetParentControlObject(Me, "Item_typesTableControl"), Item_typesTableControl)
+                If Not (IsNothing(tc)) Then
+                    
+                    Me.Visible = False
+                End If
               
             End If
       Me.Page.CommitTransaction(sender)
@@ -552,6 +520,10 @@ Public Class BaseItem_typesTableControlRow
             End If              
         End Sub
         
+        Protected Overridable Sub item_type_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
    
         Private _PreviousUIData As New Hashtable
         Public Overridable Property PreviousUIData() As Hashtable
@@ -661,21 +633,15 @@ Public Class BaseItem_typesTableControlRow
 
 #Region "Helper Properties"
         
-        Public ReadOnly Property item_type() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property item_type() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_type"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_type"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
         Public ReadOnly Property Item_typesRecordRowSelection() As System.Web.UI.WebControls.CheckBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesRecordRowSelection"), System.Web.UI.WebControls.CheckBox)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Item_typesRowCopyButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesRowCopyButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
@@ -755,7 +721,7 @@ End Class
 
   
 
-' Base class for the Item_typesTableControl control on the ShowItem_typesTable page.
+' Base class for the Item_typesTableControl control on the EditItem_typesTable2 page.
 ' Do not modify this class. Instead override any method in Item_typesTableControl.
 Public Class BaseItem_typesTableControl
         Inherits ServelInvocing.UI.BaseApplicationTableControl
@@ -840,28 +806,20 @@ Public Class BaseItem_typesTableControl
             
             ' Setup the button events.
           
-              AddHandler Me.Item_typesCopyButton.Click, AddressOf Item_typesCopyButton_Click
+              AddHandler Me.Item_typesAddButton.Click, AddressOf Item_typesAddButton_Click
               
               AddHandler Me.Item_typesDeleteButton.Click, AddressOf Item_typesDeleteButton_Click
               
               AddHandler Me.Item_typesEditButton.Click, AddressOf Item_typesEditButton_Click
               
-              AddHandler Me.Item_typesExportCSVButton.Click, AddressOf Item_typesExportCSVButton_Click
-              
-              AddHandler Me.Item_typesExportExcelButton.Click, AddressOf Item_typesExportExcelButton_Click
-              
-              AddHandler Me.Item_typesImportButton.Click, AddressOf Item_typesImportButton_Click
-              
-              AddHandler Me.Item_typesNewButton.Click, AddressOf Item_typesNewButton_Click
-              
-              AddHandler Me.Item_typesPDFButton.Click, AddressOf Item_typesPDFButton_Click
-              
               AddHandler Me.Item_typesRefreshButton.Click, AddressOf Item_typesRefreshButton_Click
               
               AddHandler Me.Item_typesResetButton.Click, AddressOf Item_typesResetButton_Click
               
-              AddHandler Me.Item_typesWordButton.Click, AddressOf Item_typesWordButton_Click
+              AddHandler Me.Item_typesSaveButton.Click, AddressOf Item_typesSaveButton_Click
               
+            Me.Item_typesSaveButton.Attributes.Add("onclick", "SubmitHRefOnce(this, """ & Me.Page.GetResourceValue("Txt:SaveRecord", "ServelInvocing") & """);")
+        
             AddHandler Me.Item_typesSearchButton.Button.Click, AddressOf Item_typesSearchButton_Click
         
           ' Setup events for others
@@ -1015,13 +973,7 @@ Public Class BaseItem_typesTableControl
       
         Public Overridable Sub RegisterPostback()
         
-              Me.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"Item_typesExportCSVButton"))
-                        
-              Me.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"Item_typesExportExcelButton"))
-                        
-              Me.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"Item_typesPDFButton"))
-                        
-              Me.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"Item_typesWordButton"))
+              Me.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"Item_typesSaveButton"))
                         
         
         End Sub
@@ -1631,9 +1583,13 @@ Public Class BaseItem_typesTableControl
                     ' Re-load the data and update the web page if necessary.
                     ' This is typically done during a postback (filter, search button, sort, pagination button).
                     ' In each of the other click handlers, simply set DataChanged to True to reload the data.
-                    
+                    Dim added As Boolean = Me.AddNewRecord > 0
                     Me.LoadData()
                     Me.DataBind()
+                    
+                    If added Then
+                        Me.SetFocusToAddedRow()
+                    End If
                     
                 End If
                 				
@@ -1642,6 +1598,30 @@ Public Class BaseItem_typesTableControl
             Finally
                 DbUtils.EndTransaction
             End Try
+        End Sub
+        
+        'this function sets focus to the first editable element in the new added row in the editable table	
+        Protected Overridable Sub SetFocusToAddedRow()
+            Dim rep As System.Web.UI.WebControls.Repeater = CType(Me.FindControl("Item_typesTableControlRepeater"), System.Web.UI.WebControls.Repeater)
+            If rep Is Nothing OrElse rep.Items.Count = 0 Then Return
+            Dim repItem As System.Web.UI.WebControls.RepeaterItem
+            For Each repItem In rep.Items  
+			    'Load scripts to table rows
+                Me.Page.LoadFocusScripts(repItem)
+                Dim recControl As Item_typesTableControlRow = DirectCast(repItem.FindControl("Item_typesTableControlRow"), Item_typesTableControlRow)
+                If recControl.IsNewRecord Then
+                    For Each field As Control In recControl.Controls
+                        If field.Visible AndAlso Me.Page.IsControlEditable(field, False) Then
+						    'set focus on the first editable field in the new row
+						    field.Focus()
+                            Dim updPan As UpdatePanel = DirectCast(Me.Page.FindControlRecursively("UpdatePanel1"), UpdatePanel)
+                            If Not updPan Is Nothing Then updPan.Update()
+                            Return
+                        End If
+                    Next
+                    Return
+                End If
+            Next
         End Sub
         
         
@@ -1864,31 +1844,19 @@ Public Class BaseItem_typesTableControl
         ' Generate the event handling functions for button events.
         
         ' event handler for ImageButton
-        Public Overridable Sub Item_typesCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub Item_typesAddButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../item_types/AddItem_types.aspx?Item_types={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
             Try
                 ' Enclose all database retrieval/update code within a Transaction boundary
                 DbUtils.StartTransaction
                 
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
+            Me.AddNewRecord = 1
+            Me.DataChanged = True
+      Me.Page.CommitTransaction(sender)
           
             Catch ex As Exception
                 ' Upon error, rollback the transaction
                 Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
                 Me.Page.ErrorOnPage = True
     
                 ' Report the error message to the end user
@@ -1896,15 +1864,7 @@ Public Class BaseItem_typesTableControl
             Finally
                 DbUtils.EndTransaction
             End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
+                  
         End Sub
         
         ' event handler for ImageButton
@@ -1916,7 +1876,7 @@ Public Class BaseItem_typesTableControl
                 
             If(Not Me.Page.IsPageRefresh) Then
         
-                Me.DeleteSelectedRecords(False)
+                Me.DeleteSelectedRecords(True)
           
             End If
       Me.Page.CommitTransaction(sender)
@@ -1979,231 +1939,6 @@ Public Class BaseItem_typesTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub Item_typesExportCSVButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                	
-          ' Build the where clause based on the current filter and search criteria
-          ' Create the Order By clause based on the user's current sorting preference.
-          
-              Dim wc As WhereClause = CreateWhereClause
-              Dim orderBy As OrderBy = Nothing
-              
-              orderBy = CreateOrderBy
-              
-            ' Add each of the columns in order of export.
-            Dim columns() as BaseColumn = New BaseColumn() { _
-                       Item_typesTable.item_type, _ 
-             Nothing}
-            Dim  exportData as ExportDataToCSV = New ExportDataToCSV(Item_typesTable.Instance, wc, orderBy, columns)
-            exportData.Export(Me.Page.Response)
-        Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Item_typesExportExcelButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            ' To customize the columns or the format, override this function in Section 1 of the page 
-            ' and modify it to your liking.
-            ' Build the where clause based on the current filter and search criteria
-            ' Create the Order By clause based on the user's current sorting preference.
-          
-              Dim wc As WhereClause = CreateWhereClause
-              Dim orderBy As OrderBy = Nothing
-              
-              orderBy = CreateOrderBy
-              
-            ' Create an instance of the Excel report class with the table class, where clause and order by.
-            Dim excelReport As ExportDataToExcel = New ExportDataToExcel(Item_typesTable.Instance, wc, orderBy)
-            ' Add each of the columns in order of export.
-            ' To customize the data type, change the second parameter of the new ExcelColumn to be
-            ' a format string from Excel's Format Cell menu. For example "dddd, mmmm dd, yyyy h:mm AM/PM;@", "#,##0.00"
-             excelReport.AddColumn(New ExcelColumn(Item_typesTable.item_type, "Default"))
-
-            excelReport.Export(Me.Page.Response)
-            Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Item_typesImportButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../Shared/SelectFileToImport.aspx?TableName=Item_types"
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            Dim script As String = "window.open('" &  Me.Page.EncryptUrlParameter(url) &  "','importWindow', 'width=700, height=500,top=' +(screen.availHeight-500)/2 + ',left=' + (screen.availWidth-700)/2+ ', resizable=yes, scrollbars=yes,modal=yes');"
-            'If (Not Me.Page.ClientScript.IsStartupScriptRegistered("OpenPopup")) Then
-            ScriptManager.RegisterStartupScript(Me.Page, Page.GetType(), "OpenPopup", script, True)
-            'End If
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Item_typesNewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../item_types/AddItem_types.aspx"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Item_typesPDFButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-                Dim report As PDFReport = New PDFReport() 
-                report.SpecificReportFileName = Page.Server.MapPath("ShowItem_typesTable.Item_typesPDFButton.report")
-                ' report.Title replaces the value tag of page header and footer containing ${ReportTitle}
-                report.Title = "item_types"
-                ' If ShowItem_typesTable.Item_typesPDFButton.report specifies a valid report template,
-                ' AddColumn method will generate a report template.   
-                ' Each AddColumn method-call specifies a column
-                ' The 1st parameter represents the text of the column header
-                ' The 2nd parameter represents the horizontal alignment of the column header
-                ' The 3rd parameter represents the text format of the column detail
-                ' The 4th parameter represents the horizontal alignment of the column detail
-                ' The 5th parameter represents the relative width of the column   			
-                 report.AddColumn(Item_typesTable.item_type.Name, ReportEnum.Align.Left, "${item_type}", ReportEnum.Align.Left, 20)
-
-          
-                Dim rowsPerQuery As Integer = 5000 
-                Dim recordCount As Integer = 0 
-                                
-                report.Page = Page.GetResourceValue("Txt:Page", "ServelInvocing")
-                report.ApplicationPath = Me.Page.MapPath(Page.Request.ApplicationPath)
-            
-                Dim whereClause As WhereClause = CreateWhereClause
-                Dim orderBy As OrderBy = CreateOrderBy
-            
-                Dim pageNum As Integer = 0 
-                Dim totalRows As Integer = Item_typesTable.GetRecordCount(whereClause)
-                Dim columns As ColumnList = Item_typesTable.GetColumnList()
-                Dim records As Item_typesRecord() = Nothing
-            
-                Do 
-                    
-                    records = Item_typesTable.GetRecords(whereClause, orderBy, pageNum, rowsPerQuery)
-                    If Not (records Is Nothing) AndAlso records.Length > 0 AndAlso whereClause.RunQuery Then 
-                        For Each record As Item_typesRecord In records 
-                    
-                            ' AddData method takes four parameters   
-                            ' The 1st parameters represent the data format
-                            ' The 2nd parameters represent the data value
-                            ' The 3rd parameters represent the default alignment of column using the data
-                            ' The 4th parameters represent the maximum length of the data value being shown
-                                                         report.AddData("${item_type}", record.Format(Item_typesTable.item_type), ReportEnum.Align.Left, 100)
-
-                            report.WriteRow 
-                        Next 
-                        pageNum = pageNum + 1
-                        recordCount += records.Length 
-                    End If 
-                Loop While Not (records Is Nothing) AndAlso recordCount < totalRows  AndAlso whereClause.RunQuery 
-                
-                report.Close 
-                BaseClasses.Utils.NetUtils.WriteResponseBinaryAttachment(Me.Page.Response, report.Title + ".pdf", report.ReportInByteArray, 0, true)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
         Public Overridable Sub Item_typesRefreshButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
@@ -2258,61 +1993,31 @@ Public Class BaseItem_typesTableControl
         End Sub
         
         ' event handler for ImageButton
-        Public Overridable Sub Item_typesWordButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
+        Public Overridable Sub Item_typesSaveButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             Try
                 ' Enclose all database retrieval/update code within a Transaction boundary
                 DbUtils.StartTransaction
                 
-                Dim report As WordReport = New WordReport
-                report.SpecificReportFileName = Page.Server.MapPath("ShowItem_typesTable.Item_typesWordButton.word")
-                ' report.Title replaces the value tag of page header and footer containing ${ReportTitle}
-                report.Title = "item_types"
-                ' If ShowItem_typesTable.Item_typesWordButton.report specifies a valid report template,
-                ' AddColumn method will generate a report template.
-                ' Each AddColumn method-call specifies a column
-                ' The 1st parameter represents the text of the column header
-                ' The 2nd parameter represents the horizontal alignment of the column header
-                ' The 3rd parameter represents the text format of the column detail
-                ' The 4th parameter represents the horizontal alignment of the column detail
-                ' The 5th parameter represents the relative width of the column
-                 report.AddColumn(Item_typesTable.item_type.Name, ReportEnum.Align.Left, "${item_type}", ReportEnum.Align.Left, 20)
-
-              Dim whereClause As WhereClause = CreateWhereClause
-              
-              Dim orderBy As OrderBy = CreateOrderBy
-                
-                Dim rowsPerQuery As Integer = 5000
-                Dim pageNum As Integer = 0
-                Dim recordCount As Integer = 0
-                Dim totalRows As Integer = Item_typesTable.GetRecordCount(whereClause)
-
-                report.Page = Page.GetResourceValue("Txt:Page", "ServelInvocing")
-                report.ApplicationPath = Me.Page.MapPath(Page.Request.ApplicationPath)
-
-                Dim columns As ColumnList = Item_typesTable.GetColumnList()
-                Dim records As Item_typesRecord() = Nothing
-                Do
-                    records = Item_typesTable.GetRecords(whereClause, orderBy, pageNum, rowsPerQuery)
-                    If Not (records Is Nothing) AndAlso records.Length > 0 AndAlso whereClause.RunQuery Then
-                        For Each record As Item_typesRecord In records
-                            ' AddData method takes four parameters
-                            ' The 1st parameters represent the data format
-                            ' The 2nd parameters represent the data value
-                            ' The 3rd parameters represent the default alignment of column using the data
-                            ' The 4th parameters represent the maximum length of the data value being shown
-                             report.AddData("${item_type}", record.Format(Item_typesTable.item_type), ReportEnum.Align.Left, 100)
-
-                            report.WriteRow
-                        Next
-                        pageNum = pageNum + 1
-                        recordCount += records.Length
-                    End If
-                Loop While Not (records Is Nothing) AndAlso recordCount < totalRows AndAlso whereClause.RunQuery 
-                report.save
-                BaseClasses.Utils.NetUtils.WriteResponseBinaryAttachment(Me.Page.Response, report.Title + ".doc", report.ReportInByteArray, 0, true)
-          Me.Page.CommitTransaction(sender)
+        
+              If (Not Me.Page.IsPageRefresh) Then         
+                  Me.SaveData()
+              End If        
+        
+            Me.Page.CommitTransaction(sender)
           
+          ' Set IsNewRecord to False for all records - since everything has been saved and is no longer "new"
+          Dim recCtl As Item_typesTableControlRow
+          For Each recCtl in Me.GetRecordControls()
+            
+            recCtl.IsNewRecord = False
+          Next
+    
+      
+          ' Set DeletedRecordsIds to Nothing since we have deleted all pending deletes.
+          
+                Me.DeletedRecordIds = Nothing
+            
             Catch ex As Exception
                 ' Upon error, rollback the transaction
                 Me.Page.RollBackTransaction(sender)
@@ -2498,9 +2203,9 @@ Public Class BaseItem_typesTableControl
             End Get
         End Property
         
-        Public ReadOnly Property Item_typesCopyButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property Item_typesAddButton() As System.Web.UI.WebControls.ImageButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesCopyButton"), System.Web.UI.WebControls.ImageButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesAddButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
@@ -2516,41 +2221,11 @@ Public Class BaseItem_typesTableControl
             End Get
         End Property
         
-        Public ReadOnly Property Item_typesExportCSVButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesExportCSVButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Item_typesExportExcelButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesExportExcelButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Item_typesImportButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesImportButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Item_typesNewButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesNewButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property Item_typesPagination() As ServelInvocing.UI.IPagination
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesPagination"), ServelInvocing.UI.IPagination)
           End Get
           End Property
-        
-        Public ReadOnly Property Item_typesPDFButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesPDFButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
         
         Public ReadOnly Property Item_typesRefreshButton() As System.Web.UI.WebControls.ImageButton
             Get
@@ -2561,6 +2236,12 @@ Public Class BaseItem_typesTableControl
         Public ReadOnly Property Item_typesResetButton() As System.Web.UI.WebControls.ImageButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesResetButton"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property Item_typesSaveButton() As System.Web.UI.WebControls.ImageButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesSaveButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
@@ -2585,12 +2266,6 @@ Public Class BaseItem_typesTableControl
         Public ReadOnly Property Item_typesToggleAll() As System.Web.UI.WebControls.CheckBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesToggleAll"), System.Web.UI.WebControls.CheckBox)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Item_typesWordButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Item_typesWordButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         

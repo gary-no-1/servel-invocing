@@ -1,6 +1,6 @@
 ﻿
-' This file implements the code-behind class for ShowItem_typesTable.aspx.
-' ShowItem_typesTable.Controls.vb contains the Table, Row and Record control classes
+' This file implements the code-behind class for OldShowItem_typesTable.aspx.
+' OldShowItem_typesTable.Controls.vb contains the Table, Row and Record control classes
 ' for the page.  Best practices calls for overriding methods in the Row or Record control classes.
 
 #Region "Imports statements"
@@ -33,9 +33,9 @@ Imports ServelInvocing.Data
   
 Namespace ServelInvocing.UI
   
-Partial Public Class ShowItem_typesTable
+Partial Public Class OldShowItem_typesTable
         Inherits BaseApplicationPage
-' Code-behind class for the ShowItem_typesTable page.
+' Code-behind class for the OldShowItem_typesTable page.
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
@@ -169,7 +169,7 @@ Partial Public Class ShowItem_typesTable
         Public WithEvents Item_typesResetButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents Item_typesSearch As System.Web.UI.WebControls.TextBox
         Public WithEvents Item_typesSearchButton As ThemeButton
-        Public WithEvents Item_typesTableControl As ServelInvocing.UI.Controls.ShowItem_typesTable.Item_typesTableControl
+        Public WithEvents Item_typesTableControl As ServelInvocing.UI.Controls.OldShowItem_typesTable.Item_typesTableControl
         Public WithEvents Item_typesTitle As System.Web.UI.WebControls.Literal
         Public WithEvents Item_typesToggleAll As System.Web.UI.WebControls.CheckBox
         Public WithEvents Item_typesWordButton As System.Web.UI.WebControls.ImageButton
@@ -203,7 +203,7 @@ Partial Public Class ShowItem_typesTable
             ' Check if user has access to this page.  Redirects to either sign-in page
             ' or 'no access' page if not. Does not do anything if role-based security
             ' is not turned on, but you can override to add your own security.
-            Me.Authorize("")
+            Me.Authorize("NOT_ANONYMOUS")
     
             If (Not Me.IsPostBack) Then
             
@@ -320,8 +320,8 @@ Partial Public Class ShowItem_typesTable
             ' Since this method is a shared/static method it does not maintain information about page or controls within the page.
             ' Hence we can not invoke any method associated with any controls.
             ' So, if we need to use any control in the page we need to instantiate it.
-            Dim control as ServelInvocing.UI.Controls.ShowItem_typesTable.Item_typesTableControl 
-            control = new ServelInvocing.UI.Controls.ShowItem_typesTable.Item_typesTableControl()
+            Dim control as ServelInvocing.UI.Controls.OldShowItem_typesTable.Item_typesTableControl 
+            control = new ServelInvocing.UI.Controls.OldShowItem_typesTable.Item_typesTableControl()
             
             Return control.GetAutoCompletionList_Item_typesSearch(prefixText, count)
               
