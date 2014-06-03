@@ -316,7 +316,15 @@ Public Class Pro_inv_hdrRecordControl
 					inv_hdr_rec.gr_rr_dt = Pro_inv_hdrCopyRec.gr_rr_dt
 					inv_hdr_rec.freight_to_pay = Pro_inv_hdrCopyRec.freight_to_pay
 					inv_hdr_rec.vehicle_no = Pro_inv_hdrCopyRec.vehicle_no
-		
+					
+					' 03/06/14 - next 2 line added - audit
+					Dim AuditUserId as string = BaseClasses.Utils.SecurityControls.GetCurrentUserID()
+					If String.IsNullOrEmpty(AuditUserId) Then
+						AuditUserId = "1"
+					End if
+		            inv_hdr_rec.id_create_user = Convert.toInt32(AuditUserId)
+					inv_hdr_rec.created_on = datetime.now()
+					
 					inv_hdr_rec.save()
 		
 					Dim InvId As String

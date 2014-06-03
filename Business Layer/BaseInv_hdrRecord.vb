@@ -1173,6 +1173,180 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.vehicle_noColumn)
 	End Sub
 
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_create_user field.
+	''' </summary>
+	Public Function Getid_create_userValue() As ColumnValue
+		Return Me.GetValue(TableUtils.id_create_userColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_create_user field.
+	''' </summary>
+	Public Function Getid_create_userFieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id_create_userColumn).ToInt32(), Int32)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_create_user field.
+	''' </summary>
+	Public Sub Setid_create_userFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.id_create_userColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_create_user field.
+	''' </summary>
+	Public Sub Setid_create_userFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.id_create_userColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_create_user field.
+	''' </summary>
+	Public Sub Setid_create_userFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_create_userColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_create_user field.
+	''' </summary>
+	Public Sub Setid_create_userFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_create_userColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_create_user field.
+	''' </summary>
+	Public Sub Setid_create_userFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_create_userColumn)
+	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.created_on field.
+	''' </summary>
+	Public Function Getcreated_onValue() As ColumnValue
+		Return Me.GetValue(TableUtils.created_onColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.created_on field.
+	''' </summary>
+	Public Function Getcreated_onFieldValue() As DateTime
+		Return CType(Me.GetValue(TableUtils.created_onColumn).ToDateTime(), DateTime)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.created_on field.
+	''' </summary>
+	Public Sub Setcreated_onFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.created_onColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.created_on field.
+	''' </summary>
+	Public Sub Setcreated_onFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.created_onColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.created_on field.
+	''' </summary>
+	Public Sub Setcreated_onFieldValue(ByVal val As DateTime)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.created_onColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_update_user field.
+	''' </summary>
+	Public Function Getid_update_userValue() As ColumnValue
+		Return Me.GetValue(TableUtils.id_update_userColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_update_user field.
+	''' </summary>
+	Public Function Getid_update_userFieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id_update_userColumn).ToInt32(), Int32)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_update_user field.
+	''' </summary>
+	Public Sub Setid_update_userFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.id_update_userColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_update_user field.
+	''' </summary>
+	Public Sub Setid_update_userFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.id_update_userColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_update_user field.
+	''' </summary>
+	Public Sub Setid_update_userFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_update_userColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_update_user field.
+	''' </summary>
+	Public Sub Setid_update_userFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_update_userColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_update_user field.
+	''' </summary>
+	Public Sub Setid_update_userFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_update_userColumn)
+	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.last_updated field.
+	''' </summary>
+	Public Function Getlast_updatedValue() As ColumnValue
+		Return Me.GetValue(TableUtils.last_updatedColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.last_updated field.
+	''' </summary>
+	Public Function Getlast_updatedFieldValue() As DateTime
+		Return CType(Me.GetValue(TableUtils.last_updatedColumn).ToDateTime(), DateTime)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.last_updated field.
+	''' </summary>
+	Public Sub Setlast_updatedFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.last_updatedColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.last_updated field.
+	''' </summary>
+	Public Sub Setlast_updatedFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.last_updatedColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.last_updated field.
+	''' </summary>
+	Public Sub Setlast_updatedFieldValue(ByVal val As DateTime)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.last_updatedColumn)
+	End Sub
+
 
 
 #End Region
@@ -2344,6 +2518,150 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property vehicle_noDefault() As String
         Get
             Return TableUtils.vehicle_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.id_create_user field.
+	''' </summary>
+	Public Property id_create_user() As Int32
+		Get 
+			Return CType(Me.GetValue(TableUtils.id_create_userColumn).ToInt32(), Int32)
+		End Get
+		Set (ByVal val As Int32) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.id_create_userColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property id_create_userSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id_create_userColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property id_create_userDefault() As String
+        Get
+            Return TableUtils.id_create_userColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.created_on field.
+	''' </summary>
+	Public Property created_on() As DateTime
+		Get 
+			Return CType(Me.GetValue(TableUtils.created_onColumn).ToDateTime(), DateTime)
+		End Get
+		Set (ByVal val As DateTime) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.created_onColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property created_onSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.created_onColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property created_onDefault() As String
+        Get
+            Return TableUtils.created_onColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.id_update_user field.
+	''' </summary>
+	Public Property id_update_user() As Int32
+		Get 
+			Return CType(Me.GetValue(TableUtils.id_update_userColumn).ToInt32(), Int32)
+		End Get
+		Set (ByVal val As Int32) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.id_update_userColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property id_update_userSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id_update_userColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property id_update_userDefault() As String
+        Get
+            Return TableUtils.id_update_userColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.last_updated field.
+	''' </summary>
+	Public Property last_updated() As DateTime
+		Get 
+			Return CType(Me.GetValue(TableUtils.last_updatedColumn).ToDateTime(), DateTime)
+		End Get
+		Set (ByVal val As DateTime) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.last_updatedColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property last_updatedSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.last_updatedColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property last_updatedDefault() As String
+        Get
+            Return TableUtils.last_updatedColumn.DefaultValue
         End Get
     End Property
 

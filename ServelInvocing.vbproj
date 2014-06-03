@@ -158,160 +158,18 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Shared\SignInState.vb" />
-    <Compile Include="commodity\AddCommodity.aspx.vb">
+    <Compile Include="commodity\AddCommodity.aspx.vb" >
       <DependentUpon>AddCommodity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="commodity\AddCommodity.Controls.vb">
+    <Compile Include="commodity\AddCommodity.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="commodity\EditCommodity.aspx.vb">
+    <Compile Include="commodity\EditCommodity.aspx.vb" >
       <DependentUpon>EditCommodity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="commodity\EditCommodity.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="commodity\ShowCommodity.aspx.vb">
-      <DependentUpon>ShowCommodity.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="commodity\ShowCommodity.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="commodity\ShowCommodityTable.aspx.vb">
-      <DependentUpon>ShowCommodityTable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="commodity\ShowCommodityTable.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="inv_hdr\EmailInv_hdr.aspx.vb">
-      <DependentUpon>EmailInv_hdr.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="inv_hdr\EmailInv_hdr.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="inv_hdr\EmailInv_hdr2.aspx.vb">
-      <DependentUpon>EmailInv_hdr2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="inv_hdr\EmailInv_hdr2.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="inv_hdr\PrintInvoice.aspx.vb">
-      <DependentUpon>PrintInvoice.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="item_types\AddItem_types.aspx.vb">
-      <DependentUpon>AddItem_types.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="item_types\AddItem_types.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="item_types\EditItem_types.aspx.vb">
-      <DependentUpon>EditItem_types.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="item_types\EditItem_types.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="item_types\EditItem_typesTable2.aspx.vb">
-      <DependentUpon>EditItem_typesTable2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="item_types\EditItem_typesTable2.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="item_types\ShowItem_types.aspx.vb">
-      <DependentUpon>ShowItem_types.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="item_types\ShowItem_types.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="party\AddParty.aspx.vb">
-      <DependentUpon>AddParty.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="party\AddParty.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="party\ShowParty.aspx.vb">
-      <DependentUpon>ShowParty.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="party\ShowParty.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\PrintProforma.aspx.vb">
-      <DependentUpon>PrintProforma.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Security\SignIn.aspx.vb">
-      <DependentUpon>SignIn.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Security\SignOut.aspx.vb">
-      <DependentUpon>SignOut.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IncludeComponent.ascx.vb">
-      <DependentUpon>IncludeComponent.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IIncludeComponent.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\Menu_Item.ascx.vb">
-      <DependentUpon>Menu_Item.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IMenu_Item.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\Menu_ItemVertical.ascx.vb">
-      <DependentUpon>Menu_ItemVertical.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IMenu_ItemVertical.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\Menu_Item_Highlighted.ascx.vb">
-      <DependentUpon>Menu_Item_Highlighted.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IMenu_Item_Highlighted.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\Menu_Item_HighlightedVertical.ascx.vb">
-      <DependentUpon>Menu_Item_HighlightedVertical.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IMenu_Item_HighlightedVertical.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\Pagination.ascx.vb">
-      <DependentUpon>Pagination.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IPagination.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\PaginationShort.ascx.vb">
-      <DependentUpon>PaginationShort.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IPaginationShort.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Shared\ThemeButton.ascx.vb">
-      <DependentUpon>ThemeButton.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shared\IThemeButton.vb">
+    <Compile Include="commodity\EditCommodity.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="commodity\EditCommodityTable.aspx.vb" >
@@ -319,6 +177,20 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="commodity\EditCommodityTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="commodity\ShowCommodity.aspx.vb" >
+      <DependentUpon>ShowCommodity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="commodity\ShowCommodity.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="commodity\ShowCommodityTable.aspx.vb" >
+      <DependentUpon>ShowCommodityTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="commodity\ShowCommodityTable.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="company\AddCompany.aspx.vb" >
@@ -384,12 +256,30 @@
     <Compile Include="inv_hdr\EditInv_hdr.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="inv_hdr\EmailInv_hdr.aspx.vb" >
+      <DependentUpon>EmailInv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\EmailInv_hdr.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\EmailInv_hdr2.aspx.vb" >
+      <DependentUpon>EmailInv_hdr2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\EmailInv_hdr2.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="inv_hdr\Inv_hdrWebReport.aspx.vb" >
       <DependentUpon>Inv_hdrWebReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="inv_hdr\Inv_hdrWebReport.Controls.vb" >
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\PrintInvoice.aspx.vb" >
+      <DependentUpon>PrintInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="inv_hdr\PrintInv_hdr.aspx.vb" >
       <DependentUpon>PrintInv_hdr.aspx</DependentUpon>
@@ -601,6 +491,20 @@
     <Compile Include="item_groups\ShowItem_groupsTable.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="item_types\AddItem_types.aspx.vb" >
+      <DependentUpon>AddItem_types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_types\AddItem_types.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_types\EditItem_types.aspx.vb" >
+      <DependentUpon>EditItem_types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_types\EditItem_types.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="item_types\EditItem_typesTable.aspx.vb" >
       <DependentUpon>EditItem_typesTable.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -608,11 +512,25 @@
     <Compile Include="item_types\EditItem_typesTable.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="item_types\EditItem_typesTable2.aspx.vb" >
+      <DependentUpon>EditItem_typesTable2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_types\EditItem_typesTable2.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="item_types\OldShowItem_typesTable.aspx.vb" >
       <DependentUpon>OldShowItem_typesTable.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="item_types\OldShowItem_typesTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="item_types\ShowItem_types.aspx.vb" >
+      <DependentUpon>ShowItem_types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="item_types\ShowItem_types.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="item_types\ShowItem_typesTable.aspx.vb" >
@@ -629,11 +547,25 @@
     <Compile Include="Menu Panels\IMenu.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="party\AddParty.aspx.vb" >
+      <DependentUpon>AddParty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="party\AddParty.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="party\EditParty.aspx.vb" >
       <DependentUpon>EditParty.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="party\EditParty.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="party\ShowParty.aspx.vb" >
+      <DependentUpon>ShowParty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="party\ShowParty.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="party\ShowPartyTable.aspx.vb" >
@@ -663,6 +595,10 @@
     </Compile>
     <Compile Include="pro_inv_hdr\EmailPro_inv_hdr.Controls.vb" >
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\PrintProforma.aspx.vb" >
+      <DependentUpon>PrintProforma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pro_inv_hdr\PrintPro_Inv.aspx.vb" >
       <DependentUpon>PrintPro_Inv.aspx</DependentUpon>
@@ -827,6 +763,70 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="saleperson\ShowSalepersonTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\SignIn.aspx.vb" >
+      <DependentUpon>SignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\SignOut.aspx.vb" >
+      <DependentUpon>SignOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IncludeComponent.ascx.vb" >
+      <DependentUpon>IncludeComponent.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IIncludeComponent.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Menu_Item.ascx.vb" >
+      <DependentUpon>Menu_Item.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IMenu_Item.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Menu_ItemVertical.ascx.vb" >
+      <DependentUpon>Menu_ItemVertical.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IMenu_ItemVertical.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Menu_Item_Highlighted.ascx.vb" >
+      <DependentUpon>Menu_Item_Highlighted.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IMenu_Item_Highlighted.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Menu_Item_HighlightedVertical.ascx.vb" >
+      <DependentUpon>Menu_Item_HighlightedVertical.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IMenu_Item_HighlightedVertical.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Pagination.ascx.vb" >
+      <DependentUpon>Pagination.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IPagination.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\PaginationShort.ascx.vb" >
+      <DependentUpon>PaginationShort.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IPaginationShort.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\ThemeButton.ascx.vb" >
+      <DependentUpon>ThemeButton.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\IThemeButton.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="sites\AddSites.aspx.vb" >
@@ -1407,31 +1407,11 @@
     <Content Include="Troubleshooting\TestConfiguration.css" />
     <Content Include="Troubleshooting\TestConfiguration.mdb">
     </Content>
-    <Content Include="commodity\AddCommodity.aspx" />
-    <Content Include="commodity\EditCommodity.aspx" />
-    <Content Include="commodity\ShowCommodity.aspx" />
-    <Content Include="commodity\ShowCommodityTable.aspx" />
-    <Content Include="inv_hdr\EmailInv_hdr.aspx" />
-    <Content Include="inv_hdr\EmailInv_hdr2.aspx" />
-    <Content Include="inv_hdr\PrintInvoice.aspx" />
-    <Content Include="item_types\AddItem_types.aspx" />
-    <Content Include="item_types\EditItem_types.aspx" />
-    <Content Include="item_types\EditItem_typesTable2.aspx" />
-    <Content Include="item_types\ShowItem_types.aspx" />
-    <Content Include="party\AddParty.aspx" />
-    <Content Include="party\ShowParty.aspx" />
-    <Content Include="pro_inv_hdr\PrintProforma.aspx" />
-    <Content Include="Security\SignIn.aspx" />
-    <Content Include="Security\SignOut.aspx" />
-    <Content Include="Shared\IncludeComponent.ascx" />
-    <Content Include="Shared\Menu_Item.ascx" />
-    <Content Include="Shared\Menu_ItemVertical.ascx" />
-    <Content Include="Shared\Menu_Item_Highlighted.ascx" />
-    <Content Include="Shared\Menu_Item_HighlightedVertical.ascx" />
-    <Content Include="Shared\Pagination.ascx" />
-    <Content Include="Shared\PaginationShort.ascx" />
-    <Content Include="Shared\ThemeButton.ascx" />
+    <Content Include="commodity\AddCommodity.aspx"  />
+    <Content Include="commodity\EditCommodity.aspx"  />
     <Content Include="commodity\EditCommodityTable.aspx"  />
+    <Content Include="commodity\ShowCommodity.aspx"  />
+    <Content Include="commodity\ShowCommodityTable.aspx"  />
     <Content Include="company\AddCompany.aspx"  />
     <Content Include="company\EditCompany.aspx"  />
     <Content Include="company\ShowCompany.aspx"  />
@@ -1441,7 +1421,10 @@
     <Content Include="Header and Footer\Header.ascx"  />
     <Content Include="Header and Footer\PrintHeader.ascx"  />
     <Content Include="inv_hdr\EditInv_hdr.aspx"  />
+    <Content Include="inv_hdr\EmailInv_hdr.aspx"  />
+    <Content Include="inv_hdr\EmailInv_hdr2.aspx"  />
     <Content Include="inv_hdr\Inv_hdrWebReport.aspx"  />
+    <Content Include="inv_hdr\PrintInvoice.aspx"  />
     <Content Include="inv_hdr\PrintInv_hdr.aspx"  />
     <Content Include="inv_hdr\ShowInv_hdr.aspx"  />
     <Content Include="inv_hdr\ShowInv_hdrTable.aspx"  />
@@ -1472,8 +1455,12 @@
     <Content Include="item_groups\EditItem_groupsTable.aspx"  />
     <Content Include="item_groups\ShowItem_groups.aspx"  />
     <Content Include="item_groups\ShowItem_groupsTable.aspx"  />
+    <Content Include="item_types\AddItem_types.aspx"  />
+    <Content Include="item_types\EditItem_types.aspx"  />
     <Content Include="item_types\EditItem_typesTable.aspx"  />
+    <Content Include="item_types\EditItem_typesTable2.aspx"  />
     <Content Include="item_types\OldShowItem_typesTable.aspx"  />
+    <Content Include="item_types\ShowItem_types.aspx"  />
     <Content Include="item_types\ShowItem_typesTable.aspx"  />
     <Content Include="Master Pages\Blank.master"  />
     <Content Include="Master Pages\Email.master"  />
@@ -1481,11 +1468,14 @@
     <Content Include="Master Pages\Print.master"  />
     <Content Include="Master Pages\VerticalMenu.master"  />
     <Content Include="Menu Panels\Menu.ascx"  />
+    <Content Include="party\AddParty.aspx"  />
     <Content Include="party\EditParty.aspx"  />
+    <Content Include="party\ShowParty.aspx"  />
     <Content Include="party\ShowPartyTable.aspx"  />
     <Content Include="pro_inv_hdr\AddPro_inv_hdr.aspx"  />
     <Content Include="pro_inv_hdr\EditPro_inv_hdr.aspx"  />
     <Content Include="pro_inv_hdr\EmailPro_inv_hdr.aspx"  />
+    <Content Include="pro_inv_hdr\PrintProforma.aspx"  />
     <Content Include="pro_inv_hdr\PrintPro_Inv.aspx"  />
     <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx"  />
     <Content Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx"  />
@@ -1510,6 +1500,16 @@
     <Content Include="saleperson\EditSalepersonTable.aspx"  />
     <Content Include="saleperson\ShowSaleperson.aspx"  />
     <Content Include="saleperson\ShowSalepersonTable.aspx"  />
+    <Content Include="Security\SignIn.aspx"  />
+    <Content Include="Security\SignOut.aspx"  />
+    <Content Include="Shared\IncludeComponent.ascx"  />
+    <Content Include="Shared\Menu_Item.ascx"  />
+    <Content Include="Shared\Menu_ItemVertical.ascx"  />
+    <Content Include="Shared\Menu_Item_Highlighted.ascx"  />
+    <Content Include="Shared\Menu_Item_HighlightedVertical.ascx"  />
+    <Content Include="Shared\Pagination.ascx"  />
+    <Content Include="Shared\PaginationShort.ascx"  />
+    <Content Include="Shared\ThemeButton.ascx"  />
     <Content Include="sites\AddSites.aspx"  />
     <Content Include="sites\EditSites.aspx"  />
     <Content Include="sites\ShowSites.aspx"  />

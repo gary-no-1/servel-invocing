@@ -86,6 +86,10 @@ Namespace ServelInvocing.Business
         gr_rr_dtColumn.CodeName = "gr_rr_dt"
         freight_to_payColumn.CodeName = "freight_to_pay"
         vehicle_noColumn.CodeName = "vehicle_no"
+        id_create_userColumn.CodeName = "id_create_user"
+        created_onColumn.CodeName = "created_on"
+        id_update_userColumn.CodeName = "id_update_user"
+        last_updatedColumn.CodeName = "last_updated"
         
     End Sub
 
@@ -718,6 +722,82 @@ Namespace ServelInvocing.Business
             Return Inv_hdrTable.Instance.vehicle_noColumn
         End Get
     End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Inv_hdr_.id_create_user column object.
+    ''' </summary>
+    Public ReadOnly Property id_create_userColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(33), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Inv_hdr_.id_create_user column object.
+    ''' </summary>
+    Public Shared ReadOnly Property id_create_user() As BaseClasses.Data.NumberColumn
+        Get
+            Return Inv_hdrTable.Instance.id_create_userColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Inv_hdr_.created_on column object.
+    ''' </summary>
+    Public ReadOnly Property created_onColumn() As BaseClasses.Data.DateColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(34), BaseClasses.Data.DateColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Inv_hdr_.created_on column object.
+    ''' </summary>
+    Public Shared ReadOnly Property created_on() As BaseClasses.Data.DateColumn
+        Get
+            Return Inv_hdrTable.Instance.created_onColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Inv_hdr_.id_update_user column object.
+    ''' </summary>
+    Public ReadOnly Property id_update_userColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(35), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Inv_hdr_.id_update_user column object.
+    ''' </summary>
+    Public Shared ReadOnly Property id_update_user() As BaseClasses.Data.NumberColumn
+        Get
+            Return Inv_hdrTable.Instance.id_update_userColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Inv_hdr_.last_updated column object.
+    ''' </summary>
+    Public ReadOnly Property last_updatedColumn() As BaseClasses.Data.DateColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(36), BaseClasses.Data.DateColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Inv_hdr_.last_updated column object.
+    ''' </summary>
+    Public Shared ReadOnly Property last_updated() As BaseClasses.Data.DateColumn
+        Get
+            Return Inv_hdrTable.Instance.last_updatedColumn
+        End Get
+    End Property
 
 
 #End Region
@@ -1023,7 +1103,11 @@ Namespace ServelInvocing.Business
         ByVal gr_rr_noValue As String, _
         ByVal gr_rr_dtValue As String, _
         ByVal freight_to_payValue As String, _
-        ByVal vehicle_noValue As String _
+        ByVal vehicle_noValue As String, _
+        ByVal id_create_userValue As String, _
+        ByVal created_onValue As String, _
+        ByVal id_update_userValue As String, _
+        ByVal last_updatedValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(inv_noValue, inv_noColumn)
@@ -1058,6 +1142,10 @@ Namespace ServelInvocing.Business
         rec.SetString(gr_rr_dtValue, gr_rr_dtColumn)
         rec.SetString(freight_to_payValue, freight_to_payColumn)
         rec.SetString(vehicle_noValue, vehicle_noColumn)
+        rec.SetString(id_create_userValue, id_create_userColumn)
+        rec.SetString(created_onValue, created_onColumn)
+        rec.SetString(id_update_userValue, id_update_userColumn)
+        rec.SetString(last_updatedValue, last_updatedColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized
