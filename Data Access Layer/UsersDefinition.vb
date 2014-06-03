@@ -9,7 +9,7 @@
 Public Class UsersDefinition
 
 #Region "Definition (XML) for UsersDefinition table"
-	'Next 187 lines contain Table Definition (XML) for table "UsersDefinition"
+	'Next 182 lines contain Table Definition (XML) for table "UsersDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""USER"">"& _
   "<ColumnDefinition>"& _
@@ -23,7 +23,7 @@ Public Class UsersDefinition
       "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>Y</columnIndex>"& _
       "<columnUnique>Y</columnUnique>"& _
-      "<columnFunction>notrim</columnFunction>"& _
+      "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>Y</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
@@ -38,55 +38,49 @@ Public Class UsersDefinition
     "</Column>"& _
     "<Column InternalName=""1"" Priority=""2"" ColumnNum=""1"">"& _
       "<columnName>name</columnName>"& _
-      "<columnUIName Source=""User"">Name</columnUIName>"& _
+      "<columnUIName>Name</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>50</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
-      "<columnIndex>N</columnIndex>"& _
-      "<columnUnique>N</columnUnique>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>Y</columnIndex>"& _
+      "<columnUnique>Y</columnUnique>"& _
       "<columnFunction>title</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>Y</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>1</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""2"" Priority=""3"" ColumnNum=""2"">"& _
       "<columnName>email</columnName>"& _
-      "<columnUIName Source=""User"">Email</columnUIName>"& _
+      "<columnUIName>Email</columnUIName>"& _
       "<columnType>Email</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>50</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
-      "<columnIndex>N</columnIndex>"& _
-      "<columnUnique>N</columnUnique>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>Y</columnIndex>"& _
+      "<columnUnique>Y</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>Y</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>2</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""3"" Priority=""4"" ColumnNum=""3"">"& _
       "<columnName>password</columnName>"& _
@@ -182,7 +176,7 @@ Public Class UsersDefinition
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>users</TableName>"& _
-  "<Version>1</Version>"& _
+  "<Version>2</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Users</TableCodeName>"& _
   "<TableAliasName>Users_</TableAliasName>"& _
@@ -197,6 +191,7 @@ Public Class UsersDefinition
   "<UserUserIDField>id</UserUserIDField>"& _
   "<UserUserNameField>email</UserUserNameField>"& _
   "<UserPassword>password</UserPassword>"& _
+  "<UserEmailField></UserEmailField>"& _
 "</XMLDefinition>"
 #End Region
 	
