@@ -39,7 +39,13 @@ Partial Public Class EmailInv_hdr
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
-	  
+
+		Protected Overrides Sub UpdateSessionNavigationHistory()
+			'Do nothing
+			' this helps in not updating session navigation history. so when OK button is clicked on showInv_hdr ,
+			' it goes back to showInv_hdrTable
+		End Sub
+
       Public Sub SetPageFocus()
 		  'load scripts to all controls on page so that they will retain focus on PostBack
 		  Me.LoadFocusScripts(Me.Page)	  
@@ -144,27 +150,22 @@ Partial Public Class EmailInv_hdr
 
 #Region "Section 2: Do not modify this section."
 
+        Public WithEvents additional_email As System.Web.UI.WebControls.Literal
+        Public WithEvents additional_emailLabel As System.Web.UI.WebControls.Literal
         Public WithEvents amountLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents ass_valueLabel As System.Web.UI.WebControls.Literal
         Public WithEvents bill_address As System.Web.UI.WebControls.Literal
         Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents calc_typeLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents excise_totalLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents freight_to_pay As System.Web.UI.WebControls.Literal
-        Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents gr_rr_dt As System.Web.UI.WebControls.Literal
-        Public WithEvents gr_rr_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents gr_rr_no As System.Web.UI.WebControls.Literal
-        Public WithEvents gr_rr_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents bill_name As System.Web.UI.WebControls.Literal
+        Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents BtnEmail As ThemeButton
+        Public WithEvents contact As System.Web.UI.WebControls.Literal
+        Public WithEvents contactLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents email As System.Web.UI.WebControls.Literal
+        Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
         Public WithEvents grand_total As System.Web.UI.WebControls.Literal
         Public WithEvents grand_totalLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents grand_totalLabel1 As System.Web.UI.WebControls.Literal
         Public WithEvents id_itemLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_party As System.Web.UI.WebControls.Literal
-        Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_taxesLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_transporter As System.Web.UI.WebControls.Literal
-        Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id1 As System.Web.UI.WebControls.Literal
         Public WithEvents inv_dt As System.Web.UI.WebControls.Literal
         Public WithEvents inv_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_hdrRecordControl As ServelInvocing.UI.Controls.EmailInv_hdr.Inv_hdrRecordControl
@@ -177,48 +178,34 @@ Partial Public Class EmailInv_hdr
         Public WithEvents Inv_taxesTitle As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_termsTableControl As ServelInvocing.UI.Controls.EmailInv_hdr.Inv_termsTableControl
         Public WithEvents Inv_termsTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents item_codeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.Literal
         Public WithEvents item_total As System.Web.UI.WebControls.Literal
         Public WithEvents item_totalLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents item_totalLabel1 As System.Web.UI.WebControls.Literal
         Public WithEvents narrationLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents no_of_packages As System.Web.UI.WebControls.Literal
-        Public WithEvents no_of_packagesLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents packing_details As System.Web.UI.WebControls.Literal
-        Public WithEvents packing_detailsLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents phone As System.Web.UI.WebControls.Literal
+        Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal
         Public WithEvents po_dt As System.Web.UI.WebControls.Literal
         Public WithEvents po_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents po_no As System.Web.UI.WebControls.Literal
         Public WithEvents po_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents qtyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents rateLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents road_permit_no As System.Web.UI.WebControls.Literal
-        Public WithEvents road_permit_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_dt As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_no As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ship_address As System.Web.UI.WebControls.Literal
         Public WithEvents ship_addressLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents sort_orderLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents sort_orderLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents ship_name As System.Web.UI.WebControls.Literal
+        Public WithEvents ship_nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents tax_amountLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_codeLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_lockLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_onLabel As System.Web.UI.WebControls.Literal
         Public WithEvents tax_printLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_rateLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_typeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents tin_no As System.Web.UI.WebControls.Literal
         Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents txtAddEmail As System.Web.UI.WebControls.TextBox
+        Public WithEvents txtEmail As System.Web.UI.WebControls.TextBox
         Public WithEvents uomLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents vehicle_no As System.Web.UI.WebControls.Literal
-        Public WithEvents vehicle_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents weight As System.Web.UI.WebControls.Literal
-        Public WithEvents weightLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   
@@ -248,7 +235,7 @@ Partial Public Class EmailInv_hdr
             ' Check if user has access to this page.  Redirects to either sign-in page
             ' or 'no access' page if not. Does not do anything if role-based security
             ' is not turned on, but you can override to add your own security.
-            Me.Authorize("NOT_ANONYMOUS")
+            Me.Authorize("")
     
             If (Not Me.IsPostBack) Then
             

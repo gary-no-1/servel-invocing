@@ -58,8 +58,8 @@ Public Class Inv_hdrTableControlRow
             ' redirected to the URL.
 
 			'if me.inv_created.text = "YES" then
-				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Modification Not Allowed")
-				return
+				'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Modification Not Allowed")
+				'return
 			'end if
 			
             Dim url As String = "../inv_hdr/EditInv_hdr.aspx?Inv_hdr={PK}"

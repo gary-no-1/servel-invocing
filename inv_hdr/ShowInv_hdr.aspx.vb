@@ -171,8 +171,8 @@ Partial Public Class ShowInv_hdr
 		Public Sub EditButton_Click(ByVal sender As Object, ByVal args As EventArgs)
 
 			'if me.inv_created.text = "YES" then
-				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Modification Not Allowed")
-				return
+				'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Modification Not Allowed")
+				'return
 			'end if
             
           ' Click handler for EditButton.

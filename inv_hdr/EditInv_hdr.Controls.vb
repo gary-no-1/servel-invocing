@@ -154,35 +154,8 @@ Public Class BaseInv_itemsTableControlRow
 			'Call LoadFocusScripts from repeater so that onfocus attribute could be added to elements
 			Me.Page.LoadFocusScripts(Me)
 		
-              ' Show confirmation message on Click
-              Me.Inv_itemsRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              Me.id_itemAddRecordLink.PostBackUrl = "../items/AddItems.aspx" & "?Target=" & Me.id_item.ClientID & "&DFKA=item_code"
-              Me.id_itemAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_itemAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
-              
-              AddHandler Me.Inv_itemsRowDeleteButton.Click, AddressOf Inv_itemsRowDeleteButton_Click
-              
-              AddHandler Me.Inv_itemsRowEditButton.Click, AddressOf Inv_itemsRowEditButton_Click
-              
-              AddHandler Me.Inv_itemsRowViewButton.Click, AddressOf Inv_itemsRowViewButton_Click
-              
-              AddHandler Me.id_item.SelectedIndexChanged, AddressOf id_item_SelectedIndexChanged
-            
-              AddHandler Me.amount.TextChanged, AddressOf amount_TextChanged
-            
-              AddHandler Me.ass_value.TextChanged, AddressOf ass_value_TextChanged
-            
-              AddHandler Me.item_code.TextChanged, AddressOf item_code_TextChanged
-            
-              AddHandler Me.item_description.TextChanged, AddressOf item_description_TextChanged
-            
-              AddHandler Me.qty.TextChanged, AddressOf qty_TextChanged
-            
-              AddHandler Me.rate.TextChanged, AddressOf rate_TextChanged
-            
-              AddHandler Me.uom.TextChanged, AddressOf uom_TextChanged
-            
         End Sub
 
         
@@ -227,9 +200,7 @@ Public Class BaseInv_itemsTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setamount()
-            Setass_value()
             Setid_item()
-            Setitem_code()
             Setitem_description()
             Setqty()
             Setrate()
@@ -253,21 +224,13 @@ Public Class BaseInv_itemsTableControlRow
         
         
         Public Overridable Sub Setamount()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.amount.ID) Then
-            
-                Me.amount.Text = Me.PreviousUIData(Me.amount.ID).ToString()
-              
-                Return
-            End If
             
         
-            ' Set the amount TextBox on the webpage with value from the
+            ' Set the amount Literal on the webpage with value from the
             ' inv_items database record.
 
             ' Me.DataSource is the inv_items record retrieved from the database.
-            ' Me.amount is the ASP:TextBox on the webpage.
+            ' Me.amount is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setamount()
@@ -280,8 +243,9 @@ Public Class BaseInv_itemsTableControlRow
                 ' If the amount is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.amount)
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.amount, "c")
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.amount.Text = formattedValue
               
             Else 
@@ -289,158 +253,56 @@ Public Class BaseInv_itemsTableControlRow
                 ' amount is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.amount.Text = Inv_itemsTable.amount.Format(Inv_itemsTable.amount.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setass_value()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.ass_value.ID) Then
-            
-                Me.ass_value.Text = Me.PreviousUIData(Me.ass_value.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the ass_value TextBox on the webpage with value from the
-            ' inv_items database record.
-
-            ' Me.DataSource is the inv_items record retrieved from the database.
-            ' Me.ass_value is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setass_value()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.ass_valueSpecified Then
-                				
-                ' If the ass_value is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.ass_value)
-                            
-                Me.ass_value.Text = formattedValue
-              
-            Else 
-            
-                ' ass_value is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.ass_value.Text = Inv_itemsTable.ass_value.Format(Inv_itemsTable.ass_value.DefaultValue)
+                Me.amount.Text = Inv_itemsTable.amount.Format(Inv_itemsTable.amount.DefaultValue, "c")
                         		
                 End If
                  
         End Sub
                 
         Public Overridable Sub Setid_item()
-            							
-            ' If selection was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.id_item.ID) Then
-                If Me.PreviousUIData(Me.id_item.ID) Is Nothing
-                    Me.Populateid_itemDropDownList(Nothing, 100)
-                Else
-                    Me.Populateid_itemDropDownList(Me.PreviousUIData(Me.id_item.ID).ToString(), 100)
-                End If
-                Return
-            End If
             
         
-            ' Set the id_item DropDownList on the webpage with value from the
+            ' Set the id_item Literal on the webpage with value from the
             ' inv_items database record.
-            
+
             ' Me.DataSource is the inv_items record retrieved from the database.
-            ' Me.id_item is the ASP:DropDownList on the webpage.
+            ' Me.id_item is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setid_item()
             ' and add your own code before or after the call to the MyBase function.
 
             
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_itemSpecified Then
-                            
-                ' If the id_item is non-NULL, then format the value.
-                ' The Format method will return the Display Foreign Key As (DFKA) value
-                Me.Populateid_itemDropDownList(Me.DataSource.id_item.ToString(), 100)
-                
-            Else
-                
-                ' id_item is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-                If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
-                    Me.Populateid_itemDropDownList(Nothing, 100)
-                Else
-                    Me.Populateid_itemDropDownList(Inv_itemsTable.id_item.DefaultValue, 100)
-                End If
-                				
-            End If			
-                
-        End Sub
-                
-        Public Overridable Sub Setitem_code()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.item_code.ID) Then
-            
-                Me.item_code.Text = Me.PreviousUIData(Me.item_code.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the item_code TextBox on the webpage with value from the
-            ' inv_items database record.
-
-            ' Me.DataSource is the inv_items record retrieved from the database.
-            ' Me.item_code is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setitem_code()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.item_codeSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_itemSpecified Then
                 				
-                ' If the item_code is non-NULL, then format the value.
+                ' If the id_item is non-NULL, then format the value.
 
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.item_code)
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.id_item)
                             
-                Me.item_code.Text = formattedValue
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.id_item.Text = formattedValue
               
             Else 
             
-                ' item_code is NULL in the database, so use the Default Value.  
+                ' id_item is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.item_code.Text = Inv_itemsTable.item_code.Format(Inv_itemsTable.item_code.DefaultValue)
+                Me.id_item.Text = Inv_itemsTable.id_item.Format(Inv_itemsTable.id_item.DefaultValue)
                         		
                 End If
                  
         End Sub
                 
         Public Overridable Sub Setitem_description()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.item_description.ID) Then
-            
-                Me.item_description.Text = Me.PreviousUIData(Me.item_description.ID).ToString()
-              
-                Return
-            End If
             
         
-            ' Set the item_description TextBox on the webpage with value from the
+            ' Set the item_description Literal on the webpage with value from the
             ' inv_items database record.
 
             ' Me.DataSource is the inv_items record retrieved from the database.
-            ' Me.item_description is the ASP:TextBox on the webpage.
+            ' Me.item_description is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setitem_description()
@@ -455,6 +317,7 @@ Public Class BaseInv_itemsTableControlRow
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.item_description)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.item_description.Text = formattedValue
               
             Else 
@@ -469,21 +332,13 @@ Public Class BaseInv_itemsTableControlRow
         End Sub
                 
         Public Overridable Sub Setqty()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.qty.ID) Then
-            
-                Me.qty.Text = Me.PreviousUIData(Me.qty.ID).ToString()
-              
-                Return
-            End If
             
         
-            ' Set the qty TextBox on the webpage with value from the
+            ' Set the qty Literal on the webpage with value from the
             ' inv_items database record.
 
             ' Me.DataSource is the inv_items record retrieved from the database.
-            ' Me.qty is the ASP:TextBox on the webpage.
+            ' Me.qty is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setqty()
@@ -498,6 +353,7 @@ Public Class BaseInv_itemsTableControlRow
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.qty)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.qty.Text = formattedValue
               
             Else 
@@ -512,21 +368,13 @@ Public Class BaseInv_itemsTableControlRow
         End Sub
                 
         Public Overridable Sub Setrate()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.rate.ID) Then
-            
-                Me.rate.Text = Me.PreviousUIData(Me.rate.ID).ToString()
-              
-                Return
-            End If
             
         
-            ' Set the rate TextBox on the webpage with value from the
+            ' Set the rate Literal on the webpage with value from the
             ' inv_items database record.
 
             ' Me.DataSource is the inv_items record retrieved from the database.
-            ' Me.rate is the ASP:TextBox on the webpage.
+            ' Me.rate is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setrate()
@@ -541,6 +389,7 @@ Public Class BaseInv_itemsTableControlRow
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.rate)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.rate.Text = formattedValue
               
             Else 
@@ -555,21 +404,13 @@ Public Class BaseInv_itemsTableControlRow
         End Sub
                 
         Public Overridable Sub Setuom()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.uom.ID) Then
-            
-                Me.uom.Text = Me.PreviousUIData(Me.uom.ID).ToString()
-              
-                Return
-            End If
             
         
-            ' Set the uom TextBox on the webpage with value from the
+            ' Set the uom Literal on the webpage with value from the
             ' inv_items database record.
 
             ' Me.DataSource is the inv_items record retrieved from the database.
-            ' Me.uom is the ASP:TextBox on the webpage.
+            ' Me.uom is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setuom()
@@ -584,6 +425,7 @@ Public Class BaseInv_itemsTableControlRow
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.uom)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.uom.Text = formattedValue
               
             Else 
@@ -709,9 +551,7 @@ Public Class BaseInv_itemsTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getamount()
-            Getass_value()
             Getid_item()
-            Getitem_code()
             Getitem_description()
             Getqty()
             Getrate()
@@ -721,104 +561,26 @@ Public Class BaseInv_itemsTableControlRow
         
         Public Overridable Sub Getamount()
             
-            ' Retrieve the value entered by the user on the amount ASP:TextBox, and
-            ' save it into the amount field in DataSource inv_items record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.amount.Text, Inv_itemsTable.amount)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getass_value()
-            
-            ' Retrieve the value entered by the user on the ass_value ASP:TextBox, and
-            ' save it into the ass_value field in DataSource inv_items record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.ass_value.Text, Inv_itemsTable.ass_value)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getid_item()
-         
-            ' Retrieve the value entered by the user on the id_item ASP:DropDownList, and
-            ' save it into the id_item field in DataSource inv_items record.
-                        
-            ' Custom validation should be performed in Validate, not here.
             
-            Me.DataSource.Parse(GetValueSelectedPageRequest(Me.id_item), Inv_itemsTable.id_item)				
-            
-        End Sub
-                
-        Public Overridable Sub Getitem_code()
-            
-            ' Retrieve the value entered by the user on the item_code ASP:TextBox, and
-            ' save it into the item_code field in DataSource inv_items record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.item_code.Text, Inv_itemsTable.item_code)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getitem_description()
             
-            ' Retrieve the value entered by the user on the item_description ASP:TextBox, and
-            ' save it into the item_description field in DataSource inv_items record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.item_description.Text, Inv_itemsTable.item_description)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getqty()
             
-            ' Retrieve the value entered by the user on the qty ASP:TextBox, and
-            ' save it into the qty field in DataSource inv_items record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.qty.Text, Inv_itemsTable.qty)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getrate()
             
-            ' Retrieve the value entered by the user on the rate ASP:TextBox, and
-            ' save it into the rate field in DataSource inv_items record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.rate.Text, Inv_itemsTable.rate)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getuom()
             
-            ' Retrieve the value entered by the user on the uom ASP:TextBox, and
-            ' save it into the uom field in DataSource inv_items record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.uom.Text, Inv_itemsTable.uom)			
-
-                      
         End Sub
                 
       
@@ -904,307 +666,6 @@ Public Class BaseInv_itemsTableControlRow
         End Function
         
         
-
-        Public Overridable Function CreateWhereClause_id_itemDropDownList() As WhereClause
-            ' By default, we simply return a new WhereClause.
-            ' Add additional where clauses to restrict the items shown in the dropdown list.
-            						
-            ' This WhereClause is for the items table.
-            ' Examples:
-            ' wc.iAND(ItemsTable.item_code, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
-            ' wc.iAND(ItemsTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
-            
-            Dim wc As WhereClause = New WhereClause()
-            Return wc
-            				
-        End Function
-        
-                
-        ' Fill the id_item list.
-        Protected Overridable Sub Populateid_itemDropDownList( _
-                ByVal selectedValue As String, _
-                ByVal maxItems As Integer)
-            		  					                
-            Me.id_item.Items.Clear()
-            
-            ' This is a four step process.
-            ' 1. Setup the static list items
-            ' 2. Set up the WHERE and the ORDER BY clause
-            ' 3. Read a total of maxItems from the database and insert them
-            ' 4. Set the selected value (insert if not already present).
-                    
-            ' 1. Setup the static list items
-            														
-            Me.id_item.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))							
-                            		  			
-            ' 2. Set up the WHERE and the ORDER BY clause by calling the CreateWhereClause_id_itemDropDownList function.
-            ' It is better to customize the where clause there.
-            
-            Dim wc As WhereClause = CreateWhereClause_id_itemDropDownList()
-            ' Create the ORDER BY clause to sort based on the displayed value.			
-                
-      
-      
-            Dim orderBy As OrderBy = New OrderBy(false, true)			
-        
-            orderBy.Add(ItemsTable.item_code, OrderByItem.OrderDir.Asc)				
-            
-            ' 3. Read a total of maxItems from the database and insert them		
-            Dim itemValues() As ItemsRecord = Nothing
-            If wc.RunQuery
-                Dim counter As Integer = 0
-                Dim pageNum As Integer = 0
-                Do
-                    itemValues = ItemsTable.GetRecords(wc, orderBy, pageNum, 500)
-                    For each itemValue As ItemsRecord In itemValues
-                        ' Create the item and add to the list.
-                        Dim cvalue As String = Nothing
-                        Dim fvalue As String = Nothing
-                        If itemValue.id0Specified Then
-                            cvalue = itemValue.id0.ToString()
-                            fvalue = itemValue.Format(ItemsTable.item_code)
-                                    
-                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
-                            Dim newItem As New ListItem(fvalue, cvalue)
-                            If counter < maxItems AndAlso Not Me.id_item.Items.Contains(newItem) Then Me.id_item.Items.Add(newItem)
-                            counter += 1
-                        End If
-                    Next
-                    pageNum += 1
-                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
-            End If
-                            
-                    
-            ' 4. Set the selected value (insert if not already present).
-              
-            If Not selectedValue Is Nothing AndAlso _
-                selectedValue.Trim <> "" AndAlso _
-                Not SetSelectedValue(Me.id_item, selectedValue) AndAlso _
-                Not SetSelectedDisplayText(Me.id_item, selectedValue)Then
-
-                ' construct a whereclause to query a record with items.id = selectedValue
-                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
-                Dim whereClause2 As WhereClause = New WhereClause()
-                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(ItemsTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
-                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
-
-                Try
-                    ' Execute the query
-                    Dim rc() As ItemsRecord = ItemsTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
-
-                    ' if find a record, add it to the dropdown and set it as selected item
-                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
-                        
-                        Dim fvalue As String = Inv_itemsTable.id_item.Format(selectedValue)																			
-                            
-                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
-                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
-                        item.Selected = True
-                        Me.id_item.Items.Add(item)
-                    End If
-                Catch
-                End Try
-
-            End If					
-                        
-                
-        End Sub
-                
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_itemsRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                Dim tc As Inv_itemsTableControl = DirectCast(GetParentControlObject(Me, "Inv_itemsTableControl"), Inv_itemsTableControl)
-                If Not (IsNothing(tc)) Then
-                    
-                    Me.Visible = False
-                End If
-              
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_itemsRowEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../inv_items/EditInv_items.aspx?Inv_items={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_itemsRowViewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../inv_items/ShowInv_items.aspx?Inv_items={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        Protected Overridable Sub id_item_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
-            ' If a large list selector or a Quick Add link is used, the dropdown list
-            ' will contain an item that was not in the original (smaller) list.  During postbacks,
-            ' this new item will not be in the list - since the list is based on the original values
-            ' read from the database. This function adds the value back if necessary.
-            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
-            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
-            ' When this function is fire for Make or Model, we don't want the following code executed.
-            ' Therefore, we check this situation using Items.Count > 1			
-            If Me.id_item.Items.Count > 1 Then
-                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_item)
-                 
-            If Not selectedValue Is Nothing AndAlso _
-                selectedValue.Trim <> "" AndAlso _
-                Not SetSelectedValue(Me.id_item, selectedValue) AndAlso _
-                Not SetSelectedDisplayText(Me.id_item, selectedValue)Then
-
-                ' construct a whereclause to query a record with items.id = selectedValue
-                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
-                Dim whereClause2 As WhereClause = New WhereClause()
-                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(ItemsTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
-                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
-
-                Try
-                    ' Execute the query
-                    Dim rc() As ItemsRecord = ItemsTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
-
-                    ' if find a record, add it to the dropdown and set it as selected item
-                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
-                        
-                        Dim fvalue As String = Inv_itemsTable.id_item.Format(selectedValue)																			
-                            
-                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
-                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
-                        item.Selected = True
-                        Me.id_item.Items.Add(item)
-                    End If
-                Catch
-                End Try
-
-            End If					
-                        
-            End If
-          									
-                
-                
-        End Sub
-            
-        Protected Overridable Sub amount_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub ass_value_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub item_code_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub item_description_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub qty_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub rate_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub uom_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
    
         Private _PreviousUIData As New Hashtable
         Public Overridable Property PreviousUIData() As Hashtable
@@ -1314,81 +775,45 @@ Public Class BaseInv_itemsTableControlRow
 
 #Region "Helper Properties"
         
-        Public ReadOnly Property amount() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property amount() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "amount"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "amount"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property ass_value() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property id_item() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ass_value"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_item"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property id_item() As System.Web.UI.WebControls.DropDownList
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_item"), System.Web.UI.WebControls.DropDownList)
-            End Get
-        End Property
-            
-        Public ReadOnly Property id_itemAddRecordLink() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_itemAddRecordLink"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property Inv_itemsRecordRowSelection() As System.Web.UI.WebControls.CheckBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_itemsRecordRowSelection"), System.Web.UI.WebControls.CheckBox)
             End Get
         End Property
         
-        Public ReadOnly Property Inv_itemsRowDeleteButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property item_description() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_itemsRowDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_itemsRowEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_itemsRowEditButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_itemsRowViewButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_itemsRowViewButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property item_code() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_code"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_description"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property item_description() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property qty() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_description"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "qty"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property qty() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property rate() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "qty"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "rate"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property rate() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property uom() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "rate"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property uom() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "uom"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "uom"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -1486,8 +911,6 @@ Public Class BaseInv_itemsTableControl
         
             SaveControlsToSession_Ajax()
         
-              ' Show confirmation message on Click
-              Me.Inv_itemsDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteConfirm", "ServelInvocing") & "'));")
             ' Setup the pagination events.
             
               AddHandler Me.Inv_itemsPagination.FirstPage.Click, AddressOf Inv_itemsPagination_FirstPage_Click
@@ -1504,11 +927,7 @@ Public Class BaseInv_itemsTableControl
           
               AddHandler Me.amountLabel.Click, AddressOf amountLabel_Click
             
-              AddHandler Me.ass_valueLabel.Click, AddressOf ass_valueLabel_Click
-            
               AddHandler Me.id_itemLabel1.Click, AddressOf id_itemLabel1_Click
-            
-              AddHandler Me.item_codeLabel1.Click, AddressOf item_codeLabel1_Click
             
               AddHandler Me.item_descriptionLabel.Click, AddressOf item_descriptionLabel_Click
             
@@ -1520,12 +939,6 @@ Public Class BaseInv_itemsTableControl
             
             ' Setup the button events.
           
-              AddHandler Me.Inv_itemsAddButton.Click, AddressOf Inv_itemsAddButton_Click
-              
-              AddHandler Me.Inv_itemsDeleteButton.Click, AddressOf Inv_itemsDeleteButton_Click
-              
-              AddHandler Me.Inv_itemsEditButton.Click, AddressOf Inv_itemsEditButton_Click
-              
               AddHandler Me.Inv_itemsResetButton.Click, AddressOf Inv_itemsResetButton_Click
               
           ' Setup events for others
@@ -1636,9 +1049,7 @@ Public Class BaseInv_itemsTableControl
             ' Call the Set methods for each controls on the panel
         
             SetamountLabel()
-            Setass_valueLabel()
             Setid_itemLabel1()
-            Setitem_codeLabel1()
             Setitem_descriptionLabel()
             SetqtyLabel()
             SetrateLabel()
@@ -1677,9 +1088,7 @@ Public Class BaseInv_itemsTableControl
             ' Initialize other asp controls
             
             SetamountLabel()
-            Setass_valueLabel()
             Setid_itemLabel1()
-            Setitem_codeLabel1()
             Setitem_descriptionLabel()
             SetqtyLabel()
             SetrateLabel()
@@ -2051,14 +1460,8 @@ Public Class BaseInv_itemsTableControl
                         If recControl.amount.Text <> "" Then
                             rec.Parse(recControl.amount.Text, Inv_itemsTable.amount)
                         End If
-                        If recControl.ass_value.Text <> "" Then
-                            rec.Parse(recControl.ass_value.Text, Inv_itemsTable.ass_value)
-                        End If
-                        If MiscUtils.IsValueSelected(recControl.id_item) Then
-                            rec.Parse(recControl.id_item.SelectedItem.Value, Inv_itemsTable.id_item)
-                        End If
-                        If recControl.item_code.Text <> "" Then
-                            rec.Parse(recControl.item_code.Text, Inv_itemsTable.item_code)
+                        If recControl.id_item.Text <> "" Then
+                            rec.Parse(recControl.id_item.Text, Inv_itemsTable.id_item)
                         End If
                         If recControl.item_description.Text <> "" Then
                             rec.Parse(recControl.item_description.Text, Inv_itemsTable.item_description)
@@ -2144,17 +1547,7 @@ Public Class BaseInv_itemsTableControl
                     
         End Sub
                 
-        Public Overridable Sub Setass_valueLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Setid_itemLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setitem_codeLabel1()
             
                     
         End Sub
@@ -2436,28 +1829,6 @@ Public Class BaseInv_itemsTableControl
               
         End Sub
             
-        Public Overridable Sub ass_valueLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by ass_value when clicked.
-              
-            ' Get previous sorting state for ass_value.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_itemsTable.ass_value)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for ass_value.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_itemsTable.ass_value, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by ass_value, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
         Public Overridable Sub id_itemLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by id_item when clicked.
               
@@ -2470,28 +1841,6 @@ Public Class BaseInv_itemsTableControl
                 Me.CurrentSortOrder.Add(Inv_itemsTable.id_item, OrderByItem.OrderDir.Asc)
             Else
                 ' Previously sorted by id_item, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub item_codeLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by item_code when clicked.
-              
-            ' Get previous sorting state for item_code.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_itemsTable.item_code)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for item_code.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_itemsTable.item_code, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by item_code, so just reverse.
                 sd.Reverse()
             End If
             
@@ -2592,101 +1941,6 @@ Public Class BaseInv_itemsTableControl
             
 
         ' Generate the event handling functions for button events.
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_itemsAddButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            Me.AddNewRecord = 1
-            Me.DataChanged = True
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_itemsDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                Me.DeleteSelectedRecords(True)
-          
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_itemsEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../inv_items/EditInv_items.aspx?Inv_items={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
         
         ' event handler for ImageButton
         Public Overridable Sub Inv_itemsResetButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
@@ -2850,33 +2104,9 @@ Public Class BaseInv_itemsTableControl
             End Get
         End Property
         
-        Public ReadOnly Property ass_valueLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ass_valueLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property id_itemLabel1() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_itemLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_itemsAddButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_itemsAddButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_itemsDeleteButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_itemsDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_itemsEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_itemsEditButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         
@@ -2895,12 +2125,6 @@ Public Class BaseInv_itemsTableControl
         Public ReadOnly Property Inv_itemsToggleAll() As System.Web.UI.WebControls.CheckBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_itemsToggleAll"), System.Web.UI.WebControls.CheckBox)
-            End Get
-        End Property
-        
-        Public ReadOnly Property item_codeLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_codeLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -3063,47 +2287,8 @@ Public Class BaseInv_taxesTableControlRow
 			'Call LoadFocusScripts from repeater so that onfocus attribute could be added to elements
 			Me.Page.LoadFocusScripts(Me)
 		
-              ' Show confirmation message on Click
-              Me.Inv_taxesRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              Me.id_taxesAddRecordLink.PostBackUrl = "../taxes/AddTaxes.aspx" & "?Target=" & Me.id_taxes.ClientID & "&DFKA=tax_name"
-              Me.id_taxesAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_taxesAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
-              
-              AddHandler Me.Inv_taxesRowDeleteButton.Click, AddressOf Inv_taxesRowDeleteButton_Click
-              
-              AddHandler Me.Inv_taxesRowEditButton.Click, AddressOf Inv_taxesRowEditButton_Click
-              
-              AddHandler Me.Inv_taxesRowViewButton.Click, AddressOf Inv_taxesRowViewButton_Click
-              
-              AddHandler Me.id_taxes.SelectedIndexChanged, AddressOf id_taxes_SelectedIndexChanged
-            
-              AddHandler Me.tax_lock.CheckedChanged, AddressOf tax_lock_CheckedChanged
-            
-              AddHandler Me.calc_type.TextChanged, AddressOf calc_type_TextChanged
-            
-              AddHandler Me.excise_total.TextChanged, AddressOf excise_total_TextChanged
-            
-              AddHandler Me.grand_total1.TextChanged, AddressOf grand_total1_TextChanged
-            
-              AddHandler Me.item_total1.TextChanged, AddressOf item_total1_TextChanged
-            
-              AddHandler Me.sort_order.TextChanged, AddressOf sort_order_TextChanged
-            
-              AddHandler Me.tax_amount.TextChanged, AddressOf tax_amount_TextChanged
-            
-              AddHandler Me.tax_code.TextChanged, AddressOf tax_code_TextChanged
-            
-              AddHandler Me.tax_name.TextChanged, AddressOf tax_name_TextChanged
-            
-              AddHandler Me.tax_on.TextChanged, AddressOf tax_on_TextChanged
-            
-              AddHandler Me.tax_print.TextChanged, AddressOf tax_print_TextChanged
-            
-              AddHandler Me.tax_rate.TextChanged, AddressOf tax_rate_TextChanged
-            
-              AddHandler Me.tax_type.TextChanged, AddressOf tax_type_TextChanged
-            
         End Sub
 
         
@@ -3147,21 +2332,8 @@ Public Class BaseInv_taxesTableControlRow
       
             ' Call the Set methods for each controls on the panel
         
-            Setcalc_type()
-            Setexcise_total()
-            Setgrand_total1()
-            Setid_taxes()
-            Setitem_total1()
-            Setsort_order()
             Settax_amount()
-            Settax_code()
-                        Settax_lock()
-                    
-            Settax_name()
-            Settax_on()
             Settax_print()
-            Settax_rate()
-            Settax_type()
       
       
             Me.IsNewRecord = True
@@ -3180,281 +2352,14 @@ Public Class BaseInv_taxesTableControlRow
         End Sub
         
         
-        Public Overridable Sub Setcalc_type()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.calc_type.ID) Then
-            
-                Me.calc_type.Text = Me.PreviousUIData(Me.calc_type.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the calc_type TextBox on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.calc_type is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setcalc_type()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.calc_typeSpecified Then
-                				
-                ' If the calc_type is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.calc_type)
-                            
-                Me.calc_type.Text = formattedValue
-              
-            Else 
-            
-                ' calc_type is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.calc_type.Text = Inv_taxesTable.calc_type.Format(Inv_taxesTable.calc_type.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setexcise_total()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.excise_total.ID) Then
-            
-                Me.excise_total.Text = Me.PreviousUIData(Me.excise_total.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the excise_total TextBox on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.excise_total is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setexcise_total()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.excise_totalSpecified Then
-                				
-                ' If the excise_total is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.excise_total)
-                            
-                Me.excise_total.Text = formattedValue
-              
-            Else 
-            
-                ' excise_total is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.excise_total.Text = Inv_taxesTable.excise_total.Format(Inv_taxesTable.excise_total.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setgrand_total1()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.grand_total1.ID) Then
-            
-                Me.grand_total1.Text = Me.PreviousUIData(Me.grand_total1.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the grand_total TextBox on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.grand_total1 is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setgrand_total1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.grand_totalSpecified Then
-                				
-                ' If the grand_total is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.grand_total)
-                            
-                Me.grand_total1.Text = formattedValue
-              
-            Else 
-            
-                ' grand_total is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.grand_total1.Text = Inv_taxesTable.grand_total.Format(Inv_taxesTable.grand_total.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setid_taxes()
-            							
-            ' If selection was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.id_taxes.ID) Then
-                If Me.PreviousUIData(Me.id_taxes.ID) Is Nothing
-                    Me.Populateid_taxesDropDownList(Nothing, 100)
-                Else
-                    Me.Populateid_taxesDropDownList(Me.PreviousUIData(Me.id_taxes.ID).ToString(), 100)
-                End If
-                Return
-            End If
-            
-        
-            ' Set the id_taxes DropDownList on the webpage with value from the
-            ' inv_taxes database record.
-            
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.id_taxes is the ASP:DropDownList on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setid_taxes()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_taxesSpecified Then
-                            
-                ' If the id_taxes is non-NULL, then format the value.
-                ' The Format method will return the Display Foreign Key As (DFKA) value
-                Me.Populateid_taxesDropDownList(Me.DataSource.id_taxes.ToString(), 100)
-                
-            Else
-                
-                ' id_taxes is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-                If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
-                    Me.Populateid_taxesDropDownList(Nothing, 100)
-                Else
-                    Me.Populateid_taxesDropDownList(Inv_taxesTable.id_taxes.DefaultValue, 100)
-                End If
-                				
-            End If			
-                
-        End Sub
-                
-        Public Overridable Sub Setitem_total1()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.item_total1.ID) Then
-            
-                Me.item_total1.Text = Me.PreviousUIData(Me.item_total1.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the item_total TextBox on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.item_total1 is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setitem_total1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.item_totalSpecified Then
-                				
-                ' If the item_total is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.item_total)
-                            
-                Me.item_total1.Text = formattedValue
-              
-            Else 
-            
-                ' item_total is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.item_total1.Text = Inv_taxesTable.item_total.Format(Inv_taxesTable.item_total.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setsort_order()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.sort_order.ID) Then
-            
-                Me.sort_order.Text = Me.PreviousUIData(Me.sort_order.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the sort_order TextBox on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.sort_order is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setsort_order()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.sort_orderSpecified Then
-                				
-                ' If the sort_order is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.sort_order)
-                            
-                Me.sort_order.Text = formattedValue
-              
-            Else 
-            
-                ' sort_order is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.sort_order.Text = Inv_taxesTable.sort_order.Format(Inv_taxesTable.sort_order.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
         Public Overridable Sub Settax_amount()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.tax_amount.ID) Then
-            
-                Me.tax_amount.Text = Me.PreviousUIData(Me.tax_amount.ID).ToString()
-              
-                Return
-            End If
             
         
-            ' Set the tax_amount TextBox on the webpage with value from the
+            ' Set the tax_amount Literal on the webpage with value from the
             ' inv_taxes database record.
 
             ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_amount is the ASP:TextBox on the webpage.
+            ' Me.tax_amount is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Settax_amount()
@@ -3467,8 +2372,9 @@ Public Class BaseInv_taxesTableControlRow
                 ' If the tax_amount is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_amount)
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_amount, "c")
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.tax_amount.Text = formattedValue
               
             Else 
@@ -3476,194 +2382,20 @@ Public Class BaseInv_taxesTableControlRow
                 ' tax_amount is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.tax_amount.Text = Inv_taxesTable.tax_amount.Format(Inv_taxesTable.tax_amount.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Settax_code()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.tax_code.ID) Then
-            
-                Me.tax_code.Text = Me.PreviousUIData(Me.tax_code.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the tax_code TextBox on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_code is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_code()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_codeSpecified Then
-                				
-                ' If the tax_code is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_code)
-                            
-                Me.tax_code.Text = formattedValue
-              
-            Else 
-            
-                ' tax_code is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tax_code.Text = Inv_taxesTable.tax_code.Format(Inv_taxesTable.tax_code.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Settax_lock()
-            							
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.tax_lock.ID) Then
-                Me.tax_lock.Checked = Convert.ToBoolean(Me.PreviousUIData(Me.tax_lock.ID))
-                Return
-            End If		
-            
-        
-            ' Set the tax_lock CheckBox on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_lock is the ASP:CheckBox on the webpage.
-
-            ' You can modify this method directly, or replace it with a call to
-            ' MyBase.Settax_lock()
-            ' and add your own code before or after the call to the MyBase function.
-
-                    
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_lockSpecified Then
-                									
-                ' If the tax_lock is non-NULL, then format the value.
-                ' The Format method will use the Display Format
-                Me.tax_lock.Checked = Me.DataSource.tax_lock
-            Else
-            
-                ' tax_lock is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-                If Not Me.DataSource.IsCreated Then
-                    Me.tax_lock.Checked = Inv_taxesTable.tax_lock.ParseValue(Inv_taxesTable.tax_lock.DefaultValue).ToBoolean()
-                End If
-                    				
-            End If
-                
-        End Sub
-                
-        Public Overridable Sub Settax_name()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.tax_name.ID) Then
-            
-                Me.tax_name.Text = Me.PreviousUIData(Me.tax_name.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the tax_name TextBox on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_name is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_name()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_nameSpecified Then
-                				
-                ' If the tax_name is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_name)
-                            
-                Me.tax_name.Text = formattedValue
-              
-            Else 
-            
-                ' tax_name is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tax_name.Text = Inv_taxesTable.tax_name.Format(Inv_taxesTable.tax_name.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Settax_on()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.tax_on.ID) Then
-            
-                Me.tax_on.Text = Me.PreviousUIData(Me.tax_on.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the tax_on TextBox on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_on is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_on()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_onSpecified Then
-                				
-                ' If the tax_on is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_on)
-                            
-                Me.tax_on.Text = formattedValue
-              
-            Else 
-            
-                ' tax_on is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tax_on.Text = Inv_taxesTable.tax_on.Format(Inv_taxesTable.tax_on.DefaultValue)
+                Me.tax_amount.Text = Inv_taxesTable.tax_amount.Format(Inv_taxesTable.tax_amount.DefaultValue, "c")
                         		
                 End If
                  
         End Sub
                 
         Public Overridable Sub Settax_print()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.tax_print.ID) Then
-            
-                Me.tax_print.Text = Me.PreviousUIData(Me.tax_print.ID).ToString()
-              
-                Return
-            End If
             
         
-            ' Set the tax_print TextBox on the webpage with value from the
+            ' Set the tax_print Literal on the webpage with value from the
             ' inv_taxes database record.
 
             ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_print is the ASP:TextBox on the webpage.
+            ' Me.tax_print is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Settax_print()
@@ -3678,6 +2410,7 @@ Public Class BaseInv_taxesTableControlRow
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_print)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.tax_print.Text = formattedValue
               
             Else 
@@ -3686,92 +2419,6 @@ Public Class BaseInv_taxesTableControlRow
                 ' Default Value could also be NULL.
         
                 Me.tax_print.Text = Inv_taxesTable.tax_print.Format(Inv_taxesTable.tax_print.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Settax_rate()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.tax_rate.ID) Then
-            
-                Me.tax_rate.Text = Me.PreviousUIData(Me.tax_rate.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the tax_rate TextBox on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_rate is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_rate()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_rateSpecified Then
-                				
-                ' If the tax_rate is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_rate)
-                            
-                Me.tax_rate.Text = formattedValue
-              
-            Else 
-            
-                ' tax_rate is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tax_rate.Text = Inv_taxesTable.tax_rate.Format(Inv_taxesTable.tax_rate.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Settax_type()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.tax_type.ID) Then
-            
-                Me.tax_type.Text = Me.PreviousUIData(Me.tax_type.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the tax_type TextBox on the webpage with value from the
-            ' inv_taxes database record.
-
-            ' Me.DataSource is the inv_taxes record retrieved from the database.
-            ' Me.tax_type is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settax_type()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tax_typeSpecified Then
-                				
-                ' If the tax_type is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_taxesTable.tax_type)
-                            
-                Me.tax_type.Text = formattedValue
-              
-            Else 
-            
-                ' tax_type is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.tax_type.Text = Inv_taxesTable.tax_type.Format(Inv_taxesTable.tax_type.DefaultValue)
                         		
                 End If
                  
@@ -3888,200 +2535,17 @@ Public Class BaseInv_taxesTableControlRow
       
             ' Call the Get methods for each of the user interface controls.
         
-            Getcalc_type()
-            Getexcise_total()
-            Getgrand_total1()
-            Getid_taxes()
-            Getitem_total1()
-            Getsort_order()
             Gettax_amount()
-            Gettax_code()
-            Gettax_lock()
-            Gettax_name()
-            Gettax_on()
             Gettax_print()
-            Gettax_rate()
-            Gettax_type()
         End Sub
         
         
-        Public Overridable Sub Getcalc_type()
-            
-            ' Retrieve the value entered by the user on the calc_type ASP:TextBox, and
-            ' save it into the calc_type field in DataSource inv_taxes record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.calc_type.Text, Inv_taxesTable.calc_type)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getexcise_total()
-            
-            ' Retrieve the value entered by the user on the excise_total ASP:TextBox, and
-            ' save it into the excise_total field in DataSource inv_taxes record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.excise_total.Text, Inv_taxesTable.excise_total)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getgrand_total1()
-            
-            ' Retrieve the value entered by the user on the grand_total ASP:TextBox, and
-            ' save it into the grand_total field in DataSource inv_taxes record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.grand_total1.Text, Inv_taxesTable.grand_total)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getid_taxes()
-         
-            ' Retrieve the value entered by the user on the id_taxes ASP:DropDownList, and
-            ' save it into the id_taxes field in DataSource inv_taxes record.
-                        
-            ' Custom validation should be performed in Validate, not here.
-            
-            Me.DataSource.Parse(GetValueSelectedPageRequest(Me.id_taxes), Inv_taxesTable.id_taxes)				
-            
-        End Sub
-                
-        Public Overridable Sub Getitem_total1()
-            
-            ' Retrieve the value entered by the user on the item_total ASP:TextBox, and
-            ' save it into the item_total field in DataSource inv_taxes record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.item_total1.Text, Inv_taxesTable.item_total)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getsort_order()
-            
-            ' Retrieve the value entered by the user on the sort_order ASP:TextBox, and
-            ' save it into the sort_order field in DataSource inv_taxes record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.sort_order.Text, Inv_taxesTable.sort_order)			
-
-                      
-        End Sub
-                
         Public Overridable Sub Gettax_amount()
             
-            ' Retrieve the value entered by the user on the tax_amount ASP:TextBox, and
-            ' save it into the tax_amount field in DataSource inv_taxes record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.tax_amount.Text, Inv_taxesTable.tax_amount)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Gettax_code()
-            
-            ' Retrieve the value entered by the user on the tax_code ASP:TextBox, and
-            ' save it into the tax_code field in DataSource inv_taxes record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.tax_code.Text, Inv_taxesTable.tax_code)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Gettax_lock()
-        
-        
-            ' Retrieve the value entered by the user on the tax_lock ASP:CheckBox, and
-            ' save it into the tax_lock field in DataSource inv_taxes record.
-            ' Custom validation should be performed in Validate, not here.
-            
-            
-            Me.DataSource.tax_lock = Me.tax_lock.Checked
-                    
-        End Sub
-                
-        Public Overridable Sub Gettax_name()
-            
-            ' Retrieve the value entered by the user on the tax_name ASP:TextBox, and
-            ' save it into the tax_name field in DataSource inv_taxes record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.tax_name.Text, Inv_taxesTable.tax_name)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Gettax_on()
-            
-            ' Retrieve the value entered by the user on the tax_on ASP:TextBox, and
-            ' save it into the tax_on field in DataSource inv_taxes record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.tax_on.Text, Inv_taxesTable.tax_on)			
-
-                      
         End Sub
                 
         Public Overridable Sub Gettax_print()
             
-            ' Retrieve the value entered by the user on the tax_print ASP:TextBox, and
-            ' save it into the tax_print field in DataSource inv_taxes record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.tax_print.Text, Inv_taxesTable.tax_print)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Gettax_rate()
-            
-            ' Retrieve the value entered by the user on the tax_rate ASP:TextBox, and
-            ' save it into the tax_rate field in DataSource inv_taxes record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.tax_rate.Text, Inv_taxesTable.tax_rate)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Gettax_type()
-            
-            ' Retrieve the value entered by the user on the tax_type ASP:TextBox, and
-            ' save it into the tax_type field in DataSource inv_taxes record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.tax_type.Text, Inv_taxesTable.tax_type)			
-
-                      
         End Sub
                 
       
@@ -4167,332 +2631,6 @@ Public Class BaseInv_taxesTableControlRow
         End Function
         
         
-
-        Public Overridable Function CreateWhereClause_id_taxesDropDownList() As WhereClause
-            ' By default, we simply return a new WhereClause.
-            ' Add additional where clauses to restrict the items shown in the dropdown list.
-            						
-            ' This WhereClause is for the taxes table.
-            ' Examples:
-            ' wc.iAND(TaxesTable.tax_name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
-            ' wc.iAND(TaxesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
-            
-            Dim wc As WhereClause = New WhereClause()
-            Return wc
-            				
-        End Function
-        
-                
-        ' Fill the id_taxes list.
-        Protected Overridable Sub Populateid_taxesDropDownList( _
-                ByVal selectedValue As String, _
-                ByVal maxItems As Integer)
-            		  					                
-            Me.id_taxes.Items.Clear()
-            
-            ' This is a four step process.
-            ' 1. Setup the static list items
-            ' 2. Set up the WHERE and the ORDER BY clause
-            ' 3. Read a total of maxItems from the database and insert them
-            ' 4. Set the selected value (insert if not already present).
-                    
-            ' 1. Setup the static list items
-            														
-            Me.id_taxes.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))							
-                            		  			
-            ' 2. Set up the WHERE and the ORDER BY clause by calling the CreateWhereClause_id_taxesDropDownList function.
-            ' It is better to customize the where clause there.
-            
-            Dim wc As WhereClause = CreateWhereClause_id_taxesDropDownList()
-            ' Create the ORDER BY clause to sort based on the displayed value.			
-                
-      
-      
-            Dim orderBy As OrderBy = New OrderBy(false, true)			
-        
-            orderBy.Add(TaxesTable.tax_name, OrderByItem.OrderDir.Asc)				
-            
-            ' 3. Read a total of maxItems from the database and insert them		
-            Dim itemValues() As TaxesRecord = Nothing
-            If wc.RunQuery
-                Dim counter As Integer = 0
-                Dim pageNum As Integer = 0
-                Do
-                    itemValues = TaxesTable.GetRecords(wc, orderBy, pageNum, 500)
-                    For each itemValue As TaxesRecord In itemValues
-                        ' Create the item and add to the list.
-                        Dim cvalue As String = Nothing
-                        Dim fvalue As String = Nothing
-                        If itemValue.id0Specified Then
-                            cvalue = itemValue.id0.ToString()
-                            fvalue = itemValue.Format(TaxesTable.tax_name)
-                                    
-                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
-                            Dim newItem As New ListItem(fvalue, cvalue)
-                            If counter < maxItems AndAlso Not Me.id_taxes.Items.Contains(newItem) Then Me.id_taxes.Items.Add(newItem)
-                            counter += 1
-                        End If
-                    Next
-                    pageNum += 1
-                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
-            End If
-                            
-                    
-            ' 4. Set the selected value (insert if not already present).
-              
-            If Not selectedValue Is Nothing AndAlso _
-                selectedValue.Trim <> "" AndAlso _
-                Not SetSelectedValue(Me.id_taxes, selectedValue) AndAlso _
-                Not SetSelectedDisplayText(Me.id_taxes, selectedValue)Then
-
-                ' construct a whereclause to query a record with taxes.id = selectedValue
-                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
-                Dim whereClause2 As WhereClause = New WhereClause()
-                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(TaxesTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
-                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
-
-                Try
-                    ' Execute the query
-                    Dim rc() As TaxesRecord = TaxesTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
-
-                    ' if find a record, add it to the dropdown and set it as selected item
-                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
-                        
-                        Dim fvalue As String = Inv_taxesTable.id_taxes.Format(selectedValue)																			
-                            
-                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
-                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
-                        item.Selected = True
-                        Me.id_taxes.Items.Add(item)
-                    End If
-                Catch
-                End Try
-
-            End If					
-                        
-                
-        End Sub
-                
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_taxesRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                Dim tc As Inv_taxesTableControl = DirectCast(GetParentControlObject(Me, "Inv_taxesTableControl"), Inv_taxesTableControl)
-                If Not (IsNothing(tc)) Then
-                    
-                    Me.Visible = False
-                End If
-              
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_taxesRowEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../inv_taxes/EditInv_taxes.aspx?Inv_taxes={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_taxesRowViewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../inv_taxes/ShowInv_taxes.aspx?Inv_taxes={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        Protected Overridable Sub id_taxes_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
-            ' If a large list selector or a Quick Add link is used, the dropdown list
-            ' will contain an item that was not in the original (smaller) list.  During postbacks,
-            ' this new item will not be in the list - since the list is based on the original values
-            ' read from the database. This function adds the value back if necessary.
-            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
-            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
-            ' When this function is fire for Make or Model, we don't want the following code executed.
-            ' Therefore, we check this situation using Items.Count > 1			
-            If Me.id_taxes.Items.Count > 1 Then
-                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_taxes)
-                 
-            If Not selectedValue Is Nothing AndAlso _
-                selectedValue.Trim <> "" AndAlso _
-                Not SetSelectedValue(Me.id_taxes, selectedValue) AndAlso _
-                Not SetSelectedDisplayText(Me.id_taxes, selectedValue)Then
-
-                ' construct a whereclause to query a record with taxes.id = selectedValue
-                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
-                Dim whereClause2 As WhereClause = New WhereClause()
-                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(TaxesTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
-                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
-
-                Try
-                    ' Execute the query
-                    Dim rc() As TaxesRecord = TaxesTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
-
-                    ' if find a record, add it to the dropdown and set it as selected item
-                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
-                        
-                        Dim fvalue As String = Inv_taxesTable.id_taxes.Format(selectedValue)																			
-                            
-                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
-                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
-                        item.Selected = True
-                        Me.id_taxes.Items.Add(item)
-                    End If
-                Catch
-                End Try
-
-            End If					
-                        
-            End If
-          									
-                
-                
-        End Sub
-            
-        Protected Overridable Sub tax_lock_CheckedChanged(ByVal sender As Object, ByVal args As EventArgs)                
-             
-
-        End Sub
-            
-        Protected Overridable Sub calc_type_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub excise_total_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub grand_total1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub item_total1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub sort_order_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub tax_amount_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub tax_code_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub tax_name_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub tax_on_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub tax_print_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub tax_rate_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub tax_type_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
    
         Private _PreviousUIData As New Hashtable
         Public Overridable Property PreviousUIData() As Hashtable
@@ -4602,117 +2740,21 @@ Public Class BaseInv_taxesTableControlRow
 
 #Region "Helper Properties"
         
-        Public ReadOnly Property calc_type() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "calc_type"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property excise_total() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "excise_total"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property grand_total1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_total1"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property id_taxes() As System.Web.UI.WebControls.DropDownList
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_taxes"), System.Web.UI.WebControls.DropDownList)
-            End Get
-        End Property
-            
-        Public ReadOnly Property id_taxesAddRecordLink() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_taxesAddRecordLink"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property Inv_taxesRecordRowSelection() As System.Web.UI.WebControls.CheckBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_taxesRecordRowSelection"), System.Web.UI.WebControls.CheckBox)
             End Get
         End Property
         
-        Public ReadOnly Property Inv_taxesRowDeleteButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property tax_amount() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_taxesRowDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_taxesRowEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_taxesRowEditButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_taxesRowViewButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_taxesRowViewButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property item_total1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_total1"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_amount"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property sort_order() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property tax_print() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_order"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_amount() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_amount"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_code() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_code"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_lock() As System.Web.UI.WebControls.CheckBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_lock"), System.Web.UI.WebControls.CheckBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_name() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_name"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_on() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_on"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_print() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_print"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_rate() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_rate"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property tax_type() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_type"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_print"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -4797,6 +2839,8 @@ Public Class BaseInv_taxesTableControl
             Else
                 Me.CurrentSortOrder = New OrderBy(True, True)
             
+                Me.CurrentSortOrder.Add(Inv_taxesTable.sort_order, OrderByItem.OrderDir.Asc)
+              
             End If
 
             ' Setup default pagination settings.
@@ -4810,8 +2854,6 @@ Public Class BaseInv_taxesTableControl
         
             SaveControlsToSession_Ajax()
         
-              ' Show confirmation message on Click
-              Me.Inv_taxesDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteConfirm", "ServelInvocing") & "'));")
             ' Setup the pagination events.
             
               AddHandler Me.Inv_taxesPagination.FirstPage.Click, AddressOf Inv_taxesPagination_FirstPage_Click
@@ -4826,42 +2868,12 @@ Public Class BaseInv_taxesTableControl
               
             ' Setup the sorting events.
           
-              AddHandler Me.calc_typeLabel.Click, AddressOf calc_typeLabel_Click
-            
-              AddHandler Me.excise_totalLabel.Click, AddressOf excise_totalLabel_Click
-            
-              AddHandler Me.grand_totalLabel1.Click, AddressOf grand_totalLabel1_Click
-            
-              AddHandler Me.id_taxesLabel1.Click, AddressOf id_taxesLabel1_Click
-            
-              AddHandler Me.item_totalLabel1.Click, AddressOf item_totalLabel1_Click
-            
-              AddHandler Me.sort_orderLabel.Click, AddressOf sort_orderLabel_Click
-            
               AddHandler Me.tax_amountLabel.Click, AddressOf tax_amountLabel_Click
-            
-              AddHandler Me.tax_codeLabel1.Click, AddressOf tax_codeLabel1_Click
-            
-              AddHandler Me.tax_lockLabel.Click, AddressOf tax_lockLabel_Click
-            
-              AddHandler Me.tax_nameLabel.Click, AddressOf tax_nameLabel_Click
-            
-              AddHandler Me.tax_onLabel.Click, AddressOf tax_onLabel_Click
             
               AddHandler Me.tax_printLabel.Click, AddressOf tax_printLabel_Click
             
-              AddHandler Me.tax_rateLabel.Click, AddressOf tax_rateLabel_Click
-            
-              AddHandler Me.tax_typeLabel.Click, AddressOf tax_typeLabel_Click
-            
             ' Setup the button events.
           
-              AddHandler Me.Inv_taxesAddButton.Click, AddressOf Inv_taxesAddButton_Click
-              
-              AddHandler Me.Inv_taxesDeleteButton.Click, AddressOf Inv_taxesDeleteButton_Click
-              
-              AddHandler Me.Inv_taxesEditButton.Click, AddressOf Inv_taxesEditButton_Click
-              
               AddHandler Me.Inv_taxesResetButton.Click, AddressOf Inv_taxesResetButton_Click
               
           ' Setup events for others
@@ -4962,29 +2974,14 @@ Public Class BaseInv_taxesTableControl
             If Me.DataSource Is Nothing Then
                 Return
             End If
-      
-          ' Improve performance by prefetching display as records.
-          Me.PreFetchForeignKeyValues()
-             
+           
             ' Setup the pagination controls.
             BindPaginationControls()
 
             ' Call the Set methods for each controls on the panel
         
-            Setcalc_typeLabel()
-            Setexcise_totalLabel()
-            Setgrand_totalLabel1()
-            Setid_taxesLabel1()
-            Setitem_totalLabel1()
-            Setsort_orderLabel()
             Settax_amountLabel()
-            Settax_codeLabel1()
-            Settax_lockLabel()
-            Settax_nameLabel()
-            Settax_onLabel()
             Settax_printLabel()
-            Settax_rateLabel()
-            Settax_typeLabel()
       
   
 
@@ -5018,32 +3015,11 @@ Public Class BaseInv_taxesTableControl
 
             ' Initialize other asp controls
             
-            Setcalc_typeLabel()
-            Setexcise_totalLabel()
-            Setgrand_totalLabel1()
-            Setid_taxesLabel1()
-            Setitem_totalLabel1()
-            Setsort_orderLabel()
             Settax_amountLabel()
-            Settax_codeLabel1()
-            Settax_lockLabel()
-            Settax_nameLabel()
-            Settax_onLabel()
             Settax_printLabel()
-            Settax_rateLabel()
-            Settax_typeLabel()
       End Sub
 
       
-          Public Sub PreFetchForeignKeyValues()
-          If (IsNothing(Me.DataSource))
-            Return
-          End If
-          
-            Me.Page.PregetDfkaRecords(Inv_taxesTable.id_taxes, Me.DataSource)
-          
-          End Sub
-        
       
         Public Overridable Sub RegisterPostback()
         
@@ -5082,6 +3058,8 @@ Public Class BaseInv_taxesTableControl
             Else
                 Me.CurrentSortOrder = New OrderBy(true, true)
             
+                Me.CurrentSortOrder.Add(Inv_taxesTable.sort_order, OrderByItem.OrderDir.Asc)
+              
             End If
                 
             Me.PageIndex = 0
@@ -5396,46 +3374,11 @@ Public Class BaseInv_taxesTableControl
                     
                         Dim rec As Inv_taxesRecord = New Inv_taxesRecord()
         
-                        If recControl.calc_type.Text <> "" Then
-                            rec.Parse(recControl.calc_type.Text, Inv_taxesTable.calc_type)
-                        End If
-                        If recControl.excise_total.Text <> "" Then
-                            rec.Parse(recControl.excise_total.Text, Inv_taxesTable.excise_total)
-                        End If
-                        If recControl.grand_total1.Text <> "" Then
-                            rec.Parse(recControl.grand_total1.Text, Inv_taxesTable.grand_total)
-                        End If
-                        If MiscUtils.IsValueSelected(recControl.id_taxes) Then
-                            rec.Parse(recControl.id_taxes.SelectedItem.Value, Inv_taxesTable.id_taxes)
-                        End If
-                        If recControl.item_total1.Text <> "" Then
-                            rec.Parse(recControl.item_total1.Text, Inv_taxesTable.item_total)
-                        End If
-                        If recControl.sort_order.Text <> "" Then
-                            rec.Parse(recControl.sort_order.Text, Inv_taxesTable.sort_order)
-                        End If
                         If recControl.tax_amount.Text <> "" Then
                             rec.Parse(recControl.tax_amount.Text, Inv_taxesTable.tax_amount)
                         End If
-                        If recControl.tax_code.Text <> "" Then
-                            rec.Parse(recControl.tax_code.Text, Inv_taxesTable.tax_code)
-                        End If
-                        rec.tax_lock = recControl.tax_lock.Checked
-                
-                        If recControl.tax_name.Text <> "" Then
-                            rec.Parse(recControl.tax_name.Text, Inv_taxesTable.tax_name)
-                        End If
-                        If recControl.tax_on.Text <> "" Then
-                            rec.Parse(recControl.tax_on.Text, Inv_taxesTable.tax_on)
-                        End If
                         If recControl.tax_print.Text <> "" Then
                             rec.Parse(recControl.tax_print.Text, Inv_taxesTable.tax_print)
-                        End If
-                        If recControl.tax_rate.Text <> "" Then
-                            rec.Parse(recControl.tax_rate.Text, Inv_taxesTable.tax_rate)
-                        End If
-                        If recControl.tax_type.Text <> "" Then
-                            rec.Parse(recControl.tax_type.Text, Inv_taxesTable.tax_type)
                         End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
@@ -5504,72 +3447,12 @@ Public Class BaseInv_taxesTableControl
       
         ' Create Set, WhereClause, and Populate Methods
         
-        Public Overridable Sub Setcalc_typeLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setexcise_totalLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setgrand_totalLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setid_taxesLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setitem_totalLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setsort_orderLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Settax_amountLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub Settax_codeLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settax_lockLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settax_nameLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settax_onLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Settax_printLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settax_rateLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Settax_typeLabel()
             
                     
         End Sub
@@ -5809,138 +3692,6 @@ Public Class BaseInv_taxesTableControl
 
         ' Generate the event handling functions for sorting events.
         
-        Public Overridable Sub calc_typeLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by calc_type when clicked.
-              
-            ' Get previous sorting state for calc_type.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_taxesTable.calc_type)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for calc_type.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_taxesTable.calc_type, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by calc_type, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub excise_totalLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by excise_total when clicked.
-              
-            ' Get previous sorting state for excise_total.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_taxesTable.excise_total)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for excise_total.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_taxesTable.excise_total, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by excise_total, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub grand_totalLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by grand_total when clicked.
-              
-            ' Get previous sorting state for grand_total.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_taxesTable.grand_total)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for grand_total.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_taxesTable.grand_total, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by grand_total, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub id_taxesLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by id_taxes when clicked.
-              
-            ' Get previous sorting state for id_taxes.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_taxesTable.id_taxes)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for id_taxes.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_taxesTable.id_taxes, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by id_taxes, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub item_totalLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by item_total when clicked.
-              
-            ' Get previous sorting state for item_total.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_taxesTable.item_total)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for item_total.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_taxesTable.item_total, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by item_total, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub sort_orderLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by sort_order when clicked.
-              
-            ' Get previous sorting state for sort_order.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_taxesTable.sort_order)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for sort_order.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_taxesTable.sort_order, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by sort_order, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
         Public Overridable Sub tax_amountLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by tax_amount when clicked.
               
@@ -5953,94 +3704,6 @@ Public Class BaseInv_taxesTableControl
                 Me.CurrentSortOrder.Add(Inv_taxesTable.tax_amount, OrderByItem.OrderDir.Asc)
             Else
                 ' Previously sorted by tax_amount, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub tax_codeLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by tax_code when clicked.
-              
-            ' Get previous sorting state for tax_code.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_taxesTable.tax_code)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for tax_code.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_taxesTable.tax_code, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by tax_code, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub tax_lockLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by tax_lock when clicked.
-              
-            ' Get previous sorting state for tax_lock.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_taxesTable.tax_lock)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for tax_lock.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_taxesTable.tax_lock, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by tax_lock, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub tax_nameLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by tax_name when clicked.
-              
-            ' Get previous sorting state for tax_name.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_taxesTable.tax_name)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for tax_name.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_taxesTable.tax_name, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by tax_name, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub tax_onLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by tax_on when clicked.
-              
-            ' Get previous sorting state for tax_on.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_taxesTable.tax_on)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for tax_on.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_taxesTable.tax_on, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by tax_on, so just reverse.
                 sd.Reverse()
             End If
             
@@ -6073,147 +3736,8 @@ Public Class BaseInv_taxesTableControl
               
         End Sub
             
-        Public Overridable Sub tax_rateLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by tax_rate when clicked.
-              
-            ' Get previous sorting state for tax_rate.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_taxesTable.tax_rate)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for tax_rate.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_taxesTable.tax_rate, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by tax_rate, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
-        Public Overridable Sub tax_typeLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by tax_type when clicked.
-              
-            ' Get previous sorting state for tax_type.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_taxesTable.tax_type)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for tax_type.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_taxesTable.tax_type, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by tax_type, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
 
         ' Generate the event handling functions for button events.
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_taxesAddButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            Me.AddNewRecord = 1
-            Me.DataChanged = True
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_taxesDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                Me.DeleteSelectedRecords(True)
-          
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_taxesEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../inv_taxes/EditInv_taxes.aspx?Inv_taxes={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
         
         ' event handler for ImageButton
         Public Overridable Sub Inv_taxesResetButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
@@ -6226,6 +3750,8 @@ Public Class BaseInv_taxesTableControl
               Else
                   Me.CurrentSortOrder = New OrderBy(True, True)
               
+                Me.CurrentSortOrder.Add(Inv_taxesTable.sort_order, OrderByItem.OrderDir.Asc)
+                
               End If
               
 
@@ -6371,48 +3897,6 @@ Public Class BaseInv_taxesTableControl
        
 #Region "Helper Properties"
         
-        Public ReadOnly Property calc_typeLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "calc_typeLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property excise_totalLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "excise_totalLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property grand_totalLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_totalLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property id_taxesLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_taxesLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_taxesAddButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_taxesAddButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_taxesDeleteButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_taxesDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_taxesEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_taxesEditButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property Inv_taxesPagination() As ServelInvocing.UI.IPagination
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_taxesPagination"), ServelInvocing.UI.IPagination)
@@ -6431,63 +3915,15 @@ Public Class BaseInv_taxesTableControl
             End Get
         End Property
         
-        Public ReadOnly Property item_totalLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_totalLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property sort_orderLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_orderLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property tax_amountLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_amountLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
-        Public ReadOnly Property tax_codeLabel1() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_codeLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tax_lockLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_lockLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tax_nameLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_nameLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tax_onLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_onLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property tax_printLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_printLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tax_rateLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_rateLabel"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property tax_typeLabel() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tax_typeLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -6626,20 +4062,8 @@ Public Class BaseInv_termsTableControlRow
 			'Call LoadFocusScripts from repeater so that onfocus attribute could be added to elements
 			Me.Page.LoadFocusScripts(Me)
 		
-              ' Show confirmation message on Click
-              Me.Inv_termsRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              AddHandler Me.Inv_termsRowDeleteButton.Click, AddressOf Inv_termsRowDeleteButton_Click
-              
-              AddHandler Me.Inv_termsRowEditButton.Click, AddressOf Inv_termsRowEditButton_Click
-              
-              AddHandler Me.Inv_termsRowViewButton.Click, AddressOf Inv_termsRowViewButton_Click
-              
-              AddHandler Me.narration.TextChanged, AddressOf narration_TextChanged
-            
-              AddHandler Me.sort_order1.TextChanged, AddressOf sort_order1_TextChanged
-            
         End Sub
 
         
@@ -6684,7 +4108,6 @@ Public Class BaseInv_termsTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setnarration()
-            Setsort_order1()
       
       
             Me.IsNewRecord = True
@@ -6704,21 +4127,13 @@ Public Class BaseInv_termsTableControlRow
         
         
         Public Overridable Sub Setnarration()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.narration.ID) Then
-            
-                Me.narration.Text = Me.PreviousUIData(Me.narration.ID).ToString()
-              
-                Return
-            End If
             
         
-            ' Set the narration TextBox on the webpage with value from the
+            ' Set the narration Literal on the webpage with value from the
             ' inv_terms database record.
 
             ' Me.DataSource is the inv_terms record retrieved from the database.
-            ' Me.narration is the ASP:TextBox on the webpage.
+            ' Me.narration is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setnarration()
@@ -6733,6 +4148,40 @@ Public Class BaseInv_termsTableControlRow
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_termsTable.narration)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                If Not formattedValue is Nothing Then
+                    Dim popupThreshold as Integer = CType(100, Integer)
+                              
+                    Dim maxLength as Integer = Len(formattedValue)
+                    If (maxLength > CType(100, Integer)) Then
+                        ' Truncate based on FieldMaxLength on Properties.
+                        maxLength = CType(100, Integer)
+                        
+                    End If
+                                
+                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
+                    If Len(formattedValue) >= popupThreshold Then
+                    
+                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
+                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.Inv_termsTable, ServelInvocing.Business\"",\""" _
+                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""narration\"", \""narration\"", \""Narration\"", false, 200," _
+                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
+                        
+                        If (maxLength = CType(100, Integer)) Then
+                            formattedValue = formattedValue & "..." & "</a>"
+                        Else
+                            formattedValue = formattedValue & "</a>"
+                            
+                        End If
+                    Else
+                        If maxLength = CType(100, Integer) Then
+                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
+                            formattedValue = formattedValue & "..."
+                            
+                        End If
+                    End If
+                End If  
+                
                 Me.narration.Text = formattedValue
               
             Else 
@@ -6741,49 +4190,6 @@ Public Class BaseInv_termsTableControlRow
                 ' Default Value could also be NULL.
         
                 Me.narration.Text = Inv_termsTable.narration.Format(Inv_termsTable.narration.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setsort_order1()
-            					
-            ' If data was retrieved from UI previously, restore it
-            If Me.PreviousUIData.ContainsKey(Me.sort_order1.ID) Then
-            
-                Me.sort_order1.Text = Me.PreviousUIData(Me.sort_order1.ID).ToString()
-              
-                Return
-            End If
-            
-        
-            ' Set the sort_order TextBox on the webpage with value from the
-            ' inv_terms database record.
-
-            ' Me.DataSource is the inv_terms record retrieved from the database.
-            ' Me.sort_order1 is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setsort_order1()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.sort_orderSpecified Then
-                				
-                ' If the sort_order is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_termsTable.sort_order)
-                            
-                Me.sort_order1.Text = formattedValue
-              
-            Else 
-            
-                ' sort_order is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.sort_order1.Text = Inv_termsTable.sort_order.Format(Inv_termsTable.sort_order.DefaultValue)
                         		
                 End If
                  
@@ -6901,34 +4307,11 @@ Public Class BaseInv_termsTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getnarration()
-            Getsort_order1()
         End Sub
         
         
         Public Overridable Sub Getnarration()
             
-            ' Retrieve the value entered by the user on the narration ASP:TextBox, and
-            ' save it into the narration field in DataSource inv_terms record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.narration.Text, Inv_termsTable.narration)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getsort_order1()
-            
-            ' Retrieve the value entered by the user on the sort_order ASP:TextBox, and
-            ' save it into the sort_order field in DataSource inv_terms record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.sort_order1.Text, Inv_termsTable.sort_order)			
-
-                      
         End Sub
                 
       
@@ -7014,133 +4397,6 @@ Public Class BaseInv_termsTableControlRow
         End Function
         
         
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_termsRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                Dim tc As Inv_termsTableControl = DirectCast(GetParentControlObject(Me, "Inv_termsTableControl"), Inv_termsTableControl)
-                If Not (IsNothing(tc)) Then
-                    
-                    Me.Visible = False
-                End If
-              
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_termsRowEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../inv_terms/EditInv_terms.aspx?Inv_terms={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_termsRowViewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../inv_terms/ShowInv_terms.aspx?Inv_terms={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        Protected Overridable Sub narration_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub sort_order1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
    
         Private _PreviousUIData As New Hashtable
         Public Overridable Property PreviousUIData() As Hashtable
@@ -7256,33 +4512,9 @@ Public Class BaseInv_termsTableControlRow
             End Get
         End Property
         
-        Public ReadOnly Property Inv_termsRowDeleteButton() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property narration() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_termsRowDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_termsRowEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_termsRowEditButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_termsRowViewButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_termsRowViewButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property narration() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "narration"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property sort_order1() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_order1"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "narration"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -7367,6 +4599,8 @@ Public Class BaseInv_termsTableControl
             Else
                 Me.CurrentSortOrder = New OrderBy(True, True)
             
+                Me.CurrentSortOrder.Add(Inv_termsTable.sort_order, OrderByItem.OrderDir.Asc)
+              
             End If
 
             ' Setup default pagination settings.
@@ -7380,8 +4614,6 @@ Public Class BaseInv_termsTableControl
         
             SaveControlsToSession_Ajax()
         
-              ' Show confirmation message on Click
-              Me.Inv_termsDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteConfirm", "ServelInvocing") & "'));")
             ' Setup the pagination events.
             
               AddHandler Me.Inv_termsPagination.FirstPage.Click, AddressOf Inv_termsPagination_FirstPage_Click
@@ -7398,16 +4630,8 @@ Public Class BaseInv_termsTableControl
           
               AddHandler Me.narrationLabel1.Click, AddressOf narrationLabel1_Click
             
-              AddHandler Me.sort_orderLabel2.Click, AddressOf sort_orderLabel2_Click
-            
             ' Setup the button events.
           
-              AddHandler Me.Inv_termsAddButton.Click, AddressOf Inv_termsAddButton_Click
-              
-              AddHandler Me.Inv_termsDeleteButton.Click, AddressOf Inv_termsDeleteButton_Click
-              
-              AddHandler Me.Inv_termsEditButton.Click, AddressOf Inv_termsEditButton_Click
-              
               AddHandler Me.Inv_termsResetButton.Click, AddressOf Inv_termsResetButton_Click
               
           ' Setup events for others
@@ -7515,7 +4739,6 @@ Public Class BaseInv_termsTableControl
             ' Call the Set methods for each controls on the panel
         
             SetnarrationLabel1()
-            Setsort_orderLabel2()
       
   
 
@@ -7550,7 +4773,6 @@ Public Class BaseInv_termsTableControl
             ' Initialize other asp controls
             
             SetnarrationLabel1()
-            Setsort_orderLabel2()
       End Sub
 
       
@@ -7592,6 +4814,8 @@ Public Class BaseInv_termsTableControl
             Else
                 Me.CurrentSortOrder = New OrderBy(true, true)
             
+                Me.CurrentSortOrder.Add(Inv_termsTable.sort_order, OrderByItem.OrderDir.Asc)
+              
             End If
                 
             Me.PageIndex = 0
@@ -7909,9 +5133,6 @@ Public Class BaseInv_termsTableControl
                         If recControl.narration.Text <> "" Then
                             rec.Parse(recControl.narration.Text, Inv_termsTable.narration)
                         End If
-                        If recControl.sort_order1.Text <> "" Then
-                            rec.Parse(recControl.sort_order1.Text, Inv_termsTable.sort_order)
-                        End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
                     End If
@@ -7980,11 +5201,6 @@ Public Class BaseInv_termsTableControl
         ' Create Set, WhereClause, and Populate Methods
         
         Public Overridable Sub SetnarrationLabel1()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setsort_orderLabel2()
             
                     
         End Sub
@@ -8246,125 +5462,8 @@ Public Class BaseInv_termsTableControl
               
         End Sub
             
-        Public Overridable Sub sort_orderLabel2_Click(ByVal sender As Object, ByVal args As EventArgs)
-            ' Sorts by sort_order when clicked.
-              
-            ' Get previous sorting state for sort_order.
-            
-            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_termsTable.sort_order)
-            If sd Is Nothing Then
-                ' First time sort, so add sort order for sort_order.
-                Me.CurrentSortOrder.Reset()
-                Me.CurrentSortOrder.Add(Inv_termsTable.sort_order, OrderByItem.OrderDir.Asc)
-            Else
-                ' Previously sorted by sort_order, so just reverse.
-                sd.Reverse()
-            End If
-            
-            ' Setting the DataChanged to True results in the page being refreshed with
-            ' the most recent data from the database.  This happens in PreRender event
-            ' based on the current sort, search and filter criteria.
-            Me.DataChanged = True
-              
-        End Sub
-            
 
         ' Generate the event handling functions for button events.
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_termsAddButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            Me.AddNewRecord = 1
-            Me.DataChanged = True
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_termsDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                Me.DeleteSelectedRecords(True)
-          
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub Inv_termsEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../inv_terms/EditInv_terms.aspx?Inv_terms={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
         
         ' event handler for ImageButton
         Public Overridable Sub Inv_termsResetButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
@@ -8377,6 +5476,8 @@ Public Class BaseInv_termsTableControl
               Else
                   Me.CurrentSortOrder = New OrderBy(True, True)
               
+                Me.CurrentSortOrder.Add(Inv_termsTable.sort_order, OrderByItem.OrderDir.Asc)
+                
               End If
               
 
@@ -8522,24 +5623,6 @@ Public Class BaseInv_termsTableControl
        
 #Region "Helper Properties"
         
-        Public ReadOnly Property Inv_termsAddButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_termsAddButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_termsDeleteButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_termsDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property Inv_termsEditButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_termsEditButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property Inv_termsPagination() As ServelInvocing.UI.IPagination
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "Inv_termsPagination"), ServelInvocing.UI.IPagination)
@@ -8561,12 +5644,6 @@ Public Class BaseInv_termsTableControl
         Public ReadOnly Property narrationLabel1() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "narrationLabel1"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property sort_orderLabel2() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_orderLabel2"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -8708,24 +5785,9 @@ Public Class BaseInv_hdrRecordControl
          
               ' Register the event handlers.
           
-              Me.id_partyAddRecordLink.PostBackUrl = "../party/AddParty.aspx" & "?Target=" & Me.id_party.ClientID & "&DFKA=name"
-              Me.id_partyAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_partyAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
-              
-              Me.id_tax_groupAddRecordLink.PostBackUrl = "../tax_groups/AddTax_groups.aspx" & "?Target=" & Me.id_tax_group.ClientID & "&DFKA=tax_group_code"
-              Me.id_tax_groupAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_tax_groupAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
-              
-              Me.id_transporterAddRecordLink.PostBackUrl = "../transporters/AddTransporters.aspx" & "?Target=" & Me.id_transporter.ClientID & "&DFKA=name"
-              Me.id_transporterAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_transporterAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
-              
-              AddHandler Me.id_party.SelectedIndexChanged, AddressOf id_party_SelectedIndexChanged
-            
-              AddHandler Me.id_tax_group.SelectedIndexChanged, AddressOf id_tax_group_SelectedIndexChanged
+              AddHandler Me.id_commodity.Click, AddressOf id_commodity_Click
             
               AddHandler Me.id_transporter.SelectedIndexChanged, AddressOf id_transporter_SelectedIndexChanged
-            
-              AddHandler Me.bill_address.TextChanged, AddressOf bill_address_TextChanged
-            
-              AddHandler Me.bill_name.TextChanged, AddressOf bill_name_TextChanged
             
               AddHandler Me.freight_to_pay.TextChanged, AddressOf freight_to_pay_TextChanged
             
@@ -8733,33 +5795,11 @@ Public Class BaseInv_hdrRecordControl
             
               AddHandler Me.gr_rr_no.TextChanged, AddressOf gr_rr_no_TextChanged
             
-              AddHandler Me.grand_total.TextChanged, AddressOf grand_total_TextChanged
-            
-              AddHandler Me.item_total.TextChanged, AddressOf item_total_TextChanged
-            
               AddHandler Me.no_of_packages.TextChanged, AddressOf no_of_packages_TextChanged
             
               AddHandler Me.packing_details.TextChanged, AddressOf packing_details_TextChanged
             
-              AddHandler Me.po_dt.TextChanged, AddressOf po_dt_TextChanged
-            
-              AddHandler Me.po_no.TextChanged, AddressOf po_no_TextChanged
-            
-              AddHandler Me.pro_inv_dt.TextChanged, AddressOf pro_inv_dt_TextChanged
-            
-              AddHandler Me.pro_inv_no.TextChanged, AddressOf pro_inv_no_TextChanged
-            
               AddHandler Me.road_permit_no.TextChanged, AddressOf road_permit_no_TextChanged
-            
-              AddHandler Me.sale_ord_dt.TextChanged, AddressOf sale_ord_dt_TextChanged
-            
-              AddHandler Me.sale_ord_no.TextChanged, AddressOf sale_ord_no_TextChanged
-            
-              AddHandler Me.ship_address.TextChanged, AddressOf ship_address_TextChanged
-            
-              AddHandler Me.ship_name.TextChanged, AddressOf ship_name_TextChanged
-            
-              AddHandler Me.tin_no.TextChanged, AddressOf tin_no_TextChanged
             
               AddHandler Me.vehicle_no.TextChanged, AddressOf vehicle_no_TextChanged
             
@@ -8855,12 +5895,16 @@ Public Class BaseInv_hdrRecordControl
             Setgr_rr_noLabel()
             Setgrand_total()
             Setgrand_totalLabel()
+            Setid_commodity()
+            Setid_commodityLabel()
             Setid_party()
             Setid_partyLabel()
-            Setid_tax_group()
-            Setid_tax_groupLabel()
             Setid_transporter()
             Setid_transporterLabel()
+            Setinv_dt()
+            Setinv_dtLabel()
+            Setinv_no()
+            Setinv_noLabel()
             Setitem_total()
             Setitem_totalLabel()
             Setno_of_packages()
@@ -8871,10 +5915,6 @@ Public Class BaseInv_hdrRecordControl
             Setpo_dtLabel()
             Setpo_no()
             Setpo_noLabel()
-            Setpro_inv_dt()
-            Setpro_inv_dtLabel()
-            Setpro_inv_no()
-            Setpro_inv_noLabel()
             Setroad_permit_no()
             Setroad_permit_noLabel()
             Setsale_ord_dt()
@@ -8939,11 +5979,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setbill_address()
             
         
-            ' Set the bill_address TextBox on the webpage with value from the
+            ' Set the bill_address Literal on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.bill_address is the ASP:TextBox on the webpage.
+            ' Me.bill_address is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setbill_address()
@@ -8958,6 +5998,40 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.bill_address)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                If Not formattedValue is Nothing Then
+                    Dim popupThreshold as Integer = CType(100, Integer)
+                              
+                    Dim maxLength as Integer = Len(formattedValue)
+                    If (maxLength > CType(100, Integer)) Then
+                        ' Truncate based on FieldMaxLength on Properties.
+                        maxLength = CType(100, Integer)
+                        
+                    End If
+                                
+                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
+                    If Len(formattedValue) >= popupThreshold Then
+                    
+                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
+                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.Inv_hdrTable, ServelInvocing.Business\"",\""" _
+                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""bill_address\"", \""bill_address\"", \""Bill Address\"", false, 200," _
+                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
+                        
+                        If (maxLength = CType(100, Integer)) Then
+                            formattedValue = formattedValue & "..." & "</a>"
+                        Else
+                            formattedValue = formattedValue & "</a>"
+                            
+                        End If
+                    Else
+                        If maxLength = CType(100, Integer) Then
+                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
+                            formattedValue = formattedValue & "..."
+                            
+                        End If
+                    End If
+                End If  
+                
                 Me.bill_address.Text = formattedValue
               
             Else 
@@ -8974,11 +6048,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setbill_name()
             
         
-            ' Set the bill_name TextBox on the webpage with value from the
+            ' Set the bill_name Literal on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.bill_name is the ASP:TextBox on the webpage.
+            ' Me.bill_name is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setbill_name()
@@ -8993,6 +6067,7 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.bill_name)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.bill_name.Text = formattedValue
               
             Else 
@@ -9114,11 +6189,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setgrand_total()
             
         
-            ' Set the grand_total TextBox on the webpage with value from the
+            ' Set the grand_total Literal on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.grand_total is the ASP:TextBox on the webpage.
+            ' Me.grand_total is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setgrand_total()
@@ -9131,8 +6206,9 @@ Public Class BaseInv_hdrRecordControl
                 ' If the grand_total is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.grand_total)
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.grand_total, "c")
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.grand_total.Text = formattedValue
               
             Else 
@@ -9140,7 +6216,42 @@ Public Class BaseInv_hdrRecordControl
                 ' grand_total is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.grand_total.Text = Inv_hdrTable.grand_total.Format(Inv_hdrTable.grand_total.DefaultValue)
+                Me.grand_total.Text = Inv_hdrTable.grand_total.Format(Inv_hdrTable.grand_total.DefaultValue, "c")
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setid_commodity()
+            
+        
+            ' Set the id_commodity LinkButton on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.id_commodity is the ASP:LinkButton on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid_commodity()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_commoditySpecified Then
+                				
+                ' If the id_commodity is non-NULL, then format the value.
+
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.id_commodity)
+                            
+                Me.id_commodity.Text = formattedValue
+              
+            Else 
+            
+                ' id_commodity is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.id_commodity.Text = Inv_hdrTable.id_commodity.Format(Inv_hdrTable.id_commodity.DefaultValue)
                         		
                 End If
                  
@@ -9149,69 +6260,37 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setid_party()
             
         
-            ' Set the id_party DropDownList on the webpage with value from the
+            ' Set the id_party Literal on the webpage with value from the
             ' inv_hdr database record.
-            
+
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.id_party is the ASP:DropDownList on the webpage.
+            ' Me.id_party is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setid_party()
             ' and add your own code before or after the call to the MyBase function.
 
             
+                  
             If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_partySpecified Then
-                            
+                				
                 ' If the id_party is non-NULL, then format the value.
+
                 ' The Format method will return the Display Foreign Key As (DFKA) value
-                Me.Populateid_partyDropDownList(Me.DataSource.id_party.ToString(), 100)
-                
-            Else
-                
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.id_party)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.id_party.Text = formattedValue
+              
+            Else 
+            
                 ' id_party is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
-                If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
-                    Me.Populateid_partyDropDownList(Nothing, 100)
-                Else
-                    Me.Populateid_partyDropDownList(Inv_hdrTable.id_party.DefaultValue, 100)
-                End If
-                				
-            End If			
-                
-        End Sub
-                
-        Public Overridable Sub Setid_tax_group()
-            
         
-            ' Set the id_tax_group DropDownList on the webpage with value from the
-            ' inv_hdr database record.
-            
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.id_tax_group is the ASP:DropDownList on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setid_tax_group()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_tax_groupSpecified Then
-                            
-                ' If the id_tax_group is non-NULL, then format the value.
-                ' The Format method will return the Display Foreign Key As (DFKA) value
-                Me.Populateid_tax_groupDropDownList(Me.DataSource.id_tax_group.ToString(), 100)
-                
-            Else
-                
-                ' id_tax_group is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-                If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
-                    Me.Populateid_tax_groupDropDownList(Nothing, 100)
-                Else
-                    Me.Populateid_tax_groupDropDownList(Inv_hdrTable.id_tax_group.DefaultValue, 100)
+                Me.id_party.Text = Inv_hdrTable.id_party.Format(Inv_hdrTable.id_party.DefaultValue)
+                        		
                 End If
-                				
-            End If			
-                
+                 
         End Sub
                 
         Public Overridable Sub Setid_transporter()
@@ -9248,14 +6327,86 @@ Public Class BaseInv_hdrRecordControl
                 
         End Sub
                 
-        Public Overridable Sub Setitem_total()
+        Public Overridable Sub Setinv_dt()
             
         
-            ' Set the item_total TextBox on the webpage with value from the
+            ' Set the inv_dt Literal on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.item_total is the ASP:TextBox on the webpage.
+            ' Me.inv_dt is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_dt()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_dtSpecified Then
+                				
+                ' If the inv_dt is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.inv_dt, "d")
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.inv_dt.Text = formattedValue
+              
+            Else 
+            
+                ' inv_dt is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_dt.Text = Inv_hdrTable.inv_dt.Format(Inv_hdrTable.inv_dt.DefaultValue, "d")
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setinv_no()
+            
+        
+            ' Set the inv_no Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.inv_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setinv_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_noSpecified Then
+                				
+                ' If the inv_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.inv_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.inv_no.Text = formattedValue
+              
+            Else 
+            
+                ' inv_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.inv_no.Text = Inv_hdrTable.inv_no.Format(Inv_hdrTable.inv_no.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setitem_total()
+            
+        
+            ' Set the item_total Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.item_total is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setitem_total()
@@ -9268,8 +6419,9 @@ Public Class BaseInv_hdrRecordControl
                 ' If the item_total is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.item_total)
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.item_total, "c")
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.item_total.Text = formattedValue
               
             Else 
@@ -9277,7 +6429,7 @@ Public Class BaseInv_hdrRecordControl
                 ' item_total is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.item_total.Text = Inv_hdrTable.item_total.Format(Inv_hdrTable.item_total.DefaultValue)
+                Me.item_total.Text = Inv_hdrTable.item_total.Format(Inv_hdrTable.item_total.DefaultValue, "c")
                         		
                 End If
                  
@@ -9356,11 +6508,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setpo_dt()
             
         
-            ' Set the po_dt TextBox on the webpage with value from the
+            ' Set the po_dt Literal on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.po_dt is the ASP:TextBox on the webpage.
+            ' Me.po_dt is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setpo_dt()
@@ -9375,6 +6527,7 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.po_dt, "d")
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.po_dt.Text = formattedValue
               
             Else 
@@ -9391,11 +6544,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setpo_no()
             
         
-            ' Set the po_no TextBox on the webpage with value from the
+            ' Set the po_no Literal on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.po_no is the ASP:TextBox on the webpage.
+            ' Me.po_no is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setpo_no()
@@ -9410,6 +6563,7 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.po_no)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.po_no.Text = formattedValue
               
             Else 
@@ -9418,76 +6572,6 @@ Public Class BaseInv_hdrRecordControl
                 ' Default Value could also be NULL.
         
                 Me.po_no.Text = Inv_hdrTable.po_no.Format(Inv_hdrTable.po_no.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setpro_inv_dt()
-            
-        
-            ' Set the pro_inv_dt TextBox on the webpage with value from the
-            ' inv_hdr database record.
-
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.pro_inv_dt is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setpro_inv_dt()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.pro_inv_dtSpecified Then
-                				
-                ' If the pro_inv_dt is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.pro_inv_dt, "d")
-                            
-                Me.pro_inv_dt.Text = formattedValue
-              
-            Else 
-            
-                ' pro_inv_dt is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.pro_inv_dt.Text = Inv_hdrTable.pro_inv_dt.Format(Inv_hdrTable.pro_inv_dt.DefaultValue, "d")
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setpro_inv_no()
-            
-        
-            ' Set the pro_inv_no TextBox on the webpage with value from the
-            ' inv_hdr database record.
-
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.pro_inv_no is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setpro_inv_no()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.pro_inv_noSpecified Then
-                				
-                ' If the pro_inv_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.pro_inv_no)
-                            
-                Me.pro_inv_no.Text = formattedValue
-              
-            Else 
-            
-                ' pro_inv_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.pro_inv_no.Text = Inv_hdrTable.pro_inv_no.Format(Inv_hdrTable.pro_inv_no.DefaultValue)
                         		
                 End If
                  
@@ -9531,11 +6615,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setsale_ord_dt()
             
         
-            ' Set the sale_ord_dt TextBox on the webpage with value from the
+            ' Set the sale_ord_dt Literal on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.sale_ord_dt is the ASP:TextBox on the webpage.
+            ' Me.sale_ord_dt is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setsale_ord_dt()
@@ -9550,6 +6634,7 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.sale_ord_dt, "d")
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.sale_ord_dt.Text = formattedValue
               
             Else 
@@ -9566,11 +6651,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setsale_ord_no()
             
         
-            ' Set the sale_ord_no TextBox on the webpage with value from the
+            ' Set the sale_ord_no Literal on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.sale_ord_no is the ASP:TextBox on the webpage.
+            ' Me.sale_ord_no is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setsale_ord_no()
@@ -9585,6 +6670,7 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.sale_ord_no)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.sale_ord_no.Text = formattedValue
               
             Else 
@@ -9601,11 +6687,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setship_address()
             
         
-            ' Set the ship_address TextBox on the webpage with value from the
+            ' Set the ship_address Literal on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.ship_address is the ASP:TextBox on the webpage.
+            ' Me.ship_address is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setship_address()
@@ -9620,6 +6706,40 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.ship_address)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                If Not formattedValue is Nothing Then
+                    Dim popupThreshold as Integer = CType(100, Integer)
+                              
+                    Dim maxLength as Integer = Len(formattedValue)
+                    If (maxLength > CType(100, Integer)) Then
+                        ' Truncate based on FieldMaxLength on Properties.
+                        maxLength = CType(100, Integer)
+                        
+                    End If
+                                
+                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
+                    If Len(formattedValue) >= popupThreshold Then
+                    
+                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
+                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.Inv_hdrTable, ServelInvocing.Business\"",\""" _
+                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""ship_address\"", \""ship_address\"", \""Ship Address\"", false, 200," _
+                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
+                        
+                        If (maxLength = CType(100, Integer)) Then
+                            formattedValue = formattedValue & "..." & "</a>"
+                        Else
+                            formattedValue = formattedValue & "</a>"
+                            
+                        End If
+                    Else
+                        If maxLength = CType(100, Integer) Then
+                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
+                            formattedValue = formattedValue & "..."
+                            
+                        End If
+                    End If
+                End If  
+                
                 Me.ship_address.Text = formattedValue
               
             Else 
@@ -9636,11 +6756,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setship_name()
             
         
-            ' Set the ship_name TextBox on the webpage with value from the
+            ' Set the ship_name Literal on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.ship_name is the ASP:TextBox on the webpage.
+            ' Me.ship_name is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setship_name()
@@ -9655,6 +6775,7 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.ship_name)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.ship_name.Text = formattedValue
               
             Else 
@@ -9671,11 +6792,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Settin_no()
             
         
-            ' Set the tin_no TextBox on the webpage with value from the
+            ' Set the tin_no Literal on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.tin_no is the ASP:TextBox on the webpage.
+            ' Me.tin_no is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Settin_no()
@@ -9690,6 +6811,7 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.tin_no)
                             
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.tin_no.Text = formattedValue
               
             Else 
@@ -9803,17 +6925,27 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setid_commodityLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setid_partyLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub Setid_tax_groupLabel()
+        Public Overridable Sub Setid_transporterLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub Setid_transporterLabel()
+        Public Overridable Sub Setinv_dtLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setinv_noLabel()
             
                     
         End Sub
@@ -9839,16 +6971,6 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setpo_noLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setpro_inv_dtLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setpro_inv_noLabel()
             
                     
         End Sub
@@ -10012,16 +7134,16 @@ Public Class BaseInv_hdrRecordControl
             Getgr_rr_dt()
             Getgr_rr_no()
             Getgrand_total()
+            Getid_commodity()
             Getid_party()
-            Getid_tax_group()
             Getid_transporter()
+            Getinv_dt()
+            Getinv_no()
             Getitem_total()
             Getno_of_packages()
             Getpacking_details()
             Getpo_dt()
             Getpo_no()
-            Getpro_inv_dt()
-            Getpro_inv_no()
             Getroad_permit_no()
             Getsale_ord_dt()
             Getsale_ord_no()
@@ -10035,28 +7157,10 @@ Public Class BaseInv_hdrRecordControl
         
         Public Overridable Sub Getbill_address()
             
-            ' Retrieve the value entered by the user on the bill_address ASP:TextBox, and
-            ' save it into the bill_address field in DataSource inv_hdr record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.bill_address.Text, Inv_hdrTable.bill_address)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getbill_name()
             
-            ' Retrieve the value entered by the user on the bill_name ASP:TextBox, and
-            ' save it into the bill_name field in DataSource inv_hdr record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.bill_name.Text, Inv_hdrTable.bill_name)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getfreight_to_pay()
@@ -10103,36 +7207,13 @@ Public Class BaseInv_hdrRecordControl
                 
         Public Overridable Sub Getgrand_total()
             
-            ' Retrieve the value entered by the user on the grand_total ASP:TextBox, and
-            ' save it into the grand_total field in DataSource inv_hdr record.
+        End Sub
+                
+        Public Overridable Sub Getid_commodity()
             
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.grand_total.Text, Inv_hdrTable.grand_total)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getid_party()
-         
-            ' Retrieve the value entered by the user on the id_party ASP:DropDownList, and
-            ' save it into the id_party field in DataSource inv_hdr record.
-                        
-            ' Custom validation should be performed in Validate, not here.
-            
-            Me.DataSource.Parse(GetValueSelectedPageRequest(Me.id_party), Inv_hdrTable.id_party)				
-            
-        End Sub
-                
-        Public Overridable Sub Getid_tax_group()
-         
-            ' Retrieve the value entered by the user on the id_tax_group ASP:DropDownList, and
-            ' save it into the id_tax_group field in DataSource inv_hdr record.
-                        
-            ' Custom validation should be performed in Validate, not here.
-            
-            Me.DataSource.Parse(GetValueSelectedPageRequest(Me.id_tax_group), Inv_hdrTable.id_tax_group)				
             
         End Sub
                 
@@ -10147,17 +7228,16 @@ Public Class BaseInv_hdrRecordControl
             
         End Sub
                 
+        Public Overridable Sub Getinv_dt()
+            
+        End Sub
+                
+        Public Overridable Sub Getinv_no()
+            
+        End Sub
+                
         Public Overridable Sub Getitem_total()
             
-            ' Retrieve the value entered by the user on the item_total ASP:TextBox, and
-            ' save it into the item_total field in DataSource inv_hdr record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.item_total.Text, Inv_hdrTable.item_total)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getno_of_packages()
@@ -10188,60 +7268,10 @@ Public Class BaseInv_hdrRecordControl
                 
         Public Overridable Sub Getpo_dt()
             
-            ' Retrieve the value entered by the user on the po_dt ASP:TextBox, and
-            ' save it into the po_dt field in DataSource inv_hdr record.
-            ' Parse will also validate the date to ensure it is of the proper format
-            ' and a valid date.  The format is verified based on the current culture 
-            ' settings including the order of month, day and year and the separator character.
-            ' Parse throws an exception if the date is invalid.
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.po_dt.Text, Inv_hdrTable.po_dt)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getpo_no()
             
-            ' Retrieve the value entered by the user on the po_no ASP:TextBox, and
-            ' save it into the po_no field in DataSource inv_hdr record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.po_no.Text, Inv_hdrTable.po_no)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getpro_inv_dt()
-            
-            ' Retrieve the value entered by the user on the pro_inv_dt ASP:TextBox, and
-            ' save it into the pro_inv_dt field in DataSource inv_hdr record.
-            ' Parse will also validate the date to ensure it is of the proper format
-            ' and a valid date.  The format is verified based on the current culture 
-            ' settings including the order of month, day and year and the separator character.
-            ' Parse throws an exception if the date is invalid.
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.pro_inv_dt.Text, Inv_hdrTable.pro_inv_dt)			
-
-                      
-        End Sub
-                
-        Public Overridable Sub Getpro_inv_no()
-            
-            ' Retrieve the value entered by the user on the pro_inv_no ASP:TextBox, and
-            ' save it into the pro_inv_no field in DataSource inv_hdr record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.pro_inv_no.Text, Inv_hdrTable.pro_inv_no)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getroad_permit_no()
@@ -10259,70 +7289,22 @@ Public Class BaseInv_hdrRecordControl
                 
         Public Overridable Sub Getsale_ord_dt()
             
-            ' Retrieve the value entered by the user on the sale_ord_dt ASP:TextBox, and
-            ' save it into the sale_ord_dt field in DataSource inv_hdr record.
-            ' Parse will also validate the date to ensure it is of the proper format
-            ' and a valid date.  The format is verified based on the current culture 
-            ' settings including the order of month, day and year and the separator character.
-            ' Parse throws an exception if the date is invalid.
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.sale_ord_dt.Text, Inv_hdrTable.sale_ord_dt)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getsale_ord_no()
             
-            ' Retrieve the value entered by the user on the sale_ord_no ASP:TextBox, and
-            ' save it into the sale_ord_no field in DataSource inv_hdr record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.sale_ord_no.Text, Inv_hdrTable.sale_ord_no)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getship_address()
             
-            ' Retrieve the value entered by the user on the ship_address ASP:TextBox, and
-            ' save it into the ship_address field in DataSource inv_hdr record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.ship_address.Text, Inv_hdrTable.ship_address)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getship_name()
             
-            ' Retrieve the value entered by the user on the ship_name ASP:TextBox, and
-            ' save it into the ship_name field in DataSource inv_hdr record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.ship_name.Text, Inv_hdrTable.ship_name)			
-
-                      
         End Sub
                 
         Public Overridable Sub Gettin_no()
             
-            ' Retrieve the value entered by the user on the tin_no ASP:TextBox, and
-            ' save it into the tin_no field in DataSource inv_hdr record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.tin_no.Text, Inv_hdrTable.tin_no)			
-
-                      
         End Sub
                 
         Public Overridable Sub Getvehicle_no()
@@ -10633,38 +7615,6 @@ Public Class BaseInv_hdrRecordControl
         ' Generate the event handling functions for filter and search events.
             
 
-        Public Overridable Function CreateWhereClause_id_partyDropDownList() As WhereClause
-            ' By default, we simply return a new WhereClause.
-            ' Add additional where clauses to restrict the items shown in the dropdown list.
-            						
-            ' This WhereClause is for the party table.
-            ' Examples:
-            ' wc.iAND(PartyTable.name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
-            ' wc.iAND(PartyTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
-            
-            Dim wc As WhereClause = New WhereClause()
-            Return wc
-            				
-        End Function
-        
-                
-
-        Public Overridable Function CreateWhereClause_id_tax_groupDropDownList() As WhereClause
-            ' By default, we simply return a new WhereClause.
-            ' Add additional where clauses to restrict the items shown in the dropdown list.
-            						
-            ' This WhereClause is for the tax_groups table.
-            ' Examples:
-            ' wc.iAND(Tax_groupsTable.tax_group_code, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
-            ' wc.iAND(Tax_groupsTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
-            
-            Dim wc As WhereClause = New WhereClause()
-            Return wc
-            				
-        End Function
-        
-                
-
         Public Overridable Function CreateWhereClause_id_transporterDropDownList() As WhereClause
             ' By default, we simply return a new WhereClause.
             ' Add additional where clauses to restrict the items shown in the dropdown list.
@@ -10679,186 +7629,6 @@ Public Class BaseInv_hdrRecordControl
             				
         End Function
         
-                
-        ' Fill the id_party list.
-        Protected Overridable Sub Populateid_partyDropDownList( _
-                ByVal selectedValue As String, _
-                ByVal maxItems As Integer)
-            		  					                
-            Me.id_party.Items.Clear()
-            
-            ' This is a four step process.
-            ' 1. Setup the static list items
-            ' 2. Set up the WHERE and the ORDER BY clause
-            ' 3. Read a total of maxItems from the database and insert them
-            ' 4. Set the selected value (insert if not already present).
-                    
-            ' 1. Setup the static list items
-            														
-            Me.id_party.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))							
-                            		  			
-            ' 2. Set up the WHERE and the ORDER BY clause by calling the CreateWhereClause_id_partyDropDownList function.
-            ' It is better to customize the where clause there.
-            
-            Dim wc As WhereClause = CreateWhereClause_id_partyDropDownList()
-            ' Create the ORDER BY clause to sort based on the displayed value.			
-                
-      
-      
-            Dim orderBy As OrderBy = New OrderBy(false, true)			
-        
-            orderBy.Add(PartyTable.name, OrderByItem.OrderDir.Asc)				
-            
-            ' 3. Read a total of maxItems from the database and insert them		
-            Dim itemValues() As PartyRecord = Nothing
-            If wc.RunQuery
-                Dim counter As Integer = 0
-                Dim pageNum As Integer = 0
-                Do
-                    itemValues = PartyTable.GetRecords(wc, orderBy, pageNum, 500)
-                    For each itemValue As PartyRecord In itemValues
-                        ' Create the item and add to the list.
-                        Dim cvalue As String = Nothing
-                        Dim fvalue As String = Nothing
-                        If itemValue.id0Specified Then
-                            cvalue = itemValue.id0.ToString()
-                            fvalue = itemValue.Format(PartyTable.name)
-                                    
-                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
-                            Dim newItem As New ListItem(fvalue, cvalue)
-                            If counter < maxItems AndAlso Not Me.id_party.Items.Contains(newItem) Then Me.id_party.Items.Add(newItem)
-                            counter += 1
-                        End If
-                    Next
-                    pageNum += 1
-                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
-            End If
-                            
-                    
-            ' 4. Set the selected value (insert if not already present).
-              
-            If Not selectedValue Is Nothing AndAlso _
-                selectedValue.Trim <> "" AndAlso _
-                Not SetSelectedValue(Me.id_party, selectedValue) AndAlso _
-                Not SetSelectedDisplayText(Me.id_party, selectedValue)Then
-
-                ' construct a whereclause to query a record with party.id = selectedValue
-                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
-                Dim whereClause2 As WhereClause = New WhereClause()
-                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(PartyTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
-                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
-
-                Try
-                    ' Execute the query
-                    Dim rc() As PartyRecord = PartyTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
-
-                    ' if find a record, add it to the dropdown and set it as selected item
-                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
-                        
-                        Dim fvalue As String = Inv_hdrTable.id_party.Format(selectedValue)																			
-                            
-                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
-                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
-                        item.Selected = True
-                        Me.id_party.Items.Add(item)
-                    End If
-                Catch
-                End Try
-
-            End If					
-                        
-                
-        End Sub
-                
-        ' Fill the id_tax_group list.
-        Protected Overridable Sub Populateid_tax_groupDropDownList( _
-                ByVal selectedValue As String, _
-                ByVal maxItems As Integer)
-            		  					                
-            Me.id_tax_group.Items.Clear()
-            
-            ' This is a four step process.
-            ' 1. Setup the static list items
-            ' 2. Set up the WHERE and the ORDER BY clause
-            ' 3. Read a total of maxItems from the database and insert them
-            ' 4. Set the selected value (insert if not already present).
-                    
-            ' 1. Setup the static list items
-            														
-            Me.id_tax_group.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))							
-                            		  			
-            ' 2. Set up the WHERE and the ORDER BY clause by calling the CreateWhereClause_id_tax_groupDropDownList function.
-            ' It is better to customize the where clause there.
-            
-            Dim wc As WhereClause = CreateWhereClause_id_tax_groupDropDownList()
-            ' Create the ORDER BY clause to sort based on the displayed value.			
-                
-      
-      
-            Dim orderBy As OrderBy = New OrderBy(false, true)			
-        
-            orderBy.Add(Tax_groupsTable.tax_group_code, OrderByItem.OrderDir.Asc)				
-            
-            ' 3. Read a total of maxItems from the database and insert them		
-            Dim itemValues() As Tax_groupsRecord = Nothing
-            If wc.RunQuery
-                Dim counter As Integer = 0
-                Dim pageNum As Integer = 0
-                Do
-                    itemValues = Tax_groupsTable.GetRecords(wc, orderBy, pageNum, 500)
-                    For each itemValue As Tax_groupsRecord In itemValues
-                        ' Create the item and add to the list.
-                        Dim cvalue As String = Nothing
-                        Dim fvalue As String = Nothing
-                        If itemValue.id0Specified Then
-                            cvalue = itemValue.id0.ToString()
-                            fvalue = itemValue.Format(Tax_groupsTable.tax_group_code)
-                                    
-                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
-                            Dim newItem As New ListItem(fvalue, cvalue)
-                            If counter < maxItems AndAlso Not Me.id_tax_group.Items.Contains(newItem) Then Me.id_tax_group.Items.Add(newItem)
-                            counter += 1
-                        End If
-                    Next
-                    pageNum += 1
-                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
-            End If
-                            
-                    
-            ' 4. Set the selected value (insert if not already present).
-              
-            If Not selectedValue Is Nothing AndAlso _
-                selectedValue.Trim <> "" AndAlso _
-                Not SetSelectedValue(Me.id_tax_group, selectedValue) AndAlso _
-                Not SetSelectedDisplayText(Me.id_tax_group, selectedValue)Then
-
-                ' construct a whereclause to query a record with tax_groups.id = selectedValue
-                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
-                Dim whereClause2 As WhereClause = New WhereClause()
-                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(Tax_groupsTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
-                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
-
-                Try
-                    ' Execute the query
-                    Dim rc() As Tax_groupsRecord = Tax_groupsTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
-
-                    ' if find a record, add it to the dropdown and set it as selected item
-                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
-                        
-                        Dim fvalue As String = Inv_hdrTable.id_tax_group.Format(selectedValue)																			
-                            
-                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
-                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
-                        item.Selected = True
-                        Me.id_tax_group.Items.Add(item)
-                    End If
-                Catch
-                End Try
-
-            End If					
-                        
-                
-        End Sub
                 
         ' Fill the id_transporter list.
         Protected Overridable Sub Populateid_transporterDropDownList( _
@@ -10950,100 +7720,48 @@ Public Class BaseInv_hdrRecordControl
                 
         End Sub
                 
-        Protected Overridable Sub id_party_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
-            ' If a large list selector or a Quick Add link is used, the dropdown list
-            ' will contain an item that was not in the original (smaller) list.  During postbacks,
-            ' this new item will not be in the list - since the list is based on the original values
-            ' read from the database. This function adds the value back if necessary.
-            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
-            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
-            ' When this function is fire for Make or Model, we don't want the following code executed.
-            ' Therefore, we check this situation using Items.Count > 1			
-            If Me.id_party.Items.Count > 1 Then
-                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_party)
-                 
-            If Not selectedValue Is Nothing AndAlso _
-                selectedValue.Trim <> "" AndAlso _
-                Not SetSelectedValue(Me.id_party, selectedValue) AndAlso _
-                Not SetSelectedDisplayText(Me.id_party, selectedValue)Then
-
-                ' construct a whereclause to query a record with party.id = selectedValue
-                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
-                Dim whereClause2 As WhereClause = New WhereClause()
-                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(PartyTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
-                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
-
-                Try
-                    ' Execute the query
-                    Dim rc() As PartyRecord = PartyTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
-
-                    ' if find a record, add it to the dropdown and set it as selected item
-                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
-                        
-                        Dim fvalue As String = Inv_hdrTable.id_party.Format(selectedValue)																			
-                            
-                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
-                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
-                        item.Selected = True
-                        Me.id_party.Items.Add(item)
-                    End If
-                Catch
-                End Try
-
-            End If					
-                        
+        ' event handler for LinkButton
+        Public Overridable Sub id_commodity_Click(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../commodity/ShowCommodity.aspx?Commodity={Inv_hdrRecordControl:FK:inv_hdr_commodity_id_commodity_FK}"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+            url = Me.Page.ModifyRedirectUrl(url, "",False)
+          Me.Page.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.Page.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.Page.ShouldSaveControlsToSession = True
+                Me.Page.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.Page.ShouldSaveControlsToSession = True
+            Me.Page.CloseWindow(True)
+        
             End If
-          									
-                
-                
-        End Sub
-            
-        Protected Overridable Sub id_tax_group_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
-            ' If a large list selector or a Quick Add link is used, the dropdown list
-            ' will contain an item that was not in the original (smaller) list.  During postbacks,
-            ' this new item will not be in the list - since the list is based on the original values
-            ' read from the database. This function adds the value back if necessary.
-            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
-            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
-            ' When this function is fire for Make or Model, we don't want the following code executed.
-            ' Therefore, we check this situation using Items.Count > 1			
-            If Me.id_tax_group.Items.Count > 1 Then
-                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_tax_group)
-                 
-            If Not selectedValue Is Nothing AndAlso _
-                selectedValue.Trim <> "" AndAlso _
-                Not SetSelectedValue(Me.id_tax_group, selectedValue) AndAlso _
-                Not SetSelectedDisplayText(Me.id_tax_group, selectedValue)Then
-
-                ' construct a whereclause to query a record with tax_groups.id = selectedValue
-                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
-                Dim whereClause2 As WhereClause = New WhereClause()
-                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(Tax_groupsTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
-                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
-
-                Try
-                    ' Execute the query
-                    Dim rc() As Tax_groupsRecord = Tax_groupsTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
-
-                    ' if find a record, add it to the dropdown and set it as selected item
-                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
-                        
-                        Dim fvalue As String = Inv_hdrTable.id_tax_group.Format(selectedValue)																			
-                            
-                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
-                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
-                        item.Selected = True
-                        Me.id_tax_group.Items.Add(item)
-                    End If
-                Catch
-                End Try
-
-            End If					
-                        
-            End If
-          									
-                
-                
         End Sub
             
         Protected Overridable Sub id_transporter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
@@ -11094,14 +7812,6 @@ Public Class BaseInv_hdrRecordControl
                 
         End Sub
             
-        Protected Overridable Sub bill_address_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub bill_name_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
         Protected Overridable Sub freight_to_pay_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -11114,14 +7824,6 @@ Public Class BaseInv_hdrRecordControl
                     				
         End Sub
             
-        Protected Overridable Sub grand_total_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub item_total_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
         Protected Overridable Sub no_of_packages_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -11130,43 +7832,7 @@ Public Class BaseInv_hdrRecordControl
                     				
         End Sub
             
-        Protected Overridable Sub po_dt_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub po_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub pro_inv_dt_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub pro_inv_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
         Protected Overridable Sub road_permit_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub sale_ord_dt_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub sale_ord_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub ship_address_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub ship_name_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
-        Protected Overridable Sub tin_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -11311,9 +7977,9 @@ Public Class BaseInv_hdrRecordControl
 
 #Region "Helper Properties"
         
-        Public ReadOnly Property bill_address() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property bill_address() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_address"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_address"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -11323,9 +7989,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property bill_name() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property bill_name() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_name"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_name"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -11371,9 +8037,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property grand_total() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property grand_total() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_total"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "grand_total"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -11383,39 +8049,27 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property id_party() As System.Web.UI.WebControls.DropDownList
+        Public ReadOnly Property id_commodity() As System.Web.UI.WebControls.LinkButton
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_party"), System.Web.UI.WebControls.DropDownList)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_commodity"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
             
-        Public ReadOnly Property id_partyAddRecordLink() As System.Web.UI.WebControls.ImageButton
+        Public ReadOnly Property id_commodityLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_partyAddRecordLink"), System.Web.UI.WebControls.ImageButton)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_commodityLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
+        Public ReadOnly Property id_party() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_party"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property id_partyLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_partyLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property id_tax_group() As System.Web.UI.WebControls.DropDownList
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_group"), System.Web.UI.WebControls.DropDownList)
-            End Get
-        End Property
-            
-        Public ReadOnly Property id_tax_groupAddRecordLink() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_groupAddRecordLink"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property id_tax_groupLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_tax_groupLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -11425,15 +8079,21 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
             
-        Public ReadOnly Property id_transporterAddRecordLink() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_transporterAddRecordLink"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property id_transporterLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_transporterLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property inv_dt() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_dt"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_dtLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_dtLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -11443,9 +8103,21 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property item_total() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property inv_no() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_total"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property inv_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property item_total() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_total"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -11479,9 +8151,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property po_dt() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property po_dt() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_dt"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_dt"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -11491,39 +8163,15 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property po_no() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property po_no() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_no"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_no"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
         Public ReadOnly Property po_noLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_noLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property pro_inv_dt() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_dt"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property pro_inv_dtLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_dtLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property pro_inv_no() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_no"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property pro_inv_noLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -11539,9 +8187,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property sale_ord_dt() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property sale_ord_dt() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sale_ord_dt"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sale_ord_dt"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -11551,9 +8199,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property sale_ord_no() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property sale_ord_no() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sale_ord_no"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sale_ord_no"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -11563,9 +8211,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property ship_address() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property ship_address() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_address"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_address"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -11575,9 +8223,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property ship_name() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property ship_name() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_name"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_name"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -11587,9 +8235,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property tin_no() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property tin_no() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_no"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_no"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             

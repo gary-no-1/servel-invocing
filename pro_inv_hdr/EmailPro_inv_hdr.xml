@@ -1220,7 +1220,7 @@
         </Attribute>
         <Attribute>
           <Name>Text</Name>
-          <Value>&lt;%#String.Concat("Pro Inv HDR") %&gt;</Value>
+          <Value>&lt;%#String.Concat("Proforma Invoice") %&gt;</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
