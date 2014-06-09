@@ -169,26 +169,13 @@ Partial Public Class AddItem_groups
 #Region "Section 2: Do not modify this section."
 
         Public WithEvents CancelButton As ThemeButton
-        Public WithEvents closing_stockLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents item_codeLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents item_groupLabel As System.Web.UI.WebControls.Literal
         Public WithEvents Item_groupsRecordControl As ServelInvocing.UI.Controls.AddItem_groups.Item_groupsRecordControl
         Public WithEvents Item_groupsTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents ItemsAddButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsPagination As Pagination
-        Public WithEvents ItemsResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsTableControl As ServelInvocing.UI.Controls.AddItem_groups.ItemsTableControl
-        Public WithEvents ItemsToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents material_categoryLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents SaveAndNewButton As ThemeButton
         Public WithEvents SaveButton As ThemeButton
-        Public WithEvents specificationLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents tariff_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tariff_noLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents uomLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   

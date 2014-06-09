@@ -3,18 +3,28 @@
   <Generator>Iron Speed Designer</Generator>
   <Version>7.0.0</Version>
   <Self>
-    <Name>PrintProforma</Name>
+    <Name>GetDateTime</Name>
     <Type>Page</Type>
     <SubType>DotNet</SubType>
-    <MasterLayout>../Master Pages/VerticalMenu.master</MasterLayout>
-    <GenerateDirectory>pro_inv_hdr</GenerateDirectory>
-    <Layout>pro_inv_hdr\PrintProforma.xml</Layout>
-    <DisplayName>PrintProforma</DisplayName>
+    <MasterLayout>../Master Pages/Blank.master</MasterLayout>
+    <GenerateDirectory>inv_hdr</GenerateDirectory>
+    <Layout>inv_hdr\GetDateTime.xml</Layout>
+    <DisplayName>GetDateTime</DisplayName>
     <Description>This is a blank page.</Description>
     <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
-    <CheckSum>-1831787499-1146</CheckSum>
+    <CheckSum>-70659779-1131</CheckSum>
   </Self>
   <ComposedOf>
+    <ContainedComponent>
+      <Name>lblDisplay</Name>
+      <Type>Label</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>Date &amp; Time</Value>
+        </Attribute>
+      </PassthroughAttributes>
+    </ContainedComponent>
     <ContainedComponent>
       <Name>PageTitle</Name>
       <Type>Literal</Type>
@@ -42,17 +52,40 @@
     &lt;Prolog&gt;
       &lt;Value&gt;&amp;lt;asp:Content id="PageSection" ContentPlaceHolderID="PageContent" Runat="server"&amp;gt;
     &amp;lt;a id="StartOfPageContent"&amp;gt;&amp;lt;/a&amp;gt;
-&amp;lt;%@ Register assembly="Telerik.ReportViewer.WebForms, Version=5.3.12.119, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" namespace="Telerik.ReportViewer.WebForms" tagprefix="telerik" %&amp;gt;
+	&amp;lt;!--Requirement jQuery--&amp;gt;
+	&amp;lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"&amp;gt;&amp;lt;/script&amp;gt;
+	&amp;lt;!--Load Script and Stylesheet --&amp;gt;
+	&amp;lt;script type="text/javascript" src="../javascripts/jquery.simple-dtpicker.js"&amp;gt;&amp;lt;/script&amp;gt;
+	&amp;lt;link type="text/css" href="../javascripts/jquery.simple-dtpicker.css" rel="stylesheet" /&amp;gt;
+	&amp;lt;!----&amp;gt;
     &amp;lt;GEN:UPDATEPANEL NAME="UpdatePanel1"&amp;gt;&lt;/Value&gt;
     &lt;/Prolog&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;div&amp;gt;
-    &amp;lt;center&amp;gt;
-        &amp;lt;telerik:ReportViewer ID="ReportViewer1" runat="server" style="border:1px solid #ccc;" width="1200px" height="1000px" /&amp;gt;
-    &amp;lt;/center&amp;gt;
-&amp;lt;/div&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes /&gt;
+        &lt;Value&gt;&amp;lt;GEN:LABEL Name="lblDisplay" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;style&lt;/Name&gt;
+            &lt;AttributeValue&gt;font-size:8pt;font-family:Tahoma;width:100px&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;input type="text" name="txtIssue_date" value=""&amp;gt;
+			&amp;lt;script type="text/javascript"&amp;gt;
+				$(function(){
+					$('*[name=txtIssue_date]').appendDtpicker({
+						"closeOnSelected": true,
+						"dateFormat": "DD-MM-YYYY hh:mm"
+					});
+				});
+			&amp;lt;/script&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;style&lt;/Name&gt;
+            &lt;AttributeValue&gt;font-size:8pt;font-family:Tahoma&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;

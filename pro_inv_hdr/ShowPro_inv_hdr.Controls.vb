@@ -317,6 +317,10 @@ Public Class Pro_inv_hdrRecordControl
 					inv_hdr_rec.freight_to_pay = Pro_inv_hdrCopyRec.freight_to_pay
 					inv_hdr_rec.vehicle_no = Pro_inv_hdrCopyRec.vehicle_no
 					
+					' 07/06/14 - next 2 lines added - invoice issued date and goods removal date
+					inv_hdr_rec.inv_issued_dt = datetime.now()
+					inv_hdr_rec.goods_removed_dt = DateTime.Now.AddMinutes(60) 
+					
 					' 03/06/14 - next 2 line added - audit
 					Dim AuditUserId as string = BaseClasses.Utils.SecurityControls.GetCurrentUserID()
 					If String.IsNullOrEmpty(AuditUserId) Then

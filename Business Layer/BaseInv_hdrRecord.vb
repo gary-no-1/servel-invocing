@@ -1174,6 +1174,78 @@ Namespace ServelInvocing.Business
 	End Sub
 
 	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.inv_issued_dt field.
+	''' </summary>
+	Public Function Getinv_issued_dtValue() As ColumnValue
+		Return Me.GetValue(TableUtils.inv_issued_dtColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.inv_issued_dt field.
+	''' </summary>
+	Public Function Getinv_issued_dtFieldValue() As DateTime
+		Return CType(Me.GetValue(TableUtils.inv_issued_dtColumn).ToDateTime(), DateTime)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.inv_issued_dt field.
+	''' </summary>
+	Public Sub Setinv_issued_dtFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.inv_issued_dtColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.inv_issued_dt field.
+	''' </summary>
+	Public Sub Setinv_issued_dtFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.inv_issued_dtColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.inv_issued_dt field.
+	''' </summary>
+	Public Sub Setinv_issued_dtFieldValue(ByVal val As DateTime)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.inv_issued_dtColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.goods_removed_dt field.
+	''' </summary>
+	Public Function Getgoods_removed_dtValue() As ColumnValue
+		Return Me.GetValue(TableUtils.goods_removed_dtColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.goods_removed_dt field.
+	''' </summary>
+	Public Function Getgoods_removed_dtFieldValue() As DateTime
+		Return CType(Me.GetValue(TableUtils.goods_removed_dtColumn).ToDateTime(), DateTime)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.goods_removed_dt field.
+	''' </summary>
+	Public Sub Setgoods_removed_dtFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.goods_removed_dtColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.goods_removed_dt field.
+	''' </summary>
+	Public Sub Setgoods_removed_dtFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.goods_removed_dtColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.goods_removed_dt field.
+	''' </summary>
+	Public Sub Setgoods_removed_dtFieldValue(ByVal val As DateTime)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.goods_removed_dtColumn)
+	End Sub
+
+	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_create_user field.
 	''' </summary>
 	Public Function Getid_create_userValue() As ColumnValue
@@ -2518,6 +2590,78 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property vehicle_noDefault() As String
         Get
             Return TableUtils.vehicle_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.inv_issued_dt field.
+	''' </summary>
+	Public Property inv_issued_dt() As DateTime
+		Get 
+			Return CType(Me.GetValue(TableUtils.inv_issued_dtColumn).ToDateTime(), DateTime)
+		End Get
+		Set (ByVal val As DateTime) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.inv_issued_dtColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property inv_issued_dtSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.inv_issued_dtColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property inv_issued_dtDefault() As String
+        Get
+            Return TableUtils.inv_issued_dtColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.goods_removed_dt field.
+	''' </summary>
+	Public Property goods_removed_dt() As DateTime
+		Get 
+			Return CType(Me.GetValue(TableUtils.goods_removed_dtColumn).ToDateTime(), DateTime)
+		End Get
+		Set (ByVal val As DateTime) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.goods_removed_dtColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property goods_removed_dtSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.goods_removed_dtColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property goods_removed_dtDefault() As String
+        Get
+            Return TableUtils.goods_removed_dtColumn.DefaultValue
         End Get
     End Property
 

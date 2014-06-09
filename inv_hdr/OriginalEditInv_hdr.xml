@@ -3,13 +3,13 @@
   <Generator>Iron Speed Designer</Generator>
   <Version>7.0.0</Version>
   <Self>
-    <Name>EditInv_hdr</Name>
+    <Name>OriginalEditInv_hdr</Name>
     <Type>Page</Type>
     <SubType>DotNet</SubType>
     <MasterLayout>../Master Pages/VerticalMenu.master</MasterLayout>
     <GenerateDirectory>inv_hdr</GenerateDirectory>
-    <Layout>inv_hdr\EditInv_hdr.html</Layout>
-    <DisplayName>EditInv_hdr</DisplayName>
+    <Layout>inv_hdr\OriginalEditInv_hdr.html</Layout>
+    <DisplayName>OriginalEditInv_hdr</DisplayName>
     <Description>Standard record panel.</Description>
     <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-1834842165-96487</CheckSum>
@@ -394,10 +394,6 @@
         <Attribute>
           <Name>InternalUse:DataSource</Name>
           <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ReadOnly</Name>
-          <Value>False</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_hdrRecordControl</InsideControl>
@@ -1094,10 +1090,6 @@
           <Name>inv_issued_dtRequiredFieldValidator:Text</Name>
           <Value>*</Value>
         </Attribute>
-        <Attribute>
-          <Name>ReadOnly</Name>
-          <Value>False</Value>
-        </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_hdrRecordControl</InsideControl>
     </ContainedComponent>
@@ -1714,6 +1706,100 @@
       <InsideControl>Inv_termsTableControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
+      <Name>IssHrsDdl</Name>
+      <Type>Aspx</Type>
+      <SpecifiedItems>
+        <Item>
+          <Name>--PLEASE_SELECT--</Name>
+          <Value>{Txt:PleaseSelect}</Value>
+        </Item>
+        <Item>
+          <Name>01</Name>
+          <Value>01</Value>
+        </Item>
+        <Item>
+          <Name>02</Name>
+          <Value>02</Value>
+        </Item>
+        <Item>
+          <Name>03</Name>
+          <Value>03</Value>
+        </Item>
+        <Item>
+          <Name>04</Name>
+          <Value>04</Value>
+        </Item>
+        <Item>
+          <Name>05</Name>
+          <Value>05</Value>
+        </Item>
+        <Item>
+          <Name>06</Name>
+          <Value>06</Value>
+        </Item>
+        <Item>
+          <Name>07</Name>
+          <Value>07</Value>
+        </Item>
+        <Item>
+          <Name>08</Name>
+          <Value>08</Value>
+        </Item>
+        <Item>
+          <Name>09</Name>
+          <Value>09</Value>
+        </Item>
+        <Item>
+          <Name>10</Name>
+          <Value>10</Value>
+        </Item>
+        <Item>
+          <Name>11</Name>
+          <Value>11</Value>
+        </Item>
+        <Item>
+          <Name>12</Name>
+          <Value>12</Value>
+        </Item>
+      </SpecifiedItems>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>InternalUse:ApplyQuery</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:GenerateSpecificItems</Name>
+          <Value>True</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:TreatAs</Name>
+          <Value>FieldValue</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Inv_hdrRecordControl</InsideControl>
+      <ControlClass>System.Web.UI.WebControls.DropDownList</ControlClass>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>IssMinDdl</Name>
+      <Type>Aspx</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>InternalUse:ApplyQuery</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:ApplyStaticList</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:TreatAs</Name>
+          <Value>FieldValue</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Inv_hdrRecordControl</InsideControl>
+      <ControlClass>System.Web.UI.WebControls.DropDownList</ControlClass>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>item_description</Name>
       <Type>FieldValue</Type>
       <Field>item_description</Field>
@@ -2022,6 +2108,18 @@
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_hdrRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>NumericUpDown1</Name>
+      <Type>Aspx</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>InternalUse:TreatAs</Name>
+          <Value>FieldValue</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Inv_hdrRecordControl</InsideControl>
+      <ControlClass>AjaxControlToolkit.NumericUpDownExtender</ControlClass>
     </ContainedComponent>
     <ContainedComponent>
       <Name>packing_details</Name>
@@ -3018,6 +3116,18 @@
       <InsideControl>Inv_taxesTableControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
+      <Name>TextBox2</Name>
+      <Type>Aspx</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>InternalUse:TreatAs</Name>
+          <Value>FieldValue</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Inv_hdrRecordControl</InsideControl>
+      <ControlClass>System.Web.UI.WebControls.TextBox</ControlClass>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>tin_no</Name>
       <Type>FieldValue</Type>
       <Field>tin_no</Field>
@@ -3097,6 +3207,18 @@
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_hdrRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>txtIssDt</Name>
+      <Type>Aspx</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>InternalUse:TreatAs</Name>
+          <Value>FieldValue</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Inv_hdrRecordControl</InsideControl>
+      <ControlClass>System.Web.UI.WebControls.TextBox</ControlClass>
     </ContainedComponent>
     <ContainedComponent>
       <Name>uom</Name>
@@ -3311,7 +3433,8 @@
     &lt;Prolog&gt;
       &lt;Value&gt;&amp;lt;asp:Content id="PageSection" ContentPlaceHolderID="PageContent" Runat="server"&amp;gt;
     &amp;lt;a id="StartOfPageContent"&amp;gt;&amp;lt;/a&amp;gt;
-    &amp;lt;GEN:UPDATEPANEL NAME="UpdatePanel1"&amp;gt;&lt;/Value&gt;
+    &amp;lt;GEN:UPDATEPANEL NAME="UpdatePanel1"&amp;gt;
+                &lt;/Value&gt;
     &lt;/Prolog&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -3352,10 +3475,12 @@
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Epilog&gt;
-      &lt;Value&gt;&amp;lt;/GEN:UPDATEPANEL&amp;gt;
+      &lt;Value&gt;
+    &amp;lt;/GEN:UPDATEPANEL&amp;gt;
     &amp;lt;div id="detailPopup" class="detailRolloverPopup" onmouseout="detailRolloverPopupClose();" onmouseover="clearTimeout(gPopupTimer);"&amp;gt;&amp;lt;/div&amp;gt;
     &amp;lt;asp:ValidationSummary id="ValidationSummary1" ShowMessageBox="true" ShowSummary="false" runat="server"&amp;gt;&amp;lt;/asp:ValidationSummary&amp;gt;
-&amp;lt;/asp:Content&amp;gt;&lt;/Value&gt;
+&amp;lt;/asp:Content&amp;gt;
+                &lt;/Value&gt;
     &lt;/Epilog&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
@@ -3592,6 +3717,25 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="po_noLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
@@ -3609,41 +3753,6 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
-      &lt;RowAttributes /&gt;
-    &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="po_dtLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
@@ -3654,7 +3763,23 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="po_dt" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="po_dt" /&amp;gt; &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -3666,7 +3791,7 @@
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_partyLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="sale_ord_noLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -3675,11 +3800,71 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_party" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="sale_ord_no"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
             &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="sale_ord_dtLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="sale_ord_dt"/&amp;gt; &lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="id_partyLabel"/&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_party" /&amp;gt; 
+&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;style&lt;/Name&gt;
+            &lt;AttributeValue&gt;white-space:nowrap;&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
@@ -3702,16 +3887,14 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="sale_ord_noLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="sale_ord_no" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -3759,16 +3942,14 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="sale_ord_dtLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="sale_ord_dt" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -3906,7 +4087,7 @@
           &lt;/Attribute&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;font-weight:bold;text-align:justify;&lt;/AttributeValue&gt;
+            &lt;AttributeValue&gt;font-weight:bold&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
@@ -3915,7 +4096,11 @@
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;style&lt;/Name&gt;
+            &lt;AttributeValue&gt;font-weight:bold&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
@@ -3951,7 +4136,7 @@
           &lt;/Attribute&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;font-weight:bold;text-align:right;&lt;/AttributeValue&gt;
+            &lt;AttributeValue&gt;white-space:nowrap;&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
@@ -3973,7 +4158,7 @@
           &lt;/Attribute&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;font-weight:bold;text-align:justify;&lt;/AttributeValue&gt;
+            &lt;AttributeValue&gt;font-weight:bold&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
@@ -3982,7 +4167,11 @@
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;style&lt;/Name&gt;
+            &lt;AttributeValue&gt;font-weight:bold&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
@@ -4003,8 +4192,65 @@
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;hr&amp;gt;&amp;lt;/hr&amp;gt; 
-&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt; 
+&amp;lt;asp:textbox id="txtIssDt" runat="server" text="Type text" cssclass="field_input"&amp;gt;&amp;lt;/asp:textbox&amp;gt; 
+&amp;lt;asp:dropdownlist id="IssHrsDdl" runat="server" cssclass="Filter_Input" width="50px" /&amp;gt; 
+&amp;lt;asp:dropdownlist id="IssMinDdl" runat="server" cssclass="Filter_Input" width="50px" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;
+&amp;lt;asp:textbox id="TextBox2" runat="server" cssclass="field_input" text="" width="75px"&amp;gt;&amp;lt;/asp:textbox&amp;gt;
+&amp;lt;asp:numericupdownextender id="NumericUpDown1" width="25" runat="server" targetcontrolid="TextBox2" minimum="0" maximum="60" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;hr&amp;gt;&amp;lt;/hr&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;

@@ -160,30 +160,9 @@ Partial Public Class ShowUnitsofmeasure
 
 #Region "Section 2: Do not modify this section."
 
-        Public WithEvents closing_stockLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents EditButton As ThemeButton
-        Public WithEvents id_item_groupLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents item_codeLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents ItemsCopyButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsEditButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsExportCSVButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsExportExcelButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsImportButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsNewButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsPagination As Pagination
-        Public WithEvents ItemsPDFButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsRefreshButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents ItemsTableControl As ServelInvocing.UI.Controls.ShowUnitsofmeasure.ItemsTableControl
-        Public WithEvents ItemsToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents ItemsWordButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents material_categoryLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents OKButton As ThemeButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents specificationLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tariff_noLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents UnitsofmeasureDialogEditButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents UnitsofmeasureRecordControl As ServelInvocing.UI.Controls.ShowUnitsofmeasure.UnitsofmeasureRecordControl
         Public WithEvents UnitsofmeasureTitle As System.Web.UI.WebControls.Literal

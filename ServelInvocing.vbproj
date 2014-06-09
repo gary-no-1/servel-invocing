@@ -263,6 +263,21 @@
     <Compile Include="inv_hdr\EmailInv_hdr.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="inv_hdr\GetDateTime.aspx.vb" >
+      <DependentUpon>GetDateTime.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\GetGoodRemovadDate.aspx.vb" >
+      <DependentUpon>GetGoodRemovadDate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\OriginalEditInv_hdr.aspx.vb" >
+      <DependentUpon>OriginalEditInv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inv_hdr\OriginalEditInv_hdr.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="inv_hdr\PrintInvoice.aspx.vb" >
       <DependentUpon>PrintInvoice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1408,6 +1423,9 @@
     <Content Include="Header and Footer\PrintHeader.ascx"  />
     <Content Include="inv_hdr\EditInv_hdr.aspx"  />
     <Content Include="inv_hdr\EmailInv_hdr.aspx"  />
+    <Content Include="inv_hdr\GetDateTime.aspx"  />
+    <Content Include="inv_hdr\GetGoodRemovadDate.aspx"  />
+    <Content Include="inv_hdr\OriginalEditInv_hdr.aspx"  />
     <Content Include="inv_hdr\PrintInvoice.aspx"  />
     <Content Include="inv_hdr\PrintInv_hdr.aspx"  />
     <Content Include="inv_hdr\ShowInv_hdr.aspx"  />

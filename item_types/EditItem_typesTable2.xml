@@ -11,6 +11,7 @@
     <Layout>item_types\EditItem_typesTable2.html</Layout>
     <DisplayName>EditItem_typesTable2</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-1059783477-16927</CheckSum>
   </Self>
   <ComposedOf>

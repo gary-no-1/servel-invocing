@@ -86,6 +86,8 @@ Namespace ServelInvocing.Business
         gr_rr_dtColumn.CodeName = "gr_rr_dt"
         freight_to_payColumn.CodeName = "freight_to_pay"
         vehicle_noColumn.CodeName = "vehicle_no"
+        inv_issued_dtColumn.CodeName = "inv_issued_dt"
+        goods_removed_dtColumn.CodeName = "goods_removed_dt"
         id_create_userColumn.CodeName = "id_create_user"
         created_onColumn.CodeName = "created_on"
         id_update_userColumn.CodeName = "id_update_user"
@@ -723,11 +725,49 @@ Namespace ServelInvocing.Business
         End Get
     End Property
     ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Inv_hdr_.inv_issued_dt column object.
+    ''' </summary>
+    Public ReadOnly Property inv_issued_dtColumn() As BaseClasses.Data.DateColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(33), BaseClasses.Data.DateColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Inv_hdr_.inv_issued_dt column object.
+    ''' </summary>
+    Public Shared ReadOnly Property inv_issued_dt() As BaseClasses.Data.DateColumn
+        Get
+            Return Inv_hdrTable.Instance.inv_issued_dtColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Inv_hdr_.goods_removed_dt column object.
+    ''' </summary>
+    Public ReadOnly Property goods_removed_dtColumn() As BaseClasses.Data.DateColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(34), BaseClasses.Data.DateColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Inv_hdr_.goods_removed_dt column object.
+    ''' </summary>
+    Public Shared ReadOnly Property goods_removed_dt() As BaseClasses.Data.DateColumn
+        Get
+            Return Inv_hdrTable.Instance.goods_removed_dtColumn
+        End Get
+    End Property
+    ''' <summary>
     ''' This is a convenience property that provides direct access to the table's Inv_hdr_.id_create_user column object.
     ''' </summary>
     Public ReadOnly Property id_create_userColumn() As BaseClasses.Data.NumberColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(33), BaseClasses.Data.NumberColumn)
+            Return CType(Me.TableDefinition.ColumnList(35), BaseClasses.Data.NumberColumn)
         End Get
     End Property
 
@@ -746,7 +786,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property created_onColumn() As BaseClasses.Data.DateColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(34), BaseClasses.Data.DateColumn)
+            Return CType(Me.TableDefinition.ColumnList(36), BaseClasses.Data.DateColumn)
         End Get
     End Property
 
@@ -765,7 +805,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property id_update_userColumn() As BaseClasses.Data.NumberColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(35), BaseClasses.Data.NumberColumn)
+            Return CType(Me.TableDefinition.ColumnList(37), BaseClasses.Data.NumberColumn)
         End Get
     End Property
 
@@ -784,7 +824,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property last_updatedColumn() As BaseClasses.Data.DateColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(36), BaseClasses.Data.DateColumn)
+            Return CType(Me.TableDefinition.ColumnList(38), BaseClasses.Data.DateColumn)
         End Get
     End Property
 
@@ -1104,6 +1144,8 @@ Namespace ServelInvocing.Business
         ByVal gr_rr_dtValue As String, _
         ByVal freight_to_payValue As String, _
         ByVal vehicle_noValue As String, _
+        ByVal inv_issued_dtValue As String, _
+        ByVal goods_removed_dtValue As String, _
         ByVal id_create_userValue As String, _
         ByVal created_onValue As String, _
         ByVal id_update_userValue As String, _
@@ -1142,6 +1184,8 @@ Namespace ServelInvocing.Business
         rec.SetString(gr_rr_dtValue, gr_rr_dtColumn)
         rec.SetString(freight_to_payValue, freight_to_payColumn)
         rec.SetString(vehicle_noValue, vehicle_noColumn)
+        rec.SetString(inv_issued_dtValue, inv_issued_dtColumn)
+        rec.SetString(goods_removed_dtValue, goods_removed_dtColumn)
         rec.SetString(id_create_userValue, id_create_userColumn)
         rec.SetString(created_onValue, created_onColumn)
         rec.SetString(id_update_userValue, id_update_userColumn)

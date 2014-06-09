@@ -1,6 +1,6 @@
 ﻿
 ' This file implements the TableControl, TableControlRow, and RecordControl classes for the 
-' EditInv_hdr.aspx page.  The Row or RecordControl classes are the 
+' OriginalEditInv_hdr.aspx page.  The Row or RecordControl classes are the 
 ' ideal place to add code customizations. For example, you can override the LoadData, 
 ' CreateWhereClause, DataBind, SaveData, GetUIData, and Validate methods.
 
@@ -32,7 +32,7 @@ Imports ServelInvocing.UI
 #End Region
 
   
-Namespace ServelInvocing.UI.Controls.EditInv_hdr
+Namespace ServelInvocing.UI.Controls.OriginalEditInv_hdr
 
 #Region "Section 1: Place your customizations here."
 
@@ -128,77 +128,47 @@ Public Class Inv_hdrRecordControl
         
 
 
-		
-		
-'		Public Overrides Sub btnGetRemovalTime_Click(ByVal sender As Object, ByVal args As EventArgs)
-'              
-'            ' The redirect URL is set on the Properties, Bindings.
-'            ' The ModifyRedirectURL call resolves the parameters before the
-'            ' Response.Redirect redirects the page to the URL.  
-'            ' Any code after the Response.Redirect call will not be executed, since the page is
-'            ' redirected to the URL.
-'            Dim url As String = "../inv_hdr/GetGoodRemovadDate.aspx"
-'            Dim shouldRedirect As Boolean = True
-'            Dim TargetKey As String = Nothing
-'            Dim DFKA As String = Nothing
-'            Dim id As String = Nothing
-'            Dim value As String = Nothing
-'            Try
-'                ' Enclose all database retrieval/update code within a Transaction boundary
-'                DbUtils.StartTransaction
-'                
-'            url = Me.ModifyRedirectUrl(url, "",False)
-'            url = Me.Page.ModifyRedirectUrl(url, "",False)
-'          Me.Page.CommitTransaction(sender)
-'          
-'            Catch ex As Exception
-'                ' Upon error, rollback the transaction
-'                Me.Page.RollBackTransaction(sender)
-'                shouldRedirect = False
-'                Me.Page.ErrorOnPage = True
-'    
-'                ' Report the error message to the end user
-'                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-'            Finally
-'                DbUtils.EndTransaction
-'            End Try
-'            If shouldRedirect Then
-'                Me.Page.ShouldSaveControlsToSession = True
-'				Dim s As String 
-'				s = "<script language=javascript>"
-'				s = s + "var w=window.open('" + url + "');"
-'				s = s + "w.focus();"
-'				s = s + "</script>"
-'				'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", s)
-'				Me.Page.Response.Write(s)
-'                'Me.Page.Response.Redirect(url)
-'            ElseIf Not TargetKey Is Nothing AndAlso _
-'                        Not shouldRedirect Then
-'            Me.Page.ShouldSaveControlsToSession = True
-'            Me.Page.CloseWindow(True)
-'        
-'            End If
-'        End Sub
+		Protected Overrides Sub PopulateIssMinDdlDropDownList( _
+                ByVal selectedValue As String, _
+                ByVal maxItems As Integer)
+                
+            Me.IssMinDdl.Items.Clear()
 
-'		Public Overrides Sub LinkButton_Click(ByVal sender As Object, ByVal args As EventArgs)
-'              
-'            Try
-'                
-'            Catch ex As Exception
-'                Me.Page.ErrorOnPage = True
-'    
-'                ' Report the error message to the end user
-'                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-'            Finally
-'    
-'            End Try
-'
-'		Dim url As String = "www.google.com"
-'LinkButton.Button.OnClientClick = String.Format("window.open('{0}'); return false;", url)
-'
-'        End Sub
+                      
+            ' This is a four step process.
+            ' 1. Setup the static list items
+            Me.IssMinDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))
+			Dim i as integer
+			Dim j as integer
+			Dim k as string
+            for i = 1 to 12
+				j = (i-1)*5
+				k = j.ToString("D2") 
+	            Me.IssMinDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue(k), k))
+			next	
+			
+            ' 2. Set up the WHERE and the ORDER BY clause
+            ' 3. Read a total of maxItems from the database and insert them
+            ' 4. Set the selected value (insert if not already present).
+                    
+            ' 1. Setup the static list items
+            		  
+            ' Skip step 2 and 3 because no need to load data from database and insert data
+                    
+                    
+            ' 4. Set the selected value (insert if not already present).
+              
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.IssMinDdl, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.IssMinDdl, selectedValue)Then
 
-		End Class
+            
+            End If					
+                
+                
+        End Sub
+End Class
 
   
 
@@ -209,7 +179,7 @@ Public Class Inv_hdrRecordControl
 #Region "Section 2: Do not modify this section."
     
     
-' Base class for the Inv_itemsTableControlRow control on the EditInv_hdr page.
+' Base class for the Inv_itemsTableControlRow control on the OriginalEditInv_hdr page.
 ' Do not modify this class. Instead override any method in Inv_itemsTableControlRow.
 Public Class BaseInv_itemsTableControlRow
         Inherits ServelInvocing.UI.BaseApplicationRecordControl
@@ -946,7 +916,7 @@ End Class
 
   
 
-' Base class for the Inv_itemsTableControl control on the EditInv_hdr page.
+' Base class for the Inv_itemsTableControl control on the OriginalEditInv_hdr page.
 ' Do not modify this class. Instead override any method in Inv_itemsTableControl.
 Public Class BaseInv_itemsTableControl
         Inherits ServelInvocing.UI.BaseApplicationTableControl
@@ -2342,7 +2312,7 @@ Public Class BaseInv_itemsTableControl
 End Class
 
   
-' Base class for the Inv_taxesTableControlRow control on the EditInv_hdr page.
+' Base class for the Inv_taxesTableControlRow control on the OriginalEditInv_hdr page.
 ' Do not modify this class. Instead override any method in Inv_taxesTableControlRow.
 Public Class BaseInv_taxesTableControlRow
         Inherits ServelInvocing.UI.BaseApplicationRecordControl
@@ -2887,7 +2857,7 @@ End Class
 
   
 
-' Base class for the Inv_taxesTableControl control on the EditInv_hdr page.
+' Base class for the Inv_taxesTableControl control on the OriginalEditInv_hdr page.
 ' Do not modify this class. Instead override any method in Inv_taxesTableControl.
 Public Class BaseInv_taxesTableControl
         Inherits ServelInvocing.UI.BaseApplicationTableControl
@@ -4117,7 +4087,7 @@ Public Class BaseInv_taxesTableControl
 End Class
 
   
-' Base class for the Inv_termsTableControlRow control on the EditInv_hdr page.
+' Base class for the Inv_termsTableControlRow control on the OriginalEditInv_hdr page.
 ' Do not modify this class. Instead override any method in Inv_termsTableControlRow.
 Public Class BaseInv_termsTableControlRow
         Inherits ServelInvocing.UI.BaseApplicationRecordControl
@@ -4647,7 +4617,7 @@ End Class
 
   
 
-' Base class for the Inv_termsTableControl control on the EditInv_hdr page.
+' Base class for the Inv_termsTableControl control on the OriginalEditInv_hdr page.
 ' Do not modify this class. Instead override any method in Inv_termsTableControl.
 Public Class BaseInv_termsTableControl
         Inherits ServelInvocing.UI.BaseApplicationTableControl
@@ -5837,7 +5807,7 @@ Public Class BaseInv_termsTableControl
 End Class
 
   
-' Base class for the Inv_hdrRecordControl control on the EditInv_hdr page.
+' Base class for the Inv_hdrRecordControl control on the OriginalEditInv_hdr page.
 ' Do not modify this class. Instead override any method in Inv_hdrRecordControl.
 Public Class BaseInv_hdrRecordControl
         Inherits ServelInvocing.UI.BaseApplicationRecordControl
@@ -5847,6 +5817,14 @@ Public Class BaseInv_hdrRecordControl
       
             ' Setup the filter and search events.
         
+              AddHandler Me.IssHrsDdl.SelectedIndexChanged, AddressOf IssHrsDdl_SelectedIndexChanged
+                
+              AddHandler Me.IssMinDdl.SelectedIndexChanged, AddressOf IssMinDdl_SelectedIndexChanged
+                					
+              AddHandler Me.TextBox2.TextChanged, AddressOf TextBox2_TextChanged
+                    					
+              AddHandler Me.txtIssDt.TextChanged, AddressOf txtIssDt_TextChanged
+                    
         End Sub
 
         '  To customize, override this method in Inv_hdrRecordControl.
@@ -5880,6 +5858,14 @@ Public Class BaseInv_hdrRecordControl
             
               AddHandler Me.weight.TextChanged, AddressOf weight_TextChanged
             
+              AddHandler Me.IssHrsDdl.SelectedIndexChanged, AddressOf IssHrsDdl_SelectedIndexChanged
+                
+              AddHandler Me.IssMinDdl.SelectedIndexChanged, AddressOf IssMinDdl_SelectedIndexChanged
+                					
+              AddHandler Me.TextBox2.TextChanged, AddressOf TextBox2_TextChanged
+                    					
+              AddHandler Me.txtIssDt.TextChanged, AddressOf txtIssDt_TextChanged
+                    
         End Sub
 
         
@@ -5984,10 +5970,13 @@ Public Class BaseInv_hdrRecordControl
             Setinv_issued_dtLabel()
             Setinv_no()
             Setinv_noLabel()
+            SetIssHrsDdl()
+            SetIssMinDdl()
             Setitem_total()
             Setitem_totalLabel()
             Setno_of_packages()
             Setno_of_packagesLabel()
+            SetNumericUpDown1()
             Setpacking_details()
             Setpacking_detailsLabel()
             Setpo_dt()
@@ -6004,8 +5993,10 @@ Public Class BaseInv_hdrRecordControl
             Setship_addressLabel()
             Setship_name()
             Setship_nameLabel()
+            SetTextBox2()
             Settin_no()
             Settin_noLabel()
+            SettxtIssDt()
             Setvehicle_no()
             Setvehicle_noLabel()
             Setweight()
@@ -7109,12 +7100,33 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
+
+
+        Public Overridable Sub SetIssHrsDdl()
+            
+            Me.PopulateIssHrsDdlDropDownList(Nothing, 100)
+                
+        End Sub
+                
+
+
+        Public Overridable Sub SetIssMinDdl()
+            
+            Me.PopulateIssMinDdlDropDownList(Nothing, 100)
+                
+        End Sub
+                
         Public Overridable Sub Setitem_totalLabel()
             
                     
         End Sub
                 
         Public Overridable Sub Setno_of_packagesLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetNumericUpDown1()
             
                     
         End Sub
@@ -7159,7 +7171,17 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub SetTextBox2()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Settin_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SettxtIssDt()
             
                     
         End Sub
@@ -7549,7 +7571,7 @@ Public Class BaseInv_hdrRecordControl
                 ' Get the error message from the application resource file.
                 Throw New Exception(Page.GetResourceValue("Err:UrlParamMissing", "ServelInvocing").Replace("{URL}", "Inv_hdr"))
             End If
-            HttpContext.Current.Session("QueryString in EditInv_hdr") = recId
+            HttpContext.Current.Session("QueryString in OriginalEditInv_hdr") = recId
               
             If KeyValue.IsXmlKey(recId) Then
                 ' Keys are typically passed as XML structures to handle composite keys.
@@ -7913,6 +7935,120 @@ Public Class BaseInv_hdrRecordControl
                 
         End Sub
                 
+
+        Public Overridable Function CreateWhereClause_IssHrsDdlDropDownList() As WhereClause
+            ' By default, we simply return a new WhereClause.
+            ' Add additional where clauses to restrict the items shown in the dropdown list.
+            
+            Dim wc As WhereClause = New WhereClause()
+            Return wc
+            				
+        End Function
+        
+                
+
+        Public Overridable Function CreateWhereClause_IssMinDdlDropDownList() As WhereClause
+            ' By default, we simply return a new WhereClause.
+            ' Add additional where clauses to restrict the items shown in the dropdown list.
+            
+            Dim wc As WhereClause = New WhereClause()
+            Return wc
+            				
+        End Function
+        
+                
+
+        ' Fill the IssHrsDdl list.
+        Protected Overridable Sub PopulateIssHrsDdlDropDownList( _
+                ByVal selectedValue As String, _
+                ByVal maxItems As Integer)
+                
+            Me.IssHrsDdl.Items.Clear()
+
+                      
+            ' This is a four step process.
+            ' 1. Setup the static list items
+            ' 2. Set up the WHERE and the ORDER BY clause
+            ' 3. Read a total of maxItems from the database and insert them
+            ' 4. Set the selected value (insert if not already present).
+                    
+            ' 1. Setup the static list items
+            							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))
+                          							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("01"), "01"))
+                          							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("02"), "02"))
+                          							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("03"), "03"))
+                          							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("04"), "04"))
+                          							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("05"), "05"))
+                          							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("06"), "06"))
+                          							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("07"), "07"))
+                          							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("08"), "08"))
+                          							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("09"), "09"))
+                          							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("10"), "10"))
+                          							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("11"), "11"))
+                          							
+            Me.IssHrsDdl.Items.Add(New ListItem(Me.Page.ExpandResourceValue("12"), "12"))
+                          		  
+            ' Skip step 2 and 3 because no need to load data from database and insert data
+                    
+                    
+            ' 4. Set the selected value (insert if not already present).
+              
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.IssHrsDdl, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.IssHrsDdl, selectedValue)Then
+
+            
+            End If					
+                
+                
+        End Sub
+                
+
+        ' Fill the IssMinDdl list.
+        Protected Overridable Sub PopulateIssMinDdlDropDownList( _
+                ByVal selectedValue As String, _
+                ByVal maxItems As Integer)
+                
+            Me.IssMinDdl.Items.Clear()
+
+                      
+            ' This is a four step process.
+            ' 1. Setup the static list items
+            ' 2. Set up the WHERE and the ORDER BY clause
+            ' 3. Read a total of maxItems from the database and insert them
+            ' 4. Set the selected value (insert if not already present).
+                    
+            ' 1. Setup the static list items
+            		  
+            ' Skip step 2 and 3 because no need to load data from database and insert data
+                    
+                    
+            ' 4. Set the selected value (insert if not already present).
+              
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.IssMinDdl, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.IssMinDdl, selectedValue)Then
+
+            
+            End If					
+                
+                
+        End Sub
+                
         ' event handler for LinkButton
         Public Overridable Sub id_commodity_Click(ByVal sender As Object, ByVal args As EventArgs)
               
@@ -8045,6 +8181,24 @@ Public Class BaseInv_hdrRecordControl
                     				
         End Sub
             
+        Protected Overridable Sub IssHrsDdl_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)                
+             
+
+        End Sub
+                
+        Protected Overridable Sub IssMinDdl_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)                
+             
+
+        End Sub
+                		
+        Protected Overridable Sub TextBox2_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+             
+        End Sub
+                    		
+        Protected Overridable Sub txtIssDt_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+             
+        End Sub
+                    
    
         Private _PreviousUIData As New Hashtable
         Public Overridable Property PreviousUIData() As Hashtable
@@ -8340,6 +8494,18 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property IssHrsDdl() As System.Web.UI.WebControls.DropDownList
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "IssHrsDdl"), System.Web.UI.WebControls.DropDownList)
+            End Get
+        End Property
+        
+        Public ReadOnly Property IssMinDdl() As System.Web.UI.WebControls.DropDownList
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "IssMinDdl"), System.Web.UI.WebControls.DropDownList)
+            End Get
+        End Property
+        
         Public ReadOnly Property item_total() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_total"), System.Web.UI.WebControls.Literal)
@@ -8361,6 +8527,12 @@ Public Class BaseInv_hdrRecordControl
         Public ReadOnly Property no_of_packagesLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "no_of_packagesLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property NumericUpDown1() As AjaxControlToolkit.NumericUpDownExtender
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "NumericUpDown1"), AjaxControlToolkit.NumericUpDownExtender)
             End Get
         End Property
         
@@ -8460,6 +8632,12 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property TextBox2() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "TextBox2"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+        
         Public ReadOnly Property tin_no() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_no"), System.Web.UI.WebControls.Literal)
@@ -8469,6 +8647,12 @@ Public Class BaseInv_hdrRecordControl
         Public ReadOnly Property tin_noLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property txtIssDt() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "txtIssDt"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
         

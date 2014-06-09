@@ -11,6 +11,7 @@
     <Layout>pro_inv_hdr\EmailPro_inv_hdr.html</Layout>
     <DisplayName>EmailPro_inv_hdr</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>89090345-108736</CheckSum>
   </Self>
   <ComposedOf>

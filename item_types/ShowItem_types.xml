@@ -11,6 +11,7 @@
     <Layout>item_types\ShowItem_types.html</Layout>
     <DisplayName>ShowItem_types</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-24540870-35575</CheckSum>
   </Self>
   <ComposedOf>

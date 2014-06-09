@@ -1,6 +1,6 @@
 ﻿
-' This file implements the code-behind class for EditInv_hdr.aspx.
-' EditInv_hdr.Controls.vb contains the Table, Row and Record control classes
+' This file implements the code-behind class for OriginalEditInv_hdr.aspx.
+' OriginalEditInv_hdr.Controls.vb contains the Table, Row and Record control classes
 ' for the page.  Best practices calls for overriding methods in the Row or Record control classes.
 
 #Region "Imports statements"
@@ -33,9 +33,9 @@ Imports ServelInvocing.Data
   
 Namespace ServelInvocing.UI
   
-Partial Public Class EditInv_hdr
+Partial Public Class OriginalEditInv_hdr
         Inherits BaseApplicationPage
-' Code-behind class for the EditInv_hdr page.
+' Code-behind class for the OriginalEditInv_hdr page.
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
@@ -181,28 +181,31 @@ Partial Public Class EditInv_hdr
         Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
         Public WithEvents inv_dt As System.Web.UI.WebControls.Literal
         Public WithEvents inv_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents Inv_hdrRecordControl As ServelInvocing.UI.Controls.EditInv_hdr.Inv_hdrRecordControl
+        Public WithEvents Inv_hdrRecordControl As ServelInvocing.UI.Controls.OriginalEditInv_hdr.Inv_hdrRecordControl
         Public WithEvents Inv_hdrTitle As System.Web.UI.WebControls.Literal
         Public WithEvents inv_issued_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_itemsPagination As Pagination
         Public WithEvents Inv_itemsResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Inv_itemsTableControl As ServelInvocing.UI.Controls.EditInv_hdr.Inv_itemsTableControl
+        Public WithEvents Inv_itemsTableControl As ServelInvocing.UI.Controls.OriginalEditInv_hdr.Inv_itemsTableControl
         Public WithEvents Inv_itemsToggleAll As System.Web.UI.WebControls.CheckBox
         Public WithEvents inv_no As System.Web.UI.WebControls.Literal
         Public WithEvents inv_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents Inv_taxesPagination As Pagination
         Public WithEvents Inv_taxesResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Inv_taxesTableControl As ServelInvocing.UI.Controls.EditInv_hdr.Inv_taxesTableControl
+        Public WithEvents Inv_taxesTableControl As ServelInvocing.UI.Controls.OriginalEditInv_hdr.Inv_taxesTableControl
         Public WithEvents Inv_taxesToggleAll As System.Web.UI.WebControls.CheckBox
         Public WithEvents Inv_termsPagination As Pagination
         Public WithEvents Inv_termsResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Inv_termsTableControl As ServelInvocing.UI.Controls.EditInv_hdr.Inv_termsTableControl
+        Public WithEvents Inv_termsTableControl As ServelInvocing.UI.Controls.OriginalEditInv_hdr.Inv_termsTableControl
         Public WithEvents Inv_termsToggleAll As System.Web.UI.WebControls.CheckBox
+        Public WithEvents IssHrsDdl As System.Web.UI.WebControls.DropDownList
+        Public WithEvents IssMinDdl As System.Web.UI.WebControls.DropDownList
         Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents item_total As System.Web.UI.WebControls.Literal
         Public WithEvents item_totalLabel As System.Web.UI.WebControls.Literal
         Public WithEvents narrationLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents no_of_packagesLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents NumericUpDown1 As AjaxControlToolkit.NumericUpDownExtender
         Public WithEvents packing_detailsLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents po_dt As System.Web.UI.WebControls.Literal
@@ -223,8 +226,10 @@ Partial Public Class EditInv_hdr
         Public WithEvents ship_nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents tax_amountLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents tax_printLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents TextBox2 As System.Web.UI.WebControls.TextBox
         Public WithEvents tin_no As System.Web.UI.WebControls.Literal
         Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents txtIssDt As System.Web.UI.WebControls.TextBox
         Public WithEvents uomLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents vehicle_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents weightLabel As System.Web.UI.WebControls.Literal
