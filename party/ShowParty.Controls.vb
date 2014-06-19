@@ -148,9 +148,12 @@ Public Class BaseSitesTableControlRow
             Setaddress1()
             Setcity1()
             Setcontact1()
+            Setecc_no1()
             Setemail1()
             Setname1()
+            Setpan_no1()
             Setphone1()
+            Settin_no1()
       
       
             Me.IsNewRecord = True
@@ -334,6 +337,50 @@ Public Class BaseSitesTableControlRow
                   
         End Sub
                 
+        Public Overridable Sub Setecc_no1()
+            
+        
+            ' Set the ecc_no Literal on the webpage with value from the
+            ' sites database record.
+
+            ' Me.DataSource is the sites record retrieved from the database.
+            ' Me.ecc_no1 is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setecc_no1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.ecc_noSpecified Then
+                				
+                ' If the ecc_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.ecc_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.ecc_no1.Text = formattedValue
+              
+            Else 
+            
+                ' ecc_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.ecc_no1.Text = SitesTable.ecc_no.Format(SitesTable.ecc_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the ecc_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.ecc_no1.Text Is Nothing _
+                OrElse Me.ecc_no1.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.ecc_no1.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setemail1()
             
         
@@ -422,6 +469,50 @@ Public Class BaseSitesTableControlRow
                   
         End Sub
                 
+        Public Overridable Sub Setpan_no1()
+            
+        
+            ' Set the pan_no Literal on the webpage with value from the
+            ' sites database record.
+
+            ' Me.DataSource is the sites record retrieved from the database.
+            ' Me.pan_no1 is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setpan_no1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.pan_noSpecified Then
+                				
+                ' If the pan_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.pan_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.pan_no1.Text = formattedValue
+              
+            Else 
+            
+                ' pan_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.pan_no1.Text = SitesTable.pan_no.Format(SitesTable.pan_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the pan_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.pan_no1.Text Is Nothing _
+                OrElse Me.pan_no1.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.pan_no1.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setphone1()
             
         
@@ -462,6 +553,50 @@ Public Class BaseSitesTableControlRow
                 OrElse Me.phone1.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.phone1.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Settin_no1()
+            
+        
+            ' Set the tin_no Literal on the webpage with value from the
+            ' sites database record.
+
+            ' Me.DataSource is the sites record retrieved from the database.
+            ' Me.tin_no1 is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Settin_no1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tin_noSpecified Then
+                				
+                ' If the tin_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.tin_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.tin_no1.Text = formattedValue
+              
+            Else 
+            
+                ' tin_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.tin_no1.Text = SitesTable.tin_no.Format(SitesTable.tin_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the tin_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.tin_no1.Text Is Nothing _
+                OrElse Me.tin_no1.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.tin_no1.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -580,9 +715,12 @@ Public Class BaseSitesTableControlRow
             Getaddress1()
             Getcity1()
             Getcontact1()
+            Getecc_no1()
             Getemail1()
             Getname1()
+            Getpan_no1()
             Getphone1()
+            Gettin_no1()
         End Sub
         
         
@@ -598,6 +736,10 @@ Public Class BaseSitesTableControlRow
             
         End Sub
                 
+        Public Overridable Sub Getecc_no1()
+            
+        End Sub
+                
         Public Overridable Sub Getemail1()
             
         End Sub
@@ -606,7 +748,15 @@ Public Class BaseSitesTableControlRow
             
         End Sub
                 
+        Public Overridable Sub Getpan_no1()
+            
+        End Sub
+                
         Public Overridable Sub Getphone1()
+            
+        End Sub
+                
+        Public Overridable Sub Gettin_no1()
             
         End Sub
                 
@@ -820,6 +970,12 @@ Public Class BaseSitesTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property ecc_no1() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_no1"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property email1() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email1"), System.Web.UI.WebControls.Literal)
@@ -829,6 +985,12 @@ Public Class BaseSitesTableControlRow
         Public ReadOnly Property name1() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "name1"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property pan_no1() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pan_no1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
@@ -844,6 +1006,12 @@ Public Class BaseSitesTableControlRow
             End Get
         End Property
         
+        Public ReadOnly Property tin_no1() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_no1"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
 #End Region
 
 #Region "Helper Functions"
@@ -958,11 +1126,17 @@ Public Class BaseSitesTableControl
             
               AddHandler Me.contactLabel1.Click, AddressOf contactLabel1_Click
             
+              AddHandler Me.ecc_noLabel1.Click, AddressOf ecc_noLabel1_Click
+            
               AddHandler Me.emailLabel1.Click, AddressOf emailLabel1_Click
             
               AddHandler Me.nameLabel2.Click, AddressOf nameLabel2_Click
             
+              AddHandler Me.pan_noLabel1.Click, AddressOf pan_noLabel1_Click
+            
               AddHandler Me.phoneLabel1.Click, AddressOf phoneLabel1_Click
+            
+              AddHandler Me.tin_noLabel1.Click, AddressOf tin_noLabel1_Click
             
             ' Setup the button events.
           
@@ -1087,9 +1261,12 @@ Public Class BaseSitesTableControl
             SetaddressLabel1()
             SetcityLabel1()
             SetcontactLabel1()
+            Setecc_noLabel1()
             SetemailLabel1()
             SetnameLabel2()
+            Setpan_noLabel1()
             SetphoneLabel1()
+            Settin_noLabel1()
       
   
 
@@ -1126,9 +1303,12 @@ Public Class BaseSitesTableControl
             SetaddressLabel1()
             SetcityLabel1()
             SetcontactLabel1()
+            Setecc_noLabel1()
             SetemailLabel1()
             SetnameLabel2()
+            Setpan_noLabel1()
             SetphoneLabel1()
+            Settin_noLabel1()
       End Sub
 
       
@@ -1501,14 +1681,23 @@ Public Class BaseSitesTableControl
                         If recControl.contact1.Text <> "" Then
                             rec.Parse(recControl.contact1.Text, SitesTable.contact)
                         End If
+                        If recControl.ecc_no1.Text <> "" Then
+                            rec.Parse(recControl.ecc_no1.Text, SitesTable.ecc_no)
+                        End If
                         If recControl.email1.Text <> "" Then
                             rec.Parse(recControl.email1.Text, SitesTable.email)
                         End If
                         If recControl.name1.Text <> "" Then
                             rec.Parse(recControl.name1.Text, SitesTable.name)
                         End If
+                        If recControl.pan_no1.Text <> "" Then
+                            rec.Parse(recControl.pan_no1.Text, SitesTable.pan_no)
+                        End If
                         If recControl.phone1.Text <> "" Then
                             rec.Parse(recControl.phone1.Text, SitesTable.phone)
+                        End If
+                        If recControl.tin_no1.Text <> "" Then
+                            rec.Parse(recControl.tin_no1.Text, SitesTable.tin_no)
                         End If
                         newUIDataList.Add(recControl.PreservedUIData())	  
                         newRecordList.Add(rec)
@@ -1592,6 +1781,11 @@ Public Class BaseSitesTableControl
                     
         End Sub
                 
+        Public Overridable Sub Setecc_noLabel1()
+            
+                    
+        End Sub
+                
         Public Overridable Sub SetemailLabel1()
             
                     
@@ -1602,7 +1796,17 @@ Public Class BaseSitesTableControl
                     
         End Sub
                 
+        Public Overridable Sub Setpan_noLabel1()
+            
+                    
+        End Sub
+                
         Public Overridable Sub SetphoneLabel1()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Settin_noLabel1()
             
                     
         End Sub
@@ -1880,6 +2084,28 @@ Public Class BaseSitesTableControl
               
         End Sub
             
+        Public Overridable Sub ecc_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by ecc_no when clicked.
+              
+            ' Get previous sorting state for ecc_no.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.ecc_no)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for ecc_no.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(SitesTable.ecc_no, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by ecc_no, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub emailLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by email when clicked.
               
@@ -1924,6 +2150,28 @@ Public Class BaseSitesTableControl
               
         End Sub
             
+        Public Overridable Sub pan_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by pan_no when clicked.
+              
+            ' Get previous sorting state for pan_no.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.pan_no)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for pan_no.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(SitesTable.pan_no, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by pan_no, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub phoneLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by phone when clicked.
               
@@ -1936,6 +2184,28 @@ Public Class BaseSitesTableControl
                 Me.CurrentSortOrder.Add(SitesTable.phone, OrderByItem.OrderDir.Asc)
             Else
                 ' Previously sorted by phone, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
+        Public Overridable Sub tin_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by tin_no when clicked.
+              
+            ' Get previous sorting state for tin_no.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.tin_no)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for tin_no.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(SitesTable.tin_no, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by tin_no, so just reverse.
                 sd.Reverse()
             End If
             
@@ -1972,6 +2242,9 @@ Public Class BaseSitesTableControl
              SitesTable.contact, _ 
              SitesTable.phone, _ 
              SitesTable.email, _ 
+             SitesTable.pan_no, _ 
+             SitesTable.ecc_no, _ 
+             SitesTable.tin_no, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(SitesTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -2018,6 +2291,9 @@ Public Class BaseSitesTableControl
              excelReport.AddColumn(New ExcelColumn(SitesTable.contact, "Default"))
              excelReport.AddColumn(New ExcelColumn(SitesTable.phone, "Default"))
              excelReport.AddColumn(New ExcelColumn(SitesTable.email, "Default"))
+             excelReport.AddColumn(New ExcelColumn(SitesTable.pan_no, "Default"))
+             excelReport.AddColumn(New ExcelColumn(SitesTable.ecc_no, "Default"))
+             excelReport.AddColumn(New ExcelColumn(SitesTable.tin_no, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2092,6 +2368,9 @@ Public Class BaseSitesTableControl
                  report.AddColumn(SitesTable.contact.Name, ReportEnum.Align.Left, "${contact}", ReportEnum.Align.Left, 30)
                  report.AddColumn(SitesTable.phone.Name, ReportEnum.Align.Left, "${phone}", ReportEnum.Align.Left, 30)
                  report.AddColumn(SitesTable.email.Name, ReportEnum.Align.Left, "${email}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(SitesTable.pan_no.Name, ReportEnum.Align.Left, "${pan_no}", ReportEnum.Align.Left, 15)
+                 report.AddColumn(SitesTable.ecc_no.Name, ReportEnum.Align.Left, "${ecc_no}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(SitesTable.tin_no.Name, ReportEnum.Align.Left, "${tin_no}", ReportEnum.Align.Left, 20)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2125,6 +2404,9 @@ Public Class BaseSitesTableControl
                              report.AddData("${contact}", record.Format(SitesTable.contact), ReportEnum.Align.Left, 100)
                              report.AddData("${phone}", record.Format(SitesTable.phone), ReportEnum.Align.Left, 100)
                              report.AddData("${email}", record.Format(SitesTable.email), ReportEnum.Align.Left, 100)
+                             report.AddData("${pan_no}", record.Format(SitesTable.pan_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${ecc_no}", record.Format(SitesTable.ecc_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${tin_no}", record.Format(SitesTable.tin_no), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -2231,6 +2513,9 @@ Public Class BaseSitesTableControl
                  report.AddColumn(SitesTable.contact.Name, ReportEnum.Align.Left, "${contact}", ReportEnum.Align.Left, 30)
                  report.AddColumn(SitesTable.phone.Name, ReportEnum.Align.Left, "${phone}", ReportEnum.Align.Left, 30)
                  report.AddColumn(SitesTable.email.Name, ReportEnum.Align.Left, "${email}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(SitesTable.pan_no.Name, ReportEnum.Align.Left, "${pan_no}", ReportEnum.Align.Left, 15)
+                 report.AddColumn(SitesTable.ecc_no.Name, ReportEnum.Align.Left, "${ecc_no}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(SitesTable.tin_no.Name, ReportEnum.Align.Left, "${tin_no}", ReportEnum.Align.Left, 20)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -2261,6 +2546,9 @@ Public Class BaseSitesTableControl
                              report.AddData("${contact}", record.Format(SitesTable.contact), ReportEnum.Align.Left, 100)
                              report.AddData("${phone}", record.Format(SitesTable.phone), ReportEnum.Align.Left, 100)
                              report.AddData("${email}", record.Format(SitesTable.email), ReportEnum.Align.Left, 100)
+                             report.AddData("${pan_no}", record.Format(SitesTable.pan_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${ecc_no}", record.Format(SitesTable.ecc_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${tin_no}", record.Format(SitesTable.tin_no), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -2429,6 +2717,12 @@ Public Class BaseSitesTableControl
             End Get
         End Property
         
+        Public ReadOnly Property ecc_noLabel1() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_noLabel1"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
         Public ReadOnly Property emailLabel1() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel1"), System.Web.UI.WebControls.LinkButton)
@@ -2438,6 +2732,12 @@ Public Class BaseSitesTableControl
         Public ReadOnly Property nameLabel2() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "nameLabel2"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property pan_noLabel1() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pan_noLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -2498,6 +2798,12 @@ Public Class BaseSitesTableControl
         Public ReadOnly Property SitesWordButton() As System.Web.UI.WebControls.ImageButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "SitesWordButton"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property tin_noLabel1() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_noLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         

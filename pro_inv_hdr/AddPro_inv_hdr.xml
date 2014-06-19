@@ -863,6 +863,42 @@ PARSEDECIMAL(Pro_inv_itemsTableControlRow.rate.Text) ,0) , "c")</Value>
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
+      <Name>id_itemAddRecordLink</Name>
+      <Type>ImageButton</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>CausesValidation</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>CommandName</Name>
+          <Value>Redirect</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>Pro_inv_itemsTableControl</Value>
+        </Attribute>
+        <Attribute>
+          <Name>ControlToUpdate</Name>
+          <Value>id_item</Value>
+        </Attribute>
+        <Attribute>
+          <Name>FieldValue</Name>
+          <Value>id_item</Value>
+        </Attribute>
+        <Attribute>
+          <Name>ImageUrl</Name>
+          <Value>../Images/iconNewFlat.gif</Value>
+        </Attribute>
+        <Attribute>
+          <Name>RedirectURL</Name>
+          <Value>../items/AddItemsOneOnly.aspx</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_itemsTableControl</InsideControl>
+      <InsideItemTemplate>true</InsideItemTemplate>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>id_itemLabel1</Name>
       <Type>FieldSort</Type>
       <PassthroughAttributes>
@@ -1240,6 +1276,41 @@ PARSEDECIMAL(Pro_inv_itemsTableControlRow.rate.Text) ,0) , "c")</Value>
         <Attribute>
           <Name>onkeypress</Name>
           <Value>dropDownListTypeAhead(this,false)</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>id_transporterAddRecordLink</Name>
+      <Type>ImageButton</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>CausesValidation</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>CommandName</Name>
+          <Value>Redirect</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>Pro_inv_hdrRecordControl</Value>
+        </Attribute>
+        <Attribute>
+          <Name>ControlToUpdate</Name>
+          <Value>id_transporter</Value>
+        </Attribute>
+        <Attribute>
+          <Name>FieldValue</Name>
+          <Value>id_transporter</Value>
+        </Attribute>
+        <Attribute>
+          <Name>ImageUrl</Name>
+          <Value>../Images/iconNewFlat.gif</Value>
+        </Attribute>
+        <Attribute>
+          <Name>RedirectURL</Name>
+          <Value>../transporters/AddTransporters.aspx</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
@@ -4904,7 +4975,8 @@ PARSEDECIMAL(Pro_inv_itemsTableControlRow.rate.Text) ,0) , "c")</Value>
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_transporter" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_transporter" /&amp;gt;
+&amp;lt;GEN:IMAGEBUTTON NAME="id_transporterAddRecordLink" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -5283,8 +5355,8 @@ PARSEDECIMAL(Pro_inv_itemsTableControlRow.rate.Text) ,0) , "c")</Value>
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_item" /&amp;gt; 
-&amp;lt;GEN:FIELDVALUE NAME="item_code" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="id_item" /&amp;gt;
+&amp;lt;GEN:IMAGEBUTTON NAME="id_itemAddRecordLink" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -5310,7 +5382,8 @@ PARSEDECIMAL(Pro_inv_itemsTableControlRow.rate.Text) ,0) , "c")</Value>
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="uom"/&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="uom"/&amp;gt;  
+&amp;lt;GEN:FIELDVALUE NAME="item_code" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;

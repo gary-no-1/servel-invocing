@@ -9,32 +9,35 @@
 Public Class Item_typesDefinition
 
 #Region "Definition (XML) for Item_typesDefinition table"
-	'Next 39 lines contain Table Definition (XML) for table "Item_typesDefinition"
+	'Next 42 lines contain Table Definition (XML) for table "Item_typesDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
     "<Column InternalName=""0"" Priority=""1"" ColumnNum=""0"">"& _
       "<columnName>item_type</columnName>"& _
-      "<columnUIName>Item Type</columnUIName>"& _
+      "<columnUIName Source=""User"">Item Type</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>Y</columnIndex>"& _
       "<columnUnique>Y</columnUnique>"& _
-      "<columnFunction>notrim</columnFunction>"& _
+      "<columnFunction>notrim,upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>Y</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>Y</columnRequired>"& _
       "<columnNotNull>Y</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>0</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>item_types</TableName>"& _

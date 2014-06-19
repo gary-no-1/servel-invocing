@@ -191,6 +191,7 @@ Partial Public Class AddPro_inv_hdr
         Public WithEvents id_tax_groupLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_taxesLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_transporter As System.Web.UI.WebControls.DropDownList
+        Public WithEvents id_transporterAddRecordLink As System.Web.UI.WebControls.ImageButton
         Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
         Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents item_totalLabel As System.Web.UI.WebControls.Literal

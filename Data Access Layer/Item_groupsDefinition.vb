@@ -9,7 +9,7 @@
 Public Class Item_groupsDefinition
 
 #Region "Definition (XML) for Item_groupsDefinition table"
-	'Next 85 lines contain Table Definition (XML) for table "Item_groupsDefinition"
+	'Next 88 lines contain Table Definition (XML) for table "Item_groupsDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -38,26 +38,29 @@ Public Class Item_groupsDefinition
     "</Column>"& _
     "<Column InternalName=""1"" Priority=""2"" ColumnNum=""1"">"& _
       "<columnName>item_group</columnName>"& _
-      "<columnUIName>Item Group</columnUIName>"& _
+      "<columnUIName Source=""User"">Item Group</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>30</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>Y</columnIndex>"& _
       "<columnUnique>Y</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
+      "<columnFunction>upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>1</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""2"" Priority=""3"" ColumnNum=""2"">"& _
       "<columnName>tariff_no</columnName>"& _

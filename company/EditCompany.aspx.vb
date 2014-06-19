@@ -184,6 +184,7 @@ Partial Public Class EditCompany
         Public WithEvents pan_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal
         Public WithEvents pincodeLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents proforma_email_bodyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents rangeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents SaveButton As ThemeButton
         Public WithEvents stateLabel As System.Web.UI.WebControls.Literal

@@ -531,6 +531,13 @@ Public Class Pro_inv_hdrRecordControl
 				Dim ProInvSitesRec As sitesRecord = SitesTable.GetRecord(srchHdrStr, False)
 				me.ship_name.text = ProInvSitesRec.name
 				me.ship_address.text = ProInvSitesRec.address
+
+				' -- added - 19-06-2014
+				me.tin_no.text = ProInvSitesRec.tin_no
+				me.contact.text = ProInvSitesRec.contact
+				me.phone.text = ProInvSitesRec.phone
+				me.email.text = ProInvSitesRec.email
+				
     	    	' Return    
     		End If
 		
@@ -568,6 +575,9 @@ Public Class BasePro_inv_itemsTableControlRow
               Me.Pro_inv_itemsRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
+              Me.id_itemAddRecordLink.PostBackUrl = "../items/AddItemsOneOnly.aspx" & "?Target=" & Me.id_item.ClientID & "&DFKA=item_code"
+              Me.id_itemAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_itemAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
+              
               AddHandler Me.Pro_inv_itemsRowDeleteButton.Click, AddressOf Pro_inv_itemsRowDeleteButton_Click
               
               AddHandler Me.Pro_inv_itemsRowEditButton.Click, AddressOf Pro_inv_itemsRowEditButton_Click
@@ -1701,6 +1711,12 @@ Public Class BasePro_inv_itemsTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property id_itemAddRecordLink() As System.Web.UI.WebControls.ImageButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_itemAddRecordLink"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
         Public ReadOnly Property item_code() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_code"), System.Web.UI.WebControls.TextBox)
@@ -8738,6 +8754,9 @@ Public Class BasePro_inv_hdrRecordControl
          
               ' Register the event handlers.
           
+              Me.id_transporterAddRecordLink.PostBackUrl = "../transporters/AddTransporters.aspx" & "?Target=" & Me.id_transporter.ClientID & "&DFKA=name"
+              Me.id_transporterAddRecordLink.Attributes.Item("onClick") = "window.open('" & Me.id_transporterAddRecordLink.PostBackUrl & "','_blank', 'width=900, height=700, resizable, scrollbars, modal=yes'); return false;"
+              
             AddHandler Me.CalculateButton.Button.Click, AddressOf CalculateButton_Click
         
               AddHandler Me.id_commodity.SelectedIndexChanged, AddressOf id_commodity_SelectedIndexChanged
@@ -12050,6 +12069,12 @@ Public Class BasePro_inv_hdrRecordControl
             End Get
         End Property
             
+        Public ReadOnly Property id_transporterAddRecordLink() As System.Web.UI.WebControls.ImageButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_transporterAddRecordLink"), System.Web.UI.WebControls.ImageButton)
+            End Get
+        End Property
+        
         Public ReadOnly Property id_transporterLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_transporterLabel"), System.Web.UI.WebControls.Literal)

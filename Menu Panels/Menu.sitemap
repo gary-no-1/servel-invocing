@@ -57,5 +57,8 @@ The tags are case-sensitive and should contain the following case-sensitive attr
     <siteMapNode title="Party" description="Party" url="~/party/ShowPartyTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,4" order="0" />
     <siteMapNode title="Proforma Invoice" description="{Menu:Show} Pro Inv HDR" url="~/pro_inv_hdr/ShowPro_inv_hdrTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,4" order="0" />
     <siteMapNode title="Invoice" description="{Menu:Show} Inv HDR" url="~/inv_hdr/ShowInv_hdrTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,4" order="0" />
+    <siteMapNode title="Pro Inv HDR" description="Pro Inv HDR" url="~/pro_inv_hdr/ShowPro_inv_hdrTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+      <siteMapNode title="{Menu:Add} Pro Inv HDR 2" description="{Menu:Add} Pro Inv HDR" url="~/pro_inv_hdr/AddPro_inv_hdr2.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="10" />
+    </siteMapNode>
   </siteMapNode>
 </siteMap>

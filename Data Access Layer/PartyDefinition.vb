@@ -9,7 +9,7 @@
 Public Class PartyDefinition
 
 #Region "Definition (XML) for PartyDefinition table"
-	'Next 418 lines contain Table Definition (XML) for table "PartyDefinition"
+	'Next 424 lines contain Table Definition (XML) for table "PartyDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -87,26 +87,29 @@ Public Class PartyDefinition
     "</Column>"& _
     "<Column InternalName=""3"" Priority=""4"" ColumnNum=""3"">"& _
       "<columnName>address</columnName>"& _
-      "<columnUIName>Address</columnUIName>"& _
+      "<columnUIName Source=""User"">Address</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nvarchar</columnDBType>"& _
       "<columnLengthSet>160</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
+      "<columnFunction>title</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>3</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""4"" Priority=""5"" ColumnNum=""4"">"& _
       "<columnName>city</columnName>"& _
@@ -319,30 +322,33 @@ Public Class PartyDefinition
     "</Column>"& _
     "<Column InternalName=""13"" Priority=""14"" ColumnNum=""13"">"& _
       "<columnName>pan_no</columnName>"& _
-      "<columnUIName>Pan Number</columnUIName>"& _
+      "<columnUIName Source=""User"">PAN</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>10</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
+      "<columnFunction>upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>13</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""14"" Priority=""15"" ColumnNum=""14"">"& _
       "<columnName>ecc_no</columnName>"& _
-      "<columnUIName Source=""User"">ECC Number</columnUIName>"& _
+      "<columnUIName Source=""User"">ECC No:</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _

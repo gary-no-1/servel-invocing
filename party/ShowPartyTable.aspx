@@ -52,8 +52,8 @@
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="cityLabel" Text="City" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="contactLabel" Text="Contact" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="phoneLabel" Text="Phone" CausesValidation="False">	</asp:LinkButton>
-                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="emailLabel" Text="Email" CausesValidation="False">	</asp:LinkButton></th><th class="thc" scope="col"><asp:LinkButton runat="server" id="pan_noLabel" Text="Pan Number" CausesValidation="False">	</asp:LinkButton>
-                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="ecc_noLabel" Text="ECC Number" CausesValidation="False">	</asp:LinkButton>
+                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="emailLabel" Text="Email" CausesValidation="False">	</asp:LinkButton></th><th class="thc" scope="col"><asp:LinkButton runat="server" id="pan_noLabel" Text="PAN" CausesValidation="False">	</asp:LinkButton>
+                        </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="ecc_noLabel" Text="ECC No:" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="tin_noLabel" Text="TIN" CausesValidation="False">	</asp:LinkButton>
                         </th></tr><asp:Repeater runat="server" id="PartyTableControlRepeater">		<ITEMTEMPLATE>		<ServelInvocing:PartyTableControlRow runat="server" id="PartyTableControlRow">
 <tr><td class="ticnb" scope="row"><asp:ImageButton runat="server" id="PartyRowViewButton" causesvalidation="False" commandname="Redirect" cssclass="button_link" imageurl="../Images/icon_view.gif" tooltip="&lt;%# GetResourceValue(&quot;Txt:ViewRecord&quot;, &quot;ServelInvocing&quot;) %>">		

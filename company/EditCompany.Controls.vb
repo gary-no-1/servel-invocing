@@ -116,6 +116,8 @@ Public Class BaseCompanyRecordControl
             
               AddHandler Me.pincode.TextChanged, AddressOf pincode_TextChanged
             
+              AddHandler Me.proforma_email_body.TextChanged, AddressOf proforma_email_body_TextChanged
+            
               AddHandler Me.range.TextChanged, AddressOf range_TextChanged
             
               AddHandler Me.state.TextChanged, AddressOf state_TextChanged
@@ -240,6 +242,8 @@ Public Class BaseCompanyRecordControl
             SetphoneLabel()
             Setpincode()
             SetpincodeLabel()
+            Setproforma_email_body()
+            Setproforma_email_bodyLabel()
             Setrange()
             SetrangeLabel()
             Setstate()
@@ -964,6 +968,41 @@ Public Class BaseCompanyRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Setproforma_email_body()
+            
+        
+            ' Set the proforma_email_body TextBox on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.proforma_email_body is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setproforma_email_body()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.proforma_email_bodySpecified Then
+                				
+                ' If the proforma_email_body is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.proforma_email_body)
+                            
+                Me.proforma_email_body.Text = formattedValue
+              
+            Else 
+            
+                ' proforma_email_body is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.proforma_email_body.Text = CompanyTable.proforma_email_body.Format(CompanyTable.proforma_email_body.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setrange()
             
         
@@ -1169,6 +1208,11 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setproforma_email_bodyLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub SetrangeLabel()
             
                     
@@ -1308,6 +1352,7 @@ Public Class BaseCompanyRecordControl
             Getpan_no()
             Getphone()
             Getpincode()
+            Getproforma_email_body()
             Getrange()
             Getstate()
             Gettin_no()
@@ -1576,6 +1621,19 @@ Public Class BaseCompanyRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.pincode.Text, CompanyTable.pincode)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getproforma_email_body()
+            
+            ' Retrieve the value entered by the user on the proforma_email_body ASP:TextBox, and
+            ' save it into the proforma_email_body field in DataSource company record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.proforma_email_body.Text, CompanyTable.proforma_email_body)			
 
                       
         End Sub
@@ -1980,6 +2038,10 @@ Public Class BaseCompanyRecordControl
                     				
         End Sub
             
+        Protected Overridable Sub proforma_email_body_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub range_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -2368,6 +2430,18 @@ Public Class BaseCompanyRecordControl
         Public ReadOnly Property pincodeLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pincodeLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property proforma_email_body() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "proforma_email_body"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property proforma_email_bodyLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "proforma_email_bodyLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

@@ -9,7 +9,7 @@
 Public Class ItemsDefinition
 
 #Region "Definition (XML) for ItemsDefinition table"
-	'Next 273 lines contain Table Definition (XML) for table "ItemsDefinition"
+	'Next 279 lines contain Table Definition (XML) for table "ItemsDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -38,49 +38,55 @@ Public Class ItemsDefinition
     "</Column>"& _
     "<Column InternalName=""1"" Priority=""2"" ColumnNum=""1"">"& _
       "<columnName>item_code</columnName>"& _
-      "<columnUIName>Item Code</columnUIName>"& _
+      "<columnUIName Source=""User"">Item Code</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>30</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>Y</columnIndex>"& _
       "<columnUnique>Y</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
+      "<columnFunction>upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>1</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""2"" Priority=""3"" ColumnNum=""2"">"& _
       "<columnName>item_description</columnName>"& _
-      "<columnUIName>Item Description</columnUIName>"& _
+      "<columnUIName Source=""User"">Item Description</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>50</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
+      "<columnFunction>upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>2</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""3"" Priority=""4"" ColumnNum=""3"">"& _
       "<columnName>id_item_group</columnName>"& _

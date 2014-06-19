@@ -1,6 +1,6 @@
 ﻿
-' This file implements the code-behind class for EditParty.aspx.
-' EditParty.Controls.vb contains the Table, Row and Record control classes
+' This file implements the code-behind class for AddItemsOneOnly.aspx.
+' AddItemsOneOnly.Controls.vb contains the Table, Row and Record control classes
 ' for the page.  Best practices calls for overriding methods in the Row or Record control classes.
 
 #Region "Imports statements"
@@ -33,9 +33,9 @@ Imports ServelInvocing.Data
   
 Namespace ServelInvocing.UI
   
-Partial Public Class EditParty
+Partial Public Class AddItemsOneOnly
         Inherits BaseApplicationPage
-' Code-behind class for the EditParty page.
+' Code-behind class for the AddItemsOneOnly page.
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
@@ -146,6 +146,14 @@ Partial Public Class EditParty
           ' NOTE: If the Base function redirects to another page, any code here will not be executed.
         End Sub
         
+        Public Sub SaveAndNewButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+            
+          ' Click handler for SaveAndNewButton.
+          ' Customize by adding code before the call or replace the call to the Base function with your own code.
+          SaveAndNewButton_Click_Base(sender, args)
+          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
+        End Sub
+        
         Public Sub SaveButton_Click(ByVal sender As Object, ByVal args As EventArgs)
             
           ' Click handler for SaveButton.
@@ -160,36 +168,23 @@ Partial Public Class EditParty
 
 #Region "Section 2: Do not modify this section."
 
-        Public WithEvents addressLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents addressLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents CancelButton As ThemeButton
-        Public WithEvents cityLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents cityLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents contactLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents contactLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents ecc_noLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents emailLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents nameLabel2 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents id_item_group As System.Web.UI.WebControls.DropDownList
+        Public WithEvents id_item_groupLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents item_codeLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents item_type As System.Web.UI.WebControls.DropDownList
+        Public WithEvents item_typeLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents ItemsRecordControl As ServelInvocing.UI.Controls.AddItemsOneOnly.ItemsRecordControl
+        Public WithEvents ItemsTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents material_categoryLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents pan_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents pan_noLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents PartyRecordControl As ServelInvocing.UI.Controls.EditParty.PartyRecordControl
-        Public WithEvents PartyTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents phoneLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents SaveAndNewButton As ThemeButton
         Public WithEvents SaveButton As ThemeButton
-        Public WithEvents SitesAddButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents SitesDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents SitesEditButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents SitesPagination As Pagination
-        Public WithEvents SitesResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents SitesTableControl As ServelInvocing.UI.Controls.EditParty.SitesTableControl
-        Public WithEvents SitesToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tin_noLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents specificationLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents tariff_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents uom As System.Web.UI.WebControls.DropDownList
+        Public WithEvents uomLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   
@@ -205,6 +200,10 @@ Partial Public Class EditParty
       
             AddHandler Me.CancelButton.Button.Click, AddressOf CancelButton_Click
         
+            AddHandler Me.SaveAndNewButton.Button.Click, AddressOf SaveAndNewButton_Click
+        
+            Me.SaveAndNewButton.Button.Attributes.Add("onclick", "SubmitHRefOnce(this, """ & Me.GetResourceValue("Txt:SaveRecord", "ServelInvocing") & """);")
+        
             AddHandler Me.SaveButton.Button.Click, AddressOf SaveButton_Click
         
             Me.SaveButton.Button.Attributes.Add("onclick", "SubmitHRefOnce(this, """ & Me.GetResourceValue("Txt:SaveRecord", "ServelInvocing") & """);")
@@ -214,6 +213,8 @@ Partial Public Class EditParty
 
         Private Sub Base_RegisterPostback()
         
+              Me.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"SaveAndNewButton"))
+                        
               Me.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"SaveButton"))
                         
         End Sub
@@ -255,7 +256,7 @@ Partial Public Class EditParty
             End If
         
         
-            Page.Title = GetResourceValue("Title:Edit") + " Party"
+            Page.Title = GetResourceValue("Title:Add") + " Items"
         End Sub
 
     Public Shared Function GetRecordFieldValue_Base(ByVal tableName As String, _
@@ -329,7 +330,7 @@ Partial Public Class EditParty
       
       Public Sub SaveData_Base()
               
-        Me.PartyRecordControl.SaveData()
+        Me.ItemsRecordControl.SaveData()
         
       End Sub
       
@@ -356,7 +357,7 @@ Partial Public Class EditParty
                 ' Ordering is important because child controls get
                 ' their parent ids from their parent UI controls.
                         
-        Me.PartyRecordControl.LoadData()
+        Me.ItemsRecordControl.LoadData()
         
       
                 Me.DataBind()
@@ -431,6 +432,33 @@ Partial Public Class EditParty
         End Sub
             
         ' event handler for Button with Layout
+        Public Sub SaveAndNewButton_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
+              
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+        
+              If (Not Me.IsPageRefresh) Then         
+                  Me.SaveData()
+              End If        
+        
+            Me.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.RollBackTransaction(sender)
+                Me.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+    
+        End Sub
+            
+        ' event handler for Button with Layout
         Public Sub SaveButton_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
               
             Dim shouldRedirect As Boolean = True
@@ -454,17 +482,17 @@ Partial Public Class EditParty
             If Not TargetKey Is Nothing Then
                   
                 DFKA = Me.Page.Request.QueryString.Item("DFKA")
-                If Not Me.PartyRecordControl Is Nothing AndAlso Not Me.PartyRecordControl.DataSource Is Nothing Then
+                If Not Me.ItemsRecordControl Is Nothing AndAlso Not Me.ItemsRecordControl.DataSource Is Nothing Then
                       
-                      id = Me.PartyRecordControl.DataSource.id0.ToString
-                      value = Me.PartyRecordControl.DataSource.GetValue(Me.PartyRecordControl.DataSource.TableAccess.TableDefinition.ColumnList.GetByAnyName(DFKA)).ToString
+                      id = Me.ItemsRecordControl.DataSource.id0.ToString
+                      value = Me.ItemsRecordControl.DataSource.GetValue(Me.ItemsRecordControl.DataSource.TableAccess.TableDefinition.ColumnList.GetByAnyName(DFKA)).ToString
                       If value is Nothing Then
                             value = id
                       End If
                       
                       Dim Formula As String = Me.Page.Request.QueryString.Item("Formula")							
                       If Not Formula Is Nothing Then
-                            value = EvaluateFormula(Formula, Me.PartyRecordControl.DataSource)
+                            value = EvaluateFormula(Formula, Me.ItemsRecordControl.DataSource)
                       End If
 
                       BaseClasses.Utils.MiscUtils.RegisterAddButtonScript(Me, TargetKey, id, value)

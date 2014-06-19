@@ -31,59 +31,67 @@
     </Column>
     <Column InternalName="1" Priority="2" ColumnNum="1">
       <columnName>item_code</columnName>
-      <columnUIName>%ISD_DEFAULT%</columnUIName>
+      <columnUIName Source="User">%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>30</columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault>
+      <columnDBDefault Source="User">
       </columnDBDefault>
       <columnIndex>Y</columnIndex>
       <columnUnique>Y</columnUnique>
-      <columnFunction>
-      </columnFunction>
+      <columnFunction>upper</columnFunction>
       <columnDBFormat>
       </columnDBFormat>
       <columnPK>N</columnPK>
       <columnPermanent>N</columnPermanent>
-      <columnComputed>N</columnComputed>
-      <columnIdentity>N</columnIdentity>
-      <columnReadOnly>N</columnReadOnly>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>1</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
     </Column>
     <Column InternalName="2" Priority="3" ColumnNum="2">
       <columnName>item_description</columnName>
-      <columnUIName>%ISD_DEFAULT%</columnUIName>
+      <columnUIName Source="User">%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>50</columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault>
+      <columnDBDefault Source="User">
       </columnDBDefault>
       <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
-      <columnFunction>
-      </columnFunction>
+      <columnFunction>upper</columnFunction>
       <columnDBFormat>
       </columnDBFormat>
       <columnPK>N</columnPK>
       <columnPermanent>N</columnPermanent>
-      <columnComputed>N</columnComputed>
-      <columnIdentity>N</columnIdentity>
-      <columnReadOnly>N</columnReadOnly>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>2</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
     </Column>
     <Column InternalName="3" Priority="4" ColumnNum="3">
       <columnName>id_item_group</columnName>

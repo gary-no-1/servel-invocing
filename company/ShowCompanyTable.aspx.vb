@@ -154,13 +154,10 @@ Partial Public Class ShowCompanyTable
 
 #Region "Section 2: Do not modify this section."
 
-        Public WithEvents CompanyCopyButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents CompanyDeleteButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents CompanyEditButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents CompanyExportCSVButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents CompanyExportExcelButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents CompanyImportButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents CompanyNewButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents CompanyPagination As Pagination
         Public WithEvents CompanyPDFButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents CompanyRefreshButton As System.Web.UI.WebControls.ImageButton

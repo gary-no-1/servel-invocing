@@ -436,6 +436,13 @@
     <Compile Include="items\AddItems.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="items\AddItemsOneOnly.aspx.vb" >
+      <DependentUpon>AddItemsOneOnly.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="items\AddItemsOneOnly.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="items\EditItems.aspx.vb" >
       <DependentUpon>EditItems.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1449,6 +1456,7 @@
     <Content Include="inv_terms\ShowInv_terms.aspx"  />
     <Content Include="inv_terms\ShowInv_termsTable.aspx"  />
     <Content Include="items\AddItems.aspx"  />
+    <Content Include="items\AddItemsOneOnly.aspx"  />
     <Content Include="items\EditItems.aspx"  />
     <Content Include="items\ShowItems.aspx"  />
     <Content Include="items\ShowItemsTable.aspx"  />

@@ -88,14 +88,8 @@ Public Class BaseCompanyTableControlRow
 			'Call LoadFocusScripts from repeater so that onfocus attribute could be added to elements
 			Me.Page.LoadFocusScripts(Me)
 		
-              ' Show confirmation message on Click
-              Me.CompanyRowDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteRecordConfirm", "ServelInvocing") & "'));")
               ' Register the event handlers.
           
-              AddHandler Me.CompanyRowCopyButton.Click, AddressOf CompanyRowCopyButton_Click
-              
-              AddHandler Me.CompanyRowDeleteButton.Click, AddressOf CompanyRowDeleteButton_Click
-              
               AddHandler Me.CompanyRowEditButton.Click, AddressOf CompanyRowEditButton_Click
               
               AddHandler Me.CompanyRowViewButton.Click, AddressOf CompanyRowViewButton_Click
@@ -694,77 +688,6 @@ Public Class BaseCompanyTableControlRow
         
         
         ' event handler for ImageButton
-        Public Overridable Sub CompanyRowCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../company/AddCompany.aspx?Company={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub CompanyRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                  Me.Delete()
-              
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
         Public Overridable Sub CompanyRowEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             ' The redirect URL is set on the Properties, Bindings.
@@ -967,18 +890,6 @@ Public Class BaseCompanyTableControlRow
             End Get
         End Property
         
-        Public ReadOnly Property CompanyRowCopyButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "CompanyRowCopyButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property CompanyRowDeleteButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "CompanyRowDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property CompanyRowEditButton() As System.Web.UI.WebControls.ImageButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "CompanyRowEditButton"), System.Web.UI.WebControls.ImageButton)
@@ -1127,8 +1038,6 @@ Public Class BaseCompanyTableControl
         
             SaveControlsToSession_Ajax()
         
-              ' Show confirmation message on Click
-              Me.CompanyDeleteButton.Attributes.Add("onClick", "return (confirm('" & (CType(Me.Page,BaseApplicationPage)).GetResourceValue("DeleteConfirm", "ServelInvocing") & "'));")
             ' Setup the pagination events.
             
               AddHandler Me.CompanyPagination.FirstPage.Click, AddressOf CompanyPagination_FirstPage_Click
@@ -1159,10 +1068,6 @@ Public Class BaseCompanyTableControl
             
             ' Setup the button events.
           
-              AddHandler Me.CompanyCopyButton.Click, AddressOf CompanyCopyButton_Click
-              
-              AddHandler Me.CompanyDeleteButton.Click, AddressOf CompanyDeleteButton_Click
-              
               AddHandler Me.CompanyEditButton.Click, AddressOf CompanyEditButton_Click
               
               AddHandler Me.CompanyExportCSVButton.Click, AddressOf CompanyExportCSVButton_Click
@@ -1170,8 +1075,6 @@ Public Class BaseCompanyTableControl
               AddHandler Me.CompanyExportExcelButton.Click, AddressOf CompanyExportExcelButton_Click
               
               AddHandler Me.CompanyImportButton.Click, AddressOf CompanyImportButton_Click
-              
-              AddHandler Me.CompanyNewButton.Click, AddressOf CompanyNewButton_Click
               
               AddHandler Me.CompanyPDFButton.Click, AddressOf CompanyPDFButton_Click
               
@@ -2158,77 +2061,6 @@ Public Class BaseCompanyTableControl
         ' Generate the event handling functions for button events.
         
         ' event handler for ImageButton
-        Public Overridable Sub CompanyCopyButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../company/AddCompany.aspx?Company={PK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub CompanyDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            If(Not Me.Page.IsPageRefresh) Then
-        
-                Me.DeleteSelectedRecords(False)
-          
-            End If
-      Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-                  
-        End Sub
-        
-        ' event handler for ImageButton
         Public Overridable Sub CompanyEditButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
         
             ' The redirect URL is set on the Properties, Bindings.
@@ -2390,50 +2222,6 @@ Public Class BaseCompanyTableControl
                 DbUtils.EndTransaction
             End Try
                   
-        End Sub
-        
-        ' event handler for ImageButton
-        Public Overridable Sub CompanyNewButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
-        
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../company/AddCompany.aspx"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If              
         End Sub
         
         ' event handler for ImageButton
@@ -2780,18 +2568,6 @@ Public Class BaseCompanyTableControl
        
 #Region "Helper Properties"
         
-        Public ReadOnly Property CompanyCopyButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "CompanyCopyButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property CompanyDeleteButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "CompanyDeleteButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
         Public ReadOnly Property CompanyEditButton() As System.Web.UI.WebControls.ImageButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "CompanyEditButton"), System.Web.UI.WebControls.ImageButton)
@@ -2813,12 +2589,6 @@ Public Class BaseCompanyTableControl
         Public ReadOnly Property CompanyImportButton() As System.Web.UI.WebControls.ImageButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "CompanyImportButton"), System.Web.UI.WebControls.ImageButton)
-            End Get
-        End Property
-        
-        Public ReadOnly Property CompanyNewButton() As System.Web.UI.WebControls.ImageButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "CompanyNewButton"), System.Web.UI.WebControls.ImageButton)
             End Get
         End Property
         

@@ -91,31 +91,35 @@
     </Column>
     <Column InternalName="3" Priority="4" ColumnNum="3">
       <columnName>address</columnName>
-      <columnUIName>%ISD_DEFAULT%</columnUIName>
+      <columnUIName Source="User">%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nvarchar</columnDBType>
       <columnLengthSet>160</columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault>
+      <columnDBDefault Source="User">
       </columnDBDefault>
       <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
-      <columnFunction>
-      </columnFunction>
+      <columnFunction>title</columnFunction>
       <columnDBFormat>
       </columnDBFormat>
       <columnPK>N</columnPK>
       <columnPermanent>N</columnPermanent>
-      <columnComputed>N</columnComputed>
-      <columnIdentity>N</columnIdentity>
-      <columnReadOnly>N</columnReadOnly>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>3</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
     </Column>
     <Column InternalName="4" Priority="5" ColumnNum="4">
       <columnName>city</columnName>
@@ -372,35 +376,39 @@
     </Column>
     <Column InternalName="13" Priority="14" ColumnNum="13">
       <columnName>pan_no</columnName>
-      <columnUIName>%ISD_DEFAULT%</columnUIName>
+      <columnUIName Source="User">PAN</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>10</columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault>
+      <columnDBDefault Source="User">
       </columnDBDefault>
       <columnIndex>N</columnIndex>
       <columnUnique>N</columnUnique>
-      <columnFunction>
-      </columnFunction>
+      <columnFunction>upper</columnFunction>
       <columnDBFormat>
       </columnDBFormat>
       <columnPK>N</columnPK>
       <columnPermanent>N</columnPermanent>
-      <columnComputed>N</columnComputed>
-      <columnIdentity>N</columnIdentity>
-      <columnReadOnly>N</columnReadOnly>
+      <columnComputed Source="User">N</columnComputed>
+      <columnIdentity Source="User">N</columnIdentity>
+      <columnReadOnly Source="User">N</columnReadOnly>
       <columnRequired>N</columnRequired>
       <columnNotNull>N</columnNotNull>
-      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
+      <columnCaseSensitive Source="User">N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
+      <columnCodeName>
+      </columnCodeName>
+      <InternalName>13</InternalName>
+      <columnTableClassName>
+      </columnTableClassName>
     </Column>
     <Column InternalName="14" Priority="15" ColumnNum="14">
       <columnName>ecc_no</columnName>
-      <columnUIName Source="User">ECC Number</columnUIName>
+      <columnUIName Source="User">ECC No:</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>20</columnLengthSet>
