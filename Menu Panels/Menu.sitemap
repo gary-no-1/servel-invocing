@@ -43,22 +43,19 @@ The tags are case-sensitive and should contain the following case-sensitive attr
       <siteMapNode title="Item Groups" description="{Menu:Show} Item Groups" url="~/item_groups/ShowItem_groupsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2" order="0" />
       <siteMapNode title="Commodity" description="{Menu:Show} Commodity" url="~/commodity/ShowCommodityTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2" order="0" />
       <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="1,2" order="0" />
-      <siteMapNode title="Units Of Measure" description="{Menu:Show} Units Ofmeasure" url="~/unitsofmeasure/ShowUnitsofmeasureTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2" order="0" />
+      <siteMapNode title="Units Of Measure" description="{Menu:Show} Units Ofmeasure" url="~/unitsofmeasure/ShowUnitsofmeasureTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,4" order="0" />
       <siteMapNode title="Sale Person" description="{Menu:Show} Sale Person" url="~/saleperson/ShowSalepersonTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2" order="0" />
       <siteMapNode title="Terms" description="{Menu:Show} Terms" url="~/terms/ShowTermsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2" order="0" />
       <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="1,2" order="0" />
       <siteMapNode title="Tax Types" description="{Menu:Show} Tax Types" url="~/tax_types/ShowTax_typesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2" order="0" />
-      <siteMapNode title="Taxes" description="{Menu:Show} Taxes" url="~/taxes/ShowTaxesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2" order="0" />
-      <siteMapNode title="Tax Groups" description="{Menu:Show} Tax Groups" url="~/tax_groups/ShowTax_groupsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2" order="0" />
+      <siteMapNode title="Taxes" description="{Menu:Show} Taxes" url="~/taxes/ShowTaxesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,4" order="0" />
+      <siteMapNode title="Tax Groups" description="{Menu:Show} Tax Groups" url="~/tax_groups/ShowTax_groupsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,4" order="0" />
       <siteMapNode title="&lt;hr size='1'/&gt;" description="Separator Line" url="" imageUrl="" roles="1,2" order="0" />
       <siteMapNode title="Transporters" description="{Menu:Show} Transporters" url="~/transporters/ShowTransportersTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,4" order="0" />
     </siteMapNode>
     <siteMapNode title="Items" description="{Menu:Show} Items" url="~/items/ShowItemsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,3,4" order="0" />
-    <siteMapNode title="Party" description="Party" url="~/party/ShowPartyTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,4" order="0" />
+    <siteMapNode title="Party" description="Party" url="~/party/ShowPartyTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,3,4" order="0" />
     <siteMapNode title="Proforma Invoice" description="{Menu:Show} Pro Inv HDR" url="~/pro_inv_hdr/ShowPro_inv_hdrTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,4" order="0" />
     <siteMapNode title="Invoice" description="{Menu:Show} Inv HDR" url="~/inv_hdr/ShowInv_hdrTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,4" order="0" />
-    <siteMapNode title="Pro Inv HDR" description="Pro Inv HDR" url="~/pro_inv_hdr/ShowPro_inv_hdrTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
-      <siteMapNode title="{Menu:Add} Pro Inv HDR 2" description="{Menu:Add} Pro Inv HDR" url="~/pro_inv_hdr/AddPro_inv_hdr2.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="10" />
-    </siteMapNode>
   </siteMapNode>
 </siteMap>
