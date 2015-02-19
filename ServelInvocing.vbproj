@@ -207,6 +207,13 @@
     <Compile Include="company\EditCompany.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="company\oldEditCompany.aspx.vb" >
+      <DependentUpon>oldEditCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="company\oldEditCompany.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="company\ShowCompany.aspx.vb" >
       <DependentUpon>ShowCompany.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1422,6 +1429,7 @@
     <Content Include="commodity\ShowCommodityTable.aspx"  />
     <Content Include="company\AddCompany.aspx"  />
     <Content Include="company\EditCompany.aspx"  />
+    <Content Include="company\oldEditCompany.aspx"  />
     <Content Include="company\ShowCompany.aspx"  />
     <Content Include="company\ShowCompanyTable.aspx"  />
     <Content Include="Header and Footer\EmailHeader.ascx"  />

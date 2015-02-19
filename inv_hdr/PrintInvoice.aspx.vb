@@ -58,13 +58,39 @@ Partial Public Class PrintInvoice
 		Try
 	    	If Not IsPostBack Then
 	            If Not Page.Session("PrintProInvID") Is Nothing Then
+					Dim srchCompanyStr As String
+					srchCompanyStr = "id =  '1'"
+					Dim CompanyRec As CompanyRecord = CompanyTable.GetRecord(srchCompanyStr)
+					Dim allPrtCopyHdr As String
+					allPrtCopyHdr = CompanyRec.print_inv_copy_hdr
+					If String.IsNullOrEmpty(allPrtCopyHdr) Then
+						allPrtCopyHdr = "Original for BUYER" + "|" + "EXTRA COPY (not for CENVAT)"
+					End if
+					
     	            Dim sID As String = Page.Session("PrintProInvID").tostring()
 					Dim reportBook = New ReportBook()
-					reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice())
-					reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice2Copy())
-					reportBook.Reports(0).ReportParameters("PrintProInvId").value = sID
-					reportBook.Reports(1).ReportParameters("PrintProInvId").value = sID
+					'reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice())
+					'reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice2Copy())
+					'reportBook.Reports(0).ReportParameters("PrintProInvId").value = sID
+					'reportBook.Reports(1).ReportParameters("PrintProInvId").value = sID
 
+					'reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoiceFeb16())
+					'reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoiceFeb16())
+					'reportBook.Reports(0).ReportParameters("PrintProInvId").value = sID
+					'reportBook.Reports(0).ReportParameters("CopyName").value = "Original for BUYER"
+					'reportBook.Reports(1).ReportParameters("PrintProInvId").value = sID
+					'reportBook.Reports(1).ReportParameters("CopyName").value = "EXTRA COPY (not for CENVAT)"
+
+					Dim delim As Char() = {"|"c}
+				    Dim strArr As String() = allPrtCopyHdr.Split(delim)
+					Dim si as Integer
+					si = 0
+				    For Each s As String In strArr
+						reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoiceFeb16())
+						reportBook.Reports(si).ReportParameters("PrintProInvId").value = sID
+						reportBook.Reports(si).ReportParameters("CopyName").value = s
+						si = si + 1
+				    Next s
     	            ''Dim sID As String = me.id1.text
 					'Dim fs As New ServelInvoicingReportLibrary.ServelInvoice()
 					'fs.ReportParameters("PrintProInvId").value = sID

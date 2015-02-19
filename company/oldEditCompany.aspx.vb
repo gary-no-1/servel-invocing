@@ -1,6 +1,6 @@
 ﻿
-' This file implements the code-behind class for EditCompany.aspx.
-' EditCompany.Controls.vb contains the Table, Row and Record control classes
+' This file implements the code-behind class for oldEditCompany.aspx.
+' oldEditCompany.Controls.vb contains the Table, Row and Record control classes
 ' for the page.  Best practices calls for overriding methods in the Row or Record control classes.
 
 #Region "Imports statements"
@@ -33,9 +33,9 @@ Imports ServelInvocing.Data
   
 Namespace ServelInvocing.UI
   
-Partial Public Class EditCompany
+Partial Public Class oldEditCompany
         Inherits BaseApplicationPage
-' Code-behind class for the EditCompany page.
+' Code-behind class for the oldEditCompany page.
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
@@ -160,36 +160,35 @@ Partial Public Class EditCompany
 
 #Region "Section 2: Do not modify this section."
 
-        Public WithEvents addressLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents CancelButton As ThemeButton
-        Public WithEvents cer_noLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents cer_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents cityLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents CompanyRecordControl As ServelInvocing.UI.Controls.EditCompany.CompanyRecordControl
+        Public WithEvents CompanyRecordControl As ServelInvocing.UI.Controls.oldEditCompany.CompanyRecordControl
         Public WithEvents CompanyTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents divisionLabel1 As System.Web.UI.WebControls.Literal
-        Public WithEvents ecc_noLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents divisionLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents email_bccLabel As System.Web.UI.WebControls.Literal
         Public WithEvents email_fromLabel As System.Web.UI.WebControls.Literal
         Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents fin_year_endLabel1 As System.Web.UI.WebControls.Literal
-        Public WithEvents fin_year_startLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents fin_year_endLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents fin_year_startLabel As System.Web.UI.WebControls.Literal
         Public WithEvents inv_declarationLabel As System.Web.UI.WebControls.Literal
         Public WithEvents inv_email_bodyLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents inv_pfxLabel1 As System.Web.UI.WebControls.Literal
-        Public WithEvents inv_sfxLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_pfxLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_sfxLabel As System.Web.UI.WebControls.Literal
         Public WithEvents nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents next_inv_noLabel1 As System.Web.UI.WebControls.Literal
-        Public WithEvents pad_inv_noLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents next_inv_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents pad_inv_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents pan_noLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents pan_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal
         Public WithEvents pincodeLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents print_inv_copy_hdrLabel As System.Web.UI.WebControls.Literal
         Public WithEvents proforma_email_bodyLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents rangeLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents rangeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents SaveButton As ThemeButton
         Public WithEvents stateLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tin_noLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   
@@ -227,7 +226,7 @@ Partial Public Class EditCompany
             ' Check if user has access to this page.  Redirects to either sign-in page
             ' or 'no access' page if not. Does not do anything if role-based security
             ' is not turned on, but you can override to add your own security.
-            Me.Authorize("")
+            Me.Authorize("NOT_ANONYMOUS")
     
             If (Not Me.IsPostBack) Then
             

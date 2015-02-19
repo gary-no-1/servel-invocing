@@ -984,6 +984,35 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.proforma_email_bodyColumn)
 	End Sub
 
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.print_inv_copy_hdr field.
+	''' </summary>
+	Public Function Getprint_inv_copy_hdrValue() As ColumnValue
+		Return Me.GetValue(TableUtils.print_inv_copy_hdrColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.print_inv_copy_hdr field.
+	''' </summary>
+	Public Function Getprint_inv_copy_hdrFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.print_inv_copy_hdrColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.print_inv_copy_hdr field.
+	''' </summary>
+	Public Sub Setprint_inv_copy_hdrFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.print_inv_copy_hdrColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.print_inv_copy_hdr field.
+	''' </summary>
+	Public Sub Setprint_inv_copy_hdrFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.print_inv_copy_hdrColumn)
+	End Sub
+
 
 
 #End Region
@@ -2077,6 +2106,41 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property proforma_email_bodyDefault() As String
         Get
             Return TableUtils.proforma_email_bodyColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.print_inv_copy_hdr field.
+	''' </summary>
+	Public Property print_inv_copy_hdr() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.print_inv_copy_hdrColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.print_inv_copy_hdrColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property print_inv_copy_hdrSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.print_inv_copy_hdrColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property print_inv_copy_hdrDefault() As String
+        Get
+            Return TableUtils.print_inv_copy_hdrColumn.DefaultValue
         End Get
     End Property
 

@@ -3,19 +3,20 @@
   <Generator>Iron Speed Designer</Generator>
   <Version>7.0.0</Version>
   <Self>
-    <Name>EditCompany</Name>
+    <Name>oldEditCompany</Name>
     <Type>Page</Type>
     <SubType>DotNet</SubType>
     <MasterLayout>../Master Pages/VerticalMenu.master</MasterLayout>
     <GenerateDirectory>company</GenerateDirectory>
-    <Layout>company\EditCompany.html</Layout>
-    <DisplayName>EditCompany</DisplayName>
+    <Layout>company\oldEditCompany.html</Layout>
+    <DisplayName>oldEditCompany</DisplayName>
     <Description>Standard record panel.</Description>
-    <CheckSum>-660013349-40478</CheckSum>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
+    <CheckSum>-862432612-26202</CheckSum>
   </Self>
   <ComposedOf>
     <ContainedComponent>
-      <Name>address1</Name>
+      <Name>address</Name>
       <Type>FieldValue</Type>
       <Field>address</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -61,7 +62,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>addressLabel1</Name>
+      <Name>addressLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -120,7 +121,7 @@
       </PassthroughAttributes>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>cer_no1</Name>
+      <Name>cer_no</Name>
       <Type>FieldValue</Type>
       <Field>cer_no</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -150,7 +151,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>cer_noLabel1</Name>
+      <Name>cer_noLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -164,10 +165,6 @@
         <Attribute>
           <Name>InternalUse:Table</Name>
           <Value>company</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
         </Attribute>
         <Attribute>
           <Name>Text</Name>
@@ -223,10 +220,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%city</Value>
         </Attribute>
@@ -262,17 +255,6 @@
       </PassthroughAttributes>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>CompanyRecordControlTabContainer</Name>
-      <Type>TabContainer</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>PanelLayout</Name>
-          <Value>Tabbed</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>CompanyRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>CompanyTitle</Name>
       <Type>Html</Type>
       <PassthroughAttributes>
@@ -288,7 +270,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>division1</Name>
+      <Name>division</Name>
       <Type>FieldValue</Type>
       <Field>division</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -318,7 +300,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>divisionLabel1</Name>
+      <Name>divisionLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -334,10 +316,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%division</Value>
         </Attribute>
@@ -345,7 +323,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>ecc_no1</Name>
+      <Name>ecc_no</Name>
       <Type>FieldValue</Type>
       <Field>ecc_no</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -375,7 +353,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>ecc_noLabel1</Name>
+      <Name>ecc_noLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -389,10 +367,6 @@
         <Attribute>
           <Name>InternalUse:Table</Name>
           <Value>company</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
         </Attribute>
         <Attribute>
           <Name>Text</Name>
@@ -478,10 +452,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%email_bcc</Value>
         </Attribute>
@@ -535,10 +505,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%email_from</Value>
         </Attribute>
@@ -562,10 +528,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%email</Value>
         </Attribute>
@@ -573,7 +535,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>fin_year_end1</Name>
+      <Name>fin_year_end</Name>
       <Type>FieldValue</Type>
       <Field>fin_year_end</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -607,7 +569,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>fin_year_endLabel1</Name>
+      <Name>fin_year_endLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -623,10 +585,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%fin_year_end</Value>
         </Attribute>
@@ -634,7 +592,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>fin_year_start1</Name>
+      <Name>fin_year_start</Name>
       <Type>FieldValue</Type>
       <Field>fin_year_start</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -668,7 +626,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>fin_year_startLabel1</Name>
+      <Name>fin_year_startLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -682,10 +640,6 @@
         <Attribute>
           <Name>InternalUse:Table</Name>
           <Value>company</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
         </Attribute>
         <Attribute>
           <Name>Text</Name>
@@ -757,10 +711,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%inv_declaration</Value>
         </Attribute>
@@ -830,10 +780,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%inv_email_body</Value>
         </Attribute>
@@ -841,7 +787,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>inv_pfx1</Name>
+      <Name>inv_pfx</Name>
       <Type>FieldValue</Type>
       <Field>inv_pfx</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -871,7 +817,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>inv_pfxLabel1</Name>
+      <Name>inv_pfxLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -887,10 +833,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%inv_pfx</Value>
         </Attribute>
@@ -898,7 +840,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>inv_sfx1</Name>
+      <Name>inv_sfx</Name>
       <Type>FieldValue</Type>
       <Field>inv_sfx</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -928,7 +870,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>inv_sfxLabel1</Name>
+      <Name>inv_sfxLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -942,10 +884,6 @@
         <Attribute>
           <Name>InternalUse:Table</Name>
           <Value>company</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
         </Attribute>
         <Attribute>
           <Name>Text</Name>
@@ -1001,10 +939,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%name</Value>
         </Attribute>
@@ -1012,7 +946,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>next_inv_no1</Name>
+      <Name>next_inv_no</Name>
       <Type>FieldValue</Type>
       <Field>next_inv_no</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -1042,7 +976,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>next_inv_noLabel1</Name>
+      <Name>next_inv_noLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -1058,10 +992,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%next_inv_no</Value>
         </Attribute>
@@ -1069,7 +999,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>pad_inv_no1</Name>
+      <Name>pad_inv_no</Name>
       <Type>FieldValue</Type>
       <Field>pad_inv_no</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -1099,7 +1029,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>pad_inv_noLabel1</Name>
+      <Name>pad_inv_noLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -1113,10 +1043,6 @@
         <Attribute>
           <Name>InternalUse:Table</Name>
           <Value>company</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
         </Attribute>
         <Attribute>
           <Name>Text</Name>
@@ -1136,7 +1062,7 @@
       </PassthroughAttributes>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>pan_no1</Name>
+      <Name>pan_no</Name>
       <Type>FieldValue</Type>
       <Field>pan_no</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -1166,7 +1092,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>pan_noLabel1</Name>
+      <Name>pan_noLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -1180,10 +1106,6 @@
         <Attribute>
           <Name>InternalUse:Table</Name>
           <Value>company</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
         </Attribute>
         <Attribute>
           <Name>Text</Name>
@@ -1239,10 +1161,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%phone</Value>
         </Attribute>
@@ -1296,81 +1214,8 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%pincode</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>CompanyRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>print_inv_copy_hdr</Name>
-      <Type>FieldValue</Type>
-      <Field>print_inv_copy_hdr</Field>
-      <FieldValueStyle>TextBox</FieldValueStyle>
-      <Table>company</Table>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Columns</Name>
-          <Value>60</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CssClass</Name>
-          <Value>field_input</Value>
-        </Attribute>
-        <Attribute>
-          <Name>EnableIncrementDecrementButtons</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:DataSource</Name>
-          <Value>Parent</Value>
-        </Attribute>
-        <Attribute>
-          <Name>print_inv_copy_hdrRequiredFieldValidator:Enabled</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>print_inv_copy_hdrRequiredFieldValidator:Text</Name>
-          <Value>*</Value>
-        </Attribute>
-        <Attribute>
-          <Name>RichTextEditorType</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Rows</Name>
-          <Value>2</Value>
-        </Attribute>
-        <Attribute>
-          <Name>TextMode</Name>
-          <Value>MultiLine</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>CompanyRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>print_inv_copy_hdrLabel</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>CompanyRecordControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Field</Name>
-          <Value>print_inv_copy_hdr</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:Table</Name>
-          <Value>company</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>%ISD_DEFAULT%company%print_inv_copy_hdr</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>CompanyRecordControl</InsideControl>
@@ -1438,10 +1283,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%proforma_email_body</Value>
         </Attribute>
@@ -1449,7 +1290,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>range1</Name>
+      <Name>range</Name>
       <Type>FieldValue</Type>
       <Field>range</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -1479,7 +1320,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>rangeLabel1</Name>
+      <Name>rangeLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -1493,10 +1334,6 @@
         <Attribute>
           <Name>InternalUse:Table</Name>
           <Value>company</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
         </Attribute>
         <Attribute>
           <Name>Text</Name>
@@ -1584,10 +1421,6 @@
           <Value>company</Value>
         </Attribute>
         <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
           <Name>Text</Name>
           <Value>%ISD_DEFAULT%company%state</Value>
         </Attribute>
@@ -1595,37 +1428,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>TabPanel</Name>
-      <Type>TabPanel</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>ParentTabContainer</Name>
-          <Value>CompanyRecordControlTabContainer</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>Company Information</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>CompanyRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>TabPanel1</Name>
-      <Type>TabPanel</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>ParentTabContainer</Name>
-          <Value>CompanyRecordControlTabContainer</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>Invocing Information</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>CompanyRecordControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>tin_no1</Name>
+      <Name>tin_no</Name>
       <Type>FieldValue</Type>
       <Field>tin_no</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -1655,7 +1458,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>tin_noLabel1</Name>
+      <Name>tin_noLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -1669,10 +1472,6 @@
         <Attribute>
           <Name>InternalUse:Table</Name>
           <Value>company</Value>
-        </Attribute>
-        <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
         </Attribute>
         <Attribute>
           <Name>Text</Name>
@@ -1925,51 +1724,7 @@
     &lt;/Prolog&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;  &amp;lt;GEN:TABCONTAINER NAME="CompanyRecordControlTabContainer"&amp;gt; 
-   &amp;lt;GEN:TABPANEL NAME="TabPanel"&amp;gt; 
-    &amp;lt;GEN:PANEL NAME="MainPanel" /&amp;gt; 
-   &amp;lt;/GEN:TABPANEL&amp;gt; 
-   &amp;lt;GEN:TABPANEL NAME="TabPanel1"&amp;gt; 
-    &amp;lt;GEN:PANEL NAME="DetailsPanel" /&amp;gt; 
-   &amp;lt;/GEN:TABPANEL&amp;gt; 
-  &amp;lt;/GEN:TABCONTAINER&amp;gt; 
-&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;text-align:center;&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;RowAttributes /&gt;
-    &lt;/Row&gt;
-    &lt;Epilog&gt;
-      &lt;Value&gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
-    &lt;/Epilog&gt;
-    &lt;TableAttributes&gt;
-      &lt;Attribute&gt;
-        &lt;Name&gt;cellpadding&lt;/Name&gt;
-        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
-      &lt;/Attribute&gt;
-      &lt;Attribute&gt;
-        &lt;Name&gt;cellspacing&lt;/Name&gt;
-        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
-      &lt;/Attribute&gt;
-      &lt;Attribute&gt;
-        &lt;Name&gt;border&lt;/Name&gt;
-        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
-      &lt;/Attribute&gt;
-    &lt;/TableAttributes&gt;
-  &lt;/Layout&gt;
-  &lt;Layout Name="MainPanel" Type="BlankPanel" PanelControlName="CompanyRecordControl"&gt;
-    &lt;Prolog /&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="nameLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="nameLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -1978,7 +1733,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="name" /&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="name"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2006,7 +1761,7 @@
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="addressLabel1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="addressLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2015,7 +1770,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="address1" /&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="address" /&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2142,7 +1897,7 @@
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="phoneLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="phoneLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2151,7 +1906,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="phone" /&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="phone"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2160,7 +1915,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="emailLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="emailLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2169,46 +1924,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="email" /&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;RowAttributes /&gt;
-    &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="pan_noLabel1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="pan_no1" /&amp;gt; &lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tin_noLabel1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tin_no1" /&amp;gt; &lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="email"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2220,7 +1936,7 @@
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="rangeLabel1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="pan_noLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2229,7 +1945,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="range1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="pan_no"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2238,7 +1954,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="divisionLabel1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="tin_noLabel"/&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2247,7 +1963,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="division1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="tin_no"/&amp;gt; &lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2259,7 +1975,7 @@
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="ecc_noLabel1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="rangeLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2268,7 +1984,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="ecc_no1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="range" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2277,7 +1993,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="cer_noLabel1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="divisionLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2286,7 +2002,46 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="cer_no1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="division" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="ecc_noLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="ecc_no" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="cer_noLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="cer_no" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2314,7 +2069,7 @@
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="fin_year_startLabel1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="fin_year_startLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2323,7 +2078,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="fin_year_start1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="fin_year_start" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2332,7 +2087,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="fin_year_endLabel1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="fin_year_endLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2341,46 +2096,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="fin_year_end1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;RowAttributes /&gt;
-    &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="inv_pfxLabel1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_pfx1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="inv_sfxLabel1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_sfx1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="fin_year_end" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2392,7 +2108,7 @@
     &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="next_inv_noLabel1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="inv_pfxLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2401,7 +2117,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="next_inv_no1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_pfx" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2410,7 +2126,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="pad_inv_noLabel1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="inv_sfxLabel" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2419,7 +2135,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="pad_inv_no1" /&amp;gt;&lt;/Value&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_sfx" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2429,11 +2145,61 @@
       &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
-    &lt;Epilog /&gt;
-    &lt;TableAttributes /&gt;
-  &lt;/Layout&gt;
-  &lt;Layout Name="DetailsPanel" Type="BlankPanel" PanelControlName="CompanyRecordControl"&gt;
-    &lt;Prolog /&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="next_inv_noLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="next_inv_no" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="pad_inv_noLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="pad_inv_no" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;hr&amp;gt;&amp;lt;/hr&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;colspan&lt;/Name&gt;
+            &lt;AttributeValue&gt;4&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="email_fromLabel" /&amp;gt;&lt;/Value&gt;
@@ -2576,61 +2342,23 @@
       &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;hr&amp;gt;&amp;lt;/hr&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;colspan&lt;/Name&gt;
-            &lt;AttributeValue&gt;4&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;RowAttributes /&gt;
-    &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="print_inv_copy_hdrLabel" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="print_inv_copy_hdr" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;RowAttributes /&gt;
-    &lt;/Row&gt;
-    &lt;Epilog /&gt;
-    &lt;TableAttributes /&gt;
+    &lt;Epilog&gt;
+      &lt;Value&gt;&amp;lt;/asp:panel&amp;gt;&lt;/Value&gt;
+    &lt;/Epilog&gt;
+    &lt;TableAttributes&gt;
+      &lt;Attribute&gt;
+        &lt;Name&gt;cellpadding&lt;/Name&gt;
+        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
+      &lt;/Attribute&gt;
+      &lt;Attribute&gt;
+        &lt;Name&gt;cellspacing&lt;/Name&gt;
+        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
+      &lt;/Attribute&gt;
+      &lt;Attribute&gt;
+        &lt;Name&gt;border&lt;/Name&gt;
+        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
+      &lt;/Attribute&gt;
+    &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
   &lt;Layout Name="PageButtons" Type="PageButton"&gt;
     &lt;Prolog /&gt;

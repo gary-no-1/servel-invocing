@@ -76,15 +76,15 @@ Public Class BaseCompanyRecordControl
          
               ' Register the event handlers.
           
-              AddHandler Me.address.TextChanged, AddressOf address_TextChanged
+              AddHandler Me.address1.TextChanged, AddressOf address1_TextChanged
             
-              AddHandler Me.cer_no.TextChanged, AddressOf cer_no_TextChanged
+              AddHandler Me.cer_no1.TextChanged, AddressOf cer_no1_TextChanged
             
               AddHandler Me.city.TextChanged, AddressOf city_TextChanged
             
-              AddHandler Me.division.TextChanged, AddressOf division_TextChanged
+              AddHandler Me.division1.TextChanged, AddressOf division1_TextChanged
             
-              AddHandler Me.ecc_no.TextChanged, AddressOf ecc_no_TextChanged
+              AddHandler Me.ecc_no1.TextChanged, AddressOf ecc_no1_TextChanged
             
               AddHandler Me.email.TextChanged, AddressOf email_TextChanged
             
@@ -92,37 +92,39 @@ Public Class BaseCompanyRecordControl
             
               AddHandler Me.email_from.TextChanged, AddressOf email_from_TextChanged
             
-              AddHandler Me.fin_year_end.TextChanged, AddressOf fin_year_end_TextChanged
+              AddHandler Me.fin_year_end1.TextChanged, AddressOf fin_year_end1_TextChanged
             
-              AddHandler Me.fin_year_start.TextChanged, AddressOf fin_year_start_TextChanged
+              AddHandler Me.fin_year_start1.TextChanged, AddressOf fin_year_start1_TextChanged
             
               AddHandler Me.inv_declaration.TextChanged, AddressOf inv_declaration_TextChanged
             
               AddHandler Me.inv_email_body.TextChanged, AddressOf inv_email_body_TextChanged
             
-              AddHandler Me.inv_pfx.TextChanged, AddressOf inv_pfx_TextChanged
+              AddHandler Me.inv_pfx1.TextChanged, AddressOf inv_pfx1_TextChanged
             
-              AddHandler Me.inv_sfx.TextChanged, AddressOf inv_sfx_TextChanged
+              AddHandler Me.inv_sfx1.TextChanged, AddressOf inv_sfx1_TextChanged
             
               AddHandler Me.name.TextChanged, AddressOf name_TextChanged
             
-              AddHandler Me.next_inv_no.TextChanged, AddressOf next_inv_no_TextChanged
+              AddHandler Me.next_inv_no1.TextChanged, AddressOf next_inv_no1_TextChanged
             
-              AddHandler Me.pad_inv_no.TextChanged, AddressOf pad_inv_no_TextChanged
+              AddHandler Me.pad_inv_no1.TextChanged, AddressOf pad_inv_no1_TextChanged
             
-              AddHandler Me.pan_no.TextChanged, AddressOf pan_no_TextChanged
+              AddHandler Me.pan_no1.TextChanged, AddressOf pan_no1_TextChanged
             
               AddHandler Me.phone.TextChanged, AddressOf phone_TextChanged
             
               AddHandler Me.pincode.TextChanged, AddressOf pincode_TextChanged
             
+              AddHandler Me.print_inv_copy_hdr.TextChanged, AddressOf print_inv_copy_hdr_TextChanged
+            
               AddHandler Me.proforma_email_body.TextChanged, AddressOf proforma_email_body_TextChanged
             
-              AddHandler Me.range.TextChanged, AddressOf range_TextChanged
+              AddHandler Me.range1.TextChanged, AddressOf range1_TextChanged
             
               AddHandler Me.state.TextChanged, AddressOf state_TextChanged
             
-              AddHandler Me.tin_no.TextChanged, AddressOf tin_no_TextChanged
+              AddHandler Me.tin_no1.TextChanged, AddressOf tin_no1_TextChanged
             
         End Sub
 
@@ -202,54 +204,56 @@ Public Class BaseCompanyRecordControl
       
             ' Call the Set methods for each controls on the panel
         
-            Setaddress()
-            SetaddressLabel()
-            Setcer_no()
-            Setcer_noLabel()
+            Setaddress1()
+            SetaddressLabel1()
+            Setcer_no1()
+            Setcer_noLabel1()
             Setcity()
             SetcityLabel()
-            Setdivision()
-            SetdivisionLabel()
-            Setecc_no()
-            Setecc_noLabel()
+            Setdivision1()
+            SetdivisionLabel1()
+            Setecc_no1()
+            Setecc_noLabel1()
             Setemail()
             Setemail_bcc()
             Setemail_bccLabel()
             Setemail_from()
             Setemail_fromLabel()
             SetemailLabel()
-            Setfin_year_end()
-            Setfin_year_endLabel()
-            Setfin_year_start()
-            Setfin_year_startLabel()
+            Setfin_year_end1()
+            Setfin_year_endLabel1()
+            Setfin_year_start1()
+            Setfin_year_startLabel1()
             Setinv_declaration()
             Setinv_declarationLabel()
             Setinv_email_body()
             Setinv_email_bodyLabel()
-            Setinv_pfx()
-            Setinv_pfxLabel()
-            Setinv_sfx()
-            Setinv_sfxLabel()
+            Setinv_pfx1()
+            Setinv_pfxLabel1()
+            Setinv_sfx1()
+            Setinv_sfxLabel1()
             Setname()
             SetnameLabel()
-            Setnext_inv_no()
-            Setnext_inv_noLabel()
-            Setpad_inv_no()
-            Setpad_inv_noLabel()
-            Setpan_no()
-            Setpan_noLabel()
+            Setnext_inv_no1()
+            Setnext_inv_noLabel1()
+            Setpad_inv_no1()
+            Setpad_inv_noLabel1()
+            Setpan_no1()
+            Setpan_noLabel1()
             Setphone()
             SetphoneLabel()
             Setpincode()
             SetpincodeLabel()
+            Setprint_inv_copy_hdr()
+            Setprint_inv_copy_hdrLabel()
             Setproforma_email_body()
             Setproforma_email_bodyLabel()
-            Setrange()
-            SetrangeLabel()
+            Setrange1()
+            SetrangeLabel1()
             Setstate()
             SetstateLabel()
-            Settin_no()
-            Settin_noLabel()
+            Settin_no1()
+            Settin_noLabel1()
       
       
             Me.IsNewRecord = True
@@ -268,17 +272,17 @@ Public Class BaseCompanyRecordControl
         End Sub
         
         
-        Public Overridable Sub Setaddress()
+        Public Overridable Sub Setaddress1()
             
         
             ' Set the address TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.address is the ASP:TextBox on the webpage.
+            ' Me.address1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setaddress()
+            '     MyBase.Setaddress1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -290,30 +294,30 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.address)
                             
-                Me.address.Text = formattedValue
+                Me.address1.Text = formattedValue
               
             Else 
             
                 ' address is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.address.Text = CompanyTable.address.Format(CompanyTable.address.DefaultValue)
+                Me.address1.Text = CompanyTable.address.Format(CompanyTable.address.DefaultValue)
                         		
                 End If
                  
         End Sub
                 
-        Public Overridable Sub Setcer_no()
+        Public Overridable Sub Setcer_no1()
             
         
             ' Set the cer_no TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.cer_no is the ASP:TextBox on the webpage.
+            ' Me.cer_no1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setcer_no()
+            '     MyBase.Setcer_no1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -325,14 +329,14 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.cer_no)
                             
-                Me.cer_no.Text = formattedValue
+                Me.cer_no1.Text = formattedValue
               
             Else 
             
                 ' cer_no is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.cer_no.Text = CompanyTable.cer_no.Format(CompanyTable.cer_no.DefaultValue)
+                Me.cer_no1.Text = CompanyTable.cer_no.Format(CompanyTable.cer_no.DefaultValue)
                         		
                 End If
                  
@@ -373,17 +377,17 @@ Public Class BaseCompanyRecordControl
                  
         End Sub
                 
-        Public Overridable Sub Setdivision()
+        Public Overridable Sub Setdivision1()
             
         
             ' Set the division TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.division is the ASP:TextBox on the webpage.
+            ' Me.division1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setdivision()
+            '     MyBase.Setdivision1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -395,30 +399,30 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.division)
                             
-                Me.division.Text = formattedValue
+                Me.division1.Text = formattedValue
               
             Else 
             
                 ' division is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.division.Text = CompanyTable.division.Format(CompanyTable.division.DefaultValue)
+                Me.division1.Text = CompanyTable.division.Format(CompanyTable.division.DefaultValue)
                         		
                 End If
                  
         End Sub
                 
-        Public Overridable Sub Setecc_no()
+        Public Overridable Sub Setecc_no1()
             
         
             ' Set the ecc_no TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.ecc_no is the ASP:TextBox on the webpage.
+            ' Me.ecc_no1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setecc_no()
+            '     MyBase.Setecc_no1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -430,14 +434,14 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.ecc_no)
                             
-                Me.ecc_no.Text = formattedValue
+                Me.ecc_no1.Text = formattedValue
               
             Else 
             
                 ' ecc_no is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.ecc_no.Text = CompanyTable.ecc_no.Format(CompanyTable.ecc_no.DefaultValue)
+                Me.ecc_no1.Text = CompanyTable.ecc_no.Format(CompanyTable.ecc_no.DefaultValue)
                         		
                 End If
                  
@@ -548,17 +552,17 @@ Public Class BaseCompanyRecordControl
                  
         End Sub
                 
-        Public Overridable Sub Setfin_year_end()
+        Public Overridable Sub Setfin_year_end1()
             
         
             ' Set the fin_year_end TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.fin_year_end is the ASP:TextBox on the webpage.
+            ' Me.fin_year_end1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setfin_year_end()
+            '     MyBase.Setfin_year_end1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -570,30 +574,30 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.fin_year_end, "d")
                             
-                Me.fin_year_end.Text = formattedValue
+                Me.fin_year_end1.Text = formattedValue
               
             Else 
             
                 ' fin_year_end is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.fin_year_end.Text = CompanyTable.fin_year_end.Format(CompanyTable.fin_year_end.DefaultValue, "d")
+                Me.fin_year_end1.Text = CompanyTable.fin_year_end.Format(CompanyTable.fin_year_end.DefaultValue, "d")
                         		
                 End If
                  
         End Sub
                 
-        Public Overridable Sub Setfin_year_start()
+        Public Overridable Sub Setfin_year_start1()
             
         
             ' Set the fin_year_start TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.fin_year_start is the ASP:TextBox on the webpage.
+            ' Me.fin_year_start1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setfin_year_start()
+            '     MyBase.Setfin_year_start1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -605,14 +609,14 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.fin_year_start, "d")
                             
-                Me.fin_year_start.Text = formattedValue
+                Me.fin_year_start1.Text = formattedValue
               
             Else 
             
                 ' fin_year_start is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.fin_year_start.Text = CompanyTable.fin_year_start.Format(CompanyTable.fin_year_start.DefaultValue, "d")
+                Me.fin_year_start1.Text = CompanyTable.fin_year_start.Format(CompanyTable.fin_year_start.DefaultValue, "d")
                         		
                 End If
                  
@@ -688,17 +692,17 @@ Public Class BaseCompanyRecordControl
                  
         End Sub
                 
-        Public Overridable Sub Setinv_pfx()
+        Public Overridable Sub Setinv_pfx1()
             
         
             ' Set the inv_pfx TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.inv_pfx is the ASP:TextBox on the webpage.
+            ' Me.inv_pfx1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setinv_pfx()
+            '     MyBase.Setinv_pfx1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -710,30 +714,30 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.inv_pfx)
                             
-                Me.inv_pfx.Text = formattedValue
+                Me.inv_pfx1.Text = formattedValue
               
             Else 
             
                 ' inv_pfx is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.inv_pfx.Text = CompanyTable.inv_pfx.Format(CompanyTable.inv_pfx.DefaultValue)
+                Me.inv_pfx1.Text = CompanyTable.inv_pfx.Format(CompanyTable.inv_pfx.DefaultValue)
                         		
                 End If
                  
         End Sub
                 
-        Public Overridable Sub Setinv_sfx()
+        Public Overridable Sub Setinv_sfx1()
             
         
             ' Set the inv_sfx TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.inv_sfx is the ASP:TextBox on the webpage.
+            ' Me.inv_sfx1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setinv_sfx()
+            '     MyBase.Setinv_sfx1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -745,14 +749,14 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.inv_sfx)
                             
-                Me.inv_sfx.Text = formattedValue
+                Me.inv_sfx1.Text = formattedValue
               
             Else 
             
                 ' inv_sfx is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.inv_sfx.Text = CompanyTable.inv_sfx.Format(CompanyTable.inv_sfx.DefaultValue)
+                Me.inv_sfx1.Text = CompanyTable.inv_sfx.Format(CompanyTable.inv_sfx.DefaultValue)
                         		
                 End If
                  
@@ -793,17 +797,17 @@ Public Class BaseCompanyRecordControl
                  
         End Sub
                 
-        Public Overridable Sub Setnext_inv_no()
+        Public Overridable Sub Setnext_inv_no1()
             
         
             ' Set the next_inv_no TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.next_inv_no is the ASP:TextBox on the webpage.
+            ' Me.next_inv_no1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setnext_inv_no()
+            '     MyBase.Setnext_inv_no1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -815,30 +819,30 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.next_inv_no)
                             
-                Me.next_inv_no.Text = formattedValue
+                Me.next_inv_no1.Text = formattedValue
               
             Else 
             
                 ' next_inv_no is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.next_inv_no.Text = CompanyTable.next_inv_no.Format(CompanyTable.next_inv_no.DefaultValue)
+                Me.next_inv_no1.Text = CompanyTable.next_inv_no.Format(CompanyTable.next_inv_no.DefaultValue)
                         		
                 End If
                  
         End Sub
                 
-        Public Overridable Sub Setpad_inv_no()
+        Public Overridable Sub Setpad_inv_no1()
             
         
             ' Set the pad_inv_no TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.pad_inv_no is the ASP:TextBox on the webpage.
+            ' Me.pad_inv_no1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setpad_inv_no()
+            '     MyBase.Setpad_inv_no1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -850,30 +854,30 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.pad_inv_no)
                             
-                Me.pad_inv_no.Text = formattedValue
+                Me.pad_inv_no1.Text = formattedValue
               
             Else 
             
                 ' pad_inv_no is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.pad_inv_no.Text = CompanyTable.pad_inv_no.Format(CompanyTable.pad_inv_no.DefaultValue)
+                Me.pad_inv_no1.Text = CompanyTable.pad_inv_no.Format(CompanyTable.pad_inv_no.DefaultValue)
                         		
                 End If
                  
         End Sub
                 
-        Public Overridable Sub Setpan_no()
+        Public Overridable Sub Setpan_no1()
             
         
             ' Set the pan_no TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.pan_no is the ASP:TextBox on the webpage.
+            ' Me.pan_no1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setpan_no()
+            '     MyBase.Setpan_no1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -885,14 +889,14 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.pan_no)
                             
-                Me.pan_no.Text = formattedValue
+                Me.pan_no1.Text = formattedValue
               
             Else 
             
                 ' pan_no is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.pan_no.Text = CompanyTable.pan_no.Format(CompanyTable.pan_no.DefaultValue)
+                Me.pan_no1.Text = CompanyTable.pan_no.Format(CompanyTable.pan_no.DefaultValue)
                         		
                 End If
                  
@@ -968,6 +972,41 @@ Public Class BaseCompanyRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Setprint_inv_copy_hdr()
+            
+        
+            ' Set the print_inv_copy_hdr TextBox on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.print_inv_copy_hdr is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setprint_inv_copy_hdr()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.print_inv_copy_hdrSpecified Then
+                				
+                ' If the print_inv_copy_hdr is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.print_inv_copy_hdr)
+                            
+                Me.print_inv_copy_hdr.Text = formattedValue
+              
+            Else 
+            
+                ' print_inv_copy_hdr is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.print_inv_copy_hdr.Text = CompanyTable.print_inv_copy_hdr.Format(CompanyTable.print_inv_copy_hdr.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setproforma_email_body()
             
         
@@ -1003,17 +1042,17 @@ Public Class BaseCompanyRecordControl
                  
         End Sub
                 
-        Public Overridable Sub Setrange()
+        Public Overridable Sub Setrange1()
             
         
             ' Set the range TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.range is the ASP:TextBox on the webpage.
+            ' Me.range1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setrange()
+            '     MyBase.Setrange1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -1025,14 +1064,14 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.range)
                             
-                Me.range.Text = formattedValue
+                Me.range1.Text = formattedValue
               
             Else 
             
                 ' range is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.range.Text = CompanyTable.range.Format(CompanyTable.range.DefaultValue)
+                Me.range1.Text = CompanyTable.range.Format(CompanyTable.range.DefaultValue)
                         		
                 End If
                  
@@ -1073,17 +1112,17 @@ Public Class BaseCompanyRecordControl
                  
         End Sub
                 
-        Public Overridable Sub Settin_no()
+        Public Overridable Sub Settin_no1()
             
         
             ' Set the tin_no TextBox on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.tin_no is the ASP:TextBox on the webpage.
+            ' Me.tin_no1 is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Settin_no()
+            '     MyBase.Settin_no1()
             ' and add your own code before or after the call to the MyBase function.
 
             
@@ -1095,25 +1134,25 @@ Public Class BaseCompanyRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(CompanyTable.tin_no)
                             
-                Me.tin_no.Text = formattedValue
+                Me.tin_no1.Text = formattedValue
               
             Else 
             
                 ' tin_no is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.tin_no.Text = CompanyTable.tin_no.Format(CompanyTable.tin_no.DefaultValue)
+                Me.tin_no1.Text = CompanyTable.tin_no.Format(CompanyTable.tin_no.DefaultValue)
                         		
                 End If
                  
         End Sub
                 
-        Public Overridable Sub SetaddressLabel()
+        Public Overridable Sub SetaddressLabel1()
             
                     
         End Sub
                 
-        Public Overridable Sub Setcer_noLabel()
+        Public Overridable Sub Setcer_noLabel1()
             
                     
         End Sub
@@ -1123,12 +1162,12 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
-        Public Overridable Sub SetdivisionLabel()
+        Public Overridable Sub SetdivisionLabel1()
             
                     
         End Sub
                 
-        Public Overridable Sub Setecc_noLabel()
+        Public Overridable Sub Setecc_noLabel1()
             
                     
         End Sub
@@ -1148,12 +1187,12 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Setfin_year_endLabel()
+        Public Overridable Sub Setfin_year_endLabel1()
             
                     
         End Sub
                 
-        Public Overridable Sub Setfin_year_startLabel()
+        Public Overridable Sub Setfin_year_startLabel1()
             
                     
         End Sub
@@ -1168,12 +1207,12 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Setinv_pfxLabel()
+        Public Overridable Sub Setinv_pfxLabel1()
             
                     
         End Sub
                 
-        Public Overridable Sub Setinv_sfxLabel()
+        Public Overridable Sub Setinv_sfxLabel1()
             
                     
         End Sub
@@ -1183,17 +1222,17 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Setnext_inv_noLabel()
+        Public Overridable Sub Setnext_inv_noLabel1()
             
                     
         End Sub
                 
-        Public Overridable Sub Setpad_inv_noLabel()
+        Public Overridable Sub Setpad_inv_noLabel1()
             
                     
         End Sub
                 
-        Public Overridable Sub Setpan_noLabel()
+        Public Overridable Sub Setpan_noLabel1()
             
                     
         End Sub
@@ -1208,12 +1247,17 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setprint_inv_copy_hdrLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setproforma_email_bodyLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub SetrangeLabel()
+        Public Overridable Sub SetrangeLabel1()
             
                     
         End Sub
@@ -1223,7 +1267,7 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Settin_noLabel()
+        Public Overridable Sub Settin_noLabel1()
             
                     
         End Sub
@@ -1332,34 +1376,35 @@ Public Class BaseCompanyRecordControl
       
             ' Call the Get methods for each of the user interface controls.
         
-            Getaddress()
-            Getcer_no()
+            Getaddress1()
+            Getcer_no1()
             Getcity()
-            Getdivision()
-            Getecc_no()
+            Getdivision1()
+            Getecc_no1()
             Getemail()
             Getemail_bcc()
             Getemail_from()
-            Getfin_year_end()
-            Getfin_year_start()
+            Getfin_year_end1()
+            Getfin_year_start1()
             Getinv_declaration()
             Getinv_email_body()
-            Getinv_pfx()
-            Getinv_sfx()
+            Getinv_pfx1()
+            Getinv_sfx1()
             Getname()
-            Getnext_inv_no()
-            Getpad_inv_no()
-            Getpan_no()
+            Getnext_inv_no1()
+            Getpad_inv_no1()
+            Getpan_no1()
             Getphone()
             Getpincode()
+            Getprint_inv_copy_hdr()
             Getproforma_email_body()
-            Getrange()
+            Getrange1()
             Getstate()
-            Gettin_no()
+            Gettin_no1()
         End Sub
         
         
-        Public Overridable Sub Getaddress()
+        Public Overridable Sub Getaddress1()
             
             ' Retrieve the value entered by the user on the address ASP:TextBox, and
             ' save it into the address field in DataSource company record.
@@ -1367,12 +1412,12 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.address.Text, CompanyTable.address)			
+            Me.DataSource.Parse(Me.address1.Text, CompanyTable.address)			
 
                       
         End Sub
                 
-        Public Overridable Sub Getcer_no()
+        Public Overridable Sub Getcer_no1()
             
             ' Retrieve the value entered by the user on the cer_no ASP:TextBox, and
             ' save it into the cer_no field in DataSource company record.
@@ -1380,7 +1425,7 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.cer_no.Text, CompanyTable.cer_no)			
+            Me.DataSource.Parse(Me.cer_no1.Text, CompanyTable.cer_no)			
 
                       
         End Sub
@@ -1398,7 +1443,7 @@ Public Class BaseCompanyRecordControl
                       
         End Sub
                 
-        Public Overridable Sub Getdivision()
+        Public Overridable Sub Getdivision1()
             
             ' Retrieve the value entered by the user on the division ASP:TextBox, and
             ' save it into the division field in DataSource company record.
@@ -1406,12 +1451,12 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.division.Text, CompanyTable.division)			
+            Me.DataSource.Parse(Me.division1.Text, CompanyTable.division)			
 
                       
         End Sub
                 
-        Public Overridable Sub Getecc_no()
+        Public Overridable Sub Getecc_no1()
             
             ' Retrieve the value entered by the user on the ecc_no ASP:TextBox, and
             ' save it into the ecc_no field in DataSource company record.
@@ -1419,7 +1464,7 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.ecc_no.Text, CompanyTable.ecc_no)			
+            Me.DataSource.Parse(Me.ecc_no1.Text, CompanyTable.ecc_no)			
 
                       
         End Sub
@@ -1463,7 +1508,7 @@ Public Class BaseCompanyRecordControl
                       
         End Sub
                 
-        Public Overridable Sub Getfin_year_end()
+        Public Overridable Sub Getfin_year_end1()
             
             ' Retrieve the value entered by the user on the fin_year_end ASP:TextBox, and
             ' save it into the fin_year_end field in DataSource company record.
@@ -1474,12 +1519,12 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.fin_year_end.Text, CompanyTable.fin_year_end)			
+            Me.DataSource.Parse(Me.fin_year_end1.Text, CompanyTable.fin_year_end)			
 
                       
         End Sub
                 
-        Public Overridable Sub Getfin_year_start()
+        Public Overridable Sub Getfin_year_start1()
             
             ' Retrieve the value entered by the user on the fin_year_start ASP:TextBox, and
             ' save it into the fin_year_start field in DataSource company record.
@@ -1490,7 +1535,7 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.fin_year_start.Text, CompanyTable.fin_year_start)			
+            Me.DataSource.Parse(Me.fin_year_start1.Text, CompanyTable.fin_year_start)			
 
                       
         End Sub
@@ -1521,7 +1566,7 @@ Public Class BaseCompanyRecordControl
                       
         End Sub
                 
-        Public Overridable Sub Getinv_pfx()
+        Public Overridable Sub Getinv_pfx1()
             
             ' Retrieve the value entered by the user on the inv_pfx ASP:TextBox, and
             ' save it into the inv_pfx field in DataSource company record.
@@ -1529,12 +1574,12 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.inv_pfx.Text, CompanyTable.inv_pfx)			
+            Me.DataSource.Parse(Me.inv_pfx1.Text, CompanyTable.inv_pfx)			
 
                       
         End Sub
                 
-        Public Overridable Sub Getinv_sfx()
+        Public Overridable Sub Getinv_sfx1()
             
             ' Retrieve the value entered by the user on the inv_sfx ASP:TextBox, and
             ' save it into the inv_sfx field in DataSource company record.
@@ -1542,7 +1587,7 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.inv_sfx.Text, CompanyTable.inv_sfx)			
+            Me.DataSource.Parse(Me.inv_sfx1.Text, CompanyTable.inv_sfx)			
 
                       
         End Sub
@@ -1560,7 +1605,7 @@ Public Class BaseCompanyRecordControl
                       
         End Sub
                 
-        Public Overridable Sub Getnext_inv_no()
+        Public Overridable Sub Getnext_inv_no1()
             
             ' Retrieve the value entered by the user on the next_inv_no ASP:TextBox, and
             ' save it into the next_inv_no field in DataSource company record.
@@ -1568,12 +1613,12 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.next_inv_no.Text, CompanyTable.next_inv_no)			
+            Me.DataSource.Parse(Me.next_inv_no1.Text, CompanyTable.next_inv_no)			
 
                       
         End Sub
                 
-        Public Overridable Sub Getpad_inv_no()
+        Public Overridable Sub Getpad_inv_no1()
             
             ' Retrieve the value entered by the user on the pad_inv_no ASP:TextBox, and
             ' save it into the pad_inv_no field in DataSource company record.
@@ -1581,12 +1626,12 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.pad_inv_no.Text, CompanyTable.pad_inv_no)			
+            Me.DataSource.Parse(Me.pad_inv_no1.Text, CompanyTable.pad_inv_no)			
 
                       
         End Sub
                 
-        Public Overridable Sub Getpan_no()
+        Public Overridable Sub Getpan_no1()
             
             ' Retrieve the value entered by the user on the pan_no ASP:TextBox, and
             ' save it into the pan_no field in DataSource company record.
@@ -1594,7 +1639,7 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.pan_no.Text, CompanyTable.pan_no)			
+            Me.DataSource.Parse(Me.pan_no1.Text, CompanyTable.pan_no)			
 
                       
         End Sub
@@ -1625,6 +1670,19 @@ Public Class BaseCompanyRecordControl
                       
         End Sub
                 
+        Public Overridable Sub Getprint_inv_copy_hdr()
+            
+            ' Retrieve the value entered by the user on the print_inv_copy_hdr ASP:TextBox, and
+            ' save it into the print_inv_copy_hdr field in DataSource company record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.print_inv_copy_hdr.Text, CompanyTable.print_inv_copy_hdr)			
+
+                      
+        End Sub
+                
         Public Overridable Sub Getproforma_email_body()
             
             ' Retrieve the value entered by the user on the proforma_email_body ASP:TextBox, and
@@ -1638,7 +1696,7 @@ Public Class BaseCompanyRecordControl
                       
         End Sub
                 
-        Public Overridable Sub Getrange()
+        Public Overridable Sub Getrange1()
             
             ' Retrieve the value entered by the user on the range ASP:TextBox, and
             ' save it into the range field in DataSource company record.
@@ -1646,7 +1704,7 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.range.Text, CompanyTable.range)			
+            Me.DataSource.Parse(Me.range1.Text, CompanyTable.range)			
 
                       
         End Sub
@@ -1664,7 +1722,7 @@ Public Class BaseCompanyRecordControl
                       
         End Sub
                 
-        Public Overridable Sub Gettin_no()
+        Public Overridable Sub Gettin_no1()
             
             ' Retrieve the value entered by the user on the tin_no ASP:TextBox, and
             ' save it into the tin_no field in DataSource company record.
@@ -1672,7 +1730,7 @@ Public Class BaseCompanyRecordControl
             ' Custom validation should be performed in Validate, not here.
             
             'Save the value to data source
-            Me.DataSource.Parse(Me.tin_no.Text, CompanyTable.tin_no)			
+            Me.DataSource.Parse(Me.tin_no1.Text, CompanyTable.tin_no)			
 
                       
         End Sub
@@ -1958,11 +2016,11 @@ Public Class BaseCompanyRecordControl
       
         ' Generate the event handling functions for filter and search events.
             
-        Protected Overridable Sub address_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub address1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
-        Protected Overridable Sub cer_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub cer_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -1970,11 +2028,11 @@ Public Class BaseCompanyRecordControl
                     				
         End Sub
             
-        Protected Overridable Sub division_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub division1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
-        Protected Overridable Sub ecc_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub ecc_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -1990,11 +2048,11 @@ Public Class BaseCompanyRecordControl
                     				
         End Sub
             
-        Protected Overridable Sub fin_year_end_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub fin_year_end1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
-        Protected Overridable Sub fin_year_start_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub fin_year_start1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -2006,11 +2064,11 @@ Public Class BaseCompanyRecordControl
                     				
         End Sub
             
-        Protected Overridable Sub inv_pfx_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub inv_pfx1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
-        Protected Overridable Sub inv_sfx_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub inv_sfx1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -2018,15 +2076,15 @@ Public Class BaseCompanyRecordControl
                     				
         End Sub
             
-        Protected Overridable Sub next_inv_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub next_inv_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
-        Protected Overridable Sub pad_inv_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub pad_inv_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
-        Protected Overridable Sub pan_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub pan_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -2038,11 +2096,15 @@ Public Class BaseCompanyRecordControl
                     				
         End Sub
             
+        Protected Overridable Sub print_inv_copy_hdr_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub proforma_email_body_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
-        Protected Overridable Sub range_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub range1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -2050,7 +2112,7 @@ Public Class BaseCompanyRecordControl
                     				
         End Sub
             
-        Protected Overridable Sub tin_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+        Protected Overridable Sub tin_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -2187,27 +2249,27 @@ Public Class BaseCompanyRecordControl
 
 #Region "Helper Properties"
         
-        Public ReadOnly Property address() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property address1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "address"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "address1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property addressLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property addressLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "addressLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "addressLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property cer_no() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property cer_no1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "cer_no"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "cer_no1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property cer_noLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property cer_noLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "cer_noLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "cer_noLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -2229,27 +2291,27 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property division() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property division1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "division"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "division1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property divisionLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property divisionLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "divisionLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "divisionLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property ecc_no() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property ecc_no1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_no"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_no1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property ecc_noLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property ecc_noLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_noLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_noLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -2289,27 +2351,27 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property fin_year_end() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property fin_year_end1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_end"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_end1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property fin_year_endLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property fin_year_endLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_endLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_endLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property fin_year_start() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property fin_year_start1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_start"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_start1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property fin_year_startLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property fin_year_startLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_startLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_startLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -2337,27 +2399,27 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property inv_pfx() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property inv_pfx1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_pfx"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_pfx1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property inv_pfxLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property inv_pfxLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_pfxLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_pfxLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property inv_sfx() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property inv_sfx1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_sfx"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_sfx1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property inv_sfxLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property inv_sfxLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_sfxLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_sfxLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -2373,39 +2435,39 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property next_inv_no() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property next_inv_no1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "next_inv_no"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "next_inv_no1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property next_inv_noLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property next_inv_noLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "next_inv_noLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "next_inv_noLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property pad_inv_no() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property pad_inv_no1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pad_inv_no"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pad_inv_no1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property pad_inv_noLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property pad_inv_noLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pad_inv_noLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pad_inv_noLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property pan_no() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property pan_no1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pan_no"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pan_no1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property pan_noLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property pan_noLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pan_noLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pan_noLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -2433,6 +2495,18 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property print_inv_copy_hdr() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "print_inv_copy_hdr"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property print_inv_copy_hdrLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "print_inv_copy_hdrLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property proforma_email_body() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "proforma_email_body"), System.Web.UI.WebControls.TextBox)
@@ -2445,15 +2519,15 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property range() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property range1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "range"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "range1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property rangeLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property rangeLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "rangeLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "rangeLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -2469,15 +2543,15 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property tin_no() As System.Web.UI.WebControls.TextBox
+        Public ReadOnly Property tin_no1() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_no"), System.Web.UI.WebControls.TextBox)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_no1"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property tin_noLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property tin_noLabel1() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_noLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_noLabel1"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

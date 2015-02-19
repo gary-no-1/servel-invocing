@@ -84,6 +84,7 @@ Namespace ServelInvocing.Business
         email_bccColumn.CodeName = "email_bcc"
         inv_email_bodyColumn.CodeName = "inv_email_body"
         proforma_email_bodyColumn.CodeName = "proforma_email_body"
+        print_inv_copy_hdrColumn.CodeName = "print_inv_copy_hdr"
         
     End Sub
 
@@ -678,6 +679,25 @@ Namespace ServelInvocing.Business
             Return CompanyTable.Instance.proforma_email_bodyColumn
         End Get
     End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Company_.print_inv_copy_hdr column object.
+    ''' </summary>
+    Public ReadOnly Property print_inv_copy_hdrColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(31), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Company_.print_inv_copy_hdr column object.
+    ''' </summary>
+    Public Shared ReadOnly Property print_inv_copy_hdr() As BaseClasses.Data.StringColumn
+        Get
+            Return CompanyTable.Instance.print_inv_copy_hdrColumn
+        End Get
+    End Property
 
 
 #End Region
@@ -981,7 +1001,8 @@ Namespace ServelInvocing.Business
         ByVal email_fromValue As String, _
         ByVal email_bccValue As String, _
         ByVal inv_email_bodyValue As String, _
-        ByVal proforma_email_bodyValue As String _
+        ByVal proforma_email_bodyValue As String, _
+        ByVal print_inv_copy_hdrValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(nameValue, nameColumn)
@@ -1014,6 +1035,7 @@ Namespace ServelInvocing.Business
         rec.SetString(email_bccValue, email_bccColumn)
         rec.SetString(inv_email_bodyValue, inv_email_bodyColumn)
         rec.SetString(proforma_email_bodyValue, proforma_email_bodyColumn)
+        rec.SetString(print_inv_copy_hdrValue, print_inv_copy_hdrColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized
