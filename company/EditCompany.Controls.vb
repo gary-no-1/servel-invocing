@@ -122,7 +122,11 @@ Public Class BaseCompanyRecordControl
             
               AddHandler Me.range1.TextChanged, AddressOf range1_TextChanged
             
+              AddHandler Me.srv_tax_no.TextChanged, AddressOf srv_tax_no_TextChanged
+            
               AddHandler Me.state.TextChanged, AddressOf state_TextChanged
+            
+              AddHandler Me.tan_no.TextChanged, AddressOf tan_no_TextChanged
             
               AddHandler Me.tin_no1.TextChanged, AddressOf tin_no1_TextChanged
             
@@ -250,8 +254,12 @@ Public Class BaseCompanyRecordControl
             Setproforma_email_bodyLabel()
             Setrange1()
             SetrangeLabel1()
+            Setsrv_tax_no()
+            Setsrv_tax_noLabel()
             Setstate()
             SetstateLabel()
+            Settan_no()
+            Settan_noLabel()
             Settin_no1()
             Settin_noLabel1()
       
@@ -1077,6 +1085,41 @@ Public Class BaseCompanyRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Setsrv_tax_no()
+            
+        
+            ' Set the srv_tax_no TextBox on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.srv_tax_no is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setsrv_tax_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.srv_tax_noSpecified Then
+                				
+                ' If the srv_tax_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.srv_tax_no)
+                            
+                Me.srv_tax_no.Text = formattedValue
+              
+            Else 
+            
+                ' srv_tax_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.srv_tax_no.Text = CompanyTable.srv_tax_no.Format(CompanyTable.srv_tax_no.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setstate()
             
         
@@ -1107,6 +1150,41 @@ Public Class BaseCompanyRecordControl
                 ' Default Value could also be NULL.
         
                 Me.state.Text = CompanyTable.state.Format(CompanyTable.state.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Settan_no()
+            
+        
+            ' Set the tan_no TextBox on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.tan_no is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Settan_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tan_noSpecified Then
+                				
+                ' If the tan_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.tan_no)
+                            
+                Me.tan_no.Text = formattedValue
+              
+            Else 
+            
+                ' tan_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.tan_no.Text = CompanyTable.tan_no.Format(CompanyTable.tan_no.DefaultValue)
                         		
                 End If
                  
@@ -1262,7 +1340,17 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setsrv_tax_noLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub SetstateLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Settan_noLabel()
             
                     
         End Sub
@@ -1399,7 +1487,9 @@ Public Class BaseCompanyRecordControl
             Getprint_inv_copy_hdr()
             Getproforma_email_body()
             Getrange1()
+            Getsrv_tax_no()
             Getstate()
+            Gettan_no()
             Gettin_no1()
         End Sub
         
@@ -1709,6 +1799,19 @@ Public Class BaseCompanyRecordControl
                       
         End Sub
                 
+        Public Overridable Sub Getsrv_tax_no()
+            
+            ' Retrieve the value entered by the user on the srv_tax_no ASP:TextBox, and
+            ' save it into the srv_tax_no field in DataSource company record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.srv_tax_no.Text, CompanyTable.srv_tax_no)			
+
+                      
+        End Sub
+                
         Public Overridable Sub Getstate()
             
             ' Retrieve the value entered by the user on the state ASP:TextBox, and
@@ -1718,6 +1821,19 @@ Public Class BaseCompanyRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.state.Text, CompanyTable.state)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Gettan_no()
+            
+            ' Retrieve the value entered by the user on the tan_no ASP:TextBox, and
+            ' save it into the tan_no field in DataSource company record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.tan_no.Text, CompanyTable.tan_no)			
 
                       
         End Sub
@@ -2108,7 +2224,15 @@ Public Class BaseCompanyRecordControl
                     				
         End Sub
             
+        Protected Overridable Sub srv_tax_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub state_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub tan_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -2531,6 +2655,18 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property srv_tax_no() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "srv_tax_no"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property srv_tax_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "srv_tax_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property state() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "state"), System.Web.UI.WebControls.TextBox)
@@ -2540,6 +2676,18 @@ Public Class BaseCompanyRecordControl
         Public ReadOnly Property stateLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "stateLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property tan_no() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tan_no"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property tan_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tan_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

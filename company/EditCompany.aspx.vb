@@ -188,7 +188,9 @@ Partial Public Class EditCompany
         Public WithEvents proforma_email_bodyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents rangeLabel1 As System.Web.UI.WebControls.Literal
         Public WithEvents SaveButton As ThemeButton
+        Public WithEvents srv_tax_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents stateLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents tan_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents tin_noLabel1 As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
     

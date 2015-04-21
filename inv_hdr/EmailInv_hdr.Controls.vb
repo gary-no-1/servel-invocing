@@ -141,9 +141,11 @@ Public Class Inv_hdrRecordControl
     	        'Dim sID As String = Page.Session("PrintProInvId").tostring()
     	        Dim sID As String = Me.id1.text
 				'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", sID)
-				Dim fs As New ServelInvoicingReportLibrary.ServelInvoice2Copy()
+				'Dim fs As New ServelInvoicingReportLibrary.ServelInvoice2Copy()
+				Dim fs As New ServelInvoicingReportLibrary.ServelInvoiceFinal()
 				fs.ReportParameters("PrintProInvId").value = sID
-
+				fs.ReportParameters("CopyName").value = "EXTRA COPY (not for CENVAT)"
+				
 				Dim reportProcessor As New Telerik.Reporting.Processing.ReportProcessor()
 				Dim result As Telerik.Reporting.Processing.RenderingResult 
 				result = reportProcessor.RenderReport("PDF", fs, Nothing) 
@@ -225,9 +227,6 @@ Public Class Inv_hdrRecordControl
 			    	email.SetIsHtmlContent(true)
 					Dim content As string = ""
 					' Me.mail_body.text
-					if content.Length = 0
-						'content = ProformaContent
-					end if	
 					if content.Length = 0
 						content = "Here is the Invoice <br /> "
 						content = content + "Please find attached our Invoice for the same. <br /> "

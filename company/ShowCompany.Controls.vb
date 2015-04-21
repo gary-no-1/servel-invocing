@@ -158,36 +158,30 @@ Public Class BaseCompanyRecordControl
         
             Setaddress()
             SetaddressLabel()
-            Setcer_code()
-            Setcer_codeLabel()
             Setcer_no()
             Setcer_noLabel()
             Setcity()
             SetcityLabel()
             Setdivision()
             SetdivisionLabel()
-            Setduty()
-            SetdutyLabel()
-            Seteac()
-            SeteacLabel()
             Setecc_no()
             Setecc_noLabel()
             Setemail()
-            Setemail_bcc()
-            Setemail_bccLabel()
-            Setemail_from()
-            Setemail_fromLabel()
             SetemailLabel()
-            Setgoods()
-            SetgoodsLabel()
-            Setinv_declaration()
-            Setinv_declarationLabel()
-            Setinv_email_body()
-            Setinv_email_bodyLabel()
-            Setlicense()
-            SetlicenseLabel()
+            Setfin_year_end()
+            Setfin_year_endLabel()
+            Setfin_year_start()
+            Setfin_year_startLabel()
+            Setinv_pfx()
+            Setinv_pfxLabel()
+            Setinv_sfx()
+            Setinv_sfxLabel()
             Setname()
             SetnameLabel()
+            Setnext_inv_no()
+            Setnext_inv_noLabel()
+            Setpad_inv_no()
+            Setpad_inv_noLabel()
             Setpan_no()
             Setpan_noLabel()
             Setphone()
@@ -196,10 +190,12 @@ Public Class BaseCompanyRecordControl
             SetpincodeLabel()
             Setrange()
             SetrangeLabel()
-            Setsign()
-            SetsignLabel()
+            Setsrv_tax_no()
+            Setsrv_tax_noLabel()
             Setstate()
             SetstateLabel()
+            Settan_no()
+            Settan_noLabel()
             Settin_no()
             Settin_noLabel()
       
@@ -293,50 +289,6 @@ Public Class BaseCompanyRecordControl
                 OrElse Me.address.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.address.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setcer_code()
-            
-        
-            ' Set the cer_code Literal on the webpage with value from the
-            ' company database record.
-
-            ' Me.DataSource is the company record retrieved from the database.
-            ' Me.cer_code is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setcer_code()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.cer_codeSpecified Then
-                				
-                ' If the cer_code is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.cer_code)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.cer_code.Text = formattedValue
-              
-            Else 
-            
-                ' cer_code is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.cer_code.Text = CompanyTable.cer_code.Format(CompanyTable.cer_code.DefaultValue)
-                        		
-                End If
-                 
-            ' If the cer_code is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.cer_code.Text Is Nothing _
-                OrElse Me.cer_code.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.cer_code.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -473,94 +425,6 @@ Public Class BaseCompanyRecordControl
                   
         End Sub
                 
-        Public Overridable Sub Setduty()
-            
-        
-            ' Set the duty Literal on the webpage with value from the
-            ' company database record.
-
-            ' Me.DataSource is the company record retrieved from the database.
-            ' Me.duty is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setduty()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.dutySpecified Then
-                				
-                ' If the duty is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.duty)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.duty.Text = formattedValue
-              
-            Else 
-            
-                ' duty is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.duty.Text = CompanyTable.duty.Format(CompanyTable.duty.DefaultValue)
-                        		
-                End If
-                 
-            ' If the duty is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.duty.Text Is Nothing _
-                OrElse Me.duty.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.duty.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Seteac()
-            
-        
-            ' Set the eac Literal on the webpage with value from the
-            ' company database record.
-
-            ' Me.DataSource is the company record retrieved from the database.
-            ' Me.eac is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Seteac()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.eacSpecified Then
-                				
-                ' If the eac is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.eac)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.eac.Text = formattedValue
-              
-            Else 
-            
-                ' eac is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.eac.Text = CompanyTable.eac.Format(CompanyTable.eac.DefaultValue)
-                        		
-                End If
-                 
-            ' If the eac is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.eac.Text Is Nothing _
-                OrElse Me.eac.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.eac.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
         Public Overridable Sub Setecc_no()
             
         
@@ -649,368 +513,178 @@ Public Class BaseCompanyRecordControl
                   
         End Sub
                 
-        Public Overridable Sub Setemail_bcc()
+        Public Overridable Sub Setfin_year_end()
             
         
-            ' Set the email_bcc Literal on the webpage with value from the
+            ' Set the fin_year_end Literal on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.email_bcc is the ASP:Literal on the webpage.
+            ' Me.fin_year_end is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setemail_bcc()
+            '     MyBase.Setfin_year_end()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.email_bccSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.fin_year_endSpecified Then
                 				
-                ' If the email_bcc is non-NULL, then format the value.
+                ' If the fin_year_end is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.email_bcc)
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.fin_year_end, "d")
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.email_bcc.Text = formattedValue
+                Me.fin_year_end.Text = formattedValue
               
             Else 
             
-                ' email_bcc is NULL in the database, so use the Default Value.  
+                ' fin_year_end is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.email_bcc.Text = CompanyTable.email_bcc.Format(CompanyTable.email_bcc.DefaultValue)
+                Me.fin_year_end.Text = CompanyTable.fin_year_end.Format(CompanyTable.fin_year_end.DefaultValue, "d")
                         		
                 End If
                  
-            ' If the email_bcc is NULL or blank, then use the value specified  
+            ' If the fin_year_end is NULL or blank, then use the value specified  
             ' on Properties.
-            If Me.email_bcc.Text Is Nothing _
-                OrElse Me.email_bcc.Text.Trim() = "" Then
+            If Me.fin_year_end.Text Is Nothing _
+                OrElse Me.fin_year_end.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
-                Me.email_bcc.Text = "&nbsp;"
+                Me.fin_year_end.Text = "&nbsp;"
             End If
                   
         End Sub
                 
-        Public Overridable Sub Setemail_from()
+        Public Overridable Sub Setfin_year_start()
             
         
-            ' Set the email_from Literal on the webpage with value from the
+            ' Set the fin_year_start Literal on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.email_from is the ASP:Literal on the webpage.
+            ' Me.fin_year_start is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setemail_from()
+            '     MyBase.Setfin_year_start()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.email_fromSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.fin_year_startSpecified Then
                 				
-                ' If the email_from is non-NULL, then format the value.
+                ' If the fin_year_start is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.email_from)
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.fin_year_start, "d")
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.email_from.Text = formattedValue
+                Me.fin_year_start.Text = formattedValue
               
             Else 
             
-                ' email_from is NULL in the database, so use the Default Value.  
+                ' fin_year_start is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.email_from.Text = CompanyTable.email_from.Format(CompanyTable.email_from.DefaultValue)
+                Me.fin_year_start.Text = CompanyTable.fin_year_start.Format(CompanyTable.fin_year_start.DefaultValue, "d")
                         		
                 End If
                  
-            ' If the email_from is NULL or blank, then use the value specified  
+            ' If the fin_year_start is NULL or blank, then use the value specified  
             ' on Properties.
-            If Me.email_from.Text Is Nothing _
-                OrElse Me.email_from.Text.Trim() = "" Then
+            If Me.fin_year_start.Text Is Nothing _
+                OrElse Me.fin_year_start.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
-                Me.email_from.Text = "&nbsp;"
+                Me.fin_year_start.Text = "&nbsp;"
             End If
                   
         End Sub
                 
-        Public Overridable Sub Setgoods()
+        Public Overridable Sub Setinv_pfx()
             
         
-            ' Set the goods Literal on the webpage with value from the
+            ' Set the inv_pfx Literal on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.goods is the ASP:Literal on the webpage.
+            ' Me.inv_pfx is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setgoods()
+            '     MyBase.Setinv_pfx()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.goodsSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_pfxSpecified Then
                 				
-                ' If the goods is non-NULL, then format the value.
+                ' If the inv_pfx is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.goods)
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.inv_pfx)
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.goods.Text = formattedValue
+                Me.inv_pfx.Text = formattedValue
               
             Else 
             
-                ' goods is NULL in the database, so use the Default Value.  
+                ' inv_pfx is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.goods.Text = CompanyTable.goods.Format(CompanyTable.goods.DefaultValue)
+                Me.inv_pfx.Text = CompanyTable.inv_pfx.Format(CompanyTable.inv_pfx.DefaultValue)
                         		
                 End If
                  
-            ' If the goods is NULL or blank, then use the value specified  
+            ' If the inv_pfx is NULL or blank, then use the value specified  
             ' on Properties.
-            If Me.goods.Text Is Nothing _
-                OrElse Me.goods.Text.Trim() = "" Then
+            If Me.inv_pfx.Text Is Nothing _
+                OrElse Me.inv_pfx.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
-                Me.goods.Text = "&nbsp;"
+                Me.inv_pfx.Text = "&nbsp;"
             End If
                   
         End Sub
                 
-        Public Overridable Sub Setinv_declaration()
+        Public Overridable Sub Setinv_sfx()
             
         
-            ' Set the inv_declaration Literal on the webpage with value from the
+            ' Set the inv_sfx Literal on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.inv_declaration is the ASP:Literal on the webpage.
+            ' Me.inv_sfx is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setinv_declaration()
+            '     MyBase.Setinv_sfx()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_declarationSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_sfxSpecified Then
                 				
-                ' If the inv_declaration is non-NULL, then format the value.
+                ' If the inv_sfx is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.inv_declaration)
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.inv_sfx)
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                If Not formattedValue is Nothing Then
-                    Dim popupThreshold as Integer = CType(100, Integer)
-                              
-                    Dim maxLength as Integer = Len(formattedValue)
-                    If (maxLength > CType(100, Integer)) Then
-                        ' Truncate based on FieldMaxLength on Properties.
-                        maxLength = CType(100, Integer)
-                        
-                    End If
-                                
-                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
-                    If Len(formattedValue) >= popupThreshold Then
-                    
-                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
-                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.CompanyTable, ServelInvocing.Business\"",\""" _
-                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""inv_declaration\"", \""inv_declaration\"", \""Invoice Declaration\"", false, 200," _
-                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
-                        
-                        If (maxLength = CType(100, Integer)) Then
-                            formattedValue = formattedValue & "..." & "</a>"
-                        Else
-                            formattedValue = formattedValue & "</a>"
-                            
-                        End If
-                    Else
-                        If maxLength = CType(100, Integer) Then
-                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
-                            formattedValue = formattedValue & "..."
-                            
-                        End If
-                    End If
-                End If  
-                
-                Me.inv_declaration.Text = formattedValue
+                Me.inv_sfx.Text = formattedValue
               
             Else 
             
-                ' inv_declaration is NULL in the database, so use the Default Value.  
+                ' inv_sfx is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.inv_declaration.Text = CompanyTable.inv_declaration.Format(CompanyTable.inv_declaration.DefaultValue)
+                Me.inv_sfx.Text = CompanyTable.inv_sfx.Format(CompanyTable.inv_sfx.DefaultValue)
                         		
                 End If
                  
-            ' If the inv_declaration is NULL or blank, then use the value specified  
+            ' If the inv_sfx is NULL or blank, then use the value specified  
             ' on Properties.
-            If Me.inv_declaration.Text Is Nothing _
-                OrElse Me.inv_declaration.Text.Trim() = "" Then
+            If Me.inv_sfx.Text Is Nothing _
+                OrElse Me.inv_sfx.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
-                Me.inv_declaration.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setinv_email_body()
-            
-        
-            ' Set the inv_email_body Literal on the webpage with value from the
-            ' company database record.
-
-            ' Me.DataSource is the company record retrieved from the database.
-            ' Me.inv_email_body is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setinv_email_body()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.inv_email_bodySpecified Then
-                				
-                ' If the inv_email_body is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.inv_email_body)
-                            
-                If Not formattedValue is Nothing Then
-                    Dim popupThreshold as Integer = CType(100, Integer)
-                              
-                    Dim maxLength as Integer = Len(formattedValue)
-                    If (maxLength > CType(100, Integer)) Then
-                        ' Truncate based on FieldMaxLength on Properties.
-                        maxLength = CType(100, Integer)
-                         
-                        formattedValue = HttpUtility.HtmlEncode(formattedValue) 
-                    End If
-                                
-                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
-                    If Len(formattedValue) >= popupThreshold Then
-                    
-                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
-                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.CompanyTable, ServelInvocing.Business\"",\""" _
-                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""inv_email_body\"", \""inv_email_body\"", \""Invoice Email Body\"", false, 200," _
-                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
-                        
-                        If (maxLength = CType(100, Integer)) Then
-                            formattedValue = formattedValue & "..." & "</a>"
-                        Else
-                            formattedValue = formattedValue & "</a>"
-                            
-                            formattedValue = "<table border=""0"" cellpadding=""0"" cellspacing=""0""><tr><td>" & formattedValue & "</td></tr></table>"
-                        End If
-                    Else
-                        If maxLength = CType(100, Integer) Then
-                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
-                            formattedValue = formattedValue & "..."
-                            
-                        Else
-                            formattedValue = "<table border=""0"" cellpadding=""0"" cellspacing=""0""><tr><td>" & formattedValue & "</td></tr></table>"
-                        End If
-                    End If
-                End If  
-                
-                Me.inv_email_body.Text = formattedValue
-              
-            Else 
-            
-                ' inv_email_body is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.inv_email_body.Text = CompanyTable.inv_email_body.Format(CompanyTable.inv_email_body.DefaultValue)
-                        		
-                End If
-                 
-            ' If the inv_email_body is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.inv_email_body.Text Is Nothing _
-                OrElse Me.inv_email_body.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.inv_email_body.Text = "&nbsp;"
-            End If
-                  
-        End Sub
-                
-        Public Overridable Sub Setlicense()
-            
-        
-            ' Set the license Literal on the webpage with value from the
-            ' company database record.
-
-            ' Me.DataSource is the company record retrieved from the database.
-            ' Me.license is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setlicense()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.licenseSpecified Then
-                				
-                ' If the license is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.license)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                If Not formattedValue is Nothing Then
-                    Dim popupThreshold as Integer = CType(100, Integer)
-                              
-                    Dim maxLength as Integer = Len(formattedValue)
-                    If (maxLength > CType(100, Integer)) Then
-                        ' Truncate based on FieldMaxLength on Properties.
-                        maxLength = CType(100, Integer)
-                        
-                    End If
-                                
-                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
-                    If Len(formattedValue) >= popupThreshold Then
-                    
-                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
-                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.CompanyTable, ServelInvocing.Business\"",\""" _
-                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""license\"", \""license\"", \""License\"", false, 200," _
-                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
-                        
-                        If (maxLength = CType(100, Integer)) Then
-                            formattedValue = formattedValue & "..." & "</a>"
-                        Else
-                            formattedValue = formattedValue & "</a>"
-                            
-                        End If
-                    Else
-                        If maxLength = CType(100, Integer) Then
-                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
-                            formattedValue = formattedValue & "..."
-                            
-                        End If
-                    End If
-                End If  
-                
-                Me.license.Text = formattedValue
-              
-            Else 
-            
-                ' license is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.license.Text = CompanyTable.license.Format(CompanyTable.license.DefaultValue)
-                        		
-                End If
-                 
-            ' If the license is NULL or blank, then use the value specified  
-            ' on Properties.
-            If Me.license.Text Is Nothing _
-                OrElse Me.license.Text.Trim() = "" Then
-                ' Set the value specified on the Properties.
-                Me.license.Text = "&nbsp;"
+                Me.inv_sfx.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -1055,6 +729,94 @@ Public Class BaseCompanyRecordControl
                 OrElse Me.name.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.name.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setnext_inv_no()
+            
+        
+            ' Set the next_inv_no Literal on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.next_inv_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setnext_inv_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.next_inv_noSpecified Then
+                				
+                ' If the next_inv_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.next_inv_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.next_inv_no.Text = formattedValue
+              
+            Else 
+            
+                ' next_inv_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.next_inv_no.Text = CompanyTable.next_inv_no.Format(CompanyTable.next_inv_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the next_inv_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.next_inv_no.Text Is Nothing _
+                OrElse Me.next_inv_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.next_inv_no.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setpad_inv_no()
+            
+        
+            ' Set the pad_inv_no Literal on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.pad_inv_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setpad_inv_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.pad_inv_noSpecified Then
+                				
+                ' If the pad_inv_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.pad_inv_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.pad_inv_no.Text = formattedValue
+              
+            Else 
+            
+                ' pad_inv_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.pad_inv_no.Text = CompanyTable.pad_inv_no.Format(CompanyTable.pad_inv_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the pad_inv_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.pad_inv_no.Text Is Nothing _
+                OrElse Me.pad_inv_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.pad_inv_no.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -1235,46 +997,46 @@ Public Class BaseCompanyRecordControl
                   
         End Sub
                 
-        Public Overridable Sub Setsign()
+        Public Overridable Sub Setsrv_tax_no()
             
         
-            ' Set the sign Literal on the webpage with value from the
+            ' Set the srv_tax_no Literal on the webpage with value from the
             ' company database record.
 
             ' Me.DataSource is the company record retrieved from the database.
-            ' Me.sign is the ASP:Literal on the webpage.
+            ' Me.srv_tax_no is the ASP:Literal on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setsign()
+            '     MyBase.Setsrv_tax_no()
             ' and add your own code before or after the call to the MyBase function.
 
             
                   
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.signSpecified Then
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.srv_tax_noSpecified Then
                 				
-                ' If the sign is non-NULL, then format the value.
+                ' If the srv_tax_no is non-NULL, then format the value.
 
                 ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.sign)
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.srv_tax_no)
                             
                 formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.sign.Text = formattedValue
+                Me.srv_tax_no.Text = formattedValue
               
             Else 
             
-                ' sign is NULL in the database, so use the Default Value.  
+                ' srv_tax_no is NULL in the database, so use the Default Value.  
                 ' Default Value could also be NULL.
         
-                Me.sign.Text = CompanyTable.sign.Format(CompanyTable.sign.DefaultValue)
+                Me.srv_tax_no.Text = CompanyTable.srv_tax_no.Format(CompanyTable.srv_tax_no.DefaultValue)
                         		
                 End If
                  
-            ' If the sign is NULL or blank, then use the value specified  
+            ' If the srv_tax_no is NULL or blank, then use the value specified  
             ' on Properties.
-            If Me.sign.Text Is Nothing _
-                OrElse Me.sign.Text.Trim() = "" Then
+            If Me.srv_tax_no.Text Is Nothing _
+                OrElse Me.srv_tax_no.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
-                Me.sign.Text = "&nbsp;"
+                Me.srv_tax_no.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -1319,6 +1081,50 @@ Public Class BaseCompanyRecordControl
                 OrElse Me.state.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.state.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Settan_no()
+            
+        
+            ' Set the tan_no Literal on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.tan_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Settan_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.tan_noSpecified Then
+                				
+                ' If the tan_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.tan_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.tan_no.Text = formattedValue
+              
+            Else 
+            
+                ' tan_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.tan_no.Text = CompanyTable.tan_no.Format(CompanyTable.tan_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the tan_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.tan_no.Text Is Nothing _
+                OrElse Me.tan_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.tan_no.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -1372,11 +1178,6 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Setcer_codeLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Setcer_noLabel()
             
                     
@@ -1392,27 +1193,7 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
-        Public Overridable Sub SetdutyLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub SeteacLabel()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Setecc_noLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setemail_bccLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setemail_fromLabel()
             
                     
         End Sub
@@ -1422,27 +1203,37 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
-        Public Overridable Sub SetgoodsLabel()
+        Public Overridable Sub Setfin_year_endLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub Setinv_declarationLabel()
+        Public Overridable Sub Setfin_year_startLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub Setinv_email_bodyLabel()
+        Public Overridable Sub Setinv_pfxLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub SetlicenseLabel()
+        Public Overridable Sub Setinv_sfxLabel()
             
                     
         End Sub
                 
         Public Overridable Sub SetnameLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setnext_inv_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setpad_inv_noLabel()
             
                     
         End Sub
@@ -1467,12 +1258,17 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
-        Public Overridable Sub SetsignLabel()
+        Public Overridable Sub Setsrv_tax_noLabel()
             
                     
         End Sub
                 
         Public Overridable Sub SetstateLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Settan_noLabel()
             
                     
         End Sub
@@ -1587,36 +1383,30 @@ Public Class BaseCompanyRecordControl
             ' Call the Get methods for each of the user interface controls.
         
             Getaddress()
-            Getcer_code()
             Getcer_no()
             Getcity()
             Getdivision()
-            Getduty()
-            Geteac()
             Getecc_no()
             Getemail()
-            Getemail_bcc()
-            Getemail_from()
-            Getgoods()
-            Getinv_declaration()
-            Getinv_email_body()
-            Getlicense()
+            Getfin_year_end()
+            Getfin_year_start()
+            Getinv_pfx()
+            Getinv_sfx()
             Getname()
+            Getnext_inv_no()
+            Getpad_inv_no()
             Getpan_no()
             Getphone()
             Getpincode()
             Getrange()
-            Getsign()
+            Getsrv_tax_no()
             Getstate()
+            Gettan_no()
             Gettin_no()
         End Sub
         
         
         Public Overridable Sub Getaddress()
-            
-        End Sub
-                
-        Public Overridable Sub Getcer_code()
             
         End Sub
                 
@@ -1632,14 +1422,6 @@ Public Class BaseCompanyRecordControl
             
         End Sub
                 
-        Public Overridable Sub Getduty()
-            
-        End Sub
-                
-        Public Overridable Sub Geteac()
-            
-        End Sub
-                
         Public Overridable Sub Getecc_no()
             
         End Sub
@@ -1648,31 +1430,31 @@ Public Class BaseCompanyRecordControl
             
         End Sub
                 
-        Public Overridable Sub Getemail_bcc()
+        Public Overridable Sub Getfin_year_end()
             
         End Sub
                 
-        Public Overridable Sub Getemail_from()
+        Public Overridable Sub Getfin_year_start()
             
         End Sub
                 
-        Public Overridable Sub Getgoods()
+        Public Overridable Sub Getinv_pfx()
             
         End Sub
                 
-        Public Overridable Sub Getinv_declaration()
-            
-        End Sub
-                
-        Public Overridable Sub Getinv_email_body()
-            
-        End Sub
-                
-        Public Overridable Sub Getlicense()
+        Public Overridable Sub Getinv_sfx()
             
         End Sub
                 
         Public Overridable Sub Getname()
+            
+        End Sub
+                
+        Public Overridable Sub Getnext_inv_no()
+            
+        End Sub
+                
+        Public Overridable Sub Getpad_inv_no()
             
         End Sub
                 
@@ -1692,11 +1474,15 @@ Public Class BaseCompanyRecordControl
             
         End Sub
                 
-        Public Overridable Sub Getsign()
+        Public Overridable Sub Getsrv_tax_no()
             
         End Sub
                 
         Public Overridable Sub Getstate()
+            
+        End Sub
+                
+        Public Overridable Sub Gettan_no()
             
         End Sub
                 
@@ -2174,18 +1960,6 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property cer_code() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "cer_code"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property cer_codeLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "cer_codeLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property cer_no() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "cer_no"), System.Web.UI.WebControls.Literal)
@@ -2234,30 +2008,6 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property duty() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "duty"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property dutyLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "dutyLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property eac() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "eac"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property eacLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "eacLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property ecc_no() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_no"), System.Web.UI.WebControls.Literal)
@@ -2276,81 +2026,57 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
             
-        Public ReadOnly Property email_bcc() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email_bcc"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property email_bccLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email_bccLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property email_from() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email_from"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property email_fromLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email_fromLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property emailLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property goods() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property fin_year_end() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "goods"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_end"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property goodsLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property fin_year_endLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "goodsLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_endLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property inv_declaration() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property fin_year_start() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_declaration"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_start"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property inv_declarationLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property fin_year_startLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_declarationLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_startLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property inv_email_body() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property inv_pfx() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_email_body"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_pfx"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property inv_email_bodyLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property inv_pfxLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_email_bodyLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_pfxLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
-        Public ReadOnly Property license() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property inv_sfx() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "license"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_sfx"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property licenseLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property inv_sfxLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "licenseLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "inv_sfxLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -2363,6 +2089,30 @@ Public Class BaseCompanyRecordControl
         Public ReadOnly Property nameLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "nameLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property next_inv_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "next_inv_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property next_inv_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "next_inv_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property pad_inv_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pad_inv_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property pad_inv_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pad_inv_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -2414,15 +2164,15 @@ Public Class BaseCompanyRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property sign() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property srv_tax_no() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sign"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "srv_tax_no"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
             
-        Public ReadOnly Property signLabel() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property srv_tax_noLabel() As System.Web.UI.WebControls.Literal
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "signLabel"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "srv_tax_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -2435,6 +2185,18 @@ Public Class BaseCompanyRecordControl
         Public ReadOnly Property stateLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "stateLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property tan_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tan_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property tan_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tan_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

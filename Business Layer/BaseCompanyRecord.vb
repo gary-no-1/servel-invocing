@@ -289,6 +289,64 @@ Namespace ServelInvocing.Business
 	End Sub
 
 	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.tan_no field.
+	''' </summary>
+	Public Function Gettan_noValue() As ColumnValue
+		Return Me.GetValue(TableUtils.tan_noColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.tan_no field.
+	''' </summary>
+	Public Function Gettan_noFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.tan_noColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.tan_no field.
+	''' </summary>
+	Public Sub Settan_noFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.tan_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.tan_no field.
+	''' </summary>
+	Public Sub Settan_noFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tan_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.srv_tax_no field.
+	''' </summary>
+	Public Function Getsrv_tax_noValue() As ColumnValue
+		Return Me.GetValue(TableUtils.srv_tax_noColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.srv_tax_no field.
+	''' </summary>
+	Public Function Getsrv_tax_noFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.srv_tax_noColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.srv_tax_no field.
+	''' </summary>
+	Public Sub Setsrv_tax_noFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.srv_tax_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.srv_tax_no field.
+	''' </summary>
+	Public Sub Setsrv_tax_noFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.srv_tax_noColumn)
+	End Sub
+
+	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Company_.tin_no field.
 	''' </summary>
 	Public Function Gettin_noValue() As ColumnValue
@@ -1332,6 +1390,76 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property pan_noDefault() As String
         Get
             Return TableUtils.pan_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.tan_no field.
+	''' </summary>
+	Public Property tan_no() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.tan_noColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.tan_noColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property tan_noSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.tan_noColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property tan_noDefault() As String
+        Get
+            Return TableUtils.tan_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.srv_tax_no field.
+	''' </summary>
+	Public Property srv_tax_no() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.srv_tax_noColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.srv_tax_noColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property srv_tax_noSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.srv_tax_noColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property srv_tax_noDefault() As String
+        Get
+            Return TableUtils.srv_tax_noColumn.DefaultValue
         End Get
     End Property
 

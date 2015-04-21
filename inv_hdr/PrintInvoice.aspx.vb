@@ -86,7 +86,8 @@ Partial Public Class PrintInvoice
 					Dim si as Integer
 					si = 0
 				    For Each s As String In strArr
-						reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoiceFeb16())
+						'reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoiceFeb16())
+						reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoiceFinal())
 						reportBook.Reports(si).ReportParameters("PrintProInvId").value = sID
 						reportBook.Reports(si).ReportParameters("CopyName").value = s
 						si = si + 1

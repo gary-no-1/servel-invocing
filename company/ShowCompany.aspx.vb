@@ -162,8 +162,6 @@ Partial Public Class ShowCompany
 
         Public WithEvents address As System.Web.UI.WebControls.Literal
         Public WithEvents addressLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents cer_code As System.Web.UI.WebControls.Literal
-        Public WithEvents cer_codeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents cer_no As System.Web.UI.WebControls.Literal
         Public WithEvents cer_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents city As System.Web.UI.WebControls.Literal
@@ -173,30 +171,26 @@ Partial Public Class ShowCompany
         Public WithEvents CompanyTitle As System.Web.UI.WebControls.Literal
         Public WithEvents division As System.Web.UI.WebControls.Literal
         Public WithEvents divisionLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents duty As System.Web.UI.WebControls.Literal
-        Public WithEvents dutyLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents eac As System.Web.UI.WebControls.Literal
-        Public WithEvents eacLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ecc_no As System.Web.UI.WebControls.Literal
         Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents EditButton As ThemeButton
         Public WithEvents email As System.Web.UI.WebControls.Literal
-        Public WithEvents email_bcc As System.Web.UI.WebControls.Literal
-        Public WithEvents email_bccLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents email_from As System.Web.UI.WebControls.Literal
-        Public WithEvents email_fromLabel As System.Web.UI.WebControls.Literal
         Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents goods As System.Web.UI.WebControls.Literal
-        Public WithEvents goodsLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents inv_declaration As System.Web.UI.WebControls.Literal
-        Public WithEvents inv_declarationLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents inv_email_body As System.Web.UI.WebControls.Literal
-        Public WithEvents inv_email_bodyLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents license As System.Web.UI.WebControls.Literal
-        Public WithEvents licenseLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents fin_year_end As System.Web.UI.WebControls.Literal
+        Public WithEvents fin_year_endLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents fin_year_start As System.Web.UI.WebControls.Literal
+        Public WithEvents fin_year_startLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_pfx As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_pfxLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_sfx As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_sfxLabel As System.Web.UI.WebControls.Literal
         Public WithEvents name As System.Web.UI.WebControls.Literal
         Public WithEvents nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents next_inv_no As System.Web.UI.WebControls.Literal
+        Public WithEvents next_inv_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents OKButton As ThemeButton
+        Public WithEvents pad_inv_no As System.Web.UI.WebControls.Literal
+        Public WithEvents pad_inv_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents pan_no As System.Web.UI.WebControls.Literal
         Public WithEvents pan_noLabel As System.Web.UI.WebControls.Literal
@@ -206,10 +200,12 @@ Partial Public Class ShowCompany
         Public WithEvents pincodeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents range As System.Web.UI.WebControls.Literal
         Public WithEvents rangeLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents sign As System.Web.UI.WebControls.Literal
-        Public WithEvents signLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents srv_tax_no As System.Web.UI.WebControls.Literal
+        Public WithEvents srv_tax_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents state As System.Web.UI.WebControls.Literal
         Public WithEvents stateLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents tan_no As System.Web.UI.WebControls.Literal
+        Public WithEvents tan_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents tin_no As System.Web.UI.WebControls.Literal
         Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
