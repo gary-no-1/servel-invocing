@@ -166,6 +166,9 @@ Partial Public Class EditInv_hdr
         Public WithEvents bill_name As System.Web.UI.WebControls.Literal
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents CancelButton As ThemeButton
+        Public WithEvents ecc_no As System.Web.UI.WebControls.Literal
+        Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents excise_remarkLabel As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
         Public WithEvents goods_removed_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents gr_rr_dtLabel As System.Web.UI.WebControls.Literal
@@ -175,8 +178,6 @@ Partial Public Class EditInv_hdr
         Public WithEvents id_commodity As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_commodityLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents id_party As System.Web.UI.WebControls.Literal
-        Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_transporter As System.Web.UI.WebControls.DropDownList
         Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
         Public WithEvents inv_dt As System.Web.UI.WebControls.Literal
@@ -211,6 +212,7 @@ Partial Public Class EditInv_hdr
         Public WithEvents po_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents qtyLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents rateLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents remarkLabel As System.Web.UI.WebControls.Literal
         Public WithEvents road_permit_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_dt As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_dtLabel As System.Web.UI.WebControls.Literal

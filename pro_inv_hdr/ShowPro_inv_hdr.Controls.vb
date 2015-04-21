@@ -236,6 +236,12 @@ Public Class Pro_inv_hdrRecordControl
 				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Item Value is zero")
 				Return
 			End If
+		    ' 21/04/2015 -- check that grand total is not zero
+			thisItem_total = Me.grand_total.text
+			If String.IsNullOrEmpty(thisItem_total) Then
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Grand Total is zero")
+				Return
+			End If
 
 			Try
 				DbUtils.StartTransaction()
@@ -328,6 +334,11 @@ Public Class Pro_inv_hdrRecordControl
 					End if
 		            inv_hdr_rec.id_create_user = Convert.toInt32(AuditUserId)
 					inv_hdr_rec.created_on = datetime.now()
+					
+					' 21/04/15 - 3 extra fields added - to be copied to inv_hdr
+					inv_hdr_rec.ecc_no = Pro_inv_hdrCopyRec.ecc_no
+					inv_hdr_rec.remark = Pro_inv_hdrCopyRec.remark
+					inv_hdr_rec.excise_remark = Pro_inv_hdrCopyRec.excise_remark
 					
 					inv_hdr_rec.save()
 		
@@ -7633,8 +7644,12 @@ Public Class BasePro_inv_hdrRecordControl
             Setbill_nameLabel()
             Setcontact()
             SetcontactLabel()
+            Setecc_no()
+            Setecc_noLabel()
             Setemail()
             SetemailLabel()
+            Setexcise_remark()
+            Setexcise_remarkLabel()
             Setfreight_to_pay()
             Setfreight_to_payLabel()
             Setgr_rr_dt()
@@ -7669,6 +7684,8 @@ Public Class BasePro_inv_hdrRecordControl
             Setpro_inv_dtLabel()
             Setpro_inv_no()
             Setpro_inv_noLabel()
+            Setremark()
+            SetremarkLabel()
             Setroad_permit_no()
             Setroad_permit_noLabel()
             Setsale_ord_dt()
@@ -7893,6 +7910,50 @@ Public Class BasePro_inv_hdrRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setecc_no()
+            
+        
+            ' Set the ecc_no Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.ecc_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setecc_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.ecc_noSpecified Then
+                				
+                ' If the ecc_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.ecc_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.ecc_no.Text = formattedValue
+              
+            Else 
+            
+                ' ecc_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.ecc_no.Text = Pro_inv_hdrTable.ecc_no.Format(Pro_inv_hdrTable.ecc_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the ecc_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.ecc_no.Text Is Nothing _
+                OrElse Me.ecc_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.ecc_no.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setemail()
             
         
@@ -7933,6 +7994,50 @@ Public Class BasePro_inv_hdrRecordControl
                 OrElse Me.email.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.email.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setexcise_remark()
+            
+        
+            ' Set the excise_remark Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.excise_remark is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setexcise_remark()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.excise_remarkSpecified Then
+                				
+                ' If the excise_remark is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.excise_remark)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.excise_remark.Text = formattedValue
+              
+            Else 
+            
+                ' excise_remark is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.excise_remark.Text = Pro_inv_hdrTable.excise_remark.Format(Pro_inv_hdrTable.excise_remark.DefaultValue)
+                        		
+                End If
+                 
+            ' If the excise_remark is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.excise_remark.Text Is Nothing _
+                OrElse Me.excise_remark.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.excise_remark.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -8685,6 +8790,50 @@ Public Class BasePro_inv_hdrRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setremark()
+            
+        
+            ' Set the remark Literal on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.remark is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setremark()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.remarkSpecified Then
+                				
+                ' If the remark is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.remark)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.remark.Text = formattedValue
+              
+            Else 
+            
+                ' remark is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.remark.Text = Pro_inv_hdrTable.remark.Format(Pro_inv_hdrTable.remark.DefaultValue)
+                        		
+                End If
+                 
+            ' If the remark is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.remark.Text Is Nothing _
+                OrElse Me.remark.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.remark.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setroad_permit_no()
             
         
@@ -9041,7 +9190,17 @@ Public Class BasePro_inv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setecc_noLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub SetemailLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setexcise_remarkLabel()
             
                     
         End Sub
@@ -9122,6 +9281,11 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setpro_inv_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetremarkLabel()
             
                     
         End Sub
@@ -9283,7 +9447,9 @@ Public Class BasePro_inv_hdrRecordControl
             Getbill_address()
             Getbill_name()
             Getcontact()
+            Getecc_no()
             Getemail()
+            Getexcise_remark()
             Getfreight_to_pay()
             Getgr_rr_dt()
             Getgr_rr_no()
@@ -9302,6 +9468,7 @@ Public Class BasePro_inv_hdrRecordControl
             Getpo_no()
             Getpro_inv_dt()
             Getpro_inv_no()
+            Getremark()
             Getroad_permit_no()
             Getsale_ord_dt()
             Getsale_ord_no()
@@ -9324,7 +9491,15 @@ Public Class BasePro_inv_hdrRecordControl
             
         End Sub
                 
+        Public Overridable Sub Getecc_no()
+            
+        End Sub
+                
         Public Overridable Sub Getemail()
+            
+        End Sub
+                
+        Public Overridable Sub Getexcise_remark()
             
         End Sub
                 
@@ -9397,6 +9572,10 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getpro_inv_no()
+            
+        End Sub
+                
+        Public Overridable Sub Getremark()
             
         End Sub
                 
@@ -10248,6 +10427,18 @@ Public Class BasePro_inv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property ecc_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property ecc_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property email() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "email"), System.Web.UI.WebControls.Literal)
@@ -10257,6 +10448,18 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property emailLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property excise_remark() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "excise_remark"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property excise_remarkLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "excise_remarkLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -10473,6 +10676,18 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property pro_inv_noLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "pro_inv_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property remark() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "remark"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property remarkLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "remarkLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

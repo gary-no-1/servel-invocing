@@ -5860,6 +5860,8 @@ Public Class BaseInv_hdrRecordControl
             
               AddHandler Me.id_transporter.SelectedIndexChanged, AddressOf id_transporter_SelectedIndexChanged
             
+              AddHandler Me.excise_remark.TextChanged, AddressOf excise_remark_TextChanged
+            
               AddHandler Me.freight_to_pay.TextChanged, AddressOf freight_to_pay_TextChanged
             
               AddHandler Me.goods_removed_dt.TextChanged, AddressOf goods_removed_dt_TextChanged
@@ -5873,6 +5875,8 @@ Public Class BaseInv_hdrRecordControl
               AddHandler Me.no_of_packages.TextChanged, AddressOf no_of_packages_TextChanged
             
               AddHandler Me.packing_details.TextChanged, AddressOf packing_details_TextChanged
+            
+              AddHandler Me.remark.TextChanged, AddressOf remark_TextChanged
             
               AddHandler Me.road_permit_no.TextChanged, AddressOf road_permit_no_TextChanged
             
@@ -5962,6 +5966,10 @@ Public Class BaseInv_hdrRecordControl
             Setbill_addressLabel()
             Setbill_name()
             Setbill_nameLabel()
+            Setecc_no()
+            Setecc_noLabel()
+            Setexcise_remark()
+            Setexcise_remarkLabel()
             Setfreight_to_pay()
             Setfreight_to_payLabel()
             Setgoods_removed_dt()
@@ -5974,8 +5982,6 @@ Public Class BaseInv_hdrRecordControl
             Setgrand_totalLabel()
             Setid_commodity()
             Setid_commodityLabel()
-            Setid_party()
-            Setid_partyLabel()
             Setid_transporter()
             Setid_transporterLabel()
             Setinv_dt()
@@ -5994,6 +6000,8 @@ Public Class BaseInv_hdrRecordControl
             Setpo_dtLabel()
             Setpo_no()
             Setpo_noLabel()
+            Setremark()
+            SetremarkLabel()
             Setroad_permit_no()
             Setroad_permit_noLabel()
             Setsale_ord_dt()
@@ -6155,6 +6163,77 @@ Public Class BaseInv_hdrRecordControl
                 ' Default Value could also be NULL.
         
                 Me.bill_name.Text = Inv_hdrTable.bill_name.Format(Inv_hdrTable.bill_name.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setecc_no()
+            
+        
+            ' Set the ecc_no Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.ecc_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setecc_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.ecc_noSpecified Then
+                				
+                ' If the ecc_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.ecc_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.ecc_no.Text = formattedValue
+              
+            Else 
+            
+                ' ecc_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.ecc_no.Text = Inv_hdrTable.ecc_no.Format(Inv_hdrTable.ecc_no.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setexcise_remark()
+            
+        
+            ' Set the excise_remark TextBox on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.excise_remark is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setexcise_remark()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.excise_remarkSpecified Then
+                				
+                ' If the excise_remark is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.excise_remark)
+                            
+                Me.excise_remark.Text = formattedValue
+              
+            Else 
+            
+                ' excise_remark is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.excise_remark.Text = Inv_hdrTable.excise_remark.Format(Inv_hdrTable.excise_remark.DefaultValue)
                         		
                 End If
                  
@@ -6366,42 +6445,6 @@ Public Class BaseInv_hdrRecordControl
                 ' Default Value could also be NULL.
         
                 Me.id_commodity.Text = Inv_hdrTable.id_commodity.Format(Inv_hdrTable.id_commodity.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setid_party()
-            
-        
-            ' Set the id_party Literal on the webpage with value from the
-            ' inv_hdr database record.
-
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.id_party is the ASP:Literal on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setid_party()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_partySpecified Then
-                				
-                ' If the id_party is non-NULL, then format the value.
-
-                ' The Format method will return the Display Foreign Key As (DFKA) value
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.id_party)
-                            
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                Me.id_party.Text = formattedValue
-              
-            Else 
-            
-                ' id_party is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.id_party.Text = Inv_hdrTable.id_party.Format(Inv_hdrTable.id_party.DefaultValue)
                         		
                 End If
                  
@@ -6721,6 +6764,41 @@ Public Class BaseInv_hdrRecordControl
                 ' Default Value could also be NULL.
         
                 Me.po_no.Text = Inv_hdrTable.po_no.Format(Inv_hdrTable.po_no.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setremark()
+            
+        
+            ' Set the remark TextBox on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.remark is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setremark()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.remarkSpecified Then
+                				
+                ' If the remark is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.remark)
+                            
+                Me.remark.Text = formattedValue
+              
+            Else 
+            
+                ' remark is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.remark.Text = Inv_hdrTable.remark.Format(Inv_hdrTable.remark.DefaultValue)
                         		
                 End If
                  
@@ -7054,6 +7132,16 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setecc_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setexcise_remarkLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setfreight_to_payLabel()
             
                     
@@ -7080,11 +7168,6 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setid_commodityLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setid_partyLabel()
             
                     
         End Sub
@@ -7130,6 +7213,11 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setpo_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetremarkLabel()
             
                     
         End Sub
@@ -7289,13 +7377,14 @@ Public Class BaseInv_hdrRecordControl
         
             Getbill_address()
             Getbill_name()
+            Getecc_no()
+            Getexcise_remark()
             Getfreight_to_pay()
             Getgoods_removed_dt()
             Getgr_rr_dt()
             Getgr_rr_no()
             Getgrand_total()
             Getid_commodity()
-            Getid_party()
             Getid_transporter()
             Getinv_dt()
             Getinv_issued_dt()
@@ -7305,6 +7394,7 @@ Public Class BaseInv_hdrRecordControl
             Getpacking_details()
             Getpo_dt()
             Getpo_no()
+            Getremark()
             Getroad_permit_no()
             Getsale_ord_dt()
             Getsale_ord_no()
@@ -7322,6 +7412,23 @@ Public Class BaseInv_hdrRecordControl
                 
         Public Overridable Sub Getbill_name()
             
+        End Sub
+                
+        Public Overridable Sub Getecc_no()
+            
+        End Sub
+                
+        Public Overridable Sub Getexcise_remark()
+            
+            ' Retrieve the value entered by the user on the excise_remark ASP:TextBox, and
+            ' save it into the excise_remark field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.excise_remark.Text, Inv_hdrTable.excise_remark)			
+
+                      
         End Sub
                 
         Public Overridable Sub Getfreight_to_pay()
@@ -7387,10 +7494,6 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getid_commodity()
-            
-        End Sub
-                
-        Public Overridable Sub Getid_party()
             
         End Sub
                 
@@ -7465,6 +7568,19 @@ Public Class BaseInv_hdrRecordControl
                 
         Public Overridable Sub Getpo_no()
             
+        End Sub
+                
+        Public Overridable Sub Getremark()
+            
+            ' Retrieve the value entered by the user on the remark ASP:TextBox, and
+            ' save it into the remark field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.remark.Text, Inv_hdrTable.remark)			
+
+                      
         End Sub
                 
         Public Overridable Sub Getroad_permit_no()
@@ -8005,6 +8121,10 @@ Public Class BaseInv_hdrRecordControl
                 
         End Sub
             
+        Protected Overridable Sub excise_remark_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub freight_to_pay_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -8030,6 +8150,10 @@ Public Class BaseInv_hdrRecordControl
         End Sub
             
         Protected Overridable Sub packing_details_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub remark_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -8202,6 +8326,30 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property ecc_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property ecc_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property excise_remark() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "excise_remark"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property excise_remarkLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "excise_remarkLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property freight_to_pay() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "freight_to_pay"), System.Web.UI.WebControls.TextBox)
@@ -8271,18 +8419,6 @@ Public Class BaseInv_hdrRecordControl
         Public ReadOnly Property id_commodityLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_commodityLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property id_party() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_party"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-            
-        Public ReadOnly Property id_partyLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_partyLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -8397,6 +8533,18 @@ Public Class BaseInv_hdrRecordControl
         Public ReadOnly Property po_noLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property remark() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "remark"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property remarkLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "remarkLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

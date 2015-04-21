@@ -167,7 +167,9 @@ Partial Public Class EditPro_inv_hdr
         Public WithEvents CalculateButton As ThemeButton
         Public WithEvents CancelButton As ThemeButton
         Public WithEvents contactLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents excise_remarkLabel As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
         Public WithEvents gr_rr_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents gr_rr_noLabel As System.Web.UI.WebControls.Literal
@@ -221,6 +223,7 @@ Partial Public Class EditPro_inv_hdr
         Public WithEvents Pro_inv_termsToggleAll As System.Web.UI.WebControls.CheckBox
         Public WithEvents qtyLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents rateLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents remarkLabel As System.Web.UI.WebControls.Literal
         Public WithEvents road_permit_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_noLabel As System.Web.UI.WebControls.Literal

@@ -203,7 +203,11 @@ Partial Public Class ShowInv_hdr
         Public WithEvents BtnEmail As ThemeButton
         Public WithEvents BtnPrint As ThemeButton
         Public WithEvents BtnPrtInv As System.Web.UI.WebControls.Button
+        Public WithEvents ecc_no As System.Web.UI.WebControls.Literal
+        Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents EditButton As ThemeButton
+        Public WithEvents excise_remark As System.Web.UI.WebControls.Literal
+        Public WithEvents excise_remarkLabel As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_pay As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
         Public WithEvents gr_rr_dt As System.Web.UI.WebControls.Literal
@@ -215,8 +219,6 @@ Partial Public Class ShowInv_hdr
         Public WithEvents id_commodity As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_commodityLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents id_party As System.Web.UI.WebControls.LinkButton
-        Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_transporter As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id1 As System.Web.UI.WebControls.Literal
@@ -270,6 +272,8 @@ Partial Public Class ShowInv_hdr
         Public WithEvents po_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents qtyLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents rateLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents remark As System.Web.UI.WebControls.Literal
+        Public WithEvents remarkLabel As System.Web.UI.WebControls.Literal
         Public WithEvents road_permit_no As System.Web.UI.WebControls.Literal
         Public WithEvents road_permit_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_dt As System.Web.UI.WebControls.Literal

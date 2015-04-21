@@ -7066,8 +7066,6 @@ Public Class BaseInv_hdrRecordControl
               
               AddHandler Me.id_commodity.Click, AddressOf id_commodity_Click
             
-              AddHandler Me.id_party.Click, AddressOf id_party_Click
-            
               AddHandler Me.id_transporter.Click, AddressOf id_transporter_Click
             
             AddHandler Me.BtnEmail.Button.Click, AddressOf BtnEmail_Click
@@ -7157,6 +7155,10 @@ Public Class BaseInv_hdrRecordControl
             Setbill_name()
             Setbill_nameLabel()
             SetBtnPrtInv()
+            Setecc_no()
+            Setecc_noLabel()
+            Setexcise_remark()
+            Setexcise_remarkLabel()
             Setfreight_to_pay()
             Setfreight_to_payLabel()
             Setgr_rr_dt()
@@ -7167,8 +7169,6 @@ Public Class BaseInv_hdrRecordControl
             Setgrand_totalLabel()
             Setid_commodity()
             Setid_commodityLabel()
-            Setid_party()
-            Setid_partyLabel()
             Setid_transporter()
             Setid_transporterLabel()
             Setid1()
@@ -7186,6 +7186,8 @@ Public Class BaseInv_hdrRecordControl
             Setpo_dtLabel()
             Setpo_no()
             Setpo_noLabel()
+            Setremark()
+            SetremarkLabel()
             Setroad_permit_no()
             Setroad_permit_noLabel()
             Setsale_ord_dt()
@@ -7364,6 +7366,94 @@ Public Class BaseInv_hdrRecordControl
                 OrElse Me.bill_name.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.bill_name.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setecc_no()
+            
+        
+            ' Set the ecc_no Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.ecc_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setecc_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.ecc_noSpecified Then
+                				
+                ' If the ecc_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.ecc_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.ecc_no.Text = formattedValue
+              
+            Else 
+            
+                ' ecc_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.ecc_no.Text = Inv_hdrTable.ecc_no.Format(Inv_hdrTable.ecc_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the ecc_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.ecc_no.Text Is Nothing _
+                OrElse Me.ecc_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.ecc_no.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setexcise_remark()
+            
+        
+            ' Set the excise_remark Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.excise_remark is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setexcise_remark()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.excise_remarkSpecified Then
+                				
+                ' If the excise_remark is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.excise_remark)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.excise_remark.Text = formattedValue
+              
+            Else 
+            
+                ' excise_remark is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.excise_remark.Text = Inv_hdrTable.excise_remark.Format(Inv_hdrTable.excise_remark.DefaultValue)
+                        		
+                End If
+                 
+            ' If the excise_remark is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.excise_remark.Text Is Nothing _
+                OrElse Me.excise_remark.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.excise_remark.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -7574,41 +7664,6 @@ Public Class BaseInv_hdrRecordControl
                 ' Default Value could also be NULL.
         
                 Me.id_commodity.Text = Inv_hdrTable.id_commodity.Format(Inv_hdrTable.id_commodity.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
-        Public Overridable Sub Setid_party()
-            
-        
-            ' Set the id_party LinkButton on the webpage with value from the
-            ' inv_hdr database record.
-
-            ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.id_party is the ASP:LinkButton on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setid_party()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_partySpecified Then
-                				
-                ' If the id_party is non-NULL, then format the value.
-
-                ' The Format method will return the Display Foreign Key As (DFKA) value
-                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.id_party)
-                            
-                Me.id_party.Text = formattedValue
-              
-            Else 
-            
-                ' id_party is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.id_party.Text = Inv_hdrTable.id_party.Format(Inv_hdrTable.id_party.DefaultValue)
                         		
                 End If
                  
@@ -7989,6 +8044,50 @@ Public Class BaseInv_hdrRecordControl
                 OrElse Me.po_no.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.po_no.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setremark()
+            
+        
+            ' Set the remark Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.remark is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setremark()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.remarkSpecified Then
+                				
+                ' If the remark is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.remark)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.remark.Text = formattedValue
+              
+            Else 
+            
+                ' remark is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.remark.Text = Inv_hdrTable.remark.Format(Inv_hdrTable.remark.DefaultValue)
+                        		
+                End If
+                 
+            ' If the remark is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.remark.Text Is Nothing _
+                OrElse Me.remark.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.remark.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -8393,6 +8492,16 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setecc_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setexcise_remarkLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setfreight_to_payLabel()
             
                     
@@ -8414,11 +8523,6 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setid_commodityLabel()
-            
-                    
-        End Sub
-                
-        Public Overridable Sub Setid_partyLabel()
             
                     
         End Sub
@@ -8459,6 +8563,11 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setpo_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SetremarkLabel()
             
                     
         End Sub
@@ -8622,12 +8731,13 @@ Public Class BaseInv_hdrRecordControl
         
             Getbill_address()
             Getbill_name()
+            Getecc_no()
+            Getexcise_remark()
             Getfreight_to_pay()
             Getgr_rr_dt()
             Getgr_rr_no()
             Getgrand_total()
             Getid_commodity()
-            Getid_party()
             Getid_transporter()
             Getid1()
             Getinv_dt()
@@ -8637,6 +8747,7 @@ Public Class BaseInv_hdrRecordControl
             Getpacking_details()
             Getpo_dt()
             Getpo_no()
+            Getremark()
             Getroad_permit_no()
             Getsale_ord_dt()
             Getsale_ord_no()
@@ -8653,6 +8764,14 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getbill_name()
+            
+        End Sub
+                
+        Public Overridable Sub Getecc_no()
+            
+        End Sub
+                
+        Public Overridable Sub Getexcise_remark()
             
         End Sub
                 
@@ -8673,10 +8792,6 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getid_commodity()
-            
-        End Sub
-                
-        Public Overridable Sub Getid_party()
             
         End Sub
                 
@@ -8713,6 +8828,10 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getpo_no()
+            
+        End Sub
+                
+        Public Overridable Sub Getremark()
             
         End Sub
                 
@@ -9118,50 +9237,6 @@ Public Class BaseInv_hdrRecordControl
         End Sub
             
         ' event handler for LinkButton
-        Public Overridable Sub id_party_Click(ByVal sender As Object, ByVal args As EventArgs)
-              
-            ' The redirect URL is set on the Properties, Bindings.
-            ' The ModifyRedirectURL call resolves the parameters before the
-            ' Response.Redirect redirects the page to the URL.  
-            ' Any code after the Response.Redirect call will not be executed, since the page is
-            ' redirected to the URL.
-            Dim url As String = "../party/ShowParty.aspx?Party={Inv_hdrRecordControl:FK:inv_hdr_party_id_party_FK}"
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-            url = Me.ModifyRedirectUrl(url, "",False)
-            url = Me.Page.ModifyRedirectUrl(url, "",False)
-          Me.Page.CommitTransaction(sender)
-          
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.Page.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.Page.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.Page.ShouldSaveControlsToSession = True
-                Me.Page.Response.Redirect(url)
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.Page.ShouldSaveControlsToSession = True
-            Me.Page.CloseWindow(True)
-        
-            End If
-        End Sub
-            
-        ' event handler for LinkButton
         Public Overridable Sub id_transporter_Click(ByVal sender As Object, ByVal args As EventArgs)
               
             ' The redirect URL is set on the Properties, Bindings.
@@ -9468,6 +9543,30 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property ecc_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property ecc_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property excise_remark() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "excise_remark"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property excise_remarkLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "excise_remarkLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property freight_to_pay() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "freight_to_pay"), System.Web.UI.WebControls.Literal)
@@ -9525,18 +9624,6 @@ Public Class BaseInv_hdrRecordControl
         Public ReadOnly Property id_commodityLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_commodityLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
-        Public ReadOnly Property id_party() As System.Web.UI.WebControls.LinkButton
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_party"), System.Web.UI.WebControls.LinkButton)
-            End Get
-        End Property
-            
-        Public ReadOnly Property id_partyLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_partyLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -9651,6 +9738,18 @@ Public Class BaseInv_hdrRecordControl
         Public ReadOnly Property po_noLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property remark() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "remark"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property remarkLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "remarkLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

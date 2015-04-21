@@ -175,9 +175,13 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents BtnPrint As ThemeButton
         Public WithEvents contact As System.Web.UI.WebControls.Literal
         Public WithEvents contactLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents ecc_no As System.Web.UI.WebControls.Literal
+        Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents EditButton As ThemeButton
         Public WithEvents email As System.Web.UI.WebControls.Literal
         Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents excise_remark As System.Web.UI.WebControls.Literal
+        Public WithEvents excise_remarkLabel As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_pay As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
         Public WithEvents gr_rr_dt As System.Web.UI.WebControls.Literal
@@ -250,6 +254,8 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents Pro_inv_termsWordButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents qtyLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents rateLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents remark As System.Web.UI.WebControls.Literal
+        Public WithEvents remarkLabel As System.Web.UI.WebControls.Literal
         Public WithEvents road_permit_no As System.Web.UI.WebControls.Literal
         Public WithEvents road_permit_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_dt As System.Web.UI.WebControls.Literal
