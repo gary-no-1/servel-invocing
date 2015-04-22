@@ -258,131 +258,140 @@ Public Class Pro_inv_hdrRecordControl
 			Dim search_pointer as String = "111"
        	    Dim index As Integer = 0
 
+			' 22/04/2015 -- exception string to find out which field gave error in calculation
+			Dim calc_excep_string as String
+			calc_excep_string = ""
+			
             Try
-			Dim irep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_itemsTableControlRepeater"),System.Web.UI.WebControls.Repeater)
-			Dim item_total As Decimal = 0
-           	For Each irepItem As System.Web.UI.WebControls.RepeaterItem In irep.Items
-               	Dim irecControl As Pro_inv_itemsTableControlRow = DirectCast(irepItem.FindControl("Pro_inv_itemsTableControlRow"), Pro_inv_itemsTableControlRow) 
-				item_total += CDec(irecControl.amount.text)
+				Dim irep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_itemsTableControlRepeater"),System.Web.UI.WebControls.Repeater)
+				Dim item_total As Decimal = 0
+				For Each irepItem As System.Web.UI.WebControls.RepeaterItem In irep.Items
+					Dim irecControl As Pro_inv_itemsTableControlRow = DirectCast(irepItem.FindControl("Pro_inv_itemsTableControlRow"), Pro_inv_itemsTableControlRow) 
+					item_total += CDec(irecControl.amount.text)
+					
+					index += 1
+				Next
+			
+				Dim net_total  As Decimal = 0
+				Dim prv_amount As Decimal = 0
+				Dim prv_total  As Decimal = 0
+				Dim tax_amount As Decimal = 0
+				Dim ex_total   As Decimal = 0
+				Dim inv_total  As Decimal = 0
 				
-				index += 1
-       	    Next
-		
-			Dim net_total  As Decimal = 0
-			Dim prv_amount As Decimal = 0
-			Dim prv_total  As Decimal = 0
-			Dim tax_amount As Decimal = 0
-			Dim ex_total   As Decimal = 0
-			Dim inv_total  As Decimal = 0
+				net_total  = item_total
+				prv_amount = item_total
+				prv_total  = item_total
 			
-			net_total  = item_total
-			prv_amount = item_total
-			prv_total  = item_total
-			
-			Dim trep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_taxesTableControlRepeater"),System.Web.UI.WebControls.Repeater)
-       	    index = 0
-           	For Each trepItem As System.Web.UI.WebControls.RepeaterItem In trep.Items
-               	Dim trecControl As Pro_inv_taxesTableControlRow = DirectCast(trepItem.FindControl("Pro_inv_taxesTableControlRow"), Pro_inv_taxesTableControlRow) 
-				'if trecControl.calc_type.text = "ON NET TOTAL        " then
-				if trecControl.calc_type.text.trim() = "ON NET TOTAL" then
-					if trecControl.tax_lock.Checked then
+				Dim trep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_taxesTableControlRepeater"),System.Web.UI.WebControls.Repeater)
+				index = 0
+				For Each trepItem As System.Web.UI.WebControls.RepeaterItem In trep.Items
+					Dim trecControl As Pro_inv_taxesTableControlRow = DirectCast(trepItem.FindControl("Pro_inv_taxesTableControlRow"), Pro_inv_taxesTableControlRow) 
+					calc_excep_string = trecControl.tax_code.text.trim()
+					
+					'if trecControl.calc_type.text = "ON NET TOTAL        " then
+					if trecControl.calc_type.text.trim() = "ON NET TOTAL" then
+						if trecControl.tax_lock.Checked then
+							tax_amount = CDec(trecControl.tax_amount.text)
+							trecControl.tax_amount.text = Format(tax_amount, "c")
+						else
+							trecControl.tax_on.text = FORMAT(net_total, "c")
+							tax_amount = Math.round(net_total * CDec(trecControl.tax_rate.text) / 100,0)
+							trecControl.tax_amount.text = Format(tax_amount, "c")
+						end if 	
+						prv_total += tax_amount
+						prv_amount = tax_amount
+					end if
+					'if trecControl.calc_type.text = "PREVIOUS AMOUNT     " then
+					if trecControl.calc_type.text.trim() = "PREVIOUS AMOUNT" then
+						if trecControl.tax_lock.Checked then
+							tax_amount = CDec(trecControl.tax_amount.text)
+							trecControl.tax_amount.text = Format(tax_amount, "c")
+						else
+							trecControl.tax_on.text = FORMAT(prv_amount, "c")
+							tax_amount = Math.round(prv_amount * CDec(trecControl.tax_rate.text) / 100,0)
+							trecControl.tax_amount.text = Format(tax_amount, "c")
+						end if	
+						prv_total += tax_amount
+						prv_amount = tax_amount
+					end if
+					'if trecControl.calc_type.text = "PREVIOUS TOTAL      " then
+					if trecControl.calc_type.text.trim() = "PREVIOUS TOTAL" then
+						if trecControl.tax_lock.Checked then
+							tax_amount = CDec(trecControl.tax_amount.text)
+							trecControl.tax_amount.text = Format(tax_amount, "c")
+						else
+							trecControl.tax_on.text = FORMAT(prv_total, "c")
+							tax_amount = Math.round(prv_total * CDec(trecControl.tax_rate.text) / 100,0)
+							trecControl.tax_amount.text = Format(tax_amount, "c")
+						end if	
+						prv_total += tax_amount
+						prv_amount = tax_amount
+					end if
+					'if trecControl.calc_type.text = "ACTUAL              " then
+					if trecControl.calc_type.text.trim() = "ACTUAL" then
+						trecControl.tax_on.text = FORMAT(CDec(trecControl.tax_amount.text),"c")
 						tax_amount = CDec(trecControl.tax_amount.text)
 						trecControl.tax_amount.text = Format(tax_amount, "c")
-					else
-						trecControl.tax_on.text = FORMAT(net_total, "c")
-						tax_amount = Math.round(net_total * CDec(trecControl.tax_rate.text) / 100,0)
-						trecControl.tax_amount.text = Format(tax_amount, "c")
-					end if 	
-					prv_total += tax_amount
-					prv_amount = tax_amount
-				end if
-				'if trecControl.calc_type.text = "PREVIOUS AMOUNT     " then
-				if trecControl.calc_type.text.trim() = "PREVIOUS AMOUNT" then
-					if trecControl.tax_lock.Checked then
-						tax_amount = CDec(trecControl.tax_amount.text)
-						trecControl.tax_amount.text = Format(tax_amount, "c")
-					else
-						trecControl.tax_on.text = FORMAT(prv_amount, "c")
-						tax_amount = Math.round(prv_amount * CDec(trecControl.tax_rate.text) / 100,0)
-						trecControl.tax_amount.text = Format(tax_amount, "c")
-					end if	
-					prv_total += tax_amount
-					prv_amount = tax_amount
-				end if
-				'if trecControl.calc_type.text = "PREVIOUS TOTAL      " then
-				if trecControl.calc_type.text.trim() = "PREVIOUS TOTAL" then
-					if trecControl.tax_lock.Checked then
-						tax_amount = CDec(trecControl.tax_amount.text)
-						trecControl.tax_amount.text = Format(tax_amount, "c")
-					else
+						prv_total += tax_amount
+						prv_amount = tax_amount
+					end if
+					if trecControl.calc_type.text.trim() = "SUB TOTAL" then
 						trecControl.tax_on.text = FORMAT(prv_total, "c")
-						tax_amount = Math.round(prv_total * CDec(trecControl.tax_rate.text) / 100,0)
+						tax_amount = prv_total
 						trecControl.tax_amount.text = Format(tax_amount, "c")
+						'prv_total += tax_amount
+						prv_amount = tax_amount
+					end if
+					' compute total amount of excise duty
+					if trecControl.tax_type.text.trim() = "EXCISE" then
+						tax_amount = CDec(trecControl.tax_amount.text)
+						ex_total += tax_amount					
 					end if	
-					prv_total += tax_amount
-					prv_amount = tax_amount
-				end if
-				'if trecControl.calc_type.text = "ACTUAL              " then
-				if trecControl.calc_type.text.trim() = "ACTUAL" then
-					trecControl.tax_on.text = FORMAT(CDec(trecControl.tax_amount.text),"c")
-					tax_amount = CDec(trecControl.tax_amount.text)
-					trecControl.tax_amount.text = Format(tax_amount, "c")
-					prv_total += tax_amount
-					prv_amount = tax_amount
-				end if
-				if trecControl.calc_type.text.trim() = "SUB TOTAL" then
-					trecControl.tax_on.text = FORMAT(prv_total, "c")
-					tax_amount = prv_total
-					trecControl.tax_amount.text = Format(tax_amount, "c")
-					'prv_total += tax_amount
-					prv_amount = tax_amount
-				end if
-			    ' compute total amount of excise duty
-				if trecControl.tax_type.text.trim() = "EXCISE" then
-					tax_amount = CDec(trecControl.tax_amount.text)
-					ex_total += tax_amount					
-				end if	
-					'Tax_group_dtlsRec = TaxesManyRec(taxctr)
-					'recControl.id_taxes.text = Tax_group_dtlsRec.id_taxes.tostring()
-					'recControl.tax_code.text = Tax_group_dtlsRec.tax_code
-					'recControl.tax_name.text = Tax_group_dtlsRec.tax_name
-					'recControl.tax_print.text = Tax_group_dtlsRec.tax_print
-					'recControl.tax_rate.text = Tax_group_dtlsRec.tax_rate.tostring()
-					'recControl.calc_type.text = Tax_group_dtlsRec.calc_type
-					'recControl.sort_order1.text = Tax_group_dtlsRec.sort_order.tostring()
+						'Tax_group_dtlsRec = TaxesManyRec(taxctr)
+						'recControl.id_taxes.text = Tax_group_dtlsRec.id_taxes.tostring()
+						'recControl.tax_code.text = Tax_group_dtlsRec.tax_code
+						'recControl.tax_name.text = Tax_group_dtlsRec.tax_name
+						'recControl.tax_print.text = Tax_group_dtlsRec.tax_print
+						'recControl.tax_rate.text = Tax_group_dtlsRec.tax_rate.tostring()
+						'recControl.calc_type.text = Tax_group_dtlsRec.calc_type
+						'recControl.sort_order1.text = Tax_group_dtlsRec.sort_order.tostring()
+					
+					index += 1
+				Next
+	
+				inv_total = prv_total
 				
-				index += 1
-       	    Next
-
-			inv_total = prv_total
-			
-			Dim crep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_taxesTableControlRepeater"),System.Web.UI.WebControls.Repeater)
-           	For Each crepItem As System.Web.UI.WebControls.RepeaterItem In crep.Items
-               	Dim crecControl As Pro_inv_taxesTableControlRow = DirectCast(crepItem.FindControl("Pro_inv_taxesTableControlRow"), Pro_inv_taxesTableControlRow) 
-				crecControl.item_total1.text  = FORMAT(item_total, "c")
-				crecControl.excise_total.text = FORMAT(ex_total, "c")
-				crecControl.grand_total1.text = FORMAT(inv_total, "c")
+				Dim crep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_taxesTableControlRepeater"),System.Web.UI.WebControls.Repeater)
+				For Each crepItem As System.Web.UI.WebControls.RepeaterItem In crep.Items
+					Dim crecControl As Pro_inv_taxesTableControlRow = DirectCast(crepItem.FindControl("Pro_inv_taxesTableControlRow"), Pro_inv_taxesTableControlRow) 
+					crecControl.item_total1.text  = FORMAT(item_total, "c")
+					crecControl.excise_total.text = FORMAT(ex_total, "c")
+					crecControl.grand_total1.text = FORMAT(inv_total, "c")
+					
+					index += 1
+				Next
+	
+				me.item_total.text  = FORMAT(item_total, "c")
+				me.grand_total.text = FORMAT(prv_total, "c")
+				'me.item_total.text = index.ToString()
 				
-				index += 1
-       	    Next
-
-			me.item_total.text  = FORMAT(item_total, "c")
-            me.grand_total.text = FORMAT(prv_total, "c")
-			'me.item_total.text = index.ToString()
-			
-			'me.item_totalLabel.visible = true
-			'me.item_total.visible = true
-			'me.grand_totalLabel.visible = true
-			'me.grand_total.visible = true
+				'me.item_totalLabel.visible = true
+				'me.item_total.visible = true
+				'me.grand_totalLabel.visible = true
+				'me.grand_total.visible = true
               
                 
             Catch ex As Exception
                 Me.Page.ErrorOnPage = True
     
                 ' Report the error message to the end user
-                'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+                ' Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+
 				Dim msg_calc_error as String
-				msg_calc_error = "Please check all tax rates | item rate / qty - one of them is blank"
+				msg_calc_error = "Please check all rates / qty - blank "
+				msg_calc_error = msg_calc_error + " " + calc_excep_string
+				
                 Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", msg_calc_error)
 				
             Finally

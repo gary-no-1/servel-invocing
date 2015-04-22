@@ -524,6 +524,10 @@ Public Class Pro_inv_hdrRecordControl
 			Dim search_pointer as String = "111"
        	    Dim index As Integer = 0
 			
+			' 22/04/2015 -- exception string to find out which field gave error in calculation
+			Dim calc_excep_string as String
+			calc_excep_string = ""
+			
             Try
 				Dim irep As System.Web.UI.WebControls.Repeater = CType(MiscUtils.FindControlRecursively(Me.Page, "Pro_inv_itemsTableControlRepeater"),System.Web.UI.WebControls.Repeater)
 				Dim item_total As Decimal = 0
@@ -548,6 +552,8 @@ Public Class Pro_inv_hdrRecordControl
        		    index = 0
            		For Each trepItem As System.Web.UI.WebControls.RepeaterItem In trep.Items
 	               	Dim trecControl As Pro_inv_taxesTableControlRow = DirectCast(trepItem.FindControl("Pro_inv_taxesTableControlRow"), Pro_inv_taxesTableControlRow) 
+					calc_excep_string = trecControl.tax_code.text.trim()
+					
 				'if trecControl.calc_type.text = "ON NET TOTAL        " then
 					if trecControl.calc_type.text.trim() = "ON NET TOTAL" then
 						if trecControl.tax_lock.Checked then
@@ -633,10 +639,11 @@ Public Class Pro_inv_hdrRecordControl
                 Me.Page.ErrorOnPage = True
     
                 ' Report the error message to the end user
-                'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+                ' Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
 				
 				Dim msg_calc_error as String
-				msg_calc_error = "Please check all tax rates | item rate / qty - one of them is blank"
+				msg_calc_error = "Please check all rates / qty - blank "
+				msg_calc_error = msg_calc_error + " " + calc_excep_string
                 Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", msg_calc_error)
             Finally
     
