@@ -352,18 +352,6 @@
       <InsideControl>Inv_hdrRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>BtnPrtInv</Name>
-      <Type>Aspx</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>Inv_hdrRecordControl</InsideControl>
-      <ControlClass>System.Web.UI.WebControls.Button</ControlClass>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>ecc_no</Name>
       <Type>FieldValue</Type>
       <Field>ecc_no</Field>
@@ -5008,7 +4996,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;asp:button id="BtnPrtInv" runat="server" text="Print Invoice" cssclass="button_link" OnClientClick="MyPrint(); return false;" visible="False"&amp;gt;&amp;lt;/asp:button&amp;gt;
+        &lt;Value&gt;
 &amp;lt;telerik:ReportViewer ID="ReportViewer1" runat="server" style="display:none" /&amp;gt;
 &amp;lt;script type="text/javascript"&amp;gt;
     ReportViewer.OnReportLoadedOld = ReportViewer.OnReportLoaded; 

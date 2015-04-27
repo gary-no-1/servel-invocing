@@ -61,13 +61,6 @@ Partial Public Class PrintProforma
     	    	        Dim sID As String = Page.Session("PrintProInvID").tostring()
 				'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", sID)
 						
-						'Dim reportBook = New ReportBook()
-						'reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice())
-						'reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoice2Copy())
-						'reportBook.Reports(0).ReportParameters("PrintProInvId").value = sID
-						'reportBook.Reports(1).ReportParameters("PrintProInvId").value = sID
-
-    	    	        ''Dim sID As String = me.id1.text
 						Dim oReport As New ServelInvoicingReportLibrary.ServelProformaInvoice()
 						oReport.ReportParameters("PrintProInvId").value = sID
 

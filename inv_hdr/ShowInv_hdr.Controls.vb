@@ -7154,7 +7154,6 @@ Public Class BaseInv_hdrRecordControl
             Setbill_addressLabel()
             Setbill_name()
             Setbill_nameLabel()
-            SetBtnPrtInv()
             Setecc_no()
             Setecc_noLabel()
             Setexcise_remark()
@@ -8487,11 +8486,6 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
-        Public Overridable Sub SetBtnPrtInv()
-            
-                    
-        End Sub
-                
         Public Overridable Sub Setecc_noLabel()
             
                     
@@ -9536,12 +9530,6 @@ Public Class BaseInv_hdrRecordControl
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "BtnPrint"), ServelInvocing.UI.IThemeButton)
           End Get
           End Property
-        
-        Public ReadOnly Property BtnPrtInv() As System.Web.UI.WebControls.Button
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "BtnPrtInv"), System.Web.UI.WebControls.Button)
-            End Get
-        End Property
         
         Public ReadOnly Property ecc_no() As System.Web.UI.WebControls.Literal
             Get

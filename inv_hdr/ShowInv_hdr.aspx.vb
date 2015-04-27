@@ -202,7 +202,6 @@ Partial Public Class ShowInv_hdr
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents BtnEmail As ThemeButton
         Public WithEvents BtnPrint As ThemeButton
-        Public WithEvents BtnPrtInv As System.Web.UI.WebControls.Button
         Public WithEvents ecc_no As System.Web.UI.WebControls.Literal
         Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents EditButton As ThemeButton
