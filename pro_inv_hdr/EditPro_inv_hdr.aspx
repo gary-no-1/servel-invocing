@@ -180,7 +180,7 @@
 </td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td style="padding-right: 5px; vertical-align:top">
-<asp:TextBox runat="server" id="amount" Columns="20" MaxLength="20" cssclass="field_input" readonly="True"></asp:TextBox></td>
+<asp:TextBox runat="server" id="amount" Columns="20" MaxLength="20" autopostback="False" cssclass="field_input" readonly="True"></asp:TextBox></td>
 </td>
 <td>
 &nbsp;

@@ -90,9 +90,6 @@
     <Compile Include="Inv_hdrRecord.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseInv_hdrRecord.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Inv_itemsTable.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -261,10 +258,28 @@
     <Compile Include="User_rolesRecord.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="V_Invoice_AmountsView.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_Invoice_AmountsRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_Invoice_ItemsView.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_Invoice_ItemsView.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_Invoice_ItemsRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseCommodityRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseCompanyRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseInv_hdrRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseInv_itemsTable.vb" >
@@ -385,6 +400,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseUser_rolesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_Invoice_AmountsView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_Invoice_AmountsRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_Invoice_ItemsRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

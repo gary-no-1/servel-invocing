@@ -110,6 +110,56 @@ Public Class Pro_inv_itemsTableControlRow
                 
                 
         End Sub
+
+		Protected Overrides Sub qty_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction()
+                ' Because Set methods will be called, it is important to initialize the data source ahead of time
+                Me.DataSource = Me.GetRecord()
+                Me.Page.CommitTransaction(sender)
+
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+            Finally
+                DbUtils.EndTransaction()
+            End Try			
+		
+            ' Reset amount
+            Setamount()	
+			' 29/04/2015 -- next line added
+			If isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session("Recompute") = "True"
+			End if 		
+			
+        End Sub
+
+		Protected Overrides Sub rate_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction()
+                ' Because Set methods will be called, it is important to initialize the data source ahead of time
+                Me.DataSource = Me.GetRecord()
+                Me.Page.CommitTransaction(sender)
+
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+            Finally
+                DbUtils.EndTransaction()
+            End Try			
+		
+            ' Reset amount
+            Setamount()				
+			' 29/04/2015 -- next line added
+			If isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session("Recompute") = "True"
+			End if 		
+			
+        End Sub
 End Class
 
   
@@ -200,6 +250,34 @@ Public Class Pro_inv_taxesTableControlRow
     	    	Return    
     		End If
                 
+        End Sub
+
+		Protected Overrides Sub tax_rate_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+			' 29/04/2015 -- next line added
+			If isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session("Recompute") = "True"
+			End if 		
+        End Sub
+
+		Protected Overrides Sub tax_on_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+			' 29/04/2015 -- next line added
+			If isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session("Recompute") = "True"
+			End if 		
+        End Sub
+
+		Protected Overrides Sub tax_amount_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+			' 29/04/2015 -- next line added
+			If isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session("Recompute") = "True"
+			End if 		
+        End Sub
+
+		Protected Overrides Sub tax_lock_CheckedChanged(ByVal sender As Object, ByVal args As EventArgs)                
+			' 29/04/2015 -- next line added
+			If isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session("Recompute") = "True"
+			End if 		
         End Sub
 End Class
 
@@ -517,9 +595,8 @@ Public Class Pro_inv_hdrRecordControl
                 
                 
         End Sub
-
-		Public Overrides Sub CalculateButton_Click(ByVal sender As Object, ByVal args As EventArgs)
-			' to do
+	
+		Public Sub ComputeTotals
 			' id_party should be filled , id_tax_group should be filled
 			Dim search_pointer as String = "111"
        	    Dim index As Integer = 0
@@ -648,7 +725,25 @@ Public Class Pro_inv_hdrRecordControl
             Finally
     
             End Try
-    
+
+        End Sub
+
+		Public Overrides Sub CalculateButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+		
+   			' "112" - to get to this line search for 111
+			ComputeTotals()
+			' 29/04/2015 -- next line added
+			If not isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session.remove("Recompute")
+			End if
+			If String.isnullorempty(me.grand_total.text)
+			   httpcontext.current.session("InvalidAmount") = "True"
+			Else
+				If not isnothing(httpcontext.current.session("InvalidAmount")) Then
+				   httpcontext.current.session.remove("InvalidAmount")
+				End if
+			End if	
+
         End Sub
 
 		Protected Overrides Sub id_party_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)

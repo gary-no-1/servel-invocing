@@ -146,13 +146,27 @@ Partial Public Class EditPro_inv_hdr
           ' NOTE: If the Base function redirects to another page, any code here will not be executed.
         End Sub
         
-        Public Sub SaveButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+		Public Sub SaveButton_Click(ByVal sender As Object, ByVal args As EventArgs)
             
           ' Click handler for SaveButton.
           ' Customize by adding code before the call or replace the call to the Base function with your own code.
+			' 29/04/2015 -- if any qty / rate / tax has changed , the computation is compulsory
+			If Not isnothing(httpcontext.current.session("Recompute")) Then
+				Dim display_message = "Please Compute Totals Before Saving"
+	            Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", display_message)
+				Return
+			End if 		
+			' 29/04/2015 -- if invoice amount is blank , do not save invoice. zero is acceptable
+			If not isnothing(httpcontext.current.session("InvalidAmount")) Then
+				Dim display_message = "Invoice Amount is Blank"
+	            Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", display_message)
+				Return
+			End if 		
+
           SaveButton_Click_Base(sender, args)
           ' NOTE: If the Base function redirects to another page, any code here will not be executed.
         End Sub
+                
         
 
     

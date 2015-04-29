@@ -1,6 +1,6 @@
 ﻿
-' This file implements the code-behind class for OriginalEditInv_hdr.aspx.
-' OriginalEditInv_hdr.Controls.vb contains the Table, Row and Record control classes
+' This file implements the code-behind class for Reports.aspx.
+' Reports.Controls.vb contains the Table, Row and Record control classes
 ' for the page.  Best practices calls for overriding methods in the Row or Record control classes.
 
 #Region "Imports statements"
@@ -33,9 +33,9 @@ Imports ServelInvocing.Data
   
 Namespace ServelInvocing.UI
   
-Partial Public Class OriginalEditInv_hdr
+Partial Public Class Reports
         Inherits BaseApplicationPage
-' Code-behind class for the OriginalEditInv_hdr page.
+' Code-behind class for the Reports page.
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
@@ -138,101 +138,32 @@ Partial Public Class OriginalEditInv_hdr
 
     ' Page Event Handlers - buttons, sort, links
     
-        Public Sub CancelButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+        Public Sub btnInvoiceItemReport_Click(ByVal sender As Object, ByVal args As EventArgs)
             
-          ' Click handler for CancelButton.
+          ' Click handler for btnInvoiceItemReport.
           ' Customize by adding code before the call or replace the call to the Base function with your own code.
-          CancelButton_Click_Base(sender, args)
-          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
-        End Sub
-        
-        Public Sub SaveButton_Click(ByVal sender As Object, ByVal args As EventArgs)
-            
-          ' Click handler for SaveButton.
-          ' Customize by adding code before the call or replace the call to the Base function with your own code.
-          SaveButton_Click_Base(sender, args)
+          btnInvoiceItemReport_Click_Base(sender, args)
           ' NOTE: If the Base function redirects to another page, any code here will not be executed.
         End Sub
         
 
     
+Public Sub btnInvoiceAmountReport_Click(ByVal sender As Object, ByVal args As EventArgs)
+            
+          ' Click handler for btnInvoiceAmountReport.
+          ' Customize by adding code before the call or replace the call to the Base function with your own code.
+          btnInvoiceAmountReport_Click_Base(sender, args)
+          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
+        End Sub
 #End Region
 
 #Region "Section 2: Do not modify this section."
 
-        Public WithEvents amountLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents bill_address As System.Web.UI.WebControls.Literal
-        Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents bill_name As System.Web.UI.WebControls.Literal
-        Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents CancelButton As ThemeButton
-        Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents goods_removed_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents gr_rr_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents gr_rr_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents grand_total As System.Web.UI.WebControls.Literal
-        Public WithEvents grand_totalLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_commodity As System.Web.UI.WebControls.LinkButton
-        Public WithEvents id_commodityLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents id_party As System.Web.UI.WebControls.Literal
-        Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_transporter As System.Web.UI.WebControls.DropDownList
-        Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents inv_dt As System.Web.UI.WebControls.Literal
-        Public WithEvents inv_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents Inv_hdrRecordControl As ServelInvocing.UI.Controls.OriginalEditInv_hdr.Inv_hdrRecordControl
-        Public WithEvents Inv_hdrTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents inv_issued_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents Inv_itemsPagination As Pagination
-        Public WithEvents Inv_itemsResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Inv_itemsTableControl As ServelInvocing.UI.Controls.OriginalEditInv_hdr.Inv_itemsTableControl
-        Public WithEvents Inv_itemsToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents inv_no As System.Web.UI.WebControls.Literal
-        Public WithEvents inv_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents Inv_taxesPagination As Pagination
-        Public WithEvents Inv_taxesResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Inv_taxesTableControl As ServelInvocing.UI.Controls.OriginalEditInv_hdr.Inv_taxesTableControl
-        Public WithEvents Inv_taxesToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents Inv_termsPagination As Pagination
-        Public WithEvents Inv_termsResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Inv_termsTableControl As ServelInvocing.UI.Controls.OriginalEditInv_hdr.Inv_termsTableControl
-        Public WithEvents Inv_termsToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents IssHrsDdl As System.Web.UI.WebControls.DropDownList
-        Public WithEvents IssMinDdl As System.Web.UI.WebControls.DropDownList
-        Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents item_total As System.Web.UI.WebControls.Literal
-        Public WithEvents item_totalLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents narrationLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents no_of_packagesLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents NumericUpDown1 As AjaxControlToolkit.NumericUpDownExtender
-        Public WithEvents packing_detailsLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents btnInvoiceAmountReport As System.Web.UI.WebControls.Button
+        
+        Public WithEvents btnInvoiceItemReport As System.Web.UI.WebControls.Button
+        
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents po_dt As System.Web.UI.WebControls.Literal
-        Public WithEvents po_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents po_no As System.Web.UI.WebControls.Literal
-        Public WithEvents po_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents qtyLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents rateLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents road_permit_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents sale_ord_dt As System.Web.UI.WebControls.Literal
-        Public WithEvents sale_ord_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents sale_ord_no As System.Web.UI.WebControls.Literal
-        Public WithEvents sale_ord_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents SaveButton As ThemeButton
-        Public WithEvents ship_address As System.Web.UI.WebControls.Literal
-        Public WithEvents ship_addressLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents ship_name As System.Web.UI.WebControls.Literal
-        Public WithEvents ship_nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents tax_amountLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tax_printLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents TextBox2 As System.Web.UI.WebControls.TextBox
-        Public WithEvents tin_no As System.Web.UI.WebControls.Literal
-        Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents txtIssDt As System.Web.UI.WebControls.TextBox
-        Public WithEvents uomLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents vehicle_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents weightLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   
@@ -246,19 +177,15 @@ Partial Public Class OriginalEditInv_hdr
 					
             ' Register the Event handler for any Events.
       
-            AddHandler Me.CancelButton.Button.Click, AddressOf CancelButton_Click
+            AddHandler Me.btnInvoiceAmountReport.Click, AddressOf btnInvoiceAmountReport_Click
         
-            AddHandler Me.SaveButton.Button.Click, AddressOf SaveButton_Click
-        
-            Me.SaveButton.Button.Attributes.Add("onclick", "SubmitHRefOnce(this, """ & Me.GetResourceValue("Txt:SaveRecord", "ServelInvocing") & """);")
+            AddHandler Me.btnInvoiceItemReport.Click, AddressOf btnInvoiceItemReport_Click
         
       
         End Sub
 
         Private Sub Base_RegisterPostback()
         
-              Me.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"SaveButton"))
-                        
         End Sub
 
         ' Handles MyBase.Load.  Read database data and put into the UI controls.
@@ -270,7 +197,11 @@ Partial Public Class OriginalEditInv_hdr
             ' Check if user has access to this page.  Redirects to either sign-in page
             ' or 'no access' page if not. Does not do anything if role-based security
             ' is not turned on, but you can override to add your own security.
-            Me.Authorize("NOT_ANONYMOUS")
+            Me.Authorize("")
+			Me.Authorize(Ctype(btnInvoiceAmountReport, Control), "1;2;4")
+					
+			Me.Authorize(Ctype(btnInvoiceItemReport, Control), "1;2;4")
+					
     
             If (Not Me.IsPostBack) Then
             
@@ -298,7 +229,7 @@ Partial Public Class OriginalEditInv_hdr
             End If
         
         
-            Page.Title = GetResourceValue("Title:Edit") + " Inv hdr"
+            Page.Title = "Blank page"
         End Sub
 
     Public Shared Function GetRecordFieldValue_Base(ByVal tableName As String, _
@@ -371,9 +302,7 @@ Partial Public Class OriginalEditInv_hdr
     
       
       Public Sub SaveData_Base()
-              
-        Me.Inv_hdrRecordControl.SaveData()
-        
+      
       End Sub
       
         
@@ -398,9 +327,7 @@ Partial Public Class OriginalEditInv_hdr
                 ' Load data for each record and table UI control.
                 ' Ordering is important because child controls get
                 ' their parent ids from their parent UI controls.
-                        
-        Me.Inv_hdrRecordControl.LoadData()
-        
+                
       
                 Me.DataBind()
             
@@ -437,45 +364,15 @@ Partial Public Class OriginalEditInv_hdr
 
         ' Write out event methods for the page events
         
-        ' event handler for Button with Layout
-        Public Sub CancelButton_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
+        ' event handler for PushButton with Layout
+        Public Sub btnInvoiceAmountReport_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
               
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                
-
-                TargetKey = Me.Page.Request.QueryString.Item("Target")
-                If Not TargetKey Is Nothing Then
-                   shouldRedirect = False
-                End If
-      
-            Catch ex As Exception
-                shouldRedirect = False
-                Me.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-    
-            End Try
-            If shouldRedirect Then
-                Me.ShouldSaveControlsToSession = True
-                Me.RedirectBack()
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.ShouldSaveControlsToSession = True
-            Me.CloseWindow(True)
-        
-            End If
-        End Sub
-            
-        ' event handler for Button with Layout
-        Public Sub SaveButton_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
-              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../V_Invoice_Amounts/ShowV_Invoice_AmountsTable.aspx"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing
@@ -485,37 +382,9 @@ Partial Public Class OriginalEditInv_hdr
                 ' Enclose all database retrieval/update code within a Transaction boundary
                 DbUtils.StartTransaction
                 
-        
-              If (Not Me.IsPageRefresh) Then         
-                  Me.SaveData()
-              End If        
-        
-            Me.CommitTransaction(sender)
+            url = Me.ModifyRedirectUrl(url, "",False)
+              Me.CommitTransaction(sender)
           
-            TargetKey = Me.Page.Request.QueryString.Item("Target")
-
-            If Not TargetKey Is Nothing Then
-                  
-                DFKA = Me.Page.Request.QueryString.Item("DFKA")
-                If Not Me.Inv_hdrRecordControl Is Nothing AndAlso Not Me.Inv_hdrRecordControl.DataSource Is Nothing Then
-                      
-                      id = Me.Inv_hdrRecordControl.DataSource.id0.ToString
-                      value = Me.Inv_hdrRecordControl.DataSource.GetValue(Me.Inv_hdrRecordControl.DataSource.TableAccess.TableDefinition.ColumnList.GetByAnyName(DFKA)).ToString
-                      If value is Nothing Then
-                            value = id
-                      End If
-                      
-                      Dim Formula As String = Me.Page.Request.QueryString.Item("Formula")							
-                      If Not Formula Is Nothing Then
-                            value = EvaluateFormula(Formula, Me.Inv_hdrRecordControl.DataSource)
-                      End If
-
-                      BaseClasses.Utils.MiscUtils.RegisterAddButtonScript(Me, TargetKey, id, value)
-                End If
-                shouldRedirect = False
-                        
-            End If
-        
             Catch ex As Exception
                 ' Upon error, rollback the transaction
                 Me.RollBackTransaction(sender)
@@ -529,7 +398,50 @@ Partial Public Class OriginalEditInv_hdr
             End Try
             If shouldRedirect Then
                 Me.ShouldSaveControlsToSession = True
-                Me.RedirectBack()
+                Me.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.ShouldSaveControlsToSession = True
+            Me.CloseWindow(True)
+        
+            End If
+        End Sub
+            
+        ' event handler for PushButton with Layout
+        Public Sub btnInvoiceItemReport_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../V_Invoice_Items/ShowV_Invoice_ItemsTable.aspx"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+              Me.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.ShouldSaveControlsToSession = True
+                Me.Response.Redirect(url)
             ElseIf Not TargetKey Is Nothing AndAlso _
                         Not shouldRedirect Then
             Me.ShouldSaveControlsToSession = True

@@ -108,7 +108,59 @@ Public Class Pro_inv_itemsTableControlRow
     		End If
                 
         End Sub
-End Class
+
+		Protected Overrides Sub qty_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction()
+                ' Because Set methods will be called, it is important to initialize the data source ahead of time
+                Me.DataSource = Me.GetRecord()
+                Me.Page.CommitTransaction(sender)
+
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+            Finally
+                DbUtils.EndTransaction()
+            End Try			
+                
+                
+            ' Reset amount
+            Setamount()
+			' 29/04/2015 -- next line added
+			If isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session("Recompute") = "True"
+			End if 		
+			
+        End Sub
+
+		Protected Overrides Sub rate_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction()
+                ' Because Set methods will be called, it is important to initialize the data source ahead of time
+                Me.DataSource = Me.GetRecord()
+                Me.Page.CommitTransaction(sender)
+
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+            Finally
+                DbUtils.EndTransaction()
+            End Try			
+		
+            ' Reset amount
+            Setamount()				
+			' 29/04/2015 -- next line added
+			If isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session("Recompute") = "True"
+			End if 		
+
+        End Sub
+
+		End Class
 
   
 
@@ -199,6 +251,30 @@ Public Class Pro_inv_taxesTableControlRow
     		End If
                 
         End Sub
+
+		Protected Overrides Sub tax_rate_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+			' 29/04/2015 -- next line added
+			If isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session("Recompute") = "True"
+			End if 		
+                    				
+        End Sub
+
+		Protected Overrides Sub tax_on_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+			' 29/04/2015 -- next line added
+			If isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session("Recompute") = "True"
+			End if 		
+                    				
+        End Sub
+
+		Protected Overrides Sub tax_amount_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+			' 29/04/2015 -- next line added
+			If isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session("Recompute") = "True"
+			End if 		
+                    				
+        End Sub
 End Class
 
   
@@ -251,11 +327,9 @@ Public Class Pro_inv_hdrRecordControl
         ' This is the ideal place to add your code customizations. For example, you can override the LoadData, 
         ' CreateWhereClause, DataBind, SaveData, GetUIData, and Validate methods.
         
+		Public Sub ComputeTotals
 
-
-		Public Overrides Sub CalculateButton_Click(ByVal sender As Object, ByVal args As EventArgs)
-
-			Dim search_pointer as String = "111"
+			' "111" - to get to this line search for 111
        	    Dim index As Integer = 0
 
 			' 22/04/2015 -- exception string to find out which field gave error in calculation
@@ -388,6 +462,10 @@ Public Class Pro_inv_hdrRecordControl
                 ' Report the error message to the end user
                 ' Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
 
+				' 28/04/2015 - in case of error , make item and grand total zero
+				me.item_total.text  = ""
+				me.grand_total.text = ""
+				
 				Dim msg_calc_error as String
 				msg_calc_error = "Please check all rates / qty - blank "
 				msg_calc_error = msg_calc_error + " " + calc_excep_string
@@ -397,7 +475,24 @@ Public Class Pro_inv_hdrRecordControl
             Finally
     
             End Try
-    
+			
+		End Sub
+
+		Public Overrides Sub CalculateButton_Click(ByVal sender As Object, ByVal args As EventArgs)
+
+			' "112" - to get to this line search for 111
+			ComputeTotals()
+			' 29/04/2015 -- next line added
+			If not isnothing(httpcontext.current.session("Recompute")) Then
+			   httpcontext.current.session.remove("Recompute")
+			End if
+			If String.isnullorempty(me.grand_total.text)
+			   httpcontext.current.session("InvalidAmount") = "True"
+			Else
+				If not isnothing(httpcontext.current.session("InvalidAmount")) Then
+				   httpcontext.current.session.remove("InvalidAmount")
+				End if
+			End if	
         End Sub
 
 		Protected Overrides Sub id_party_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
@@ -553,7 +648,10 @@ Public Class Pro_inv_hdrRecordControl
                 
                 
         End Sub
-End Class
+
+		
+		
+		End Class
 
   
 

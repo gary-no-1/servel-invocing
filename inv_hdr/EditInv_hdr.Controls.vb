@@ -198,7 +198,94 @@ Public Class Inv_hdrRecordControl
 '
 '        End Sub
 
-		End Class
+		
+		
+		Protected Overrides Sub id_party_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.id_party.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_party)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_party, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_party, selectedValue)Then
+
+                ' construct a whereclause to query a record with party.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(PartyTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As PartyRecord = PartyTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Inv_hdrTable.id_party.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_party.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+            End If
+
+		' -- allow for party select / edit in invoice
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction()
+                ' Because Set methods will be called, it is important to initialize the data source ahead of time
+                Me.DataSource = Me.GetRecord()
+                Me.Page.CommitTransaction(sender)
+
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.Page.RollBackTransaction(sender)
+            Finally
+                DbUtils.EndTransaction()
+            End Try			
+
+			Dim selectedText As String = id_party.SelectedItem.Text
+	    	If not (BaseClasses.Utils.StringUtils.InvariantUCase(selectedText).Equals(BaseClasses.Utils.StringUtils.InvariantUCase(Page.GetResourceValue("Txt:PleaseSelect", "ServelInvocing"))))
+    	    	' if "Please Select" string is selected for first dropdown list,
+	        	' then do not continue populating the second dropdown list.
+				Dim thisParty_id As String
+				thisParty_id = me.id_party.text
+				Dim srchHdrStr As String
+				srchHdrStr = "id = '" + thisParty_Id + "'"
+				Dim ProInvPartyRec As partyRecord = PartyTable.GetRecord(srchHdrStr, False)
+				me.tin_no.text = ProInvPartyRec.tin_no
+				me.bill_name.text = ProInvPartyRec.name
+				me.bill_address.text = ProInvPartyRec.address
+				me.ship_name.text = ProInvPartyRec.name
+				me.ship_address.text = ProInvPartyRec.address
+				' -- added - 22-04-2014
+				'me.contact.text = ProInvPartyRec.contact
+				'me.phone.text = ProInvPartyRec.phone
+				'me.email.text = ProInvPartyRec.email
+				' -- added - 21-04-2015
+				me.ecc_no.text = ProInvPartyRec.ecc_no
+    	    	' Return    
+    		End If
+		
+                
+                
+        End Sub
+End Class
 
   
 
@@ -5858,7 +5945,15 @@ Public Class BaseInv_hdrRecordControl
           
               AddHandler Me.id_commodity.Click, AddressOf id_commodity_Click
             
+              AddHandler Me.id_party.SelectedIndexChanged, AddressOf id_party_SelectedIndexChanged
+            
               AddHandler Me.id_transporter.SelectedIndexChanged, AddressOf id_transporter_SelectedIndexChanged
+            
+              AddHandler Me.bill_address.TextChanged, AddressOf bill_address_TextChanged
+            
+              AddHandler Me.bill_name.TextChanged, AddressOf bill_name_TextChanged
+            
+              AddHandler Me.ecc_no.TextChanged, AddressOf ecc_no_TextChanged
             
               AddHandler Me.excise_remark.TextChanged, AddressOf excise_remark_TextChanged
             
@@ -5879,6 +5974,12 @@ Public Class BaseInv_hdrRecordControl
               AddHandler Me.remark.TextChanged, AddressOf remark_TextChanged
             
               AddHandler Me.road_permit_no.TextChanged, AddressOf road_permit_no_TextChanged
+            
+              AddHandler Me.ship_address.TextChanged, AddressOf ship_address_TextChanged
+            
+              AddHandler Me.ship_name.TextChanged, AddressOf ship_name_TextChanged
+            
+              AddHandler Me.tin_no.TextChanged, AddressOf tin_no_TextChanged
             
               AddHandler Me.vehicle_no.TextChanged, AddressOf vehicle_no_TextChanged
             
@@ -5982,6 +6083,8 @@ Public Class BaseInv_hdrRecordControl
             Setgrand_totalLabel()
             Setid_commodity()
             Setid_commodityLabel()
+            Setid_party()
+            Setid_partyLabel()
             Setid_transporter()
             Setid_transporterLabel()
             Setinv_dt()
@@ -6066,11 +6169,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setbill_address()
             
         
-            ' Set the bill_address Literal on the webpage with value from the
+            ' Set the bill_address TextBox on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.bill_address is the ASP:Literal on the webpage.
+            ' Me.bill_address is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setbill_address()
@@ -6085,40 +6188,6 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.bill_address)
                             
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                If Not formattedValue is Nothing Then
-                    Dim popupThreshold as Integer = CType(100, Integer)
-                              
-                    Dim maxLength as Integer = Len(formattedValue)
-                    If (maxLength > CType(100, Integer)) Then
-                        ' Truncate based on FieldMaxLength on Properties.
-                        maxLength = CType(100, Integer)
-                        
-                    End If
-                                
-                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
-                    If Len(formattedValue) >= popupThreshold Then
-                    
-                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
-                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.Inv_hdrTable, ServelInvocing.Business\"",\""" _
-                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""bill_address\"", \""bill_address\"", \""Bill Address\"", false, 200," _
-                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
-                        
-                        If (maxLength = CType(100, Integer)) Then
-                            formattedValue = formattedValue & "..." & "</a>"
-                        Else
-                            formattedValue = formattedValue & "</a>"
-                            
-                        End If
-                    Else
-                        If maxLength = CType(100, Integer) Then
-                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
-                            formattedValue = formattedValue & "..."
-                            
-                        End If
-                    End If
-                End If  
-                
                 Me.bill_address.Text = formattedValue
               
             Else 
@@ -6135,11 +6204,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setbill_name()
             
         
-            ' Set the bill_name Literal on the webpage with value from the
+            ' Set the bill_name TextBox on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.bill_name is the ASP:Literal on the webpage.
+            ' Me.bill_name is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setbill_name()
@@ -6154,7 +6223,6 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.bill_name)
                             
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.bill_name.Text = formattedValue
               
             Else 
@@ -6171,11 +6239,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setecc_no()
             
         
-            ' Set the ecc_no Literal on the webpage with value from the
+            ' Set the ecc_no TextBox on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.ecc_no is the ASP:Literal on the webpage.
+            ' Me.ecc_no is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setecc_no()
@@ -6190,7 +6258,6 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.ecc_no)
                             
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.ecc_no.Text = formattedValue
               
             Else 
@@ -6448,6 +6515,40 @@ Public Class BaseInv_hdrRecordControl
                         		
                 End If
                  
+        End Sub
+                
+        Public Overridable Sub Setid_party()
+            
+        
+            ' Set the id_party DropDownList on the webpage with value from the
+            ' inv_hdr database record.
+            
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.id_party is the ASP:DropDownList on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid_party()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_partySpecified Then
+                            
+                ' If the id_party is non-NULL, then format the value.
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                Me.Populateid_partyDropDownList(Me.DataSource.id_party.ToString(), 100)
+                
+            Else
+                
+                ' id_party is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+                If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
+                    Me.Populateid_partyDropDownList(Nothing, 100)
+                Else
+                    Me.Populateid_partyDropDownList(Inv_hdrTable.id_party.DefaultValue, 100)
+                End If
+                				
+            End If			
+                
         End Sub
                 
         Public Overridable Sub Setid_transporter()
@@ -6914,11 +7015,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setship_address()
             
         
-            ' Set the ship_address Literal on the webpage with value from the
+            ' Set the ship_address TextBox on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.ship_address is the ASP:Literal on the webpage.
+            ' Me.ship_address is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setship_address()
@@ -6933,40 +7034,6 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.ship_address)
                             
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
-                If Not formattedValue is Nothing Then
-                    Dim popupThreshold as Integer = CType(100, Integer)
-                              
-                    Dim maxLength as Integer = Len(formattedValue)
-                    If (maxLength > CType(100, Integer)) Then
-                        ' Truncate based on FieldMaxLength on Properties.
-                        maxLength = CType(100, Integer)
-                        
-                    End If
-                                
-                    ' For fields values larger than the PopupTheshold on Properties, display a popup.
-                    If Len(formattedValue) >= popupThreshold Then
-                    
-                        formattedValue= "<a onclick = 'gPersist=true;' onmouseout='detailRolloverPopupClose();' " _
-                            & "onmouseover='SaveMousePosition(event); delayRolloverPopup(""PageMethods.GetRecordFieldValue(\""ServelInvocing.Business.Inv_hdrTable, ServelInvocing.Business\"",\""" _
-                            & (HttpUtility.UrlEncode(Me.DataSource.GetID.ToString())).Replace("\","\\\\") & "\"", \""ship_address\"", \""ship_address\"", \""Ship Address\"", false, 200," _
-                            & " 300, true, PopupDisplayWindowCallBackWith20);"", 500);'>" &  NetUtils.EncodeStringForHtmlDisplay(formattedValue.Substring(0, maxLength))
-                        
-                        If (maxLength = CType(100, Integer)) Then
-                            formattedValue = formattedValue & "..." & "</a>"
-                        Else
-                            formattedValue = formattedValue & "</a>"
-                            
-                        End If
-                    Else
-                        If maxLength = CType(100, Integer) Then
-                            formattedValue= NetUtils.EncodeStringForHtmlDisplay(formattedValue.SubString(0,MaxLength))
-                            formattedValue = formattedValue & "..."
-                            
-                        End If
-                    End If
-                End If  
-                
                 Me.ship_address.Text = formattedValue
               
             Else 
@@ -6983,11 +7050,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setship_name()
             
         
-            ' Set the ship_name Literal on the webpage with value from the
+            ' Set the ship_name TextBox on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.ship_name is the ASP:Literal on the webpage.
+            ' Me.ship_name is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setship_name()
@@ -7002,7 +7069,6 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.ship_name)
                             
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.ship_name.Text = formattedValue
               
             Else 
@@ -7019,11 +7085,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Settin_no()
             
         
-            ' Set the tin_no Literal on the webpage with value from the
+            ' Set the tin_no TextBox on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.tin_no is the ASP:Literal on the webpage.
+            ' Me.tin_no is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Settin_no()
@@ -7038,7 +7104,6 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.tin_no)
                             
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.tin_no.Text = formattedValue
               
             Else 
@@ -7168,6 +7233,11 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setid_commodityLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setid_partyLabel()
             
                     
         End Sub
@@ -7385,6 +7455,7 @@ Public Class BaseInv_hdrRecordControl
             Getgr_rr_no()
             Getgrand_total()
             Getid_commodity()
+            Getid_party()
             Getid_transporter()
             Getinv_dt()
             Getinv_issued_dt()
@@ -7408,14 +7479,41 @@ Public Class BaseInv_hdrRecordControl
         
         Public Overridable Sub Getbill_address()
             
+            ' Retrieve the value entered by the user on the bill_address ASP:TextBox, and
+            ' save it into the bill_address field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.bill_address.Text, Inv_hdrTable.bill_address)			
+
+                      
         End Sub
                 
         Public Overridable Sub Getbill_name()
             
+            ' Retrieve the value entered by the user on the bill_name ASP:TextBox, and
+            ' save it into the bill_name field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.bill_name.Text, Inv_hdrTable.bill_name)			
+
+                      
         End Sub
                 
         Public Overridable Sub Getecc_no()
             
+            ' Retrieve the value entered by the user on the ecc_no ASP:TextBox, and
+            ' save it into the ecc_no field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.ecc_no.Text, Inv_hdrTable.ecc_no)			
+
+                      
         End Sub
                 
         Public Overridable Sub Getexcise_remark()
@@ -7494,6 +7592,17 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getid_commodity()
+            
+        End Sub
+                
+        Public Overridable Sub Getid_party()
+         
+            ' Retrieve the value entered by the user on the id_party ASP:DropDownList, and
+            ' save it into the id_party field in DataSource inv_hdr record.
+                        
+            ' Custom validation should be performed in Validate, not here.
+            
+            Me.DataSource.Parse(GetValueSelectedPageRequest(Me.id_party), Inv_hdrTable.id_party)				
             
         End Sub
                 
@@ -7606,14 +7715,41 @@ Public Class BaseInv_hdrRecordControl
                 
         Public Overridable Sub Getship_address()
             
+            ' Retrieve the value entered by the user on the ship_address ASP:TextBox, and
+            ' save it into the ship_address field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.ship_address.Text, Inv_hdrTable.ship_address)			
+
+                      
         End Sub
                 
         Public Overridable Sub Getship_name()
             
+            ' Retrieve the value entered by the user on the ship_name ASP:TextBox, and
+            ' save it into the ship_name field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.ship_name.Text, Inv_hdrTable.ship_name)			
+
+                      
         End Sub
                 
         Public Overridable Sub Gettin_no()
             
+            ' Retrieve the value entered by the user on the tin_no ASP:TextBox, and
+            ' save it into the tin_no field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.tin_no.Text, Inv_hdrTable.tin_no)			
+
+                      
         End Sub
                 
         Public Overridable Sub Getvehicle_no()
@@ -7924,6 +8060,22 @@ Public Class BaseInv_hdrRecordControl
         ' Generate the event handling functions for filter and search events.
             
 
+        Public Overridable Function CreateWhereClause_id_partyDropDownList() As WhereClause
+            ' By default, we simply return a new WhereClause.
+            ' Add additional where clauses to restrict the items shown in the dropdown list.
+            						
+            ' This WhereClause is for the party table.
+            ' Examples:
+            ' wc.iAND(PartyTable.name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(PartyTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
+            
+            Dim wc As WhereClause = New WhereClause()
+            Return wc
+            				
+        End Function
+        
+                
+
         Public Overridable Function CreateWhereClause_id_transporterDropDownList() As WhereClause
             ' By default, we simply return a new WhereClause.
             ' Add additional where clauses to restrict the items shown in the dropdown list.
@@ -7938,6 +8090,96 @@ Public Class BaseInv_hdrRecordControl
             				
         End Function
         
+                
+        ' Fill the id_party list.
+        Protected Overridable Sub Populateid_partyDropDownList( _
+                ByVal selectedValue As String, _
+                ByVal maxItems As Integer)
+            		  					                
+            Me.id_party.Items.Clear()
+            
+            ' This is a four step process.
+            ' 1. Setup the static list items
+            ' 2. Set up the WHERE and the ORDER BY clause
+            ' 3. Read a total of maxItems from the database and insert them
+            ' 4. Set the selected value (insert if not already present).
+                    
+            ' 1. Setup the static list items
+            														
+            Me.id_party.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))							
+                            		  			
+            ' 2. Set up the WHERE and the ORDER BY clause by calling the CreateWhereClause_id_partyDropDownList function.
+            ' It is better to customize the where clause there.
+            
+            Dim wc As WhereClause = CreateWhereClause_id_partyDropDownList()
+            ' Create the ORDER BY clause to sort based on the displayed value.			
+                
+      
+      
+            Dim orderBy As OrderBy = New OrderBy(false, true)			
+        
+            orderBy.Add(PartyTable.name, OrderByItem.OrderDir.Asc)				
+            
+            ' 3. Read a total of maxItems from the database and insert them		
+            Dim itemValues() As PartyRecord = Nothing
+            If wc.RunQuery
+                Dim counter As Integer = 0
+                Dim pageNum As Integer = 0
+                Do
+                    itemValues = PartyTable.GetRecords(wc, orderBy, pageNum, 500)
+                    For each itemValue As PartyRecord In itemValues
+                        ' Create the item and add to the list.
+                        Dim cvalue As String = Nothing
+                        Dim fvalue As String = Nothing
+                        If itemValue.id0Specified Then
+                            cvalue = itemValue.id0.ToString()
+                            fvalue = itemValue.Format(PartyTable.name)
+                                    
+                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
+                            Dim newItem As New ListItem(fvalue, cvalue)
+                            If counter < maxItems AndAlso Not Me.id_party.Items.Contains(newItem) Then Me.id_party.Items.Add(newItem)
+                            counter += 1
+                        End If
+                    Next
+                    pageNum += 1
+                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
+            End If
+                            
+                    
+            ' 4. Set the selected value (insert if not already present).
+              
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_party, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_party, selectedValue)Then
+
+                ' construct a whereclause to query a record with party.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(PartyTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As PartyRecord = PartyTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Inv_hdrTable.id_party.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_party.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+                
+        End Sub
                 
         ' Fill the id_transporter list.
         Protected Overridable Sub Populateid_transporterDropDownList( _
@@ -8073,6 +8315,54 @@ Public Class BaseInv_hdrRecordControl
             End If
         End Sub
             
+        Protected Overridable Sub id_party_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.id_party.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_party)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_party, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_party, selectedValue)Then
+
+                ' construct a whereclause to query a record with party.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(PartyTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As PartyRecord = PartyTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = Inv_hdrTable.id_party.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_party.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+            End If
+          									
+                
+                
+        End Sub
+            
         Protected Overridable Sub id_transporter_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
             ' If a large list selector or a Quick Add link is used, the dropdown list
             ' will contain an item that was not in the original (smaller) list.  During postbacks,
@@ -8121,6 +8411,18 @@ Public Class BaseInv_hdrRecordControl
                 
         End Sub
             
+        Protected Overridable Sub bill_address_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub bill_name_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub ecc_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub excise_remark_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -8158,6 +8460,18 @@ Public Class BaseInv_hdrRecordControl
         End Sub
             
         Protected Overridable Sub road_permit_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub ship_address_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub ship_name_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub tin_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -8302,9 +8616,9 @@ Public Class BaseInv_hdrRecordControl
 
 #Region "Helper Properties"
         
-        Public ReadOnly Property bill_address() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property bill_address() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_address"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_address"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
@@ -8314,9 +8628,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property bill_name() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property bill_name() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_name"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "bill_name"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
@@ -8326,9 +8640,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property ecc_no() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property ecc_no() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_no"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ecc_no"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
@@ -8419,6 +8733,18 @@ Public Class BaseInv_hdrRecordControl
         Public ReadOnly Property id_commodityLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_commodityLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property id_party() As System.Web.UI.WebControls.DropDownList
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_party"), System.Web.UI.WebControls.DropDownList)
+            End Get
+        End Property
+            
+        Public ReadOnly Property id_partyLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_partyLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         
@@ -8584,9 +8910,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property ship_address() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property ship_address() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_address"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_address"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
@@ -8596,9 +8922,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property ship_name() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property ship_name() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_name"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_name"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
@@ -8608,9 +8934,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property tin_no() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property tin_no() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_no"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "tin_no"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             

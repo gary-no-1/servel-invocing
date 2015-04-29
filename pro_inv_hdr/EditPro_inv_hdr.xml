@@ -31,6 +31,10 @@
           <Value>*</Value>
         </Attribute>
         <Attribute>
+          <Name>AutoPostBack</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
           <Name>CssClass</Name>
           <Value>field_input</Value>
         </Attribute>

@@ -247,6 +247,21 @@
     <Compile Include="User_rolesSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="V_Invoice_AmountsDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_Invoice_AmountsSqlView.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_Invoice_ItemsDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_Invoice_ItemsSqlView.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_Invoice_ItemsSqlView.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseCommoditySqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
@@ -314,6 +329,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseUser_rolesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_Invoice_AmountsSqlView.vb" >
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

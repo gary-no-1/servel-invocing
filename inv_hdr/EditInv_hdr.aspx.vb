@@ -161,12 +161,9 @@ Partial Public Class EditInv_hdr
 #Region "Section 2: Do not modify this section."
 
         Public WithEvents amountLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents bill_address As System.Web.UI.WebControls.Literal
         Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents bill_name As System.Web.UI.WebControls.Literal
         Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents CancelButton As ThemeButton
-        Public WithEvents ecc_no As System.Web.UI.WebControls.Literal
         Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents excise_remarkLabel As System.Web.UI.WebControls.Literal
         Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
@@ -178,6 +175,8 @@ Partial Public Class EditInv_hdr
         Public WithEvents id_commodity As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_commodityLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents id_party As System.Web.UI.WebControls.DropDownList
+        Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_transporter As System.Web.UI.WebControls.DropDownList
         Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
         Public WithEvents inv_dt As System.Web.UI.WebControls.Literal
@@ -219,13 +218,10 @@ Partial Public Class EditInv_hdr
         Public WithEvents sale_ord_no As System.Web.UI.WebControls.Literal
         Public WithEvents sale_ord_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents SaveButton As ThemeButton
-        Public WithEvents ship_address As System.Web.UI.WebControls.Literal
         Public WithEvents ship_addressLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents ship_name As System.Web.UI.WebControls.Literal
         Public WithEvents ship_nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents tax_amountLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents tax_printLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tin_no As System.Web.UI.WebControls.Literal
         Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents uomLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents vehicle_noLabel As System.Web.UI.WebControls.Literal

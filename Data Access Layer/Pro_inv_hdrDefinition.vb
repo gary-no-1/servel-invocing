@@ -9,7 +9,7 @@
 Public Class Pro_inv_hdrDefinition
 
 #Region "Definition (XML) for Pro_inv_hdrDefinition table"
-	'Next 1059 lines contain Table Definition (XML) for table "Pro_inv_hdrDefinition"
+	'Next 1065 lines contain Table Definition (XML) for table "Pro_inv_hdrDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -433,21 +433,24 @@ Public Class Pro_inv_hdrDefinition
       "<columnDBType>decimal</columnDBType>"& _
       "<columnLengthSet>18.2</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
-      "<columnRequired>N</columnRequired>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>Y</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>16</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""17"" Priority=""18"" ColumnNum=""17"">"& _
       "<columnName>grand_total</columnName>"& _
@@ -456,21 +459,24 @@ Public Class Pro_inv_hdrDefinition
       "<columnDBType>decimal</columnDBType>"& _
       "<columnLengthSet>18.2</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
-      "<columnRequired>N</columnRequired>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>Y</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>17</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""18"" Priority=""19"" ColumnNum=""18"">"& _
       "<columnName>road_permit_no</columnName>"& _

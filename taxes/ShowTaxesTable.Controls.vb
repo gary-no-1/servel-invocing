@@ -604,7 +604,13 @@ Public Class BaseTaxesTableControlRow
                     Me.LoadData()
                     Me.DataBind()			
                 End If
-                						
+                
+			Me.Page.Authorize(Ctype(TaxesRowCopyButton, Control), "1;2")
+					
+			Me.Page.Authorize(Ctype(TaxesRowDeleteButton, Control), "1;2")
+					
+			Me.Page.Authorize(Ctype(TaxesRowEditButton, Control), "1;2")
+											
             Catch ex As Exception
                 Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
             Finally
@@ -2173,7 +2179,15 @@ Public Class BaseTaxesTableControl
                     Me.DataBind()
                     
                 End If
-                				
+                
+			Me.Page.Authorize(Ctype(TaxesCopyButton, Control), "1;2")
+					
+			Me.Page.Authorize(Ctype(TaxesDeleteButton, Control), "1;2")
+					
+			Me.Page.Authorize(Ctype(TaxesEditButton, Control), "1;2")
+					
+			Me.Page.Authorize(Ctype(TaxesNewButton, Control), "1;2")
+									
             Catch ex As Exception
                 Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
             Finally
