@@ -443,7 +443,7 @@ Public Sub btnSalesPerson_Click(ByVal sender As Object, ByVal args As EventArgs)
             End If
         
         
-            Page.Title = "Blank page"
+            Page.Title = "View Masters"
         End Sub
 
     Public Shared Function GetRecordFieldValue_Base(ByVal tableName As String, _

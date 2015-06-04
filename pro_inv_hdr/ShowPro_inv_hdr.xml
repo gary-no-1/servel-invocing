@@ -4961,8 +4961,7 @@
     &lt;Prolog&gt;
       &lt;Value&gt;&amp;lt;asp:Content id="PageSection" ContentPlaceHolderID="PageContent" Runat="server"&amp;gt;
     &amp;lt;a id="StartOfPageContent"&amp;gt;&amp;lt;/a&amp;gt;
-    &amp;lt;GEN:UPDATEPANEL NAME="UpdatePanel1"&amp;gt;
-                &lt;/Value&gt;
+    &amp;lt;GEN:UPDATEPANEL NAME="UpdatePanel1"&amp;gt;&lt;/Value&gt;
     &lt;/Prolog&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
@@ -5003,12 +5002,10 @@
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Epilog&gt;
-      &lt;Value&gt;
-    &amp;lt;/GEN:UPDATEPANEL&amp;gt;
+      &lt;Value&gt;&amp;lt;/GEN:UPDATEPANEL&amp;gt;
     &amp;lt;div id="detailPopup" class="detailRolloverPopup" onmouseout="detailRolloverPopupClose();" onmouseover="clearTimeout(gPopupTimer);"&amp;gt;&amp;lt;/div&amp;gt;
     &amp;lt;asp:ValidationSummary id="ValidationSummary1" ShowMessageBox="true" ShowSummary="false" runat="server"&amp;gt;&amp;lt;/asp:ValidationSummary&amp;gt;
-&amp;lt;/asp:Content&amp;gt;
-                &lt;/Value&gt;
+&amp;lt;/asp:Content&amp;gt;&lt;/Value&gt;
     &lt;/Epilog&gt;
     &lt;TableAttributes&gt;
       &lt;Attribute&gt;
@@ -5499,6 +5496,10 @@
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
             &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;style&lt;/Name&gt;
+            &lt;AttributeValue&gt;text-align:justify;&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;

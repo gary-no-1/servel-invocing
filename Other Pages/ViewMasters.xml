@@ -439,7 +439,7 @@
       <PassthroughAttributes>
         <Attribute>
           <Name>Text</Name>
-          <Value>Blank page</Value>
+          <Value>View Masters</Value>
         </Attribute>
       </PassthroughAttributes>
     </ContainedComponent>

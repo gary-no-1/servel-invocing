@@ -66,25 +66,16 @@
     <Compile Include="CommodityTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseCommodityTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="CommodityRecord.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CompanyTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseCompanyTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="CompanyRecord.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Inv_hdrTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseInv_hdrTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Inv_hdrRecord.vb">
@@ -103,9 +94,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Inv_termsTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseInv_termsTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Inv_termsRecord.vb">
@@ -130,9 +118,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mail_logTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseMail_logTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mail_logRecord.vb">
@@ -165,9 +150,6 @@
     <Compile Include="Pro_inv_termsTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BasePro_inv_termsTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Pro_inv_termsRecord.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -180,9 +162,6 @@
     <Compile Include="SalepersonTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseSalepersonTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="SalepersonRecord.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -192,10 +171,40 @@
     <Compile Include="SitesRecord.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TaxesTable.vb">
+    <Compile Include="So_hdrTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseTaxesTable.vb">
+    <Compile Include="So_hdrRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_itemsTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_itemsTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_itemsRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_taxesTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_taxesTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_taxesRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_termsTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_termsTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_termsRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TaxesTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TaxesRecord.vb">
@@ -210,16 +219,10 @@
     <Compile Include="Tax_group_dtlsTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseTax_group_dtlsTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Tax_group_dtlsRecord.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tax_typesTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseTax_typesTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tax_typesRecord.vb">
@@ -232,9 +235,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TransportersTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseTransportersTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TransportersRecord.vb">
@@ -267,16 +267,22 @@
     <Compile Include="V_Invoice_ItemsView.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseV_Invoice_ItemsView.vb">
+    <Compile Include="V_Invoice_ItemsRecord.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="V_Invoice_ItemsRecord.vb">
+    <Compile Include="BaseCommodityTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseCommodityRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseCompanyTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseCompanyRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseInv_hdrTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseInv_hdrRecord.vb" >
@@ -292,6 +298,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseInv_taxesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseInv_termsTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseInv_termsRecord.vb" >
@@ -313,6 +322,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseItem_typesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseMail_logTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseMail_logRecord.vb" >
@@ -342,6 +354,9 @@
     <Compile Include="BasePro_inv_taxesRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BasePro_inv_termsTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BasePro_inv_termsRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
@@ -349,6 +364,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseRolesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSalepersonTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseSalepersonRecord.vb" >
@@ -360,6 +378,24 @@
     <Compile Include="BaseSitesRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseSo_hdrTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_hdrRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_itemsRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_taxesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_termsRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTaxesTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseTaxesRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
@@ -369,7 +405,13 @@
     <Compile Include="BaseTax_groupsRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseTax_group_dtlsTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseTax_group_dtlsRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTax_typesTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseTax_typesRecord.vb" >
@@ -379,6 +421,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseTermsRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseTransportersTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseTransportersRecord.vb" >
@@ -406,6 +451,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseV_Invoice_AmountsRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_Invoice_ItemsView.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseV_Invoice_ItemsRecord.vb" >

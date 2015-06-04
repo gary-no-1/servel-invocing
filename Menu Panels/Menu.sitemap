@@ -56,14 +56,15 @@ The tags are case-sensitive and should contain the following case-sensitive attr
     <siteMapNode title="All Masters" description="All Masters" url="~/Other Pages/ViewMasters.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
     <siteMapNode title="Items" description="{Menu:Show} Items" url="~/items/ShowItemsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,3,4" order="0" />
     <siteMapNode title="Party" description="Party" url="~/party/ShowPartyTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,3,4" order="0" />
+    <siteMapNode title="Sales Orders" description="{Menu:Show} So HDR" url="~/so_hdr/ShowSo_hdrTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1" order="0" />
     <siteMapNode title="Proforma Invoice" description="{Menu:Show} Pro Inv HDR" url="~/pro_inv_hdr/ShowPro_inv_hdrTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,4" order="0" />
     <siteMapNode title="Invoice" description="{Menu:Show} Inv HDR" url="~/inv_hdr/ShowInv_hdrTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,4" order="0" />
     <siteMapNode title="Reports" description="Reports" url="~/Other Pages/Reports.aspx" imageUrl="../Images/MLMBullet2.gif" roles="1,2,3,4,NOT_ANONYMOUS" order="0" />
-    <siteMapNode title="Invoice Items" description="Invoice Items" url="~/V_Invoice_Items/ShowV_Invoice_ItemsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+    <siteMapNode title="Invoice Items" description="Invoice Items" url="~/V_Invoice_Items/ShowV_Invoice_ItemsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="NO_ACCESS" order="0">
       <siteMapNode title="{Menu:Show} Invoice Items" description="{Menu:Show} Invoice Items" url="~/V_Invoice_Items/ShowV_Invoice_ItemsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="Invoice Items {Menu:WebReport}" description="Invoice Items {Menu:WebReport}" url="~/V_Invoice_Items/V_Invoice_ItemsWebReport.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
     </siteMapNode>
-    <siteMapNode title="Invoice Amounts" description="Invoice Amounts" url="~/V_Invoice_Amounts/ShowV_Invoice_AmountsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+    <siteMapNode title="Invoice Amounts" description="Invoice Amounts" url="~/V_Invoice_Amounts/ShowV_Invoice_AmountsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="NO_ACCESS" order="0">
       <siteMapNode title="{Menu:Show} Invoice Amounts" description="{Menu:Show} Invoice Amounts" url="~/V_Invoice_Amounts/ShowV_Invoice_AmountsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="Invoice Amounts {Menu:WebReport}" description="Invoice Amounts {Menu:WebReport}" url="~/V_Invoice_Amounts/V_Invoice_AmountsWebReport.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
     </siteMapNode>

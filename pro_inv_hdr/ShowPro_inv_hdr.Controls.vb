@@ -212,10 +212,24 @@ Public Class Pro_inv_hdrRecordControl
 		Public Overrides Sub BtnConvert_Click(ByVal sender As Object, ByVal args As EventArgs)
 
 		    Dim kk As String = "111"
-
+			
+			' 03-06-2015 -- prevent double click and creating two invoices
+			'            -- read this proforma from database and check if invoice created
+			Dim check_Id As String = Me.id1.text
+			Dim checkHdrStr As String
+			checkHdrStr = "id = '" + check_Id + "'"
+			Dim Pro_inv_hdrCheckRec As Pro_inv_hdrRecord = Pro_inv_hdrTable.GetRecord(checkHdrStr, False)
+			if Pro_inv_hdrCheckRec.inv_created = "YES"
+				return
+			end if
+			
 			Dim thisInv_created As String
 			thisInv_created = Me.inv_created.text
 			'thisInv_created = "NO"
+			if me.inv_created.text = "YES" then
+				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Invoice has already been created.")
+				return
+			end if
 		
 			Dim inv_modify As Boolean = False
 			If thisInv_created = "YES" Then

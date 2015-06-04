@@ -229,7 +229,7 @@ Public Sub btnInvoiceAmountReport_Click(ByVal sender As Object, ByVal args As Ev
             End If
         
         
-            Page.Title = "Blank page"
+            Page.Title = "All the Reports"
         End Sub
 
     Public Shared Function GetRecordFieldValue_Base(ByVal tableName As String, _
