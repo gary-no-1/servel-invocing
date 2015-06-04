@@ -595,6 +595,35 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.nameColumn)
 	End Sub
 
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's V_Invoice_Amounts_.commodity field.
+	''' </summary>
+	Public Function GetcommodityValue() As ColumnValue
+		Return Me.GetValue(TableUtils.commodityColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's V_Invoice_Amounts_.commodity field.
+	''' </summary>
+	Public Function GetcommodityFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.commodityColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's V_Invoice_Amounts_.commodity field.
+	''' </summary>
+	Public Sub SetcommodityFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.commodityColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's V_Invoice_Amounts_.commodity field.
+	''' </summary>
+	Public Sub SetcommodityFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.commodityColumn)
+	End Sub
+
 
 
 #End Region
@@ -1028,6 +1057,41 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property nameDefault() As String
         Get
             Return TableUtils.nameColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's V_Invoice_Amounts_.commodity field.
+	''' </summary>
+	Public Property commodity() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.commodityColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.commodityColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property commoditySpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.commodityColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property commodityDefault() As String
+        Get
+            Return TableUtils.commodityColumn.DefaultValue
         End Get
     End Property
 

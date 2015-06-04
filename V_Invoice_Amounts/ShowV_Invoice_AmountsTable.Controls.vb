@@ -124,6 +124,7 @@ Public Class BaseV_Invoice_AmountsTableControlRow
       
             ' Call the Set methods for each controls on the panel
         
+            Setcommodity()
             Setcst_amt()
             Setexcise_amt()
             Setgrand_total()
@@ -151,6 +152,50 @@ Public Class BaseV_Invoice_AmountsTableControlRow
         End Sub
         
         
+        Public Overridable Sub Setcommodity()
+            
+        
+            ' Set the commodity Literal on the webpage with value from the
+            ' V_Invoice_Amounts database record.
+
+            ' Me.DataSource is the V_Invoice_Amounts record retrieved from the database.
+            ' Me.commodity is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setcommodity()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.commoditySpecified Then
+                				
+                ' If the commodity is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(V_Invoice_AmountsView.commodity)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.commodity.Text = formattedValue
+              
+            Else 
+            
+                ' commodity is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.commodity.Text = V_Invoice_AmountsView.commodity.Format(V_Invoice_AmountsView.commodity.DefaultValue)
+                        		
+                End If
+                 
+            ' If the commodity is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.commodity.Text Is Nothing _
+                OrElse Me.commodity.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.commodity.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setcst_amt()
             
         
@@ -687,6 +732,7 @@ Public Class BaseV_Invoice_AmountsTableControlRow
       
             ' Call the Get methods for each of the user interface controls.
         
+            Getcommodity()
             Getcst_amt()
             Getexcise_amt()
             Getgrand_total()
@@ -700,6 +746,10 @@ Public Class BaseV_Invoice_AmountsTableControlRow
         End Sub
         
         
+        Public Overridable Sub Getcommodity()
+            
+        End Sub
+                
         Public Overridable Sub Getcst_amt()
             
         End Sub
@@ -914,6 +964,12 @@ Public Class BaseV_Invoice_AmountsTableControlRow
 
 #Region "Helper Properties"
         
+        Public ReadOnly Property commodity() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "commodity"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property cst_amt() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "cst_amt"), System.Web.UI.WebControls.Literal)
@@ -1131,6 +1187,8 @@ Public Class BaseV_Invoice_AmountsTableControl
               
             ' Setup the sorting events.
           
+              AddHandler Me.commodityLabel.Click, AddressOf commodityLabel_Click
+            
               AddHandler Me.cst_amtLabel.Click, AddressOf cst_amtLabel_Click
             
               AddHandler Me.excise_amtLabel.Click, AddressOf excise_amtLabel_Click
@@ -1270,6 +1328,7 @@ Public Class BaseV_Invoice_AmountsTableControl
 
             ' Call the Set methods for each controls on the panel
         
+            SetcommodityLabel()
             Setcst_amtLabel()
             Setexcise_amtLabel()
             Setgrand_totalLabel()
@@ -1318,6 +1377,7 @@ Public Class BaseV_Invoice_AmountsTableControl
 
             ' Initialize other asp controls
             
+            SetcommodityLabel()
             Setcst_amtLabel()
             Setexcise_amtLabel()
             Setgrand_totalLabel()
@@ -1811,6 +1871,9 @@ Public Class BaseV_Invoice_AmountsTableControl
                     
                         Dim rec As V_Invoice_AmountsRecord = New V_Invoice_AmountsRecord()
         
+                        If recControl.commodity.Text <> "" Then
+                            rec.Parse(recControl.commodity.Text, V_Invoice_AmountsView.commodity)
+                        End If
                         If recControl.cst_amt.Text <> "" Then
                             rec.Parse(recControl.cst_amt.Text, V_Invoice_AmountsView.cst_amt)
                         End If
@@ -1878,6 +1941,11 @@ Public Class BaseV_Invoice_AmountsTableControl
       
         ' Create Set, WhereClause, and Populate Methods
         
+        Public Overridable Sub SetcommodityLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setcst_amtLabel()
             
                     
@@ -2234,6 +2302,28 @@ Public Class BaseV_Invoice_AmountsTableControl
 
         ' Generate the event handling functions for sorting events.
         
+        Public Overridable Sub commodityLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by commodity when clicked.
+              
+            ' Get previous sorting state for commodity.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(V_Invoice_AmountsView.commodity)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for commodity.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(V_Invoice_AmountsView.commodity, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by commodity, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub cst_amtLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by cst_amt when clicked.
               
@@ -2484,6 +2574,7 @@ Public Class BaseV_Invoice_AmountsTableControl
              V_Invoice_AmountsView.oth_amt, _ 
              V_Invoice_AmountsView.grand_total, _ 
              V_Invoice_AmountsView.name, _ 
+             V_Invoice_AmountsView.commodity, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(V_Invoice_AmountsView.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -2534,6 +2625,7 @@ Public Class BaseV_Invoice_AmountsTableControl
              excelReport.AddColumn(New ExcelColumn(V_Invoice_AmountsView.oth_amt, "Standard"))
              excelReport.AddColumn(New ExcelColumn(V_Invoice_AmountsView.grand_total, "Standard"))
              excelReport.AddColumn(New ExcelColumn(V_Invoice_AmountsView.name, "Default"))
+             excelReport.AddColumn(New ExcelColumn(V_Invoice_AmountsView.commodity, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2580,6 +2672,7 @@ Public Class BaseV_Invoice_AmountsTableControl
                  report.AddColumn(V_Invoice_AmountsView.oth_amt.Name, ReportEnum.Align.Right, "${oth_amt}", ReportEnum.Align.Right, 20)
                  report.AddColumn(V_Invoice_AmountsView.grand_total.Name, ReportEnum.Align.Right, "${grand_total}", ReportEnum.Align.Right, 20)
                  report.AddColumn(V_Invoice_AmountsView.name.Name, ReportEnum.Align.Left, "${name}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(V_Invoice_AmountsView.commodity.Name, ReportEnum.Align.Left, "${commodity}", ReportEnum.Align.Left, 30)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2617,6 +2710,7 @@ Public Class BaseV_Invoice_AmountsTableControl
                              report.AddData("${oth_amt}", record.Format(V_Invoice_AmountsView.oth_amt), ReportEnum.Align.Right, 100)
                              report.AddData("${grand_total}", record.Format(V_Invoice_AmountsView.grand_total), ReportEnum.Align.Right, 100)
                              report.AddData("${name}", record.Format(V_Invoice_AmountsView.name), ReportEnum.Align.Left, 100)
+                             report.AddData("${commodity}", record.Format(V_Invoice_AmountsView.commodity), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -2725,6 +2819,7 @@ Public Class BaseV_Invoice_AmountsTableControl
                  report.AddColumn(V_Invoice_AmountsView.oth_amt.Name, ReportEnum.Align.Right, "${oth_amt}", ReportEnum.Align.Right, 20)
                  report.AddColumn(V_Invoice_AmountsView.grand_total.Name, ReportEnum.Align.Right, "${grand_total}", ReportEnum.Align.Right, 20)
                  report.AddColumn(V_Invoice_AmountsView.name.Name, ReportEnum.Align.Left, "${name}", ReportEnum.Align.Left, 30)
+                 report.AddColumn(V_Invoice_AmountsView.commodity.Name, ReportEnum.Align.Left, "${commodity}", ReportEnum.Align.Left, 30)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -2759,6 +2854,7 @@ Public Class BaseV_Invoice_AmountsTableControl
                              report.AddData("${oth_amt}", record.Format(V_Invoice_AmountsView.oth_amt), ReportEnum.Align.Right, 100)
                              report.AddData("${grand_total}", record.Format(V_Invoice_AmountsView.grand_total), ReportEnum.Align.Right, 100)
                              report.AddData("${name}", record.Format(V_Invoice_AmountsView.name), ReportEnum.Align.Left, 100)
+                             report.AddData("${commodity}", record.Format(V_Invoice_AmountsView.commodity), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -2954,6 +3050,12 @@ Public Class BaseV_Invoice_AmountsTableControl
         End Property
        
 #Region "Helper Properties"
+        
+        Public ReadOnly Property commodityLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "commodityLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
         
         Public ReadOnly Property cst_amtLabel() As System.Web.UI.WebControls.LinkButton
             Get

@@ -65,6 +65,7 @@ Namespace ServelInvocing.Business
         oth_amtColumn.CodeName = "oth_amt"
         grand_totalColumn.CodeName = "grand_total"
         nameColumn.CodeName = "name"
+        commodityColumn.CodeName = "commodity"
 		
 	End Sub
 	
@@ -296,6 +297,25 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property name() As BaseClasses.Data.StringColumn
         Get
             Return V_Invoice_AmountsView.Instance.nameColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's V_Invoice_Amounts_.commodity column object.
+    ''' </summary>
+    Public ReadOnly Property commodityColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(12), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's V_Invoice_Amounts_.commodity column object.
+    ''' </summary>
+    Public Shared ReadOnly Property commodity() As BaseClasses.Data.StringColumn
+        Get
+            Return V_Invoice_AmountsView.Instance.commodityColumn
         End Get
     End Property
 

@@ -9,7 +9,7 @@
 Public Class V_Invoice_AmountsDefinition
 
 #Region "Definition (XML) for V_Invoice_AmountsDefinition table"
-	'Next 307 lines contain Table Definition (XML) for table "V_Invoice_AmountsDefinition"
+	'Next 321 lines contain Table Definition (XML) for table "V_Invoice_AmountsDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""VIEW"">"& _
   "<ColumnDefinition>"& _
@@ -38,10 +38,57 @@ Public Class V_Invoice_AmountsDefinition
     "</Column>"& _
     "<Column InternalName=""1"" Priority=""2"" ColumnNum=""1"">"& _
       "<columnName>inv_no</columnName>"& _
-      "<columnUIName Source=""User"">Invoice No:</columnUIName>"& _
+      "<columnUIName Source=""Database"">Invoice No:</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""2"" Priority=""3"" ColumnNum=""2"">"& _
+      "<columnName>inv_dt</columnName>"& _
+      "<columnUIName Source=""Database"">Invoice Date</columnUIName>"& _
+      "<columnType>Date</columnType>"& _
+      "<columnDBType>date</columnDBType>"& _
+      "<columnLengthSet></columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnFormat>d</columnFormat>"& _
+      "<columnDBFormat>d</columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""Database"">Y</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""3"" Priority=""4"" ColumnNum=""3"">"& _
+      "<columnName>id_party</columnName>"& _
+      "<columnUIName Source=""User"">Party</columnUIName>"& _
+      "<columnType>Number</columnType>"& _
+      "<columnDBType>int</columnDBType>"& _
+      "<columnLengthSet>10.0</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
       "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
@@ -59,58 +106,8 @@ Public Class V_Invoice_AmountsDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
       "<columnCodeName></columnCodeName>"& _
-      "<InternalName>1</InternalName>"& _
+      "<InternalName>3</InternalName>"& _
       "<columnTableClassName></columnTableClassName>"& _
-    "</Column>"& _
-    "<Column InternalName=""2"" Priority=""3"" ColumnNum=""2"">"& _
-      "<columnName>inv_dt</columnName>"& _
-      "<columnUIName Source=""User"">Invoice Date</columnUIName>"& _
-      "<columnType>Date</columnType>"& _
-      "<columnDBType>date</columnDBType>"& _
-      "<columnLengthSet></columnLengthSet>"& _
-      "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
-      "<columnIndex>N</columnIndex>"& _
-      "<columnUnique>N</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
-      "<columnFormat Source=""User"">d</columnFormat>"& _
-      "<columnDBFormat>d</columnDBFormat>"& _
-      "<columnPK>N</columnPK>"& _
-      "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
-      "<columnRequired>N</columnRequired>"& _
-      "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">Y</columnCaseSensitive>"& _
-      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
-      "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>2</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
-    "</Column>"& _
-    "<Column InternalName=""3"" Priority=""4"" ColumnNum=""3"">"& _
-      "<columnName>id_party</columnName>"& _
-      "<columnUIName>ID Party</columnUIName>"& _
-      "<columnType>Number</columnType>"& _
-      "<columnDBType>int</columnDBType>"& _
-      "<columnLengthSet>10.0</columnLengthSet>"& _
-      "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
-      "<columnIndex>N</columnIndex>"& _
-      "<columnUnique>N</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
-      "<columnDBFormat></columnDBFormat>"& _
-      "<columnPK>N</columnPK>"& _
-      "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
-      "<columnRequired>N</columnRequired>"& _
-      "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive>N</columnCaseSensitive>"& _
-      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
-      "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
     "<Column InternalName=""4"" Priority=""5"" ColumnNum=""4"">"& _
       "<columnName>item_total</columnName>"& _
@@ -183,81 +180,72 @@ Public Class V_Invoice_AmountsDefinition
     "</Column>"& _
     "<Column InternalName=""7"" Priority=""8"" ColumnNum=""7"">"& _
       "<columnName>cst_amt</columnName>"& _
-      "<columnUIName Source=""User"">CST Amount</columnUIName>"& _
+      "<columnUIName>CST Amount</columnUIName>"& _
       "<columnType>Number</columnType>"& _
       "<columnDBType>decimal</columnDBType>"& _
       "<columnLengthSet>38.2</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>7</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""8"" Priority=""9"" ColumnNum=""8"">"& _
       "<columnName>srv_tax</columnName>"& _
-      "<columnUIName Source=""User"">Service Tax</columnUIName>"& _
+      "<columnUIName>Service Tax</columnUIName>"& _
       "<columnType>Number</columnType>"& _
       "<columnDBType>decimal</columnDBType>"& _
       "<columnLengthSet>38.2</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>8</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""9"" Priority=""10"" ColumnNum=""9"">"& _
       "<columnName>oth_amt</columnName>"& _
-      "<columnUIName Source=""User"">Other Amount</columnUIName>"& _
+      "<columnUIName>Other Amount</columnUIName>"& _
       "<columnType>Number</columnType>"& _
       "<columnDBType>decimal</columnDBType>"& _
       "<columnLengthSet>38.2</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>9</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""10"" Priority=""11"" ColumnNum=""10"">"& _
       "<columnName>grand_total</columnName>"& _
@@ -284,7 +272,33 @@ Public Class V_Invoice_AmountsDefinition
     "</Column>"& _
     "<Column InternalName=""11"" Priority=""12"" ColumnNum=""11"">"& _
       "<columnName>name</columnName>"& _
-      "<columnUIName>Name</columnUIName>"& _
+      "<columnUIName Source=""User"">Party Name</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>50</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>11</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
+    "<Column InternalName=""12"" Priority=""13"" ColumnNum=""12"">"& _
+      "<columnName>commodity</columnName>"& _
+      "<columnUIName>Commodity</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>50</columnLengthSet>"& _
@@ -299,15 +313,15 @@ Public Class V_Invoice_AmountsDefinition
       "<columnComputed>N</columnComputed>"& _
       "<columnIdentity>N</columnIdentity>"& _
       "<columnReadOnly>N</columnReadOnly>"& _
-      "<columnRequired>N</columnRequired>"& _
-      "<columnNotNull>N</columnNotNull>"& _
+      "<columnRequired>Y</columnRequired>"& _
+      "<columnNotNull>Y</columnNotNull>"& _
       "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>V_Invoice_Amounts</TableName>"& _
-  "<Version>1</Version>"& _
+  "<Version>2</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>V_Invoice_Amounts</TableCodeName>"& _
   "<TableAliasName>V_Invoice_Amounts_</TableAliasName>"& _

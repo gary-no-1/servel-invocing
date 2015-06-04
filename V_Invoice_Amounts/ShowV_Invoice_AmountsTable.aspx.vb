@@ -154,6 +154,7 @@ Partial Public Class ShowV_Invoice_AmountsTable
 
 #Region "Section 2: Do not modify this section."
 
+        Public WithEvents commodityLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents cst_amtLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents excise_amtLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents grand_totalLabel As System.Web.UI.WebControls.LinkButton

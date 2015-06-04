@@ -26,7 +26,7 @@
 </td></tr><tr><td><asp:panel id="V_Invoice_AmountsTableControlCollapsibleRegion" runat="server"><table class="dBody" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td class="tre"><table cellpadding="0" cellspacing="0" border="0" width="100%" onkeydown="captureUpDownKey(this, event)"><tr class="tch"><th class="thc" scope="col"><asp:Literal runat="server" id="idLabel1" Text="ID">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="inv_noLabel1" Text="Invoice No:">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="inv_dtLabel" Text="Invoice Date">	</asp:Literal>
-                        </th><th class="thc" scope="col"><asp:Literal runat="server" id="id_partyLabel" Text="ID Party">	</asp:Literal>
+                        </th><th class="thc" scope="col"><asp:Literal runat="server" id="id_partyLabel" Text="Party">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="item_totalLabel" Text="Item Total">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="excise_amtLabel" Text="Excise Amount">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="vat_amtLabel" Text="VAT Amount">	</asp:Literal>
