@@ -205,6 +205,7 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents item_total As System.Web.UI.WebControls.Literal
         Public WithEvents item_totalLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents lblFixedDateConversion As System.Web.UI.WebControls.Label
         Public WithEvents narrationLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents no_of_packages As System.Web.UI.WebControls.Literal
         Public WithEvents no_of_packagesLabel As System.Web.UI.WebControls.Literal

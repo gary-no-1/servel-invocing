@@ -174,12 +174,15 @@ Partial Public Class EditCompany
         Public WithEvents fin_year_endLabel1 As System.Web.UI.WebControls.Literal
         Public WithEvents fin_year_startLabel1 As System.Web.UI.WebControls.Literal
         Public WithEvents inv_declarationLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_dt_fixed As System.Web.UI.WebControls.CheckBox
+        Public WithEvents inv_dt_fixedLabel As System.Web.UI.WebControls.Literal
         Public WithEvents inv_email_bodyLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents inv_pfxLabel1 As System.Web.UI.WebControls.Literal
-        Public WithEvents inv_sfxLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_pfxLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents inv_sfxLabel As System.Web.UI.WebControls.Literal
         Public WithEvents nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents next_inv_noLabel1 As System.Web.UI.WebControls.Literal
-        Public WithEvents pad_inv_noLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents next_inv_dtLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents next_inv_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents pad_inv_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents pan_noLabel1 As System.Web.UI.WebControls.Literal
         Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal

@@ -1735,6 +1735,29 @@
       <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
+      <Name>lblFixedDateConversion</Name>
+      <Type>Label</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Font-Bold</Name>
+          <Value>True</Value>
+        </Attribute>
+        <Attribute>
+          <Name>ForeColor</Name>
+          <Value>Red</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:TreatAs</Name>
+          <Value>FieldValue</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>--</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>Pro_inv_hdrRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>narration</Name>
       <Type>FieldValue</Type>
       <Field>narration</Field>
@@ -5492,6 +5515,7 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:LABEL Name="lblFixedDateConversion" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;

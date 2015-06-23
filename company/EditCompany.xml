@@ -769,6 +769,55 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
+      <Name>inv_dt_fixed</Name>
+      <Type>FieldValue</Type>
+      <Field>inv_dt_fixed</Field>
+      <FieldValueStyle>CheckBox</FieldValueStyle>
+      <Table>company</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>CheckedValue</Name>
+          <Value>Yes</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>TreatOtherValuesAsChecked</Name>
+          <Value>True</Value>
+        </Attribute>
+        <Attribute>
+          <Name>UncheckedValue</Name>
+          <Value>No</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>CompanyRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>inv_dt_fixedLabel</Name>
+      <Type>Literal</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>CompanyRecordControl</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Field</Name>
+          <Value>inv_dt_fixed</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Table</Name>
+          <Value>company</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>%ISD_DEFAULT%company%inv_dt_fixed</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>CompanyRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>inv_email_body</Name>
       <Type>FieldValue</Type>
       <Field>inv_email_body</Field>
@@ -842,7 +891,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>inv_pfx1</Name>
+      <Name>inv_pfx</Name>
       <Type>FieldValue</Type>
       <Field>inv_pfx</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -872,7 +921,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>inv_pfxLabel1</Name>
+      <Name>inv_pfxLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -899,7 +948,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>inv_sfx1</Name>
+      <Name>inv_sfx</Name>
       <Type>FieldValue</Type>
       <Field>inv_sfx</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -929,7 +978,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>inv_sfxLabel1</Name>
+      <Name>inv_sfxLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -1013,7 +1062,64 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>next_inv_no1</Name>
+      <Name>next_inv_dt</Name>
+      <Type>FieldValue</Type>
+      <Field>next_inv_dt</Field>
+      <FieldValueStyle>TextBox</FieldValueStyle>
+      <Table>company</Table>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>CssClass</Name>
+          <Value>field_input</Value>
+        </Attribute>
+        <Attribute>
+          <Name>DateSelectorType</Name>
+          <Value>Default</Value>
+        </Attribute>
+        <Attribute>
+          <Name>EnableIncrementDecrementButtons</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:DataSource</Name>
+          <Value>Parent</Value>
+        </Attribute>
+        <Attribute>
+          <Name>next_inv_dtRequiredFieldValidator:Enabled</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>next_inv_dtRequiredFieldValidator:Text</Name>
+          <Value>*</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>CompanyRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>next_inv_dtLabel</Name>
+      <Type>Literal</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>CompanyRecordControl</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Field</Name>
+          <Value>next_inv_dt</Value>
+        </Attribute>
+        <Attribute>
+          <Name>InternalUse:Table</Name>
+          <Value>company</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>%ISD_DEFAULT%company%next_inv_dt</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>CompanyRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>next_inv_no</Name>
       <Type>FieldValue</Type>
       <Field>next_inv_no</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -1043,7 +1149,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>next_inv_noLabel1</Name>
+      <Name>next_inv_noLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -1070,7 +1176,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>pad_inv_no1</Name>
+      <Name>pad_inv_no</Name>
       <Type>FieldValue</Type>
       <Field>pad_inv_no</Field>
       <FieldValueStyle>TextBox</FieldValueStyle>
@@ -1100,7 +1206,7 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>pad_inv_noLabel1</Name>
+      <Name>pad_inv_noLabel</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -1679,6 +1785,21 @@
       <InsideControl>CompanyRecordControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
+      <Name>TabPanel3</Name>
+      <Type>TabPanel</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>ParentTabContainer</Name>
+          <Value>CompanyRecordControlTabContainer</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>Invoice Numbering</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>CompanyRecordControl</InsideControl>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>tan_no</Name>
       <Type>FieldValue</Type>
       <Field>tan_no</Field>
@@ -2032,15 +2153,17 @@
     &lt;/Prolog&gt;
     &lt;Row&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;  &amp;lt;GEN:TABCONTAINER NAME="CompanyRecordControlTabContainer"&amp;gt; 
+        &lt;Value&gt;&amp;lt;GEN:TABCONTAINER NAME="CompanyRecordControlTabContainer"&amp;gt; 
    &amp;lt;GEN:TABPANEL NAME="TabPanel"&amp;gt; 
     &amp;lt;GEN:PANEL NAME="MainPanel" /&amp;gt; 
    &amp;lt;/GEN:TABPANEL&amp;gt; 
    &amp;lt;GEN:TABPANEL NAME="TabPanel1"&amp;gt; 
     &amp;lt;GEN:PANEL NAME="DetailsPanel" /&amp;gt; 
    &amp;lt;/GEN:TABPANEL&amp;gt; 
-  &amp;lt;/GEN:TABCONTAINER&amp;gt; 
-&lt;/Value&gt;
+&amp;lt;GEN:TABPANEL NAME="TabPanel3"&amp;gt; 
+    &amp;lt;GEN:PANEL NAME="InvoicePanel" /&amp;gt; 
+   &amp;lt;/GEN:TABPANEL&amp;gt;    
+  &amp;lt;/GEN:TABCONTAINER&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -2497,84 +2620,6 @@
       &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="inv_pfxLabel1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_pfx1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="inv_sfxLabel1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_sfx1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;RowAttributes /&gt;
-    &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="next_inv_noLabel1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="next_inv_no1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="pad_inv_noLabel1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="pad_inv_no1" /&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;RowAttributes /&gt;
-    &lt;/Row&gt;
     &lt;Epilog /&gt;
     &lt;TableAttributes /&gt;
   &lt;/Layout&gt;
@@ -2766,6 +2811,144 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Epilog /&gt;
+    &lt;TableAttributes /&gt;
+  &lt;/Layout&gt;
+  &lt;Layout Name="InvoicePanel" Type="BlankPanel" PanelControlName="CompanyRecordControl"&gt;
+    &lt;Prolog /&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="inv_pfxLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_pfx" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="inv_sfxLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_sfx" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="next_inv_noLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="next_inv_no" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="pad_inv_noLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="pad_inv_no" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;hr&amp;gt;&amp;lt;/hr&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;colspan&lt;/Name&gt;
+            &lt;AttributeValue&gt;4&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="inv_dt_fixedLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;fls&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="inv_dt_fixed" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDLABEL NAME="next_inv_dtLabel" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;class&lt;/Name&gt;
+            &lt;AttributeValue&gt;dfv&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:FIELDVALUE NAME="next_inv_dt" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;

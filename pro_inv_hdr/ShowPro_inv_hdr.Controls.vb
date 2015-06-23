@@ -204,9 +204,22 @@ Public Class Pro_inv_hdrRecordControl
             Finally
                 DbUtils.EndTransaction()
             End Try
+			me.lblFixedDateConversion.enabled = false
+			me.lblFixedDateConversion.visible = false
 			if me.inv_created.text = "YES" then
 				me.BtnConvert.button.enabled = false
+			else
+			' 22/06/2015 -- check if next invoice date if fixed	. if yes display date information on screen	
+				Dim nsrchCompanyStr As String
+				nsrchCompanyStr = "id =  '1'"
+				Dim nCompanyRec As CompanyRecord = CompanyTable.GetRecord(nsrchCompanyStr, False)
+				If nCompanyRec.inv_dt_fixed = true
+					me.lblFixedDateConversion.enabled = true
+					me.lblFixedDateConversion.visible = true
+					me.lblFixedDateConversion.text = "Invoice Date will be " + nCompanyRec.next_inv_dt.ToString("yyyy-MM-dd")
+				End If	
 			end if	
+		
         End Sub
 
 		Public Overrides Sub BtnConvert_Click(ByVal sender As Object, ByVal args As EventArgs)
@@ -256,7 +269,7 @@ Public Class Pro_inv_hdrRecordControl
 				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Grand Total is zero")
 				Return
 			End If
-
+		
 			Try
 				DbUtils.StartTransaction()
 		
@@ -304,7 +317,12 @@ Public Class Pro_inv_hdrRecordControl
 					strInvNo = CompanyRec.inv_pfx.trim() + CompanyRec.next_inv_no.ToString().trim()
 		
 					inv_hdr_rec.inv_no = strInvNo
-					inv_hdr_rec.inv_dt = Today()
+					' 22/06/2015 -- check if next invoice date if fixed		
+					If CompanyRec.inv_dt_fixed = true
+						inv_hdr_rec.inv_dt = CompanyRec.next_inv_dt
+					Else
+						inv_hdr_rec.inv_dt = Today()
+					End If	
 					inv_hdr_rec.pro_inv_no = Me.pro_inv_no.text
 					inv_hdr_rec.pro_inv_dt = Convert.ToDateTime(Me.pro_inv_dt.text)
 					inv_hdr_rec.sale_ord_no = Pro_inv_hdrCopyRec.sale_ord_no
@@ -7684,6 +7702,7 @@ Public Class BasePro_inv_hdrRecordControl
             Setinv_created()
             Setitem_total()
             Setitem_totalLabel()
+            SetlblFixedDateConversion()
             Setno_of_packages()
             Setno_of_packagesLabel()
             Setpacking_details()
@@ -9264,6 +9283,11 @@ Public Class BasePro_inv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub SetlblFixedDateConversion()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setno_of_packagesLabel()
             
                     
@@ -10594,6 +10618,12 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property item_totalLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_totalLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property lblFixedDateConversion() As System.Web.UI.WebControls.Label
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "lblFixedDateConversion"), System.Web.UI.WebControls.Label)
             End Get
         End Property
         
