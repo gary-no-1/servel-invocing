@@ -356,8 +356,15 @@ Public Class Pro_inv_hdrRecordControl
 					inv_hdr_rec.vehicle_no = Pro_inv_hdrCopyRec.vehicle_no
 					
 					' 07/06/14 - next 2 lines added - invoice issued date and goods removal date
+					' 23/07/15 - if next invoice date is fixed , then invoice_issued_dt must be fixed date
 					inv_hdr_rec.inv_issued_dt = datetime.now()
+					If CompanyRec.inv_dt_fixed = true
+						inv_hdr_rec.inv_issued_dt = CompanyRec.next_inv_dt
+					End If	
 					inv_hdr_rec.goods_removed_dt = DateTime.Now.AddMinutes(60) 
+					If CompanyRec.inv_dt_fixed = true
+						inv_hdr_rec.goods_removed_dt = CompanyRec.next_inv_dt
+					End If	
 					
 					' 03/06/14 - next 2 line added - audit
 					Dim AuditUserId as string = BaseClasses.Utils.SecurityControls.GetCurrentUserID()

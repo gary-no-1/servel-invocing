@@ -2140,12 +2140,20 @@
       <Name>po_dt</Name>
       <Type>FieldValue</Type>
       <Field>po_dt</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
+      <FieldValueStyle>TextBox</FieldValueStyle>
       <Table>inv_hdr</Table>
       <PassthroughAttributes>
         <Attribute>
-          <Name>FieldMaxLength</Name>
+          <Name>CssClass</Name>
+          <Value>field_input</Value>
+        </Attribute>
+        <Attribute>
+          <Name>DateSelectorType</Name>
           <Value>Default</Value>
+        </Attribute>
+        <Attribute>
+          <Name>EnableIncrementDecrementButtons</Name>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>HTMLEncodeValue</Name>
@@ -2162,34 +2170,6 @@
         <Attribute>
           <Name>po_dtRequiredFieldValidator:Text</Name>
           <Value>*</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>P.O. Date</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_hdrRecordControl</InsideControl>
@@ -2225,16 +2205,16 @@
       <Name>po_no</Name>
       <Type>FieldValue</Type>
       <Field>po_no</Field>
-      <FieldValueStyle>Literal</FieldValueStyle>
+      <FieldValueStyle>TextBox</FieldValueStyle>
       <Table>inv_hdr</Table>
       <PassthroughAttributes>
         <Attribute>
-          <Name>FieldMaxLength</Name>
-          <Value>Default</Value>
+          <Name>CssClass</Name>
+          <Value>field_input</Value>
         </Attribute>
         <Attribute>
-          <Name>HTMLEncodeValue</Name>
-          <Value>Default</Value>
+          <Name>EnableIncrementDecrementButtons</Name>
+          <Value>False</Value>
         </Attribute>
         <Attribute>
           <Name>InternalUse:DataSource</Name>
@@ -2247,34 +2227,6 @@
         <Attribute>
           <Name>po_noRequiredFieldValidator:Text</Name>
           <Value>*</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupDisplay</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupThreshold</Name>
-          <Value>Default</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowHeight</Name>
-          <Value>200</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowPersist</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowScrollBar</Name>
-          <Value>True</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowTitle</Name>
-          <Value>P.O. No:</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PopupWindowWidth</Name>
-          <Value>300</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>Inv_hdrRecordControl</InsideControl>

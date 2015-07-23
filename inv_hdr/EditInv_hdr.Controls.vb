@@ -5971,6 +5971,10 @@ Public Class BaseInv_hdrRecordControl
             
               AddHandler Me.packing_details.TextChanged, AddressOf packing_details_TextChanged
             
+              AddHandler Me.po_dt.TextChanged, AddressOf po_dt_TextChanged
+            
+              AddHandler Me.po_no.TextChanged, AddressOf po_no_TextChanged
+            
               AddHandler Me.remark.TextChanged, AddressOf remark_TextChanged
             
               AddHandler Me.road_permit_no.TextChanged, AddressOf road_permit_no_TextChanged
@@ -6801,11 +6805,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setpo_dt()
             
         
-            ' Set the po_dt Literal on the webpage with value from the
+            ' Set the po_dt TextBox on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.po_dt is the ASP:Literal on the webpage.
+            ' Me.po_dt is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setpo_dt()
@@ -6820,7 +6824,6 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.po_dt, "d")
                             
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.po_dt.Text = formattedValue
               
             Else 
@@ -6837,11 +6840,11 @@ Public Class BaseInv_hdrRecordControl
         Public Overridable Sub Setpo_no()
             
         
-            ' Set the po_no Literal on the webpage with value from the
+            ' Set the po_no TextBox on the webpage with value from the
             ' inv_hdr database record.
 
             ' Me.DataSource is the inv_hdr record retrieved from the database.
-            ' Me.po_no is the ASP:Literal on the webpage.
+            ' Me.po_no is the ASP:TextBox on the webpage.
             
             ' You can modify this method directly, or replace it with a call to
             '     MyBase.Setpo_no()
@@ -6856,7 +6859,6 @@ Public Class BaseInv_hdrRecordControl
                 ' The Format method will use the Display Format
                                 Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.po_no)
                             
-                formattedValue = HttpUtility.HtmlEncode(formattedValue)
                 Me.po_no.Text = formattedValue
               
             Else 
@@ -7673,10 +7675,31 @@ Public Class BaseInv_hdrRecordControl
                 
         Public Overridable Sub Getpo_dt()
             
+            ' Retrieve the value entered by the user on the po_dt ASP:TextBox, and
+            ' save it into the po_dt field in DataSource inv_hdr record.
+            ' Parse will also validate the date to ensure it is of the proper format
+            ' and a valid date.  The format is verified based on the current culture 
+            ' settings including the order of month, day and year and the separator character.
+            ' Parse throws an exception if the date is invalid.
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.po_dt.Text, Inv_hdrTable.po_dt)			
+
+                      
         End Sub
                 
         Public Overridable Sub Getpo_no()
             
+            ' Retrieve the value entered by the user on the po_no ASP:TextBox, and
+            ' save it into the po_no field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.po_no.Text, Inv_hdrTable.po_no)			
+
+                      
         End Sub
                 
         Public Overridable Sub Getremark()
@@ -8455,6 +8478,14 @@ Public Class BaseInv_hdrRecordControl
                     				
         End Sub
             
+        Protected Overridable Sub po_dt_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub po_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub remark_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -8838,9 +8869,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property po_dt() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property po_dt() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_dt"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_dt"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
@@ -8850,9 +8881,9 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property po_no() As System.Web.UI.WebControls.Literal
+        Public ReadOnly Property po_no() As System.Web.UI.WebControls.TextBox
             Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_no"), System.Web.UI.WebControls.Literal)
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_no"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             

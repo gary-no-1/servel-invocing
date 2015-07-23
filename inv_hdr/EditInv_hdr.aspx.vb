@@ -205,9 +205,7 @@ Partial Public Class EditInv_hdr
         Public WithEvents no_of_packagesLabel As System.Web.UI.WebControls.Literal
         Public WithEvents packing_detailsLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents po_dt As System.Web.UI.WebControls.Literal
         Public WithEvents po_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents po_no As System.Web.UI.WebControls.Literal
         Public WithEvents po_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents qtyLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents rateLabel As System.Web.UI.WebControls.LinkButton
