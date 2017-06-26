@@ -534,6 +534,144 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.tin_noColumn)
 	End Sub
 
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Party_.gst_no field.
+	''' </summary>
+	Public Function Getgst_noValue() As ColumnValue
+		Return Me.GetValue(TableUtils.gst_noColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Party_.gst_no field.
+	''' </summary>
+	Public Function Getgst_noFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.gst_noColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Party_.gst_no field.
+	''' </summary>
+	Public Sub Setgst_noFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.gst_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Party_.gst_no field.
+	''' </summary>
+	Public Sub Setgst_noFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.gst_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Party_.id_states field.
+	''' </summary>
+	Public Function Getid_statesValue() As ColumnValue
+		Return Me.GetValue(TableUtils.id_statesColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Party_.id_states field.
+	''' </summary>
+	Public Function Getid_statesFieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id_statesColumn).ToInt32(), Int32)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Party_.id_states field.
+	''' </summary>
+	Public Sub Setid_statesFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.id_statesColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Party_.id_states field.
+	''' </summary>
+	Public Sub Setid_statesFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.id_statesColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Party_.id_states field.
+	''' </summary>
+	Public Sub Setid_statesFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_statesColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Party_.id_states field.
+	''' </summary>
+	Public Sub Setid_statesFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_statesColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Party_.id_states field.
+	''' </summary>
+	Public Sub Setid_statesFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_statesColumn)
+	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Party_.state_code field.
+	''' </summary>
+	Public Function Getstate_codeValue() As ColumnValue
+		Return Me.GetValue(TableUtils.state_codeColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Party_.state_code field.
+	''' </summary>
+	Public Function Getstate_codeFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.state_codeColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Party_.state_code field.
+	''' </summary>
+	Public Sub Setstate_codeFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.state_codeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Party_.state_code field.
+	''' </summary>
+	Public Sub Setstate_codeFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.state_codeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Party_.state_name field.
+	''' </summary>
+	Public Function Getstate_nameValue() As ColumnValue
+		Return Me.GetValue(TableUtils.state_nameColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Party_.state_name field.
+	''' </summary>
+	Public Function Getstate_nameFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.state_nameColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Party_.state_name field.
+	''' </summary>
+	Public Sub Setstate_nameFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.state_nameColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Party_.state_name field.
+	''' </summary>
+	Public Sub Setstate_nameFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.state_nameColumn)
+	End Sub
+
 
 
 #End Region
@@ -1135,6 +1273,147 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property tin_noDefault() As String
         Get
             Return TableUtils.tin_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Party_.gst_no field.
+	''' </summary>
+	Public Property gst_no() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.gst_noColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.gst_noColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property gst_noSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.gst_noColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property gst_noDefault() As String
+        Get
+            Return TableUtils.gst_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Party_.id_states field.
+	''' </summary>
+	Public Property id_states() As Int32
+		Get 
+			Return CType(Me.GetValue(TableUtils.id_statesColumn).ToInt32(), Int32)
+		End Get
+		Set (ByVal val As Int32) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.id_statesColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property id_statesSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id_statesColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property id_statesDefault() As String
+        Get
+            Return TableUtils.id_statesColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Party_.state_code field.
+	''' </summary>
+	Public Property state_code() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.state_codeColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.state_codeColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property state_codeSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.state_codeColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property state_codeDefault() As String
+        Get
+            Return TableUtils.state_codeColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Party_.state_name field.
+	''' </summary>
+	Public Property state_name() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.state_nameColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.state_nameColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property state_nameSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.state_nameColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property state_nameDefault() As String
+        Get
+            Return TableUtils.state_nameColumn.DefaultValue
         End Get
     End Property
 

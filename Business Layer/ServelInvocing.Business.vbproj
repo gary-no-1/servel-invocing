@@ -327,6 +327,18 @@
     <Compile Include="BaseSo_termsRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="StatesTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseStatesTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StatesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseStatesRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TaxesTable.vb" >
       <SubType>Code</SubType>
     </Compile>

@@ -9,7 +9,7 @@
 Public Class SitesDefinition
 
 #Region "Definition (XML) for SitesDefinition table"
-	'Next 364 lines contain Table Definition (XML) for table "SitesDefinition"
+	'Next 458 lines contain Table Definition (XML) for table "SitesDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -92,81 +92,72 @@ Public Class SitesDefinition
     "</Column>"& _
     "<Column InternalName=""3"" Priority=""4"" ColumnNum=""3"">"& _
       "<columnName>name</columnName>"& _
-      "<columnUIName Source=""User"">Name</columnUIName>"& _
+      "<columnUIName>Name</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>50</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction>upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>Y</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>3</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""4"" Priority=""5"" ColumnNum=""4"">"& _
       "<columnName>address</columnName>"& _
-      "<columnUIName Source=""User"">Address</columnUIName>"& _
+      "<columnUIName>Address</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nvarchar</columnDBType>"& _
       "<columnLengthSet>160</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction>title</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>4</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""5"" Priority=""6"" ColumnNum=""5"">"& _
       "<columnName>city</columnName>"& _
-      "<columnUIName Source=""User"">City</columnUIName>"& _
+      "<columnUIName>City</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>40</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction>upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>5</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""6"" Priority=""7"" ColumnNum=""6"">"& _
       "<columnName>contact</columnName>"& _
@@ -239,82 +230,56 @@ Public Class SitesDefinition
     "</Column>"& _
     "<Column InternalName=""9"" Priority=""10"" ColumnNum=""9"">"& _
       "<columnName>vat_no</columnName>"& _
-      "<columnUIName>VAT Number</columnUIName>"& _
+      "<columnUIName Source=""User"">VAT No.</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>9</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""10"" Priority=""11"" ColumnNum=""10"">"& _
       "<columnName>pan_no</columnName>"& _
-      "<columnUIName Source=""User"">PAN</columnUIName>"& _
+      "<columnUIName Source=""Database"">PAN</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>10</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction>upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>10</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""11"" Priority=""12"" ColumnNum=""11"">"& _
       "<columnName>ecc_no</columnName>"& _
-      "<columnUIName Source=""User"">ECC No:</columnUIName>"& _
-      "<columnType>String</columnType>"& _
-      "<columnDBType>nchar</columnDBType>"& _
-      "<columnLengthSet>20</columnLengthSet>"& _
-      "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
-      "<columnIndex>N</columnIndex>"& _
-      "<columnUnique>N</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
-      "<columnDBFormat></columnDBFormat>"& _
-      "<columnPK>N</columnPK>"& _
-      "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
-      "<columnRequired>N</columnRequired>"& _
-      "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
-      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
-      "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>11</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
-    "</Column>"& _
-    "<Column InternalName=""12"" Priority=""13"" ColumnNum=""12"">"& _
-      "<columnName>st37_no</columnName>"& _
-      "<columnUIName>37 Number</columnUIName>"& _
+      "<columnUIName Source=""Database"">ECC No:</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
@@ -335,9 +300,9 @@ Public Class SitesDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
-    "<Column InternalName=""13"" Priority=""14"" ColumnNum=""13"">"& _
-      "<columnName>tin_no</columnName>"& _
-      "<columnUIName Source=""User"">TIN</columnUIName>"& _
+    "<Column InternalName=""12"" Priority=""13"" ColumnNum=""12"">"& _
+      "<columnName>st37_no</columnName>"& _
+      "<columnUIName Source=""User"">ST37 No.</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
@@ -345,7 +310,7 @@ Public Class SitesDefinition
       "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
-      "<columnFunction>upper</columnFunction>"& _
+      "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
@@ -358,12 +323,141 @@ Public Class SitesDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
       "<columnCodeName></columnCodeName>"& _
-      "<InternalName>13</InternalName>"& _
+      "<InternalName>12</InternalName>"& _
       "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
+    "<Column InternalName=""13"" Priority=""14"" ColumnNum=""13"">"& _
+      "<columnName>tin_no</columnName>"& _
+      "<columnUIName Source=""Database"">TIN</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>20</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction>upper</columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""14"" Priority=""15"" ColumnNum=""14"">"& _
+      "<columnName>gst_no</columnName>"& _
+      "<columnUIName Source=""User"">GST No.</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>20</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>14</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
+    "<Column InternalName=""15"" Priority=""16"" ColumnNum=""15"">"& _
+      "<columnName>id_states</columnName>"& _
+      "<columnUIName Source=""User"">State</columnUIName>"& _
+      "<columnType>Number</columnType>"& _
+      "<columnDBType>int</columnDBType>"& _
+      "<columnLengthSet>10.0</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+      "<foreignKey>"& _
+        "<columnFKName>sites_states_FK</columnFKName>"& _
+        "<columnFKTable>ServelInvocing.Business.StatesTable, ServelInvocing.Business</columnFKTable>"& _
+        "<columnFKOwner>dbo</columnFKOwner>"& _
+        "<columnFKColumn>id</columnFKColumn>"& _
+        "<columnFKColumnDisplay>state_name</columnFKColumnDisplay>"& _
+        "<foreignKeyType>Explicit</foreignKeyType>"& _
+      "</foreignKey>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>15</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
+    "<Column InternalName=""16"" Priority=""17"" ColumnNum=""16"">"& _
+      "<columnName>state_code</columnName>"& _
+      "<columnUIName>State Code</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>2</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""17"" Priority=""18"" ColumnNum=""17"">"& _
+      "<columnName>state_name</columnName>"& _
+      "<columnUIName>State Name</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>30</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>sites</TableName>"& _
-  "<Version>2</Version>"& _
+  "<Version>3</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Sites</TableCodeName>"& _
   "<TableAliasName>Sites_</TableAliasName>"& _

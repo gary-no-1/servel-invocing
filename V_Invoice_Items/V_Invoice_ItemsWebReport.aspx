@@ -24,12 +24,12 @@
 <asp:ImageButton id="V_Invoice_ItemsTableControlIcon" runat="server" ToolTip="&lt;%# GetResourceValue(&quot;Btn:ExpandCollapse&quot;) %&gt;" causesvalidation="False" imageurl="../images/icon_panelcollapse.gif" /></td><td class="dhb"><table cellpadding="0" cellspacing="0" border="0"><tr><td class="dht" valign="middle"><asp:Literal runat="server" id="V_Invoice_ItemsTitle" Text="&lt;%#String.Concat(&quot;Invoice Items&quot;) %>">	</asp:Literal></td></tr></table>
 </td><td class="dher"><img src="../Images/space.gif" alt="" /></td></tr></table>
 </td></tr><tr><td><asp:panel id="V_Invoice_ItemsTableControlCollapsibleRegion" runat="server"><table class="dBody" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td class="tre"><table cellpadding="0" cellspacing="0" border="0" width="100%" onkeydown="captureUpDownKey(this, event)"><tr class="tch"><th class="thc" scope="col"><asp:Literal runat="server" id="inv_dtLabel1" Text="Invoice Date">	</asp:Literal>
-                        </th><th class="thc" scope="col"><asp:Literal runat="server" id="inv_noLabel1" Text="Invoice No:">	</asp:Literal>
+                        </th><th class="thc" scope="col"><asp:Literal runat="server" id="inv_noLabel1" Text="Invoice Number">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="item_codeLabel" Text="Item Code">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="item_descriptionLabel" Text="Item Description">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="nameLabel" Text="Name">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="item_groupLabel" Text="Item Group">	</asp:Literal>
-                        </th><th class="thc" scope="col"><asp:Literal runat="server" id="uomLabel" Text="U.O.M.">	</asp:Literal>
+                        </th><th class="thc" scope="col"><asp:Literal runat="server" id="uomLabel" Text="Uom">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="qtyLabel" Text="Quantity">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="rateLabel" Text="Rate">	</asp:Literal>
                         </th><th class="thc" scope="col"><asp:Literal runat="server" id="amountLabel" Text="Amount">	</asp:Literal>

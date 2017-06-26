@@ -171,6 +171,11 @@ Partial Public Class EditParty
         Public WithEvents ecc_noLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
         Public WithEvents emailLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents gst_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents gst_noLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents id_states As System.Web.UI.WebControls.DropDownList
+        Public WithEvents id_statesLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id_statesLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents nameLabel2 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal

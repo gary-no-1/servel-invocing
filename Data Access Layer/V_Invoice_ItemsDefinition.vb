@@ -9,7 +9,7 @@
 Public Class V_Invoice_ItemsDefinition
 
 #Region "Definition (XML) for V_Invoice_ItemsDefinition table"
-	'Next 255 lines contain Table Definition (XML) for table "V_Invoice_ItemsDefinition"
+	'Next 298 lines contain Table Definition (XML) for table "V_Invoice_ItemsDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""VIEW"">"& _
   "<ColumnDefinition>"& _
@@ -42,7 +42,7 @@ Public Class V_Invoice_ItemsDefinition
     "</Column>"& _
     "<Column InternalName=""1"" Priority=""2"" ColumnNum=""1"">"& _
       "<columnName>inv_no</columnName>"& _
-      "<columnUIName Source=""User"">Invoice No:</columnUIName>"& _
+      "<columnUIName Source=""User"">Invoice Number</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
@@ -160,29 +160,26 @@ Public Class V_Invoice_ItemsDefinition
     "</Column>"& _
     "<Column InternalName=""6"" Priority=""7"" ColumnNum=""6"">"& _
       "<columnName>uom</columnName>"& _
-      "<columnUIName Source=""User"">U.O.M.</columnUIName>"& _
+      "<columnUIName>Uom</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>10</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>6</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""7"" Priority=""8"" ColumnNum=""7"">"& _
       "<columnName>qty</columnName>"& _
@@ -253,9 +250,55 @@ Public Class V_Invoice_ItemsDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
+    "<Column InternalName=""10"" Priority=""11"" ColumnNum=""10"">"& _
+      "<columnName>id</columnName>"& _
+      "<columnUIName>ID</columnUIName>"& _
+      "<columnType>Number</columnType>"& _
+      "<columnDBType>int</columnDBType>"& _
+      "<columnLengthSet>10.0</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>Y</columnRequired>"& _
+      "<columnNotNull>Y</columnNotNull>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""11"" Priority=""12"" ColumnNum=""11"">"& _
+      "<columnName>id2</columnName>"& _
+      "<columnUIName>ID 2</columnUIName>"& _
+      "<columnType>Number</columnType>"& _
+      "<columnDBType>int</columnDBType>"& _
+      "<columnLengthSet>10.0</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>Y</columnRequired>"& _
+      "<columnNotNull>Y</columnNotNull>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>V_Invoice_Items</TableName>"& _
-  "<Version></Version>"& _
+  "<Version>2</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>V_Invoice_Items</TableCodeName>"& _
   "<TableAliasName>V_Invoice_Items_</TableAliasName>"& _

@@ -148,6 +148,8 @@ Public Class BasePartyTableControlRow
             Setcontact()
             Setecc_no()
             Setemail()
+            Setgst_no()
+            Setid_states()
             Setname()
             Setpan_no()
             Setphone()
@@ -419,6 +421,94 @@ Public Class BasePartyTableControlRow
                 OrElse Me.email.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.email.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setgst_no()
+            
+        
+            ' Set the gst_no Literal on the webpage with value from the
+            ' party database record.
+
+            ' Me.DataSource is the party record retrieved from the database.
+            ' Me.gst_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgst_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gst_noSpecified Then
+                				
+                ' If the gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.gst_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.gst_no.Text = formattedValue
+              
+            Else 
+            
+                ' gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gst_no.Text = PartyTable.gst_no.Format(PartyTable.gst_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the gst_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.gst_no.Text Is Nothing _
+                OrElse Me.gst_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.gst_no.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setid_states()
+            
+        
+            ' Set the id_states Literal on the webpage with value from the
+            ' party database record.
+
+            ' Me.DataSource is the party record retrieved from the database.
+            ' Me.id_states is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid_states()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_statesSpecified Then
+                				
+                ' If the id_states is non-NULL, then format the value.
+
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.id_states)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.id_states.Text = formattedValue
+              
+            Else 
+            
+                ' id_states is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.id_states.Text = PartyTable.id_states.Format(PartyTable.id_states.DefaultValue)
+                        		
+                End If
+                 
+            ' If the id_states is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.id_states.Text Is Nothing _
+                OrElse Me.id_states.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.id_states.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -700,6 +790,8 @@ Public Class BasePartyTableControlRow
             Getcontact()
             Getecc_no()
             Getemail()
+            Getgst_no()
+            Getid_states()
             Getname()
             Getpan_no()
             Getphone()
@@ -724,6 +816,14 @@ Public Class BasePartyTableControlRow
         End Sub
                 
         Public Overridable Sub Getemail()
+            
+        End Sub
+                
+        Public Overridable Sub Getgst_no()
+            
+        End Sub
+                
+        Public Overridable Sub Getid_states()
             
         End Sub
                 
@@ -1124,6 +1224,18 @@ Public Class BasePartyTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property gst_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property id_states() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_states"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property name() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "name"), System.Web.UI.WebControls.Literal)
@@ -1329,6 +1441,10 @@ Public Class BasePartyTableControl
             
               AddHandler Me.emailLabel.Click, AddressOf emailLabel_Click
             
+              AddHandler Me.gst_noLabel.Click, AddressOf gst_noLabel_Click
+            
+              AddHandler Me.id_statesLabel.Click, AddressOf id_statesLabel_Click
+            
               AddHandler Me.nameLabel1.Click, AddressOf nameLabel1_Click
             
               AddHandler Me.pan_noLabel.Click, AddressOf pan_noLabel_Click
@@ -1461,7 +1577,10 @@ Public Class BasePartyTableControl
             If Me.DataSource Is Nothing Then
                 Return
             End If
-           
+      
+          ' Improve performance by prefetching display as records.
+          Me.PreFetchForeignKeyValues()
+             
             ' Setup the pagination controls.
             BindPaginationControls()
 
@@ -1472,6 +1591,8 @@ Public Class BasePartyTableControl
             SetcontactLabel()
             Setecc_noLabel()
             SetemailLabel()
+            Setgst_noLabel()
+            Setid_statesLabel()
             SetnameFilter()
             
             SetnameLabel()
@@ -1519,6 +1640,8 @@ Public Class BasePartyTableControl
             SetcontactLabel()
             Setecc_noLabel()
             SetemailLabel()
+            Setgst_noLabel()
+            Setid_statesLabel()
             SetnameLabel()
             SetnameLabel1()
             Setpan_noLabel()
@@ -1527,6 +1650,15 @@ Public Class BasePartyTableControl
       End Sub
 
       
+          Public Sub PreFetchForeignKeyValues()
+          If (IsNothing(Me.DataSource))
+            Return
+          End If
+          
+            Me.Page.PregetDfkaRecords(PartyTable.id_states, Me.DataSource)
+          
+          End Sub
+        
       
         Public Overridable Sub RegisterPostback()
         
@@ -2011,6 +2143,12 @@ Public Class BasePartyTableControl
                         If recControl.email.Text <> "" Then
                             rec.Parse(recControl.email.Text, PartyTable.email)
                         End If
+                        If recControl.gst_no.Text <> "" Then
+                            rec.Parse(recControl.gst_no.Text, PartyTable.gst_no)
+                        End If
+                        If recControl.id_states.Text <> "" Then
+                            rec.Parse(recControl.id_states.Text, PartyTable.id_states)
+                        End If
                         If recControl.name.Text <> "" Then
                             rec.Parse(recControl.name.Text, PartyTable.name)
                         End If
@@ -2111,6 +2249,16 @@ Public Class BasePartyTableControl
         End Sub
                 
         Public Overridable Sub SetemailLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setgst_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setid_statesLabel()
             
                     
         End Sub
@@ -2544,6 +2692,50 @@ Public Class BasePartyTableControl
               
         End Sub
             
+        Public Overridable Sub gst_noLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by gst_no when clicked.
+              
+            ' Get previous sorting state for gst_no.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(PartyTable.gst_no)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for gst_no.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(PartyTable.gst_no, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by gst_no, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
+        Public Overridable Sub id_statesLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by id_states when clicked.
+              
+            ' Get previous sorting state for id_states.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(PartyTable.id_states)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for id_states.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(PartyTable.id_states, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by id_states, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub nameLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by name when clicked.
               
@@ -2776,6 +2968,8 @@ Public Class BasePartyTableControl
              PartyTable.pan_no, _ 
              PartyTable.ecc_no, _ 
              PartyTable.tin_no, _ 
+             PartyTable.gst_no, _ 
+             PartyTable.id_states, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(PartyTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -2825,6 +3019,8 @@ Public Class BasePartyTableControl
              excelReport.AddColumn(New ExcelColumn(PartyTable.pan_no, "Default"))
              excelReport.AddColumn(New ExcelColumn(PartyTable.ecc_no, "Default"))
              excelReport.AddColumn(New ExcelColumn(PartyTable.tin_no, "Default"))
+             excelReport.AddColumn(New ExcelColumn(PartyTable.gst_no, "Default"))
+             excelReport.AddColumn(New ExcelColumn(PartyTable.id_states, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2946,6 +3142,8 @@ Public Class BasePartyTableControl
                  report.AddColumn(PartyTable.pan_no.Name, ReportEnum.Align.Left, "${pan_no}", ReportEnum.Align.Left, 15)
                  report.AddColumn(PartyTable.ecc_no.Name, ReportEnum.Align.Left, "${ecc_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(PartyTable.tin_no.Name, ReportEnum.Align.Left, "${tin_no}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(PartyTable.gst_no.Name, ReportEnum.Align.Left, "${gst_no}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(PartyTable.id_states.Name, ReportEnum.Align.Left, "${id_states}", ReportEnum.Align.Left, 24)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2982,6 +3180,8 @@ Public Class BasePartyTableControl
                              report.AddData("${pan_no}", record.Format(PartyTable.pan_no), ReportEnum.Align.Left, 100)
                              report.AddData("${ecc_no}", record.Format(PartyTable.ecc_no), ReportEnum.Align.Left, 100)
                              report.AddData("${tin_no}", record.Format(PartyTable.tin_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${gst_no}", record.Format(PartyTable.gst_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${id_states}", record.Format(PartyTable.id_states), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -3091,6 +3291,8 @@ Public Class BasePartyTableControl
                  report.AddColumn(PartyTable.pan_no.Name, ReportEnum.Align.Left, "${pan_no}", ReportEnum.Align.Left, 15)
                  report.AddColumn(PartyTable.ecc_no.Name, ReportEnum.Align.Left, "${ecc_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(PartyTable.tin_no.Name, ReportEnum.Align.Left, "${tin_no}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(PartyTable.gst_no.Name, ReportEnum.Align.Left, "${gst_no}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(PartyTable.id_states.Name, ReportEnum.Align.Left, "${id_states}", ReportEnum.Align.Left, 24)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -3124,6 +3326,8 @@ Public Class BasePartyTableControl
                              report.AddData("${pan_no}", record.Format(PartyTable.pan_no), ReportEnum.Align.Left, 100)
                              report.AddData("${ecc_no}", record.Format(PartyTable.ecc_no), ReportEnum.Align.Left, 100)
                              report.AddData("${tin_no}", record.Format(PartyTable.tin_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${gst_no}", record.Format(PartyTable.gst_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${id_states}", record.Format(PartyTable.id_states), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -3329,6 +3533,18 @@ Public Class BasePartyTableControl
         Public ReadOnly Property emailLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property gst_noLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_noLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property id_statesLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_statesLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         

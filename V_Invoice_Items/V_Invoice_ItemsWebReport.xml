@@ -915,7 +915,7 @@
         </Attribute>
         <Attribute>
           <Name>PageSize</Name>
-          <Value>500</Value>
+          <Value>2000</Value>
         </Attribute>
       </PassthroughAttributes>
     </ContainedComponent>

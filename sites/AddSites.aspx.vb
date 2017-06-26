@@ -173,9 +173,12 @@ Partial Public Class AddSites
         Public WithEvents cityLabel As System.Web.UI.WebControls.Literal
         Public WithEvents contactLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents gst_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_party As System.Web.UI.WebControls.DropDownList
         Public WithEvents id_partyAddRecordLink As System.Web.UI.WebControls.ImageButton
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id_states As System.Web.UI.WebControls.DropDownList
+        Public WithEvents id_statesLabel As System.Web.UI.WebControls.Literal
         Public WithEvents nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents pan_noLabel As System.Web.UI.WebControls.Literal

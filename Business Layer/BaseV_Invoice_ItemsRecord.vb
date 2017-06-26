@@ -405,6 +405,108 @@ Namespace ServelInvocing.Business
 		Dim colValue As ColumnValue = New ColumnValue(val)
 		Me.SetValue(colValue, TableUtils.amountColumn)
 	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's V_Invoice_Items_.id field.
+	''' </summary>
+	Public Function Getid0Value() As ColumnValue
+		Return Me.GetValue(TableUtils.id0Column)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's V_Invoice_Items_.id field.
+	''' </summary>
+	Public Function Getid0FieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id0Column).ToInt32(), Int32)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's V_Invoice_Items_.id field.
+	''' </summary>
+	Public Sub Setid0FieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.id0Column)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's V_Invoice_Items_.id field.
+	''' </summary>
+	Public Sub Setid0FieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.id0Column)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's V_Invoice_Items_.id field.
+	''' </summary>
+	Public Sub Setid0FieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id0Column)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's V_Invoice_Items_.id field.
+	''' </summary>
+	Public Sub Setid0FieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id0Column)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's V_Invoice_Items_.id field.
+	''' </summary>
+	Public Sub Setid0FieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id0Column)
+	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's V_Invoice_Items_.id2 field.
+	''' </summary>
+	Public Function Getid2Value() As ColumnValue
+		Return Me.GetValue(TableUtils.id2Column)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's V_Invoice_Items_.id2 field.
+	''' </summary>
+	Public Function Getid2FieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id2Column).ToInt32(), Int32)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's V_Invoice_Items_.id2 field.
+	''' </summary>
+	Public Sub Setid2FieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.id2Column)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's V_Invoice_Items_.id2 field.
+	''' </summary>
+	Public Sub Setid2FieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.id2Column)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's V_Invoice_Items_.id2 field.
+	''' </summary>
+	Public Sub Setid2FieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id2Column)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's V_Invoice_Items_.id2 field.
+	''' </summary>
+	Public Sub Setid2FieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id2Column)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's V_Invoice_Items_.id2 field.
+	''' </summary>
+	Public Sub Setid2FieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id2Column)
+	End Sub
 
 
 #End Region
@@ -762,6 +864,78 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property amountDefault() As String
         Get
             Return TableUtils.amountColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's V_Invoice_Items_.id field.
+	''' </summary>
+	Public Property id0() As Int32
+		Get 
+			Return CType(Me.GetValue(TableUtils.id0Column).ToInt32(), Int32)
+		End Get
+		Set (ByVal val As Int32) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.id0Column)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property id0Specified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id0Column)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property id0Default() As String
+        Get
+            Return TableUtils.id0Column.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's V_Invoice_Items_.id2 field.
+	''' </summary>
+	Public Property id2() As Int32
+		Get 
+			Return CType(Me.GetValue(TableUtils.id2Column).ToInt32(), Int32)
+		End Get
+		Set (ByVal val As Int32) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.id2Column)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property id2Specified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id2Column)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property id2Default() As String
+        Get
+            Return TableUtils.id2Column.DefaultValue
         End Get
     End Property
 

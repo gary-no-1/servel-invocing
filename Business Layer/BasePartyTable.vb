@@ -70,6 +70,10 @@ Namespace ServelInvocing.Business
         ecc_noColumn.CodeName = "ecc_no"
         st37_noColumn.CodeName = "st37_no"
         tin_noColumn.CodeName = "tin_no"
+        gst_noColumn.CodeName = "gst_no"
+        id_statesColumn.CodeName = "id_states"
+        state_codeColumn.CodeName = "state_code"
+        state_nameColumn.CodeName = "state_name"
         
     End Sub
 
@@ -398,6 +402,82 @@ Namespace ServelInvocing.Business
             Return PartyTable.Instance.tin_noColumn
         End Get
     End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Party_.gst_no column object.
+    ''' </summary>
+    Public ReadOnly Property gst_noColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(17), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Party_.gst_no column object.
+    ''' </summary>
+    Public Shared ReadOnly Property gst_no() As BaseClasses.Data.StringColumn
+        Get
+            Return PartyTable.Instance.gst_noColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Party_.id_states column object.
+    ''' </summary>
+    Public ReadOnly Property id_statesColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(18), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Party_.id_states column object.
+    ''' </summary>
+    Public Shared ReadOnly Property id_states() As BaseClasses.Data.NumberColumn
+        Get
+            Return PartyTable.Instance.id_statesColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Party_.state_code column object.
+    ''' </summary>
+    Public ReadOnly Property state_codeColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(19), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Party_.state_code column object.
+    ''' </summary>
+    Public Shared ReadOnly Property state_code() As BaseClasses.Data.StringColumn
+        Get
+            Return PartyTable.Instance.state_codeColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Party_.state_name column object.
+    ''' </summary>
+    Public ReadOnly Property state_nameColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(20), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Party_.state_name column object.
+    ''' </summary>
+    Public Shared ReadOnly Property state_name() As BaseClasses.Data.StringColumn
+        Get
+            Return PartyTable.Instance.state_nameColumn
+        End Get
+    End Property
 
 
 #End Region
@@ -687,7 +767,11 @@ Namespace ServelInvocing.Business
         ByVal pan_noValue As String, _
         ByVal ecc_noValue As String, _
         ByVal st37_noValue As String, _
-        ByVal tin_noValue As String _
+        ByVal tin_noValue As String, _
+        ByVal gst_noValue As String, _
+        ByVal id_statesValue As String, _
+        ByVal state_codeValue As String, _
+        ByVal state_nameValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(party_codeValue, party_codeColumn)
@@ -706,6 +790,10 @@ Namespace ServelInvocing.Business
         rec.SetString(ecc_noValue, ecc_noColumn)
         rec.SetString(st37_noValue, st37_noColumn)
         rec.SetString(tin_noValue, tin_noColumn)
+        rec.SetString(gst_noValue, gst_noColumn)
+        rec.SetString(id_statesValue, id_statesColumn)
+        rec.SetString(state_codeValue, state_codeColumn)
+        rec.SetString(state_nameValue, state_nameColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

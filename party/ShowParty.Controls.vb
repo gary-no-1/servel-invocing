@@ -150,6 +150,8 @@ Public Class BaseSitesTableControlRow
             Setcontact1()
             Setecc_no1()
             Setemail1()
+            Setgst_no1()
+            Setid_states1()
             Setname1()
             Setpan_no1()
             Setphone1()
@@ -421,6 +423,94 @@ Public Class BaseSitesTableControlRow
                 OrElse Me.email1.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.email1.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setgst_no1()
+            
+        
+            ' Set the gst_no Literal on the webpage with value from the
+            ' sites database record.
+
+            ' Me.DataSource is the sites record retrieved from the database.
+            ' Me.gst_no1 is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgst_no1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gst_noSpecified Then
+                				
+                ' If the gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.gst_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.gst_no1.Text = formattedValue
+              
+            Else 
+            
+                ' gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gst_no1.Text = SitesTable.gst_no.Format(SitesTable.gst_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the gst_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.gst_no1.Text Is Nothing _
+                OrElse Me.gst_no1.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.gst_no1.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setid_states1()
+            
+        
+            ' Set the id_states Literal on the webpage with value from the
+            ' sites database record.
+
+            ' Me.DataSource is the sites record retrieved from the database.
+            ' Me.id_states1 is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid_states1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_statesSpecified Then
+                				
+                ' If the id_states is non-NULL, then format the value.
+
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.id_states)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.id_states1.Text = formattedValue
+              
+            Else 
+            
+                ' id_states is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.id_states1.Text = SitesTable.id_states.Format(SitesTable.id_states.DefaultValue)
+                        		
+                End If
+                 
+            ' If the id_states is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.id_states1.Text Is Nothing _
+                OrElse Me.id_states1.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.id_states1.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -717,6 +807,8 @@ Public Class BaseSitesTableControlRow
             Getcontact1()
             Getecc_no1()
             Getemail1()
+            Getgst_no1()
+            Getid_states1()
             Getname1()
             Getpan_no1()
             Getphone1()
@@ -741,6 +833,14 @@ Public Class BaseSitesTableControlRow
         End Sub
                 
         Public Overridable Sub Getemail1()
+            
+        End Sub
+                
+        Public Overridable Sub Getgst_no1()
+            
+        End Sub
+                
+        Public Overridable Sub Getid_states1()
             
         End Sub
                 
@@ -982,6 +1082,18 @@ Public Class BaseSitesTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property gst_no1() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_no1"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property id_states1() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_states1"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property name1() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "name1"), System.Web.UI.WebControls.Literal)
@@ -1130,6 +1242,10 @@ Public Class BaseSitesTableControl
             
               AddHandler Me.emailLabel1.Click, AddressOf emailLabel1_Click
             
+              AddHandler Me.gst_noLabel1.Click, AddressOf gst_noLabel1_Click
+            
+              AddHandler Me.id_statesLabel1.Click, AddressOf id_statesLabel1_Click
+            
               AddHandler Me.nameLabel2.Click, AddressOf nameLabel2_Click
             
               AddHandler Me.pan_noLabel1.Click, AddressOf pan_noLabel1_Click
@@ -1252,7 +1368,10 @@ Public Class BaseSitesTableControl
             If Me.DataSource Is Nothing Then
                 Return
             End If
-           
+      
+          ' Improve performance by prefetching display as records.
+          Me.PreFetchForeignKeyValues()
+             
             ' Setup the pagination controls.
             BindPaginationControls()
 
@@ -1263,6 +1382,8 @@ Public Class BaseSitesTableControl
             SetcontactLabel1()
             Setecc_noLabel1()
             SetemailLabel1()
+            Setgst_noLabel1()
+            Setid_statesLabel1()
             SetnameLabel2()
             Setpan_noLabel1()
             SetphoneLabel1()
@@ -1305,6 +1426,8 @@ Public Class BaseSitesTableControl
             SetcontactLabel1()
             Setecc_noLabel1()
             SetemailLabel1()
+            Setgst_noLabel1()
+            Setid_statesLabel1()
             SetnameLabel2()
             Setpan_noLabel1()
             SetphoneLabel1()
@@ -1312,6 +1435,15 @@ Public Class BaseSitesTableControl
       End Sub
 
       
+          Public Sub PreFetchForeignKeyValues()
+          If (IsNothing(Me.DataSource))
+            Return
+          End If
+          
+            Me.Page.PregetDfkaRecords(SitesTable.id_states, Me.DataSource)
+          
+          End Sub
+        
       
         Public Overridable Sub RegisterPostback()
         
@@ -1687,6 +1819,12 @@ Public Class BaseSitesTableControl
                         If recControl.email1.Text <> "" Then
                             rec.Parse(recControl.email1.Text, SitesTable.email)
                         End If
+                        If recControl.gst_no1.Text <> "" Then
+                            rec.Parse(recControl.gst_no1.Text, SitesTable.gst_no)
+                        End If
+                        If recControl.id_states1.Text <> "" Then
+                            rec.Parse(recControl.id_states1.Text, SitesTable.id_states)
+                        End If
                         If recControl.name1.Text <> "" Then
                             rec.Parse(recControl.name1.Text, SitesTable.name)
                         End If
@@ -1787,6 +1925,16 @@ Public Class BaseSitesTableControl
         End Sub
                 
         Public Overridable Sub SetemailLabel1()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setgst_noLabel1()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setid_statesLabel1()
             
                     
         End Sub
@@ -2128,6 +2276,50 @@ Public Class BaseSitesTableControl
               
         End Sub
             
+        Public Overridable Sub gst_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by gst_no when clicked.
+              
+            ' Get previous sorting state for gst_no.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.gst_no)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for gst_no.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(SitesTable.gst_no, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by gst_no, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
+        Public Overridable Sub id_statesLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by id_states when clicked.
+              
+            ' Get previous sorting state for id_states.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.id_states)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for id_states.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(SitesTable.id_states, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by id_states, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub nameLabel2_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by name when clicked.
               
@@ -2245,6 +2437,8 @@ Public Class BaseSitesTableControl
              SitesTable.pan_no, _ 
              SitesTable.ecc_no, _ 
              SitesTable.tin_no, _ 
+             SitesTable.gst_no, _ 
+             SitesTable.id_states, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(SitesTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -2294,6 +2488,8 @@ Public Class BaseSitesTableControl
              excelReport.AddColumn(New ExcelColumn(SitesTable.pan_no, "Default"))
              excelReport.AddColumn(New ExcelColumn(SitesTable.ecc_no, "Default"))
              excelReport.AddColumn(New ExcelColumn(SitesTable.tin_no, "Default"))
+             excelReport.AddColumn(New ExcelColumn(SitesTable.gst_no, "Default"))
+             excelReport.AddColumn(New ExcelColumn(SitesTable.id_states, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2371,6 +2567,8 @@ Public Class BaseSitesTableControl
                  report.AddColumn(SitesTable.pan_no.Name, ReportEnum.Align.Left, "${pan_no}", ReportEnum.Align.Left, 15)
                  report.AddColumn(SitesTable.ecc_no.Name, ReportEnum.Align.Left, "${ecc_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(SitesTable.tin_no.Name, ReportEnum.Align.Left, "${tin_no}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(SitesTable.gst_no.Name, ReportEnum.Align.Left, "${gst_no}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(SitesTable.id_states.Name, ReportEnum.Align.Left, "${id_states}", ReportEnum.Align.Left, 24)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2407,6 +2605,8 @@ Public Class BaseSitesTableControl
                              report.AddData("${pan_no}", record.Format(SitesTable.pan_no), ReportEnum.Align.Left, 100)
                              report.AddData("${ecc_no}", record.Format(SitesTable.ecc_no), ReportEnum.Align.Left, 100)
                              report.AddData("${tin_no}", record.Format(SitesTable.tin_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${gst_no}", record.Format(SitesTable.gst_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${id_states}", record.Format(SitesTable.id_states), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -2516,6 +2716,8 @@ Public Class BaseSitesTableControl
                  report.AddColumn(SitesTable.pan_no.Name, ReportEnum.Align.Left, "${pan_no}", ReportEnum.Align.Left, 15)
                  report.AddColumn(SitesTable.ecc_no.Name, ReportEnum.Align.Left, "${ecc_no}", ReportEnum.Align.Left, 20)
                  report.AddColumn(SitesTable.tin_no.Name, ReportEnum.Align.Left, "${tin_no}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(SitesTable.gst_no.Name, ReportEnum.Align.Left, "${gst_no}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(SitesTable.id_states.Name, ReportEnum.Align.Left, "${id_states}", ReportEnum.Align.Left, 24)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -2549,6 +2751,8 @@ Public Class BaseSitesTableControl
                              report.AddData("${pan_no}", record.Format(SitesTable.pan_no), ReportEnum.Align.Left, 100)
                              report.AddData("${ecc_no}", record.Format(SitesTable.ecc_no), ReportEnum.Align.Left, 100)
                              report.AddData("${tin_no}", record.Format(SitesTable.tin_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${gst_no}", record.Format(SitesTable.gst_no), ReportEnum.Align.Left, 100)
+                             report.AddData("${id_states}", record.Format(SitesTable.id_states), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -2726,6 +2930,18 @@ Public Class BaseSitesTableControl
         Public ReadOnly Property emailLabel1() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel1"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property gst_noLabel1() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_noLabel1"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property id_statesLabel1() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_statesLabel1"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -3035,6 +3251,10 @@ Public Class BasePartyRecordControl
             Setecc_noLabel()
             Setemail()
             SetemailLabel()
+            Setgst_no()
+            Setgst_noLabel()
+            Setid_states()
+            Setid_statesLabel()
             Setname()
             SetnameLabel()
             Setpan_no()
@@ -3323,6 +3543,94 @@ Public Class BasePartyRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setgst_no()
+            
+        
+            ' Set the gst_no Literal on the webpage with value from the
+            ' party database record.
+
+            ' Me.DataSource is the party record retrieved from the database.
+            ' Me.gst_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgst_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gst_noSpecified Then
+                				
+                ' If the gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.gst_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.gst_no.Text = formattedValue
+              
+            Else 
+            
+                ' gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gst_no.Text = PartyTable.gst_no.Format(PartyTable.gst_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the gst_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.gst_no.Text Is Nothing _
+                OrElse Me.gst_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.gst_no.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setid_states()
+            
+        
+            ' Set the id_states Literal on the webpage with value from the
+            ' party database record.
+
+            ' Me.DataSource is the party record retrieved from the database.
+            ' Me.id_states is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid_states()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_statesSpecified Then
+                				
+                ' If the id_states is non-NULL, then format the value.
+
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.id_states)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.id_states.Text = formattedValue
+              
+            Else 
+            
+                ' id_states is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.id_states.Text = PartyTable.id_states.Format(PartyTable.id_states.DefaultValue)
+                        		
+                End If
+                 
+            ' If the id_states is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.id_states.Text Is Nothing _
+                OrElse Me.id_states.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.id_states.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setname()
             
         
@@ -3524,6 +3832,16 @@ Public Class BasePartyRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setgst_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setid_statesLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub SetnameLabel()
             
                     
@@ -3656,6 +3974,8 @@ Public Class BasePartyRecordControl
             Getcontact()
             Getecc_no()
             Getemail()
+            Getgst_no()
+            Getid_states()
             Getname()
             Getpan_no()
             Getphone()
@@ -3680,6 +4000,14 @@ Public Class BasePartyRecordControl
         End Sub
                 
         Public Overridable Sub Getemail()
+            
+        End Sub
+                
+        Public Overridable Sub Getgst_no()
+            
+        End Sub
+                
+        Public Overridable Sub Getid_states()
             
         End Sub
                 
@@ -4214,6 +4542,30 @@ Public Class BasePartyRecordControl
         Public ReadOnly Property emailLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property gst_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property gst_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property id_states() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_states"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property id_statesLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_statesLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

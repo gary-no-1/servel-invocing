@@ -159,8 +159,10 @@ Partial Public Class ShowSitesTable
         Public WithEvents contactLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents ecc_noLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents emailLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents gst_noLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_partyLabel1 As System.Web.UI.WebControls.LinkButton
+        Public WithEvents id_statesLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents nameLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents pan_noLabel As System.Web.UI.WebControls.LinkButton

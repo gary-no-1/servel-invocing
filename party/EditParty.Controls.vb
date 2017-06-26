@@ -102,6 +102,8 @@ Public Class BaseSitesTableControlRow
 		
               ' Register the event handlers.
           
+              AddHandler Me.id_states1.SelectedIndexChanged, AddressOf id_states1_SelectedIndexChanged
+            
               AddHandler Me.address1.TextChanged, AddressOf address1_TextChanged
             
               AddHandler Me.city1.TextChanged, AddressOf city1_TextChanged
@@ -111,6 +113,8 @@ Public Class BaseSitesTableControlRow
               AddHandler Me.ecc_no1.TextChanged, AddressOf ecc_no1_TextChanged
             
               AddHandler Me.email1.TextChanged, AddressOf email1_TextChanged
+            
+              AddHandler Me.gst_no1.TextChanged, AddressOf gst_no1_TextChanged
             
               AddHandler Me.name1.TextChanged, AddressOf name1_TextChanged
             
@@ -168,6 +172,8 @@ Public Class BaseSitesTableControlRow
             Setcontact1()
             Setecc_no1()
             Setemail1()
+            Setgst_no1()
+            Setid_states1()
             Setname1()
             Setpan_no1()
             Setphone1()
@@ -403,6 +409,93 @@ Public Class BaseSitesTableControlRow
                         		
                 End If
                  
+        End Sub
+                
+        Public Overridable Sub Setgst_no1()
+            					
+            ' If data was retrieved from UI previously, restore it
+            If Me.PreviousUIData.ContainsKey(Me.gst_no1.ID) Then
+            
+                Me.gst_no1.Text = Me.PreviousUIData(Me.gst_no1.ID).ToString()
+              
+                Return
+            End If
+            
+        
+            ' Set the gst_no TextBox on the webpage with value from the
+            ' sites database record.
+
+            ' Me.DataSource is the sites record retrieved from the database.
+            ' Me.gst_no1 is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgst_no1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gst_noSpecified Then
+                				
+                ' If the gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(SitesTable.gst_no)
+                            
+                Me.gst_no1.Text = formattedValue
+              
+            Else 
+            
+                ' gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gst_no1.Text = SitesTable.gst_no.Format(SitesTable.gst_no.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setid_states1()
+            							
+            ' If selection was retrieved from UI previously, restore it
+            If Me.PreviousUIData.ContainsKey(Me.id_states1.ID) Then
+                If Me.PreviousUIData(Me.id_states1.ID) Is Nothing
+                    Me.Populateid_states1DropDownList(Nothing, 100)
+                Else
+                    Me.Populateid_states1DropDownList(Me.PreviousUIData(Me.id_states1.ID).ToString(), 100)
+                End If
+                Return
+            End If
+            
+        
+            ' Set the id_states DropDownList on the webpage with value from the
+            ' sites database record.
+            
+            ' Me.DataSource is the sites record retrieved from the database.
+            ' Me.id_states1 is the ASP:DropDownList on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid_states1()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_statesSpecified Then
+                            
+                ' If the id_states is non-NULL, then format the value.
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                Me.Populateid_states1DropDownList(Me.DataSource.id_states.ToString(), 100)
+                
+            Else
+                
+                ' id_states is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+                If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
+                    Me.Populateid_states1DropDownList(Nothing, 100)
+                Else
+                    Me.Populateid_states1DropDownList(SitesTable.id_states.DefaultValue, 100)
+                End If
+                				
+            End If			
+                
         End Sub
                 
         Public Overridable Sub Setname1()
@@ -693,6 +786,8 @@ Public Class BaseSitesTableControlRow
             Getcontact1()
             Getecc_no1()
             Getemail1()
+            Getgst_no1()
+            Getid_states1()
             Getname1()
             Getpan_no1()
             Getphone1()
@@ -763,6 +858,30 @@ Public Class BaseSitesTableControlRow
             Me.DataSource.Parse(Me.email1.Text, SitesTable.email)			
 
                       
+        End Sub
+                
+        Public Overridable Sub Getgst_no1()
+            
+            ' Retrieve the value entered by the user on the gst_no ASP:TextBox, and
+            ' save it into the gst_no field in DataSource sites record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.gst_no1.Text, SitesTable.gst_no)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getid_states1()
+         
+            ' Retrieve the value entered by the user on the id_states ASP:DropDownList, and
+            ' save it into the id_states field in DataSource sites record.
+                        
+            ' Custom validation should be performed in Validate, not here.
+            
+            Me.DataSource.Parse(GetValueSelectedPageRequest(Me.id_states1), SitesTable.id_states)				
+            
         End Sub
                 
         Public Overridable Sub Getname1()
@@ -900,6 +1019,160 @@ Public Class BaseSitesTableControlRow
         End Function
         
         
+
+        Public Overridable Function CreateWhereClause_id_states1DropDownList() As WhereClause
+            ' By default, we simply return a new WhereClause.
+            ' Add additional where clauses to restrict the items shown in the dropdown list.
+            						
+            ' This WhereClause is for the states table.
+            ' Examples:
+            ' wc.iAND(StatesTable.state_name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(StatesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
+            
+            Dim wc As WhereClause = New WhereClause()
+            Return wc
+            				
+        End Function
+        
+                
+        ' Fill the id_states1 list.
+        Protected Overridable Sub Populateid_states1DropDownList( _
+                ByVal selectedValue As String, _
+                ByVal maxItems As Integer)
+            		  					                
+            Me.id_states1.Items.Clear()
+            
+            ' This is a four step process.
+            ' 1. Setup the static list items
+            ' 2. Set up the WHERE and the ORDER BY clause
+            ' 3. Read a total of maxItems from the database and insert them
+            ' 4. Set the selected value (insert if not already present).
+                    
+            ' 1. Setup the static list items
+            														
+            Me.id_states1.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))							
+                            		  			
+            ' 2. Set up the WHERE and the ORDER BY clause by calling the CreateWhereClause_id_states1DropDownList function.
+            ' It is better to customize the where clause there.
+            
+            Dim wc As WhereClause = CreateWhereClause_id_states1DropDownList()
+            ' Create the ORDER BY clause to sort based on the displayed value.			
+                
+      
+      
+            Dim orderBy As OrderBy = New OrderBy(false, true)			
+        
+            orderBy.Add(StatesTable.state_name, OrderByItem.OrderDir.Asc)				
+            
+            ' 3. Read a total of maxItems from the database and insert them		
+            Dim itemValues() As StatesRecord = Nothing
+            If wc.RunQuery
+                Dim counter As Integer = 0
+                Dim pageNum As Integer = 0
+                Do
+                    itemValues = StatesTable.GetRecords(wc, orderBy, pageNum, 500)
+                    For each itemValue As StatesRecord In itemValues
+                        ' Create the item and add to the list.
+                        Dim cvalue As String = Nothing
+                        Dim fvalue As String = Nothing
+                        If itemValue.id0Specified Then
+                            cvalue = itemValue.id0.ToString()
+                            fvalue = itemValue.Format(StatesTable.state_name)
+                                    
+                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
+                            Dim newItem As New ListItem(fvalue, cvalue)
+                            If counter < maxItems AndAlso Not Me.id_states1.Items.Contains(newItem) Then Me.id_states1.Items.Add(newItem)
+                            counter += 1
+                        End If
+                    Next
+                    pageNum += 1
+                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
+            End If
+                            
+                    
+            ' 4. Set the selected value (insert if not already present).
+              
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_states1, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_states1, selectedValue)Then
+
+                ' construct a whereclause to query a record with states.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(StatesTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As StatesRecord = StatesTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = SitesTable.id_states.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_states1.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+                
+        End Sub
+                
+        Protected Overridable Sub id_states1_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.id_states1.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_states1)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_states1, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_states1, selectedValue)Then
+
+                ' construct a whereclause to query a record with states.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(StatesTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As StatesRecord = StatesTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = SitesTable.id_states.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_states1.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+            End If
+          									
+                
+                
+        End Sub
+            
         Protected Overridable Sub address1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -917,6 +1190,10 @@ Public Class BaseSitesTableControlRow
         End Sub
             
         Protected Overridable Sub email1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub gst_no1_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -1075,6 +1352,18 @@ Public Class BaseSitesTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property gst_no1() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_no1"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property id_states1() As System.Web.UI.WebControls.DropDownList
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_states1"), System.Web.UI.WebControls.DropDownList)
+            End Get
+        End Property
+            
         Public ReadOnly Property name1() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "name1"), System.Web.UI.WebControls.TextBox)
@@ -1225,6 +1514,10 @@ Public Class BaseSitesTableControl
             
               AddHandler Me.emailLabel1.Click, AddressOf emailLabel1_Click
             
+              AddHandler Me.gst_noLabel1.Click, AddressOf gst_noLabel1_Click
+            
+              AddHandler Me.id_statesLabel1.Click, AddressOf id_statesLabel1_Click
+            
               AddHandler Me.nameLabel2.Click, AddressOf nameLabel2_Click
             
               AddHandler Me.pan_noLabel1.Click, AddressOf pan_noLabel1_Click
@@ -1341,7 +1634,10 @@ Public Class BaseSitesTableControl
             If Me.DataSource Is Nothing Then
                 Return
             End If
-           
+      
+          ' Improve performance by prefetching display as records.
+          Me.PreFetchForeignKeyValues()
+             
             ' Setup the pagination controls.
             BindPaginationControls()
 
@@ -1352,6 +1648,8 @@ Public Class BaseSitesTableControl
             SetcontactLabel1()
             Setecc_noLabel1()
             SetemailLabel1()
+            Setgst_noLabel1()
+            Setid_statesLabel1()
             SetnameLabel2()
             Setpan_noLabel1()
             SetphoneLabel1()
@@ -1394,6 +1692,8 @@ Public Class BaseSitesTableControl
             SetcontactLabel1()
             Setecc_noLabel1()
             SetemailLabel1()
+            Setgst_noLabel1()
+            Setid_statesLabel1()
             SetnameLabel2()
             Setpan_noLabel1()
             SetphoneLabel1()
@@ -1401,6 +1701,15 @@ Public Class BaseSitesTableControl
       End Sub
 
       
+          Public Sub PreFetchForeignKeyValues()
+          If (IsNothing(Me.DataSource))
+            Return
+          End If
+          
+            Me.Page.PregetDfkaRecords(SitesTable.id_states, Me.DataSource)
+          
+          End Sub
+        
       
         Public Overridable Sub RegisterPostback()
         
@@ -1768,6 +2077,12 @@ Public Class BaseSitesTableControl
                         If recControl.email1.Text <> "" Then
                             rec.Parse(recControl.email1.Text, SitesTable.email)
                         End If
+                        If recControl.gst_no1.Text <> "" Then
+                            rec.Parse(recControl.gst_no1.Text, SitesTable.gst_no)
+                        End If
+                        If MiscUtils.IsValueSelected(recControl.id_states1) Then
+                            rec.Parse(recControl.id_states1.SelectedItem.Value, SitesTable.id_states)
+                        End If
                         If recControl.name1.Text <> "" Then
                             rec.Parse(recControl.name1.Text, SitesTable.name)
                         End If
@@ -1868,6 +2183,16 @@ Public Class BaseSitesTableControl
         End Sub
                 
         Public Overridable Sub SetemailLabel1()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setgst_noLabel1()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setid_statesLabel1()
             
                     
         End Sub
@@ -2227,6 +2552,50 @@ Public Class BaseSitesTableControl
                 Me.CurrentSortOrder.Add(SitesTable.email, OrderByItem.OrderDir.Asc)
             Else
                 ' Previously sorted by email, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
+        Public Overridable Sub gst_noLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by gst_no when clicked.
+              
+            ' Get previous sorting state for gst_no.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.gst_no)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for gst_no.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(SitesTable.gst_no, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by gst_no, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
+        Public Overridable Sub id_statesLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by id_states when clicked.
+              
+            ' Get previous sorting state for id_states.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(SitesTable.id_states)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for id_states.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(SitesTable.id_states, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by id_states, so just reverse.
                 sd.Reverse()
             End If
             
@@ -2609,6 +2978,18 @@ Public Class BaseSitesTableControl
             End Get
         End Property
         
+        Public ReadOnly Property gst_noLabel1() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_noLabel1"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property id_statesLabel1() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_statesLabel1"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
         Public ReadOnly Property nameLabel2() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "nameLabel2"), System.Web.UI.WebControls.LinkButton)
@@ -2807,6 +3188,8 @@ Public Class BasePartyRecordControl
          
               ' Register the event handlers.
           
+              AddHandler Me.id_states.SelectedIndexChanged, AddressOf id_states_SelectedIndexChanged
+            
               AddHandler Me.address.TextChanged, AddressOf address_TextChanged
             
               AddHandler Me.city.TextChanged, AddressOf city_TextChanged
@@ -2816,6 +3199,8 @@ Public Class BasePartyRecordControl
               AddHandler Me.ecc_no.TextChanged, AddressOf ecc_no_TextChanged
             
               AddHandler Me.email.TextChanged, AddressOf email_TextChanged
+            
+              AddHandler Me.gst_no.TextChanged, AddressOf gst_no_TextChanged
             
               AddHandler Me.name.TextChanged, AddressOf name_TextChanged
             
@@ -2913,6 +3298,10 @@ Public Class BasePartyRecordControl
             Setecc_noLabel()
             Setemail()
             SetemailLabel()
+            Setgst_no()
+            Setgst_noLabel()
+            Setid_states()
+            Setid_statesLabel()
             Setname()
             SetnameLabel()
             Setpan_no()
@@ -3123,6 +3512,75 @@ Public Class BasePartyRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Setgst_no()
+            
+        
+            ' Set the gst_no TextBox on the webpage with value from the
+            ' party database record.
+
+            ' Me.DataSource is the party record retrieved from the database.
+            ' Me.gst_no is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgst_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gst_noSpecified Then
+                				
+                ' If the gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(PartyTable.gst_no)
+                            
+                Me.gst_no.Text = formattedValue
+              
+            Else 
+            
+                ' gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gst_no.Text = PartyTable.gst_no.Format(PartyTable.gst_no.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setid_states()
+            
+        
+            ' Set the id_states DropDownList on the webpage with value from the
+            ' party database record.
+            
+            ' Me.DataSource is the party record retrieved from the database.
+            ' Me.id_states is the ASP:DropDownList on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setid_states()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.id_statesSpecified Then
+                            
+                ' If the id_states is non-NULL, then format the value.
+                ' The Format method will return the Display Foreign Key As (DFKA) value
+                Me.Populateid_statesDropDownList(Me.DataSource.id_states.ToString(), 100)
+                
+            Else
+                
+                ' id_states is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+                If Me.DataSource IsNot Nothing AndAlso Me.DataSource.IsCreated Then
+                    Me.Populateid_statesDropDownList(Nothing, 100)
+                Else
+                    Me.Populateid_statesDropDownList(PartyTable.id_states.DefaultValue, 100)
+                End If
+                				
+            End If			
+                
+        End Sub
+                
         Public Overridable Sub Setname()
             
         
@@ -3288,6 +3746,16 @@ Public Class BasePartyRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setgst_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setid_statesLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub SetnameLabel()
             
                     
@@ -3420,6 +3888,8 @@ Public Class BasePartyRecordControl
             Getcontact()
             Getecc_no()
             Getemail()
+            Getgst_no()
+            Getid_states()
             Getname()
             Getpan_no()
             Getphone()
@@ -3490,6 +3960,30 @@ Public Class BasePartyRecordControl
             Me.DataSource.Parse(Me.email.Text, PartyTable.email)			
 
                       
+        End Sub
+                
+        Public Overridable Sub Getgst_no()
+            
+            ' Retrieve the value entered by the user on the gst_no ASP:TextBox, and
+            ' save it into the gst_no field in DataSource party record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.gst_no.Text, PartyTable.gst_no)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getid_states()
+         
+            ' Retrieve the value entered by the user on the id_states ASP:DropDownList, and
+            ' save it into the id_states field in DataSource party record.
+                        
+            ' Custom validation should be performed in Validate, not here.
+            
+            Me.DataSource.Parse(GetValueSelectedPageRequest(Me.id_states), PartyTable.id_states)				
+            
         End Sub
                 
         Public Overridable Sub Getname()
@@ -3825,6 +4319,160 @@ Public Class BasePartyRecordControl
       
         ' Generate the event handling functions for filter and search events.
             
+
+        Public Overridable Function CreateWhereClause_id_statesDropDownList() As WhereClause
+            ' By default, we simply return a new WhereClause.
+            ' Add additional where clauses to restrict the items shown in the dropdown list.
+            						
+            ' This WhereClause is for the states table.
+            ' Examples:
+            ' wc.iAND(StatesTable.state_name, BaseFilter.ComparisonOperator.EqualsTo, "XYZ")
+            ' wc.iAND(StatesTable.Active, BaseFilter.ComparisonOperator.EqualsTo, "1")
+            
+            Dim wc As WhereClause = New WhereClause()
+            Return wc
+            				
+        End Function
+        
+                
+        ' Fill the id_states list.
+        Protected Overridable Sub Populateid_statesDropDownList( _
+                ByVal selectedValue As String, _
+                ByVal maxItems As Integer)
+            		  					                
+            Me.id_states.Items.Clear()
+            
+            ' This is a four step process.
+            ' 1. Setup the static list items
+            ' 2. Set up the WHERE and the ORDER BY clause
+            ' 3. Read a total of maxItems from the database and insert them
+            ' 4. Set the selected value (insert if not already present).
+                    
+            ' 1. Setup the static list items
+            														
+            Me.id_states.Items.Add(New ListItem(Me.Page.ExpandResourceValue("{Txt:PleaseSelect}"), "--PLEASE_SELECT--"))							
+                            		  			
+            ' 2. Set up the WHERE and the ORDER BY clause by calling the CreateWhereClause_id_statesDropDownList function.
+            ' It is better to customize the where clause there.
+            
+            Dim wc As WhereClause = CreateWhereClause_id_statesDropDownList()
+            ' Create the ORDER BY clause to sort based on the displayed value.			
+                
+      
+      
+            Dim orderBy As OrderBy = New OrderBy(false, true)			
+        
+            orderBy.Add(StatesTable.state_name, OrderByItem.OrderDir.Asc)				
+            
+            ' 3. Read a total of maxItems from the database and insert them		
+            Dim itemValues() As StatesRecord = Nothing
+            If wc.RunQuery
+                Dim counter As Integer = 0
+                Dim pageNum As Integer = 0
+                Do
+                    itemValues = StatesTable.GetRecords(wc, orderBy, pageNum, 500)
+                    For each itemValue As StatesRecord In itemValues
+                        ' Create the item and add to the list.
+                        Dim cvalue As String = Nothing
+                        Dim fvalue As String = Nothing
+                        If itemValue.id0Specified Then
+                            cvalue = itemValue.id0.ToString()
+                            fvalue = itemValue.Format(StatesTable.state_name)
+                                    
+                            If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = cvalue
+                            Dim newItem As New ListItem(fvalue, cvalue)
+                            If counter < maxItems AndAlso Not Me.id_states.Items.Contains(newItem) Then Me.id_states.Items.Add(newItem)
+                            counter += 1
+                        End If
+                    Next
+                    pageNum += 1
+                Loop While (itemValues.Length = maxItems AndAlso counter < maxItems)
+            End If
+                            
+                    
+            ' 4. Set the selected value (insert if not already present).
+              
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_states, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_states, selectedValue)Then
+
+                ' construct a whereclause to query a record with states.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(StatesTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As StatesRecord = StatesTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = PartyTable.id_states.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_states.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+                
+        End Sub
+                
+        Protected Overridable Sub id_states_SelectedIndexChanged(ByVal sender As Object, ByVal args As EventArgs)
+            ' If a large list selector or a Quick Add link is used, the dropdown list
+            ' will contain an item that was not in the original (smaller) list.  During postbacks,
+            ' this new item will not be in the list - since the list is based on the original values
+            ' read from the database. This function adds the value back if necessary.
+            ' In addition, This dropdown can be used on make/model/year style dropdowns.  Make filters the result of Model.
+            ' Mode filters the result of Year.  When users change the value of Make, Model and Year are repopulated.
+            ' When this function is fire for Make or Model, we don't want the following code executed.
+            ' Therefore, we check this situation using Items.Count > 1			
+            If Me.id_states.Items.Count > 1 Then
+                Dim selectedValue As String = MiscUtils.GetValueSelectedPageRequest(Me.id_states)
+                 
+            If Not selectedValue Is Nothing AndAlso _
+                selectedValue.Trim <> "" AndAlso _
+                Not SetSelectedValue(Me.id_states, selectedValue) AndAlso _
+                Not SetSelectedDisplayText(Me.id_states, selectedValue)Then
+
+                ' construct a whereclause to query a record with states.id = selectedValue
+                Dim filter2 As CompoundFilter = New CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, Nothing)
+                Dim whereClause2 As WhereClause = New WhereClause()
+                filter2.AddFilter(New BaseClasses.Data.ColumnValueFilter(StatesTable.id0, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, False))
+                whereClause2.AddFilter(filter2, CompoundFilter.CompoundingOperators.And_Operator)
+
+                Try
+                    ' Execute the query
+                    Dim rc() As StatesRecord = StatesTable.GetRecords(whereClause2, New OrderBy(False, False), 0, 1)
+
+                    ' if find a record, add it to the dropdown and set it as selected item
+                    If rc IsNot Nothing AndAlso rc.Length = 1 Then
+                        
+                        Dim fvalue As String = PartyTable.id_states.Format(selectedValue)																			
+                            
+                        If fvalue Is Nothing OrElse fvalue.Trim() = "" Then fvalue = selectedValue
+                        Dim item As ListItem = New ListItem(fvalue, selectedValue)
+                        item.Selected = True
+                        Me.id_states.Items.Add(item)
+                    End If
+                Catch
+                End Try
+
+            End If					
+                        
+            End If
+          									
+                
+                
+        End Sub
+            
         Protected Overridable Sub address_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -3842,6 +4490,10 @@ Public Class BasePartyRecordControl
         End Sub
             
         Protected Overridable Sub email_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub gst_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -4051,6 +4703,30 @@ Public Class BasePartyRecordControl
         Public ReadOnly Property emailLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "emailLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property gst_no() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_no"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property gst_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property id_states() As System.Web.UI.WebControls.DropDownList
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_states"), System.Web.UI.WebControls.DropDownList)
+            End Get
+        End Property
+            
+        Public ReadOnly Property id_statesLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_statesLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

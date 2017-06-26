@@ -169,8 +169,12 @@ Partial Public Class ShowSites
         Public WithEvents ecc_no As System.Web.UI.WebControls.Literal
         Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents EditButton As ThemeButton
+        Public WithEvents gst_no As System.Web.UI.WebControls.Literal
+        Public WithEvents gst_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_party As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents id_states As System.Web.UI.WebControls.Literal
+        Public WithEvents id_statesLabel As System.Web.UI.WebControls.Literal
         Public WithEvents name As System.Web.UI.WebControls.Literal
         Public WithEvents nameLabel As System.Web.UI.WebControls.Literal
         Public WithEvents OKButton As ThemeButton

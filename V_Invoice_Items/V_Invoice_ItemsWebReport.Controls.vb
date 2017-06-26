@@ -1053,7 +1053,7 @@ Public Class BaseV_Invoice_ItemsTableControl
 
             ' Setup default pagination settings.
         
-            Me.PageSize = CInt(Me.GetFromSession(Me, "Page_Size", "500"))
+            Me.PageSize = CInt(Me.GetFromSession(Me, "Page_Size", "2000"))
             Me.PageIndex = CInt(Me.GetFromSession(Me, "Page_Index", "0"))
             Me.ClearControlsFromSession()
         End Sub

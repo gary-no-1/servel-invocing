@@ -63,6 +63,8 @@ Namespace ServelInvocing.Business
         qtyColumn.CodeName = "qty"
         rateColumn.CodeName = "rate"
         amountColumn.CodeName = "amount"
+        id0Column.CodeName = "id0"
+        id2Column.CodeName = "id2"
 		
 	End Sub
 	
@@ -256,6 +258,44 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property amount() As BaseClasses.Data.NumberColumn
         Get
             Return V_Invoice_ItemsView.Instance.amountColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's V_Invoice_Items_.id column object.
+    ''' </summary>
+    Public ReadOnly Property id0Column() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(10), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's V_Invoice_Items_.id column object.
+    ''' </summary>
+    Public Shared ReadOnly Property id0() As BaseClasses.Data.NumberColumn
+        Get
+            Return V_Invoice_ItemsView.Instance.id0Column
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's V_Invoice_Items_.id2 column object.
+    ''' </summary>
+    Public ReadOnly Property id2Column() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(11), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's V_Invoice_Items_.id2 column object.
+    ''' </summary>
+    Public Shared ReadOnly Property id2() As BaseClasses.Data.NumberColumn
+        Get
+            Return V_Invoice_ItemsView.Instance.id2Column
         End Get
     End Property
 

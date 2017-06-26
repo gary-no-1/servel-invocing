@@ -63,6 +63,7 @@ The tags are case-sensitive and should contain the following case-sensitive attr
     <siteMapNode title="Invoice Items" description="Invoice Items" url="~/V_Invoice_Items/ShowV_Invoice_ItemsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="NO_ACCESS" order="0">
       <siteMapNode title="{Menu:Show} Invoice Items" description="{Menu:Show} Invoice Items" url="~/V_Invoice_Items/ShowV_Invoice_ItemsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="Invoice Items {Menu:WebReport}" description="Invoice Items {Menu:WebReport}" url="~/V_Invoice_Items/V_Invoice_ItemsWebReport.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
+      <siteMapNode title="{Menu:Show} Invoice Items 2" description="{Menu:Show} Invoice Items" url="~/V_Invoice_Items/ShowV_Invoice_ItemsTable2.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="3" />
     </siteMapNode>
     <siteMapNode title="Invoice Amounts" description="Invoice Amounts" url="~/V_Invoice_Amounts/ShowV_Invoice_AmountsTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="NO_ACCESS" order="0">
       <siteMapNode title="{Menu:Show} Invoice Amounts" description="{Menu:Show} Invoice Amounts" url="~/V_Invoice_Amounts/ShowV_Invoice_AmountsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
