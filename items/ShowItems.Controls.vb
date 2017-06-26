@@ -162,6 +162,8 @@ Public Class BaseItemsRecordControl
         
             Setclosing_stock()
             Setclosing_stockLabel()
+            Sethsn()
+            SethsnLabel()
             Setid_item_group()
             Setid_item_groupLabel()
             Setitem_code()
@@ -236,6 +238,50 @@ Public Class BaseItemsRecordControl
                 OrElse Me.closing_stock.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.closing_stock.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Sethsn()
+            
+        
+            ' Set the hsn Literal on the webpage with value from the
+            ' items database record.
+
+            ' Me.DataSource is the items record retrieved from the database.
+            ' Me.hsn is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Sethsn()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.hsnSpecified Then
+                				
+                ' If the hsn is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(ItemsTable.hsn)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.hsn.Text = formattedValue
+              
+            Else 
+            
+                ' hsn is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.hsn.Text = ItemsTable.hsn.Format(ItemsTable.hsn.DefaultValue)
+                        		
+                End If
+                 
+            ' If the hsn is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.hsn.Text Is Nothing _
+                OrElse Me.hsn.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.hsn.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -612,6 +658,11 @@ Public Class BaseItemsRecordControl
                     
         End Sub
                 
+        Public Overridable Sub SethsnLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setid_item_groupLabel()
             
                     
@@ -757,6 +808,7 @@ Public Class BaseItemsRecordControl
             ' Call the Get methods for each of the user interface controls.
         
             Getclosing_stock()
+            Gethsn()
             Getid_item_group()
             Getitem_code()
             Getitem_description()
@@ -769,6 +821,10 @@ Public Class BaseItemsRecordControl
         
         
         Public Overridable Sub Getclosing_stock()
+            
+        End Sub
+                
+        Public Overridable Sub Gethsn()
             
         End Sub
                 
@@ -1359,6 +1415,18 @@ Public Class BaseItemsRecordControl
         Public ReadOnly Property closing_stockLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "closing_stockLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property hsn() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsn"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property hsnLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsnLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

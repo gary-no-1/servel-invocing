@@ -162,6 +162,7 @@ Partial Public Class EditItems
 
         Public WithEvents CancelButton As ThemeButton
         Public WithEvents closing_stockLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents hsnLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_item_group As System.Web.UI.WebControls.DropDownList
         Public WithEvents id_item_groupAddRecordLink As System.Web.UI.WebControls.ImageButton
         Public WithEvents id_item_groupLabel As System.Web.UI.WebControls.Literal

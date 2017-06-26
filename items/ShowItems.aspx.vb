@@ -163,6 +163,8 @@ Partial Public Class ShowItems
         Public WithEvents closing_stock As System.Web.UI.WebControls.Literal
         Public WithEvents closing_stockLabel As System.Web.UI.WebControls.Literal
         Public WithEvents EditButton As ThemeButton
+        Public WithEvents hsn As System.Web.UI.WebControls.Literal
+        Public WithEvents hsnLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_item_group As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_item_groupLabel As System.Web.UI.WebControls.Literal
         Public WithEvents item_code As System.Web.UI.WebControls.Literal

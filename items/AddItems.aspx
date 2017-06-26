@@ -53,7 +53,8 @@
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="closing_stockTextBoxMaxLengthValidator" ControlToValidate="closing_stock" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Closing Stock&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
 </tr>
 </table>
- </td></tr><tr><td class="fls"><asp:Literal runat="server" id="specificationLabel" Text="Specification">	</asp:Literal></td><td class="dfv" colspan="3"><asp:TextBox runat="server" id="specification" MaxLength="50" columns="60" cssclass="field_input" rows="2" textmode="MultiLine"></asp:TextBox>&nbsp;
+ </td></tr><tr><td class="fls"><asp:Literal runat="server" id="hsnLabel" Text="HSN">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="hsn" Columns="10" MaxLength="10" cssclass="field_input"></asp:TextBox>&nbsp;
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="hsnTextBoxMaxLengthValidator" ControlToValidate="hsn" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;HSN&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td><td class="dfv"></td><td class="dfv"></td></tr><tr><td class="fls"><asp:Literal runat="server" id="specificationLabel" Text="Specification">	</asp:Literal></td><td class="dfv" colspan="3"><asp:TextBox runat="server" id="specification" MaxLength="50" columns="60" cssclass="field_input" rows="2" textmode="MultiLine"></asp:TextBox>&nbsp;
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="specificationTextBoxMaxLengthValidator" ControlToValidate="specification" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Specification&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td></tr></table></asp:panel>
 </td></tr></table>
 </asp:panel></td></tr></table>

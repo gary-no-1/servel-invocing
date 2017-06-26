@@ -90,6 +90,8 @@ Public Class BaseItemsRecordControl
             
               AddHandler Me.closing_stock.TextChanged, AddressOf closing_stock_TextChanged
             
+              AddHandler Me.hsn.TextChanged, AddressOf hsn_TextChanged
+            
               AddHandler Me.item_code.TextChanged, AddressOf item_code_TextChanged
             
               AddHandler Me.item_description.TextChanged, AddressOf item_description_TextChanged
@@ -180,6 +182,8 @@ Public Class BaseItemsRecordControl
         
             Setclosing_stock()
             Setclosing_stockLabel()
+            Sethsn()
+            SethsnLabel()
             Setid_item_group()
             Setid_item_groupLabel()
             Setitem_code()
@@ -244,6 +248,41 @@ Public Class BaseItemsRecordControl
                 ' Default Value could also be NULL.
         
                 Me.closing_stock.Text = ItemsTable.closing_stock.Format(ItemsTable.closing_stock.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Sethsn()
+            
+        
+            ' Set the hsn TextBox on the webpage with value from the
+            ' items database record.
+
+            ' Me.DataSource is the items record retrieved from the database.
+            ' Me.hsn is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Sethsn()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.hsnSpecified Then
+                				
+                ' If the hsn is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(ItemsTable.hsn)
+                            
+                Me.hsn.Text = formattedValue
+              
+            Else 
+            
+                ' hsn is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.hsn.Text = ItemsTable.hsn.Format(ItemsTable.hsn.DefaultValue)
                         		
                 End If
                  
@@ -531,6 +570,11 @@ Public Class BaseItemsRecordControl
                     
         End Sub
                 
+        Public Overridable Sub SethsnLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setid_item_groupLabel()
             
                     
@@ -676,6 +720,7 @@ Public Class BaseItemsRecordControl
             ' Call the Get methods for each of the user interface controls.
         
             Getclosing_stock()
+            Gethsn()
             Getid_item_group()
             Getitem_code()
             Getitem_description()
@@ -696,6 +741,19 @@ Public Class BaseItemsRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.closing_stock.Text, ItemsTable.closing_stock)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Gethsn()
+            
+            ' Retrieve the value entered by the user on the hsn ASP:TextBox, and
+            ' save it into the hsn field in DataSource items record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.hsn.Text, ItemsTable.hsn)			
 
                       
         End Sub
@@ -1545,6 +1603,10 @@ Public Class BaseItemsRecordControl
                     				
         End Sub
             
+        Protected Overridable Sub hsn_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub item_code_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -1707,6 +1769,18 @@ Public Class BaseItemsRecordControl
         Public ReadOnly Property closing_stockLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "closing_stockLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property hsn() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsn"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property hsnLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsnLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

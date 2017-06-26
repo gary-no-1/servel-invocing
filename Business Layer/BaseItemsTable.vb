@@ -63,6 +63,7 @@ Namespace ServelInvocing.Business
         tariff_noColumn.CodeName = "tariff_no"
         specificationColumn.CodeName = "specification"
         closing_stockColumn.CodeName = "closing_stock"
+        hsnColumn.CodeName = "hsn"
         
     End Sub
 
@@ -256,6 +257,25 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property closing_stock() As BaseClasses.Data.NumberColumn
         Get
             Return ItemsTable.Instance.closing_stockColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Items_.hsn column object.
+    ''' </summary>
+    Public ReadOnly Property hsnColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(10), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Items_.hsn column object.
+    ''' </summary>
+    Public Shared ReadOnly Property hsn() As BaseClasses.Data.StringColumn
+        Get
+            Return ItemsTable.Instance.hsnColumn
         End Get
     End Property
 
@@ -540,7 +560,8 @@ Namespace ServelInvocing.Business
         ByVal material_categoryValue As String, _
         ByVal tariff_noValue As String, _
         ByVal specificationValue As String, _
-        ByVal closing_stockValue As String _
+        ByVal closing_stockValue As String, _
+        ByVal hsnValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(item_codeValue, item_codeColumn)
@@ -552,6 +573,7 @@ Namespace ServelInvocing.Business
         rec.SetString(tariff_noValue, tariff_noColumn)
         rec.SetString(specificationValue, specificationColumn)
         rec.SetString(closing_stockValue, closing_stockColumn)
+        rec.SetString(hsnValue, hsnColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

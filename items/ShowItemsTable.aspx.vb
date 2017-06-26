@@ -155,6 +155,7 @@ Partial Public Class ShowItemsTable
 #Region "Section 2: Do not modify this section."
 
         Public WithEvents closing_stockLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents hsnLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_item_groupLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_item_groupLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents item_codeLabel As System.Web.UI.WebControls.LinkButton

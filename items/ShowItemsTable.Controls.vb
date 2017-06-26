@@ -148,6 +148,7 @@ Public Class BaseItemsTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setclosing_stock()
+            Sethsn()
             Setid_item_group()
             Setitem_code()
             Setitem_description()
@@ -214,6 +215,50 @@ Public Class BaseItemsTableControlRow
                 OrElse Me.closing_stock.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.closing_stock.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Sethsn()
+            
+        
+            ' Set the hsn Literal on the webpage with value from the
+            ' items database record.
+
+            ' Me.DataSource is the items record retrieved from the database.
+            ' Me.hsn is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Sethsn()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.hsnSpecified Then
+                				
+                ' If the hsn is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(ItemsTable.hsn)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.hsn.Text = formattedValue
+              
+            Else 
+            
+                ' hsn is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.hsn.Text = ItemsTable.hsn.Format(ItemsTable.hsn.DefaultValue)
+                        		
+                End If
+                 
+            ' If the hsn is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.hsn.Text Is Nothing _
+                OrElse Me.hsn.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.hsn.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -682,6 +727,7 @@ Public Class BaseItemsTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getclosing_stock()
+            Gethsn()
             Getid_item_group()
             Getitem_code()
             Getitem_description()
@@ -694,6 +740,10 @@ Public Class BaseItemsTableControlRow
         
         
         Public Overridable Sub Getclosing_stock()
+            
+        End Sub
+                
+        Public Overridable Sub Gethsn()
             
         End Sub
                 
@@ -1174,6 +1224,12 @@ Public Class BaseItemsTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property hsn() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsn"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property id_item_group() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_item_group"), System.Web.UI.WebControls.LinkButton)
@@ -1409,6 +1465,8 @@ Public Class BaseItemsTableControl
           
               AddHandler Me.closing_stockLabel.Click, AddressOf closing_stockLabel_Click
             
+              AddHandler Me.hsnLabel.Click, AddressOf hsnLabel_Click
+            
               AddHandler Me.id_item_groupLabel1.Click, AddressOf id_item_groupLabel1_Click
             
               AddHandler Me.item_codeLabel.Click, AddressOf item_codeLabel_Click
@@ -1559,6 +1617,7 @@ Public Class BaseItemsTableControl
             ' Call the Set methods for each controls on the panel
         
             Setclosing_stockLabel()
+            SethsnLabel()
             Setid_item_groupFilter()
             
             Setid_item_groupLabel()
@@ -1609,6 +1668,7 @@ Public Class BaseItemsTableControl
             ' Initialize other asp controls
             
             Setclosing_stockLabel()
+            SethsnLabel()
             Setid_item_groupLabel()
             Setid_item_groupLabel1()
             Setitem_codeLabel()
@@ -2121,6 +2181,9 @@ Public Class BaseItemsTableControl
                         If recControl.closing_stock.Text <> "" Then
                             rec.Parse(recControl.closing_stock.Text, ItemsTable.closing_stock)
                         End If
+                        If recControl.hsn.Text <> "" Then
+                            rec.Parse(recControl.hsn.Text, ItemsTable.hsn)
+                        End If
                         If recControl.id_item_group.Text <> "" Then
                             rec.Parse(recControl.id_item_group.Text, ItemsTable.id_item_group)
                         End If
@@ -2213,6 +2276,11 @@ Public Class BaseItemsTableControl
         ' Create Set, WhereClause, and Populate Methods
         
         Public Overridable Sub Setclosing_stockLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SethsnLabel()
             
                     
         End Sub
@@ -2683,6 +2751,28 @@ Public Class BaseItemsTableControl
               
         End Sub
             
+        Public Overridable Sub hsnLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by hsn when clicked.
+              
+            ' Get previous sorting state for hsn.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(ItemsTable.hsn)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for hsn.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(ItemsTable.hsn, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by hsn, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub id_item_groupLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by id_item_group when clicked.
               
@@ -3003,6 +3093,7 @@ Public Class BaseItemsTableControl
              ItemsTable.tariff_no, _ 
              ItemsTable.specification, _ 
              ItemsTable.closing_stock, _ 
+             ItemsTable.hsn, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(ItemsTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -3052,6 +3143,7 @@ Public Class BaseItemsTableControl
              excelReport.AddColumn(New ExcelColumn(ItemsTable.tariff_no, "Default"))
              excelReport.AddColumn(New ExcelColumn(ItemsTable.specification, "Default"))
              excelReport.AddColumn(New ExcelColumn(ItemsTable.closing_stock, "Standard"))
+             excelReport.AddColumn(New ExcelColumn(ItemsTable.hsn, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -3173,6 +3265,7 @@ Public Class BaseItemsTableControl
                  report.AddColumn(ItemsTable.tariff_no.Name, ReportEnum.Align.Left, "${tariff_no}", ReportEnum.Align.Left, 15)
                  report.AddColumn(ItemsTable.specification.Name, ReportEnum.Align.Left, "${specification}", ReportEnum.Align.Left, 30)
                  report.AddColumn(ItemsTable.closing_stock.Name, ReportEnum.Align.Right, "${closing_stock}", ReportEnum.Align.Right, 19)
+                 report.AddColumn(ItemsTable.hsn.Name, ReportEnum.Align.Left, "${hsn}", ReportEnum.Align.Left, 15)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -3209,6 +3302,7 @@ Public Class BaseItemsTableControl
                              report.AddData("${tariff_no}", record.Format(ItemsTable.tariff_no), ReportEnum.Align.Left, 100)
                              report.AddData("${specification}", record.Format(ItemsTable.specification), ReportEnum.Align.Left, 100)
                              report.AddData("${closing_stock}", record.Format(ItemsTable.closing_stock), ReportEnum.Align.Right, 100)
+                             report.AddData("${hsn}", record.Format(ItemsTable.hsn), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -3317,6 +3411,7 @@ Public Class BaseItemsTableControl
                  report.AddColumn(ItemsTable.tariff_no.Name, ReportEnum.Align.Left, "${tariff_no}", ReportEnum.Align.Left, 15)
                  report.AddColumn(ItemsTable.specification.Name, ReportEnum.Align.Left, "${specification}", ReportEnum.Align.Left, 30)
                  report.AddColumn(ItemsTable.closing_stock.Name, ReportEnum.Align.Right, "${closing_stock}", ReportEnum.Align.Right, 19)
+                 report.AddColumn(ItemsTable.hsn.Name, ReportEnum.Align.Left, "${hsn}", ReportEnum.Align.Left, 15)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -3350,6 +3445,7 @@ Public Class BaseItemsTableControl
                              report.AddData("${tariff_no}", record.Format(ItemsTable.tariff_no), ReportEnum.Align.Left, 100)
                              report.AddData("${specification}", record.Format(ItemsTable.specification), ReportEnum.Align.Left, 100)
                              report.AddData("${closing_stock}", record.Format(ItemsTable.closing_stock), ReportEnum.Align.Right, 100)
+                             report.AddData("${hsn}", record.Format(ItemsTable.hsn), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -3541,6 +3637,12 @@ Public Class BaseItemsTableControl
         Public ReadOnly Property closing_stockLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "closing_stockLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property hsnLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsnLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         

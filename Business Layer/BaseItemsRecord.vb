@@ -361,6 +361,35 @@ Namespace ServelInvocing.Business
 		Dim colValue As ColumnValue = New ColumnValue(val)
 		Me.SetValue(colValue, TableUtils.closing_stockColumn)
 	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Items_.hsn field.
+	''' </summary>
+	Public Function GethsnValue() As ColumnValue
+		Return Me.GetValue(TableUtils.hsnColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Items_.hsn field.
+	''' </summary>
+	Public Function GethsnFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.hsnColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Items_.hsn field.
+	''' </summary>
+	Public Sub SethsnFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.hsnColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Items_.hsn field.
+	''' </summary>
+	Public Sub SethsnFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.hsnColumn)
+	End Sub
+
 
 
 #End Region
@@ -717,6 +746,41 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property closing_stockDefault() As String
         Get
             Return TableUtils.closing_stockColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Items_.hsn field.
+	''' </summary>
+	Public Property hsn() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.hsnColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.hsnColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property hsnSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.hsnColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property hsnDefault() As String
+        Get
+            Return TableUtils.hsnColumn.DefaultValue
         End Get
     End Property
 
