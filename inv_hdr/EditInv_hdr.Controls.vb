@@ -279,6 +279,13 @@ Public Class Inv_hdrRecordControl
 				'me.email.text = ProInvPartyRec.email
 				' -- added - 21-04-2015
 				me.ecc_no.text = ProInvPartyRec.ecc_no
+				
+				' -- added - 28-06-2017
+				me.party_gst_no.text = ProInvPartyRec.gst_no
+				me.party_state.text = ProInvPartyRec.state_name
+				me.site_gst_no.text = ProInvPartyRec.gst_no
+				me.site_state.text = ProInvPartyRec.state_name
+				
     	    	' Return    
     		End If
 		
@@ -358,6 +365,7 @@ Public Class BaseInv_itemsTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setamount()
+            Sethsn()
             Setid_item()
             Setitem_description()
             Setqty()
@@ -412,6 +420,42 @@ Public Class BaseInv_itemsTableControlRow
                 ' Default Value could also be NULL.
         
                 Me.amount.Text = Inv_itemsTable.amount.Format(Inv_itemsTable.amount.DefaultValue, "c")
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Sethsn()
+            
+        
+            ' Set the hsn Literal on the webpage with value from the
+            ' inv_items database record.
+
+            ' Me.DataSource is the inv_items record retrieved from the database.
+            ' Me.hsn is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Sethsn()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.hsnSpecified Then
+                				
+                ' If the hsn is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.hsn)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.hsn.Text = formattedValue
+              
+            Else 
+            
+                ' hsn is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.hsn.Text = Inv_itemsTable.hsn.Format(Inv_itemsTable.hsn.DefaultValue)
                         		
                 End If
                  
@@ -709,6 +753,7 @@ Public Class BaseInv_itemsTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getamount()
+            Gethsn()
             Getid_item()
             Getitem_description()
             Getqty()
@@ -718,6 +763,10 @@ Public Class BaseInv_itemsTableControlRow
         
         
         Public Overridable Sub Getamount()
+            
+        End Sub
+                
+        Public Overridable Sub Gethsn()
             
         End Sub
                 
@@ -939,6 +988,12 @@ Public Class BaseInv_itemsTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property hsn() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsn"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property id_item() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_item"), System.Web.UI.WebControls.Literal)
@@ -1085,6 +1140,8 @@ Public Class BaseInv_itemsTableControl
           
               AddHandler Me.amountLabel.Click, AddressOf amountLabel_Click
             
+              AddHandler Me.hsnLabel.Click, AddressOf hsnLabel_Click
+            
               AddHandler Me.id_itemLabel1.Click, AddressOf id_itemLabel1_Click
             
               AddHandler Me.item_descriptionLabel.Click, AddressOf item_descriptionLabel_Click
@@ -1207,6 +1264,7 @@ Public Class BaseInv_itemsTableControl
             ' Call the Set methods for each controls on the panel
         
             SetamountLabel()
+            SethsnLabel()
             Setid_itemLabel1()
             Setitem_descriptionLabel()
             SetqtyLabel()
@@ -1246,6 +1304,7 @@ Public Class BaseInv_itemsTableControl
             ' Initialize other asp controls
             
             SetamountLabel()
+            SethsnLabel()
             Setid_itemLabel1()
             Setitem_descriptionLabel()
             SetqtyLabel()
@@ -1618,6 +1677,9 @@ Public Class BaseInv_itemsTableControl
                         If recControl.amount.Text <> "" Then
                             rec.Parse(recControl.amount.Text, Inv_itemsTable.amount)
                         End If
+                        If recControl.hsn.Text <> "" Then
+                            rec.Parse(recControl.hsn.Text, Inv_itemsTable.hsn)
+                        End If
                         If recControl.id_item.Text <> "" Then
                             rec.Parse(recControl.id_item.Text, Inv_itemsTable.id_item)
                         End If
@@ -1701,6 +1763,11 @@ Public Class BaseInv_itemsTableControl
         ' Create Set, WhereClause, and Populate Methods
         
         Public Overridable Sub SetamountLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SethsnLabel()
             
                     
         End Sub
@@ -1987,6 +2054,28 @@ Public Class BaseInv_itemsTableControl
               
         End Sub
             
+        Public Overridable Sub hsnLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by hsn when clicked.
+              
+            ' Get previous sorting state for hsn.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_itemsTable.hsn)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for hsn.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(Inv_itemsTable.hsn, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by hsn, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub id_itemLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by id_item when clicked.
               
@@ -2259,6 +2348,12 @@ Public Class BaseInv_itemsTableControl
         Public ReadOnly Property amountLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "amountLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property hsnLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsnLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -5971,6 +6066,10 @@ Public Class BaseInv_hdrRecordControl
             
               AddHandler Me.packing_details.TextChanged, AddressOf packing_details_TextChanged
             
+              AddHandler Me.party_gst_no.TextChanged, AddressOf party_gst_no_TextChanged
+            
+              AddHandler Me.party_state.TextChanged, AddressOf party_state_TextChanged
+            
               AddHandler Me.po_dt.TextChanged, AddressOf po_dt_TextChanged
             
               AddHandler Me.po_no.TextChanged, AddressOf po_no_TextChanged
@@ -5982,6 +6081,10 @@ Public Class BaseInv_hdrRecordControl
               AddHandler Me.ship_address.TextChanged, AddressOf ship_address_TextChanged
             
               AddHandler Me.ship_name.TextChanged, AddressOf ship_name_TextChanged
+            
+              AddHandler Me.site_gst_no.TextChanged, AddressOf site_gst_no_TextChanged
+            
+              AddHandler Me.site_state.TextChanged, AddressOf site_state_TextChanged
             
               AddHandler Me.tin_no.TextChanged, AddressOf tin_no_TextChanged
             
@@ -6103,6 +6206,10 @@ Public Class BaseInv_hdrRecordControl
             Setno_of_packagesLabel()
             Setpacking_details()
             Setpacking_detailsLabel()
+            Setparty_gst_no()
+            Setparty_gst_noLabel()
+            Setparty_state()
+            Setparty_stateLabel()
             Setpo_dt()
             Setpo_dtLabel()
             Setpo_no()
@@ -6119,6 +6226,10 @@ Public Class BaseInv_hdrRecordControl
             Setship_addressLabel()
             Setship_name()
             Setship_nameLabel()
+            Setsite_gst_no()
+            Setsite_gst_noLabel()
+            Setsite_state()
+            Setsite_stateLabel()
             Settin_no()
             Settin_noLabel()
             Setvehicle_no()
@@ -6802,6 +6913,76 @@ Public Class BaseInv_hdrRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Setparty_gst_no()
+            
+        
+            ' Set the party_gst_no TextBox on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.party_gst_no is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setparty_gst_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.party_gst_noSpecified Then
+                				
+                ' If the party_gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.party_gst_no)
+                            
+                Me.party_gst_no.Text = formattedValue
+              
+            Else 
+            
+                ' party_gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.party_gst_no.Text = Inv_hdrTable.party_gst_no.Format(Inv_hdrTable.party_gst_no.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setparty_state()
+            
+        
+            ' Set the party_state TextBox on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.party_state is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setparty_state()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.party_stateSpecified Then
+                				
+                ' If the party_state is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.party_state)
+                            
+                Me.party_state.Text = formattedValue
+              
+            Else 
+            
+                ' party_state is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.party_state.Text = Inv_hdrTable.party_state.Format(Inv_hdrTable.party_state.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setpo_dt()
             
         
@@ -7084,6 +7265,76 @@ Public Class BaseInv_hdrRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Setsite_gst_no()
+            
+        
+            ' Set the site_gst_no TextBox on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.site_gst_no is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setsite_gst_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.site_gst_noSpecified Then
+                				
+                ' If the site_gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.site_gst_no)
+                            
+                Me.site_gst_no.Text = formattedValue
+              
+            Else 
+            
+                ' site_gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.site_gst_no.Text = Inv_hdrTable.site_gst_no.Format(Inv_hdrTable.site_gst_no.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setsite_state()
+            
+        
+            ' Set the site_state TextBox on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.site_state is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setsite_state()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.site_stateSpecified Then
+                				
+                ' If the site_state is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.site_state)
+                            
+                Me.site_state.Text = formattedValue
+              
+            Else 
+            
+                ' site_state is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.site_state.Text = Inv_hdrTable.site_state.Format(Inv_hdrTable.site_state.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Settin_no()
             
         
@@ -7279,6 +7530,16 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setparty_gst_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setparty_stateLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setpo_dtLabel()
             
                     
@@ -7315,6 +7576,16 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setship_nameLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setsite_gst_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setsite_stateLabel()
             
                     
         End Sub
@@ -7465,6 +7736,8 @@ Public Class BaseInv_hdrRecordControl
             Getitem_total()
             Getno_of_packages()
             Getpacking_details()
+            Getparty_gst_no()
+            Getparty_state()
             Getpo_dt()
             Getpo_no()
             Getremark()
@@ -7473,6 +7746,8 @@ Public Class BaseInv_hdrRecordControl
             Getsale_ord_no()
             Getship_address()
             Getship_name()
+            Getsite_gst_no()
+            Getsite_state()
             Gettin_no()
             Getvehicle_no()
             Getweight()
@@ -7673,6 +7948,32 @@ Public Class BaseInv_hdrRecordControl
                       
         End Sub
                 
+        Public Overridable Sub Getparty_gst_no()
+            
+            ' Retrieve the value entered by the user on the party_gst_no ASP:TextBox, and
+            ' save it into the party_gst_no field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.party_gst_no.Text, Inv_hdrTable.party_gst_no)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getparty_state()
+            
+            ' Retrieve the value entered by the user on the party_state ASP:TextBox, and
+            ' save it into the party_state field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.party_state.Text, Inv_hdrTable.party_state)			
+
+                      
+        End Sub
+                
         Public Overridable Sub Getpo_dt()
             
             ' Retrieve the value entered by the user on the po_dt ASP:TextBox, and
@@ -7758,6 +8059,32 @@ Public Class BaseInv_hdrRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.ship_name.Text, Inv_hdrTable.ship_name)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getsite_gst_no()
+            
+            ' Retrieve the value entered by the user on the site_gst_no ASP:TextBox, and
+            ' save it into the site_gst_no field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.site_gst_no.Text, Inv_hdrTable.site_gst_no)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getsite_state()
+            
+            ' Retrieve the value entered by the user on the site_state ASP:TextBox, and
+            ' save it into the site_state field in DataSource inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.site_state.Text, Inv_hdrTable.site_state)			
 
                       
         End Sub
@@ -8478,6 +8805,14 @@ Public Class BaseInv_hdrRecordControl
                     				
         End Sub
             
+        Protected Overridable Sub party_gst_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub party_state_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub po_dt_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -8499,6 +8834,14 @@ Public Class BaseInv_hdrRecordControl
         End Sub
             
         Protected Overridable Sub ship_name_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub site_gst_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub site_state_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -8869,6 +9212,30 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property party_gst_no() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_gst_no"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property party_gst_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_gst_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property party_state() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_state"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property party_stateLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_stateLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property po_dt() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_dt"), System.Web.UI.WebControls.TextBox)
@@ -8962,6 +9329,30 @@ Public Class BaseInv_hdrRecordControl
         Public ReadOnly Property ship_nameLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_nameLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property site_gst_no() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "site_gst_no"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property site_gst_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "site_gst_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property site_state() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "site_state"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property site_stateLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "site_stateLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

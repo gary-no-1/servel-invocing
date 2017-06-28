@@ -9,7 +9,7 @@
 Public Class Inv_itemsDefinition
 
 #Region "Definition (XML) for Inv_itemsDefinition table"
-	'Next 265 lines contain Table Definition (XML) for table "Inv_itemsDefinition"
+	'Next 357 lines contain Table Definition (XML) for table "Inv_itemsDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -23,7 +23,7 @@ Public Class Inv_itemsDefinition
       "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>Y</columnIndex>"& _
       "<columnUnique>Y</columnUnique>"& _
-      "<columnFunction>notrim</columnFunction>"& _
+      "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>Y</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
@@ -46,7 +46,7 @@ Public Class Inv_itemsDefinition
       "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
-      "<columnFunction>notrim</columnFunction>"& _
+      "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
@@ -69,24 +69,24 @@ Public Class Inv_itemsDefinition
     "</Column>"& _
     "<Column InternalName=""2"" Priority=""3"" ColumnNum=""2"">"& _
       "<columnName>id_item</columnName>"& _
-      "<columnUIName Source=""User"">Item Code</columnUIName>"& _
+      "<columnUIName>Item Code</columnUIName>"& _
       "<columnType>Number</columnType>"& _
       "<columnDBType>int</columnDBType>"& _
       "<columnLengthSet>10.0</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
       "<foreignKey>"& _
@@ -97,9 +97,6 @@ Public Class Inv_itemsDefinition
         "<columnFKColumnDisplay>item_code</columnFKColumnDisplay>"& _
         "<foreignKeyType>Explicit</foreignKeyType>"& _
       "</foreignKey>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>2</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""3"" Priority=""4"" ColumnNum=""3"">"& _
       "<columnName>item_code</columnName>"& _
@@ -262,9 +259,104 @@ Public Class Inv_itemsDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
+    "<Column InternalName=""10"" Priority=""11"" ColumnNum=""10"">"& _
+      "<columnName>hsn</columnName>"& _
+      "<columnUIName>HSN</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>10</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""11"" Priority=""12"" ColumnNum=""11"">"& _
+      "<columnName>cgst</columnName>"& _
+      "<columnUIName>CGST</columnUIName>"& _
+      "<columnType>Number</columnType>"& _
+      "<columnDBType>decimal</columnDBType>"& _
+      "<columnLengthSet>18.2</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""12"" Priority=""13"" ColumnNum=""12"">"& _
+      "<columnName>sgst</columnName>"& _
+      "<columnUIName>SGST</columnUIName>"& _
+      "<columnType>Number</columnType>"& _
+      "<columnDBType>decimal</columnDBType>"& _
+      "<columnLengthSet>18.2</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""13"" Priority=""14"" ColumnNum=""13"">"& _
+      "<columnName>igst</columnName>"& _
+      "<columnUIName Source=""User"">IGST</columnUIName>"& _
+      "<columnType>Number</columnType>"& _
+      "<columnDBType>decimal</columnDBType>"& _
+      "<columnLengthSet>18.2</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>13</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>inv_items</TableName>"& _
-  "<Version></Version>"& _
+  "<Version>1</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Inv_items</TableCodeName>"& _
   "<TableAliasName>Inv_items_</TableAliasName>"& _

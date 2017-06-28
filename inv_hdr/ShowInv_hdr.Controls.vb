@@ -314,6 +314,7 @@ Public Class BaseInv_itemsTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setamount()
+            Sethsn()
             Setid_item()
             Setitem_description()
             Setqty()
@@ -377,6 +378,50 @@ Public Class BaseInv_itemsTableControlRow
                 OrElse Me.amount.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.amount.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Sethsn()
+            
+        
+            ' Set the hsn Literal on the webpage with value from the
+            ' inv_items database record.
+
+            ' Me.DataSource is the inv_items record retrieved from the database.
+            ' Me.hsn is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Sethsn()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.hsnSpecified Then
+                				
+                ' If the hsn is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_itemsTable.hsn)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.hsn.Text = formattedValue
+              
+            Else 
+            
+                ' hsn is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.hsn.Text = Inv_itemsTable.hsn.Format(Inv_itemsTable.hsn.DefaultValue)
+                        		
+                End If
+                 
+            ' If the hsn is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.hsn.Text Is Nothing _
+                OrElse Me.hsn.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.hsn.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -704,6 +749,7 @@ Public Class BaseInv_itemsTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getamount()
+            Gethsn()
             Getid_item()
             Getitem_description()
             Getqty()
@@ -713,6 +759,10 @@ Public Class BaseInv_itemsTableControlRow
         
         
         Public Overridable Sub Getamount()
+            
+        End Sub
+                
+        Public Overridable Sub Gethsn()
             
         End Sub
                 
@@ -978,6 +1028,12 @@ Public Class BaseInv_itemsTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property hsn() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsn"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property id_item() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_item"), System.Web.UI.WebControls.LinkButton)
@@ -1124,6 +1180,8 @@ Public Class BaseInv_itemsTableControl
           
               AddHandler Me.amountLabel.Click, AddressOf amountLabel_Click
             
+              AddHandler Me.hsnLabel.Click, AddressOf hsnLabel_Click
+            
               AddHandler Me.id_itemLabel1.Click, AddressOf id_itemLabel1_Click
             
               AddHandler Me.item_descriptionLabel.Click, AddressOf item_descriptionLabel_Click
@@ -1256,6 +1314,7 @@ Public Class BaseInv_itemsTableControl
             ' Call the Set methods for each controls on the panel
         
             SetamountLabel()
+            SethsnLabel()
             Setid_itemLabel1()
             Setitem_descriptionLabel()
             SetqtyLabel()
@@ -1295,6 +1354,7 @@ Public Class BaseInv_itemsTableControl
             ' Initialize other asp controls
             
             SetamountLabel()
+            SethsnLabel()
             Setid_itemLabel1()
             Setitem_descriptionLabel()
             SetqtyLabel()
@@ -1675,6 +1735,9 @@ Public Class BaseInv_itemsTableControl
                         If recControl.amount.Text <> "" Then
                             rec.Parse(recControl.amount.Text, Inv_itemsTable.amount)
                         End If
+                        If recControl.hsn.Text <> "" Then
+                            rec.Parse(recControl.hsn.Text, Inv_itemsTable.hsn)
+                        End If
                         If recControl.id_item.Text <> "" Then
                             rec.Parse(recControl.id_item.Text, Inv_itemsTable.id_item)
                         End If
@@ -1758,6 +1821,11 @@ Public Class BaseInv_itemsTableControl
         ' Create Set, WhereClause, and Populate Methods
         
         Public Overridable Sub SetamountLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SethsnLabel()
             
                     
         End Sub
@@ -2016,6 +2084,28 @@ Public Class BaseInv_itemsTableControl
               
         End Sub
             
+        Public Overridable Sub hsnLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by hsn when clicked.
+              
+            ' Get previous sorting state for hsn.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Inv_itemsTable.hsn)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for hsn.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(Inv_itemsTable.hsn, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by hsn, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub id_itemLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by id_item when clicked.
               
@@ -2152,6 +2242,7 @@ Public Class BaseInv_itemsTableControl
              Inv_itemsTable.qty, _ 
              Inv_itemsTable.rate, _ 
              Inv_itemsTable.amount, _ 
+             Inv_itemsTable.hsn, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(Inv_itemsTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -2198,6 +2289,7 @@ Public Class BaseInv_itemsTableControl
              excelReport.AddColumn(New ExcelColumn(Inv_itemsTable.qty, "Standard"))
              excelReport.AddColumn(New ExcelColumn(Inv_itemsTable.rate, "Standard"))
              excelReport.AddColumn(New ExcelColumn(Inv_itemsTable.amount, "Standard"))
+             excelReport.AddColumn(New ExcelColumn(Inv_itemsTable.hsn, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2240,6 +2332,7 @@ Public Class BaseInv_itemsTableControl
                  report.AddColumn(Inv_itemsTable.qty.Name, ReportEnum.Align.Right, "${qty}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Inv_itemsTable.rate.Name, ReportEnum.Align.Right, "${rate}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Inv_itemsTable.amount.Name, ReportEnum.Align.Right, "${amount}", ReportEnum.Align.Right, 20)
+                 report.AddColumn(Inv_itemsTable.hsn.Name, ReportEnum.Align.Left, "${hsn}", ReportEnum.Align.Left, 15)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2273,6 +2366,7 @@ Public Class BaseInv_itemsTableControl
                              report.AddData("${qty}", record.Format(Inv_itemsTable.qty), ReportEnum.Align.Right, 100)
                              report.AddData("${rate}", record.Format(Inv_itemsTable.rate), ReportEnum.Align.Right, 100)
                              report.AddData("${amount}", record.Format(Inv_itemsTable.amount), ReportEnum.Align.Right, 100)
+                             report.AddData("${hsn}", record.Format(Inv_itemsTable.hsn), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -2391,6 +2485,7 @@ Public Class BaseInv_itemsTableControl
                  report.AddColumn(Inv_itemsTable.qty.Name, ReportEnum.Align.Right, "${qty}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Inv_itemsTable.rate.Name, ReportEnum.Align.Right, "${rate}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Inv_itemsTable.amount.Name, ReportEnum.Align.Right, "${amount}", ReportEnum.Align.Right, 20)
+                 report.AddColumn(Inv_itemsTable.hsn.Name, ReportEnum.Align.Left, "${hsn}", ReportEnum.Align.Left, 15)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -2421,6 +2516,7 @@ Public Class BaseInv_itemsTableControl
                              report.AddData("${qty}", record.Format(Inv_itemsTable.qty), ReportEnum.Align.Right, 100)
                              report.AddData("${rate}", record.Format(Inv_itemsTable.rate), ReportEnum.Align.Right, 100)
                              report.AddData("${amount}", record.Format(Inv_itemsTable.amount), ReportEnum.Align.Right, 100)
+                             report.AddData("${hsn}", record.Format(Inv_itemsTable.hsn), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -2574,6 +2670,12 @@ Public Class BaseInv_itemsTableControl
         Public ReadOnly Property amountLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "amountLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property hsnLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsnLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         
@@ -7181,6 +7283,10 @@ Public Class BaseInv_hdrRecordControl
             Setno_of_packagesLabel()
             Setpacking_details()
             Setpacking_detailsLabel()
+            Setparty_gst_no()
+            Setparty_gst_noLabel()
+            Setparty_state()
+            Setparty_stateLabel()
             Setpo_dt()
             Setpo_dtLabel()
             Setpo_no()
@@ -7197,6 +7303,10 @@ Public Class BaseInv_hdrRecordControl
             Setship_addressLabel()
             Setship_name()
             Setship_nameLabel()
+            Setsite_gst_no()
+            Setsite_gst_noLabel()
+            Setsite_state()
+            Setsite_stateLabel()
             Settin_no()
             Settin_noLabel()
             Setvehicle_no()
@@ -7959,6 +8069,94 @@ Public Class BaseInv_hdrRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setparty_gst_no()
+            
+        
+            ' Set the party_gst_no Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.party_gst_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setparty_gst_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.party_gst_noSpecified Then
+                				
+                ' If the party_gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.party_gst_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.party_gst_no.Text = formattedValue
+              
+            Else 
+            
+                ' party_gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.party_gst_no.Text = Inv_hdrTable.party_gst_no.Format(Inv_hdrTable.party_gst_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the party_gst_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.party_gst_no.Text Is Nothing _
+                OrElse Me.party_gst_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.party_gst_no.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setparty_state()
+            
+        
+            ' Set the party_state Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.party_state is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setparty_state()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.party_stateSpecified Then
+                				
+                ' If the party_state is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.party_state)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.party_state.Text = formattedValue
+              
+            Else 
+            
+                ' party_state is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.party_state.Text = Inv_hdrTable.party_state.Format(Inv_hdrTable.party_state.DefaultValue)
+                        		
+                End If
+                 
+            ' If the party_state is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.party_state.Text Is Nothing _
+                OrElse Me.party_state.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.party_state.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setpo_dt()
             
         
@@ -8344,6 +8542,94 @@ Public Class BaseInv_hdrRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setsite_gst_no()
+            
+        
+            ' Set the site_gst_no Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.site_gst_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setsite_gst_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.site_gst_noSpecified Then
+                				
+                ' If the site_gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.site_gst_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.site_gst_no.Text = formattedValue
+              
+            Else 
+            
+                ' site_gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.site_gst_no.Text = Inv_hdrTable.site_gst_no.Format(Inv_hdrTable.site_gst_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the site_gst_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.site_gst_no.Text Is Nothing _
+                OrElse Me.site_gst_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.site_gst_no.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setsite_state()
+            
+        
+            ' Set the site_state Literal on the webpage with value from the
+            ' inv_hdr database record.
+
+            ' Me.DataSource is the inv_hdr record retrieved from the database.
+            ' Me.site_state is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setsite_state()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.site_stateSpecified Then
+                				
+                ' If the site_state is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Inv_hdrTable.site_state)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.site_state.Text = formattedValue
+              
+            Else 
+            
+                ' site_state is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.site_state.Text = Inv_hdrTable.site_state.Format(Inv_hdrTable.site_state.DefaultValue)
+                        		
+                End If
+                 
+            ' If the site_state is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.site_state.Text Is Nothing _
+                OrElse Me.site_state.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.site_state.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Settin_no()
             
         
@@ -8551,6 +8837,16 @@ Public Class BaseInv_hdrRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setparty_gst_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setparty_stateLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setpo_dtLabel()
             
                     
@@ -8587,6 +8883,16 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setship_nameLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setsite_gst_noLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setsite_stateLabel()
             
                     
         End Sub
@@ -8739,6 +9045,8 @@ Public Class BaseInv_hdrRecordControl
             Getitem_total()
             Getno_of_packages()
             Getpacking_details()
+            Getparty_gst_no()
+            Getparty_state()
             Getpo_dt()
             Getpo_no()
             Getremark()
@@ -8747,6 +9055,8 @@ Public Class BaseInv_hdrRecordControl
             Getsale_ord_no()
             Getship_address()
             Getship_name()
+            Getsite_gst_no()
+            Getsite_state()
             Gettin_no()
             Getvehicle_no()
             Getweight()
@@ -8817,6 +9127,14 @@ Public Class BaseInv_hdrRecordControl
             
         End Sub
                 
+        Public Overridable Sub Getparty_gst_no()
+            
+        End Sub
+                
+        Public Overridable Sub Getparty_state()
+            
+        End Sub
+                
         Public Overridable Sub Getpo_dt()
             
         End Sub
@@ -8846,6 +9164,14 @@ Public Class BaseInv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Getship_name()
+            
+        End Sub
+                
+        Public Overridable Sub Getsite_gst_no()
+            
+        End Sub
+                
+        Public Overridable Sub Getsite_state()
             
         End Sub
                 
@@ -9705,6 +10031,30 @@ Public Class BaseInv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property party_gst_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_gst_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property party_gst_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_gst_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property party_state() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_state"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property party_stateLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_stateLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property po_dt() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "po_dt"), System.Web.UI.WebControls.Literal)
@@ -9798,6 +10148,30 @@ Public Class BaseInv_hdrRecordControl
         Public ReadOnly Property ship_nameLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_nameLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property site_gst_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "site_gst_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property site_gst_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "site_gst_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property site_state() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "site_state"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property site_stateLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "site_stateLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

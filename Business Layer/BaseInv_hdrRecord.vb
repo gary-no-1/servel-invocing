@@ -513,35 +513,6 @@ Namespace ServelInvocing.Business
 	End Sub
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.ecc_no field.
-	''' </summary>
-	Public Function Getecc_noValue() As ColumnValue
-		Return Me.GetValue(TableUtils.ecc_noColumn)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.ecc_no field.
-	''' </summary>
-	Public Function Getecc_noFieldValue() As String
-		Return CType(Me.GetValue(TableUtils.ecc_noColumn).ToString(), String)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.ecc_no field.
-	''' </summary>
-	Public Sub Setecc_noFieldValue(ByVal val As ColumnValue)
-		Me.SetValue(val, TableUtils.ecc_noColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.ecc_no field.
-	''' </summary>
-	Public Sub Setecc_noFieldValue(ByVal val As String)
-		Dim colValue As ColumnValue = New ColumnValue(val)
-		Me.SetValue(colValue, TableUtils.ecc_noColumn)
-	End Sub
-
-	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_commodity field.
 	''' </summary>
 	Public Function Getid_commodityValue() As ColumnValue
@@ -1275,64 +1246,6 @@ Namespace ServelInvocing.Business
 	End Sub
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.remark field.
-	''' </summary>
-	Public Function GetremarkValue() As ColumnValue
-		Return Me.GetValue(TableUtils.remarkColumn)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.remark field.
-	''' </summary>
-	Public Function GetremarkFieldValue() As String
-		Return CType(Me.GetValue(TableUtils.remarkColumn).ToString(), String)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.remark field.
-	''' </summary>
-	Public Sub SetremarkFieldValue(ByVal val As ColumnValue)
-		Me.SetValue(val, TableUtils.remarkColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.remark field.
-	''' </summary>
-	Public Sub SetremarkFieldValue(ByVal val As String)
-		Dim colValue As ColumnValue = New ColumnValue(val)
-		Me.SetValue(colValue, TableUtils.remarkColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.excise_remark field.
-	''' </summary>
-	Public Function Getexcise_remarkValue() As ColumnValue
-		Return Me.GetValue(TableUtils.excise_remarkColumn)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.excise_remark field.
-	''' </summary>
-	Public Function Getexcise_remarkFieldValue() As String
-		Return CType(Me.GetValue(TableUtils.excise_remarkColumn).ToString(), String)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.excise_remark field.
-	''' </summary>
-	Public Sub Setexcise_remarkFieldValue(ByVal val As ColumnValue)
-		Me.SetValue(val, TableUtils.excise_remarkColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.excise_remark field.
-	''' </summary>
-	Public Sub Setexcise_remarkFieldValue(ByVal val As String)
-		Dim colValue As ColumnValue = New ColumnValue(val)
-		Me.SetValue(colValue, TableUtils.excise_remarkColumn)
-	End Sub
-
-	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_create_user field.
 	''' </summary>
 	Public Function Getid_create_userValue() As ColumnValue
@@ -1504,6 +1417,398 @@ Namespace ServelInvocing.Business
 	Public Sub Setlast_updatedFieldValue(ByVal val As DateTime)
 		Dim colValue As ColumnValue = New ColumnValue(val)
 		Me.SetValue(colValue, TableUtils.last_updatedColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.ecc_no field.
+	''' </summary>
+	Public Function Getecc_noValue() As ColumnValue
+		Return Me.GetValue(TableUtils.ecc_noColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.ecc_no field.
+	''' </summary>
+	Public Function Getecc_noFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.ecc_noColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.ecc_no field.
+	''' </summary>
+	Public Sub Setecc_noFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.ecc_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.ecc_no field.
+	''' </summary>
+	Public Sub Setecc_noFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.ecc_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.remark field.
+	''' </summary>
+	Public Function GetremarkValue() As ColumnValue
+		Return Me.GetValue(TableUtils.remarkColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.remark field.
+	''' </summary>
+	Public Function GetremarkFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.remarkColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.remark field.
+	''' </summary>
+	Public Sub SetremarkFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.remarkColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.remark field.
+	''' </summary>
+	Public Sub SetremarkFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.remarkColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.excise_remark field.
+	''' </summary>
+	Public Function Getexcise_remarkValue() As ColumnValue
+		Return Me.GetValue(TableUtils.excise_remarkColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.excise_remark field.
+	''' </summary>
+	Public Function Getexcise_remarkFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.excise_remarkColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.excise_remark field.
+	''' </summary>
+	Public Sub Setexcise_remarkFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.excise_remarkColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.excise_remark field.
+	''' </summary>
+	Public Sub Setexcise_remarkFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.excise_remarkColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_party_state field.
+	''' </summary>
+	Public Function Getid_party_stateValue() As ColumnValue
+		Return Me.GetValue(TableUtils.id_party_stateColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_party_state field.
+	''' </summary>
+	Public Function Getid_party_stateFieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id_party_stateColumn).ToInt32(), Int32)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_party_state field.
+	''' </summary>
+	Public Sub Setid_party_stateFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.id_party_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_party_state field.
+	''' </summary>
+	Public Sub Setid_party_stateFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.id_party_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_party_state field.
+	''' </summary>
+	Public Sub Setid_party_stateFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_party_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_party_state field.
+	''' </summary>
+	Public Sub Setid_party_stateFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_party_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_party_state field.
+	''' </summary>
+	Public Sub Setid_party_stateFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_party_stateColumn)
+	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_site_state field.
+	''' </summary>
+	Public Function Getid_site_stateValue() As ColumnValue
+		Return Me.GetValue(TableUtils.id_site_stateColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.id_site_state field.
+	''' </summary>
+	Public Function Getid_site_stateFieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id_site_stateColumn).ToInt32(), Int32)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_site_state field.
+	''' </summary>
+	Public Sub Setid_site_stateFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.id_site_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_site_state field.
+	''' </summary>
+	Public Sub Setid_site_stateFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.id_site_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_site_state field.
+	''' </summary>
+	Public Sub Setid_site_stateFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_site_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_site_state field.
+	''' </summary>
+	Public Sub Setid_site_stateFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_site_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.id_site_state field.
+	''' </summary>
+	Public Sub Setid_site_stateFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_site_stateColumn)
+	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.gst_no field.
+	''' </summary>
+	Public Function Getgst_noValue() As ColumnValue
+		Return Me.GetValue(TableUtils.gst_noColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.gst_no field.
+	''' </summary>
+	Public Function Getgst_noFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.gst_noColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.gst_no field.
+	''' </summary>
+	Public Sub Setgst_noFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.gst_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.gst_no field.
+	''' </summary>
+	Public Sub Setgst_noFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.gst_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.party_state field.
+	''' </summary>
+	Public Function Getparty_stateValue() As ColumnValue
+		Return Me.GetValue(TableUtils.party_stateColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.party_state field.
+	''' </summary>
+	Public Function Getparty_stateFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.party_stateColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.party_state field.
+	''' </summary>
+	Public Sub Setparty_stateFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.party_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.party_state field.
+	''' </summary>
+	Public Sub Setparty_stateFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.party_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.site_state field.
+	''' </summary>
+	Public Function Getsite_stateValue() As ColumnValue
+		Return Me.GetValue(TableUtils.site_stateColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.site_state field.
+	''' </summary>
+	Public Function Getsite_stateFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.site_stateColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.site_state field.
+	''' </summary>
+	Public Sub Setsite_stateFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.site_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.site_state field.
+	''' </summary>
+	Public Sub Setsite_stateFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.site_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.party_state_code field.
+	''' </summary>
+	Public Function Getparty_state_codeValue() As ColumnValue
+		Return Me.GetValue(TableUtils.party_state_codeColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.party_state_code field.
+	''' </summary>
+	Public Function Getparty_state_codeFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.party_state_codeColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.party_state_code field.
+	''' </summary>
+	Public Sub Setparty_state_codeFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.party_state_codeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.party_state_code field.
+	''' </summary>
+	Public Sub Setparty_state_codeFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.party_state_codeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.site_state_code field.
+	''' </summary>
+	Public Function Getsite_state_codeValue() As ColumnValue
+		Return Me.GetValue(TableUtils.site_state_codeColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.site_state_code field.
+	''' </summary>
+	Public Function Getsite_state_codeFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.site_state_codeColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.site_state_code field.
+	''' </summary>
+	Public Sub Setsite_state_codeFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.site_state_codeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.site_state_code field.
+	''' </summary>
+	Public Sub Setsite_state_codeFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.site_state_codeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.party_gst_no field.
+	''' </summary>
+	Public Function Getparty_gst_noValue() As ColumnValue
+		Return Me.GetValue(TableUtils.party_gst_noColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.party_gst_no field.
+	''' </summary>
+	Public Function Getparty_gst_noFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.party_gst_noColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.party_gst_no field.
+	''' </summary>
+	Public Sub Setparty_gst_noFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.party_gst_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.party_gst_no field.
+	''' </summary>
+	Public Sub Setparty_gst_noFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.party_gst_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.site_gst_no field.
+	''' </summary>
+	Public Function Getsite_gst_noValue() As ColumnValue
+		Return Me.GetValue(TableUtils.site_gst_noColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_hdr_.site_gst_no field.
+	''' </summary>
+	Public Function Getsite_gst_noFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.site_gst_noColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.site_gst_no field.
+	''' </summary>
+	Public Sub Setsite_gst_noFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.site_gst_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_hdr_.site_gst_no field.
+	''' </summary>
+	Public Sub Setsite_gst_noFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.site_gst_noColumn)
 	End Sub
 
 
@@ -2040,41 +2345,6 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property po_dtDefault() As String
         Get
             Return TableUtils.po_dtColumn.DefaultValue
-        End Get
-    End Property
-
-	''' <summary>
-	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.ecc_no field.
-	''' </summary>
-	Public Property ecc_no() As String
-		Get 
-			Return CType(Me.GetValue(TableUtils.ecc_noColumn).ToString(), String)
-		End Get
-		Set (ByVal Value As String) 
-			Me.SetString(value, TableUtils.ecc_noColumn)
-		End Set
-	End Property
-
-
-	''' <summary>
-	''' This is a convenience method that can be used to determine that the column is set.
-	''' </summary>
-	Public ReadOnly Property ecc_noSpecified() As Boolean
-        Get
-            Dim val As ColumnValue = Me.GetValue(TableUtils.ecc_noColumn)
-            If val Is Nothing OrElse val.IsNull Then
-                Return False
-            End If
-            Return True
-        End Get
-    End Property
-
-	''' <summary>
-	''' This is a convenience method that can be used to get the default value of a column.
-	''' </summary>
-    Public ReadOnly Property ecc_noDefault() As String
-        Get
-            Return TableUtils.ecc_noColumn.DefaultValue
         End Get
     End Property
 
@@ -2788,76 +3058,6 @@ Namespace ServelInvocing.Business
     End Property
 
 	''' <summary>
-	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.remark field.
-	''' </summary>
-	Public Property remark() As String
-		Get 
-			Return CType(Me.GetValue(TableUtils.remarkColumn).ToString(), String)
-		End Get
-		Set (ByVal Value As String) 
-			Me.SetString(value, TableUtils.remarkColumn)
-		End Set
-	End Property
-
-
-	''' <summary>
-	''' This is a convenience method that can be used to determine that the column is set.
-	''' </summary>
-	Public ReadOnly Property remarkSpecified() As Boolean
-        Get
-            Dim val As ColumnValue = Me.GetValue(TableUtils.remarkColumn)
-            If val Is Nothing OrElse val.IsNull Then
-                Return False
-            End If
-            Return True
-        End Get
-    End Property
-
-	''' <summary>
-	''' This is a convenience method that can be used to get the default value of a column.
-	''' </summary>
-    Public ReadOnly Property remarkDefault() As String
-        Get
-            Return TableUtils.remarkColumn.DefaultValue
-        End Get
-    End Property
-
-	''' <summary>
-	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.excise_remark field.
-	''' </summary>
-	Public Property excise_remark() As String
-		Get 
-			Return CType(Me.GetValue(TableUtils.excise_remarkColumn).ToString(), String)
-		End Get
-		Set (ByVal Value As String) 
-			Me.SetString(value, TableUtils.excise_remarkColumn)
-		End Set
-	End Property
-
-
-	''' <summary>
-	''' This is a convenience method that can be used to determine that the column is set.
-	''' </summary>
-	Public ReadOnly Property excise_remarkSpecified() As Boolean
-        Get
-            Dim val As ColumnValue = Me.GetValue(TableUtils.excise_remarkColumn)
-            If val Is Nothing OrElse val.IsNull Then
-                Return False
-            End If
-            Return True
-        End Get
-    End Property
-
-	''' <summary>
-	''' This is a convenience method that can be used to get the default value of a column.
-	''' </summary>
-    Public ReadOnly Property excise_remarkDefault() As String
-        Get
-            Return TableUtils.excise_remarkColumn.DefaultValue
-        End Get
-    End Property
-
-	''' <summary>
 	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.id_create_user field.
 	''' </summary>
 	Public Property id_create_user() As Int32
@@ -2998,6 +3198,428 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property last_updatedDefault() As String
         Get
             Return TableUtils.last_updatedColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.ecc_no field.
+	''' </summary>
+	Public Property ecc_no() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.ecc_noColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.ecc_noColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property ecc_noSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.ecc_noColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property ecc_noDefault() As String
+        Get
+            Return TableUtils.ecc_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.remark field.
+	''' </summary>
+	Public Property remark() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.remarkColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.remarkColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property remarkSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.remarkColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property remarkDefault() As String
+        Get
+            Return TableUtils.remarkColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.excise_remark field.
+	''' </summary>
+	Public Property excise_remark() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.excise_remarkColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.excise_remarkColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property excise_remarkSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.excise_remarkColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property excise_remarkDefault() As String
+        Get
+            Return TableUtils.excise_remarkColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.id_party_state field.
+	''' </summary>
+	Public Property id_party_state() As Int32
+		Get 
+			Return CType(Me.GetValue(TableUtils.id_party_stateColumn).ToInt32(), Int32)
+		End Get
+		Set (ByVal val As Int32) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.id_party_stateColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property id_party_stateSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id_party_stateColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property id_party_stateDefault() As String
+        Get
+            Return TableUtils.id_party_stateColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.id_site_state field.
+	''' </summary>
+	Public Property id_site_state() As Int32
+		Get 
+			Return CType(Me.GetValue(TableUtils.id_site_stateColumn).ToInt32(), Int32)
+		End Get
+		Set (ByVal val As Int32) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.id_site_stateColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property id_site_stateSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id_site_stateColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property id_site_stateDefault() As String
+        Get
+            Return TableUtils.id_site_stateColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.gst_no field.
+	''' </summary>
+	Public Property gst_no() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.gst_noColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.gst_noColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property gst_noSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.gst_noColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property gst_noDefault() As String
+        Get
+            Return TableUtils.gst_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.party_state field.
+	''' </summary>
+	Public Property party_state() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.party_stateColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.party_stateColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property party_stateSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.party_stateColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property party_stateDefault() As String
+        Get
+            Return TableUtils.party_stateColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.site_state field.
+	''' </summary>
+	Public Property site_state() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.site_stateColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.site_stateColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property site_stateSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.site_stateColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property site_stateDefault() As String
+        Get
+            Return TableUtils.site_stateColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.party_state_code field.
+	''' </summary>
+	Public Property party_state_code() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.party_state_codeColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.party_state_codeColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property party_state_codeSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.party_state_codeColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property party_state_codeDefault() As String
+        Get
+            Return TableUtils.party_state_codeColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.site_state_code field.
+	''' </summary>
+	Public Property site_state_code() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.site_state_codeColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.site_state_codeColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property site_state_codeSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.site_state_codeColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property site_state_codeDefault() As String
+        Get
+            Return TableUtils.site_state_codeColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.party_gst_no field.
+	''' </summary>
+	Public Property party_gst_no() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.party_gst_noColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.party_gst_noColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property party_gst_noSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.party_gst_noColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property party_gst_noDefault() As String
+        Get
+            Return TableUtils.party_gst_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_hdr_.site_gst_no field.
+	''' </summary>
+	Public Property site_gst_no() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.site_gst_noColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.site_gst_noColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property site_gst_noSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.site_gst_noColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property site_gst_noDefault() As String
+        Get
+            Return TableUtils.site_gst_noColumn.DefaultValue
         End Get
     End Property
 

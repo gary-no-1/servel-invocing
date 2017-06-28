@@ -18,7 +18,7 @@
       <PassthroughAttributes>
         <Attribute>
           <Name>Text</Name>
-          <Value>Copyright © 2014 Ravi Krishnan &amp; Servel India Pvt. Ltd.</Value>
+          <Value>Copyright © 2017 Ravi Krishnan &amp; Servel India Pvt. Ltd.</Value>
         </Attribute>
       </PassthroughAttributes>
     </ContainedComponent>
@@ -28,7 +28,7 @@
       <PassthroughAttributes>
         <Attribute>
           <Name>Text</Name>
-          <Value>v 2016.10.04.1</Value>
+          <Value>v 2017.06.28.1</Value>
         </Attribute>
       </PassthroughAttributes>
     </ContainedComponent>

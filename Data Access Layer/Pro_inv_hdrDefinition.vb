@@ -9,7 +9,7 @@
 Public Class Pro_inv_hdrDefinition
 
 #Region "Definition (XML) for Pro_inv_hdrDefinition table"
-	'Next 1268 lines contain Table Definition (XML) for table "Pro_inv_hdrDefinition"
+	'Next 1271 lines contain Table Definition (XML) for table "Pro_inv_hdrDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -114,7 +114,7 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
     "<Column InternalName=""4"" Priority=""5"" ColumnNum=""4"">"& _
       "<columnName>sale_ord_dt</columnName>"& _
-      "<columnUIName Source=""User"">Sale Order Dt.</columnUIName>"& _
+      "<columnUIName Source=""User"">Sale Order Dt</columnUIName>"& _
       "<columnType>Date</columnType>"& _
       "<columnDBType>date</columnDBType>"& _
       "<columnLengthSet></columnLengthSet>"& _
@@ -316,7 +316,7 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
     "<Column InternalName=""12"" Priority=""13"" ColumnNum=""12"">"& _
       "<columnName>po_dt</columnName>"& _
-      "<columnUIName Source=""User"">P.O. Date</columnUIName>"& _
+      "<columnUIName Source=""User"">P.O. Dt</columnUIName>"& _
       "<columnType>Date</columnType>"& _
       "<columnDBType>date</columnDBType>"& _
       "<columnLengthSet></columnLengthSet>"& _
@@ -603,7 +603,7 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
     "<Column InternalName=""23"" Priority=""24"" ColumnNum=""23"">"& _
       "<columnName>gr_rr_dt</columnName>"& _
-      "<columnUIName Source=""User"">Gr RR Dt.</columnUIName>"& _
+      "<columnUIName Source=""User"">GR RR Dt</columnUIName>"& _
       "<columnType>Date</columnType>"& _
       "<columnDBType>date</columnDBType>"& _
       "<columnLengthSet></columnLengthSet>"& _
@@ -653,49 +653,55 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
     "<Column InternalName=""25"" Priority=""26"" ColumnNum=""25"">"& _
       "<columnName>vehicle_no</columnName>"& _
-      "<columnUIName>Vehicle Number</columnUIName>"& _
+      "<columnUIName Source=""User"">Vehicle No.</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>25</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""26"" Priority=""27"" ColumnNum=""26"">"& _
       "<columnName>inv_no</columnName>"& _
-      "<columnUIName>Number</columnUIName>"& _
+      "<columnUIName Source=""User"">Invoice No.</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>26</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""27"" Priority=""28"" ColumnNum=""27"">"& _
       "<columnName>inv_cr8_dt</columnName>"& _
@@ -979,26 +985,29 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
     "<Column InternalName=""38"" Priority=""39"" ColumnNum=""38"">"& _
       "<columnName>ecc_no</columnName>"& _
-      "<columnUIName Source=""Database"">ECC No.</columnUIName>"& _
+      "<columnUIName Source=""User"">ECC</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>38</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""39"" Priority=""40"" ColumnNum=""39"">"& _
       "<columnName>remark</columnName>"& _
@@ -1071,33 +1080,30 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
     "<Column InternalName=""42"" Priority=""43"" ColumnNum=""42"">"& _
       "<columnName>id_site_state</columnName>"& _
-      "<columnUIName Source=""User"">Site State</columnUIName>"& _
+      "<columnUIName>Site State</columnUIName>"& _
       "<columnType>Number</columnType>"& _
       "<columnDBType>int</columnDBType>"& _
       "<columnLengthSet>10.0</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>42</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""43"" Priority=""44"" ColumnNum=""43"">"& _
       "<columnName>gst_no</columnName>"& _
-      "<columnUIName Source=""Database"">GST No.</columnUIName>"& _
+      "<columnUIName>Number</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
@@ -1143,29 +1149,26 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
     "<Column InternalName=""45"" Priority=""46"" ColumnNum=""45"">"& _
       "<columnName>site_state</columnName>"& _
-      "<columnUIName Source=""User"">Shipping State</columnUIName>"& _
+      "<columnUIName>Site State</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>30</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>45</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""46"" Priority=""47"" ColumnNum=""46"">"& _
       "<columnName>party_state_code</columnName>"& _
@@ -1241,7 +1244,7 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
     "<Column InternalName=""49"" Priority=""50"" ColumnNum=""49"">"& _
       "<columnName>site_gst_no</columnName>"& _
-      "<columnUIName Source=""User"">Shipping GST No.</columnUIName>"& _
+      "<columnUIName Source=""User"">Site GST No.</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
@@ -1267,7 +1270,7 @@ Public Class Pro_inv_hdrDefinition
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>pro_inv_hdr</TableName>"& _
-  "<Version>16</Version>"& _
+  "<Version>18</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Pro_inv_hdr</TableCodeName>"& _
   "<TableAliasName>Pro_inv_hdr_</TableAliasName>"& _

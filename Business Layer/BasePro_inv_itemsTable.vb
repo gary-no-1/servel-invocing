@@ -63,6 +63,10 @@ Namespace ServelInvocing.Business
         rateColumn.CodeName = "rate"
         ass_valueColumn.CodeName = "ass_value"
         amountColumn.CodeName = "amount"
+        hsnColumn.CodeName = "hsn"
+        cgstColumn.CodeName = "cgst"
+        sgstColumn.CodeName = "sgst"
+        igstColumn.CodeName = "igst"
         
     End Sub
 
@@ -256,6 +260,82 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property amount() As BaseClasses.Data.NumberColumn
         Get
             Return Pro_inv_itemsTable.Instance.amountColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_items_.hsn column object.
+    ''' </summary>
+    Public ReadOnly Property hsnColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(10), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_items_.hsn column object.
+    ''' </summary>
+    Public Shared ReadOnly Property hsn() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_itemsTable.Instance.hsnColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_items_.cgst column object.
+    ''' </summary>
+    Public ReadOnly Property cgstColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(11), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_items_.cgst column object.
+    ''' </summary>
+    Public Shared ReadOnly Property cgst() As BaseClasses.Data.NumberColumn
+        Get
+            Return Pro_inv_itemsTable.Instance.cgstColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_items_.sgst column object.
+    ''' </summary>
+    Public ReadOnly Property sgstColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(12), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_items_.sgst column object.
+    ''' </summary>
+    Public Shared ReadOnly Property sgst() As BaseClasses.Data.NumberColumn
+        Get
+            Return Pro_inv_itemsTable.Instance.sgstColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_items_.igst column object.
+    ''' </summary>
+    Public ReadOnly Property igstColumn() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(13), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_items_.igst column object.
+    ''' </summary>
+    Public Shared ReadOnly Property igst() As BaseClasses.Data.NumberColumn
+        Get
+            Return Pro_inv_itemsTable.Instance.igstColumn
         End Get
     End Property
 
@@ -540,7 +620,11 @@ Namespace ServelInvocing.Business
         ByVal qtyValue As String, _
         ByVal rateValue As String, _
         ByVal ass_valueValue As String, _
-        ByVal amountValue As String _
+        ByVal amountValue As String, _
+        ByVal hsnValue As String, _
+        ByVal cgstValue As String, _
+        ByVal sgstValue As String, _
+        ByVal igstValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(id_pro_inv_hdrValue, id_pro_inv_hdrColumn)
@@ -552,6 +636,10 @@ Namespace ServelInvocing.Business
         rec.SetString(rateValue, rateColumn)
         rec.SetString(ass_valueValue, ass_valueColumn)
         rec.SetString(amountValue, amountColumn)
+        rec.SetString(hsnValue, hsnColumn)
+        rec.SetString(cgstValue, cgstColumn)
+        rec.SetString(sgstValue, sgstColumn)
+        rec.SetString(igstValue, igstColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

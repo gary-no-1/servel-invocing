@@ -449,6 +449,188 @@ Namespace ServelInvocing.Business
 		Dim colValue As ColumnValue = New ColumnValue(val)
 		Me.SetValue(colValue, TableUtils.amountColumn)
 	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_items_.hsn field.
+	''' </summary>
+	Public Function GethsnValue() As ColumnValue
+		Return Me.GetValue(TableUtils.hsnColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_items_.hsn field.
+	''' </summary>
+	Public Function GethsnFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.hsnColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.hsn field.
+	''' </summary>
+	Public Sub SethsnFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.hsnColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.hsn field.
+	''' </summary>
+	Public Sub SethsnFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.hsnColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_items_.cgst field.
+	''' </summary>
+	Public Function GetcgstValue() As ColumnValue
+		Return Me.GetValue(TableUtils.cgstColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_items_.cgst field.
+	''' </summary>
+	Public Function GetcgstFieldValue() As Decimal
+		Return CType(Me.GetValue(TableUtils.cgstColumn).ToDecimal(), Decimal)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.cgst field.
+	''' </summary>
+	Public Sub SetcgstFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.cgstColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.cgst field.
+	''' </summary>
+	Public Sub SetcgstFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.cgstColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.cgst field.
+	''' </summary>
+	Public Sub SetcgstFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.cgstColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.cgst field.
+	''' </summary>
+	Public Sub SetcgstFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.cgstColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.cgst field.
+	''' </summary>
+	Public Sub SetcgstFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.cgstColumn)
+	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_items_.sgst field.
+	''' </summary>
+	Public Function GetsgstValue() As ColumnValue
+		Return Me.GetValue(TableUtils.sgstColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_items_.sgst field.
+	''' </summary>
+	Public Function GetsgstFieldValue() As Decimal
+		Return CType(Me.GetValue(TableUtils.sgstColumn).ToDecimal(), Decimal)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.sgst field.
+	''' </summary>
+	Public Sub SetsgstFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.sgstColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.sgst field.
+	''' </summary>
+	Public Sub SetsgstFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.sgstColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.sgst field.
+	''' </summary>
+	Public Sub SetsgstFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.sgstColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.sgst field.
+	''' </summary>
+	Public Sub SetsgstFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.sgstColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.sgst field.
+	''' </summary>
+	Public Sub SetsgstFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.sgstColumn)
+	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_items_.igst field.
+	''' </summary>
+	Public Function GetigstValue() As ColumnValue
+		Return Me.GetValue(TableUtils.igstColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_items_.igst field.
+	''' </summary>
+	Public Function GetigstFieldValue() As Decimal
+		Return CType(Me.GetValue(TableUtils.igstColumn).ToDecimal(), Decimal)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.igst field.
+	''' </summary>
+	Public Sub SetigstFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.igstColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.igst field.
+	''' </summary>
+	Public Sub SetigstFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.igstColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.igst field.
+	''' </summary>
+	Public Sub SetigstFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.igstColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.igst field.
+	''' </summary>
+	Public Sub SetigstFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.igstColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_items_.igst field.
+	''' </summary>
+	Public Sub SetigstFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.igstColumn)
+	End Sub
 
 
 #End Region
@@ -809,6 +991,149 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property amountDefault() As String
         Get
             Return TableUtils.amountColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_items_.hsn field.
+	''' </summary>
+	Public Property hsn() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.hsnColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.hsnColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property hsnSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.hsnColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property hsnDefault() As String
+        Get
+            Return TableUtils.hsnColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_items_.cgst field.
+	''' </summary>
+	Public Property cgst() As Decimal
+		Get 
+			Return CType(Me.GetValue(TableUtils.cgstColumn).ToDecimal(), Decimal)
+		End Get
+		Set (ByVal val As Decimal) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.cgstColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property cgstSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.cgstColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property cgstDefault() As String
+        Get
+            Return TableUtils.cgstColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_items_.sgst field.
+	''' </summary>
+	Public Property sgst() As Decimal
+		Get 
+			Return CType(Me.GetValue(TableUtils.sgstColumn).ToDecimal(), Decimal)
+		End Get
+		Set (ByVal val As Decimal) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.sgstColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property sgstSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.sgstColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property sgstDefault() As String
+        Get
+            Return TableUtils.sgstColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_items_.igst field.
+	''' </summary>
+	Public Property igst() As Decimal
+		Get 
+			Return CType(Me.GetValue(TableUtils.igstColumn).ToDecimal(), Decimal)
+		End Get
+		Set (ByVal val As Decimal) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.igstColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property igstSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.igstColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property igstDefault() As String
+        Get
+            Return TableUtils.igstColumn.DefaultValue
         End Get
     End Property
 
