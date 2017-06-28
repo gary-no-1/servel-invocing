@@ -230,7 +230,7 @@ Public Class SitesDefinition
     "</Column>"& _
     "<Column InternalName=""9"" Priority=""10"" ColumnNum=""9"">"& _
       "<columnName>vat_no</columnName>"& _
-      "<columnUIName Source=""Database"">VAT No.</columnUIName>"& _
+      "<columnUIName>VAT Number</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
@@ -299,7 +299,7 @@ Public Class SitesDefinition
     "</Column>"& _
     "<Column InternalName=""12"" Priority=""13"" ColumnNum=""12"">"& _
       "<columnName>st37_no</columnName>"& _
-      "<columnUIName Source=""Database"">ST37 No.</columnUIName>"& _
+      "<columnUIName>37 Number</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
@@ -345,7 +345,7 @@ Public Class SitesDefinition
     "</Column>"& _
     "<Column InternalName=""14"" Priority=""15"" ColumnNum=""14"">"& _
       "<columnName>gst_no</columnName>"& _
-      "<columnUIName Source=""Database"">GST No.</columnUIName>"& _
+      "<columnUIName>Number</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>20</columnLengthSet>"& _
@@ -445,7 +445,7 @@ Public Class SitesDefinition
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>sites</TableName>"& _
-  "<Version>4</Version>"& _
+  "<Version>5</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Sites</TableCodeName>"& _
   "<TableAliasName>Sites_</TableAliasName>"& _

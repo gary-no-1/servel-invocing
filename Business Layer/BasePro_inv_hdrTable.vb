@@ -101,6 +101,8 @@ Namespace ServelInvocing.Business
         site_stateColumn.CodeName = "site_state"
         party_state_codeColumn.CodeName = "party_state_code"
         site_state_codeColumn.CodeName = "site_state_code"
+        party_gst_noColumn.CodeName = "party_gst_no"
+        site_gst_noColumn.CodeName = "site_gst_no"
         
     End Sub
 
@@ -1018,6 +1020,44 @@ Namespace ServelInvocing.Business
             Return Pro_inv_hdrTable.Instance.site_state_codeColumn
         End Get
     End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.party_gst_no column object.
+    ''' </summary>
+    Public ReadOnly Property party_gst_noColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(48), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.party_gst_no column object.
+    ''' </summary>
+    Public Shared ReadOnly Property party_gst_no() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.party_gst_noColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.site_gst_no column object.
+    ''' </summary>
+    Public ReadOnly Property site_gst_noColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(49), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Pro_inv_hdr_.site_gst_no column object.
+    ''' </summary>
+    Public Shared ReadOnly Property site_gst_no() As BaseClasses.Data.StringColumn
+        Get
+            Return Pro_inv_hdrTable.Instance.site_gst_noColumn
+        End Get
+    End Property
 
 
 #End Region
@@ -1338,7 +1378,9 @@ Namespace ServelInvocing.Business
         ByVal party_stateValue As String, _
         ByVal site_stateValue As String, _
         ByVal party_state_codeValue As String, _
-        ByVal site_state_codeValue As String _
+        ByVal site_state_codeValue As String, _
+        ByVal party_gst_noValue As String, _
+        ByVal site_gst_noValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(pro_inv_noValue, pro_inv_noColumn)
@@ -1388,6 +1430,8 @@ Namespace ServelInvocing.Business
         rec.SetString(site_stateValue, site_stateColumn)
         rec.SetString(party_state_codeValue, party_state_codeColumn)
         rec.SetString(site_state_codeValue, site_state_codeColumn)
+        rec.SetString(party_gst_noValue, party_gst_noColumn)
+        rec.SetString(site_gst_noValue, site_gst_noColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

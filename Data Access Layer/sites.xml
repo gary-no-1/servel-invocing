@@ -260,7 +260,7 @@
     </Column>
     <Column InternalName="9" Priority="10" ColumnNum="9">
       <columnName>vat_no</columnName>
-      <columnUIName Source="Database">VAT No.</columnUIName>
+      <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>20</columnLengthSet>
@@ -343,7 +343,7 @@
     </Column>
     <Column InternalName="12" Priority="13" ColumnNum="12">
       <columnName>st37_no</columnName>
-      <columnUIName Source="Database">ST37 No.</columnUIName>
+      <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>20</columnLengthSet>
@@ -398,7 +398,7 @@
     </Column>
     <Column InternalName="14" Priority="15" ColumnNum="14">
       <columnName>gst_no</columnName>
-      <columnUIName Source="Database">GST No.</columnUIName>
+      <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>20</columnLengthSet>
@@ -518,7 +518,7 @@
     </Column>
   </ColumnDefinition>
   <TableName>sites</TableName>
-  <Version>4</Version>
+  <Version>5</Version>
   <Owner>dbo</Owner>
   <TableCodeName>Sites</TableCodeName>
   <TableAliasName>Sites_</TableAliasName>

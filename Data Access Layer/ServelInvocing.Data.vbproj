@@ -76,9 +76,6 @@
     <Compile Include="CommoditySqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CompanyDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="CompanySqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -94,9 +91,6 @@
     <Compile Include="Inv_termsSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ItemsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="ItemsSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -109,13 +103,7 @@
     <Compile Include="Mail_logSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PartyDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="PartySqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Pro_inv_hdrDefinition.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Pro_inv_hdrSqlTable.vb">
@@ -136,52 +124,22 @@
     <Compile Include="SalepersonSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SitesDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="SitesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="So_hdrDefinition.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="So_hdrSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="So_itemsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="So_itemsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseSo_itemsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="So_taxesDefinition.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="So_taxesSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseSo_taxesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="So_termsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="So_termsSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseSo_termsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="StatesDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="StatesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseStatesSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TaxesSqlTable.vb">
@@ -211,16 +169,55 @@
     <Compile Include="User_rolesSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="V_Invoice_AmountsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="V_Invoice_AmountsSqlView.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="V_Invoice_ItemsDefinition.vb">
+    <Compile Include="V_Invoice_ItemsSqlView.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="V_Invoice_ItemsSqlView.vb">
+    <Compile Include="CompanyDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ItemsDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PartyDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SitesDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_hdrDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_itemsDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_itemsSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_taxesDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_taxesSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_termsDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_termsSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StatesDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseStatesSqlTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_Invoice_AmountsDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_Invoice_ItemsDefinition.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CommodityDefinition.vb" >
@@ -278,6 +275,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BasePartySqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_hdrDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BasePro_inv_hdrSqlTable.vb" >

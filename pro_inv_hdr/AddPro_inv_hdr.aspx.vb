@@ -199,6 +199,7 @@ Partial Public Class AddPro_inv_hdr
         Public WithEvents id_commodityLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_party As System.Web.UI.WebControls.DropDownList
+        Public WithEvents id_party_stateLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_site As System.Web.UI.WebControls.DropDownList
         Public WithEvents id_siteLabel As System.Web.UI.WebControls.Literal
@@ -214,6 +215,7 @@ Partial Public Class AddPro_inv_hdr
         Public WithEvents no_of_packagesLabel As System.Web.UI.WebControls.Literal
         Public WithEvents packing_detailsLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents party_gst_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal
         Public WithEvents po_dtLabel As System.Web.UI.WebControls.Literal
         Public WithEvents po_noLabel As System.Web.UI.WebControls.Literal
@@ -249,6 +251,8 @@ Partial Public Class AddPro_inv_hdr
         Public WithEvents SaveButton As ThemeButton
         Public WithEvents ship_addressLabel As System.Web.UI.WebControls.Literal
         Public WithEvents ship_nameLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents site_gst_noLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents site_stateLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sort_orderLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents sort_orderLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents tax_amountLabel As System.Web.UI.WebControls.LinkButton

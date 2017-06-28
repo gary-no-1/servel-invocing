@@ -571,6 +571,12 @@ Public Class Pro_inv_hdrRecordControl
 				me.contact.text = ProInvPartyRec.contact
 				me.phone.text = ProInvPartyRec.phone
 				me.email.text = ProInvPartyRec.email
+				' -- added - 28-06-2017
+				me.party_gst_no.text = ProInvPartyRec.gst_no
+				me.party_state.text = ProInvPartyRec.state_name
+				me.site_gst_no.text = ProInvPartyRec.gst_no
+				me.site_state.text = ProInvPartyRec.state_name
+				
     	    	' Return    
     		End If
 		
@@ -641,6 +647,9 @@ Public Class Pro_inv_hdrRecordControl
 				me.contact.text = ProInvSitesRec.contact
 				me.phone.text = ProInvSitesRec.phone
 				me.email.text = ProInvSitesRec.email
+				' -- added - 28-06-2017
+				me.site_gst_no.text = ProInvSitesRec.gst_no
+				me.site_state.text = ProInvSitesRec.state_name
 				
     	    	' Return    
     		End If
@@ -8896,13 +8905,13 @@ Public Class BasePro_inv_hdrRecordControl
             
               AddHandler Me.grand_total.TextChanged, AddressOf grand_total_TextChanged
             
-              AddHandler Me.gst_no.TextChanged, AddressOf gst_no_TextChanged
-            
               AddHandler Me.item_total.TextChanged, AddressOf item_total_TextChanged
             
               AddHandler Me.no_of_packages.TextChanged, AddressOf no_of_packages_TextChanged
             
               AddHandler Me.packing_details.TextChanged, AddressOf packing_details_TextChanged
+            
+              AddHandler Me.party_gst_no.TextChanged, AddressOf party_gst_no_TextChanged
             
               AddHandler Me.party_state.TextChanged, AddressOf party_state_TextChanged
             
@@ -8927,6 +8936,8 @@ Public Class BasePro_inv_hdrRecordControl
               AddHandler Me.ship_address.TextChanged, AddressOf ship_address_TextChanged
             
               AddHandler Me.ship_name.TextChanged, AddressOf ship_name_TextChanged
+            
+              AddHandler Me.site_gst_no.TextChanged, AddressOf site_gst_no_TextChanged
             
               AddHandler Me.site_state.TextChanged, AddressOf site_state_TextChanged
             
@@ -9032,11 +9043,10 @@ Public Class BasePro_inv_hdrRecordControl
             Setgr_rr_noLabel()
             Setgrand_total()
             Setgrand_totalLabel()
-            Setgst_no()
-            Setgst_noLabel()
             Setid_commodity()
             Setid_commodityLabel()
             Setid_party()
+            Setid_party_stateLabel()
             Setid_partyLabel()
             Setid_site()
             Setid_siteLabel()
@@ -9050,8 +9060,9 @@ Public Class BasePro_inv_hdrRecordControl
             Setno_of_packagesLabel()
             Setpacking_details()
             Setpacking_detailsLabel()
+            Setparty_gst_no()
+            Setparty_gst_noLabel()
             Setparty_state()
-            Setparty_stateLabel()
             Setphone()
             SetphoneLabel()
             Setpo_dt()
@@ -9074,6 +9085,8 @@ Public Class BasePro_inv_hdrRecordControl
             Setship_addressLabel()
             Setship_name()
             Setship_nameLabel()
+            Setsite_gst_no()
+            Setsite_gst_noLabel()
             Setsite_state()
             Setsite_stateLabel()
             Settin_no()
@@ -9475,41 +9488,6 @@ Public Class BasePro_inv_hdrRecordControl
                  
         End Sub
                 
-        Public Overridable Sub Setgst_no()
-            
-        
-            ' Set the gst_no TextBox on the webpage with value from the
-            ' pro_inv_hdr database record.
-
-            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
-            ' Me.gst_no is the ASP:TextBox on the webpage.
-            
-            ' You can modify this method directly, or replace it with a call to
-            '     MyBase.Setgst_no()
-            ' and add your own code before or after the call to the MyBase function.
-
-            
-                  
-            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gst_noSpecified Then
-                				
-                ' If the gst_no is non-NULL, then format the value.
-
-                ' The Format method will use the Display Format
-                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.gst_no)
-                            
-                Me.gst_no.Text = formattedValue
-              
-            Else 
-            
-                ' gst_no is NULL in the database, so use the Default Value.  
-                ' Default Value could also be NULL.
-        
-                Me.gst_no.Text = Pro_inv_hdrTable.gst_no.Format(Pro_inv_hdrTable.gst_no.DefaultValue)
-                        		
-                End If
-                 
-        End Sub
-                
         Public Overridable Sub Setid_commodity()
             
         
@@ -9780,6 +9758,41 @@ Public Class BasePro_inv_hdrRecordControl
                 ' Default Value could also be NULL.
         
                 Me.packing_details.Text = Pro_inv_hdrTable.packing_details.Format(Pro_inv_hdrTable.packing_details.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setparty_gst_no()
+            
+        
+            ' Set the party_gst_no TextBox on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.party_gst_no is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setparty_gst_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.party_gst_noSpecified Then
+                				
+                ' If the party_gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.party_gst_no)
+                            
+                Me.party_gst_no.Text = formattedValue
+              
+            Else 
+            
+                ' party_gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.party_gst_no.Text = Pro_inv_hdrTable.party_gst_no.Format(Pro_inv_hdrTable.party_gst_no.DefaultValue)
                         		
                 End If
                  
@@ -10205,6 +10218,41 @@ Public Class BasePro_inv_hdrRecordControl
                  
         End Sub
                 
+        Public Overridable Sub Setsite_gst_no()
+            
+        
+            ' Set the site_gst_no TextBox on the webpage with value from the
+            ' pro_inv_hdr database record.
+
+            ' Me.DataSource is the pro_inv_hdr record retrieved from the database.
+            ' Me.site_gst_no is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setsite_gst_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.site_gst_noSpecified Then
+                				
+                ' If the site_gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_hdrTable.site_gst_no)
+                            
+                Me.site_gst_no.Text = formattedValue
+              
+            Else 
+            
+                ' site_gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.site_gst_no.Text = Pro_inv_hdrTable.site_gst_no.Format(Pro_inv_hdrTable.site_gst_no.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setsite_state()
             
         
@@ -10360,12 +10408,12 @@ Public Class BasePro_inv_hdrRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Setgst_noLabel()
+        Public Overridable Sub Setid_commodityLabel()
             
                     
         End Sub
                 
-        Public Overridable Sub Setid_commodityLabel()
+        Public Overridable Sub Setid_party_stateLabel()
             
                     
         End Sub
@@ -10405,7 +10453,7 @@ Public Class BasePro_inv_hdrRecordControl
                     
         End Sub
                 
-        Public Overridable Sub Setparty_stateLabel()
+        Public Overridable Sub Setparty_gst_noLabel()
             
                     
         End Sub
@@ -10461,6 +10509,11 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
                 
         Public Overridable Sub Setship_nameLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setsite_gst_noLabel()
             
                     
         End Sub
@@ -10605,7 +10658,6 @@ Public Class BasePro_inv_hdrRecordControl
             Getgr_rr_dt()
             Getgr_rr_no()
             Getgrand_total()
-            Getgst_no()
             Getid_commodity()
             Getid_party()
             Getid_site()
@@ -10614,6 +10666,7 @@ Public Class BasePro_inv_hdrRecordControl
             Getitem_total()
             Getno_of_packages()
             Getpacking_details()
+            Getparty_gst_no()
             Getparty_state()
             Getphone()
             Getpo_dt()
@@ -10626,6 +10679,7 @@ Public Class BasePro_inv_hdrRecordControl
             Getsale_ord_no()
             Getship_address()
             Getship_name()
+            Getsite_gst_no()
             Getsite_state()
             Gettin_no()
             Getweight()
@@ -10765,19 +10819,6 @@ Public Class BasePro_inv_hdrRecordControl
                       
         End Sub
                 
-        Public Overridable Sub Getgst_no()
-            
-            ' Retrieve the value entered by the user on the gst_no ASP:TextBox, and
-            ' save it into the gst_no field in DataSource pro_inv_hdr record.
-            
-            ' Custom validation should be performed in Validate, not here.
-            
-            'Save the value to data source
-            Me.DataSource.Parse(Me.gst_no.Text, Pro_inv_hdrTable.gst_no)			
-
-                      
-        End Sub
-                
         Public Overridable Sub Getid_commodity()
          
             ' Retrieve the value entered by the user on the id_commodity ASP:DropDownList, and
@@ -10868,6 +10909,19 @@ Public Class BasePro_inv_hdrRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.packing_details.Text, Pro_inv_hdrTable.packing_details)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getparty_gst_no()
+            
+            ' Retrieve the value entered by the user on the party_gst_no ASP:TextBox, and
+            ' save it into the party_gst_no field in DataSource pro_inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.party_gst_no.Text, Pro_inv_hdrTable.party_gst_no)			
 
                       
         End Sub
@@ -11033,6 +11087,19 @@ Public Class BasePro_inv_hdrRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.ship_name.Text, Pro_inv_hdrTable.ship_name)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getsite_gst_no()
+            
+            ' Retrieve the value entered by the user on the site_gst_no ASP:TextBox, and
+            ' save it into the site_gst_no field in DataSource pro_inv_hdr record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.site_gst_no.Text, Pro_inv_hdrTable.site_gst_no)			
 
                       
         End Sub
@@ -12183,10 +12250,6 @@ Public Class BasePro_inv_hdrRecordControl
                     				
         End Sub
             
-        Protected Overridable Sub gst_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
-                    				
-        End Sub
-            
         Protected Overridable Sub item_total_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -12196,6 +12259,10 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
             
         Protected Overridable Sub packing_details_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub party_gst_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -12244,6 +12311,10 @@ Public Class BasePro_inv_hdrRecordControl
         End Sub
             
         Protected Overridable Sub ship_name_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
+        Protected Overridable Sub site_gst_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
             
@@ -12518,18 +12589,6 @@ Public Class BasePro_inv_hdrRecordControl
             End Get
         End Property
         
-        Public ReadOnly Property gst_no() As System.Web.UI.WebControls.TextBox
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_no"), System.Web.UI.WebControls.TextBox)
-            End Get
-        End Property
-            
-        Public ReadOnly Property gst_noLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_noLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property id_commodity() As System.Web.UI.WebControls.DropDownList
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_commodity"), System.Web.UI.WebControls.DropDownList)
@@ -12548,6 +12607,12 @@ Public Class BasePro_inv_hdrRecordControl
             End Get
         End Property
             
+        Public ReadOnly Property id_party_stateLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_party_stateLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property id_partyLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_partyLabel"), System.Web.UI.WebControls.Literal)
@@ -12632,18 +12697,24 @@ Public Class BasePro_inv_hdrRecordControl
             End Get
         End Property
         
+        Public ReadOnly Property party_gst_no() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_gst_no"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property party_gst_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_gst_noLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
         Public ReadOnly Property party_state() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_state"), System.Web.UI.WebControls.TextBox)
             End Get
         End Property
             
-        Public ReadOnly Property party_stateLabel() As System.Web.UI.WebControls.Literal
-            Get
-                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "party_stateLabel"), System.Web.UI.WebControls.Literal)
-            End Get
-        End Property
-        
         Public ReadOnly Property phone() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "phone"), System.Web.UI.WebControls.TextBox)
@@ -12779,6 +12850,18 @@ Public Class BasePro_inv_hdrRecordControl
         Public ReadOnly Property ship_nameLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "ship_nameLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property site_gst_no() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "site_gst_no"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property site_gst_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "site_gst_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

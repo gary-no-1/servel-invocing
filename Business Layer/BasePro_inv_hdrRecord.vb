@@ -1710,6 +1710,64 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.site_state_codeColumn)
 	End Sub
 
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_hdr_.party_gst_no field.
+	''' </summary>
+	Public Function Getparty_gst_noValue() As ColumnValue
+		Return Me.GetValue(TableUtils.party_gst_noColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_hdr_.party_gst_no field.
+	''' </summary>
+	Public Function Getparty_gst_noFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.party_gst_noColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_hdr_.party_gst_no field.
+	''' </summary>
+	Public Sub Setparty_gst_noFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.party_gst_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_hdr_.party_gst_no field.
+	''' </summary>
+	Public Sub Setparty_gst_noFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.party_gst_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_hdr_.site_gst_no field.
+	''' </summary>
+	Public Function Getsite_gst_noValue() As ColumnValue
+		Return Me.GetValue(TableUtils.site_gst_noColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Pro_inv_hdr_.site_gst_no field.
+	''' </summary>
+	Public Function Getsite_gst_noFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.site_gst_noColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_hdr_.site_gst_no field.
+	''' </summary>
+	Public Sub Setsite_gst_noFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.site_gst_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Pro_inv_hdr_.site_gst_no field.
+	''' </summary>
+	Public Sub Setsite_gst_noFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.site_gst_noColumn)
+	End Sub
+
 
 
 #End Region
@@ -3412,6 +3470,76 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property site_state_codeDefault() As String
         Get
             Return TableUtils.site_state_codeColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Pro_inv_hdr_.party_gst_no field.
+	''' </summary>
+	Public Property party_gst_no() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.party_gst_noColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.party_gst_noColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property party_gst_noSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.party_gst_noColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property party_gst_noDefault() As String
+        Get
+            Return TableUtils.party_gst_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Pro_inv_hdr_.site_gst_no field.
+	''' </summary>
+	Public Property site_gst_no() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.site_gst_noColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.site_gst_noColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property site_gst_noSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.site_gst_noColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property site_gst_noDefault() As String
+        Get
+            Return TableUtils.site_gst_noColumn.DefaultValue
         End Get
     End Property
 

@@ -235,13 +235,6 @@
     <Compile Include="sites\EditSites.Controls.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.aspx.vb">
-      <DependentUpon>ShowPro_inv_hdr.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.Controls.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="commodity\AddCommodity.aspx.vb" >
       <DependentUpon>AddCommodity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -636,6 +629,13 @@
     <Compile Include="pro_inv_hdr\PrintProforma.aspx.vb" >
       <DependentUpon>PrintProforma.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.aspx.vb" >
+      <DependentUpon>ShowPro_inv_hdr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pro_inv_hdr\ShowPro_inv_hdr.Controls.vb" >
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx.vb" >
       <DependentUpon>ShowPro_inv_hdrTable.aspx</DependentUpon>
@@ -1507,7 +1507,6 @@
     <Content Include="party\ShowPartyTable.aspx" />
     <Content Include="sites\AddSites.aspx" />
     <Content Include="sites\EditSites.aspx" />
-    <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx" />
     <Content Include="commodity\AddCommodity.aspx"  />
     <Content Include="commodity\EditCommodity.aspx"  />
     <Content Include="commodity\EditCommodityTable.aspx"  />
@@ -1572,6 +1571,7 @@
     <Content Include="pro_inv_hdr\EditPro_inv_hdr.aspx"  />
     <Content Include="pro_inv_hdr\EmailPro_inv_hdr.aspx"  />
     <Content Include="pro_inv_hdr\PrintProforma.aspx"  />
+    <Content Include="pro_inv_hdr\ShowPro_inv_hdr.aspx"  />
     <Content Include="pro_inv_hdr\ShowPro_inv_hdrTable.aspx"  />
     <Content Include="pro_inv_items\AddPro_inv_items.aspx"  />
     <Content Include="pro_inv_items\EditPro_inv_items.aspx"  />
