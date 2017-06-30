@@ -379,6 +379,15 @@ Public Class Pro_inv_hdrRecordControl
 					inv_hdr_rec.remark = Pro_inv_hdrCopyRec.remark
 					inv_hdr_rec.excise_remark = Pro_inv_hdrCopyRec.excise_remark
 					
+					' 30/06/17 - GST fields added
+					inv_hdr_rec.party_gst_no = Pro_inv_hdrCopyRec.party_gst_no
+					inv_hdr_rec.party_state_code = Pro_inv_hdrCopyRec.party_state_code
+					inv_hdr_rec.party_state = Pro_inv_hdrCopyRec.party_state
+
+                    inv_hdr_rec.site_gst_no = Pro_inv_hdrCopyRec.site_gst_no
+					inv_hdr_rec.site_state_code = Pro_inv_hdrCopyRec.site_state_code
+					inv_hdr_rec.site_state = Pro_inv_hdrCopyRec.site_state
+
 					inv_hdr_rec.save()
 		
 					Dim InvId As String
@@ -395,6 +404,11 @@ Public Class Pro_inv_hdrRecordControl
 							inv_items_rec.qty = Pro_inv_itemsRec.qty
 							inv_items_rec.rate = Pro_inv_itemsRec.rate
 							inv_items_rec.amount = Pro_inv_itemsRec.amount
+							' 30/06/17 - GST fields added
+							inv_items_rec.hsn = Pro_inv_itemsRec.hsn
+							inv_items_rec.cgst = Pro_inv_itemsRec.cgst
+							inv_items_rec.sgst = Pro_inv_itemsRec.sgst
+							inv_items_rec.igst = Pro_inv_itemsRec.igst
 		
 							inv_items_rec.save()
 						End If

@@ -180,6 +180,8 @@ Partial Public Class ShowCompany
         Public WithEvents fin_year_endLabel As System.Web.UI.WebControls.Literal
         Public WithEvents fin_year_start As System.Web.UI.WebControls.Literal
         Public WithEvents fin_year_startLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents gst_no As System.Web.UI.WebControls.Literal
+        Public WithEvents gst_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents inv_pfx As System.Web.UI.WebControls.Literal
         Public WithEvents inv_pfxLabel As System.Web.UI.WebControls.Literal
         Public WithEvents inv_sfx As System.Web.UI.WebControls.Literal

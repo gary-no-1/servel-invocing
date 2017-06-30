@@ -98,6 +98,8 @@ Public Class BaseCompanyRecordControl
             
               AddHandler Me.fin_year_start1.TextChanged, AddressOf fin_year_start1_TextChanged
             
+              AddHandler Me.gst_no.TextChanged, AddressOf gst_no_TextChanged
+            
               AddHandler Me.inv_declaration.TextChanged, AddressOf inv_declaration_TextChanged
             
               AddHandler Me.inv_email_body.TextChanged, AddressOf inv_email_body_TextChanged
@@ -232,6 +234,8 @@ Public Class BaseCompanyRecordControl
             Setfin_year_endLabel1()
             Setfin_year_start1()
             Setfin_year_startLabel1()
+            Setgst_no()
+            Setgst_noLabel()
             Setinv_declaration()
             Setinv_declarationLabel()
                         Setinv_dt_fixed()
@@ -634,6 +638,41 @@ Public Class BaseCompanyRecordControl
                 ' Default Value could also be NULL.
         
                 Me.fin_year_start1.Text = CompanyTable.fin_year_start.Format(CompanyTable.fin_year_start.DefaultValue, "d")
+                        		
+                End If
+                 
+        End Sub
+                
+        Public Overridable Sub Setgst_no()
+            
+        
+            ' Set the gst_no TextBox on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.gst_no is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgst_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gst_noSpecified Then
+                				
+                ' If the gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.gst_no)
+                            
+                Me.gst_no.Text = formattedValue
+              
+            Else 
+            
+                ' gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gst_no.Text = CompanyTable.gst_no.Format(CompanyTable.gst_no.DefaultValue)
                         		
                 End If
                  
@@ -1350,6 +1389,11 @@ Public Class BaseCompanyRecordControl
                     
         End Sub
                 
+        Public Overridable Sub Setgst_noLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setinv_declarationLabel()
             
                     
@@ -1559,6 +1603,7 @@ Public Class BaseCompanyRecordControl
             Getemail_from()
             Getfin_year_end1()
             Getfin_year_start1()
+            Getgst_no()
             Getinv_declaration()
             Getinv_dt_fixed()
             Getinv_email_body()
@@ -1713,6 +1758,19 @@ Public Class BaseCompanyRecordControl
             
             'Save the value to data source
             Me.DataSource.Parse(Me.fin_year_start1.Text, CompanyTable.fin_year_start)			
+
+                      
+        End Sub
+                
+        Public Overridable Sub Getgst_no()
+            
+            ' Retrieve the value entered by the user on the gst_no ASP:TextBox, and
+            ' save it into the gst_no field in DataSource company record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.gst_no.Text, CompanyTable.gst_no)			
 
                       
         End Sub
@@ -2292,6 +2350,10 @@ Public Class BaseCompanyRecordControl
                     				
         End Sub
             
+        Protected Overridable Sub gst_no_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub inv_declaration_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -2620,6 +2682,18 @@ Public Class BaseCompanyRecordControl
         Public ReadOnly Property fin_year_startLabel1() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_startLabel1"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property gst_no() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_no"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property gst_noLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_noLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

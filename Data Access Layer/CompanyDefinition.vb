@@ -9,7 +9,7 @@
 Public Class CompanyDefinition
 
 #Region "Definition (XML) for CompanyDefinition table"
-	'Next 859 lines contain Table Definition (XML) for table "CompanyDefinition"
+	'Next 969 lines contain Table Definition (XML) for table "CompanyDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -199,30 +199,7 @@ Public Class CompanyDefinition
     "</Column>"& _
     "<Column InternalName=""8"" Priority=""9"" ColumnNum=""8"">"& _
       "<columnName>pan_no</columnName>"& _
-      "<columnUIName Source=""Database"">PAN</columnUIName>"& _
-      "<columnType>String</columnType>"& _
-      "<columnDBType>nvarchar</columnDBType>"& _
-      "<columnLengthSet>30</columnLengthSet>"& _
-      "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
-      "<columnIndex>N</columnIndex>"& _
-      "<columnUnique>N</columnUnique>"& _
-      "<columnFunction>upper</columnFunction>"& _
-      "<columnDBFormat></columnDBFormat>"& _
-      "<columnPK>N</columnPK>"& _
-      "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
-      "<columnRequired>N</columnRequired>"& _
-      "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
-      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
-      "<columnTableAliasName></columnTableAliasName>"& _
-    "</Column>"& _
-    "<Column InternalName=""9"" Priority=""10"" ColumnNum=""9"">"& _
-      "<columnName>tin_no</columnName>"& _
-      "<columnUIName Source=""User"">TIN</columnUIName>"& _
+      "<columnUIName Source=""User"">PAN</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nvarchar</columnDBType>"& _
       "<columnLengthSet>30</columnLengthSet>"& _
@@ -230,7 +207,7 @@ Public Class CompanyDefinition
       "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
+      "<columnFunction>upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
@@ -243,8 +220,31 @@ Public Class CompanyDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
       "<columnCodeName></columnCodeName>"& _
-      "<InternalName>9</InternalName>"& _
+      "<InternalName>8</InternalName>"& _
       "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
+    "<Column InternalName=""9"" Priority=""10"" ColumnNum=""9"">"& _
+      "<columnName>tin_no</columnName>"& _
+      "<columnUIName Source=""Database"">TIN</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nvarchar</columnDBType>"& _
+      "<columnLengthSet>30</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
     "<Column InternalName=""10"" Priority=""11"" ColumnNum=""10"">"& _
       "<columnName>eac</columnName>"& _
@@ -317,72 +317,81 @@ Public Class CompanyDefinition
     "</Column>"& _
     "<Column InternalName=""13"" Priority=""14"" ColumnNum=""13"">"& _
       "<columnName>ecc_no</columnName>"& _
-      "<columnUIName Source=""Database"">ECC No:</columnUIName>"& _
+      "<columnUIName Source=""User"">ECC No.</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nvarchar</columnDBType>"& _
       "<columnLengthSet>30</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction>upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>13</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""14"" Priority=""15"" ColumnNum=""14"">"& _
       "<columnName>cer_no</columnName>"& _
-      "<columnUIName Source=""Database"">CER No:</columnUIName>"& _
+      "<columnUIName Source=""User"">CER No.</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nvarchar</columnDBType>"& _
       "<columnLengthSet>30</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction>upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>14</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""15"" Priority=""16"" ColumnNum=""15"">"& _
       "<columnName>cer_code</columnName>"& _
-      "<columnUIName>Code</columnUIName>"& _
+      "<columnUIName Source=""User"">CER Code</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nvarchar</columnDBType>"& _
       "<columnLengthSet>50</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction>upper</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>15</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""16"" Priority=""17"" ColumnNum=""16"">"& _
       "<columnName>sign</columnName>"& _
@@ -478,7 +487,7 @@ Public Class CompanyDefinition
     "</Column>"& _
     "<Column InternalName=""20"" Priority=""21"" ColumnNum=""20"">"& _
       "<columnName>fin_year_start</columnName>"& _
-      "<columnUIName Source=""Database"">Finiancial Year Start</columnUIName>"& _
+      "<columnUIName>Fin Year Start</columnUIName>"& _
       "<columnType>Date</columnType>"& _
       "<columnDBType>date</columnDBType>"& _
       "<columnLengthSet></columnLengthSet>"& _
@@ -502,7 +511,7 @@ Public Class CompanyDefinition
     "</Column>"& _
     "<Column InternalName=""21"" Priority=""22"" ColumnNum=""21"">"& _
       "<columnName>fin_year_end</columnName>"& _
-      "<columnUIName Source=""Database"">Financial Year End</columnUIName>"& _
+      "<columnUIName>Fin Year End</columnUIName>"& _
       "<columnType>Date</columnType>"& _
       "<columnDBType>date</columnDBType>"& _
       "<columnLengthSet></columnLengthSet>"& _
@@ -526,49 +535,55 @@ Public Class CompanyDefinition
     "</Column>"& _
     "<Column InternalName=""22"" Priority=""23"" ColumnNum=""22"">"& _
       "<columnName>inv_pfx</columnName>"& _
-      "<columnUIName Source=""Database"">Invoice Prefix</columnUIName>"& _
+      "<columnUIName Source=""User"">Invoice Prefix</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>10</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>22</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""23"" Priority=""24"" ColumnNum=""23"">"& _
       "<columnName>inv_sfx</columnName>"& _
-      "<columnUIName Source=""Database"">Invoice Suffix</columnUIName>"& _
+      "<columnUIName Source=""User"">Invoice Suffix</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>10</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>23</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
     "<Column InternalName=""24"" Priority=""25"" ColumnNum=""24"">"& _
       "<columnName>next_inv_no</columnName>"& _
@@ -594,59 +609,6 @@ Public Class CompanyDefinition
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
     "<Column InternalName=""25"" Priority=""26"" ColumnNum=""25"">"& _
-      "<columnName>inv_dt_fixed</columnName>"& _
-      "<columnUIName Source=""User"">Fixed Invoice Date</columnUIName>"& _
-      "<columnType>Boolean</columnType>"& _
-      "<columnDBType>bit</columnDBType>"& _
-      "<columnLengthSet></columnLengthSet>"& _
-      "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
-      "<columnIndex>N</columnIndex>"& _
-      "<columnUnique>N</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
-      "<columnDBFormat></columnDBFormat>"& _
-      "<columnPK>N</columnPK>"& _
-      "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
-      "<columnRequired>N</columnRequired>"& _
-      "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
-      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
-      "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>25</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
-    "</Column>"& _
-    "<Column InternalName=""26"" Priority=""27"" ColumnNum=""26"">"& _
-      "<columnName>next_inv_dt</columnName>"& _
-      "<columnUIName Source=""User"">Next Invoice Date</columnUIName>"& _
-      "<columnType>Date</columnType>"& _
-      "<columnDBType>date</columnDBType>"& _
-      "<columnLengthSet></columnLengthSet>"& _
-      "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
-      "<columnIndex>N</columnIndex>"& _
-      "<columnUnique>N</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
-      "<columnFormat Source=""User"">d</columnFormat>"& _
-      "<columnDBFormat>d</columnDBFormat>"& _
-      "<columnPK>N</columnPK>"& _
-      "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
-      "<columnRequired>N</columnRequired>"& _
-      "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">Y</columnCaseSensitive>"& _
-      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
-      "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>26</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
-    "</Column>"& _
-    "<Column InternalName=""27"" Priority=""28"" ColumnNum=""27"">"& _
       "<columnName>pad_inv_no</columnName>"& _
       "<columnUIName>Invoice Number Length</columnUIName>"& _
       "<columnType>Number</columnType>"& _
@@ -669,33 +631,30 @@ Public Class CompanyDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
-    "<Column InternalName=""28"" Priority=""29"" ColumnNum=""28"">"& _
+    "<Column InternalName=""26"" Priority=""27"" ColumnNum=""26"">"& _
       "<columnName>inv_declaration</columnName>"& _
-      "<columnUIName Source=""User"">Invoice Declaration</columnUIName>"& _
+      "<columnUIName Source=""Database"">Invoice Declaration</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nvarchar</columnDBType>"& _
       "<columnLengthSet>300</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed Source=""User"">N</columnComputed>"& _
-      "<columnIdentity Source=""User"">N</columnIdentity>"& _
-      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
       "<columnRequired>N</columnRequired>"& _
       "<columnNotNull>N</columnNotNull>"& _
-      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
-      "<columnCodeName></columnCodeName>"& _
-      "<InternalName>28</InternalName>"& _
-      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
-    "<Column InternalName=""29"" Priority=""30"" ColumnNum=""29"">"& _
+    "<Column InternalName=""27"" Priority=""28"" ColumnNum=""27"">"& _
       "<columnName>email_from</columnName>"& _
       "<columnUIName>Email From</columnUIName>"& _
       "<columnType>Email</columnType>"& _
@@ -718,7 +677,7 @@ Public Class CompanyDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
-    "<Column InternalName=""30"" Priority=""31"" ColumnNum=""30"">"& _
+    "<Column InternalName=""28"" Priority=""29"" ColumnNum=""28"">"& _
       "<columnName>email_bcc</columnName>"& _
       "<columnUIName>Email Bcc</columnUIName>"& _
       "<columnType>Email</columnType>"& _
@@ -741,7 +700,7 @@ Public Class CompanyDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
-    "<Column InternalName=""31"" Priority=""32"" ColumnNum=""31"">"& _
+    "<Column InternalName=""29"" Priority=""30"" ColumnNum=""29"">"& _
       "<columnName>inv_email_body</columnName>"& _
       "<columnUIName>Email Body</columnUIName>"& _
       "<columnType>Email</columnType>"& _
@@ -764,7 +723,7 @@ Public Class CompanyDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
-    "<Column InternalName=""32"" Priority=""33"" ColumnNum=""32"">"& _
+    "<Column InternalName=""30"" Priority=""31"" ColumnNum=""30"">"& _
       "<columnName>proforma_email_body</columnName>"& _
       "<columnUIName>Proforma Email Body</columnUIName>"& _
       "<columnType>Email</columnType>"& _
@@ -787,9 +746,9 @@ Public Class CompanyDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
-    "<Column InternalName=""33"" Priority=""34"" ColumnNum=""33"">"& _
+    "<Column InternalName=""31"" Priority=""32"" ColumnNum=""31"">"& _
       "<columnName>print_inv_copy_hdr</columnName>"& _
-      "<columnUIName Source=""Database"">Print Invoice Copy Header</columnUIName>"& _
+      "<columnUIName>Print Inv Copy HDR</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nvarchar</columnDBType>"& _
       "<columnLengthSet>100</columnLengthSet>"& _
@@ -810,17 +769,168 @@ Public Class CompanyDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
-    "<Column InternalName=""34"" Priority=""35"" ColumnNum=""34"">"& _
-      "<columnName>srv_tax_no</columnName>"& _
-      "<columnUIName Source=""Database"">Service Tax No:</columnUIName>"& _
+    "<Column InternalName=""32"" Priority=""33"" ColumnNum=""32"">"& _
+      "<columnName>tan_no</columnName>"& _
+      "<columnUIName Source=""User"">TAN</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nvarchar</columnDBType>"& _
       "<columnLengthSet>30</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
       "<columnFunction>upper</columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>32</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
+    "<Column InternalName=""33"" Priority=""34"" ColumnNum=""33"">"& _
+      "<columnName>srv_tax_no</columnName>"& _
+      "<columnUIName Source=""User"">Service Tax No.</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nvarchar</columnDBType>"& _
+      "<columnLengthSet>30</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction>upper</columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>33</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
+    "<Column InternalName=""34"" Priority=""35"" ColumnNum=""34"">"& _
+      "<columnName>inv_dt_fixed</columnName>"& _
+      "<columnUIName>Fixed Invoice Date</columnUIName>"& _
+      "<columnType>Boolean</columnType>"& _
+      "<columnDBType>bit</columnDBType>"& _
+      "<columnLengthSet></columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""35"" Priority=""36"" ColumnNum=""35"">"& _
+      "<columnName>next_inv_dt</columnName>"& _
+      "<columnUIName Source=""Database"">Next Invoice Date</columnUIName>"& _
+      "<columnType>Date</columnType>"& _
+      "<columnDBType>date</columnDBType>"& _
+      "<columnLengthSet></columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnFormat>d</columnFormat>"& _
+      "<columnDBFormat>d</columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""Database"">Y</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
+    "<Column InternalName=""36"" Priority=""37"" ColumnNum=""36"">"& _
+      "<columnName>gst_no</columnName>"& _
+      "<columnUIName Source=""User"">GST No.</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>20</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction>upper</columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>36</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
+    "<Column InternalName=""37"" Priority=""38"" ColumnNum=""37"">"& _
+      "<columnName>id_state</columnName>"& _
+      "<columnUIName Source=""User"">State</columnUIName>"& _
+      "<columnType>Number</columnType>"& _
+      "<columnDBType>int</columnDBType>"& _
+      "<columnLengthSet>10.0</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>37</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
+    "</Column>"& _
+    "<Column InternalName=""38"" Priority=""39"" ColumnNum=""38"">"& _
+      "<columnName>state_code</columnName>"& _
+      "<columnUIName>State Code</columnUIName>"& _
+      "<columnType>String</columnType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
+      "<columnLengthSet>2</columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
@@ -833,17 +943,17 @@ Public Class CompanyDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
-    "<Column InternalName=""35"" Priority=""36"" ColumnNum=""35"">"& _
-      "<columnName>tan_no</columnName>"& _
-      "<columnUIName Source=""Database"">TAN</columnUIName>"& _
+    "<Column InternalName=""39"" Priority=""40"" ColumnNum=""39"">"& _
+      "<columnName>state_name</columnName>"& _
+      "<columnUIName>State Name</columnUIName>"& _
       "<columnType>String</columnType>"& _
-      "<columnDBType>nvarchar</columnDBType>"& _
+      "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>30</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
       "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
-      "<columnFunction>upper</columnFunction>"& _
+      "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
@@ -858,7 +968,7 @@ Public Class CompanyDefinition
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>company</TableName>"& _
-  "<Version>7</Version>"& _
+  "<Version>8</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Company</TableCodeName>"& _
   "<TableAliasName>Company_</TableAliasName>"& _

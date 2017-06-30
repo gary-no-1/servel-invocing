@@ -169,6 +169,7 @@ Partial Public Class ShowCompanyTable
         Public WithEvents emailLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents fin_year_endLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents fin_year_startLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents gst_noLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents nameLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
         Public WithEvents pan_noLabel As System.Web.UI.WebControls.LinkButton

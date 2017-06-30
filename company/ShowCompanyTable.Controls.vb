@@ -140,6 +140,7 @@ Public Class BaseCompanyTableControlRow
             Setemail()
             Setfin_year_end()
             Setfin_year_start()
+            Setgst_no()
             Setname()
             Setpan_no()
             Setphone()
@@ -290,6 +291,50 @@ Public Class BaseCompanyTableControlRow
                 OrElse Me.fin_year_start.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.fin_year_start.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setgst_no()
+            
+        
+            ' Set the gst_no Literal on the webpage with value from the
+            ' company database record.
+
+            ' Me.DataSource is the company record retrieved from the database.
+            ' Me.gst_no is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgst_no()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gst_noSpecified Then
+                				
+                ' If the gst_no is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(CompanyTable.gst_no)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.gst_no.Text = formattedValue
+              
+            Else 
+            
+                ' gst_no is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gst_no.Text = CompanyTable.gst_no.Format(CompanyTable.gst_no.DefaultValue)
+                        		
+                End If
+                 
+            ' If the gst_no is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.gst_no.Text Is Nothing _
+                OrElse Me.gst_no.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.gst_no.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -569,6 +614,7 @@ Public Class BaseCompanyTableControlRow
             Getemail()
             Getfin_year_end()
             Getfin_year_start()
+            Getgst_no()
             Getname()
             Getpan_no()
             Getphone()
@@ -585,6 +631,10 @@ Public Class BaseCompanyTableControlRow
         End Sub
                 
         Public Overridable Sub Getfin_year_start()
+            
+        End Sub
+                
+        Public Overridable Sub Getgst_no()
             
         End Sub
                 
@@ -920,6 +970,12 @@ Public Class BaseCompanyTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property gst_no() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_no"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property name() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "name"), System.Web.UI.WebControls.Literal)
@@ -1058,6 +1114,8 @@ Public Class BaseCompanyTableControl
             
               AddHandler Me.fin_year_startLabel.Click, AddressOf fin_year_startLabel_Click
             
+              AddHandler Me.gst_noLabel.Click, AddressOf gst_noLabel_Click
+            
               AddHandler Me.nameLabel1.Click, AddressOf nameLabel1_Click
             
               AddHandler Me.pan_noLabel.Click, AddressOf pan_noLabel_Click
@@ -1191,6 +1249,7 @@ Public Class BaseCompanyTableControl
             SetemailLabel()
             Setfin_year_endLabel()
             Setfin_year_startLabel()
+            Setgst_noLabel()
             SetnameLabel1()
             Setpan_noLabel()
             SetphoneLabel()
@@ -1231,6 +1290,7 @@ Public Class BaseCompanyTableControl
             SetemailLabel()
             Setfin_year_endLabel()
             Setfin_year_startLabel()
+            Setgst_noLabel()
             SetnameLabel1()
             Setpan_noLabel()
             SetphoneLabel()
@@ -1582,6 +1642,9 @@ Public Class BaseCompanyTableControl
                         If recControl.fin_year_start.Text <> "" Then
                             rec.Parse(recControl.fin_year_start.Text, CompanyTable.fin_year_start)
                         End If
+                        If recControl.gst_no.Text <> "" Then
+                            rec.Parse(recControl.gst_no.Text, CompanyTable.gst_no)
+                        End If
                         If recControl.name.Text <> "" Then
                             rec.Parse(recControl.name.Text, CompanyTable.name)
                         End If
@@ -1672,6 +1735,11 @@ Public Class BaseCompanyTableControl
         End Sub
                 
         Public Overridable Sub Setfin_year_startLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setgst_noLabel()
             
                     
         End Sub
@@ -1969,6 +2037,28 @@ Public Class BaseCompanyTableControl
               
         End Sub
             
+        Public Overridable Sub gst_noLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by gst_no when clicked.
+              
+            ' Get previous sorting state for gst_no.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(CompanyTable.gst_no)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for gst_no.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(CompanyTable.gst_no, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by gst_no, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub nameLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by name when clicked.
               
@@ -2128,6 +2218,7 @@ Public Class BaseCompanyTableControl
              CompanyTable.tin_no, _ 
              CompanyTable.fin_year_start, _ 
              CompanyTable.fin_year_end, _ 
+             CompanyTable.gst_no, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(CompanyTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -2175,6 +2266,7 @@ Public Class BaseCompanyTableControl
              excelReport.AddColumn(New ExcelColumn(CompanyTable.tin_no, "Default"))
              excelReport.AddColumn(New ExcelColumn(CompanyTable.fin_year_start, "Short Date"))
              excelReport.AddColumn(New ExcelColumn(CompanyTable.fin_year_end, "Short Date"))
+             excelReport.AddColumn(New ExcelColumn(CompanyTable.gst_no, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2250,6 +2342,7 @@ Public Class BaseCompanyTableControl
                  report.AddColumn(CompanyTable.tin_no.Name, ReportEnum.Align.Left, "${tin_no}", ReportEnum.Align.Left, 24)
                  report.AddColumn(CompanyTable.fin_year_start.Name, ReportEnum.Align.Left, "${fin_year_start}", ReportEnum.Align.Left, 20)
                  report.AddColumn(CompanyTable.fin_year_end.Name, ReportEnum.Align.Left, "${fin_year_end}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(CompanyTable.gst_no.Name, ReportEnum.Align.Left, "${gst_no}", ReportEnum.Align.Left, 20)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2284,6 +2377,7 @@ Public Class BaseCompanyTableControl
                              report.AddData("${tin_no}", record.Format(CompanyTable.tin_no), ReportEnum.Align.Left, 100)
                              report.AddData("${fin_year_start}", record.Format(CompanyTable.fin_year_start), ReportEnum.Align.Left, 100)
                              report.AddData("${fin_year_end}", record.Format(CompanyTable.fin_year_end), ReportEnum.Align.Left, 100)
+                             report.AddData("${gst_no}", record.Format(CompanyTable.gst_no), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -2387,6 +2481,7 @@ Public Class BaseCompanyTableControl
                  report.AddColumn(CompanyTable.tin_no.Name, ReportEnum.Align.Left, "${tin_no}", ReportEnum.Align.Left, 24)
                  report.AddColumn(CompanyTable.fin_year_start.Name, ReportEnum.Align.Left, "${fin_year_start}", ReportEnum.Align.Left, 20)
                  report.AddColumn(CompanyTable.fin_year_end.Name, ReportEnum.Align.Left, "${fin_year_end}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(CompanyTable.gst_no.Name, ReportEnum.Align.Left, "${gst_no}", ReportEnum.Align.Left, 20)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -2418,6 +2513,7 @@ Public Class BaseCompanyTableControl
                              report.AddData("${tin_no}", record.Format(CompanyTable.tin_no), ReportEnum.Align.Left, 100)
                              report.AddData("${fin_year_start}", record.Format(CompanyTable.fin_year_start), ReportEnum.Align.Left, 100)
                              report.AddData("${fin_year_end}", record.Format(CompanyTable.fin_year_end), ReportEnum.Align.Left, 100)
+                             report.AddData("${gst_no}", record.Format(CompanyTable.gst_no), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -2649,6 +2745,12 @@ Public Class BaseCompanyTableControl
         Public ReadOnly Property fin_year_startLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "fin_year_startLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property gst_noLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_noLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         

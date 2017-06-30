@@ -789,77 +789,6 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.next_inv_noColumn)
 	End Sub
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Company_.inv_dt_fixed field.
-	''' </summary>
-	Public Function Getinv_dt_fixedValue() As ColumnValue
-		Return Me.GetValue(TableUtils.inv_dt_fixedColumn)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Company_.inv_dt_fixed field.
-	''' </summary>
-	Public Function Getinv_dt_fixedFieldValue() As Boolean
-		Return CType(Me.GetValue(TableUtils.inv_dt_fixedColumn).ToBoolean(), Boolean)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Company_.inv_dt_fixed field.
-	''' </summary>
-	Public Sub Setinv_dt_fixedFieldValue(ByVal val As ColumnValue)
-		Me.SetValue(val, TableUtils.inv_dt_fixedColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Company_.inv_dt_fixed field.
-	''' </summary>
-	Public Sub Setinv_dt_fixedFieldValue(ByVal val As String)
-		Me.SetString(val, TableUtils.inv_dt_fixedColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Company_.inv_dt_fixed field.
-	''' </summary>
-	Public Sub Setinv_dt_fixedFieldValue(ByVal val As Boolean)
-		Dim colValue As ColumnValue = New ColumnValue(val)
-		Me.SetValue(colValue, TableUtils.inv_dt_fixedColumn)
-	End Sub
-	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Company_.next_inv_dt field.
-	''' </summary>
-	Public Function Getnext_inv_dtValue() As ColumnValue
-		Return Me.GetValue(TableUtils.next_inv_dtColumn)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Company_.next_inv_dt field.
-	''' </summary>
-	Public Function Getnext_inv_dtFieldValue() As DateTime
-		Return CType(Me.GetValue(TableUtils.next_inv_dtColumn).ToDateTime(), DateTime)
-	End Function
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Company_.next_inv_dt field.
-	''' </summary>
-	Public Sub Setnext_inv_dtFieldValue(ByVal val As ColumnValue)
-		Me.SetValue(val, TableUtils.next_inv_dtColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Company_.next_inv_dt field.
-	''' </summary>
-	Public Sub Setnext_inv_dtFieldValue(ByVal val As String)
-		Me.SetString(val, TableUtils.next_inv_dtColumn)
-	End Sub
-
-	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Company_.next_inv_dt field.
-	''' </summary>
-	Public Sub Setnext_inv_dtFieldValue(ByVal val As DateTime)
-		Dim colValue As ColumnValue = New ColumnValue(val)
-		Me.SetValue(colValue, TableUtils.next_inv_dtColumn)
-	End Sub
-
-	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Company_.pad_inv_no field.
 	''' </summary>
 	Public Function Getpad_inv_noValue() As ColumnValue
@@ -1085,6 +1014,35 @@ Namespace ServelInvocing.Business
 	End Sub
 
 	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.tan_no field.
+	''' </summary>
+	Public Function Gettan_noValue() As ColumnValue
+		Return Me.GetValue(TableUtils.tan_noColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.tan_no field.
+	''' </summary>
+	Public Function Gettan_noFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.tan_noColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.tan_no field.
+	''' </summary>
+	Public Sub Settan_noFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.tan_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.tan_no field.
+	''' </summary>
+	Public Sub Settan_noFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.tan_noColumn)
+	End Sub
+
+	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Company_.srv_tax_no field.
 	''' </summary>
 	Public Function Getsrv_tax_noValue() As ColumnValue
@@ -1114,32 +1072,212 @@ Namespace ServelInvocing.Business
 	End Sub
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Company_.tan_no field.
+	''' This is a convenience method that provides direct access to the value of the record's Company_.inv_dt_fixed field.
 	''' </summary>
-	Public Function Gettan_noValue() As ColumnValue
-		Return Me.GetValue(TableUtils.tan_noColumn)
+	Public Function Getinv_dt_fixedValue() As ColumnValue
+		Return Me.GetValue(TableUtils.inv_dt_fixedColumn)
 	End Function
 
 	''' <summary>
-	''' This is a convenience method that provides direct access to the value of the record's Company_.tan_no field.
+	''' This is a convenience method that provides direct access to the value of the record's Company_.inv_dt_fixed field.
 	''' </summary>
-	Public Function Gettan_noFieldValue() As String
-		Return CType(Me.GetValue(TableUtils.tan_noColumn).ToString(), String)
+	Public Function Getinv_dt_fixedFieldValue() As Boolean
+		Return CType(Me.GetValue(TableUtils.inv_dt_fixedColumn).ToBoolean(), Boolean)
 	End Function
 
 	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Company_.tan_no field.
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.inv_dt_fixed field.
 	''' </summary>
-	Public Sub Settan_noFieldValue(ByVal val As ColumnValue)
-		Me.SetValue(val, TableUtils.tan_noColumn)
+	Public Sub Setinv_dt_fixedFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.inv_dt_fixedColumn)
 	End Sub
 
 	''' <summary>
-	''' This is a convenience method that allows direct modification of the value of the record's Company_.tan_no field.
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.inv_dt_fixed field.
 	''' </summary>
-	Public Sub Settan_noFieldValue(ByVal val As String)
+	Public Sub Setinv_dt_fixedFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.inv_dt_fixedColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.inv_dt_fixed field.
+	''' </summary>
+	Public Sub Setinv_dt_fixedFieldValue(ByVal val As Boolean)
 		Dim colValue As ColumnValue = New ColumnValue(val)
-		Me.SetValue(colValue, TableUtils.tan_noColumn)
+		Me.SetValue(colValue, TableUtils.inv_dt_fixedColumn)
+	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.next_inv_dt field.
+	''' </summary>
+	Public Function Getnext_inv_dtValue() As ColumnValue
+		Return Me.GetValue(TableUtils.next_inv_dtColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.next_inv_dt field.
+	''' </summary>
+	Public Function Getnext_inv_dtFieldValue() As DateTime
+		Return CType(Me.GetValue(TableUtils.next_inv_dtColumn).ToDateTime(), DateTime)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.next_inv_dt field.
+	''' </summary>
+	Public Sub Setnext_inv_dtFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.next_inv_dtColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.next_inv_dt field.
+	''' </summary>
+	Public Sub Setnext_inv_dtFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.next_inv_dtColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.next_inv_dt field.
+	''' </summary>
+	Public Sub Setnext_inv_dtFieldValue(ByVal val As DateTime)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.next_inv_dtColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.gst_no field.
+	''' </summary>
+	Public Function Getgst_noValue() As ColumnValue
+		Return Me.GetValue(TableUtils.gst_noColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.gst_no field.
+	''' </summary>
+	Public Function Getgst_noFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.gst_noColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.gst_no field.
+	''' </summary>
+	Public Sub Setgst_noFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.gst_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.gst_no field.
+	''' </summary>
+	Public Sub Setgst_noFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.gst_noColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.id_state field.
+	''' </summary>
+	Public Function Getid_stateValue() As ColumnValue
+		Return Me.GetValue(TableUtils.id_stateColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.id_state field.
+	''' </summary>
+	Public Function Getid_stateFieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id_stateColumn).ToInt32(), Int32)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.id_state field.
+	''' </summary>
+	Public Sub Setid_stateFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.id_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.id_state field.
+	''' </summary>
+	Public Sub Setid_stateFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.id_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.id_state field.
+	''' </summary>
+	Public Sub Setid_stateFieldValue(ByVal val As Double)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.id_state field.
+	''' </summary>
+	Public Sub Setid_stateFieldValue(ByVal val As Decimal)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_stateColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.id_state field.
+	''' </summary>
+	Public Sub Setid_stateFieldValue(ByVal val As Int64)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.id_stateColumn)
+	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.state_code field.
+	''' </summary>
+	Public Function Getstate_codeValue() As ColumnValue
+		Return Me.GetValue(TableUtils.state_codeColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.state_code field.
+	''' </summary>
+	Public Function Getstate_codeFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.state_codeColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.state_code field.
+	''' </summary>
+	Public Sub Setstate_codeFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.state_codeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.state_code field.
+	''' </summary>
+	Public Sub Setstate_codeFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.state_codeColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.state_name field.
+	''' </summary>
+	Public Function Getstate_nameValue() As ColumnValue
+		Return Me.GetValue(TableUtils.state_nameColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Company_.state_name field.
+	''' </summary>
+	Public Function Getstate_nameFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.state_nameColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.state_name field.
+	''' </summary>
+	Public Sub Setstate_nameFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.state_nameColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Company_.state_name field.
+	''' </summary>
+	Public Sub Setstate_nameFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.state_nameColumn)
 	End Sub
 
 
@@ -2028,78 +2166,6 @@ Namespace ServelInvocing.Business
     End Property
 
 	''' <summary>
-	''' This is a convenience property that provides direct access to the value of the record's Company_.inv_dt_fixed field.
-	''' </summary>
-	Public Property inv_dt_fixed() As Boolean
-		Get 
-			Return CType(Me.GetValue(TableUtils.inv_dt_fixedColumn).ToBoolean(), Boolean)
-		End Get
-		Set (ByVal val As Boolean) 
-			Dim colValue As ColumnValue = New ColumnValue(val)
-			Me.SetValue(colValue, TableUtils.inv_dt_fixedColumn)
-		End Set
-	End Property
-
-
-	''' <summary>
-	''' This is a convenience method that can be used to determine that the column is set.
-	''' </summary>
-	Public ReadOnly Property inv_dt_fixedSpecified() As Boolean
-        Get
-            Dim val As ColumnValue = Me.GetValue(TableUtils.inv_dt_fixedColumn)
-            If val Is Nothing OrElse val.IsNull Then
-                Return False
-            End If
-            Return True
-        End Get
-    End Property
-
-	''' <summary>
-	''' This is a convenience method that can be used to get the default value of a column.
-	''' </summary>
-    Public ReadOnly Property inv_dt_fixedDefault() As String
-        Get
-            Return TableUtils.inv_dt_fixedColumn.DefaultValue
-        End Get
-    End Property
-
-	''' <summary>
-	''' This is a convenience property that provides direct access to the value of the record's Company_.next_inv_dt field.
-	''' </summary>
-	Public Property next_inv_dt() As DateTime
-		Get 
-			Return CType(Me.GetValue(TableUtils.next_inv_dtColumn).ToDateTime(), DateTime)
-		End Get
-		Set (ByVal val As DateTime) 
-			Dim colValue As ColumnValue = New ColumnValue(val)
-			Me.SetValue(colValue, TableUtils.next_inv_dtColumn)
-		End Set
-	End Property
-
-
-	''' <summary>
-	''' This is a convenience method that can be used to determine that the column is set.
-	''' </summary>
-	Public ReadOnly Property next_inv_dtSpecified() As Boolean
-        Get
-            Dim val As ColumnValue = Me.GetValue(TableUtils.next_inv_dtColumn)
-            If val Is Nothing OrElse val.IsNull Then
-                Return False
-            End If
-            Return True
-        End Get
-    End Property
-
-	''' <summary>
-	''' This is a convenience method that can be used to get the default value of a column.
-	''' </summary>
-    Public ReadOnly Property next_inv_dtDefault() As String
-        Get
-            Return TableUtils.next_inv_dtColumn.DefaultValue
-        End Get
-    End Property
-
-	''' <summary>
 	''' This is a convenience property that provides direct access to the value of the record's Company_.pad_inv_no field.
 	''' </summary>
 	Public Property pad_inv_no() As Int32
@@ -2346,6 +2412,41 @@ Namespace ServelInvocing.Business
     End Property
 
 	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.tan_no field.
+	''' </summary>
+	Public Property tan_no() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.tan_noColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.tan_noColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property tan_noSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.tan_noColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property tan_noDefault() As String
+        Get
+            Return TableUtils.tan_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
 	''' This is a convenience property that provides direct access to the value of the record's Company_.srv_tax_no field.
 	''' </summary>
 	Public Property srv_tax_no() As String
@@ -2381,14 +2482,15 @@ Namespace ServelInvocing.Business
     End Property
 
 	''' <summary>
-	''' This is a convenience property that provides direct access to the value of the record's Company_.tan_no field.
+	''' This is a convenience property that provides direct access to the value of the record's Company_.inv_dt_fixed field.
 	''' </summary>
-	Public Property tan_no() As String
+	Public Property inv_dt_fixed() As Boolean
 		Get 
-			Return CType(Me.GetValue(TableUtils.tan_noColumn).ToString(), String)
+			Return CType(Me.GetValue(TableUtils.inv_dt_fixedColumn).ToBoolean(), Boolean)
 		End Get
-		Set (ByVal Value As String) 
-			Me.SetString(value, TableUtils.tan_noColumn)
+		Set (ByVal val As Boolean) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.inv_dt_fixedColumn)
 		End Set
 	End Property
 
@@ -2396,9 +2498,9 @@ Namespace ServelInvocing.Business
 	''' <summary>
 	''' This is a convenience method that can be used to determine that the column is set.
 	''' </summary>
-	Public ReadOnly Property tan_noSpecified() As Boolean
+	Public ReadOnly Property inv_dt_fixedSpecified() As Boolean
         Get
-            Dim val As ColumnValue = Me.GetValue(TableUtils.tan_noColumn)
+            Dim val As ColumnValue = Me.GetValue(TableUtils.inv_dt_fixedColumn)
             If val Is Nothing OrElse val.IsNull Then
                 Return False
             End If
@@ -2409,9 +2511,186 @@ Namespace ServelInvocing.Business
 	''' <summary>
 	''' This is a convenience method that can be used to get the default value of a column.
 	''' </summary>
-    Public ReadOnly Property tan_noDefault() As String
+    Public ReadOnly Property inv_dt_fixedDefault() As String
         Get
-            Return TableUtils.tan_noColumn.DefaultValue
+            Return TableUtils.inv_dt_fixedColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.next_inv_dt field.
+	''' </summary>
+	Public Property next_inv_dt() As DateTime
+		Get 
+			Return CType(Me.GetValue(TableUtils.next_inv_dtColumn).ToDateTime(), DateTime)
+		End Get
+		Set (ByVal val As DateTime) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.next_inv_dtColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property next_inv_dtSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.next_inv_dtColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property next_inv_dtDefault() As String
+        Get
+            Return TableUtils.next_inv_dtColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.gst_no field.
+	''' </summary>
+	Public Property gst_no() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.gst_noColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.gst_noColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property gst_noSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.gst_noColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property gst_noDefault() As String
+        Get
+            Return TableUtils.gst_noColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.id_state field.
+	''' </summary>
+	Public Property id_state() As Int32
+		Get 
+			Return CType(Me.GetValue(TableUtils.id_stateColumn).ToInt32(), Int32)
+		End Get
+		Set (ByVal val As Int32) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.id_stateColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property id_stateSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id_stateColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property id_stateDefault() As String
+        Get
+            Return TableUtils.id_stateColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.state_code field.
+	''' </summary>
+	Public Property state_code() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.state_codeColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.state_codeColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property state_codeSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.state_codeColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property state_codeDefault() As String
+        Get
+            Return TableUtils.state_codeColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Company_.state_name field.
+	''' </summary>
+	Public Property state_name() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.state_nameColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.state_nameColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property state_nameSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.state_nameColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property state_nameDefault() As String
+        Get
+            Return TableUtils.state_nameColumn.DefaultValue
         End Get
     End Property
 

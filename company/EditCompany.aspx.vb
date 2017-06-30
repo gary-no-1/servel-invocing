@@ -173,6 +173,7 @@ Partial Public Class EditCompany
         Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
         Public WithEvents fin_year_endLabel1 As System.Web.UI.WebControls.Literal
         Public WithEvents fin_year_startLabel1 As System.Web.UI.WebControls.Literal
+        Public WithEvents gst_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents inv_declarationLabel As System.Web.UI.WebControls.Literal
         Public WithEvents inv_dt_fixed As System.Web.UI.WebControls.CheckBox
         Public WithEvents inv_dt_fixedLabel As System.Web.UI.WebControls.Literal
