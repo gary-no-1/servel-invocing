@@ -87,7 +87,9 @@ Partial Public Class PrintInvoice
 					si = 0
 				    For Each s As String In strArr
 						'reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoiceFeb16())
-						reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoiceFinal())
+						' 30-06-2017 -- new GST invoice
+						' reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoiceFinal())
+						reportBook.Reports.Add(New ServelInvoicingReportLibrary.ServelInvoiceGST())
 						reportBook.Reports(si).ReportParameters("PrintProInvId").value = sID
 						reportBook.Reports(si).ReportParameters("CopyName").value = s
 						si = si + 1
