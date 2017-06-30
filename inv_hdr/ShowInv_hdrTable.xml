@@ -783,6 +783,10 @@
           <Value>False</Value>
         </Attribute>
         <Attribute>
+          <Name>RequiredRoles</Name>
+          <Value>&lt;PRoles&gt;5&lt;/PRoles&gt;</Value>
+        </Attribute>
+        <Attribute>
           <Name>ToolTip</Name>
           <Value>Txt:DeleteRecord</Value>
           <Type>ResourceReference</Type>

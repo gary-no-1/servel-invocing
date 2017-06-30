@@ -101,8 +101,9 @@ Public Class Inv_hdrTableControlRow
 		Public Overrides Sub Inv_hdrRowDeleteButton_Click(ByVal sender As Object, ByVal args As ImageClickEventArgs)
 
 			'if me.inv_created.text = "YES" then
-				Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Delete Not Allowed")
-				return
+			    ' 30-06-2017 -- delete of invoice allowed for security role = 5
+				'Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", "Delete Not Allowed")
+				'return
 			'end if
 
             Try
@@ -908,7 +909,9 @@ Public Class BaseInv_hdrTableControlRow
                     Me.LoadData()
                     Me.DataBind()			
                 End If
-                						
+                
+			Me.Page.Authorize(Ctype(Inv_hdrRowDeleteButton, Control), "5")
+											
             Catch ex As Exception
                 Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
             Finally

@@ -314,7 +314,16 @@ Public Class Pro_inv_hdrRecordControl
 					tempTime = Now.ToShortTimeString()
 					tempTime = left(right(tempTime, 8), 5)
 					Dim strInvNo As String
-					strInvNo = CompanyRec.inv_pfx.trim() + CompanyRec.next_inv_no.ToString().trim()
+					' -- 30/06/2017 -- GST - introduce zeros in invoice #
+					Dim inv_no_length As Integer = CompanyRec.pad_inv_no - CompanyRec.inv_pfx.trim().length
+					If inv_no_length < 0 Then
+						inv_no_length = 0
+					End If	
+					Dim temp_inv_no As String
+					temp_inv_no = CompanyRec.next_inv_no.ToString().trim()
+					temp_inv_no = temp_inv_no.PadLeft(inv_no_length,"0"c)
+					strInvNo = CompanyRec.inv_pfx.trim() + temp_inv_no
+					'strInvNo = CompanyRec.inv_pfx.trim() + CompanyRec.next_inv_no.ToString().trim()
 		
 					inv_hdr_rec.inv_no = strInvNo
 					' 22/06/2015 -- check if next invoice date if fixed		
