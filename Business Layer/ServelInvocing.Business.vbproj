@@ -78,9 +78,6 @@
     <Compile Include="CompanyRecord.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseCompanyRecord.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Inv_hdrTable.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -129,7 +126,13 @@
     <Compile Include="Item_typesTable.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseItem_typesTable.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Item_typesRecord.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseItem_typesRecord.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mail_logTable.vb">
@@ -303,6 +306,9 @@
     <Compile Include="BaseCommodityRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseCompanyRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseInv_hdrRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
@@ -328,12 +334,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseItem_groupsRecord.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseItem_typesTable.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseItem_typesRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseMail_logTable.vb" >

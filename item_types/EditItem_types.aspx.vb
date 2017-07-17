@@ -161,6 +161,8 @@ Partial Public Class EditItem_types
 #Region "Section 2: Do not modify this section."
 
         Public WithEvents CancelButton As ThemeButton
+        Public WithEvents gst_service As System.Web.UI.WebControls.CheckBox
+        Public WithEvents gst_serviceLabel As System.Web.UI.WebControls.Literal
         Public WithEvents item_typeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents Item_typesRecordControl As ServelInvocing.UI.Controls.EditItem_types.Item_typesRecordControl
         Public WithEvents Item_typesTitle As System.Web.UI.WebControls.Literal

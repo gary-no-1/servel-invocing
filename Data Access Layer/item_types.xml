@@ -3,13 +3,13 @@
   <ColumnDefinition>
     <Column InternalName="0" Priority="1" ColumnNum="0">
       <columnName>item_type</columnName>
-      <columnUIName Source="User">%ISD_DEFAULT%</columnUIName>
+      <columnUIName>%ISD_DEFAULT%</columnUIName>
       <columnType>String</columnType>
       <columnDBType>nchar</columnDBType>
       <columnLengthSet>20</columnLengthSet>
       <columnDefault>
       </columnDefault>
-      <columnDBDefault Source="User">
+      <columnDBDefault>
       </columnDBDefault>
       <columnIndex>Y</columnIndex>
       <columnUnique>Y</columnUnique>
@@ -18,25 +18,53 @@
       </columnDBFormat>
       <columnPK>Y</columnPK>
       <columnPermanent>N</columnPermanent>
+      <columnComputed>N</columnComputed>
+      <columnIdentity>N</columnIdentity>
+      <columnReadOnly>N</columnReadOnly>
+      <columnRequired>Y</columnRequired>
+      <columnNotNull>Y</columnNotNull>
+      <columnCaseSensitive Source="Database">N</columnCaseSensitive>
+      <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
+      <columnTableAliasName>
+      </columnTableAliasName>
+    </Column>
+    <Column InternalName="1" Priority="2" ColumnNum="1">
+      <columnName>gst_service</columnName>
+      <columnUIName Source="User">Service Type</columnUIName>
+      <columnType>Boolean</columnType>
+      <columnDBType>bit</columnDBType>
+      <columnLengthSet>
+      </columnLengthSet>
+      <columnDefault>
+      </columnDefault>
+      <columnDBDefault Source="User">
+      </columnDBDefault>
+      <columnIndex>N</columnIndex>
+      <columnUnique>N</columnUnique>
+      <columnFunction>
+      </columnFunction>
+      <columnDBFormat>
+      </columnDBFormat>
+      <columnPK>N</columnPK>
+      <columnPermanent>N</columnPermanent>
       <columnComputed Source="User">N</columnComputed>
       <columnIdentity Source="User">N</columnIdentity>
       <columnReadOnly Source="User">N</columnReadOnly>
-      <columnRequired>Y</columnRequired>
-      <columnNotNull>Y</columnNotNull>
+      <columnRequired>N</columnRequired>
+      <columnNotNull>N</columnNotNull>
       <columnCaseSensitive Source="User">N</columnCaseSensitive>
       <columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>
       <columnTableAliasName>
       </columnTableAliasName>
       <columnCodeName>
       </columnCodeName>
-      <InternalName>0</InternalName>
+      <InternalName>1</InternalName>
       <columnTableClassName>
       </columnTableClassName>
     </Column>
   </ColumnDefinition>
   <TableName>item_types</TableName>
-  <Version>
-  </Version>
+  <Version>1</Version>
   <Owner>dbo</Owner>
   <TableCodeName>Item_types</TableCodeName>
   <TableAliasName>Item_types_</TableAliasName>

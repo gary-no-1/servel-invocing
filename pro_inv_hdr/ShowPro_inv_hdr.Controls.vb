@@ -323,7 +323,7 @@ Public Class Pro_inv_hdrRecordControl
 					temp_inv_no = CompanyRec.next_inv_no.ToString().trim()
 					temp_inv_no = temp_inv_no.PadLeft(inv_no_length,"0"c)
 					strInvNo = CompanyRec.inv_pfx.trim() + temp_inv_no
-					'strInvNo = CompanyRec.inv_pfx.trim() + CompanyRec.next_inv_no.ToString().trim()
+					' strInvNo = CompanyRec.inv_pfx.trim() + CompanyRec.next_inv_no.ToString().trim()
 		
 					inv_hdr_rec.inv_no = strInvNo
 					' 22/06/2015 -- check if next invoice date if fixed		

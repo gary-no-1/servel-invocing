@@ -185,6 +185,8 @@ Public Class BaseItem_typesRecordControl
       
             ' Call the Set methods for each controls on the panel
         
+            Setgst_service()
+            Setgst_serviceLabel()
             Setitem_type()
             Setitem_typeLabel()
       
@@ -205,6 +207,50 @@ Public Class BaseItem_typesRecordControl
         End Sub
         
         
+        Public Overridable Sub Setgst_service()
+            
+        
+            ' Set the gst_service Literal on the webpage with value from the
+            ' item_types database record.
+
+            ' Me.DataSource is the item_types record retrieved from the database.
+            ' Me.gst_service is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgst_service()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gst_serviceSpecified Then
+                				
+                ' If the gst_service is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Item_typesTable.gst_service)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.gst_service.Text = formattedValue
+              
+            Else 
+            
+                ' gst_service is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gst_service.Text = Item_typesTable.gst_service.Format(Item_typesTable.gst_service.DefaultValue)
+                        		
+                End If
+                 
+            ' If the gst_service is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.gst_service.Text Is Nothing _
+                OrElse Me.gst_service.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.gst_service.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setitem_type()
             
         
@@ -247,6 +293,11 @@ Public Class BaseItem_typesRecordControl
                 Me.item_type.Text = "&nbsp;"
             End If
                   
+        End Sub
+                
+        Public Overridable Sub Setgst_serviceLabel()
+            
+                    
         End Sub
                 
         Public Overridable Sub Setitem_typeLabel()
@@ -358,10 +409,15 @@ Public Class BaseItem_typesRecordControl
       
             ' Call the Get methods for each of the user interface controls.
         
+            Getgst_service()
             Getitem_type()
         End Sub
         
         
+        Public Overridable Sub Getgst_service()
+            
+        End Sub
+                
         Public Overridable Sub Getitem_type()
             
         End Sub
@@ -823,6 +879,18 @@ Public Class BaseItem_typesRecordControl
         
 
 #Region "Helper Properties"
+        
+        Public ReadOnly Property gst_service() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_service"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property gst_serviceLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_serviceLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
         
         Public ReadOnly Property item_type() As System.Web.UI.WebControls.Literal
             Get

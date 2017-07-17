@@ -54,6 +54,7 @@ Namespace ServelInvocing.Business
         
         Me.TableDefinition.AdapterMetaData = Me.DataAdapter.AdapterMetaData
         item_typeColumn.CodeName = "item_type"
+        gst_serviceColumn.CodeName = "gst_service"
         
     End Sub
 
@@ -76,6 +77,25 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property item_type() As BaseClasses.Data.StringColumn
         Get
             Return Item_typesTable.Instance.item_typeColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Item_types_.gst_service column object.
+    ''' </summary>
+    Public ReadOnly Property gst_serviceColumn() As BaseClasses.Data.BooleanColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(1), BaseClasses.Data.BooleanColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Item_types_.gst_service column object.
+    ''' </summary>
+    Public Shared ReadOnly Property gst_service() As BaseClasses.Data.BooleanColumn
+        Get
+            Return Item_typesTable.Instance.gst_serviceColumn
         End Get
     End Property
 
@@ -352,10 +372,12 @@ Namespace ServelInvocing.Business
 
     ' Convenience method for creating a record
     Public Overloads Function NewRecord( _
-        ByVal item_typeValue As String _
+        ByVal item_typeValue As String, _
+        ByVal gst_serviceValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(item_typeValue, item_typeColumn)
+        rec.SetString(gst_serviceValue, gst_serviceColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

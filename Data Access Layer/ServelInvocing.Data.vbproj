@@ -109,6 +109,9 @@
     <Compile Include="Item_groupsSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Item_typesDefinition.vb">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Item_typesSqlTable.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -266,9 +269,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseItem_groupsSqlTable.vb" >
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Item_typesDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseItem_typesSqlTable.vb" >

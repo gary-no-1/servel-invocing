@@ -105,6 +105,8 @@ Public Class BaseItem_typesRecordControl
          
               ' Register the event handlers.
           
+              AddHandler Me.gst_service.CheckedChanged, AddressOf gst_service_CheckedChanged
+            
               AddHandler Me.item_type.TextChanged, AddressOf item_type_TextChanged
             
         End Sub
@@ -185,6 +187,9 @@ Public Class BaseItem_typesRecordControl
       
             ' Call the Set methods for each controls on the panel
         
+                        Setgst_service()
+                    
+            Setgst_serviceLabel()
             Setitem_type()
             Setitem_typeLabel()
       
@@ -205,6 +210,37 @@ Public Class BaseItem_typesRecordControl
         End Sub
         
         
+        Public Overridable Sub Setgst_service()
+            
+        
+            ' Set the gst_service CheckBox on the webpage with value from the
+            ' item_types database record.
+
+            ' Me.DataSource is the item_types record retrieved from the database.
+            ' Me.gst_service is the ASP:CheckBox on the webpage.
+
+            ' You can modify this method directly, or replace it with a call to
+            ' MyBase.Setgst_service()
+            ' and add your own code before or after the call to the MyBase function.
+
+                    
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gst_serviceSpecified Then
+                									
+                ' If the gst_service is non-NULL, then format the value.
+                ' The Format method will use the Display Format
+                Me.gst_service.Checked = Me.DataSource.gst_service
+            Else
+            
+                ' gst_service is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+                If Not Me.DataSource.IsCreated Then
+                    Me.gst_service.Checked = Item_typesTable.gst_service.ParseValue(Item_typesTable.gst_service.DefaultValue).ToBoolean()
+                End If
+                    				
+            End If
+                
+        End Sub
+                
         Public Overridable Sub Setitem_type()
             
         
@@ -238,6 +274,11 @@ Public Class BaseItem_typesRecordControl
                         		
                 End If
                  
+        End Sub
+                
+        Public Overridable Sub Setgst_serviceLabel()
+            
+                    
         End Sub
                 
         Public Overridable Sub Setitem_typeLabel()
@@ -349,10 +390,23 @@ Public Class BaseItem_typesRecordControl
       
             ' Call the Get methods for each of the user interface controls.
         
+            Getgst_service()
             Getitem_type()
         End Sub
         
         
+        Public Overridable Sub Getgst_service()
+        
+        
+            ' Retrieve the value entered by the user on the gst_service ASP:CheckBox, and
+            ' save it into the gst_service field in DataSource item_types record.
+            ' Custom validation should be performed in Validate, not here.
+            
+            
+            Me.DataSource.gst_service = Me.gst_service.Checked
+                    
+        End Sub
+                
         Public Overridable Sub Getitem_type()
             
             ' Retrieve the value entered by the user on the item_type ASP:TextBox, and
@@ -647,6 +701,11 @@ Public Class BaseItem_typesRecordControl
       
         ' Generate the event handling functions for filter and search events.
             
+        Protected Overridable Sub gst_service_CheckedChanged(ByVal sender As Object, ByVal args As EventArgs)                
+             
+
+        End Sub
+            
         Protected Overridable Sub item_type_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -783,6 +842,18 @@ Public Class BaseItem_typesRecordControl
         
 
 #Region "Helper Properties"
+        
+        Public ReadOnly Property gst_service() As System.Web.UI.WebControls.CheckBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_service"), System.Web.UI.WebControls.CheckBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property gst_serviceLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_serviceLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
         
         Public ReadOnly Property item_type() As System.Web.UI.WebControls.TextBox
             Get

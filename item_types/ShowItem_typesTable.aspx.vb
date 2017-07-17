@@ -154,6 +154,7 @@ Partial Public Class ShowItem_typesTable
 
 #Region "Section 2: Do not modify this section."
 
+        Public WithEvents gst_serviceLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents item_typeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents item_typeLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents Item_typesCopyButton As System.Web.UI.WebControls.ImageButton

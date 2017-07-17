@@ -161,6 +161,8 @@ Partial Public Class ShowItem_types
 #Region "Section 2: Do not modify this section."
 
         Public WithEvents EditButton As ThemeButton
+        Public WithEvents gst_service As System.Web.UI.WebControls.Literal
+        Public WithEvents gst_serviceLabel As System.Web.UI.WebControls.Literal
         Public WithEvents item_type As System.Web.UI.WebControls.Literal
         Public WithEvents item_typeLabel As System.Web.UI.WebControls.Literal
         Public WithEvents Item_typesDialogEditButton As System.Web.UI.WebControls.ImageButton

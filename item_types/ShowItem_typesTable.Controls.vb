@@ -143,6 +143,7 @@ Public Class BaseItem_typesTableControlRow
       
             ' Call the Set methods for each controls on the panel
         
+            Setgst_service()
             Setitem_type()
       
       
@@ -162,6 +163,50 @@ Public Class BaseItem_typesTableControlRow
         End Sub
         
         
+        Public Overridable Sub Setgst_service()
+            
+        
+            ' Set the gst_service Literal on the webpage with value from the
+            ' item_types database record.
+
+            ' Me.DataSource is the item_types record retrieved from the database.
+            ' Me.gst_service is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setgst_service()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.gst_serviceSpecified Then
+                				
+                ' If the gst_service is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Item_typesTable.gst_service)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.gst_service.Text = formattedValue
+              
+            Else 
+            
+                ' gst_service is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.gst_service.Text = Item_typesTable.gst_service.Format(Item_typesTable.gst_service.DefaultValue)
+                        		
+                End If
+                 
+            ' If the gst_service is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.gst_service.Text Is Nothing _
+                OrElse Me.gst_service.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.gst_service.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setitem_type()
             
         
@@ -302,10 +347,15 @@ Public Class BaseItem_typesTableControlRow
       
             ' Call the Get methods for each of the user interface controls.
         
+            Getgst_service()
             Getitem_type()
         End Sub
         
         
+        Public Overridable Sub Getgst_service()
+            
+        End Sub
+                
         Public Overridable Sub Getitem_type()
             
         End Sub
@@ -661,6 +711,12 @@ Public Class BaseItem_typesTableControlRow
 
 #Region "Helper Properties"
         
+        Public ReadOnly Property gst_service() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_service"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property item_type() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "item_type"), System.Web.UI.WebControls.Literal)
@@ -836,6 +892,8 @@ Public Class BaseItem_typesTableControl
               
             ' Setup the sorting events.
           
+              AddHandler Me.gst_serviceLabel.Click, AddressOf gst_serviceLabel_Click
+            
               AddHandler Me.item_typeLabel1.Click, AddressOf item_typeLabel1_Click
             
             ' Setup the button events.
@@ -968,6 +1026,7 @@ Public Class BaseItem_typesTableControl
 
             ' Call the Set methods for each controls on the panel
         
+            Setgst_serviceLabel()
             Setitem_typeFilter()
             
             Setitem_typeLabel()
@@ -1007,6 +1066,7 @@ Public Class BaseItem_typesTableControl
 
             ' Initialize other asp controls
             
+            Setgst_serviceLabel()
             Setitem_typeLabel()
             Setitem_typeLabel1()
       End Sub
@@ -1464,6 +1524,9 @@ Public Class BaseItem_typesTableControl
                     
                         Dim rec As Item_typesRecord = New Item_typesRecord()
         
+                        If recControl.gst_service.Text <> "" Then
+                            rec.Parse(recControl.gst_service.Text, Item_typesTable.gst_service)
+                        End If
                         If recControl.item_type.Text <> "" Then
                             rec.Parse(recControl.item_type.Text, Item_typesTable.item_type)
                         End If
@@ -1534,6 +1597,11 @@ Public Class BaseItem_typesTableControl
       
         ' Create Set, WhereClause, and Populate Methods
         
+        Public Overridable Sub Setgst_serviceLabel()
+            
+                    
+        End Sub
+                
         Public Overridable Sub Setitem_typeLabel()
             
                     
@@ -1838,6 +1906,28 @@ Public Class BaseItem_typesTableControl
 
         ' Generate the event handling functions for sorting events.
         
+        Public Overridable Sub gst_serviceLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by gst_service when clicked.
+              
+            ' Get previous sorting state for gst_service.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Item_typesTable.gst_service)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for gst_service.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(Item_typesTable.gst_service, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by gst_service, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub item_typeLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by item_type when clicked.
               
@@ -1996,6 +2086,7 @@ Public Class BaseItem_typesTableControl
             ' Add each of the columns in order of export.
             Dim columns() as BaseColumn = New BaseColumn() { _
                        Item_typesTable.item_type, _ 
+             Item_typesTable.gst_service, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(Item_typesTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -2037,6 +2128,7 @@ Public Class BaseItem_typesTableControl
             ' To customize the data type, change the second parameter of the new ExcelColumn to be
             ' a format string from Excel's Format Cell menu. For example "dddd, mmmm dd, yyyy h:mm AM/PM;@", "#,##0.00"
              excelReport.AddColumn(New ExcelColumn(Item_typesTable.item_type, "Default"))
+             excelReport.AddColumn(New ExcelColumn(Item_typesTable.gst_service, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2150,6 +2242,7 @@ Public Class BaseItem_typesTableControl
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column   			
                  report.AddColumn(Item_typesTable.item_type.Name, ReportEnum.Align.Left, "${item_type}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(Item_typesTable.gst_service.Name, ReportEnum.Align.Left, "${gst_service}", ReportEnum.Align.Left, 15)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2178,6 +2271,7 @@ Public Class BaseItem_typesTableControl
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
                                                          report.AddData("${item_type}", record.Format(Item_typesTable.item_type), ReportEnum.Align.Left, 100)
+                             report.AddData("${gst_service}", record.Format(Item_typesTable.gst_service), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -2277,6 +2371,7 @@ Public Class BaseItem_typesTableControl
                 ' The 4th parameter represents the horizontal alignment of the column detail
                 ' The 5th parameter represents the relative width of the column
                  report.AddColumn(Item_typesTable.item_type.Name, ReportEnum.Align.Left, "${item_type}", ReportEnum.Align.Left, 20)
+                 report.AddColumn(Item_typesTable.gst_service.Name, ReportEnum.Align.Left, "${gst_service}", ReportEnum.Align.Left, 15)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -2302,6 +2397,7 @@ Public Class BaseItem_typesTableControl
                             ' The 3rd parameters represent the default alignment of column using the data
                             ' The 4th parameters represent the maximum length of the data value being shown
                              report.AddData("${item_type}", record.Format(Item_typesTable.item_type), ReportEnum.Align.Left, 100)
+                             report.AddData("${gst_service}", record.Format(Item_typesTable.gst_service), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -2479,6 +2575,12 @@ Public Class BaseItem_typesTableControl
         End Property
        
 #Region "Helper Properties"
+        
+        Public ReadOnly Property gst_serviceLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "gst_serviceLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
         
         Public ReadOnly Property item_typeFilter() As System.Web.UI.WebControls.DropDownList
             Get

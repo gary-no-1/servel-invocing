@@ -71,6 +71,41 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.item_typeColumn)
 	End Sub
 
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Item_types_.gst_service field.
+	''' </summary>
+	Public Function Getgst_serviceValue() As ColumnValue
+		Return Me.GetValue(TableUtils.gst_serviceColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Item_types_.gst_service field.
+	''' </summary>
+	Public Function Getgst_serviceFieldValue() As Boolean
+		Return CType(Me.GetValue(TableUtils.gst_serviceColumn).ToBoolean(), Boolean)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Item_types_.gst_service field.
+	''' </summary>
+	Public Sub Setgst_serviceFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.gst_serviceColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Item_types_.gst_service field.
+	''' </summary>
+	Public Sub Setgst_serviceFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.gst_serviceColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Item_types_.gst_service field.
+	''' </summary>
+	Public Sub Setgst_serviceFieldValue(ByVal val As Boolean)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.gst_serviceColumn)
+	End Sub
 
 
 #End Region
@@ -109,6 +144,42 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property item_typeDefault() As String
         Get
             Return TableUtils.item_typeColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Item_types_.gst_service field.
+	''' </summary>
+	Public Property gst_service() As Boolean
+		Get 
+			Return CType(Me.GetValue(TableUtils.gst_serviceColumn).ToBoolean(), Boolean)
+		End Get
+		Set (ByVal val As Boolean) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.gst_serviceColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property gst_serviceSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.gst_serviceColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property gst_serviceDefault() As String
+        Get
+            Return TableUtils.gst_serviceColumn.DefaultValue
         End Get
     End Property
 
