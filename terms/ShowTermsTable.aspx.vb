@@ -156,6 +156,7 @@ Partial Public Class ShowTermsTable
 
         Public WithEvents narrationLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents print_boldLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents sort_orderLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents TermsCopyButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents TermsDeleteButton As System.Web.UI.WebControls.ImageButton

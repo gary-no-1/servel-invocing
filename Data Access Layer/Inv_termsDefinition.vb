@@ -9,7 +9,7 @@
 Public Class Inv_termsDefinition
 
 #Region "Definition (XML) for Inv_termsDefinition table"
-	'Next 116 lines contain Table Definition (XML) for table "Inv_termsDefinition"
+	'Next 139 lines contain Table Definition (XML) for table "Inv_termsDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -23,7 +23,7 @@ Public Class Inv_termsDefinition
       "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>Y</columnIndex>"& _
       "<columnUnique>Y</columnUnique>"& _
-      "<columnFunction>notrim</columnFunction>"& _
+      "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>Y</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
@@ -46,7 +46,7 @@ Public Class Inv_termsDefinition
       "<columnDBDefault></columnDBDefault>"& _
       "<columnIndex>N</columnIndex>"& _
       "<columnUnique>N</columnUnique>"& _
-      "<columnFunction>notrim</columnFunction>"& _
+      "<columnFunction></columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
@@ -113,9 +113,32 @@ Public Class Inv_termsDefinition
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
     "</Column>"& _
+    "<Column InternalName=""4"" Priority=""5"" ColumnNum=""4"">"& _
+      "<columnName>print_bold</columnName>"& _
+      "<columnUIName>Print Bold</columnUIName>"& _
+      "<columnType>Boolean</columnType>"& _
+      "<columnDBType>bit</columnDBType>"& _
+      "<columnLengthSet></columnLengthSet>"& _
+      "<columnDefault></columnDefault>"& _
+      "<columnDBDefault></columnDBDefault>"& _
+      "<columnIndex>N</columnIndex>"& _
+      "<columnUnique>N</columnUnique>"& _
+      "<columnFunction></columnFunction>"& _
+      "<columnDBFormat></columnDBFormat>"& _
+      "<columnPK>N</columnPK>"& _
+      "<columnPermanent>N</columnPermanent>"& _
+      "<columnComputed>N</columnComputed>"& _
+      "<columnIdentity>N</columnIdentity>"& _
+      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnRequired>N</columnRequired>"& _
+      "<columnNotNull>N</columnNotNull>"& _
+      "<columnCaseSensitive>N</columnCaseSensitive>"& _
+      "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
+      "<columnTableAliasName></columnTableAliasName>"& _
+    "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>inv_terms</TableName>"& _
-  "<Version></Version>"& _
+  "<Version>1</Version>"& _
   "<Owner>dbo</Owner>"& _
   "<TableCodeName>Inv_terms</TableCodeName>"& _
   "<TableAliasName>Inv_terms_</TableAliasName>"& _

@@ -429,6 +429,8 @@ End Sub
 				TermsRec = TermsManyRec(termctr)
 				recControl.narration.text = TermsRec.narration
 				recControl.sort_order.text = TermsRec.sort_order.tostring()
+				recControl.print_bold.checked = TermsRec.print_bold  
+
                 index += 1
 				termctr +=1
             Next
@@ -6849,6 +6851,8 @@ Public Class BasePro_inv_termsTableControlRow
           
               AddHandler Me.Pro_inv_termsRowDeleteButton.Click, AddressOf Pro_inv_termsRowDeleteButton_Click
               
+              AddHandler Me.print_bold.CheckedChanged, AddressOf print_bold_CheckedChanged
+            
               AddHandler Me.narration.TextChanged, AddressOf narration_TextChanged
             
               AddHandler Me.sort_order.TextChanged, AddressOf sort_order_TextChanged
@@ -6897,6 +6901,8 @@ Public Class BasePro_inv_termsTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setnarration()
+                        Setprint_bold()
+                    
             Setsort_order()
       
       
@@ -6957,6 +6963,43 @@ Public Class BasePro_inv_termsTableControlRow
                         		
                 End If
                  
+        End Sub
+                
+        Public Overridable Sub Setprint_bold()
+            							
+            ' If data was retrieved from UI previously, restore it
+            If Me.PreviousUIData.ContainsKey(Me.print_bold.ID) Then
+                Me.print_bold.Checked = Convert.ToBoolean(Me.PreviousUIData(Me.print_bold.ID))
+                Return
+            End If		
+            
+        
+            ' Set the print_bold CheckBox on the webpage with value from the
+            ' pro_inv_terms database record.
+
+            ' Me.DataSource is the pro_inv_terms record retrieved from the database.
+            ' Me.print_bold is the ASP:CheckBox on the webpage.
+
+            ' You can modify this method directly, or replace it with a call to
+            ' MyBase.Setprint_bold()
+            ' and add your own code before or after the call to the MyBase function.
+
+                    
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.print_boldSpecified Then
+                									
+                ' If the print_bold is non-NULL, then format the value.
+                ' The Format method will use the Display Format
+                Me.print_bold.Checked = Me.DataSource.print_bold
+            Else
+            
+                ' print_bold is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+                If Not Me.DataSource.IsCreated Then
+                    Me.print_bold.Checked = Pro_inv_termsTable.print_bold.ParseValue(Pro_inv_termsTable.print_bold.DefaultValue).ToBoolean()
+                End If
+                    				
+            End If
+                
         End Sub
                 
         Public Overridable Sub Setsort_order()
@@ -7114,6 +7157,7 @@ Public Class BasePro_inv_termsTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getnarration()
+            Getprint_bold()
             Getsort_order()
         End Sub
         
@@ -7129,6 +7173,18 @@ Public Class BasePro_inv_termsTableControlRow
             Me.DataSource.Parse(Me.narration.Text, Pro_inv_termsTable.narration)			
 
                       
+        End Sub
+                
+        Public Overridable Sub Getprint_bold()
+        
+        
+            ' Retrieve the value entered by the user on the print_bold ASP:CheckBox, and
+            ' save it into the print_bold field in DataSource pro_inv_terms record.
+            ' Custom validation should be performed in Validate, not here.
+            
+            
+            Me.DataSource.print_bold = Me.print_bold.Checked
+                    
         End Sub
                 
         Public Overridable Sub Getsort_order()
@@ -7258,6 +7314,11 @@ Public Class BasePro_inv_termsTableControlRow
                   
         End Sub
         
+        Protected Overridable Sub print_bold_CheckedChanged(ByVal sender As Object, ByVal args As EventArgs)                
+             
+
+        End Sub
+            
         Protected Overridable Sub narration_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -7378,6 +7439,12 @@ Public Class BasePro_inv_termsTableControlRow
         Public ReadOnly Property narration() As System.Web.UI.WebControls.TextBox
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "narration"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
+        Public ReadOnly Property print_bold() As System.Web.UI.WebControls.CheckBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "print_bold"), System.Web.UI.WebControls.CheckBox)
             End Get
         End Property
             
@@ -8020,6 +8087,8 @@ Public Class BasePro_inv_termsTableControl
                         If recControl.narration.Text <> "" Then
                             rec.Parse(recControl.narration.Text, Pro_inv_termsTable.narration)
                         End If
+                        rec.print_bold = recControl.print_bold.Checked
+                
                         If recControl.sort_order.Text <> "" Then
                             rec.Parse(recControl.sort_order.Text, Pro_inv_termsTable.sort_order)
                         End If

@@ -163,6 +163,8 @@ Partial Public Class EditTerms
         Public WithEvents CancelButton As ThemeButton
         Public WithEvents narrationLabel As System.Web.UI.WebControls.Literal
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents print_bold As System.Web.UI.WebControls.CheckBox
+        Public WithEvents print_boldLabel As System.Web.UI.WebControls.Literal
         Public WithEvents SaveButton As ThemeButton
         Public WithEvents sort_orderLabel As System.Web.UI.WebControls.Literal
         Public WithEvents TermsRecordControl As ServelInvocing.UI.Controls.EditTerms.TermsRecordControl

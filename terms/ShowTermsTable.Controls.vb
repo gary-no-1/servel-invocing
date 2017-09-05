@@ -144,6 +144,7 @@ Public Class BaseTermsTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setnarration()
+            Setprint_bold()
             Setsort_order()
       
       
@@ -236,6 +237,50 @@ Public Class BaseTermsTableControlRow
                 OrElse Me.narration.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.narration.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Setprint_bold()
+            
+        
+            ' Set the print_bold Literal on the webpage with value from the
+            ' terms database record.
+
+            ' Me.DataSource is the terms record retrieved from the database.
+            ' Me.print_bold is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setprint_bold()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.print_boldSpecified Then
+                				
+                ' If the print_bold is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(TermsTable.print_bold)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.print_bold.Text = formattedValue
+              
+            Else 
+            
+                ' print_bold is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.print_bold.Text = TermsTable.print_bold.Format(TermsTable.print_bold.DefaultValue)
+                        		
+                End If
+                 
+            ' If the print_bold is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.print_bold.Text Is Nothing _
+                OrElse Me.print_bold.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.print_bold.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -381,11 +426,16 @@ Public Class BaseTermsTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getnarration()
+            Getprint_bold()
             Getsort_order()
         End Sub
         
         
         Public Overridable Sub Getnarration()
+            
+        End Sub
+                
+        Public Overridable Sub Getprint_bold()
             
         End Sub
                 
@@ -750,6 +800,12 @@ Public Class BaseTermsTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property print_bold() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "print_bold"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property sort_order() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "sort_order"), System.Web.UI.WebControls.Literal)
@@ -900,6 +956,8 @@ Public Class BaseTermsTableControl
           
               AddHandler Me.narrationLabel1.Click, AddressOf narrationLabel1_Click
             
+              AddHandler Me.print_boldLabel.Click, AddressOf print_boldLabel_Click
+            
               AddHandler Me.sort_orderLabel1.Click, AddressOf sort_orderLabel1_Click
             
             ' Setup the button events.
@@ -1031,6 +1089,7 @@ Public Class BaseTermsTableControl
             ' Call the Set methods for each controls on the panel
         
             SetnarrationLabel1()
+            Setprint_boldLabel()
             Setsort_orderLabel1()
       
   
@@ -1066,6 +1125,7 @@ Public Class BaseTermsTableControl
             ' Initialize other asp controls
             
             SetnarrationLabel1()
+            Setprint_boldLabel()
             Setsort_orderLabel1()
       End Sub
 
@@ -1410,6 +1470,9 @@ Public Class BaseTermsTableControl
                         If recControl.narration.Text <> "" Then
                             rec.Parse(recControl.narration.Text, TermsTable.narration)
                         End If
+                        If recControl.print_bold.Text <> "" Then
+                            rec.Parse(recControl.print_bold.Text, TermsTable.print_bold)
+                        End If
                         If recControl.sort_order.Text <> "" Then
                             rec.Parse(recControl.sort_order.Text, TermsTable.sort_order)
                         End If
@@ -1481,6 +1544,11 @@ Public Class BaseTermsTableControl
         ' Create Set, WhereClause, and Populate Methods
         
         Public Overridable Sub SetnarrationLabel1()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setprint_boldLabel()
             
                     
         End Sub
@@ -1719,6 +1787,28 @@ Public Class BaseTermsTableControl
               
         End Sub
             
+        Public Overridable Sub print_boldLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by print_bold when clicked.
+              
+            ' Get previous sorting state for print_bold.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(TermsTable.print_bold)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for print_bold.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(TermsTable.print_bold, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by print_bold, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub sort_orderLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by sort_order when clicked.
               
@@ -1878,6 +1968,7 @@ Public Class BaseTermsTableControl
             Dim columns() as BaseColumn = New BaseColumn() { _
                        TermsTable.narration, _ 
              TermsTable.sort_order, _ 
+             TermsTable.print_bold, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(TermsTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -1920,6 +2011,7 @@ Public Class BaseTermsTableControl
             ' a format string from Excel's Format Cell menu. For example "dddd, mmmm dd, yyyy h:mm AM/PM;@", "#,##0.00"
              excelReport.AddColumn(New ExcelColumn(TermsTable.narration, "Default"))
              excelReport.AddColumn(New ExcelColumn(TermsTable.sort_order, "0"))
+             excelReport.AddColumn(New ExcelColumn(TermsTable.print_bold, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2034,6 +2126,7 @@ Public Class BaseTermsTableControl
                 ' The 5th parameter represents the relative width of the column   			
                  report.AddColumn(TermsTable.narration.Name, ReportEnum.Align.Left, "${narration}", ReportEnum.Align.Left, 30)
                  report.AddColumn(TermsTable.sort_order.Name, ReportEnum.Align.Right, "${sort_order}", ReportEnum.Align.Right, 15)
+                 report.AddColumn(TermsTable.print_bold.Name, ReportEnum.Align.Left, "${print_bold}", ReportEnum.Align.Left, 15)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2063,6 +2156,7 @@ Public Class BaseTermsTableControl
                             ' The 4th parameters represent the maximum length of the data value being shown
                                                          report.AddData("${narration}", record.Format(TermsTable.narration), ReportEnum.Align.Left, 100)
                              report.AddData("${sort_order}", record.Format(TermsTable.sort_order), ReportEnum.Align.Right, 100)
+                             report.AddData("${print_bold}", record.Format(TermsTable.print_bold), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -2163,6 +2257,7 @@ Public Class BaseTermsTableControl
                 ' The 5th parameter represents the relative width of the column
                  report.AddColumn(TermsTable.narration.Name, ReportEnum.Align.Left, "${narration}", ReportEnum.Align.Left, 30)
                  report.AddColumn(TermsTable.sort_order.Name, ReportEnum.Align.Right, "${sort_order}", ReportEnum.Align.Right, 15)
+                 report.AddColumn(TermsTable.print_bold.Name, ReportEnum.Align.Left, "${print_bold}", ReportEnum.Align.Left, 15)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -2189,6 +2284,7 @@ Public Class BaseTermsTableControl
                             ' The 4th parameters represent the maximum length of the data value being shown
                              report.AddData("${narration}", record.Format(TermsTable.narration), ReportEnum.Align.Left, 100)
                              report.AddData("${sort_order}", record.Format(TermsTable.sort_order), ReportEnum.Align.Right, 100)
+                             report.AddData("${print_bold}", record.Format(TermsTable.print_bold), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -2342,6 +2438,12 @@ Public Class BaseTermsTableControl
         Public ReadOnly Property narrationLabel1() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "narrationLabel1"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property print_boldLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "print_boldLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         

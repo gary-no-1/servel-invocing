@@ -69,5 +69,13 @@ The tags are case-sensitive and should contain the following case-sensitive attr
       <siteMapNode title="{Menu:Show} Invoice Amounts" description="{Menu:Show} Invoice Amounts" url="~/V_Invoice_Amounts/ShowV_Invoice_AmountsTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
       <siteMapNode title="Invoice Amounts {Menu:WebReport}" description="Invoice Amounts {Menu:WebReport}" url="~/V_Invoice_Amounts/V_Invoice_AmountsWebReport.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="0" />
     </siteMapNode>
+    <siteMapNode title="States" description="States" url="~/states/ShowStatesTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+      <siteMapNode title="{Menu:Show} States" description="{Menu:Show} States" url="~/states/ShowStatesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="1" />
+      <siteMapNode title="{Menu:Edit} States" description="{Menu:Edit} States" url="~/states/EditStatesTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="9" />
+      <siteMapNode title="{Menu:Add} States" description="{Menu:Add} States" url="~/states/AddStates.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="10" />
+    </siteMapNode>
+    <siteMapNode title="HSN" description="HSN" url="~/hsn/ShowHsnTable.aspx?" imageUrl="../Images/MLMBullet1.gif" roles="" order="0">
+      <siteMapNode title="{Menu:Edit} HSN" description="{Menu:Edit} HSN" url="~/hsn/EditHsnTable.aspx" imageUrl="../Images/MLMBullet2.gif" roles="" order="9" />
+    </siteMapNode>
   </siteMapNode>
 </siteMap>

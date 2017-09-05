@@ -187,6 +187,41 @@ Namespace ServelInvocing.Business
 		Dim colValue As ColumnValue = New ColumnValue(val)
 		Me.SetValue(colValue, TableUtils.sort_orderColumn)
 	End Sub
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_terms_.print_bold field.
+	''' </summary>
+	Public Function Getprint_boldValue() As ColumnValue
+		Return Me.GetValue(TableUtils.print_boldColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Inv_terms_.print_bold field.
+	''' </summary>
+	Public Function Getprint_boldFieldValue() As Boolean
+		Return CType(Me.GetValue(TableUtils.print_boldColumn).ToBoolean(), Boolean)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_terms_.print_bold field.
+	''' </summary>
+	Public Sub Setprint_boldFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.print_boldColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_terms_.print_bold field.
+	''' </summary>
+	Public Sub Setprint_boldFieldValue(ByVal val As String)
+		Me.SetString(val, TableUtils.print_boldColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Inv_terms_.print_bold field.
+	''' </summary>
+	Public Sub Setprint_boldFieldValue(ByVal val As Boolean)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.print_boldColumn)
+	End Sub
 
 
 #End Region
@@ -333,6 +368,42 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property sort_orderDefault() As String
         Get
             Return TableUtils.sort_orderColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Inv_terms_.print_bold field.
+	''' </summary>
+	Public Property print_bold() As Boolean
+		Get 
+			Return CType(Me.GetValue(TableUtils.print_boldColumn).ToBoolean(), Boolean)
+		End Get
+		Set (ByVal val As Boolean) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.print_boldColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property print_boldSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.print_boldColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property print_boldDefault() As String
+        Get
+            Return TableUtils.print_boldColumn.DefaultValue
         End Get
     End Property
 

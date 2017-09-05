@@ -317,7 +317,7 @@
 	</asp:ImageButton></td><td class="prbbc"><img src="../Images/ButtonBarDividerR.gif" alt="" /></td><td class="prbbc"><img src="../Images/ButtonBarEdgeR.gif" alt="" /></td><td class="pra"><ServelInvocing:Pagination runat="server" id="Pro_inv_termsPagination"></ServelInvocing:Pagination></td><td><img src="../Images/paginationRowEdgeR.gif" alt="" /></td><td width="100%">&nbsp;</td></tr></table>
 </td></tr><tr><td class="tre"><table cellpadding="0" cellspacing="0" border="0" width="100%" onkeydown="captureUpDownKey(this, event)"><tr class="tch"><th class="thcnb" colspan="1"><img src="../Images/space.gif" height="1" width="1" alt="" /></th><th class="thcwb" style="padding:0px;vertical-align:middle;"><asp:CheckBox runat="server" id="Pro_inv_termsToggleAll" onclick="toggleAllCheckboxes(this);">	</asp:CheckBox></th><th class="thc" scope="col"><asp:LinkButton runat="server" id="narrationLabel1" Text="Narration" CausesValidation="False">	</asp:LinkButton>
                         </th><th class="thc" scope="col"><asp:LinkButton runat="server" id="sort_orderLabel1" Text="Sort Order" CausesValidation="False">	</asp:LinkButton>
-                        </th></tr><asp:Repeater runat="server" id="Pro_inv_termsTableControlRepeater">		<ITEMTEMPLATE>		<ServelInvocing:Pro_inv_termsTableControlRow runat="server" id="Pro_inv_termsTableControlRow">
+                        </th><th class="thc" scope="col"></th></tr><asp:Repeater runat="server" id="Pro_inv_termsTableControlRepeater">		<ITEMTEMPLATE>		<ServelInvocing:Pro_inv_termsTableControlRow runat="server" id="Pro_inv_termsTableControlRow">
 <tr><td class="ticnb" scope="row"><asp:ImageButton runat="server" id="Pro_inv_termsRowDeleteButton" causesvalidation="False" commandargument="DeleteOnUpdate" commandname="DeleteRecord" cssclass="button_link" imageurl="../Images/icon_delete.gif" tooltip="&lt;%# GetResourceValue(&quot;Txt:DeleteRecord&quot;, &quot;ServelInvocing&quot;) %>">		
 	</asp:ImageButton></td><td class="ticwb"><asp:CheckBox runat="server" id="Pro_inv_termsRecordRowSelection" onclick="moveToThisTableRow(this);">	</asp:CheckBox></td><td class="ttc" style=""><asp:TextBox runat="server" id="narration" MaxLength="50" columns="60" cssclass="field_input" rows="5" textmode="MultiLine" width="600px"></asp:TextBox>&nbsp;
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="narrationTextBoxMaxLengthValidator" ControlToValidate="narration" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Narration&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td><td class="ttc" style=""><table border="0" cellpadding="0" cellspacing="0">
@@ -330,7 +330,7 @@
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="sort_orderTextBoxMaxLengthValidator" ControlToValidate="sort_order" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Sort Order&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></td>
 </tr>
 </table>
- </td></tr></ServelInvocing:Pro_inv_termsTableControlRow>
+ </td><td class="ttc" style=""><asp:CheckBox runat="server" id="print_bold" visible="False"></asp:CheckBox></td></tr></ServelInvocing:Pro_inv_termsTableControlRow>
 </ITEMTEMPLATE>
 
 </asp:Repeater>

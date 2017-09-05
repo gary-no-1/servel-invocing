@@ -56,6 +56,7 @@ Namespace ServelInvocing.Business
         id0Column.CodeName = "id0"
         narrationColumn.CodeName = "narration"
         sort_orderColumn.CodeName = "sort_order"
+        print_boldColumn.CodeName = "print_bold"
         
     End Sub
 
@@ -116,6 +117,25 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property sort_order() As BaseClasses.Data.NumberColumn
         Get
             Return TermsTable.Instance.sort_orderColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Terms_.print_bold column object.
+    ''' </summary>
+    Public ReadOnly Property print_boldColumn() As BaseClasses.Data.BooleanColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(3), BaseClasses.Data.BooleanColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Terms_.print_bold column object.
+    ''' </summary>
+    Public Shared ReadOnly Property print_bold() As BaseClasses.Data.BooleanColumn
+        Get
+            Return TermsTable.Instance.print_boldColumn
         End Get
     End Property
 
@@ -393,11 +413,13 @@ Namespace ServelInvocing.Business
     ' Convenience method for creating a record
     Public Overloads Function NewRecord( _
         ByVal narrationValue As String, _
-        ByVal sort_orderValue As String _
+        ByVal sort_orderValue As String, _
+        ByVal print_boldValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(narrationValue, narrationColumn)
         rec.SetString(sort_orderValue, sort_orderColumn)
+        rec.SetString(print_boldValue, print_boldColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized

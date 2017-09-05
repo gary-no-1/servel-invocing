@@ -158,6 +158,8 @@ Public Class BaseTermsRecordControl
         
             Setnarration()
             SetnarrationLabel()
+            Setprint_bold()
+            Setprint_boldLabel()
             Setsort_order()
             Setsort_orderLabel()
       
@@ -255,6 +257,50 @@ Public Class BaseTermsRecordControl
                   
         End Sub
                 
+        Public Overridable Sub Setprint_bold()
+            
+        
+            ' Set the print_bold Literal on the webpage with value from the
+            ' terms database record.
+
+            ' Me.DataSource is the terms record retrieved from the database.
+            ' Me.print_bold is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Setprint_bold()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.print_boldSpecified Then
+                				
+                ' If the print_bold is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(TermsTable.print_bold)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.print_bold.Text = formattedValue
+              
+            Else 
+            
+                ' print_bold is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.print_bold.Text = TermsTable.print_bold.Format(TermsTable.print_bold.DefaultValue)
+                        		
+                End If
+                 
+            ' If the print_bold is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.print_bold.Text Is Nothing _
+                OrElse Me.print_bold.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.print_bold.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
         Public Overridable Sub Setsort_order()
             
         
@@ -300,6 +346,11 @@ Public Class BaseTermsRecordControl
         End Sub
                 
         Public Overridable Sub SetnarrationLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub Setprint_boldLabel()
             
                     
         End Sub
@@ -414,11 +465,16 @@ Public Class BaseTermsRecordControl
             ' Call the Get methods for each of the user interface controls.
         
             Getnarration()
+            Getprint_bold()
             Getsort_order()
         End Sub
         
         
         Public Overridable Sub Getnarration()
+            
+        End Sub
+                
+        Public Overridable Sub Getprint_bold()
             
         End Sub
                 
@@ -893,6 +949,18 @@ Public Class BaseTermsRecordControl
         Public ReadOnly Property narrationLabel() As System.Web.UI.WebControls.Literal
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "narrationLabel"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+        
+        Public ReadOnly Property print_bold() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "print_bold"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
+        Public ReadOnly Property print_boldLabel() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "print_boldLabel"), System.Web.UI.WebControls.Literal)
             End Get
         End Property
         

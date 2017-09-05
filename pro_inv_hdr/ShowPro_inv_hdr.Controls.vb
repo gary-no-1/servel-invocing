@@ -451,6 +451,8 @@ Public Class Pro_inv_hdrRecordControl
 						inv_terms_rec.id_inv_hdr = convert.toint32(InvId)
 						inv_terms_rec.narration = TermsRec.narration
 						inv_terms_rec.sort_order = TermsRec.sort_order
+						' 18/07/2017 -- print_bold added
+						inv_terms_rec.print_bold = TermsRec.print_bold
 						inv_terms_rec.save()
 					Next
 		

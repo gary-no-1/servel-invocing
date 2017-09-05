@@ -71,6 +71,35 @@ Namespace ServelInvocing.Business
 		Me.SetValue(colValue, TableUtils.uomColumn)
 	End Sub
 
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Unitsofmeasure_.gst_uom field.
+	''' </summary>
+	Public Function Getgst_uomValue() As ColumnValue
+		Return Me.GetValue(TableUtils.gst_uomColumn)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Unitsofmeasure_.gst_uom field.
+	''' </summary>
+	Public Function Getgst_uomFieldValue() As String
+		Return CType(Me.GetValue(TableUtils.gst_uomColumn).ToString(), String)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Unitsofmeasure_.gst_uom field.
+	''' </summary>
+	Public Sub Setgst_uomFieldValue(ByVal val As ColumnValue)
+		Me.SetValue(val, TableUtils.gst_uomColumn)
+	End Sub
+
+	''' <summary>
+	''' This is a convenience method that allows direct modification of the value of the record's Unitsofmeasure_.gst_uom field.
+	''' </summary>
+	Public Sub Setgst_uomFieldValue(ByVal val As String)
+		Dim colValue As ColumnValue = New ColumnValue(val)
+		Me.SetValue(colValue, TableUtils.gst_uomColumn)
+	End Sub
+
 
 
 #End Region
@@ -109,6 +138,41 @@ Namespace ServelInvocing.Business
     Public ReadOnly Property uomDefault() As String
         Get
             Return TableUtils.uomColumn.DefaultValue
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Unitsofmeasure_.gst_uom field.
+	''' </summary>
+	Public Property gst_uom() As String
+		Get 
+			Return CType(Me.GetValue(TableUtils.gst_uomColumn).ToString(), String)
+		End Get
+		Set (ByVal Value As String) 
+			Me.SetString(value, TableUtils.gst_uomColumn)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property gst_uomSpecified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.gst_uomColumn)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property gst_uomDefault() As String
+        Get
+            Return TableUtils.gst_uomColumn.DefaultValue
         End Get
     End Property
 

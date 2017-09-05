@@ -165,6 +165,8 @@ Partial Public Class ShowTerms
         Public WithEvents narrationLabel As System.Web.UI.WebControls.Literal
         Public WithEvents OKButton As ThemeButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents print_bold As System.Web.UI.WebControls.Literal
+        Public WithEvents print_boldLabel As System.Web.UI.WebControls.Literal
         Public WithEvents sort_order As System.Web.UI.WebControls.Literal
         Public WithEvents sort_orderLabel As System.Web.UI.WebControls.Literal
         Public WithEvents TermsDialogEditButton As System.Web.UI.WebControls.ImageButton

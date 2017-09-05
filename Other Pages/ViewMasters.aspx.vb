@@ -317,6 +317,13 @@ Public Sub btnSalesPerson_Click(ByVal sender As Object, ByVal args As EventArgs)
           btnSalesPerson_Click_Base(sender, args)
           ' NOTE: If the Base function redirects to another page, any code here will not be executed.
         End Sub
+Public Sub btnStates_Click(ByVal sender As Object, ByVal args As EventArgs)
+            
+          ' Click handler for btnStates.
+          ' Customize by adding code before the call or replace the call to the Base function with your own code.
+          btnStates_Click_Base(sender, args)
+          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
+        End Sub
 #End Region
 
 #Region "Section 2: Do not modify this section."
@@ -330,6 +337,8 @@ Public Sub btnSalesPerson_Click(ByVal sender As Object, ByVal args As EventArgs)
         Public WithEvents btnItemType As System.Web.UI.WebControls.Button
         
         Public WithEvents btnSalesPerson As System.Web.UI.WebControls.Button
+        
+        Public WithEvents btnStates As System.Web.UI.WebControls.Button
         
         Public WithEvents btnTaxes As System.Web.UI.WebControls.Button
         
@@ -366,6 +375,8 @@ Public Sub btnSalesPerson_Click(ByVal sender As Object, ByVal args As EventArgs)
             AddHandler Me.btnItemType.Click, AddressOf btnItemType_Click
         
             AddHandler Me.btnSalesPerson.Click, AddressOf btnSalesPerson_Click
+        
+            AddHandler Me.btnStates.Click, AddressOf btnStates_Click
         
             AddHandler Me.btnTaxes.Click, AddressOf btnTaxes_Click
         
@@ -794,6 +805,49 @@ Public Sub btnSalesPerson_Click(ByVal sender As Object, ByVal args As EventArgs)
         End Sub
             
         ' event handler for PushButton with Layout
+        Public Sub btnStates_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../states/EditStatesTable.aspx"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+              Me.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.ShouldSaveControlsToSession = True
+                Me.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.ShouldSaveControlsToSession = True
+            Me.CloseWindow(True)
+        
+            End If
+        End Sub
+            
+        ' event handler for PushButton with Layout
         Public Sub btnTaxes_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
               
             ' The redirect URL is set on the Properties, Bindings.
@@ -925,17 +979,44 @@ Public Sub btnSalesPerson_Click(ByVal sender As Object, ByVal args As EventArgs)
         ' event handler for PushButton with Layout
         Public Sub btnTerms_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
               
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../terms/ShowTermsTable.aspx"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
             Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
                 
+            url = Me.ModifyRedirectUrl(url, "",False)
+              Me.CommitTransaction(sender)
+          
             Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.RollBackTransaction(sender)
+                shouldRedirect = False
                 Me.ErrorOnPage = True
     
                 ' Report the error message to the end user
                 Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
             Finally
-    
+                DbUtils.EndTransaction
             End Try
-    
+            If shouldRedirect Then
+                Me.ShouldSaveControlsToSession = True
+                Me.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.ShouldSaveControlsToSession = True
+            Me.CloseWindow(True)
+        
+            End If
         End Sub
             
         ' event handler for PushButton with Layout

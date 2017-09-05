@@ -43,7 +43,7 @@
 </tr>
 </table>
  </td></tr><tr><td class="fls"><asp:Literal runat="server" id="narrationLabel" Text="Narration">	</asp:Literal></td><td class="dfv"><asp:TextBox runat="server" id="narration" MaxLength="50" columns="60" cssclass="field_input" rows="5" textmode="MultiLine"></asp:TextBox>&nbsp;
-<BaseClasses:TextBoxMaxLengthValidator runat="server" id="narrationTextBoxMaxLengthValidator" ControlToValidate="narration" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Narration&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td></tr></table></asp:panel>
+<BaseClasses:TextBoxMaxLengthValidator runat="server" id="narrationTextBoxMaxLengthValidator" ControlToValidate="narration" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;ServelInvocing&quot;).Replace(&quot;{FieldName}&quot;, &quot;Narration&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator> </td></tr><tr><td class="fls"><asp:Literal runat="server" id="print_boldLabel" Text="Print Bold">	</asp:Literal></td><td class="dfv"><asp:CheckBox runat="server" id="print_bold"></asp:CheckBox></td></tr></table></asp:panel>
 </td></tr></table>
 </asp:panel></td></tr></table>
 </ServelInvocing:TermsRecordControl>

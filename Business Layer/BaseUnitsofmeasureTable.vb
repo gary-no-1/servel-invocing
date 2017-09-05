@@ -54,6 +54,7 @@ Namespace ServelInvocing.Business
         
         Me.TableDefinition.AdapterMetaData = Me.DataAdapter.AdapterMetaData
         uomColumn.CodeName = "uom"
+        gst_uomColumn.CodeName = "gst_uom"
         
     End Sub
 
@@ -76,6 +77,25 @@ Namespace ServelInvocing.Business
     Public Shared ReadOnly Property uom() As BaseClasses.Data.StringColumn
         Get
             Return UnitsofmeasureTable.Instance.uomColumn
+        End Get
+    End Property
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Unitsofmeasure_.gst_uom column object.
+    ''' </summary>
+    Public ReadOnly Property gst_uomColumn() As BaseClasses.Data.StringColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(1), BaseClasses.Data.StringColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Unitsofmeasure_.gst_uom column object.
+    ''' </summary>
+    Public Shared ReadOnly Property gst_uom() As BaseClasses.Data.StringColumn
+        Get
+            Return UnitsofmeasureTable.Instance.gst_uomColumn
         End Get
     End Property
 
@@ -352,10 +372,12 @@ Namespace ServelInvocing.Business
 
     ' Convenience method for creating a record
     Public Overloads Function NewRecord( _
-        ByVal uomValue As String _
+        ByVal uomValue As String, _
+        ByVal gst_uomValue As String _
     ) As KeyValue
         Dim rec As IPrimaryKeyRecord = CType(Me.CreateRecord(), IPrimaryKeyRecord)
                 rec.SetString(uomValue, uomColumn)
+        rec.SetString(gst_uomValue, gst_uomColumn)
 
 
         rec.Create() 'update the DB so any DB-initialized fields (like autoincrement IDs) can be initialized
