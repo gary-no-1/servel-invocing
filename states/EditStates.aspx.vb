@@ -160,62 +160,13 @@ Partial Public Class EditStates
 
 #Region "Section 2: Do not modify this section."
 
-        Public WithEvents addressLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents addressLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents CancelButton As ThemeButton
-        Public WithEvents cityLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents cityLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents contactLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents contactLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents cst_dateLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents cst_noLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents ecc_noLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents ecc_noLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents emailLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents emailLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents gst_noLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents gst_noLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents id_partyLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents lst_dateLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents lst_noLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents nameLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents nameLabel2 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents pan_noLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents pan_noLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents party_codeLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents party_codeLabel3 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents PartyAddButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents PartyDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents PartyEditButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents PartyPagination As Pagination
-        Public WithEvents PartyResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents PartyTableControl As ServelInvocing.UI.Controls.EditStates.PartyTableControl
-        Public WithEvents PartyToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents phoneLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents phoneLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents SaveButton As ThemeButton
-        Public WithEvents SitesAddButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents SitesDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents SitesEditButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents SitesPagination As Pagination
-        Public WithEvents SitesResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents SitesTableControl As ServelInvocing.UI.Controls.EditStates.SitesTableControl
-        Public WithEvents SitesToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents st37_noLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents st37_noLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents state_codeLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents state_codeLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents state_codeLabel2 As System.Web.UI.WebControls.LinkButton
         Public WithEvents state_nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents state_nameLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents state_nameLabel2 As System.Web.UI.WebControls.LinkButton
         Public WithEvents StatesRecordControl As ServelInvocing.UI.Controls.EditStates.StatesRecordControl
         Public WithEvents StatesTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents tin_noLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tin_noLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents vat_noLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents vat_noLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   

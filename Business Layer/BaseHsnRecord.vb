@@ -43,6 +43,20 @@ Namespace ServelInvocing.Business
 #Region "Convenience methods to get/set values of fields"
 
 	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Hsn_.id field.
+	''' </summary>
+	Public Function Getid0Value() As ColumnValue
+		Return Me.GetValue(TableUtils.id0Column)
+	End Function
+
+	''' <summary>
+	''' This is a convenience method that provides direct access to the value of the record's Hsn_.id field.
+	''' </summary>
+	Public Function Getid0FieldValue() As Int32
+		Return CType(Me.GetValue(TableUtils.id0Column).ToInt32(), Int32)
+	End Function
+
+	''' <summary>
 	''' This is a convenience method that provides direct access to the value of the record's Hsn_.hsn field.
 	''' </summary>
 	Public Function GethsnValue() As ColumnValue
@@ -134,6 +148,42 @@ Namespace ServelInvocing.Business
 #End Region
 
 #Region "Convenience methods to get field names"
+
+	''' <summary>
+	''' This is a convenience property that provides direct access to the value of the record's Hsn_.id field.
+	''' </summary>
+	Public Property id0() As Int32
+		Get 
+			Return CType(Me.GetValue(TableUtils.id0Column).ToInt32(), Int32)
+		End Get
+		Set (ByVal val As Int32) 
+			Dim colValue As ColumnValue = New ColumnValue(val)
+			Me.SetValue(colValue, TableUtils.id0Column)
+		End Set
+	End Property
+
+
+	''' <summary>
+	''' This is a convenience method that can be used to determine that the column is set.
+	''' </summary>
+	Public ReadOnly Property id0Specified() As Boolean
+        Get
+            Dim val As ColumnValue = Me.GetValue(TableUtils.id0Column)
+            If val Is Nothing OrElse val.IsNull Then
+                Return False
+            End If
+            Return True
+        End Get
+    End Property
+
+	''' <summary>
+	''' This is a convenience method that can be used to get the default value of a column.
+	''' </summary>
+    Public ReadOnly Property id0Default() As String
+        Get
+            Return TableUtils.id0Column.DefaultValue
+        End Get
+    End Property
 
 	''' <summary>
 	''' This is a convenience property that provides direct access to the value of the record's Hsn_.hsn field.

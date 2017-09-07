@@ -9,7 +9,7 @@
 Public Class StatesDefinition
 
 #Region "Definition (XML) for StatesDefinition table"
-	'Next 85 lines contain Table Definition (XML) for table "StatesDefinition"
+	'Next 88 lines contain Table Definition (XML) for table "StatesDefinition"
 	Private Shared _DefinitionString As String = _
 "<XMLDefinition Generator=""Iron Speed Designer"" Version=""7.0"" Type=""GENERIC"">"& _
   "<ColumnDefinition>"& _
@@ -61,26 +61,29 @@ Public Class StatesDefinition
     "</Column>"& _
     "<Column InternalName=""2"" Priority=""3"" ColumnNum=""2"">"& _
       "<columnName>state_name</columnName>"& _
-      "<columnUIName>State Name</columnUIName>"& _
+      "<columnUIName Source=""User"">State Name</columnUIName>"& _
       "<columnType>String</columnType>"& _
       "<columnDBType>nchar</columnDBType>"& _
       "<columnLengthSet>30</columnLengthSet>"& _
       "<columnDefault></columnDefault>"& _
-      "<columnDBDefault></columnDBDefault>"& _
+      "<columnDBDefault Source=""User""></columnDBDefault>"& _
       "<columnIndex>Y</columnIndex>"& _
       "<columnUnique>Y</columnUnique>"& _
-      "<columnFunction></columnFunction>"& _
+      "<columnFunction>title</columnFunction>"& _
       "<columnDBFormat></columnDBFormat>"& _
       "<columnPK>N</columnPK>"& _
       "<columnPermanent>N</columnPermanent>"& _
-      "<columnComputed>N</columnComputed>"& _
-      "<columnIdentity>N</columnIdentity>"& _
-      "<columnReadOnly>N</columnReadOnly>"& _
+      "<columnComputed Source=""User"">N</columnComputed>"& _
+      "<columnIdentity Source=""User"">N</columnIdentity>"& _
+      "<columnReadOnly Source=""User"">N</columnReadOnly>"& _
       "<columnRequired>Y</columnRequired>"& _
       "<columnNotNull>Y</columnNotNull>"& _
-      "<columnCaseSensitive Source=""Database"">N</columnCaseSensitive>"& _
+      "<columnCaseSensitive Source=""User"">N</columnCaseSensitive>"& _
       "<columnVisibleWidth>%ISD_DEFAULT%</columnVisibleWidth>"& _
       "<columnTableAliasName></columnTableAliasName>"& _
+      "<columnCodeName></columnCodeName>"& _
+      "<InternalName>2</InternalName>"& _
+      "<columnTableClassName></columnTableClassName>"& _
     "</Column>"& _
   "</ColumnDefinition>"& _
   "<TableName>states</TableName>"& _

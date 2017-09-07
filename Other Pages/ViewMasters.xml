@@ -100,6 +100,44 @@
       </PassthroughAttributes>
     </ContainedComponent>
     <ContainedComponent>
+      <Name>btnHSN</Name>
+      <Type>PushButton</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>CausesValidation</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>CommandName</Name>
+          <Value>Redirect</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>page</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Height</Name>
+          <Value>50px</Value>
+        </Attribute>
+        <Attribute>
+          <Name>RedirectURL</Name>
+          <Value>../hsn/ShowHsnTable.aspx</Value>
+        </Attribute>
+        <Attribute>
+          <Name>RequiredRoles</Name>
+          <Value>&lt;PRoles&gt;1&lt;/PRoles&gt;</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>HSN</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>205px</Value>
+        </Attribute>
+      </PassthroughAttributes>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>btnItemGroup</Name>
       <Type>PushButton</Type>
       <PassthroughAttributes>
@@ -231,7 +269,11 @@
         </Attribute>
         <Attribute>
           <Name>RedirectURL</Name>
-          <Value>../states/EditStatesTable.aspx</Value>
+          <Value>../states/ShowStatesTable.aspx</Value>
+        </Attribute>
+        <Attribute>
+          <Name>RequiredRoles</Name>
+          <Value>&lt;PRoles&gt;1&lt;/PRoles&gt;</Value>
         </Attribute>
         <Attribute>
           <Name>Text</Name>
@@ -723,6 +765,9 @@
       &lt;Cell&gt;
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes /&gt;
+      &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
@@ -734,6 +779,9 @@
             &lt;AttributeValue&gt;3&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
@@ -750,6 +798,9 @@
         &lt;Value&gt;&amp;lt;GEN:PUSHBUTTON NAME="btnSalesPerson" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes /&gt;
+      &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
@@ -761,6 +812,9 @@
             &lt;AttributeValue&gt;3&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
@@ -777,6 +831,10 @@
         &lt;Value&gt;&amp;lt;GEN:PUSHBUTTON NAME="btnCommodity" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:PUSHBUTTON NAME="btnHSN" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
+      &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
@@ -788,6 +846,9 @@
             &lt;AttributeValue&gt;3&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
@@ -804,6 +865,9 @@
         &lt;Value&gt;&amp;lt;GEN:PUSHBUTTON NAME="btnTaxGroups" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes /&gt;
+      &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
@@ -816,6 +880,9 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes /&gt;
+      &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Row&gt;
@@ -825,6 +892,9 @@
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PUSHBUTTON NAME="btnTerms" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;

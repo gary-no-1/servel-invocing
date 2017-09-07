@@ -22,7 +22,8 @@
 </td><td class="dher"><img src="../Images/space.gif" alt="" /></td></tr></table>
 </td></tr><tr><td><asp:panel id="BlankPanelWithHeaderCollapsibleRegion" runat="server"><table class="dBody" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td class="tre"><table cellpadding="0" cellspacing="0" border="0"><tr><td><asp:Button runat="server" id="btnInvoiceItemReport" bordercolor="#0" borderstyle="NotSet" causesvalidation="False" commandname="Redirect" consumers="page" height="50px" requiredroles="&lt;PRoles>1;2;4&lt;/PRoles>" text="Invoice Items Report" width="205px">		
 	</asp:Button></td><td><asp:Button runat="server" id="btnInvoiceAmountReport" bordercolor="#0" borderstyle="NotSet" causesvalidation="False" commandname="Redirect" consumers="page" height="50px" requiredroles="&lt;PRoles>1;2;4&lt;/PRoles>" text="Invoice Amount Report" width="205px">		
-	</asp:Button></td></tr></table>
+	</asp:Button></td><td></td></tr><tr><td colspan="3"><hr></hr></td></tr><tr><td><asp:Button runat="server" id="btnGSTInvoiceReport" bordercolor="#0" borderstyle="NotSet" causesvalidation="False" commandname="Redirect" consumers="page" height="50px" requiredroles="&lt;PRoles>1;2;4&lt;/PRoles>" text="GST Invoice Report (b2b)" width="205px">		
+	</asp:Button></td><td></td><td></td></tr></table>
 </td></tr></table>
 </asp:panel></td></tr></table>
 </td></tr></table>

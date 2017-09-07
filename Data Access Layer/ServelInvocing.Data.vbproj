@@ -73,199 +73,55 @@
     <Compile Include="Shared\BaseFormulaUtils.vb" />
     <Compile Include="Shared\DatabaseObjects.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
-    <Compile Include="CommoditySqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CompanySqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Inv_hdrSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Inv_itemsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Inv_taxesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Inv_termsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ItemsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Item_groupsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Item_typesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mail_logSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="PartySqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Pro_inv_hdrSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Pro_inv_itemsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Pro_inv_taxesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Pro_inv_termsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RolesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SalepersonSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SitesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="So_hdrSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="So_itemsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="So_taxesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="So_termsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="StatesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TaxesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tax_groupsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tax_group_dtlsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tax_typesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TermsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TransportersSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UnitsofmeasureSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UsersSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="User_rolesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="V_Invoice_AmountsSqlView.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="V_Invoice_ItemsSqlView.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CompanyDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HsnDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HsnSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseHsnSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Inv_hdrDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Inv_itemsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Inv_termsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ItemsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Item_typesDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="PartyDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Pro_inv_hdrDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Pro_inv_itemsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Pro_inv_termsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SitesDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="So_hdrDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="So_itemsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseSo_itemsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="So_taxesDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseSo_taxesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="So_termsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseSo_termsSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="StatesDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseStatesSqlTable.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TermsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UnitsofmeasureDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="V_Invoice_AmountsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="V_Invoice_ItemsDefinition.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="CommodityDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommoditySqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseCommoditySqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CompanyDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CompanySqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseCompanySqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Gst_reportDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Gst_reportSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseGst_reportSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HsnDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HsnSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseHsnSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inv_hdrDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inv_hdrSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseInv_hdrSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inv_itemsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inv_itemsSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseInv_itemsSqlTable.vb" >
@@ -274,10 +130,25 @@
     <Compile Include="Inv_taxesDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Inv_taxesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseInv_taxesSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Inv_termsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inv_termsSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseInv_termsSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ItemsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ItemsSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseItemsSqlTable.vb" >
@@ -286,7 +157,16 @@
     <Compile Include="Item_groupsDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Item_groupsSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseItem_groupsSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Item_typesDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Item_typesSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseItem_typesSqlTable.vb" >
@@ -295,13 +175,34 @@
     <Compile Include="Mail_logDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Mail_logSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseMail_logSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PartyDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PartySqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BasePartySqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Pro_inv_hdrDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_hdrSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BasePro_inv_hdrSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_itemsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_itemsSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BasePro_inv_itemsSqlTable.vb" >
@@ -310,7 +211,16 @@
     <Compile Include="Pro_inv_taxesDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Pro_inv_taxesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BasePro_inv_taxesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_termsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pro_inv_termsSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BasePro_inv_termsSqlTable.vb" >
@@ -319,22 +229,79 @@
     <Compile Include="RolesDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="RolesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseRolesSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SalepersonDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SalepersonSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseSalepersonSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SitesDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SitesSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseSitesSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="So_hdrDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_hdrSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseSo_hdrSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="So_itemsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_itemsSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_itemsSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_taxesDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_taxesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_taxesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_termsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="So_termsSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSo_termsSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StatesDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StatesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseStatesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TaxesDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TaxesSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseTaxesSqlTable.vb" >
@@ -343,10 +310,16 @@
     <Compile Include="Tax_groupsDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tax_groupsSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseTax_groupsSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tax_group_dtlsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tax_group_dtlsSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseTax_group_dtlsSqlTable.vb" >
@@ -355,7 +328,16 @@
     <Compile Include="Tax_typesDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tax_typesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseTax_typesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TermsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TermsSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseTermsSqlTable.vb" >
@@ -364,7 +346,16 @@
     <Compile Include="TransportersDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TransportersSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseTransportersSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnitsofmeasureDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnitsofmeasureSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseUnitsofmeasureSqlTable.vb" >
@@ -373,16 +364,61 @@
     <Compile Include="UsersDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UsersSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseUsersSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="User_rolesDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="User_rolesSqlTable.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseUser_rolesSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="V_GST_InvoicesDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_GST_InvoicesSqlView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_GST_InvoicesSqlView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_GST_invoice_hsn_taxDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_GST_invoice_hsn_taxSqlView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_GST_invoice_hsn_taxSqlView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_GST_Sale_b2bDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_GST_Sale_b2bSqlView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_GST_Sale_b2bSqlView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_Invoice_AmountsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_Invoice_AmountsSqlView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseV_Invoice_AmountsSqlView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_Invoice_ItemsDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_Invoice_ItemsSqlView.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseV_Invoice_ItemsSqlView.vb" >

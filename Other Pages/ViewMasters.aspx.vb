@@ -324,6 +324,13 @@ Public Sub btnStates_Click(ByVal sender As Object, ByVal args As EventArgs)
           btnStates_Click_Base(sender, args)
           ' NOTE: If the Base function redirects to another page, any code here will not be executed.
         End Sub
+Public Sub btnHSN_Click(ByVal sender As Object, ByVal args As EventArgs)
+            
+          ' Click handler for btnHSN.
+          ' Customize by adding code before the call or replace the call to the Base function with your own code.
+          btnHSN_Click_Base(sender, args)
+          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
+        End Sub
 #End Region
 
 #Region "Section 2: Do not modify this section."
@@ -331,6 +338,8 @@ Public Sub btnStates_Click(ByVal sender As Object, ByVal args As EventArgs)
         Public WithEvents btnCommodity As System.Web.UI.WebControls.Button
         
         Public WithEvents btnCompany As System.Web.UI.WebControls.Button
+        
+        Public WithEvents btnHSN As System.Web.UI.WebControls.Button
         
         Public WithEvents btnItemGroup As System.Web.UI.WebControls.Button
         
@@ -369,6 +378,8 @@ Public Sub btnStates_Click(ByVal sender As Object, ByVal args As EventArgs)
             AddHandler Me.btnCommodity.Click, AddressOf btnCommodity_Click
         
             AddHandler Me.btnCompany.Click, AddressOf btnCompany_Click
+        
+            AddHandler Me.btnHSN.Click, AddressOf btnHSN_Click
         
             AddHandler Me.btnItemGroup.Click, AddressOf btnItemGroup_Click
         
@@ -411,9 +422,13 @@ Public Sub btnStates_Click(ByVal sender As Object, ByVal args As EventArgs)
 					
 			Me.Authorize(Ctype(btnCompany, Control), "1;2")
 					
+			Me.Authorize(Ctype(btnHSN, Control), "1")
+					
 			Me.Authorize(Ctype(btnItemGroup, Control), "1;2;4")
 					
 			Me.Authorize(Ctype(btnItemType, Control), "1;2;4")
+					
+			Me.Authorize(Ctype(btnStates, Control), "1")
 					
 			Me.Authorize(Ctype(btnTaxes, Control), "1;2;4")
 					
@@ -676,6 +691,49 @@ Public Sub btnStates_Click(ByVal sender As Object, ByVal args As EventArgs)
         End Sub
             
         ' event handler for PushButton with Layout
+        Public Sub btnHSN_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../hsn/ShowHsnTable.aspx"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+              Me.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.ShouldSaveControlsToSession = True
+                Me.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.ShouldSaveControlsToSession = True
+            Me.CloseWindow(True)
+        
+            End If
+        End Sub
+            
+        ' event handler for PushButton with Layout
         Public Sub btnItemGroup_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
               
             ' The redirect URL is set on the Properties, Bindings.
@@ -812,7 +870,7 @@ Public Sub btnStates_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Response.Redirect redirects the page to the URL.  
             ' Any code after the Response.Redirect call will not be executed, since the page is
             ' redirected to the URL.
-            Dim url As String = "../states/EditStatesTable.aspx"
+            Dim url As String = "../states/ShowStatesTable.aspx"
             Dim shouldRedirect As Boolean = True
             Dim TargetKey As String = Nothing
             Dim DFKA As String = Nothing

@@ -53,6 +53,7 @@ Namespace ServelInvocing.Business
         Directcast(Me.DataAdapter, HsnSqlTable).ConnectionName = Me.ConnectionName
         
         Me.TableDefinition.AdapterMetaData = Me.DataAdapter.AdapterMetaData
+        id0Column.CodeName = "id0"
         hsnColumn.CodeName = "hsn"
         gst_descriptionColumn.CodeName = "gst_description"
         gst_uomColumn.CodeName = "gst_uom"
@@ -62,11 +63,30 @@ Namespace ServelInvocing.Business
 #Region "Properties for columns"
 
     ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Hsn_.id column object.
+    ''' </summary>
+    Public ReadOnly Property id0Column() As BaseClasses.Data.NumberColumn
+        Get
+            Return CType(Me.TableDefinition.ColumnList(0), BaseClasses.Data.NumberColumn)
+        End Get
+    End Property
+
+
+    
+    ''' <summary>
+    ''' This is a convenience property that provides direct access to the table's Hsn_.id column object.
+    ''' </summary>
+    Public Shared ReadOnly Property id0() As BaseClasses.Data.NumberColumn
+        Get
+            Return HsnTable.Instance.id0Column
+        End Get
+    End Property
+    ''' <summary>
     ''' This is a convenience property that provides direct access to the table's Hsn_.hsn column object.
     ''' </summary>
     Public ReadOnly Property hsnColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(0), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(1), BaseClasses.Data.StringColumn)
         End Get
     End Property
 
@@ -85,7 +105,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property gst_descriptionColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(1), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(2), BaseClasses.Data.StringColumn)
         End Get
     End Property
 
@@ -104,7 +124,7 @@ Namespace ServelInvocing.Business
     ''' </summary>
     Public ReadOnly Property gst_uomColumn() As BaseClasses.Data.StringColumn
         Get
-            Return CType(Me.TableDefinition.ColumnList(2), BaseClasses.Data.StringColumn)
+            Return CType(Me.TableDefinition.ColumnList(3), BaseClasses.Data.StringColumn)
         End Get
     End Property
 

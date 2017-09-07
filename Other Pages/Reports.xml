@@ -16,6 +16,52 @@
   </Self>
   <ComposedOf>
     <ContainedComponent>
+      <Name>btnGSTInvoiceReport</Name>
+      <Type>PushButton</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>BorderColor</Name>
+          <Value>#0</Value>
+        </Attribute>
+        <Attribute>
+          <Name>BorderStyle</Name>
+          <Value>NotSet</Value>
+        </Attribute>
+        <Attribute>
+          <Name>CausesValidation</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>CommandName</Name>
+          <Value>Redirect</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>page</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Height</Name>
+          <Value>50px</Value>
+        </Attribute>
+        <Attribute>
+          <Name>RedirectURL</Name>
+          <Value>../V_GST_Invoices/ShowV_GST_InvoicesTable.aspx</Value>
+        </Attribute>
+        <Attribute>
+          <Name>RequiredRoles</Name>
+          <Value>&lt;PRoles&gt;1;2;4&lt;/PRoles&gt;</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>GST Invoice Report (b2b)</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>205px</Value>
+        </Attribute>
+      </PassthroughAttributes>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>btnInvoiceAmountReport</Name>
       <Type>PushButton</Type>
       <PassthroughAttributes>
@@ -355,6 +401,34 @@
       &lt;/Cell&gt;
       &lt;Cell&gt;
         &lt;Value&gt;&amp;lt;GEN:PUSHBUTTON NAME="btnInvoiceAmountReport" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes /&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;hr&amp;gt;&amp;lt;/hr&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes&gt;
+          &lt;Attribute&gt;
+            &lt;Name&gt;colspan&lt;/Name&gt;
+            &lt;AttributeValue&gt;3&lt;/AttributeValue&gt;
+          &lt;/Attribute&gt;
+        &lt;/CellAttributes&gt;
+      &lt;/Cell&gt;
+      &lt;RowAttributes /&gt;
+    &lt;/Row&gt;
+    &lt;Row&gt;
+      &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:PUSHBUTTON NAME="btnGSTInvoiceReport" /&amp;gt;&lt;/Value&gt;
+        &lt;CellAttributes /&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
+        &lt;CellAttributes /&gt;
+      &lt;/Cell&gt;
+      &lt;Cell&gt;
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;RowAttributes /&gt;

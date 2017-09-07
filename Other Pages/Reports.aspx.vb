@@ -155,10 +155,19 @@ Public Sub btnInvoiceAmountReport_Click(ByVal sender As Object, ByVal args As Ev
           btnInvoiceAmountReport_Click_Base(sender, args)
           ' NOTE: If the Base function redirects to another page, any code here will not be executed.
         End Sub
+Public Sub btnGSTInvoiceReport_Click(ByVal sender As Object, ByVal args As EventArgs)
+            
+          ' Click handler for btnGSTInvoiceReport.
+          ' Customize by adding code before the call or replace the call to the Base function with your own code.
+          btnGSTInvoiceReport_Click_Base(sender, args)
+          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
+        End Sub
 #End Region
 
 #Region "Section 2: Do not modify this section."
 
+        Public WithEvents btnGSTInvoiceReport As System.Web.UI.WebControls.Button
+        
         Public WithEvents btnInvoiceAmountReport As System.Web.UI.WebControls.Button
         
         Public WithEvents btnInvoiceItemReport As System.Web.UI.WebControls.Button
@@ -177,6 +186,8 @@ Public Sub btnInvoiceAmountReport_Click(ByVal sender As Object, ByVal args As Ev
 					
             ' Register the Event handler for any Events.
       
+            AddHandler Me.btnGSTInvoiceReport.Click, AddressOf btnGSTInvoiceReport_Click
+        
             AddHandler Me.btnInvoiceAmountReport.Click, AddressOf btnInvoiceAmountReport_Click
         
             AddHandler Me.btnInvoiceItemReport.Click, AddressOf btnInvoiceItemReport_Click
@@ -198,6 +209,8 @@ Public Sub btnInvoiceAmountReport_Click(ByVal sender As Object, ByVal args As Ev
             ' or 'no access' page if not. Does not do anything if role-based security
             ' is not turned on, but you can override to add your own security.
             Me.Authorize("")
+			Me.Authorize(Ctype(btnGSTInvoiceReport, Control), "1;2;4")
+					
 			Me.Authorize(Ctype(btnInvoiceAmountReport, Control), "1;2;4")
 					
 			Me.Authorize(Ctype(btnInvoiceItemReport, Control), "1;2;4")
@@ -364,6 +377,49 @@ Public Sub btnInvoiceAmountReport_Click(ByVal sender As Object, ByVal args As Ev
 
         ' Write out event methods for the page events
         
+        ' event handler for PushButton with Layout
+        Public Sub btnGSTInvoiceReport_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
+              
+            ' The redirect URL is set on the Properties, Bindings.
+            ' The ModifyRedirectURL call resolves the parameters before the
+            ' Response.Redirect redirects the page to the URL.  
+            ' Any code after the Response.Redirect call will not be executed, since the page is
+            ' redirected to the URL.
+            Dim url As String = "../V_GST_Invoices/ShowV_GST_InvoicesTable.aspx"
+            Dim shouldRedirect As Boolean = True
+            Dim TargetKey As String = Nothing
+            Dim DFKA As String = Nothing
+            Dim id As String = Nothing
+            Dim value As String = Nothing
+            Try
+                ' Enclose all database retrieval/update code within a Transaction boundary
+                DbUtils.StartTransaction
+                
+            url = Me.ModifyRedirectUrl(url, "",False)
+              Me.CommitTransaction(sender)
+          
+            Catch ex As Exception
+                ' Upon error, rollback the transaction
+                Me.RollBackTransaction(sender)
+                shouldRedirect = False
+                Me.ErrorOnPage = True
+    
+                ' Report the error message to the end user
+                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
+            Finally
+                DbUtils.EndTransaction
+            End Try
+            If shouldRedirect Then
+                Me.ShouldSaveControlsToSession = True
+                Me.Response.Redirect(url)
+            ElseIf Not TargetKey Is Nothing AndAlso _
+                        Not shouldRedirect Then
+            Me.ShouldSaveControlsToSession = True
+            Me.CloseWindow(True)
+        
+            End If
+        End Sub
+            
         ' event handler for PushButton with Layout
         Public Sub btnInvoiceAmountReport_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
               
