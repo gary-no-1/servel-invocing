@@ -1,6 +1,6 @@
 ﻿
-' This file implements the code-behind class for EditPro_inv_hdr.aspx.
-' EditPro_inv_hdr.Controls.vb contains the Table, Row and Record control classes
+' This file implements the code-behind class for ShowV_GST_hsn_summaryTable.aspx.
+' ShowV_GST_hsn_summaryTable.Controls.vb contains the Table, Row and Record control classes
 ' for the page.  Best practices calls for overriding methods in the Row or Record control classes.
 
 #Region "Imports statements"
@@ -33,9 +33,9 @@ Imports ServelInvocing.Data
   
 Namespace ServelInvocing.UI
   
-Partial Public Class EditPro_inv_hdr
+Partial Public Class ShowV_GST_hsn_summaryTable
         Inherits BaseApplicationPage
-' Code-behind class for the EditPro_inv_hdr page.
+' Code-behind class for the ShowV_GST_hsn_summaryTable page.
 ' Place your customizations in Section 1. Do not modify Section 2.
         
 #Region "Section 1: Place your customizations here."
@@ -122,6 +122,16 @@ Partial Public Class EditPro_inv_hdr
             Return GetImage_Base(tableName, recordID, columnName, title, persist, popupWindowHeight, popupWindowWidth, popupWindowScrollBar)
         End Function
     
+      <Services.WebMethod()> _
+      Public Shared Function GetAutoCompletionList_V_GST_hsn_summarySearch(ByVal prefixText As String, ByVal count As Integer) As String()
+      ' GetV_GST_hsn_summarySearchCompletionList gets the list of suggestions from the database.
+      ' prefixText is the search text typed by the user .
+      ' count specifies the number of suggestions to be returned.
+      ' Customize by adding code before or after the call to  GetAutoCompletionList_V_GST_hsn_summarySearch()
+      ' or replace the call to GetAutoCompletionList_V_GST_hsn_summarySearch().
+      Return GetAutoCompletionList_V_GST_hsn_summarySearch_Base(prefixText, count)
+      End Function
+    
       Protected Overloads Overrides Sub BasePage_PreRender(ByVal sender As Object, ByVal e As EventArgs)
           MyBase.BasePage_PreRender(sender, e)
           RegisterPostback()
@@ -138,126 +148,37 @@ Partial Public Class EditPro_inv_hdr
 
     ' Page Event Handlers - buttons, sort, links
     
-        Public Sub CancelButton_Click(ByVal sender As Object, ByVal args As EventArgs)
-            
-          ' Click handler for CancelButton.
-          ' Customize by adding code before the call or replace the call to the Base function with your own code.
-          CancelButton_Click_Base(sender, args)
-          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
-        End Sub
-        
-		Public Sub SaveButton_Click(ByVal sender As Object, ByVal args As EventArgs)
-            
-          ' Click handler for SaveButton.
-          ' Customize by adding code before the call or replace the call to the Base function with your own code.
-			' 29/04/2015 -- if any qty / rate / tax has changed , the computation is compulsory
-			If Not isnothing(httpcontext.current.session("Recompute")) Then
-				Dim display_message = "Please Compute Totals Before Saving"
-	            Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", display_message)
-				Return
-			End if 		
-			' 29/04/2015 -- if invoice amount is blank , do not save invoice. zero is acceptable
-			If not isnothing(httpcontext.current.session("InvalidAmount")) Then
-				Dim display_message = "Invoice Amount is Blank"
-	            Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", display_message)
-				Return
-			End if 		
-
-          SaveButton_Click_Base(sender, args)
-          ' NOTE: If the Base function redirects to another page, any code here will not be executed.
-        End Sub
-                
-        
 
     
 #End Region
 
 #Region "Section 2: Do not modify this section."
 
-        Public WithEvents amountLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents bill_addressLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents bill_nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents calc_typeLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents CalculateButton As ThemeButton
-        Public WithEvents CancelButton As ThemeButton
-        Public WithEvents contactLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents ecc_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents emailLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents excise_remarkLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents freight_to_payLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents gr_rr_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents gr_rr_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents grand_totalLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents cessLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents cgstLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents gst_descriptionLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents gst_uomLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents hsnLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents id_commodity As System.Web.UI.WebControls.DropDownList
-        Public WithEvents id_commodityLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents id_party As System.Web.UI.WebControls.DropDownList
-        Public WithEvents id_party_stateLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_partyLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_site As System.Web.UI.WebControls.DropDownList
-        Public WithEvents id_siteLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_tax_group As System.Web.UI.WebControls.DropDownList
-        Public WithEvents id_tax_groupLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents id_taxesLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents id_transporter As System.Web.UI.WebControls.DropDownList
-        Public WithEvents id_transporterAddRecordLink As System.Web.UI.WebControls.ImageButton
-        Public WithEvents id_transporterLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents item_descriptionLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents item_totalLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents narrationLabel1 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents no_of_packagesLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents packing_detailsLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents igstLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents month_yearLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents month_yearLabel1 As System.Web.UI.WebControls.LinkButton
         Public WithEvents PageTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents party_gst_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents phoneLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents po_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents po_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents pro_inv_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents Pro_inv_hdrRecordControl As ServelInvocing.UI.Controls.EditPro_inv_hdr.Pro_inv_hdrRecordControl
-        Public WithEvents Pro_inv_hdrTitle As System.Web.UI.WebControls.Literal
-        Public WithEvents Pro_inv_itemsAddButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_itemsDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_itemsEditButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_itemsPagination As Pagination
-        Public WithEvents Pro_inv_itemsResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_itemsTableControl As ServelInvocing.UI.Controls.EditPro_inv_hdr.Pro_inv_itemsTableControl
-        Public WithEvents Pro_inv_itemsToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents pro_inv_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents Pro_inv_taxesAddButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_taxesDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_taxesEditButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_taxesPagination As Pagination
-        Public WithEvents Pro_inv_taxesResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_taxesTableControl As ServelInvocing.UI.Controls.EditPro_inv_hdr.Pro_inv_taxesTableControl
-        Public WithEvents Pro_inv_taxesToggleAll As System.Web.UI.WebControls.CheckBox
-        Public WithEvents Pro_inv_termsAddButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_termsDeleteButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_termsEditButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_termsPagination As Pagination
-        Public WithEvents Pro_inv_termsResetButton As System.Web.UI.WebControls.ImageButton
-        Public WithEvents Pro_inv_termsTableControl As ServelInvocing.UI.Controls.EditPro_inv_hdr.Pro_inv_termsTableControl
-        Public WithEvents Pro_inv_termsToggleAll As System.Web.UI.WebControls.CheckBox
         Public WithEvents qtyLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents rateLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents remarkLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents road_permit_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents sale_ord_dtLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents sale_ord_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents SaveButton As ThemeButton
-        Public WithEvents ship_addressLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents ship_nameLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents site_gst_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents site_stateLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents sort_orderLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents sort_orderLabel2 As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tax_amountLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tax_lockLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tax_onLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tax_rateLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents tin_noLabel As System.Web.UI.WebControls.Literal
-        Public WithEvents uomLabel As System.Web.UI.WebControls.LinkButton
-        Public WithEvents weightLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents sgstLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents taxable_amtLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents total_amtLabel As System.Web.UI.WebControls.LinkButton
+        Public WithEvents V_GST_hsn_summaryExportCSVButton As System.Web.UI.WebControls.ImageButton
+        Public WithEvents V_GST_hsn_summaryExportExcelButton As System.Web.UI.WebControls.ImageButton
+        Public WithEvents V_GST_hsn_summaryFilterButton As ThemeButton
+        Public WithEvents V_GST_hsn_summaryPagination As Pagination
+        Public WithEvents V_GST_hsn_summaryPDFButton As System.Web.UI.WebControls.ImageButton
+        Public WithEvents V_GST_hsn_summaryRefreshButton As System.Web.UI.WebControls.ImageButton
+        Public WithEvents V_GST_hsn_summaryResetButton As System.Web.UI.WebControls.ImageButton
+        Public WithEvents V_GST_hsn_summarySearch As System.Web.UI.WebControls.TextBox
+        Public WithEvents V_GST_hsn_summarySearchButton As ThemeButton
+        Public WithEvents V_GST_hsn_summaryTableControl As ServelInvocing.UI.Controls.ShowV_GST_hsn_summaryTable.V_GST_hsn_summaryTableControl
+        Public WithEvents V_GST_hsn_summaryTitle As System.Web.UI.WebControls.Literal
+        Public WithEvents V_GST_hsn_summaryWordButton As System.Web.UI.WebControls.ImageButton
         Public WithEvents ValidationSummary1 As ValidationSummary
     
   
@@ -271,19 +192,11 @@ Partial Public Class EditPro_inv_hdr
 					
             ' Register the Event handler for any Events.
       
-            AddHandler Me.CancelButton.Button.Click, AddressOf CancelButton_Click
-        
-            AddHandler Me.SaveButton.Button.Click, AddressOf SaveButton_Click
-        
-            Me.SaveButton.Button.Attributes.Add("onclick", "SubmitHRefOnce(this, """ & Me.GetResourceValue("Txt:SaveRecord", "ServelInvocing") & """);")
-        
       
         End Sub
 
         Private Sub Base_RegisterPostback()
         
-              Me.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(Me,"SaveButton"))
-                        
         End Sub
 
         ' Handles MyBase.Load.  Read database data and put into the UI controls.
@@ -295,7 +208,7 @@ Partial Public Class EditPro_inv_hdr
             ' Check if user has access to this page.  Redirects to either sign-in page
             ' or 'no access' page if not. Does not do anything if role-based security
             ' is not turned on, but you can override to add your own security.
-            Me.Authorize("NOT_ANONYMOUS")
+            Me.Authorize("")
     
             If (Not Me.IsPostBack) Then
             
@@ -323,7 +236,7 @@ Partial Public Class EditPro_inv_hdr
             End If
         
         
-            Page.Title = GetResourceValue("Title:Edit") + " Pro Inv HDR"
+            Page.Title = "Summary"
         End Sub
 
     Public Shared Function GetRecordFieldValue_Base(ByVal tableName As String, _
@@ -397,7 +310,7 @@ Partial Public Class EditPro_inv_hdr
       
       Public Sub SaveData_Base()
               
-        Me.Pro_inv_hdrRecordControl.SaveData()
+        Me.V_GST_hsn_summaryTableControl.SaveData()
         
       End Sub
       
@@ -408,6 +321,17 @@ Partial Public Class EditPro_inv_hdr
       
       End Sub
       
+        Public Shared Function GetAutoCompletionList_V_GST_hsn_summarySearch_Base(ByVal prefixText As String, ByVal count As Integer) As String()
+            ' Since this method is a shared/static method it does not maintain information about page or controls within the page.
+            ' Hence we can not invoke any method associated with any controls.
+            ' So, if we need to use any control in the page we need to instantiate it.
+            Dim control as ServelInvocing.UI.Controls.ShowV_GST_hsn_summaryTable.V_GST_hsn_summaryTableControl 
+            control = new ServelInvocing.UI.Controls.ShowV_GST_hsn_summaryTable.V_GST_hsn_summaryTableControl()
+            
+            Return control.GetAutoCompletionList_V_GST_hsn_summarySearch(prefixText, count)
+              
+        End Function
+          
         ' Load data from database into UI controls.
         ' Modify LoadData in Section 1 above to customize.  Or override DataBind() in
         ' the individual table and record controls to customize.
@@ -424,7 +348,7 @@ Partial Public Class EditPro_inv_hdr
                 ' Ordering is important because child controls get
                 ' their parent ids from their parent UI controls.
                         
-        Me.Pro_inv_hdrRecordControl.LoadData()
+        Me.V_GST_hsn_summaryTableControl.LoadData()
         
       
                 Me.DataBind()
@@ -461,108 +385,7 @@ Partial Public Class EditPro_inv_hdr
         
 
         ' Write out event methods for the page events
-        
-        ' event handler for Button with Layout
-        Public Sub CancelButton_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
-              
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                
-
-                TargetKey = Me.Page.Request.QueryString.Item("Target")
-                If Not TargetKey Is Nothing Then
-                   shouldRedirect = False
-                End If
-      
-            Catch ex As Exception
-                shouldRedirect = False
-                Me.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-    
-            End Try
-            If shouldRedirect Then
-                Me.ShouldSaveControlsToSession = True
-                Me.RedirectBack()
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.ShouldSaveControlsToSession = True
-            Me.CloseWindow(True)
-        
-            End If
-        End Sub
             
-        ' event handler for Button with Layout
-        Public Sub SaveButton_Click_Base(ByVal sender As Object, ByVal args As EventArgs)
-              
-            Dim shouldRedirect As Boolean = True
-            Dim TargetKey As String = Nothing
-            Dim DFKA As String = Nothing
-            Dim id As String = Nothing
-            Dim value As String = Nothing
-            Try
-                ' Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction
-                
-        
-              If (Not Me.IsPageRefresh) Then         
-                  Me.SaveData()
-              End If        
-        
-            Me.CommitTransaction(sender)
-          
-            TargetKey = Me.Page.Request.QueryString.Item("Target")
-
-            If Not TargetKey Is Nothing Then
-                  
-                DFKA = Me.Page.Request.QueryString.Item("DFKA")
-                If Not Me.Pro_inv_hdrRecordControl Is Nothing AndAlso Not Me.Pro_inv_hdrRecordControl.DataSource Is Nothing Then
-                      
-                      id = Me.Pro_inv_hdrRecordControl.DataSource.id0.ToString
-                      value = Me.Pro_inv_hdrRecordControl.DataSource.GetValue(Me.Pro_inv_hdrRecordControl.DataSource.TableAccess.TableDefinition.ColumnList.GetByAnyName(DFKA)).ToString
-                      If value is Nothing Then
-                            value = id
-                      End If
-                      
-                      Dim Formula As String = Me.Page.Request.QueryString.Item("Formula")							
-                      If Not Formula Is Nothing Then
-                            value = EvaluateFormula(Formula, Me.Pro_inv_hdrRecordControl.DataSource)
-                      End If
-
-                      BaseClasses.Utils.MiscUtils.RegisterAddButtonScript(Me, TargetKey, id, value)
-                End If
-                shouldRedirect = False
-                        
-            End If
-        
-            Catch ex As Exception
-                ' Upon error, rollback the transaction
-                Me.RollBackTransaction(sender)
-                shouldRedirect = False
-                Me.ErrorOnPage = True
-    
-                ' Report the error message to the end user
-                Utils.MiscUtils.RegisterJScriptAlert(Me, "BUTTON_CLICK_MESSAGE", ex.Message)
-            Finally
-                DbUtils.EndTransaction
-            End Try
-            If shouldRedirect Then
-                Me.ShouldSaveControlsToSession = True
-                Me.RedirectBack()
-            ElseIf Not TargetKey Is Nothing AndAlso _
-                        Not shouldRedirect Then
-            Me.ShouldSaveControlsToSession = True
-            Me.CloseWindow(True)
-        
-            End If
-        End Sub
-                
     
 #End Region
 

@@ -699,6 +699,7 @@ Public Class BasePro_inv_itemsTableControlRow
             ' Call the Set methods for each controls on the panel
         
             Setamount()
+            Sethsn()
             Setid_item()
             Setitem_description()
             Setqty()
@@ -762,6 +763,50 @@ Public Class BasePro_inv_itemsTableControlRow
                 OrElse Me.amount.Text.Trim() = "" Then
                 ' Set the value specified on the Properties.
                 Me.amount.Text = "&nbsp;"
+            End If
+                  
+        End Sub
+                
+        Public Overridable Sub Sethsn()
+            
+        
+            ' Set the hsn Literal on the webpage with value from the
+            ' pro_inv_items database record.
+
+            ' Me.DataSource is the pro_inv_items record retrieved from the database.
+            ' Me.hsn is the ASP:Literal on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Sethsn()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.hsnSpecified Then
+                				
+                ' If the hsn is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_itemsTable.hsn)
+                            
+                formattedValue = HttpUtility.HtmlEncode(formattedValue)
+                Me.hsn.Text = formattedValue
+              
+            Else 
+            
+                ' hsn is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.hsn.Text = Pro_inv_itemsTable.hsn.Format(Pro_inv_itemsTable.hsn.DefaultValue)
+                        		
+                End If
+                 
+            ' If the hsn is NULL or blank, then use the value specified  
+            ' on Properties.
+            If Me.hsn.Text Is Nothing _
+                OrElse Me.hsn.Text.Trim() = "" Then
+                ' Set the value specified on the Properties.
+                Me.hsn.Text = "&nbsp;"
             End If
                   
         End Sub
@@ -1089,6 +1134,7 @@ Public Class BasePro_inv_itemsTableControlRow
             ' Call the Get methods for each of the user interface controls.
         
             Getamount()
+            Gethsn()
             Getid_item()
             Getitem_description()
             Getqty()
@@ -1098,6 +1144,10 @@ Public Class BasePro_inv_itemsTableControlRow
         
         
         Public Overridable Sub Getamount()
+            
+        End Sub
+                
+        Public Overridable Sub Gethsn()
             
         End Sub
                 
@@ -1363,6 +1413,12 @@ Public Class BasePro_inv_itemsTableControlRow
             End Get
         End Property
             
+        Public ReadOnly Property hsn() As System.Web.UI.WebControls.Literal
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsn"), System.Web.UI.WebControls.Literal)
+            End Get
+        End Property
+            
         Public ReadOnly Property id_item() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_item"), System.Web.UI.WebControls.LinkButton)
@@ -1509,6 +1565,8 @@ Public Class BasePro_inv_itemsTableControl
           
               AddHandler Me.amountLabel.Click, AddressOf amountLabel_Click
             
+              AddHandler Me.hsnLabel.Click, AddressOf hsnLabel_Click
+            
               AddHandler Me.id_itemLabel1.Click, AddressOf id_itemLabel1_Click
             
               AddHandler Me.item_descriptionLabel.Click, AddressOf item_descriptionLabel_Click
@@ -1641,6 +1699,7 @@ Public Class BasePro_inv_itemsTableControl
             ' Call the Set methods for each controls on the panel
         
             SetamountLabel()
+            SethsnLabel()
             Setid_itemLabel1()
             Setitem_descriptionLabel()
             SetqtyLabel()
@@ -1680,6 +1739,7 @@ Public Class BasePro_inv_itemsTableControl
             ' Initialize other asp controls
             
             SetamountLabel()
+            SethsnLabel()
             Setid_itemLabel1()
             Setitem_descriptionLabel()
             SetqtyLabel()
@@ -2060,6 +2120,9 @@ Public Class BasePro_inv_itemsTableControl
                         If recControl.amount.Text <> "" Then
                             rec.Parse(recControl.amount.Text, Pro_inv_itemsTable.amount)
                         End If
+                        If recControl.hsn.Text <> "" Then
+                            rec.Parse(recControl.hsn.Text, Pro_inv_itemsTable.hsn)
+                        End If
                         If recControl.id_item.Text <> "" Then
                             rec.Parse(recControl.id_item.Text, Pro_inv_itemsTable.id_item)
                         End If
@@ -2143,6 +2206,11 @@ Public Class BasePro_inv_itemsTableControl
         ' Create Set, WhereClause, and Populate Methods
         
         Public Overridable Sub SetamountLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SethsnLabel()
             
                     
         End Sub
@@ -2401,6 +2469,28 @@ Public Class BasePro_inv_itemsTableControl
               
         End Sub
             
+        Public Overridable Sub hsnLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by hsn when clicked.
+              
+            ' Get previous sorting state for hsn.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_itemsTable.hsn)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for hsn.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(Pro_inv_itemsTable.hsn, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by hsn, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
         Public Overridable Sub id_itemLabel1_Click(ByVal sender As Object, ByVal args As EventArgs)
             ' Sorts by id_item when clicked.
               
@@ -2537,6 +2627,7 @@ Public Class BasePro_inv_itemsTableControl
              Pro_inv_itemsTable.qty, _ 
              Pro_inv_itemsTable.rate, _ 
              Pro_inv_itemsTable.amount, _ 
+             Pro_inv_itemsTable.hsn, _ 
              Nothing}
             Dim  exportData as ExportDataToCSV = New ExportDataToCSV(Pro_inv_itemsTable.Instance, wc, orderBy, columns)
             exportData.Export(Me.Page.Response)
@@ -2583,6 +2674,7 @@ Public Class BasePro_inv_itemsTableControl
              excelReport.AddColumn(New ExcelColumn(Pro_inv_itemsTable.qty, "Standard"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_itemsTable.rate, "Standard"))
              excelReport.AddColumn(New ExcelColumn(Pro_inv_itemsTable.amount, "Standard"))
+             excelReport.AddColumn(New ExcelColumn(Pro_inv_itemsTable.hsn, "Default"))
 
             excelReport.Export(Me.Page.Response)
             Me.Page.CommitTransaction(sender)
@@ -2657,6 +2749,7 @@ Public Class BasePro_inv_itemsTableControl
                  report.AddColumn(Pro_inv_itemsTable.qty.Name, ReportEnum.Align.Right, "${qty}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Pro_inv_itemsTable.rate.Name, ReportEnum.Align.Right, "${rate}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Pro_inv_itemsTable.amount.Name, ReportEnum.Align.Right, "${amount}", ReportEnum.Align.Right, 20)
+                 report.AddColumn(Pro_inv_itemsTable.hsn.Name, ReportEnum.Align.Left, "${hsn}", ReportEnum.Align.Left, 15)
 
           
                 Dim rowsPerQuery As Integer = 5000 
@@ -2690,6 +2783,7 @@ Public Class BasePro_inv_itemsTableControl
                              report.AddData("${qty}", record.Format(Pro_inv_itemsTable.qty), ReportEnum.Align.Right, 100)
                              report.AddData("${rate}", record.Format(Pro_inv_itemsTable.rate), ReportEnum.Align.Right, 100)
                              report.AddData("${amount}", record.Format(Pro_inv_itemsTable.amount), ReportEnum.Align.Right, 100)
+                             report.AddData("${hsn}", record.Format(Pro_inv_itemsTable.hsn), ReportEnum.Align.Left, 100)
 
                             report.WriteRow 
                         Next 
@@ -2778,6 +2872,7 @@ Public Class BasePro_inv_itemsTableControl
                  report.AddColumn(Pro_inv_itemsTable.qty.Name, ReportEnum.Align.Right, "${qty}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Pro_inv_itemsTable.rate.Name, ReportEnum.Align.Right, "${rate}", ReportEnum.Align.Right, 20)
                  report.AddColumn(Pro_inv_itemsTable.amount.Name, ReportEnum.Align.Right, "${amount}", ReportEnum.Align.Right, 20)
+                 report.AddColumn(Pro_inv_itemsTable.hsn.Name, ReportEnum.Align.Left, "${hsn}", ReportEnum.Align.Left, 15)
 
               Dim whereClause As WhereClause = CreateWhereClause
               
@@ -2808,6 +2903,7 @@ Public Class BasePro_inv_itemsTableControl
                              report.AddData("${qty}", record.Format(Pro_inv_itemsTable.qty), ReportEnum.Align.Right, 100)
                              report.AddData("${rate}", record.Format(Pro_inv_itemsTable.rate), ReportEnum.Align.Right, 100)
                              report.AddData("${amount}", record.Format(Pro_inv_itemsTable.amount), ReportEnum.Align.Right, 100)
+                             report.AddData("${hsn}", record.Format(Pro_inv_itemsTable.hsn), ReportEnum.Align.Left, 100)
 
                             report.WriteRow
                         Next
@@ -2961,6 +3057,12 @@ Public Class BasePro_inv_itemsTableControl
         Public ReadOnly Property amountLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "amountLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property hsnLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsnLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         

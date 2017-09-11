@@ -1219,11 +1219,25 @@
     <Compile Include="user_roles\ShowUser_rolesTable.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="V_GST_hsn_summary\ShowV_GST_hsn_summaryTable.aspx.vb" >
+      <DependentUpon>ShowV_GST_hsn_summaryTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="V_GST_hsn_summary\ShowV_GST_hsn_summaryTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="V_GST_Invoices\ShowV_GST_InvoicesTable.aspx.vb" >
       <DependentUpon>ShowV_GST_InvoicesTable.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="V_GST_Invoices\ShowV_GST_InvoicesTable.Controls.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_GST_item_hsn_tax\ShowV_GST_item_hsn_taxTable.aspx.vb" >
+      <DependentUpon>ShowV_GST_item_hsn_taxTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="V_GST_item_hsn_tax\ShowV_GST_item_hsn_taxTable.Controls.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="V_Invoice_Amounts\ShowV_Invoice_AmountsTable.aspx.vb" >
@@ -1733,7 +1747,9 @@
     <Content Include="user_roles\EditUser_roles.aspx"  />
     <Content Include="user_roles\ShowUser_roles.aspx"  />
     <Content Include="user_roles\ShowUser_rolesTable.aspx"  />
+    <Content Include="V_GST_hsn_summary\ShowV_GST_hsn_summaryTable.aspx"  />
     <Content Include="V_GST_Invoices\ShowV_GST_InvoicesTable.aspx"  />
+    <Content Include="V_GST_item_hsn_tax\ShowV_GST_item_hsn_taxTable.aspx"  />
     <Content Include="V_Invoice_Amounts\ShowV_Invoice_AmountsTable.aspx"  />
     <Content Include="V_Invoice_Amounts\V_Invoice_AmountsWebReport.aspx"  />
     <Content Include="V_Invoice_Items\ShowV_Invoice_ItemsTable.aspx"  />

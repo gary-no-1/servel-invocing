@@ -190,6 +190,7 @@ Partial Public Class ShowPro_inv_hdr
         Public WithEvents gr_rr_noLabel As System.Web.UI.WebControls.Literal
         Public WithEvents grand_total As System.Web.UI.WebControls.Literal
         Public WithEvents grand_totalLabel As System.Web.UI.WebControls.Literal
+        Public WithEvents hsnLabel As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_commodity As System.Web.UI.WebControls.LinkButton
         Public WithEvents id_commodityLabel As System.Web.UI.WebControls.Literal
         Public WithEvents id_itemLabel1 As System.Web.UI.WebControls.LinkButton

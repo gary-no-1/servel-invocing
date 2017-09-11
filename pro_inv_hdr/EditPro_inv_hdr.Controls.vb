@@ -707,6 +707,8 @@ Public Class BasePro_inv_itemsTableControlRow
               
               AddHandler Me.id_item.SelectedIndexChanged, AddressOf id_item_SelectedIndexChanged
             
+              AddHandler Me.hsn.TextChanged, AddressOf hsn_TextChanged
+            
               AddHandler Me.item_code.TextChanged, AddressOf item_code_TextChanged
             
               AddHandler Me.item_description.TextChanged, AddressOf item_description_TextChanged
@@ -762,6 +764,7 @@ Public Class BasePro_inv_itemsTableControlRow
       
             ' Call the Set methods for each controls on the panel
         
+            Sethsn()
             Setid_item()
             Setitem_code()
             Setitem_description()
@@ -787,6 +790,49 @@ Public Class BasePro_inv_itemsTableControlRow
         End Sub
         
         
+        Public Overridable Sub Sethsn()
+            					
+            ' If data was retrieved from UI previously, restore it
+            If Me.PreviousUIData.ContainsKey(Me.hsn.ID) Then
+            
+                Me.hsn.Text = Me.PreviousUIData(Me.hsn.ID).ToString()
+              
+                Return
+            End If
+            
+        
+            ' Set the hsn TextBox on the webpage with value from the
+            ' pro_inv_items database record.
+
+            ' Me.DataSource is the pro_inv_items record retrieved from the database.
+            ' Me.hsn is the ASP:TextBox on the webpage.
+            
+            ' You can modify this method directly, or replace it with a call to
+            '     MyBase.Sethsn()
+            ' and add your own code before or after the call to the MyBase function.
+
+            
+                  
+            If Me.DataSource IsNot Nothing AndAlso Me.DataSource.hsnSpecified Then
+                				
+                ' If the hsn is non-NULL, then format the value.
+
+                ' The Format method will use the Display Format
+                                Dim formattedValue As String = Me.DataSource.Format(Pro_inv_itemsTable.hsn)
+                            
+                Me.hsn.Text = formattedValue
+              
+            Else 
+            
+                ' hsn is NULL in the database, so use the Default Value.  
+                ' Default Value could also be NULL.
+        
+                Me.hsn.Text = Pro_inv_itemsTable.hsn.Format(Pro_inv_itemsTable.hsn.DefaultValue)
+                        		
+                End If
+                 
+        End Sub
+                
         Public Overridable Sub Setid_item()
             							
             ' If selection was retrieved from UI previously, restore it
@@ -1204,6 +1250,7 @@ Public Class BasePro_inv_itemsTableControlRow
       
             ' Call the Get methods for each of the user interface controls.
         
+            Gethsn()
             Getid_item()
             Getitem_code()
             Getitem_description()
@@ -1214,6 +1261,19 @@ Public Class BasePro_inv_itemsTableControlRow
         End Sub
         
         
+        Public Overridable Sub Gethsn()
+            
+            ' Retrieve the value entered by the user on the hsn ASP:TextBox, and
+            ' save it into the hsn field in DataSource pro_inv_items record.
+            
+            ' Custom validation should be performed in Validate, not here.
+            
+            'Save the value to data source
+            Me.DataSource.Parse(Me.hsn.Text, Pro_inv_itemsTable.hsn)			
+
+                      
+        End Sub
+                
         Public Overridable Sub Getid_item()
          
             ' Retrieve the value entered by the user on the id_item ASP:DropDownList, and
@@ -1659,6 +1719,10 @@ Public Class BasePro_inv_itemsTableControlRow
                 
         End Sub
             
+        Protected Overridable Sub hsn_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
+                    				
+        End Sub
+            
         Protected Overridable Sub item_code_TextChanged(ByVal sender As Object, ByVal args As EventArgs)                
                     				
         End Sub
@@ -1826,6 +1890,12 @@ Public Class BasePro_inv_itemsTableControlRow
 
 #Region "Helper Properties"
         
+        Public ReadOnly Property hsn() As System.Web.UI.WebControls.TextBox
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsn"), System.Web.UI.WebControls.TextBox)
+            End Get
+        End Property
+            
         Public ReadOnly Property id_item() As System.Web.UI.WebControls.DropDownList
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "id_item"), System.Web.UI.WebControls.DropDownList)
@@ -2010,6 +2080,8 @@ Public Class BasePro_inv_itemsTableControl
           
               AddHandler Me.amountLabel.Click, AddressOf amountLabel_Click
             
+              AddHandler Me.hsnLabel.Click, AddressOf hsnLabel_Click
+            
               AddHandler Me.id_itemLabel1.Click, AddressOf id_itemLabel1_Click
             
               AddHandler Me.item_descriptionLabel.Click, AddressOf item_descriptionLabel_Click
@@ -2138,6 +2210,7 @@ Public Class BasePro_inv_itemsTableControl
             ' Call the Set methods for each controls on the panel
         
             SetamountLabel()
+            SethsnLabel()
             Setid_itemLabel1()
             Setitem_descriptionLabel()
             SetqtyLabel()
@@ -2177,6 +2250,7 @@ Public Class BasePro_inv_itemsTableControl
             ' Initialize other asp controls
             
             SetamountLabel()
+            SethsnLabel()
             Setid_itemLabel1()
             Setitem_descriptionLabel()
             SetqtyLabel()
@@ -2546,6 +2620,9 @@ Public Class BasePro_inv_itemsTableControl
                     
                         Dim rec As Pro_inv_itemsRecord = New Pro_inv_itemsRecord()
         
+                        If recControl.hsn.Text <> "" Then
+                            rec.Parse(recControl.hsn.Text, Pro_inv_itemsTable.hsn)
+                        End If
                         If MiscUtils.IsValueSelected(recControl.id_item) Then
                             rec.Parse(recControl.id_item.SelectedItem.Value, Pro_inv_itemsTable.id_item)
                         End If
@@ -2635,6 +2712,11 @@ Public Class BasePro_inv_itemsTableControl
         ' Create Set, WhereClause, and Populate Methods
         
         Public Overridable Sub SetamountLabel()
+            
+                    
+        End Sub
+                
+        Public Overridable Sub SethsnLabel()
             
                     
         End Sub
@@ -2911,6 +2993,28 @@ Public Class BasePro_inv_itemsTableControl
                 Me.CurrentSortOrder.Add(Pro_inv_itemsTable.amount, OrderByItem.OrderDir.Asc)
             Else
                 ' Previously sorted by amount, so just reverse.
+                sd.Reverse()
+            End If
+            
+            ' Setting the DataChanged to True results in the page being refreshed with
+            ' the most recent data from the database.  This happens in PreRender event
+            ' based on the current sort, search and filter criteria.
+            Me.DataChanged = True
+              
+        End Sub
+            
+        Public Overridable Sub hsnLabel_Click(ByVal sender As Object, ByVal args As EventArgs)
+            ' Sorts by hsn when clicked.
+              
+            ' Get previous sorting state for hsn.
+            
+            Dim sd As OrderByItem = Me.CurrentSortOrder.Find(Pro_inv_itemsTable.hsn)
+            If sd Is Nothing Then
+                ' First time sort, so add sort order for hsn.
+                Me.CurrentSortOrder.Reset()
+                Me.CurrentSortOrder.Add(Pro_inv_itemsTable.hsn, OrderByItem.OrderDir.Asc)
+            Else
+                ' Previously sorted by hsn, so just reverse.
                 sd.Reverse()
             End If
             
@@ -3288,6 +3392,12 @@ Public Class BasePro_inv_itemsTableControl
         Public ReadOnly Property amountLabel() As System.Web.UI.WebControls.LinkButton
             Get
                 Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "amountLabel"), System.Web.UI.WebControls.LinkButton)
+            End Get
+        End Property
+        
+        Public ReadOnly Property hsnLabel() As System.Web.UI.WebControls.LinkButton
+            Get
+                Return CType(BaseClasses.Utils.MiscUtils.FindControlRecursively(Me, "hsnLabel"), System.Web.UI.WebControls.LinkButton)
             End Get
         End Property
         

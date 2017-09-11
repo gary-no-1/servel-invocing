@@ -471,6 +471,18 @@
     <Compile Include="BaseUser_rolesRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="V_GST_hsn_summaryView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_GST_hsn_summaryView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_GST_hsn_summaryRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_GST_hsn_summaryRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="V_GST_InvoicesView.vb" >
       <SubType>Code</SubType>
     </Compile>
@@ -493,6 +505,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseV_GST_invoice_hsn_taxRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_GST_item_hsn_taxView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_GST_item_hsn_taxView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_GST_item_hsn_taxRecord.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_GST_item_hsn_taxRecord.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="V_GST_Sale_b2bView.vb" >

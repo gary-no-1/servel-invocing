@@ -379,6 +379,15 @@
     <Compile Include="BaseUser_rolesSqlTable.vb" >
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="V_GST_hsn_summaryDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_GST_hsn_summarySqlView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_GST_hsn_summarySqlView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="V_GST_InvoicesDefinition.vb" >
       <SubType>Code</SubType>
     </Compile>
@@ -395,6 +404,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseV_GST_invoice_hsn_taxSqlView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_GST_item_hsn_taxDefinition.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V_GST_item_hsn_taxSqlView.vb" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseV_GST_item_hsn_taxSqlView.vb" >
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="V_GST_Sale_b2bDefinition.vb" >

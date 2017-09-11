@@ -16,6 +16,98 @@
   </Self>
   <ComposedOf>
     <ContainedComponent>
+      <Name>btnGSThsnTaxDetail</Name>
+      <Type>PushButton</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>BorderColor</Name>
+          <Value>#0</Value>
+        </Attribute>
+        <Attribute>
+          <Name>BorderStyle</Name>
+          <Value>NotSet</Value>
+        </Attribute>
+        <Attribute>
+          <Name>CausesValidation</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>CommandName</Name>
+          <Value>Redirect</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>page</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Height</Name>
+          <Value>50px</Value>
+        </Attribute>
+        <Attribute>
+          <Name>RedirectURL</Name>
+          <Value>../V_GST_item_hsn_tax/ShowV_GST_item_hsn_taxTable.aspx</Value>
+        </Attribute>
+        <Attribute>
+          <Name>RequiredRoles</Name>
+          <Value>&lt;PRoles&gt;1;2;4&lt;/PRoles&gt;</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>GST HSN Tax Detail</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>205px</Value>
+        </Attribute>
+      </PassthroughAttributes>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>btnGSThsnTaxReport</Name>
+      <Type>PushButton</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>BorderColor</Name>
+          <Value>#0</Value>
+        </Attribute>
+        <Attribute>
+          <Name>BorderStyle</Name>
+          <Value>NotSet</Value>
+        </Attribute>
+        <Attribute>
+          <Name>CausesValidation</Name>
+          <Value>False</Value>
+        </Attribute>
+        <Attribute>
+          <Name>CommandName</Name>
+          <Value>Redirect</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Consumers</Name>
+          <Value>page</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Height</Name>
+          <Value>50px</Value>
+        </Attribute>
+        <Attribute>
+          <Name>RedirectURL</Name>
+          <Value>../V_GST_hsn_summary/ShowV_GST_hsn_summaryTable.aspx</Value>
+        </Attribute>
+        <Attribute>
+          <Name>RequiredRoles</Name>
+          <Value>&lt;PRoles&gt;1;2;4&lt;/PRoles&gt;</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>GST HSN Tax  Report (hsn)</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Width</Name>
+          <Value>205px</Value>
+        </Attribute>
+      </PassthroughAttributes>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>btnGSTInvoiceReport</Name>
       <Type>PushButton</Type>
       <PassthroughAttributes>
@@ -426,9 +518,11 @@
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:PUSHBUTTON NAME="btnGSThsnTaxDetail" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
+        &lt;Value&gt;&amp;lt;GEN:PUSHBUTTON NAME="btnGSThsnTaxReport" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;RowAttributes /&gt;

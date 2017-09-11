@@ -881,7 +881,7 @@ PARSEDECIMAL(Pro_inv_itemsTableControlRow.rate.Text) ,0) , "c")</Value>
         </Attribute>
         <Attribute>
           <Name>hsnRequiredFieldValidator:Enabled</Name>
-          <Value>False</Value>
+          <Value>True</Value>
         </Attribute>
         <Attribute>
           <Name>hsnRequiredFieldValidator:Text</Name>
